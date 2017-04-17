@@ -1,0 +1,10 @@
+#+TITLE: Wire Cell Toolkit Manual
+
+The manual is available in the following formats
+
+- [[./manual.html][HTML]] for online viewing (fixme: need to change this to a URL)
+- [[./manual.pdf][PDF]] for printing
+- [[./manuals.epub][EPUB]] for e-book readers
+- [[https://github.com/WireCell/wire-cell-docs/tree/master/manuals][Org]] source
+
+--------

@@ -1,0 +1,211 @@
+This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities.  It is intended for developers to read carefully, understand and follow.  It may be of interest to users as well.   It does not cover the "batteries included" or "reference implementations" such as the simulation, signal processing, imaging, etc which are described in section [[Packages]].
+
+* Toolkit packages
+
+The WCT is composed of a number of /packages/.  Each package has an associated with a Git source repository.
+Most packages produce a shared library, which may also be a WCT plugin library, C++ header files, some number of main or test applications.   Others include a single package holding all Python code in various modules, a package providing support for developing WCT configuration files and the documentation package holding this document.
+One special type of package is a /build/ package described more in section on the build package.
+
+** Names
+
+Package repositories are named like =wire-cell-<name>= where =<name>= is some short identifier giving indication of the main scope of the package.  In the documentation the =wire-cell-= prefix is often dropped and only this short name is used.  
+
+If a package produces a shared library it should be named in =CamelCase= with a prefix =WireCell=.  For example the =gen= package produces a library =libWireCellGen.so=.  As a plugin name or an entry in the build system, the =lib= and =.so= are dropped.  If the package has public header files to expose to other packages they should use this same name for a subdirectory in which to hold them.  Package layout is described move below.
+
+** Dependencies
+
+Some of the C++ packages are designated as /core/ packages.  These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, =gen=, =sigproc=).   These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections [[Package structure]] and [[Build package]]).
+
+The base package is =util= and it /must/ not depend on any other WCT package.  The next most basic is =iface= and it /must/ not depend on any other WCT except =util=.  Core implementation packages such as =gen= or =sigproc= may depend on both but should not depend on each other.
+
+Fixme: there is a need to factor some general utility routines and data structures that depend on =iface= and which the implementation packages should use that needs to be created.
+
+WCT also provides a number of peripheral implementation packages, which are free to have more dependencies, including ROOT, than "core" packages.  These are mostly for the purpose of providing WCT components which provide file I/O.  The =sst= package in particular support the so called =celltree= ROOT =TTree= format used by the Wire Cell prototype code.
+
+Finally, there may be third-party implementation packages.  They are free to mimic WCT packages but WCT itself will not depend on them.  They should not make use of the =WireCell::= C++ namespace.
+
+** Package structure
+
+The WCT package layout and file extensions must follow some conventions in order to greatly simplify the build system.  In the description below, =WireCellName= is as described above.
+
+- =src/*.cxx= ::  C++ source file for libraries with .cxx extensions or private headers
+- =inc/WireCellName/*.h= :: public/API C++ header files with .h extensions
+- =test/test_*.cxx= :: main C++ programs named like test_*.cxx, may also hold Python, shell scripts, private headers
+- =apps/*.cxx= :: main application(s), one appname.cxx file for each app named =appname=, should be very limited in number
+
+In the root of each C++ package directory must exist a file called =wscript_build=.  It typically consist of a single line with a method call like:
+
+#+BEGIN_SRC python :eval no
+  bld.smplpkg('WireCellName', use='...')
+#+END_SRC
+The =bld= object is automagically available.  If the package has no dependencies then only the name is given.  Most packages will need to specify some dependencies via =use= or may specify a different list of dependencies just for any applications (using =app_use=) or for the test programs (via =test_use=).  Dependencies are transitive so one must only list those on which the package directly depends.
+
+Fixme: make a script that generates a dot file and show the graph.
+
+** Build package
+
+To actually build WCT see the section on toolkit installation (section [[Installation]]).  The build system is based on [[https::waf.io][Waf]] and uses the =wcb= command and a =wscript= file provided by the top level /build package/.  More details on the build system are given in section [[Waf tools]])
+
+Besides holding the main build instructions this package aggregates all the other packages via Git's "submodule" feature.  In principle, there may be more than one build package maintained.  This allows developers working on a subset to avoid having to build unwanted code.  In practice there is a single build package which is at: https://github.com/wirecell/wire-cell-build.
+
+
+** Adding a new code package
+
+To add a new code package to a build package from scratch, select a =<name>= following guidance above and do something like:
+#+BEGIN_EXAMPLE
+    $ mkdir <name>
+    $ cd <name>/
+    $ echo "bld.smplpkg('WireCell<Name>', use='WireCellUtil WireCellIface')" > wscript_build
+    $ git init
+    $ git add wscript_build
+    $ git commit -a -m "Start code package <name>"
+#+END_EXAMPLE
+Replace =<name>= with your package name.  You can create and commit actual code at this time as well following the layout in [[Package structure]].
+
+Now, make a new repository by going to the [[https://github.com/WireCell][WireCell GitHub]] and clicking "New repository" button. Give it a name like =wire-cell-<name>=.  Copy-and-paste the two command it tells you to use:
+#+BEGIN_EXAMPLE
+    $ git remote add origin git@github.com:WireCell/wire-cell-<name>.git
+    $ git push -u origin master
+#+END_EXAMPLE
+If you made your initial package directory inside the build package move it aside.  Then, from the build package directory, add this new repository as a Git submodule:
+#+BEGIN_EXAMPLE
+    $ cd wire-cell-build/ # or whatever you named it
+    $ git submodule add -- git@github.com:WireCell/wire-cell-<name>.git <name>
+    $ git submodule update
+    $ git commit -a -m "Added <name> to top-level build package."
+    $ git push
+#+END_EXAMPLE
+In order to be picked up by the build the new package short name must be added to the =wscript= file.
+
+
+
+
+* Coding conventions
+
+** C++ code formatting 
+
+- Base indentation /should/ be four spaces.
+
+- Tabs /should/ not be used.
+
+- Opening braces /should not/ be on a line onto themselves, closing braces /should be/.
+
+- Class names /should/ be =CamelCase=, method and function names /should be/ =snake_case=, class data attributes  /should be/ prefixed with =m_= (signifying "member").
+
+- Doxygen triple-slash =///= or double-star =/** */= comments /must/ be used for in-source reference documentation.
+
+- Normal comments /may/ be used for implementation documentation.
+
+- Interface classes and their types and methods /must/ each have a documenting Doxygen comment.
+
+- Header files /must/ have =#ifndef/#define/#endif= protection.
+
+- The C++ =using namespace= keyword /must not/ be used at top file scope in a header.
+
+- Unused headers /should not/ be retained.
+
+- Any =#include# need in an implementation file but not the corresponding header file /should not/ be in the header file.
+
+
+** C++ namespaces
+
+- All C++ code part of WCT proper and which may be accessed by other packages (eg, exported via "public headers") /must/ be under the =WireCell::= namespace.
+
+- WCT core code (=util= and =iface= packages) /may/ exist directly under =WireCell::= but bare functions /must/ be in a sub namespace.
+
+- Non-core, WCT implementation code (eg contents of =gen= package) /must/ use secondary namespace (eg =WireCell::Gen::=).
+
+- Any third-party packages providing WCT-based components or otherwise depending on WCT /should not/ use the =WireCell::= namespace.
+
+
+* Interfaces
+
+A central design aspect of the WCT is that all "important" functionality which may have more than one implementation must be accessed via an /pure abstract interface class/.  All such interface classes are held in the [[https://github.com/wirecell/wire-cell-iface][iface]] package.  Interface classes should present a very limited number of purely abstract methods that express a single, cohesive concept.  Implementations typically inherent from more than one interface.  If two concepts are close but not cohesive they are best put into two interface classes.
+Besides defining the method interface, Interface classes may define types.  They may also be templated.
+
+After an implementation of an interface is instantiated and leaves local scope it should be referenced only through one of its interfaces.  It should be held through an appropriately typed =std::shared_ptr<>= of which one should be defined as =ITheInterface::pointer=.
+
+Interfaces are used not only to access functionality but the data model for major working data is defined in terms of interfaces inheriting from =WireCell::IData=.  Once an instance is created it is immutable.
+
+Another category of interfaces are those which express the "node" concept.  They inherit from =WireCell::INode=.  These require implementation of an =operator()= method.   Nodes make up the main unit of code.  They are somewhat equivalent to =Algorithm= concept from the Gaudi framework where the =operator()= method is equivalent to Gaudi's =execute()= method.  They also require some additional instrumenting in order to participate in the data flow programming paradigm described below.
+
+* Components
+
+Components are implementations an interface which itself inherits from the =WireCell::IComponponent= interface class (this interface class is in =util= as a special case due to dependency issues.  fixme: needs to be solved with a general package depending on both =iface and =util=).  This inheritance follows [[https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern][CRTP]].
+
+Components also must have some tooling added in their implementation file.  This is in the form of a single CPP macro which generates a function used to load a factory that can create and retain instances based on a /type/ name and an /instance/ name.  For =WireCell::Gen::TrackDepos= the tooling looks like:
+
+#+BEGIN_SRC c++ :eval no
+  #include "WireCellUtil/NamedFactory.h"
+  WIRECELL_FACTORY(TrackDepos, WireCell::Gen::TrackDepos, WireCell::IDepoSource, WireCell::IConfigurable);
+#+END_SRC
+Note, this macro needs to appear before any =using namespace= directives.  The arguments to the macro are:
+
+1) The "type name" which is typically the class name absent any namespace prefixes.  It must be unique across the entire WCT application.
+2) The full class name.
+3) A list of all interfaces that it implements.
+
+A component may be retrieved as an interface using the /named factory pattern/ implemented in WCT.  If the component has yet to be instantiated it will be through this lookup.  This is performed with code like:
+
+#+BEGIN_SRC c++ :eval no
+  #include "WireCellUtil/NamedFactory.h"
+  auto a = Factory::lookup<IConfigurable>("TrackeDepos");
+  // or
+  auto b = Factory::lookup<IConfigurable>("TrackeDepos","some instance name");
+  // or
+  auto c = Factory::lookup_tn<IConfigurable>("TrackeDepos:");
+  // or
+  auto d = Factory::lookup_tn<IConfigurable>("TrackeDepos:some instance name");
+#+END_SRC
+The four example differ in if an instance name is known and if it is known separately from the type name or in the canonical join (eg as =type:name=).  The returned value in this example is a =std::shared_ptr<const IConfigurable>=.  This example accesses the =IConfigurable= interface of =TrackDepos=.  
+Not typically required by most code but there exists also a function =lookup_factory()= to get the factory that constructs the component instance.
+
+
+* Configuration
+
+One somewhat special component interface is =IConfigurable=.  A class inheriting from this interface is considered a /configurable component/ such as =TrackDepos= in the above example.  It is /required/ for any main application using the WCT toolkit to adhere to the Wire Cell Toolkit Configuration Protocol.  This is a contract by which the main application promises to do the following:
+
+1) Load in user-provided configuration information (see the configuration section of hte manual)
+2) Instantiate all configurables referenced in that configuration.
+3) Request the default configuration object from each instance.
+4) Update that object with, potentially partial, information provided by the user.
+5) Give the instance the updated configuration object.
+6) Do this before entering any execution phase of the application.
+If the main application uses =WireCell::Toolkit= then the protocol can be enacted with code similar to 
+#+BEGIN_SRC c++ :eval no
+  using namespace WireCell;
+  ConfigManager cfgmgr();
+  // ... load up cfgmgr
+  for (auto c : cfgmgr.all()) {
+      string type = get<string>(c, "type");
+      string name = get<string>(c, "name");
+      auto cfgobj = Factory::lookup<IConfigurable>(type, name); // throws 
+      Configuration cfg = cfgobj->default_configuration();
+      cfg = update(cfg, c["data"]);
+      cfgobj->configure(cfg);
+  }
+#+END_SRC
+FIXME: shouldn't we put this all inside =ConfigManager=?
+
+Developers of new configurables should keep this protocol in mind and should refer to existing configurables for various useful patterns to provide their end of the exchange.
+
+
+
+
+* Execution Models
+
+** Ad-hoc
+
+Direct calling of utility functions and concrete objects.
+
+** Component
+
+Concrete components.
+
+** Interface
+
+Using NamedFactory.
+
+** Data flow programming
+
+Using abstract DFP

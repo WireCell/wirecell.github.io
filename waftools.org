@@ -1,0 +1,28 @@
+* Waf tools
+
+The WCT build system is based on [[https://waf.io/][Waf]].  The parts of the build system include:
+
+- the =wcb= command provided by =wire-cell-build= which is a bundled version of Waf's =waf= command.
+- a number of Waf tools provide instructions for finding the required and optional software dependencies
+- the main =wscript= and per-package =wscript_build= files provide the high-level instructions for building WCT (ie, they are like old fashioned =Makefile= files).
+
+** Recreating =wcb=
+
+The =wcb= command bundles some optional Waf tools which are not included in the default version of the =waf= command.  In case new versions of Waf or new tools are needed it can be recreated like this:
+
+#+BEGIN_EXAMPLE
+  $ git clone https://github.com/waf-project/waf.git
+  $ cd waf/
+  $ ./waf-light --tools=compat15,doxygen,boost,bjam
+  $ cp waf /path/to/wire-cell-build/wcb
+  $ cd /path/to/wire-cell-build
+  $ git commit [...]
+#+END_EXAMPLE
+
+** Included Waf tools
+
+A number of Waf tools are provided in the [[https://github.com/wirecell/wire-cell-waftools][waftools]] submodule.  This provides a Python module for each software package which is a required or optional dependency and which is not already covered by Waf itself. New dependencies can be added by using existing modules as examples.  It is the =smplpkgs.py= module which handles the building of the WCT packages themselves.  The =wcb.py= module is used as a simple aggregate of all the other modules.  It is this that is loaded by the main =wscript=.
+
+#+begin_note
+The scripts to make and test releases are also housed in this package.
+#+end_note

@@ -1,78 +1,83 @@
-- [Installation](#org5a44ba0)
-  - [Installation](#org5a44ba0)
-    - [Toolkit installation](#org3ba289c)
-    - [Runtime environment](#orgd298462)
-    - [Guide for installation of dependencies](#org52daa81)
-    - [Release management](#org0757347)
-- [Configuration](#org15db1dd)
-  - [Introduction and Scope](#orgd4a83c2)
-  - [Configuration from a user point of view](#orge74cfc1)
-    - [File formats](#org4799949)
-    - [Basic command line](#org9a2184b)
-    - [Diving into JSON](#orgc6a81a5)
-    - [Limitations of JSON](#orgab7e2fb)
-    - [Learning Jsonnet](#orga4bbd5c)
-    - [Specific detector support](#orgf31a61c)
-  - [Configuration from a developer point of view](#org4ba65f9)
-- [Howtos](#orgfca3ada)
-  - [Run `wire-cell` command line program](#org6a0f083)
-  - [Add a new component class](#orgdafd754)
-- [Internals](#org8f35b84)
-  - [Toolkit packages](#orgcde7c72)
-    - [Names](#org3f02bf6)
-    - [Dependencies](#org54d675f)
-    - [Package structure](#org9353a42)
-    - [Build package](#org36a0708)
-    - [Adding a new code package](#org19b1a40)
-  - [Coding conventions](#org0165fa1)
-    - [C++ code formatting](#orgd9aef0b)
-    - [C++ namespaces](#org523ad24)
-  - [Interfaces](#orgb1eb11c)
-  - [Components](#org2f8f0da)
-  - [Configuration](#org15db1dd)
-  - [Execution Models](#org443694b)
-    - [Ad-hoc](#org7838b88)
-    - [Component](#org47f9a91)
-    - [Interface](#org36e5d3d)
-    - [Data flow programming](#org5b0c338)
-- [Packages](#orgec9c568)
-  - [Utilities](#orgbed4f21)
-    - [Units](#org9ec14d2)
-    - [Persistence](#orgd2dfc1d)
-    - [Etc](#org8a6afa0)
-  - [Interfaces](#orgb1eb11c)
-    - [Data](#org5a42303)
-    - [Nodes](#org05809c4)
-    - [Misc](#org35c06b1)
-  - [Simulation](#org8b82073)
-    - [Depositions](#orgf83ba6f)
-    - [Drifting](#org6df12c5)
-    - [Response](#orgbe7d396)
-    - [Digitizing](#orgdb981c6)
-  - [Waf tools](#org252a2c4)
-    - [Recreating `wcb`](#org950421d)
-    - [Included Waf tools](#org5557ead)
+- [Installation](#orgbf768fc)
+  - [Toolkit installation](#orgd9c52cb)
+    - [Source code](#orgc265fb0)
+    - [Configuring the source](#org958f576)
+    - [Building the source](#org6602e45)
+    - [Install the results](#org5fa0923)
+    - [Other build commands](#org1eb712c)
+  - [Runtime environment](#org29eb46c)
+  - [Guide for installation of dependencies](#org8931e8a)
+    - [Manual](#orga911010)
+    - [Spack](#org7edeb25)
+    - [UPS](#orgf246e8a)
+  - [Release management](#org41778a0)
+    - [Release versions](#orgb34f0ce)
+    - [Branch policy](#org99d27d0)
+    - [Branch mechanics](#orgfb50a43)
+- [Configuration](#org0524ffe)
+  - [Introduction](#orge56c2ba)
+  - [Configuration from a user point of view](#org50e0242)
+    - [File formats](#orgf99820b)
+    - [Basic command line](#org10a6db7)
+    - [Diving into JSON](#org466d39f)
+    - [Limitations of JSON](#orge47c3c0)
+    - [Learning Jsonnet](#orge00984a)
+    - [Specific detector support](#orgc1c7b9f)
+  - [Configuration from a developer point of view](#org045e873)
+- [Howtos](#orgcbc0103)
+  - [Run `wire-cell` command line program](#org6f1cdf3)
+  - [Add a new component class](#orgf2ff973)
+- [Internals](#org11f713b)
+  - [Toolkit packages](#org90f3938)
+    - [Names](#org185c94b)
+    - [Dependencies](#org7b1378e)
+    - [Package structure](#orgaf253a5)
+    - [Build package](#org1f9125f)
+    - [Adding a new code package](#orgd15cbc8)
+  - [Coding conventions](#org2f54f08)
+    - [C++ code formatting](#org06863bf)
+    - [C++ namespaces](#orgca15c05)
+  - [Interfaces](#org55e0e7b)
+  - [Components](#orgd7c8e68)
+  - [Configuration](#orge04d348)
+  - [Execution Models](#org60be852)
+    - [Ad-hoc](#org9d3a616)
+    - [Component](#orge1c1d73)
+    - [Interface](#org2000318)
+    - [Data flow programming](#org34c1a2b)
+- [Packages](#orgb0959d2)
+  - [Utilities](#orge5146df)
+    - [Units](#org7075fd4)
+    - [Persistence](#org2d7887f)
+    - [Etc](#org88c54a2)
+  - [Interfaces](#org639c560)
+    - [Data](#org00154b2)
+    - [Nodes](#orgf45327d)
+    - [Misc](#orgb626e2d)
+  - [Simulation](#orgd38d3a1)
+    - [Depositions](#org51dae07)
+    - [Drifting](#org67c520f)
+    - [Response](#orgb1c97c5)
+    - [Digitizing](#orga74f72a)
+  - [Waf tools](#org9771f25)
+    - [Recreating `wcb`](#org382e92e)
+    - [Included Waf tools](#orgb25138b)
 
 
 
-<a id="org5a44ba0"></a>
+<a id="orgbf768fc"></a>
 
 # Installation
-
-
-<a id="org5a44ba0"></a>
-
-## Installation
 
 The Wire Cell Toolkit (WCT) should be easy to build on any POSIX&rsquo;y system with a recent C++ compiler. This section describes how to build releases and development branches, it gives guidance for supplying the few software dependencies, and documents how releases are made.
 
 
-<a id="org3ba289c"></a>
+<a id="orgd9c52cb"></a>
 
-### Toolkit installation     :user:installer:developer:
+## Toolkit installation     :user:installer:developer:
 
 <div class="warning">
-This assumes you already have available the required dependencies. See section [1.1.3](#org52daa81).
+This assumes you already have available the required dependencies. See section [1.3](#org8931e8a).
 
 </div>
 
@@ -84,11 +89,11 @@ Installation requires four steps:
 4.  install the results
 
 
-<a id="orga9fa6ac"></a>
+<a id="orgc265fb0"></a>
 
-#### Source code
+### Source code
 
-WCT source is composed of several packages (see section [5](#orgec9c568)) and all source is available from the [Wire Cell GitHub organization](https://github.com/WireCell/). Releases of each package are made and documented on GitHub (*eg* [here](https://github.com/WireCell/wire-cell-build/releases)) and can be downloaded as archives. However, using git to assemble a working source area is recommended and easier. Releases and development branches are handled slightly differently.
+WCT source is composed of several packages (see section [5](#orgb0959d2)) and all source is available from the [Wire Cell GitHub organization](https://github.com/WireCell/). Releases of each package are made and documented on GitHub (*eg* [here](https://github.com/WireCell/wire-cell-build/releases)) and can be downloaded as archives. However, using git to assemble a working source area is recommended and easier. Releases and development branches are handled slightly differently.
 
 To obtain a release requires no GitHub authentication:
 
@@ -115,9 +120,9 @@ At some time later if there is a need to switch between HTTP or SSH a `switch-gi
 </div>
 
 
-<a id="org32ba3d5"></a>
+<a id="org958f576"></a>
 
-#### Configuring the source
+### Configuring the source
 
 At a minimum, the source must be configured with an installation location for the build results and to allow it to find its dependencies. This, and the remaining steps are done with the provided `wcb` script which is an instance of [Waf](https://waf.io/).
 
@@ -140,9 +145,9 @@ As shown in the example below, the flags to locate Boost are slightly different.
 This example assumes all externals are available in a directory set by the `WCT_EXTERNALS` variable. This variable is **not** used by the build and is only used to make this example brief.
 
 
-<a id="org90cff02"></a>
+<a id="org6602e45"></a>
 
-#### Building the source
+### Building the source
 
 After a successful source configure step, the results are cached and any long command line need not be repeated. To build the source simply run:
 
@@ -157,18 +162,18 @@ The build will try to run tests which can be avoided to save time:
     $ ./wcb --notests
 
 
-<a id="org9e13862"></a>
+<a id="org5fa0923"></a>
 
-#### Install the results
+### Install the results
 
 To install the build results into the location given by `--prefix` simply issue:
 
     $ ./wcb install
 
 
-<a id="orga6218f7"></a>
+<a id="org1eb712c"></a>
 
-#### Other build commands
+### Other build commands
 
 These other commands may be useful:
 
@@ -183,53 +188,53 @@ These other commands may be useful:
     $ ./wcb --help         # see more options.
 
 
-<a id="orgd298462"></a>
+<a id="org29eb46c"></a>
 
-### Runtime environment     :user:installer:
+## Runtime environment     :user:installer:
 
 Managing environment is usually a personal choice or computer facility policy and WCT does not place any significant requirements on this. The usual setting of `PATH` like variables will likely be needed.
 
 FIXME: we should look into setting `RPATH`.
 
-Internally, WCT does not require any environment however it will search a `WIRECELL_PATH` when locating configuration or other (non data) input files. More information is in the section [2](#org15db1dd).
+Internally, WCT does not require any environment however it will search a `WIRECELL_PATH` when locating configuration or other (non data) input files. More information is in the section [2](#org0524ffe).
 
 
-<a id="org52daa81"></a>
+<a id="org8931e8a"></a>
 
-### Guide for installation of dependencies     :installer:
+## Guide for installation of dependencies     :installer:
 
 
-<a id="orgc5c9eec"></a>
+<a id="orga911010"></a>
 
-#### Manual
+### Manual
 
 DIY
 
 
-<a id="orgfcb6011"></a>
+<a id="org7edeb25"></a>
 
-#### Spack
+### Spack
 
 Installation and setup with Spack Views or with EM.
 
 
-<a id="org08d0abc"></a>
+<a id="orgf246e8a"></a>
 
-#### UPS
+### UPS
 
 Setup with UPS.
 
 
-<a id="org0757347"></a>
+<a id="org41778a0"></a>
 
-### Release management     :core:developer:
+## Release management     :core:developer:
 
 Releases are made by developers as needed and as described in this section.
 
 
-<a id="org90b88d7"></a>
+<a id="orgb34f0ce"></a>
 
-#### Release versions
+### Release versions
 
 WCT label releases are made following a fixed procedure. Releases are labeled with the common three-number convention: `X.Y.Z`. These take the following semantic meanings:
 
@@ -238,30 +243,30 @@ WCT label releases are made following a fixed procedure. Releases are labeled wi
 -   **Z:** a bug release fixes problems without otherwise substantial changes.
 
 
-<a id="org114ef4a"></a>
+<a id="org99d27d0"></a>
 
-#### Branch policy
+### Branch policy
 
 Any new major or minor releases produce a new Git branch in each package. Only bug fixes are made to this branch. Where applicable, release bug fixes should be applied to `master`. Nominally, all development is on the `master` branch however developers are free to make their own feature branches. They are encourage to do this if their development is expected to be disruptive to other developers.
 
 
-<a id="org50a89ce"></a>
+<a id="orgfb50a43"></a>
 
-#### Branch mechanics
+### Branch mechanics
 
 To make releases, the above details are baked into two test scripts [make-release.sh](https://github.com/WireCell/waf-tools/blob/master/make-release.sh) and [test-release.sh](https://github.com/WireCell/waf-tools/blob/master/test-release.sh). See comments at the top of each for how to run them. These scripts can be used by others but are meant for developers to make official releases.
 
 
-<a id="org15db1dd"></a>
+<a id="org0524ffe"></a>
 
 # Configuration
 
+As the Wire Cell Toolkit (WCT) is a toolkit, it is up to the parent application to provide some mechanism for the user to provide configuration information to WCT *components*. Users of an application not provided by the WCT itself should refer to its documentation. This section of the manual documents the configuration mechanism that is provided by WCT itself. If an application decides to use the WCT file format then its users may refer to this document. Developers of WCT components should read it as well.
 
-<a id="orgd4a83c2"></a>
 
-## Introduction and Scope
+<a id="orge56c2ba"></a>
 
-As the Wire Cell Toolkit (WCT) is a toolkit, it is up to the application to provide some mechanism for the user to provide configuration information. Users of an application not provided by the WCT itself should refer to its documentation.
+## Introduction
 
 WCT itself provides a such a mechanism which is exposed to the user by the `wire-cell` command line application. Any application may easily adopt this same mechanism by making use of the `WireCell::ConfigManager` class.
 
@@ -280,21 +285,21 @@ Finally, configurations have a third attribute:
 In the next section, WCT user-configuration support is described. The following section gives guidance to developers who wish to write their own configurable components.
 
 
-<a id="orge74cfc1"></a>
+<a id="org50e0242"></a>
 
 ## Configuration from a user point of view     :user:
 
 Users of the WCT command line interface `wire-cell` or any WCT application that uses `WireCell::ConfigManager` can provide configuration information in the form of one or more files. This files express the same ordered list of configuration objects as described above.
 
 
-<a id="org4799949"></a>
+<a id="orgf99820b"></a>
 
 ### File formats
 
 WCT supports two related configuration file formats: [JSON](http://www.json.org/) and [Jsonnet](http://jsonnet.org/). Of the two, JSON is more fundamental while Jsonnet provides a way to better organize and construct complex configurations. Jsonnet support is a compile-time option. The stand-alone `jsonnet` program may also be used to evaluate Jsonnet into JSON.
 
 
-<a id="org9a2184b"></a>
+<a id="org10a6db7"></a>
 
 ### Basic command line
 
@@ -317,7 +322,7 @@ Here the components are specified by their &ldquo;type&rdquo; identifier as desc
 The user must know what components to dump. There is no way for the application to iterate over all possible components. In general, it is up to the provider of a plugin to catalog what component types it provides. WCT provides a [simple script](https://github.com/WireCell/wire-cell-cfg/blob/master/scripts/generate-defaults.sh) that will search the WCT source, determine the components and dump them out using `wire-cell`. Result of this dump, possibly out of date, is available in the [wire-cell-cfg](https://github.com/WireCell/wire-cell-cfg/tree/master/defaults) repository.
 
 
-<a id="orgc6a81a5"></a>
+<a id="org466d39f"></a>
 
 ### Diving into JSON
 
@@ -346,7 +351,7 @@ Here we see an array holding one element which is an object with the `type`, (in
 The `tracks` array in this example is empty and no depositions would be produced. The user most certainly should specify a nonempty set of tracks. In principle, the user may produces a huge `tracks` array. WCT support bzip2 compressed JSON files (see the section on [persistence in the util package manual](./util.md).
 
 
-<a id="orgab7e2fb"></a>
+<a id="orge47c3c0"></a>
 
 ### Limitations of JSON
 
@@ -359,7 +364,7 @@ Another limitation is that any numerical quantities **must** be expressed in the
 WCT provides a more powerful JSON-like configuration file format as described next.
 
 
-<a id="orga4bbd5c"></a>
+<a id="orge00984a"></a>
 
 ### Learning Jsonnet
 
@@ -370,7 +375,7 @@ To learn how to write Jsonnet in general, the user should refer to its documenta
 WCT locates Jsonnet files as it does JSON files and in particular using the environment variable `WIRECELL_PATH`. However, it does not (currently) support compressed Jsonnet files.
 
 
-<a id="org1377813"></a>
+<a id="orga0fde8e"></a>
 
 #### System of units
 
@@ -390,7 +395,7 @@ local wc = import "wirecell.jsonnet";
 ```
 
 
-<a id="org787240a"></a>
+<a id="orgad3eef0"></a>
 
 #### Functions
 
@@ -403,7 +408,7 @@ Some data sub-structures are needed in multiple laces and it can be laborious to
     },
 
 
-<a id="org501d7d3"></a>
+<a id="orged4bc98"></a>
 
 #### Default Structures
 
@@ -418,21 +423,21 @@ Some common structures are defined with default objects so that they may be exte
     ]
 
 
-<a id="org2e9f9f7"></a>
+<a id="org1a00eb7"></a>
 
 #### Commas
 
 One of the most irritating aspect of crafting JSON files by hand is that any array or object must not have a internal trailing comma. Jsonnet allows this otherwise extraneous comma. For this reason alone and if no other features are used, writing Jsonnet is worth the added dependency!
 
 
-<a id="orgf31a61c"></a>
+<a id="orgc1c7b9f"></a>
 
 ### Specific detector support
 
 The `wire-cell-cfg` package also provides support for popular LArTPC detectors. You can find these files under a directory named for the experiment (such as <./uboone/>).
 
 
-<a id="org4ba65f9"></a>
+<a id="org045e873"></a>
 
 ## Configuration from a developer point of view     :devel:
 
@@ -443,38 +448,38 @@ In addition, a developer is encouraged to provide Jsonnet files that abstract aw
 In particular, if the developer writes multiple components, an application component or a component that refers to another component, working example configuration files should be provided.
 
 
-<a id="orgfca3ada"></a>
+<a id="orgcbc0103"></a>
 
 # Howtos
 
 This section of the manual gives brief guidance on how to do various things with WCT.
 
 
-<a id="org6a0f083"></a>
+<a id="org6f1cdf3"></a>
 
 ## Run `wire-cell` command line program
 
 
-<a id="orgdafd754"></a>
+<a id="orgf2ff973"></a>
 
 ## Add a new component class
 
 
-<a id="org8f35b84"></a>
+<a id="org11f713b"></a>
 
 # Internals
 
-This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities. It is intended for developers to read carefully, understand and follow. It may be of interest to users as well. It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section [5](#orgec9c568).
+This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities. It is intended for developers to read carefully, understand and follow. It may be of interest to users as well. It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section [5](#orgb0959d2).
 
 
-<a id="orgcde7c72"></a>
+<a id="org90f3938"></a>
 
 ## Toolkit packages
 
 The WCT is composed of a number of *packages*. Each package has an associated with a Git source repository. Most packages produce a shared library, which may also be a WCT plugin library, C++ header files, some number of main or test applications. Others include a single package holding all Python code in various modules, a package providing support for developing WCT configuration files and the documentation package holding this document. One special type of package is a *build* package described more in section on the build package.
 
 
-<a id="org3f02bf6"></a>
+<a id="org185c94b"></a>
 
 ### Names
 
@@ -483,11 +488,11 @@ Package repositories are named like `wire-cell-<name>` where `<name>` is some sh
 If a package produces a shared library it should be named in `CamelCase` with a prefix `WireCell`. For example the `gen` package produces a library `libWireCellGen.so`. As a plugin name or an entry in the build system, the `lib` and `.so` are dropped. If the package has public header files to expose to other packages they should use this same name for a subdirectory in which to hold them. Package layout is described move below.
 
 
-<a id="org54d675f"></a>
+<a id="org7b1378e"></a>
 
 ### Dependencies
 
-Some of the C++ packages are designated as *core* packages. These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, `gen`, `sigproc`). These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections [4.1.3](#org9353a42) and [4.1.4](#org36a0708)).
+Some of the C++ packages are designated as *core* packages. These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, `gen`, `sigproc`). These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections [4.1.3](#orgaf253a5) and [4.1.4](#org1f9125f)).
 
 The base package is `util` and it *must* not depend on any other WCT package. The next most basic is `iface` and it *must* not depend on any other WCT except `util`. Core implementation packages such as `gen` or `sigproc` may depend on both but should not depend on each other.
 
@@ -498,7 +503,7 @@ WCT also provides a number of peripheral implementation packages, which are free
 Finally, there may be third-party implementation packages. They are free to mimic WCT packages but WCT itself will not depend on them. They should not make use of the `WireCell::` C++ namespace.
 
 
-<a id="org9353a42"></a>
+<a id="orgaf253a5"></a>
 
 ### Package structure
 
@@ -520,16 +525,16 @@ The `bld` object is automagically available. If the package has no dependencies 
 Fixme: make a script that generates a dot file and show the graph.
 
 
-<a id="org36a0708"></a>
+<a id="org1f9125f"></a>
 
 ### Build package
 
-To actually build WCT see the section on toolkit installation (section [1](#org5a44ba0)). The build system is based on [Waf](https::waf.io) and uses the `wcb` command and a `wscript` file provided by the top level *build package*. More details on the build system are given in section [5.4](#org252a2c4))
+To actually build WCT see the section on toolkit installation (section [1](#orgbf768fc)). The build system is based on [Waf](https::waf.io) and uses the `wcb` command and a `wscript` file provided by the top level *build package*. More details on the build system are given in section [5.4](#org9771f25))
 
 Besides holding the main build instructions this package aggregates all the other packages via Git&rsquo;s &ldquo;submodule&rdquo; feature. In principle, there may be more than one build package maintained. This allows developers working on a subset to avoid having to build unwanted code. In practice there is a single build package which is at: <https://github.com/wirecell/wire-cell-build>.
 
 
-<a id="org19b1a40"></a>
+<a id="orgd15cbc8"></a>
 
 ### Adding a new code package
 
@@ -542,7 +547,7 @@ To add a new code package to a build package from scratch, select a `<name>` fol
     $ git add wscript_build
     $ git commit -a -m "Start code package <name>"
 
-Replace `<name>` with your package name. You can create and commit actual code at this time as well following the layout in [4.1.3](#org9353a42).
+Replace `<name>` with your package name. You can create and commit actual code at this time as well following the layout in [4.1.3](#orgaf253a5).
 
 Now, make a new repository by going to the [WireCell GitHub](https://github.com/WireCell) and clicking &ldquo;New repository&rdquo; button. Give it a name like `wire-cell-<name>`. Copy-and-paste the two command it tells you to use:
 
@@ -560,12 +565,12 @@ If you made your initial package directory inside the build package move it asid
 In order to be picked up by the build the new package short name must be added to the `wscript` file.
 
 
-<a id="org0165fa1"></a>
+<a id="org2f54f08"></a>
 
 ## Coding conventions
 
 
-<a id="orgd9aef0b"></a>
+<a id="org06863bf"></a>
 
 ### C++ code formatting
 
@@ -592,7 +597,7 @@ In order to be picked up by the build the new package short name must be added t
 -   Any =#include# need in an implementation file but not the corresponding header file *should not* be in the header file.
 
 
-<a id="org523ad24"></a>
+<a id="orgca15c05"></a>
 
 ### C++ namespaces
 
@@ -605,7 +610,7 @@ In order to be picked up by the build the new package short name must be added t
 -   Any third-party packages providing WCT-based components or otherwise depending on WCT *should not* use the `WireCell::` namespace.
 
 
-<a id="orgb1eb11c"></a>
+<a id="org55e0e7b"></a>
 
 ## Interfaces
 
@@ -618,7 +623,7 @@ Interfaces are used not only to access functionality but the data model for majo
 Another category of interfaces are those which express the &ldquo;node&rdquo; concept. They inherit from `WireCell::INode`. These require implementation of an `operator()` method. Nodes make up the main unit of code. They are somewhat equivalent to `Algorithm` concept from the Gaudi framework where the `operator()` method is equivalent to Gaudi&rsquo;s `execute()` method. They also require some additional instrumenting in order to participate in the data flow programming paradigm described below.
 
 
-<a id="org2f8f0da"></a>
+<a id="orgd7c8e68"></a>
 
 ## Components
 
@@ -653,7 +658,7 @@ auto d = Factory::lookup_tn<IConfigurable>("TrackeDepos:some instance name");
 The four example differ in if an instance name is known and if it is known separately from the type name or in the canonical join (eg as `type:name`). The returned value in this example is a `std::shared_ptr<const IConfigurable>`. This example accesses the `IConfigurable` interface of `TrackDepos`. Not typically required by most code but there exists also a function `lookup_factory()` to get the factory that constructs the component instance.
 
 
-<a id="org15db1dd"></a>
+<a id="orge04d348"></a>
 
 ## Configuration
 
@@ -687,122 +692,122 @@ FIXME: shouldn&rsquo;t we put this all inside `ConfigManager`?
 Developers of new configurables should keep this protocol in mind and should refer to existing configurables for various useful patterns to provide their end of the exchange.
 
 
-<a id="org443694b"></a>
+<a id="org60be852"></a>
 
 ## Execution Models
 
 
-<a id="org7838b88"></a>
+<a id="org9d3a616"></a>
 
 ### Ad-hoc
 
 Direct calling of utility functions and concrete objects.
 
 
-<a id="org47f9a91"></a>
+<a id="orge1c1d73"></a>
 
 ### Component
 
 Concrete components.
 
 
-<a id="org36e5d3d"></a>
+<a id="org2000318"></a>
 
 ### Interface
 
 Using NamedFactory.
 
 
-<a id="org5b0c338"></a>
+<a id="org34c1a2b"></a>
 
 ### Data flow programming
 
 Using abstract DFP
 
 
-<a id="orgec9c568"></a>
+<a id="orgb0959d2"></a>
 
 # Packages
 
 
-<a id="orgbed4f21"></a>
+<a id="orge5146df"></a>
 
 ## Utilities
 
 Introduction.
 
 
-<a id="org9ec14d2"></a>
+<a id="org7075fd4"></a>
 
 ### Units
 
 Describe units.
 
 
-<a id="orgd2dfc1d"></a>
+<a id="org2d7887f"></a>
 
 ### Persistence
 
 Describe support for persistent files including compression and location.
 
 
-<a id="org8a6afa0"></a>
+<a id="org88c54a2"></a>
 
 ### Etc
 
 &#x2026;.
 
 
-<a id="orgb1eb11c"></a>
+<a id="org639c560"></a>
 
 ## Interfaces
 
 Brief overview but it&rsquo;s also in <./internals.md> so don&rsquo; t over do it.
 
 
-<a id="org5a42303"></a>
+<a id="org00154b2"></a>
 
 ### Data
 
 
-<a id="org05809c4"></a>
+<a id="orgf45327d"></a>
 
 ### Nodes
 
 
-<a id="org35c06b1"></a>
+<a id="orgb626e2d"></a>
 
 ### Misc
 
 
-<a id="org8b82073"></a>
+<a id="orgd38d3a1"></a>
 
 ## Simulation
 
 Scope and intro blah blah.
 
 
-<a id="orgf83ba6f"></a>
+<a id="org51dae07"></a>
 
 ### Depositions
 
 
-<a id="org6df12c5"></a>
+<a id="org67c520f"></a>
 
 ### Drifting
 
 
-<a id="orgbe7d396"></a>
+<a id="orgb1c97c5"></a>
 
 ### Response
 
 
-<a id="orgdb981c6"></a>
+<a id="orga74f72a"></a>
 
 ### Digitizing
 
 
-<a id="org252a2c4"></a>
+<a id="org9771f25"></a>
 
 ## Waf tools
 
@@ -813,7 +818,7 @@ The WCT build system is based on [Waf](https://waf.io/). The parts of the build 
 -   the main `wscript` and per-package `wscript_build` files provide the high-level instructions for building WCT (ie, they are like old fashioned `Makefile` files).
 
 
-<a id="org950421d"></a>
+<a id="org382e92e"></a>
 
 ### Recreating `wcb`
 
@@ -827,7 +832,7 @@ The `wcb` command bundles some optional Waf tools which are not included in the 
     $ git commit [...]
 
 
-<a id="org5557ead"></a>
+<a id="orgb25138b"></a>
 
 ### Included Waf tools
 

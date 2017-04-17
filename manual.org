@@ -1,0 +1,11 @@
+#+TITLE: Wire Cell Toolkit Manual
+#+AUTHOR: Brett Viren
+#+EMAIL: bv@bnl.gov
+#+DESCRIPTION: Documentation for the Wire Cell Toolkit for users, developers and installers.
+#+KEYWORDS: C++, software toolkit, neutrino, liquid argon time projection chamber, LArTPC, drift simulation, field response, event reconstruction, waveform signal processing, 3D imaging, Brookhaven National Lab
+#+LANGUAGE: en
+#+OPTIONS: ':t H:4  toc:3
+#+SETUPFILE: org-html-themes/setup/theme-bigblow-local.setup
+
+
+#+INCLUDE: "body.org"

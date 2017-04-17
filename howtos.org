@@ -1,0 +1,6 @@
+This section of the manual gives brief guidance on how to do various things with WCT.
+
+* Run =wire-cell= command line program
+
+* Add a new component class
+

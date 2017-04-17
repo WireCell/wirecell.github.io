@@ -1,0 +1,148 @@
+The Wire Cell Toolkit (WCT) should be easy to build on any POSIX'y system with a recent C++ compiler.  This section describes how to build releases and development branches, it gives guidance for supplying the few software dependencies, and documents how releases are made.
+
+** Toolkit installation :user:installer:developer:
+
+#+begin_warning
+This assumes you already have available the required dependencies.  See section [[Guide for installation of dependencies]].
+#+end_warning
+
+Installation requires four steps:
+1) get the source
+2) configure the source
+3) build the code
+4) install the results
+
+*** Source code
+
+WCT source is composed of several packages (see section [[Packages]]) and all source is available from the [[https://github.com/WireCell/][Wire Cell GitHub organization]].  Releases of each package are made and documented on GitHub (/eg/ [[https://github.com/WireCell/wire-cell-build/releases][here]]) and can be downloaded as archives.  However, using git to assemble a working source area is recommended and easier.  Releases and development branches are handled slightly differently.
+
+To obtain a release requires no GitHub authentication:
+#+BEGIN_EXAMPLE
+  $ git clone --recursive --branch 0.5.x https://github.com/WireCell/wire-cell-build.git
+#+END_EXAMPLE
+This gets the tip of the release branch for the =0.5.x= series.  If a specific release is desired a few more commands are needed.  For example, if the =0.5.0= release that started the series is wanted:
+#+BEGIN_EXAMPLE
+  $ git checkout -b 0.5.0 0.5.0
+  $ git submodule init
+  $ git submodule update
+  $ git submodule foreach git checkout -b 0.5.0 0.5.0
+#+END_EXAMPLE
+
+To obtain the development branch requires SSH authentication with GitHub:
+#+BEGIN_EXAMPLE
+  $ git clone --recursive git@github.com:WireCell/wire-cell-build.git wct
+#+END_EXAMPLE
+
+Which ever way the source is obtained, enter the resulting directory
+#+BEGIN_EXAMPLE
+  $ cd wire-cell-build/
+#+END_EXAMPLE
+
+#+begin_tip
+At some time later if there is a need to switch between HTTP or SSH a =switch-git-urls= script is available in this directory.
+#+end_tip
+
+*** Configuring the source
+
+At a minimum, the source must be configured with an installation location for the build results and to allow it to find its dependencies.  This, and the remaining steps are done with the provided =wcb= script which is an instance of [[https://waf.io/][Waf]].
+#+BEGIN_EXAMPLE
+  $ ./wcb --prefix=/path/to/install configure
+#+END_EXAMPLE
+
+This will print the results of the attempts to detect required and optional dependencies.  Missing but optional dependencies will not cause failure.  See below for guidance on installing dependencies if this step fails or if desired optional dependencies are not found.
+
+Dependencies are first located in standard system locations, barring that those that are traditionally installed with support for =pkg-config= may be found by suitably setting the =PKG_CONFIG_PATH= environment variable.  To force a particular location for any given dependency a =--with-*= option may be used.
+
+#+begin_note
+As shown in the example below, the flags to locate Boost are slightly different.
+#+end_note
+
+#+BEGIN_EXAMPLE
+  $ ./wcb configure --prefix=/path/to/install \
+     --boost-includes=$WCT_EXTERNALS/include --boost-libs=$WCT_EXTERNALS/lib --boost-mt \
+     --with-eigen=$WCT_EXTERNALS --with-jsoncpp=$WCT_EXTERNALS --with-tbb=$WCT_EXTERNALS \
+     --with-root=$WCT_EXTERNALS --with-fftw=$WCT_EXTERNALS --with-root=$WCT_EXTERNALS
+#+END_EXAMPLE
+This example assumes all externals are available in a directory set by the =WCT_EXTERNALS= variable.  This variable is *not* used by the build and is only used to make this example brief.
+
+*** Building the source
+
+After a successful source configure step, the results are cached and any long command line need not be repeated.  To build the source simply run:
+
+#+BEGIN_EXAMPLE
+  $ ./wcb
+#+END_EXAMPLE
+If there are build failures more information can be obtained by repeating the build with more verbosity:
+#+BEGIN_EXAMPLE
+  $ ./wcb -vv
+#+END_EXAMPLE
+The build will try to run tests which can be avoided to save time:
+#+BEGIN_EXAMPLE
+  $ ./wcb --notests
+#+END_EXAMPLE
+
+*** Install the results
+
+To install the build results into the location given by =--prefix= simply issue:
+#+BEGIN_EXAMPLE
+  $ ./wcb install
+#+END_EXAMPLE
+
+*** Other build commands
+
+These other commands may be useful:
+
+#+BEGIN_EXAMPLE
+  $ ./wcb clean          # clean build products
+  $ ./wcb distclean      # also clean configuration
+                         # build with debug symbols  
+  $ ./wcb configure --build-debug=-ggdb3 [...]
+                         # to save some time, just 
+                         # rebuild the given test 
+                         # and don't run any tests
+  $ ./wcb --notests --target=test_xxx
+  $ ./wcb --help         # see more options.
+#+END_EXAMPLE
+
+** Runtime environment :user:installer:
+
+Managing environment is usually a personal choice or computer facility policy and WCT does not place any significant requirements on this.  The usual setting of =PATH= like variables will likely be needed.  
+
+FIXME: we should look into setting =RPATH=.
+
+Internally, WCT does not require any environment however it will search a =WIRECELL_PATH= when locating configuration or other (non data) input files.  More information is in the section [[Configuration]].
+
+** Guide for installation of dependencies :installer:
+
+*** TODO Manual
+
+ DIY
+
+*** TODO Spack
+
+ Installation and setup with Spack Views or with EM.
+
+*** TODO UPS
+
+ Setup with UPS.
+
+
+** Release management :core:developer:
+
+Releases are made by developers as needed and as described in this section.
+
+*** Release versions
+
+WCT label releases are made following a fixed procedure.  Releases are labeled with  the common three-number convention: =X.Y.Z=.  These take the following semantic meanings:
+
+- X :: a major release is made when developers believe some substantial milestone has been achieved or to being wholly new or a globally breaking development path.
+- Y :: a minor or feature release is made when substantial new and in particular any breaking development is made.
+- Z :: a bug release fixes problems without otherwise substantial changes.
+
+*** Branch policy
+
+Any new major or minor releases produce a new Git branch in each package.  Only bug fixes are made to this branch. Where applicable, release bug fixes should be applied to =master=.  Nominally, all development is on the =master= branch however developers are free to make their own feature branches.  They are encourage to do this if their development is expected to be disruptive to other developers.
+
+*** Branch mechanics
+
+To make releases, the above details are baked into two test scripts [[https://github.com/WireCell/waf-tools/blob/master/make-release.sh][make-release.sh]] and [[https://github.com/WireCell/waf-tools/blob/master/test-release.sh][test-release.sh]].  See comments at the top of each for how to run them.  These scripts can be used by others but are meant for developers to make official releases.  

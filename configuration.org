@@ -1,0 +1,148 @@
+* Introduction and Scope 
+
+As the Wire Cell Toolkit (WCT) is a toolkit, it is up to the application to provide some mechanism for the user to provide configuration information.  Users of an application not provided by the WCT itself should refer to its documentation.  
+
+WCT itself provides a such a mechanism which is exposed to the user by the =wire-cell= command line application.  Any application may easily adopt this same mechanism by making use of the =WireCell::ConfigManager= class.  
+
+This WCT configuration mechanism is described here from the point of view of *user* and *developer*.  Details for each role are given in the following sections.  However, both user and developer must understand one aspect of WCT internal design in order to understand configuration.  One aspect of WCT is that an application is composed of a number of /component/ classes.  Components work together in some way to enact the job of the application.  A component is specifically a C++ class which implements one or more /interface/ base classes.  One interface pertinent here is =IConfigurable=.  A component that implements this interface is called a /configurable component/ or just /configurable/.  A configurable then is the atomic unit of WCT configuration and this unit is reflected in what the user provides for configuration and what developers should expect if they write configurable components.
+
+The user then provides an ordered list of /configuration objects/ or simply /configurations/.  Each configuration is associated by WCT with exactly one  /instance/ of a configurable component class.  This association is done via two string identifiers.  The pair are also used to initially construct and later locate the instance of any type of WCT component (not just configurables):
+
+- type :: specifies the "configurable type" which often matches the C++ class name with any C++ namespace removed.  However, developers of configurable components are free to chose any unique type name.
+
+- name :: specifies a "configurable instance", that is an C++ object instance of the C++ class associated with the configurable type identifier.  The name is free form and may be omitted in which case it defaults to the empty string.  A specific name is needed if multiple instances are required or if multiple configurables require sharing a component. 
+
+Finally, configurations have a third attribute:
+
+- data :: specifies a data structure following a schema specific to the configurable type.  This is the "payload" that WCT gives to the instance of the configurable component.
+
+In the next section,  WCT user-configuration support is described.  The following section gives guidance to developers who wish to write their own configurable components.
+
+* Configuration from a user point of view :user:
+
+Users of the WCT command line interface =wire-cell= or any WCT application that uses =WireCell::ConfigManager= can provide configuration information in the form of one or more files.  This files express the same ordered list of configuration objects as described above.
+
+** File formats
+
+WCT supports two related configuration file formats:  [[http://www.json.org/][JSON]] and [[http://jsonnet.org/][Jsonnet]].  Of the two, JSON is more fundamental while Jsonnet provides a way to better organize and construct complex configurations.  Jsonnet support is a compile-time option.  The stand-alone =jsonnet= program may also be used to evaluate Jsonnet into JSON.
+
+** Basic command line
+
+A user gives one or more configuration files to the =wire-cell= application each with a =-c= flag:
+#+BEGIN_EXAMPLE
+  $ wire-cell -c myparameters.cfg [...]
+#+END_EXAMPLE
+If a relative path is given, the file will be searched for starting in the current working directory and then in each directory listed in a =WIRECELL_PATH= environment variable, if given.  When multiple configuration are used, their top-level arrays are conceptually concatenated in the order on which they are given on the command line.
+
+The user can also dump out the hard-coded default configuration for one or more components:
+#+BEGIN_EXAMPLE
+  $ wire-cell \
+      -p <plugin> \
+      -D <component1> \
+      -D <component2> \
+      --dump-file=mydefaults.cfg
+#+END_EXAMPLE
+Here the components are specified by their "type" identifier as described above.  As the example shows, a plugin must be given.  The =wire-cell= application itself does not "know" about any components as they are all dynamically loaded when needed.  However, the application must be told a collection of plugins in which to find components.  A plugin typically takes the name of its shared library with the =lib= prefix and =.so= extension removed.  
+
+The user must know what components to dump.  There is no way for the application to iterate over all possible components.  In general, it is up to the provider of a plugin to catalog what component types it provides.  WCT provides a [[https://github.com/WireCell/wire-cell-cfg/blob/master/scripts/generate-defaults.sh][simple script]] that will search the WCT source, determine the components and dump them out using =wire-cell=.  Result of this dump, possibly out of date, is available in the [[https://github.com/WireCell/wire-cell-cfg/tree/master/defaults][wire-cell-cfg]] repository.
+
+** Diving into JSON
+
+An example configuration dump from this command
+#+BEGIN_EXAMPLE
+  $ wire-cell -D TrackDepos -p WireCellGen
+#+END_EXAMPLE
+produces:
+#+BEGIN_SRC js :eval no
+  [
+     {
+        "data" : {
+           "clight" : 1,
+           "step_size" : 0.10000000000000001,
+           "tracks" : []
+        },
+        "name" : "",
+        "type" : "TrackDepos"
+     }
+  ]
+#+END_SRC
+Here we see an array holding one element which is an object with the =type=, (instance) =name= and payload =data= structure as described above.  If =wire-cell= were to load this configuration it would create a default instance of the component type =TrackDepos= which happens to correspond to the C++ class =WireCell::Gen::TrackDepos= (see the [[./gen.org][simulation package manual]] for more information).  This component is responsible for produces deposition (=IDepo=) objects using a simple linear source model.  
+
+The =tracks= array in this example is empty and no depositions would be produced.  The user most certainly should specify a nonempty set of tracks.  In principle, the user may produces a huge =tracks= array.  WCT support bzip2 compressed JSON files (see the section on [[./util.org::* Persistence][persistence in the util package manual]].
+
+** Limitations of JSON
+
+As the complexity of a =wire-cell= job grows, hand crafting JSON becomes tedious and error prone.  Splitting the files and/or using =WIRECELL_PATH= can provide some rudimentary means of organizing a large, complex configuration.  
+
+However, a user will quickly outgrow direct authoring of JSON files.  An accomplished one will likely turn to some form of JSON generation using a more expressive language.  Or, some configuration may need to be extracted or converted from other source.  For example, Geant4 steps might be extracted and fed into =TrackDepos= as a long =tracks= array.
+The user is free to generate JSON in this manner in any way they desire as long as the result conforming to the required schema.
+
+Another limitation is that any numerical quantities *must* be expressed in the base units used by the WCT /system of units/ (see the section on [[./util.org::* Units][units in the Utilities manual]]).  This places a burden on the configuration author and is a source of error.
+
+WCT provides a more powerful JSON-like configuration file format as described next.
+
+** Learning Jsonnet
+
+WCT provides support for configuration files following the [[http://jsonnet.org/][Jsonnet data templating language]].  This language is evaluated to produce JSON.  If WCT is compiled with support it will evaluation Jsonnet files directly.  Otherwise the user may install and run the =jsonnet= command line program to produce JSON.
+
+To learn how to write Jsonnet in general, the user should refer to its documentation which is excellent.  There is no one right way to write Jsonnet, however, the [[https://github.com/wirecell/wire-cell-cfg][wire-cell-cfg]] package provides a number of examples and support files that can help the user craft their configuration in Jsonnet.  In particular the WCT system of units and some common data structures used by WCT are exported to Jsonnet in [[https://github.com/WireCell/wire-cell-cfg/blob/master/wirecell.jsonnet][wirecell.jsonnet]].  Some of this exported functionality is illustrated below.  
+
+WCT locates Jsonnet files as it does JSON files and in particular using the environment variable =WIRECELL_PATH=.  However, it does not (currently) support compressed Jsonnet files.
+
+*** System of units
+
+Wire Cell provides an internal system of units as described in the section on [[./util.org::* Units][units in the Utilities manual]]).  As stated above, users must take care to give numerical quantities JSON in base WCT units.  If writing Jsonnet this is less trouble as once can label a quantity by multiplying it with a symbolic unit.  For example:
+#+BEGIN_SRC js :eval no
+  local wc = import "wirecell.jsonnet";
+  [
+      {
+      type:"TrackDepos",
+      data: {
+          step_size: 1.0 * wc.millimeter,
+          // or could abreviate with wc.mm
+          }
+      }
+  ]
+#+END_SRC
+
+*** Functions
+
+Some data sub-structures are needed in multiple laces and it can be laborious to write them by hand.  Jsonnet provides functions to assist in this.  A number of functions are defined to assist in representing common data types. For example =point()= and =ray()=:
+#+BEGIN_EXAMPLE
+  {
+    // ...
+    tracks : [ wc.ray(wc.point(10,0,0,wc.cm),
+               wc.point(100,10,10,wc.cm)) ]
+  },
+#+END_EXAMPLE
+
+*** Default Structures
+
+Some common structures are defined with default objects so that they may be extended/overridden. For example, the =Node= object defines a default =type=, =name= and =port= to be used in a graph connection. It is typical to override at least the =type=:
+#+BEGIN_EXAMPLE
+  graph:[
+  {
+    tail: wc.Node {type:"TrackDepos"},
+    head: wc.Node {type:"DumpDepos"}
+  },
+  //...
+  ]
+#+END_EXAMPLE
+
+*** Commas
+
+One of the most irritating aspect of crafting JSON files by hand is that any array or object must not have a internal trailing comma.   Jsonnet allows this otherwise extraneous comma.  For this reason alone and if no other features are used, writing Jsonnet is worth the added dependency!
+
+** Specific detector support
+
+The =wire-cell-cfg= package also provides support for popular LArTPC detectors.  You can find these files under a directory named for the experiment (such as [[./uboone/]]).
+
+
+* TODO Configuration from a developer point of view                   :devel:
+
+For the C++ part of developing WCT components or applications the developer should refer to the [[./internals.org::* Configuration][configuration section in the manual on WCT Internals]].
+
+In addition, a developer is encouraged to provide Jsonnet files that abstract away any less important details and give users a simplified way to configure the developers components.
+
+In particular, if the developer writes multiple components, an application component or a component that refers to another component, working example configuration files should be provided.
+
