@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-17 Mon 11:27 -->
+<!-- 2017-04-18 Tue 16:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Wire Cell Toolkit Manual</title>
@@ -247,114 +247,116 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdcfbb03">1. Installation</a>
+<li><a href="#org25a7639">1. Installation</a>
 <ul>
-<li><a href="#orgc3578dc">1.1. Toolkit installation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span>&#xa0;<span class="developer">developer</span></span></a>
+<li><a href="#orgb5e790a">1.1. Toolkit installation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span>&#xa0;<span class="developer">developer</span></span></a>
 <ul>
-<li><a href="#org65455e8">1.1.1. Source code</a></li>
-<li><a href="#org2a22b73">1.1.2. Configuring the source</a></li>
-<li><a href="#orgc690f12">1.1.3. Building the source</a></li>
-<li><a href="#orgd2eff12">1.1.4. Install the results</a></li>
-<li><a href="#orgbd64d52">1.1.5. Other build commands</a></li>
+<li><a href="#orgb144540">1.1.1. Source code</a></li>
+<li><a href="#org0c6d026">1.1.2. Configuring the source</a></li>
+<li><a href="#org6c74993">1.1.3. Building the source</a></li>
+<li><a href="#org942aa34">1.1.4. Install the results</a></li>
+<li><a href="#orgd1115b3">1.1.5. Other build commands</a></li>
 </ul>
 </li>
-<li><a href="#org6632d62">1.2. Runtime environment&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span></span></a></li>
-<li><a href="#org96401fa">1.3. Guide for installation of dependencies&#xa0;&#xa0;&#xa0;<span class="tag"><span class="installer">installer</span></span></a>
+<li><a href="#org1a125bb">1.2. Runtime environment&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span></span></a></li>
+<li><a href="#orge5de489">1.3. Guide for installation of dependencies&#xa0;&#xa0;&#xa0;<span class="tag"><span class="installer">installer</span></span></a>
 <ul>
-<li><a href="#org52a0212">1.3.1. <span class="todo TODO">TODO</span> Manual</a></li>
-<li><a href="#orge65862d">1.3.2. <span class="todo TODO">TODO</span> Spack</a></li>
-<li><a href="#org447e19c">1.3.3. <span class="todo TODO">TODO</span> UPS</a></li>
+<li><a href="#org6dad447">1.3.1. <span class="todo TODO">TODO</span> Manual</a></li>
+<li><a href="#org43a06b9">1.3.2. <span class="todo TODO">TODO</span> Spack</a></li>
+<li><a href="#org1e7780b">1.3.3. <span class="todo TODO">TODO</span> UPS</a></li>
 </ul>
 </li>
-<li><a href="#org46f7c18">1.4. Release management&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="developer">developer</span></span></a>
+<li><a href="#orgf67e090">1.4. Release management&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="developer">developer</span></span></a>
 <ul>
-<li><a href="#orge4bbdac">1.4.1. Release versions</a></li>
-<li><a href="#org50bd4d5">1.4.2. Branch policy</a></li>
-<li><a href="#org19044ad">1.4.3. Branch mechanics</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org2d8b8fe">2. Configuration</a>
-<ul>
-<li><a href="#orgf44de51">2.1. Introduction</a></li>
-<li><a href="#org9c6b404">2.2. Configuration from a user point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span></span></a>
-<ul>
-<li><a href="#org82bb48a">2.2.1. File formats</a></li>
-<li><a href="#org266c59f">2.2.2. Basic command line</a></li>
-<li><a href="#org2bd9eae">2.2.3. Diving into JSON</a></li>
-<li><a href="#org58e9d0e">2.2.4. Limitations of JSON</a></li>
-<li><a href="#org705ef4a">2.2.5. Learning Jsonnet</a></li>
-<li><a href="#orgbf3615c">2.2.6. Specific detector support</a></li>
-</ul>
-</li>
-<li><a href="#orgd78ba24">2.3. <span class="todo TODO">TODO</span> Configuration from a developer point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="devel">devel</span></span></a></li>
-</ul>
-</li>
-<li><a href="#orgafd1c18">3. Howtos</a>
-<ul>
-<li><a href="#org22cf164">3.1. Run <code>wire-cell</code> command line program</a></li>
-<li><a href="#org6731364">3.2. Add a new component class</a></li>
-</ul>
-</li>
-<li><a href="#org69f4e35">4. Internals</a>
-<ul>
-<li><a href="#org326a023">4.1. Toolkit packages</a>
-<ul>
-<li><a href="#orga77f562">4.1.1. Names</a></li>
-<li><a href="#org26e6734">4.1.2. Dependencies</a></li>
-<li><a href="#orga7d0ec2">4.1.3. Package structure</a></li>
-<li><a href="#orgca399b9">4.1.4. Build package</a></li>
-<li><a href="#org6d8af24">4.1.5. Adding a new code package</a></li>
-</ul>
-</li>
-<li><a href="#org68d132f">4.2. Coding conventions</a>
-<ul>
-<li><a href="#orgba663ab">4.2.1. C++ code formatting</a></li>
-<li><a href="#org8bbd955">4.2.2. C++ namespaces</a></li>
-</ul>
-</li>
-<li><a href="#org53fc84a">4.3. Interfaces</a></li>
-<li><a href="#orgd78ec42">4.4. Components</a></li>
-<li><a href="#orgecad77e">4.5. Configuration</a></li>
-<li><a href="#orgda6c388">4.6. Execution Models</a>
-<ul>
-<li><a href="#org6525819">4.6.1. Ad-hoc</a></li>
-<li><a href="#org5864717">4.6.2. Component</a></li>
-<li><a href="#org7c3cee8">4.6.3. Interface</a></li>
-<li><a href="#org0df43c1">4.6.4. Data flow programming</a></li>
+<li><a href="#org9f72ae9">1.4.1. Release versions</a></li>
+<li><a href="#org42a0a95">1.4.2. Branch policy</a></li>
+<li><a href="#orgae3d471">1.4.3. Branch mechanics</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7ad1819">5. Packages</a>
+<li><a href="#orgd2f2c87">2. Configuration</a>
 <ul>
-<li><a href="#org2a4db58">5.1. Utilities</a>
+<li><a href="#org0a2f071">2.1. Introduction</a></li>
+<li><a href="#orgae3ac5c">2.2. Configuration from a user point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span></span></a>
 <ul>
-<li><a href="#org04b2892">5.1.1. Units</a></li>
-<li><a href="#orgf444a78">5.1.2. Persistence</a></li>
-<li><a href="#org71dc7ab">5.1.3. Etc</a></li>
+<li><a href="#orgc76ef1d">2.2.1. File formats</a></li>
+<li><a href="#org996bcd4">2.2.2. Basic command line</a></li>
+<li><a href="#org9ba97d6">2.2.3. Dump default configuration</a></li>
+<li><a href="#orgd99fd95">2.2.4. Diving into JSON</a></li>
+<li><a href="#org27997d8">2.2.5. Limitations of JSON</a></li>
+<li><a href="#orgc71b8f6">2.2.6. Learning Jsonnet</a></li>
+<li><a href="#org072bf78">2.2.7. Specific detector support</a></li>
+<li><a href="#orgcf7816e">2.2.8. Using Jsonnet</a></li>
 </ul>
 </li>
-<li><a href="#orgcc6f8f3">5.2. Interfaces</a>
-<ul>
-<li><a href="#orgeb6539f">5.2.1. Data</a></li>
-<li><a href="#orgba3a8ef">5.2.2. Nodes</a></li>
-<li><a href="#org89690a6">5.2.3. Misc</a></li>
+<li><a href="#orgca75ffd">2.3. <span class="todo TODO">TODO</span> Configuration from a developer point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="devel">devel</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org2f35205">5.3. Simulation</a>
+<li><a href="#orgbd70400">3. Howtos</a>
 <ul>
-<li><a href="#orga4cb634">5.3.1. Depositions</a></li>
-<li><a href="#org1716947">5.3.2. Drifting</a></li>
-<li><a href="#org5bd2f7e">5.3.3. Response</a></li>
-<li><a href="#org4950616">5.3.4. Digitizing</a></li>
+<li><a href="#org28fc627">3.1. Run <code>wire-cell</code> command line program</a></li>
+<li><a href="#org6755d72">3.2. Add a new component class</a></li>
 </ul>
 </li>
-<li><a href="#orgaca1dbb">5.4. Waf tools</a>
+<li><a href="#org017d864">4. Internals</a>
 <ul>
-<li><a href="#orgac7ff4f">5.4.1. Recreating <code>wcb</code></a></li>
-<li><a href="#org2f70d1b">5.4.2. Included Waf tools</a></li>
+<li><a href="#orga7fcd9b">4.1. Toolkit packages</a>
+<ul>
+<li><a href="#orge187224">4.1.1. Names</a></li>
+<li><a href="#orge9dc4ce">4.1.2. Dependencies</a></li>
+<li><a href="#orgc0e26b6">4.1.3. Package structure</a></li>
+<li><a href="#org8d47d6a">4.1.4. Build package</a></li>
+<li><a href="#org862c6b1">4.1.5. Adding a new code package</a></li>
+</ul>
+</li>
+<li><a href="#orga977f48">4.2. Coding conventions</a>
+<ul>
+<li><a href="#org9bbda49">4.2.1. C++ code formatting</a></li>
+<li><a href="#org53afadb">4.2.2. C++ namespaces</a></li>
+</ul>
+</li>
+<li><a href="#org65a66fa">4.3. Interfaces</a></li>
+<li><a href="#org4ba5aa3">4.4. Components</a></li>
+<li><a href="#org61c8945">4.5. Configuration</a></li>
+<li><a href="#orgee7d225">4.6. Execution Models</a>
+<ul>
+<li><a href="#orgddb2e8b">4.6.1. Ad-hoc</a></li>
+<li><a href="#org7312b50">4.6.2. Component</a></li>
+<li><a href="#org4d42774">4.6.3. Interface</a></li>
+<li><a href="#org6e9dc6e">4.6.4. Data flow programming</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc712337">5. Packages</a>
+<ul>
+<li><a href="#orgb26ef05">5.1. Utilities</a>
+<ul>
+<li><a href="#org46870fd">5.1.1. Units</a></li>
+<li><a href="#orgbdae87d">5.1.2. Persistence</a></li>
+<li><a href="#org4a1ff9a">5.1.3. Etc</a></li>
+</ul>
+</li>
+<li><a href="#orge41e8b8">5.2. Interfaces</a>
+<ul>
+<li><a href="#orgb47ba2c">5.2.1. Data</a></li>
+<li><a href="#org5457477">5.2.2. Nodes</a></li>
+<li><a href="#orgb98b43f">5.2.3. Misc</a></li>
+</ul>
+</li>
+<li><a href="#orgfeb5901">5.3. Simulation</a>
+<ul>
+<li><a href="#orge9b566b">5.3.1. Depositions</a></li>
+<li><a href="#orgf3f0b4d">5.3.2. Drifting</a></li>
+<li><a href="#org0ca2dec">5.3.3. Response</a></li>
+<li><a href="#org5c8ad7b">5.3.4. Digitizing</a></li>
+</ul>
+</li>
+<li><a href="#org3155547">5.4. Waf tools</a>
+<ul>
+<li><a href="#org2208161">5.4.1. Recreating <code>wcb</code></a></li>
+<li><a href="#org87ce9fb">5.4.2. Included Waf tools</a></li>
 </ul>
 </li>
 </ul>
@@ -364,20 +366,20 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-orgdcfbb03" class="outline-2">
-<h2 id="orgdcfbb03"><span class="section-number-2">1</span> Installation</h2>
+<div id="outline-container-org25a7639" class="outline-2">
+<h2 id="org25a7639"><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The Wire Cell Toolkit (WCT) should be easy to build on any POSIX&rsquo;y system with a recent C++ compiler.  This section describes how to build releases and development branches, it gives guidance for supplying the few software dependencies, and documents how releases are made.
 </p>
 </div>
 
-<div id="outline-container-orgc3578dc" class="outline-3">
-<h3 id="orgc3578dc"><span class="section-number-3">1.1</span> Toolkit installation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span>&#xa0;<span class="developer">developer</span></span></h3>
+<div id="outline-container-orgb5e790a" class="outline-3">
+<h3 id="orgb5e790a"><span class="section-number-3">1.1</span> Toolkit installation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span>&#xa0;<span class="developer">developer</span></span></h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="warning">
 <p>
-This assumes you already have available the required dependencies.  See section <a href="#org96401fa">1.3</a>.
+This assumes you already have available the required dependencies.  See section <a href="#orge5de489">1.3</a>.
 </p>
 
 </div>
@@ -393,11 +395,11 @@ Installation requires four steps:
 </ol>
 </div>
 
-<div id="outline-container-org65455e8" class="outline-4">
-<h4 id="org65455e8"><span class="section-number-4">1.1.1</span> Source code</h4>
+<div id="outline-container-orgb144540" class="outline-4">
+<h4 id="orgb144540"><span class="section-number-4">1.1.1</span> Source code</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
-WCT source is composed of several packages (see section <a href="#org7ad1819">5</a>) and all source is available from the <a href="https://github.com/WireCell/">Wire Cell GitHub organization</a>.  Releases of each package are made and documented on GitHub (<i>eg</i> <a href="https://github.com/WireCell/wire-cell-build/releases">here</a>) and can be downloaded as archives.  However, using git to assemble a working source area is recommended and easier.  Releases and development branches are handled slightly differently.
+WCT source is composed of several packages (see section <a href="#orgc712337">5</a>) and all source is available from the <a href="https://github.com/WireCell/">Wire Cell GitHub organization</a>.  Releases of each package are made and documented on GitHub (<i>eg</i> <a href="https://github.com/WireCell/wire-cell-build/releases">here</a>) and can be downloaded as archives.  However, using git to assemble a working source area is recommended and easier.  Releases and development branches are handled slightly differently.
 </p>
 
 <p>
@@ -439,8 +441,8 @@ At some time later if there is a need to switch between HTTP or SSH a <code>swit
 </div>
 </div>
 
-<div id="outline-container-org2a22b73" class="outline-4">
-<h4 id="org2a22b73"><span class="section-number-4">1.1.2</span> Configuring the source</h4>
+<div id="outline-container-org0c6d026" class="outline-4">
+<h4 id="org0c6d026"><span class="section-number-4">1.1.2</span> Configuring the source</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 At a minimum, the source must be configured with an installation location for the build results and to allow it to find its dependencies.  This, and the remaining steps are done with the provided <code>wcb</code> script which is an instance of <a href="https://waf.io/">Waf</a>.
@@ -476,8 +478,8 @@ This example assumes all externals are available in a directory set by the <code
 </div>
 </div>
 
-<div id="outline-container-orgc690f12" class="outline-4">
-<h4 id="orgc690f12"><span class="section-number-4">1.1.3</span> Building the source</h4>
+<div id="outline-container-org6c74993" class="outline-4">
+<h4 id="org6c74993"><span class="section-number-4">1.1.3</span> Building the source</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 After a successful source configure step, the results are cached and any long command line need not be repeated.  To build the source simply run:
@@ -501,8 +503,8 @@ $ ./wcb --notests
 </div>
 </div>
 
-<div id="outline-container-orgd2eff12" class="outline-4">
-<h4 id="orgd2eff12"><span class="section-number-4">1.1.4</span> Install the results</h4>
+<div id="outline-container-org942aa34" class="outline-4">
+<h4 id="org942aa34"><span class="section-number-4">1.1.4</span> Install the results</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 To install the build results into the location given by <code>--prefix</code> simply issue:
@@ -513,8 +515,8 @@ $ ./wcb install
 </div>
 </div>
 
-<div id="outline-container-orgbd64d52" class="outline-4">
-<h4 id="orgbd64d52"><span class="section-number-4">1.1.5</span> Other build commands</h4>
+<div id="outline-container-orgd1115b3" class="outline-4">
+<h4 id="orgd1115b3"><span class="section-number-4">1.1.5</span> Other build commands</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <p>
 These other commands may be useful:
@@ -535,8 +537,8 @@ $ ./wcb --help         # see more options.
 </div>
 </div>
 
-<div id="outline-container-org6632d62" class="outline-3">
-<h3 id="org6632d62"><span class="section-number-3">1.2</span> Runtime environment&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span></span></h3>
+<div id="outline-container-org1a125bb" class="outline-3">
+<h3 id="org1a125bb"><span class="section-number-3">1.2</span> Runtime environment&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span></span></h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Managing environment is usually a personal choice or computer facility policy and WCT does not place any significant requirements on this.  The usual setting of <code>PATH</code> like variables will likely be needed.  
@@ -547,16 +549,16 @@ FIXME: we should look into setting <code>RPATH</code>.
 </p>
 
 <p>
-Internally, WCT does not require any environment however it will search a <code>WIRECELL_PATH</code> when locating configuration or other (non data) input files.  More information is in the section <a href="#org2d8b8fe">2</a>.
+Internally, WCT does not require any environment however it will search a <code>WIRECELL_PATH</code> when locating configuration or other (non data) input files.  More information is in the section <a href="#orgd2f2c87">2</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org96401fa" class="outline-3">
-<h3 id="org96401fa"><span class="section-number-3">1.3</span> Guide for installation of dependencies&#xa0;&#xa0;&#xa0;<span class="tag"><span class="installer">installer</span></span></h3>
+<div id="outline-container-orge5de489" class="outline-3">
+<h3 id="orge5de489"><span class="section-number-3">1.3</span> Guide for installation of dependencies&#xa0;&#xa0;&#xa0;<span class="tag"><span class="installer">installer</span></span></h3>
 <div class="outline-text-3" id="text-1-3">
-</div><div id="outline-container-org52a0212" class="outline-4">
-<h4 id="org52a0212"><span class="section-number-4">1.3.1</span> <span class="todo TODO">TODO</span> Manual</h4>
+</div><div id="outline-container-org6dad447" class="outline-4">
+<h4 id="org6dad447"><span class="section-number-4">1.3.1</span> <span class="todo TODO">TODO</span> Manual</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 DIY
@@ -564,8 +566,8 @@ DIY
 </div>
 </div>
 
-<div id="outline-container-orge65862d" class="outline-4">
-<h4 id="orge65862d"><span class="section-number-4">1.3.2</span> <span class="todo TODO">TODO</span> Spack</h4>
+<div id="outline-container-org43a06b9" class="outline-4">
+<h4 id="org43a06b9"><span class="section-number-4">1.3.2</span> <span class="todo TODO">TODO</span> Spack</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 Installation and setup with Spack Views or with EM.
@@ -573,8 +575,8 @@ Installation and setup with Spack Views or with EM.
 </div>
 </div>
 
-<div id="outline-container-org447e19c" class="outline-4">
-<h4 id="org447e19c"><span class="section-number-4">1.3.3</span> <span class="todo TODO">TODO</span> UPS</h4>
+<div id="outline-container-org1e7780b" class="outline-4">
+<h4 id="org1e7780b"><span class="section-number-4">1.3.3</span> <span class="todo TODO">TODO</span> UPS</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
 Setup with UPS.
@@ -584,16 +586,16 @@ Setup with UPS.
 </div>
 
 
-<div id="outline-container-org46f7c18" class="outline-3">
-<h3 id="org46f7c18"><span class="section-number-3">1.4</span> Release management&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="developer">developer</span></span></h3>
+<div id="outline-container-orgf67e090" class="outline-3">
+<h3 id="orgf67e090"><span class="section-number-3">1.4</span> Release management&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="developer">developer</span></span></h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Releases are made by developers as needed and as described in this section.
 </p>
 </div>
 
-<div id="outline-container-orge4bbdac" class="outline-4">
-<h4 id="orge4bbdac"><span class="section-number-4">1.4.1</span> Release versions</h4>
+<div id="outline-container-org9f72ae9" class="outline-4">
+<h4 id="org9f72ae9"><span class="section-number-4">1.4.1</span> Release versions</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <p>
 WCT label releases are made following a fixed procedure.  Releases are labeled with  the common three-number convention: <code>X.Y.Z</code>.  These take the following semantic meanings:
@@ -607,8 +609,8 @@ WCT label releases are made following a fixed procedure.  Releases are labeled w
 </div>
 </div>
 
-<div id="outline-container-org50bd4d5" class="outline-4">
-<h4 id="org50bd4d5"><span class="section-number-4">1.4.2</span> Branch policy</h4>
+<div id="outline-container-org42a0a95" class="outline-4">
+<h4 id="org42a0a95"><span class="section-number-4">1.4.2</span> Branch policy</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <p>
 Any new major or minor releases produce a new Git branch in each package.  Only bug fixes are made to this branch. Where applicable, release bug fixes should be applied to <code>master</code>.  Nominally, all development is on the <code>master</code> branch however developers are free to make their own feature branches.  They are encourage to do this if their development is expected to be disruptive to other developers.
@@ -616,8 +618,8 @@ Any new major or minor releases produce a new Git branch in each package.  Only 
 </div>
 </div>
 
-<div id="outline-container-org19044ad" class="outline-4">
-<h4 id="org19044ad"><span class="section-number-4">1.4.3</span> Branch mechanics</h4>
+<div id="outline-container-orgae3d471" class="outline-4">
+<h4 id="orgae3d471"><span class="section-number-4">1.4.3</span> Branch mechanics</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <p>
 To make releases, the above details are baked into two test scripts <a href="https://github.com/WireCell/waf-tools/blob/master/make-release.sh">make-release.sh</a> and <a href="https://github.com/WireCell/waf-tools/blob/master/test-release.sh">test-release.sh</a>.  See comments at the top of each for how to run them.  These scripts can be used by others but are meant for developers to make official releases.  
@@ -627,16 +629,16 @@ To make releases, the above details are baked into two test scripts <a href="htt
 </div>
 </div>
 
-<div id="outline-container-org2d8b8fe" class="outline-2">
-<h2 id="org2d8b8fe"><span class="section-number-2">2</span> Configuration</h2>
+<div id="outline-container-orgd2f2c87" class="outline-2">
+<h2 id="orgd2f2c87"><span class="section-number-2">2</span> Configuration</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 As the Wire Cell Toolkit (WCT) is a toolkit, it is up to the parent application to provide some mechanism for the user to provide configuration information to WCT <i>components</i>.  Users of an application not provided by the WCT itself should refer to its documentation.  This section of the manual documents the configuration mechanism that is provided by WCT itself.  If an application decides to use the WCT file format then its users may refer to this document.  Developers of WCT components should read it as well.
 </p>
 </div>
 
-<div id="outline-container-orgf44de51" class="outline-3">
-<h3 id="orgf44de51"><span class="section-number-3">2.1</span> Introduction</h3>
+<div id="outline-container-org0a2f071" class="outline-3">
+<h3 id="org0a2f071"><span class="section-number-3">2.1</span> Introduction</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 WCT itself provides a such a mechanism which is exposed to the user by the <code>wire-cell</code> command line application.  Any application may easily adopt this same mechanism by making use of the <code>WireCell::ConfigManager</code> class.  
@@ -670,16 +672,16 @@ In the next section,  WCT user-configuration support is described.  The followin
 </div>
 </div>
 
-<div id="outline-container-org9c6b404" class="outline-3">
-<h3 id="org9c6b404"><span class="section-number-3">2.2</span> Configuration from a user point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span></span></h3>
+<div id="outline-container-orgae3ac5c" class="outline-3">
+<h3 id="orgae3ac5c"><span class="section-number-3">2.2</span> Configuration from a user point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span></span></h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Users of the WCT command line interface <code>wire-cell</code> or any WCT application that uses <code>WireCell::ConfigManager</code> can provide configuration information in the form of one or more files.  This files express the same ordered list of configuration objects as described above.
 </p>
 </div>
 
-<div id="outline-container-org82bb48a" class="outline-4">
-<h4 id="org82bb48a"><span class="section-number-4">2.2.1</span> File formats</h4>
+<div id="outline-container-orgc76ef1d" class="outline-4">
+<h4 id="orgc76ef1d"><span class="section-number-4">2.2.1</span> File formats</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 WCT supports two related configuration file formats:  <a href="http://www.json.org/">JSON</a> and <a href="http://jsonnet.org/">Jsonnet</a>.  Of the two, JSON is more fundamental while Jsonnet provides a way to better organize and construct complex configurations.  Jsonnet support is a compile-time option.  The stand-alone <code>jsonnet</code> program may also be used to evaluate Jsonnet into JSON.
@@ -687,8 +689,8 @@ WCT supports two related configuration file formats:  <a href="http://www.json.o
 </div>
 </div>
 
-<div id="outline-container-org266c59f" class="outline-4">
-<h4 id="org266c59f"><span class="section-number-4">2.2.2</span> Basic command line</h4>
+<div id="outline-container-org996bcd4" class="outline-4">
+<h4 id="org996bcd4"><span class="section-number-4">2.2.2</span> Basic command line</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 A user gives one or more configuration files to the <code>wire-cell</code> application each with a <code>-c</code> flag:
@@ -699,7 +701,12 @@ $ wire-cell -c myparameters.cfg [...]
 <p>
 If a relative path is given, the file will be searched for starting in the current working directory and then in each directory listed in a <code>WIRECELL_PATH</code> environment variable, if given.  When multiple configuration are used, their top-level arrays are conceptually concatenated in the order on which they are given on the command line.
 </p>
+</div>
+</div>
 
+<div id="outline-container-org9ba97d6" class="outline-4">
+<h4 id="org9ba97d6"><span class="section-number-4">2.2.3</span> Dump default configuration</h4>
+<div class="outline-text-4" id="text-2-2-3">
 <p>
 The user can also dump out the hard-coded default configuration for one or more components:
 </p>
@@ -711,7 +718,7 @@ $ wire-cell \
     --dump-file=mydefaults.cfg
 </pre>
 <p>
-Here the components are specified by their &ldquo;type&rdquo; identifier as described above.  As the example shows, a plugin must be given.  The <code>wire-cell</code> application itself does not &ldquo;know&rdquo; about any components as they are all dynamically loaded when needed.  However, the application must be told a collection of plugins in which to find components.  A plugin typically takes the name of its shared library with the <code>lib</code> prefix and <code>.so</code> extension removed.  
+Here the components to dump are specified by their &ldquo;type&rdquo; identifier as described above.  The  <i>plugins</i> which provide the components must be specified. A plugin typically takes the name of its shared library with the <code>lib</code> prefix and <code>.so</code> extension removed.  
 </p>
 
 <p>
@@ -720,9 +727,9 @@ The user must know what components to dump.  There is no way for the application
 </div>
 </div>
 
-<div id="outline-container-org2bd9eae" class="outline-4">
-<h4 id="org2bd9eae"><span class="section-number-4">2.2.3</span> Diving into JSON</h4>
-<div class="outline-text-4" id="text-2-2-3">
+<div id="outline-container-orgd99fd95" class="outline-4">
+<h4 id="orgd99fd95"><span class="section-number-4">2.2.4</span> Diving into JSON</h4>
+<div class="outline-text-4" id="text-2-2-4">
 <p>
 An example configuration dump from this command
 </p>
@@ -751,38 +758,38 @@ Here we see an array holding one element which is an object with the <code>type<
 </p>
 
 <p>
-The <code>tracks</code> array in this example is empty and no depositions would be produced.  The user most certainly should specify a nonempty set of tracks.  In principle, the user may produces a huge <code>tracks</code> array.  WCT support bzip2 compressed JSON files (see the section on <a href="./util.html#org65ed24f">persistence in the util package manual</a>.
+The <code>tracks</code> array in this example is empty and no depositions would be produced.  The user most certainly should specify a nonempty set of tracks.  In principle, the user may produces a huge <code>tracks</code> array.  WCT support bzip2 compressed JSON files (see the section on <a href="./util.html#org9cfe76b">persistence in the util package manual</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-org58e9d0e" class="outline-4">
-<h4 id="org58e9d0e"><span class="section-number-4">2.2.4</span> Limitations of JSON</h4>
-<div class="outline-text-4" id="text-2-2-4">
+<div id="outline-container-org27997d8" class="outline-4">
+<h4 id="org27997d8"><span class="section-number-4">2.2.5</span> Limitations of JSON</h4>
+<div class="outline-text-4" id="text-2-2-5">
 <p>
 As the complexity of a <code>wire-cell</code> job grows, hand crafting JSON becomes tedious and error prone.  Splitting the files and/or using <code>WIRECELL_PATH</code> can provide some rudimentary means of organizing a large, complex configuration.  
 </p>
 
 <p>
-However, a user will quickly outgrow direct authoring of JSON files.  An accomplished one will likely turn to some form of JSON generation using a more expressive language.  Or, some configuration may need to be extracted or converted from other source.  For example, Geant4 steps might be extracted and fed into <code>TrackDepos</code> as a long <code>tracks</code> array.
-The user is free to generate JSON in this manner in any way they desire as long as the result conforming to the required schema.
+However, a user will quickly outgrow direct authoring of JSON files.  An accomplished user will likely turn to some form of JSON generation using a more expressive language maybe by developing some scripts.  Or, some part of a configuration may need to be extracted or converted from another source.  For example, Geant4 steps might be extracted and formatted into a <code>TrackDepos</code> configuration as a long <code>tracks</code> array.
 </p>
 
 <p>
-Another limitation is that any numerical quantities <b>must</b> be expressed in the base units used by the WCT <i>system of units</i> (see the section on <a href="./util.html#orgccee7f9">units in the Utilities manual</a>).  This places a burden on the configuration author and is a source of error.
+Another limitation is that any numerical quantities <b>must</b> be expressed in the base units used by the WCT <i>system of units</i> (see the section on <a href="./util.html#orge0a00d6">units in the Utilities manual</a>).  This places a burden on the configuration author and is a source of error.
 </p>
 
 <p>
-WCT provides a more powerful JSON-like configuration file format as described next.
+The user is free to generate JSON in any manner they wish as long as the result conforms to the required schema.
+However, WCT provides a second, more powerful JSON-like configuration file format which described next.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org705ef4a" class="outline-4">
-<h4 id="org705ef4a"><span class="section-number-4">2.2.5</span> Learning Jsonnet</h4>
-<div class="outline-text-4" id="text-2-2-5">
+<div id="outline-container-orgc71b8f6" class="outline-4">
+<h4 id="orgc71b8f6"><span class="section-number-4">2.2.6</span> Learning Jsonnet</h4>
+<div class="outline-text-4" id="text-2-2-6">
 <p>
-WCT provides support for configuration files following the <a href="http://jsonnet.org/">Jsonnet data templating language</a>.  This language is evaluated to produce JSON.  If WCT is compiled with support it will evaluation Jsonnet files directly.  Otherwise the user may install and run the <code>jsonnet</code> command line program to produce JSON.
+WCT provides support for configuration files following the <a href="http://jsonnet.org/">Jsonnet data templating language</a>.  This language is evaluated to produce JSON.  If WCT is compiled with support it can evaluation Jsonnet files directly.  Otherwise the user may install and run the <code>jsonnet</code> command line program to produce JSON for feeding to WCT.
 </p>
 
 <p>
@@ -794,11 +801,11 @@ WCT locates Jsonnet files as it does JSON files and in particular using the envi
 </p>
 </div>
 
-<div id="outline-container-org8634c41" class="outline-5">
-<h5 id="org8634c41"><span class="section-number-5">2.2.5.1</span> System of units</h5>
-<div class="outline-text-5" id="text-2-2-5-1">
+<div id="outline-container-org7e1675a" class="outline-5">
+<h5 id="org7e1675a"><span class="section-number-5">2.2.6.1</span> System of units</h5>
+<div class="outline-text-5" id="text-2-2-6-1">
 <p>
-Wire Cell provides an internal system of units as described in the section on <a href="./util.html#orgccee7f9">units in the Utilities manual</a>).  As stated above, users must take care to give numerical quantities JSON in base WCT units.  If writing Jsonnet this is less trouble as once can label a quantity by multiplying it with a symbolic unit.  For example:
+Wire Cell provides an internal system of units as described in the section on <a href="./util.html#orge0a00d6">units in the Utilities manual</a> and as stated above, users must take care to give numerical quantities in WCT units when providing JSON.  However, when writing Jsonnet one can provide explicit units which is easy and far less error prone.  For example:
 </p>
 <div class="org-src-container">
 <pre class="src src-js">local wc = <span style="font-weight: bold;">import</span> <span style="font-style: italic;">"wirecell.jsonnet"</span>;
@@ -816,66 +823,188 @@ Wire Cell provides an internal system of units as described in the section on <a
 </div>
 </div>
 
-<div id="outline-container-org1eff6d9" class="outline-5">
-<h5 id="org1eff6d9"><span class="section-number-5">2.2.5.2</span> Functions</h5>
-<div class="outline-text-5" id="text-2-2-5-2">
+<div id="outline-container-orgcc76664" class="outline-5">
+<h5 id="orgcc76664"><span class="section-number-5">2.2.6.2</span> Functions</h5>
+<div class="outline-text-5" id="text-2-2-6-2">
 <p>
 Some data sub-structures are needed in multiple laces and it can be laborious to write them by hand.  Jsonnet provides functions to assist in this.  A number of functions are defined to assist in representing common data types. For example <code>point()</code> and <code>ray()</code>:
 </p>
-<pre class="example">
-{
-  // ...
+<div class="org-src-container">
+<pre class="src src-js">{
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
   tracks : [ wc.ray(wc.point(10,0,0,wc.cm),
              wc.point(100,10,10,wc.cm)) ]
 },
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-orgb13b242" class="outline-5">
-<h5 id="orgb13b242"><span class="section-number-5">2.2.5.3</span> Default Structures</h5>
-<div class="outline-text-5" id="text-2-2-5-3">
+<div id="outline-container-org3c85616" class="outline-5">
+<h5 id="org3c85616"><span class="section-number-5">2.2.6.3</span> Default parameters</h5>
+<div class="outline-text-5" id="text-2-2-6-3">
 <p>
-Some common structures are defined with default objects so that they may be extended/overridden. For example, the <code>Node</code> object defines a default <code>type</code>, <code>name</code> and <code>port</code> to be used in a graph connection. It is typical to override at least the <code>type</code>:
+It is typical that different components must share common values, or separate values which derive from common values.  Jsonnet allows for this to be expressed in the configuration in a simple manner.  For example, in the <code>gen</code> package both <code>Drifter</code> and <code>Ductor</code> may apply statistical fluctuations.  For debugging it can be useful to turn this feature off.  This can be done in a consistent manner like in a global parameter file
 </p>
-<pre class="example">
-graph:[
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">in uboone/globals.json</span>
 {
-  tail: wc.Node {type:"TrackDepos"},
-  head: wc.Node {type:"DumpDepos"}
-},
-//...
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">True if simulation should do fluctuations</span>
+    fluctuate: <span style="font-weight: bold; text-decoration: underline;">true</span>,
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+}
+</pre>
+</div>
+
+<p>
+This file can then be imported so that this variable may be applied where ever it is needed.
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">in uboone/components.jsonnet</span>
+local params = <span style="font-weight: bold;">import</span> <span style="font-style: italic;">"uboone/globals.jsonnet"</span>;
+{
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+    drifter: {
+        type : <span style="font-style: italic;">"Drifter"</span>,
+        data : {
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">... other parameters ...</span>
+            fluctuate : params.fluctuate,
+        }
+    },
+    ductor: {
+        type : <span style="font-style: italic;">'Ductor'</span>,
+        data : {
+            <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">... other parameters ...</span>
+            fluctuate : params.fluctuate,
+        }
+    },        
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+}
+</pre>
+</div>
+
+<p>
+See next how these definitions are used.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1c127d2" class="outline-5">
+<h5 id="org1c127d2"><span class="section-number-5">2.2.6.4</span> Default structures</h5>
+<div class="outline-text-5" id="text-2-2-6-4">
+<p>
+One useful way to factor a configuration is to have one Jsonnet file which holds default values and one or more that customize on top of those defaults.  For example one the <a href="https://github.com/WireCell/wire-cell-cfg/tree/master/uboone">MicroBooNE configuration</a> provided by <code>wire-cell-cfg</code> defines a default configuration for the <code>FourDee</code> WCT app.  
+</p>
+
+<div class="note">
+<p>
+An &ldquo;app&rdquo; is a top level main class run by WCT while an &ldquo;application&rdquo; refers to a program built with WCT that a user runs.
+</p>
+
+</div>
+
+<p>
+This app is configured with a list of components to use for certain portions of the &ldquo;FourDee&rdquo; simulation.  By default these can are configured with the default types provided directly in the <code>gen</code> package.  Note, these configuration are generally in the form <code>"TypeName:InstanceName"</code> but the defaults to not specify an instance name.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">in uboone/components.json</span>
+{
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+    fourdee : {
+        type : <span style="font-style: italic;">'FourDee'</span>,
+        data : {
+            DepoSource: <span style="font-style: italic;">"TrackDepos"</span>,
+            Drifter: <span style="font-style: italic;">"Drifter"</span>,
+            Ductor: <span style="font-style: italic;">"Ductor"</span>,
+            Dissonance: <span style="font-style: italic;">"SilentNoise"</span>,
+            Digitizer: <span style="font-style: italic;">"Digitizer"</span>,
+            FrameSink: <span style="font-style: italic;">"DumpFrames"</span>,            
+        },
+    },
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">...</span>
+}
+</pre>
+</div>
+
+<p>
+The default type for <code>FrameSink</code> is given as <code>DumpFrames</code>.  This component just prints a little bit of info to the terminal.  The user probably wants to be able to save the result of the simulation in some more useful way.  The <a href="https://github.com/WireCell/wire-cell-sio">simple I/O</a> package provides a <code>FrameSink</code> which will save the resulting simulated waveforms as 2D ROOT histograms.  The user merely needs to override <code>FrameSink</code> like:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">assumes user has this directory in their WIRECELL_PATH</span>
+local uboone = <span style="font-weight: bold;">import</span> <span style="font-style: italic;">"uboone/components.jsonnet"</span>;
+[
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">... skip other overrides ...</span>
+
+    uboone.fourdee {
+        data : <span style="font-weight: bold;">super</span>.data {
+            FrameSink: <span style="font-style: italic;">"HistFrameSink"</span>,            
+        }
+    },
 ]
 </pre>
 </div>
+
+<p>
+This says to override <code>uboone.fourdee</code> with what&rsquo;s given.  The <code>type</code> is inherited.  The <code>data</code> is replaced by the parent&rsquo;s via <code>super.data</code> plus the additional override of the <code>FrameSink</code> attribute.
+</p>
+</div>
 </div>
 
-<div id="outline-container-orgab50f03" class="outline-5">
-<h5 id="orgab50f03"><span class="section-number-5">2.2.5.4</span> Commas</h5>
-<div class="outline-text-5" id="text-2-2-5-4">
+<div id="outline-container-org29c8b09" class="outline-5">
+<h5 id="org29c8b09"><span class="section-number-5">2.2.6.5</span> Commas</h5>
+<div class="outline-text-5" id="text-2-2-6-5">
 <p>
-One of the most irritating aspect of crafting JSON files by hand is that any array or object must not have a internal trailing comma.   Jsonnet allows this otherwise extraneous comma.  For this reason alone and if no other features are used, writing Jsonnet is worth the added dependency!
+One of the most irritating aspect of crafting JSON files by hand is that any array or object must <b>not</b> have an internal trailing comma.   Jsonnet allows this otherwise extraneous comma, as shown in the example above.  For this reason alone and if no other features are used, writing Jsonnet instead of raw JSON is worth the added dependency!
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbf3615c" class="outline-4">
-<h4 id="orgbf3615c"><span class="section-number-4">2.2.6</span> Specific detector support</h4>
-<div class="outline-text-4" id="text-2-2-6">
+<div id="outline-container-org072bf78" class="outline-4">
+<h4 id="org072bf78"><span class="section-number-4">2.2.7</span> Specific detector support</h4>
+<div class="outline-text-4" id="text-2-2-7">
 <p>
-The <code>wire-cell-cfg</code> package also provides support for popular LArTPC detectors.  You can find these files under a directory named for the experiment (such as <a href="./uboone/">./uboone/</a>).
+The <code>wire-cell-cfg</code> package also provides support for popular LArTPC detectors.  You can find these files under a directory named for the experiment  (such as <a href="https://github.com/WireCell/wire-cell-cfg/tree/master/uboone">that for MicroBooNE</a>).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcf7816e" class="outline-4">
+<h4 id="orgcf7816e"><span class="section-number-4">2.2.8</span> Using Jsonnet</h4>
+<div class="outline-text-4" id="text-2-2-8">
+<p>
+Jsonnet&rsquo;s command line program <code>jsonnet</code> is fast and gives good error messages.  It&rsquo;s often easiest to develop a Jsonnet configuration with periodic checking.  Assuming the current working directory is the top of the WCT source then running the following: 
+</p>
+
+<pre class="example">
+$ jsonnet -J cfg cfg/uboone/fourdee.jsonnet
+</pre>
+
+<p>
+should reward you with a big screen full of JSON.  You can then run <code>wire-cell</code> something like:
+</p>
+
+<pre class="example">
+$ wire-cell -c uboone/fourdee.jsonnet
+</pre>
+
+<p>
+This relies on the <code>WIRECELL_PATH</code> to include the <code>cfg/</code> directory as well as any directories holding any configuration data files referenced by the configuration.
 </p>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-orgd78ba24" class="outline-3">
-<h3 id="orgd78ba24"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> Configuration from a developer point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="devel">devel</span></span></h3>
+<div id="outline-container-orgca75ffd" class="outline-3">
+<h3 id="orgca75ffd"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> Configuration from a developer point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="devel">devel</span></span></h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-For the C++ part of developing WCT components or applications the developer should refer to the <a href="./internals.html#orgbc58efc">configuration section in the manual on WCT Internals</a>.
+For the C++ part of developing WCT components or applications the developer should refer to the <a href="./internals.html#org79c037d">configuration section in the manual on WCT Internals</a>.
 </p>
 
 <p>
@@ -889,33 +1018,33 @@ In particular, if the developer writes multiple components, an application compo
 </div>
 </div>
 
-<div id="outline-container-orgafd1c18" class="outline-2">
-<h2 id="orgafd1c18"><span class="section-number-2">3</span> Howtos</h2>
+<div id="outline-container-orgbd70400" class="outline-2">
+<h2 id="orgbd70400"><span class="section-number-2">3</span> Howtos</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 This section of the manual gives brief guidance on how to do various things with WCT.
 </p>
 </div>
 
-<div id="outline-container-org22cf164" class="outline-3">
-<h3 id="org22cf164"><span class="section-number-3">3.1</span> Run <code>wire-cell</code> command line program</h3>
+<div id="outline-container-org28fc627" class="outline-3">
+<h3 id="org28fc627"><span class="section-number-3">3.1</span> Run <code>wire-cell</code> command line program</h3>
 </div>
 
-<div id="outline-container-org6731364" class="outline-3">
-<h3 id="org6731364"><span class="section-number-3">3.2</span> Add a new component class</h3>
+<div id="outline-container-org6755d72" class="outline-3">
+<h3 id="org6755d72"><span class="section-number-3">3.2</span> Add a new component class</h3>
 </div>
 </div>
 
-<div id="outline-container-org69f4e35" class="outline-2">
-<h2 id="org69f4e35"><span class="section-number-2">4</span> Internals</h2>
+<div id="outline-container-org017d864" class="outline-2">
+<h2 id="org017d864"><span class="section-number-2">4</span> Internals</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities.  It is intended for developers to read carefully, understand and follow.  It may be of interest to users as well.   It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section <a href="#org7ad1819">5</a>.
+This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities.  It is intended for developers to read carefully, understand and follow.  It may be of interest to users as well.   It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section <a href="#orgc712337">5</a>.
 </p>
 </div>
 
-<div id="outline-container-org326a023" class="outline-3">
-<h3 id="org326a023"><span class="section-number-3">4.1</span> Toolkit packages</h3>
+<div id="outline-container-orga7fcd9b" class="outline-3">
+<h3 id="orga7fcd9b"><span class="section-number-3">4.1</span> Toolkit packages</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The WCT is composed of a number of <i>packages</i>.  Each package has an associated with a Git source repository.
@@ -924,8 +1053,8 @@ One special type of package is a <i>build</i> package described more in section 
 </p>
 </div>
 
-<div id="outline-container-orga77f562" class="outline-4">
-<h4 id="orga77f562"><span class="section-number-4">4.1.1</span> Names</h4>
+<div id="outline-container-orge187224" class="outline-4">
+<h4 id="orge187224"><span class="section-number-4">4.1.1</span> Names</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
 Package repositories are named like <code>wire-cell-&lt;name&gt;</code> where <code>&lt;name&gt;</code> is some short identifier giving indication of the main scope of the package.  In the documentation the <code>wire-cell-</code> prefix is often dropped and only this short name is used.  
@@ -937,11 +1066,11 @@ If a package produces a shared library it should be named in <code>CamelCase</co
 </div>
 </div>
 
-<div id="outline-container-org26e6734" class="outline-4">
-<h4 id="org26e6734"><span class="section-number-4">4.1.2</span> Dependencies</h4>
+<div id="outline-container-orge9dc4ce" class="outline-4">
+<h4 id="orge9dc4ce"><span class="section-number-4">4.1.2</span> Dependencies</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <p>
-Some of the C++ packages are designated as <i>core</i> packages.  These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, <code>gen</code>, <code>sigproc</code>).   These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections <a href="#orga7d0ec2">4.1.3</a> and <a href="#orgca399b9">4.1.4</a>).
+Some of the C++ packages are designated as <i>core</i> packages.  These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, <code>gen</code>, <code>sigproc</code>).   These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections <a href="#orgc0e26b6">4.1.3</a> and <a href="#org8d47d6a">4.1.4</a>).
 </p>
 
 <p>
@@ -962,8 +1091,8 @@ Finally, there may be third-party implementation packages.  They are free to mim
 </div>
 </div>
 
-<div id="outline-container-orga7d0ec2" class="outline-4">
-<h4 id="orga7d0ec2"><span class="section-number-4">4.1.3</span> Package structure</h4>
+<div id="outline-container-orgc0e26b6" class="outline-4">
+<h4 id="orgc0e26b6"><span class="section-number-4">4.1.3</span> Package structure</h4>
 <div class="outline-text-4" id="text-4-1-3">
 <p>
 The WCT package layout and file extensions must follow some conventions in order to greatly simplify the build system.  In the description below, <code>WireCellName</code> is as described above.
@@ -994,11 +1123,11 @@ Fixme: make a script that generates a dot file and show the graph.
 </div>
 </div>
 
-<div id="outline-container-orgca399b9" class="outline-4">
-<h4 id="orgca399b9"><span class="section-number-4">4.1.4</span> Build package</h4>
+<div id="outline-container-org8d47d6a" class="outline-4">
+<h4 id="org8d47d6a"><span class="section-number-4">4.1.4</span> Build package</h4>
 <div class="outline-text-4" id="text-4-1-4">
 <p>
-To actually build WCT see the section on toolkit installation (section <a href="#orgdcfbb03">1</a>).  The build system is based on <a href="https::waf.io">Waf</a> and uses the <code>wcb</code> command and a <code>wscript</code> file provided by the top level <i>build package</i>.  More details on the build system are given in section <a href="#orgaca1dbb">5.4</a>)
+To actually build WCT see the section on toolkit installation (section <a href="#org25a7639">1</a>).  The build system is based on <a href="https::waf.io">Waf</a> and uses the <code>wcb</code> command and a <code>wscript</code> file provided by the top level <i>build package</i>.  More details on the build system are given in section <a href="#org3155547">5.4</a>)
 </p>
 
 <p>
@@ -1008,8 +1137,8 @@ Besides holding the main build instructions this package aggregates all the othe
 </div>
 
 
-<div id="outline-container-org6d8af24" class="outline-4">
-<h4 id="org6d8af24"><span class="section-number-4">4.1.5</span> Adding a new code package</h4>
+<div id="outline-container-org862c6b1" class="outline-4">
+<h4 id="org862c6b1"><span class="section-number-4">4.1.5</span> Adding a new code package</h4>
 <div class="outline-text-4" id="text-4-1-5">
 <p>
 To add a new code package to a build package from scratch, select a <code>&lt;name&gt;</code> following guidance above and do something like:
@@ -1023,7 +1152,7 @@ $ git add wscript_build
 $ git commit -a -m "Start code package &lt;name&gt;"
 </pre>
 <p>
-Replace <code>&lt;name&gt;</code> with your package name.  You can create and commit actual code at this time as well following the layout in <a href="#orga7d0ec2">4.1.3</a>.
+Replace <code>&lt;name&gt;</code> with your package name.  You can create and commit actual code at this time as well following the layout in <a href="#orgc0e26b6">4.1.3</a>.
 </p>
 
 <p>
@@ -1053,11 +1182,11 @@ In order to be picked up by the build the new package short name must be added t
 
 
 
-<div id="outline-container-org68d132f" class="outline-3">
-<h3 id="org68d132f"><span class="section-number-3">4.2</span> Coding conventions</h3>
+<div id="outline-container-orga977f48" class="outline-3">
+<h3 id="orga977f48"><span class="section-number-3">4.2</span> Coding conventions</h3>
 <div class="outline-text-3" id="text-4-2">
-</div><div id="outline-container-orgba663ab" class="outline-4">
-<h4 id="orgba663ab"><span class="section-number-4">4.2.1</span> C++ code formatting</h4>
+</div><div id="outline-container-org9bbda49" class="outline-4">
+<h4 id="org9bbda49"><span class="section-number-4">4.2.1</span> C++ code formatting</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>Base indentation <i>should</i> be four spaces.</li>
@@ -1086,8 +1215,8 @@ In order to be picked up by the build the new package short name must be added t
 </div>
 
 
-<div id="outline-container-org8bbd955" class="outline-4">
-<h4 id="org8bbd955"><span class="section-number-4">4.2.2</span> C++ namespaces</h4>
+<div id="outline-container-org53afadb" class="outline-4">
+<h4 id="org53afadb"><span class="section-number-4">4.2.2</span> C++ namespaces</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li>All C++ code part of WCT proper and which may be accessed by other packages (eg, exported via &ldquo;public headers&rdquo;) <i>must</i> be under the <code>WireCell::</code> namespace.</li>
@@ -1103,8 +1232,8 @@ In order to be picked up by the build the new package short name must be added t
 </div>
 
 
-<div id="outline-container-org53fc84a" class="outline-3">
-<h3 id="org53fc84a"><span class="section-number-3">4.3</span> Interfaces</h3>
+<div id="outline-container-org65a66fa" class="outline-3">
+<h3 id="org65a66fa"><span class="section-number-3">4.3</span> Interfaces</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 A central design aspect of the WCT is that all &ldquo;important&rdquo; functionality which may have more than one implementation must be accessed via an <i>pure abstract interface class</i>.  All such interface classes are held in the <a href="https://github.com/wirecell/wire-cell-iface">iface</a> package.  Interface classes should present a very limited number of purely abstract methods that express a single, cohesive concept.  Implementations typically inherent from more than one interface.  If two concepts are close but not cohesive they are best put into two interface classes.
@@ -1125,8 +1254,8 @@ Another category of interfaces are those which express the &ldquo;node&rdquo; co
 </div>
 </div>
 
-<div id="outline-container-orgd78ec42" class="outline-3">
-<h3 id="orgd78ec42"><span class="section-number-3">4.4</span> Components</h3>
+<div id="outline-container-org4ba5aa3" class="outline-3">
+<h3 id="org4ba5aa3"><span class="section-number-3">4.4</span> Components</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 Components are implementations an interface which itself inherits from the <code>WireCell::IComponponent</code> interface class (this interface class is in <code>util</code> as a special case due to dependency issues.  fixme: needs to be solved with a general package depending on both <code>iface and =util</code>).  This inheritance follows <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">CRTP</a>.
@@ -1174,8 +1303,8 @@ Not typically required by most code but there exists also a function <code>looku
 </div>
 
 
-<div id="outline-container-orgecad77e" class="outline-3">
-<h3 id="orgecad77e"><span class="section-number-3">4.5</span> Configuration</h3>
+<div id="outline-container-org61c8945" class="outline-3">
+<h3 id="org61c8945"><span class="section-number-3">4.5</span> Configuration</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 One somewhat special component interface is <code>IConfigurable</code>.  A class inheriting from this interface is considered a <i>configurable component</i> such as <code>TrackDepos</code> in the above example.  It is <i>required</i> for any main application using the WCT toolkit to adhere to the Wire Cell Toolkit Configuration Protocol.  This is a contract by which the main application promises to do the following:
@@ -1219,11 +1348,11 @@ Developers of new configurables should keep this protocol in mind and should ref
 
 
 
-<div id="outline-container-orgda6c388" class="outline-3">
-<h3 id="orgda6c388"><span class="section-number-3">4.6</span> Execution Models</h3>
+<div id="outline-container-orgee7d225" class="outline-3">
+<h3 id="orgee7d225"><span class="section-number-3">4.6</span> Execution Models</h3>
 <div class="outline-text-3" id="text-4-6">
-</div><div id="outline-container-org6525819" class="outline-4">
-<h4 id="org6525819"><span class="section-number-4">4.6.1</span> Ad-hoc</h4>
+</div><div id="outline-container-orgddb2e8b" class="outline-4">
+<h4 id="orgddb2e8b"><span class="section-number-4">4.6.1</span> Ad-hoc</h4>
 <div class="outline-text-4" id="text-4-6-1">
 <p>
 Direct calling of utility functions and concrete objects.
@@ -1231,8 +1360,8 @@ Direct calling of utility functions and concrete objects.
 </div>
 </div>
 
-<div id="outline-container-org5864717" class="outline-4">
-<h4 id="org5864717"><span class="section-number-4">4.6.2</span> Component</h4>
+<div id="outline-container-org7312b50" class="outline-4">
+<h4 id="org7312b50"><span class="section-number-4">4.6.2</span> Component</h4>
 <div class="outline-text-4" id="text-4-6-2">
 <p>
 Concrete components.
@@ -1240,8 +1369,8 @@ Concrete components.
 </div>
 </div>
 
-<div id="outline-container-org7c3cee8" class="outline-4">
-<h4 id="org7c3cee8"><span class="section-number-4">4.6.3</span> Interface</h4>
+<div id="outline-container-org4d42774" class="outline-4">
+<h4 id="org4d42774"><span class="section-number-4">4.6.3</span> Interface</h4>
 <div class="outline-text-4" id="text-4-6-3">
 <p>
 Using NamedFactory.
@@ -1249,8 +1378,8 @@ Using NamedFactory.
 </div>
 </div>
 
-<div id="outline-container-org0df43c1" class="outline-4">
-<h4 id="org0df43c1"><span class="section-number-4">4.6.4</span> Data flow programming</h4>
+<div id="outline-container-org6e9dc6e" class="outline-4">
+<h4 id="org6e9dc6e"><span class="section-number-4">4.6.4</span> Data flow programming</h4>
 <div class="outline-text-4" id="text-4-6-4">
 <p>
 Using abstract DFP
@@ -1260,19 +1389,19 @@ Using abstract DFP
 </div>
 </div>
 
-<div id="outline-container-org7ad1819" class="outline-2">
-<h2 id="org7ad1819"><span class="section-number-2">5</span> Packages</h2>
+<div id="outline-container-orgc712337" class="outline-2">
+<h2 id="orgc712337"><span class="section-number-2">5</span> Packages</h2>
 <div class="outline-text-2" id="text-5">
-</div><div id="outline-container-org2a4db58" class="outline-3">
-<h3 id="org2a4db58"><span class="section-number-3">5.1</span> Utilities</h3>
+</div><div id="outline-container-orgb26ef05" class="outline-3">
+<h3 id="orgb26ef05"><span class="section-number-3">5.1</span> Utilities</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Introduction.
 </p>
 </div>
 
-<div id="outline-container-org04b2892" class="outline-4">
-<h4 id="org04b2892"><span class="section-number-4">5.1.1</span> Units</h4>
+<div id="outline-container-org46870fd" class="outline-4">
+<h4 id="org46870fd"><span class="section-number-4">5.1.1</span> Units</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 Describe units.
@@ -1280,8 +1409,8 @@ Describe units.
 </div>
 </div>
 
-<div id="outline-container-orgf444a78" class="outline-4">
-<h4 id="orgf444a78"><span class="section-number-4">5.1.2</span> Persistence</h4>
+<div id="outline-container-orgbdae87d" class="outline-4">
+<h4 id="orgbdae87d"><span class="section-number-4">5.1.2</span> Persistence</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <p>
 Describe support for persistent files including compression and location.
@@ -1289,8 +1418,8 @@ Describe support for persistent files including compression and location.
 </div>
 </div>
 
-<div id="outline-container-org71dc7ab" class="outline-4">
-<h4 id="org71dc7ab"><span class="section-number-4">5.1.3</span> Etc</h4>
+<div id="outline-container-org4a1ff9a" class="outline-4">
+<h4 id="org4a1ff9a"><span class="section-number-4">5.1.3</span> Etc</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <p>
 &#x2026;.
@@ -1298,52 +1427,52 @@ Describe support for persistent files including compression and location.
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc6f8f3" class="outline-3">
-<h3 id="orgcc6f8f3"><span class="section-number-3">5.2</span> Interfaces</h3>
+<div id="outline-container-orge41e8b8" class="outline-3">
+<h3 id="orge41e8b8"><span class="section-number-3">5.2</span> Interfaces</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Brief overview but it&rsquo;s also in <a href="./internals.html">./internals.html</a> so don&rsquo; t over do it.
 </p>
 </div>
 
-<div id="outline-container-orgeb6539f" class="outline-4">
-<h4 id="orgeb6539f"><span class="section-number-4">5.2.1</span> Data</h4>
+<div id="outline-container-orgb47ba2c" class="outline-4">
+<h4 id="orgb47ba2c"><span class="section-number-4">5.2.1</span> Data</h4>
 </div>
 
-<div id="outline-container-orgba3a8ef" class="outline-4">
-<h4 id="orgba3a8ef"><span class="section-number-4">5.2.2</span> Nodes</h4>
+<div id="outline-container-org5457477" class="outline-4">
+<h4 id="org5457477"><span class="section-number-4">5.2.2</span> Nodes</h4>
 </div>
 
-<div id="outline-container-org89690a6" class="outline-4">
-<h4 id="org89690a6"><span class="section-number-4">5.2.3</span> Misc</h4>
+<div id="outline-container-orgb98b43f" class="outline-4">
+<h4 id="orgb98b43f"><span class="section-number-4">5.2.3</span> Misc</h4>
 </div>
 </div>
-<div id="outline-container-org2f35205" class="outline-3">
-<h3 id="org2f35205"><span class="section-number-3">5.3</span> Simulation</h3>
+<div id="outline-container-orgfeb5901" class="outline-3">
+<h3 id="orgfeb5901"><span class="section-number-3">5.3</span> Simulation</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Scope and intro blah blah.
 </p>
 </div>
 
-<div id="outline-container-orga4cb634" class="outline-4">
-<h4 id="orga4cb634"><span class="section-number-4">5.3.1</span> Depositions</h4>
+<div id="outline-container-orge9b566b" class="outline-4">
+<h4 id="orge9b566b"><span class="section-number-4">5.3.1</span> Depositions</h4>
 </div>
 
-<div id="outline-container-org1716947" class="outline-4">
-<h4 id="org1716947"><span class="section-number-4">5.3.2</span> Drifting</h4>
+<div id="outline-container-orgf3f0b4d" class="outline-4">
+<h4 id="orgf3f0b4d"><span class="section-number-4">5.3.2</span> Drifting</h4>
 </div>
 
-<div id="outline-container-org5bd2f7e" class="outline-4">
-<h4 id="org5bd2f7e"><span class="section-number-4">5.3.3</span> Response</h4>
+<div id="outline-container-org0ca2dec" class="outline-4">
+<h4 id="org0ca2dec"><span class="section-number-4">5.3.3</span> Response</h4>
 </div>
 
-<div id="outline-container-org4950616" class="outline-4">
-<h4 id="org4950616"><span class="section-number-4">5.3.4</span> Digitizing</h4>
+<div id="outline-container-org5c8ad7b" class="outline-4">
+<h4 id="org5c8ad7b"><span class="section-number-4">5.3.4</span> Digitizing</h4>
 </div>
 </div>
-<div id="outline-container-orgaca1dbb" class="outline-3">
-<h3 id="orgaca1dbb"><span class="section-number-3">5.4</span> Waf tools</h3>
+<div id="outline-container-org3155547" class="outline-3">
+<h3 id="org3155547"><span class="section-number-3">5.4</span> Waf tools</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 The WCT build system is based on <a href="https://waf.io/">Waf</a>.  The parts of the build system include:
@@ -1356,8 +1485,8 @@ The WCT build system is based on <a href="https://waf.io/">Waf</a>.  The parts o
 </ul>
 </div>
 
-<div id="outline-container-orgac7ff4f" class="outline-4">
-<h4 id="orgac7ff4f"><span class="section-number-4">5.4.1</span> Recreating <code>wcb</code></h4>
+<div id="outline-container-org2208161" class="outline-4">
+<h4 id="org2208161"><span class="section-number-4">5.4.1</span> Recreating <code>wcb</code></h4>
 <div class="outline-text-4" id="text-5-4-1">
 <p>
 The <code>wcb</code> command bundles some optional Waf tools which are not included in the default version of the <code>waf</code> command.  In case new versions of Waf or new tools are needed it can be recreated like this:
@@ -1374,8 +1503,8 @@ $ git commit [...]
 </div>
 </div>
 
-<div id="outline-container-org2f70d1b" class="outline-4">
-<h4 id="org2f70d1b"><span class="section-number-4">5.4.2</span> Included Waf tools</h4>
+<div id="outline-container-org87ce9fb" class="outline-4">
+<h4 id="org87ce9fb"><span class="section-number-4">5.4.2</span> Included Waf tools</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <p>
 A number of Waf tools are provided in the <a href="https://github.com/wirecell/wire-cell-waftools">waftools</a> submodule.  This provides a Python module for each software package which is a required or optional dependency and which is not already covered by Waf itself. New dependencies can be added by using existing modules as examples.  It is the <code>smplpkgs.py</code> module which handles the building of the WCT packages themselves.  The <code>wcb.py</code> module is used as a simple aggregate of all the other modules.  It is this that is loaded by the main <code>wscript</code>.
@@ -1394,7 +1523,7 @@ The scripts to make and test releases are also housed in this package.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2017-04-17 Mon 11:27</p>
+<p class="date">Created: 2017-04-18 Tue 16:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
