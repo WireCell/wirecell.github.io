@@ -1,0 +1,13 @@
+<map id="WireCell::Waveform::idft" name="WireCell::Waveform::idft">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="201,71,389,112"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#aa55c914dc4a2643e07e952531a429b01" title="WireCell::SigProc::\lMicroboone::SignalProtection" alt="" coords="865,167,1057,208"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_one_channel_noise.html#a2c2a24aedd8c8eb46e246f07f7e73cfd" title="WireCell::SigProc::\lMicroboone::OneChannelNoise\l::apply" alt="" coords="193,253,396,309"/>
+<area shape="rect" id="node8" href="$namespace_wire_cell_1_1_waveform.html#a6aa0cf31fb8548b1f74ffb3f77350668" title="Return sum of square of all entries in sequence. " alt="" coords="225,188,365,229"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="444,71,604,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="449,5,599,47"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_coherent_noise_sub.html#adee2b462e23bab64ca88a8ac26fe3681" title="WireCell::SigProc::\lMicroboone::CoherentNoiseSub\l::apply" alt="" coords="1105,231,1312,287"/>
+<area shape="rect" id="node9" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a7d884aece1ebe89833c17ba5372498e7" title="WireCell::SigProc::\lMicroboone::Subtract\l_WScaling" alt="" coords="888,231,1035,287"/>
+<area shape="rect" id="node10" href="$namespace_wire_cell_1_1_waveform.html#af0395e9b0e5e9e86a26579badb834092" title="WireCell::Waveform\l::mean_rms" alt="" coords="454,239,594,280"/>
+<area shape="rect" id="node11" href="$namespace_wire_cell_1_1_sig_proc_1_1_derivations.html#a3119f257567050bd02427bbcd2cd3a7b" title="WireCell::SigProc::\lDerivations::CalcRMS" alt="" coords="658,239,811,280"/>
+<area shape="rect" id="node12" href="$namespace_wire_cell_1_1_sig_proc_1_1_derivations.html#a162c77ac9d9ea28303c9a0c843e052a8" title="WireCell::SigProc::\lDerivations::CalcMedian" alt="" coords="652,304,817,345"/>
+</map>

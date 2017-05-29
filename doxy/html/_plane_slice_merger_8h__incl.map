@@ -1,0 +1,13 @@
+<map id="gen/inc/WireCellGen/PlaneSliceMerger.h" name="gen/inc/WireCellGen/PlaneSliceMerger.h">
+<area shape="rect" id="node2" href="$_i_plane_slice_merger_8h.html" title="WireCellIface/IPlaneSlice\lMerger.h" alt="" coords="547,95,717,136"/>
+<area shape="rect" id="node3" href="$_i_fanin_node_8h.html" title="WireCellIface/IFaninNode.h" alt="" coords="295,184,478,211"/>
+<area shape="rect" id="node10" href="$_i_plane_slice_8h.html" title="WireCellIface/IPlaneSlice.h" alt="" coords="541,184,723,211"/>
+<area shape="rect" id="node4" href="$_i_node_8h.html" title="WireCellIface/INode.h" alt="" coords="134,259,285,285"/>
+<area shape="rect" id="node5" href="$_i_component_8h.html" title="WireCellUtil/IComponent.h" alt="" coords="5,333,184,360"/>
+<area shape="rect" id="node6" href="$_interface_8h.html" title="WireCellUtil/Interface.h" alt="" coords="21,415,179,442"/>
+<area shape="rect" id="node11" href="$_i_data_8h.html" title="WireCellIface/IData.h" alt="" coords="614,333,762,360"/>
+<area shape="rect" id="node13" href="$_i_sequence_8h.html" title="WireCellIface/ISequence.h" alt="" coords="644,259,823,285"/>
+<area shape="rect" id="node15" href="$_wire_plane_id_8h.html" title="WireCellIface/WirePlaneId.h" alt="" coords="847,259,1033,285"/>
+<area shape="rect" id="node14" href="$_iterator_base_8h.html" title="WireCellUtil/IteratorBase.h" alt="" coords="411,333,589,360"/>
+<area shape="rect" id="node16" href="$_configuration_8h.html" title="WireCellUtil/Configuration.h" alt="" coords="848,333,1032,360"/>
+</map>

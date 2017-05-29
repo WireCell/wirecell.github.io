@@ -1,0 +1,16 @@
+<map id="apps/src/NodeDumper.cxx" name="apps/src/NodeDumper.cxx">
+<area shape="rect" id="node2" href="$_node_dumper_8h.html" title="WireCellApps/NodeDumper.h" alt="" coords="386,80,581,107"/>
+<area shape="rect" id="node9" href="$_configuration_8h.html" title="WireCellUtil/Configuration.h" alt="" coords="205,229,389,256"/>
+<area shape="rect" id="node14" href="$_string_8h.html" title="WireCellUtil/String.h" alt="" coords="1061,155,1202,181"/>
+<area shape="rect" id="node18" href="$_type_8h.html" title="WireCellUtil/Type.h" alt="" coords="2067,155,2203,181"/>
+<area shape="rect" id="node20" href="$_named_factory_8h.html" title="WireCellUtil/NamedFactory.h" alt="" coords="1412,80,1605,107"/>
+<area shape="rect" id="node27" href="$_persist_8h.html" title="WireCellUtil/Persist.h" alt="" coords="5,80,153,107"/>
+<area shape="rect" id="node28" href="$_i_node_8h.html" title="WireCellIface/INode.h" alt="" coords="885,155,1036,181"/>
+<area shape="rect" id="node3" href="$_i_application_8h.html" title="WireCellIface/IApplication.h" alt="" coords="498,155,682,181"/>
+<area shape="rect" id="node8" href="$_i_configurable_8h.html" title="WireCellIface/IConfigurable.h" alt="" coords="280,155,473,181"/>
+<area shape="rect" id="node4" href="$_i_component_8h.html" title="WireCellUtil/IComponent.h" alt="" coords="694,229,873,256"/>
+<area shape="rect" id="node5" href="$_interface_8h.html" title="WireCellUtil/Interface.h" alt="" coords="709,311,868,338"/>
+<area shape="rect" id="node21" href="$_i_factory_8h.html" title="WireCellUtil/IFactory.h" alt="" coords="706,155,861,181"/>
+<area shape="rect" id="node22" href="$_singleton_8h.html" title="WireCellUtil/Singleton.h" alt="" coords="1547,155,1708,181"/>
+<area shape="rect" id="node23" href="$_plugin_manager_8h.html" title="WireCellUtil/PluginManager.h" alt="" coords="1227,155,1420,181"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="WireCell::operator&lt;&lt;" name="WireCell::operator&lt;&lt;">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_wire_plane_id.html#a96f452696cb0843e14eb317dd971be60" title="Unit ID as integer. " alt="" coords="211,5,361,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_wire_plane_id.html#ac89c9225c0de27e9625ca1c0b6efe8e4" title="Layer as index number (0,1 or 2). &#45;1 if unknown. " alt="" coords="424,123,575,164"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_wire_plane_id.html#a60ce522b7b0fe97c7d56466afc38cf66" title="Layer as enum. " alt="" coords="623,93,773,135"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_wire_plane_id.html#a19c5f4e256c2f8be1eeb8138f5f9acb1" title="APA number. " alt="" coords="196,173,376,199"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_wire_plane_id.html#aa7757e987440905dc9b4f8e7aef8e2e5" title="APA face number. " alt="" coords="211,224,361,265"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_wire_plane_id.html#a23130308500b957f2c99612cd696d1ea" title="return true if valid " alt="" coords="211,289,361,331"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_wire_plane_id.html#a8a8f02e6f50ec8374be3ca6c3476dd06" title="Layer as integer (not index!) " alt="" coords="821,93,972,135"/>
+</map>

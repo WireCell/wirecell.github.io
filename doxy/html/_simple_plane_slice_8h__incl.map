@@ -1,0 +1,8 @@
+<map id="iface/inc/WireCellIface/SimplePlaneSlice.h" name="iface/inc/WireCellIface/SimplePlaneSlice.h">
+<area shape="rect" id="node2" href="$_i_plane_slice_8h.html" title="WireCellIface/IPlaneSlice.h" alt="" coords="121,95,304,121"/>
+<area shape="rect" id="node3" href="$_i_data_8h.html" title="WireCellIface/IData.h" alt="" coords="329,169,477,196"/>
+<area shape="rect" id="node7" href="$_i_sequence_8h.html" title="WireCellIface/ISequence.h" alt="" coords="55,169,234,196"/>
+<area shape="rect" id="node9" href="$_wire_plane_id_8h.html" title="WireCellIface/WirePlaneId.h" alt="" coords="503,169,690,196"/>
+<area shape="rect" id="node8" href="$_iterator_base_8h.html" title="WireCellUtil/IteratorBase.h" alt="" coords="55,251,234,278"/>
+<area shape="rect" id="node10" href="$_configuration_8h.html" title="WireCellUtil/Configuration.h" alt="" coords="655,251,839,278"/>
+</map>

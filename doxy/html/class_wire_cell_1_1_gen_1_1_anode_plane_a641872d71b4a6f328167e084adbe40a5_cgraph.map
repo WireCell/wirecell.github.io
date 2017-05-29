@@ -1,0 +1,5 @@
+<map id="WireCell::Gen::AnodePlane::faces" name="WireCell::Gen::AnodePlane::faces">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a4020125b50bc99d851f800f7b8234805" title="Resolve a channel ident number to a WirePlaneId. " alt="" coords="236,5,419,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#ad0c27773bd67b50f91ae91a407fe0d59" title="Return a collection of all channel ident numbers. " alt="" coords="236,71,419,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#ab00af8f2f83f0c24e81cd39771434913" title="Return all wires connected into the given channel ident number. " alt="" coords="236,136,419,177"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="WireCell::Binning::max" name="WireCell::Binning::max">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a9c4c6664c76ad07ad29d71bdb8fb92f1" title="WireCell::Gen::BinnedDiffusion::add" alt="" coords="209,49,443,75"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a591802616cdace8a8c9f74935e0531fa" title="WireCell::Gen::BinnedDiffusion\l::tbins" alt="" coords="491,12,695,53"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="983,71,1134,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="743,12,931,53"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="979,5,1139,47"/>
+</map>

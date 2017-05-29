@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_wire_cell_1_1_i_data.html" title="WireCell::IData\&lt; ICell \&gt;" alt="" coords="5,56,168,83"/>
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_cell.html" title="Interface to information about a cell. " alt="" coords="216,56,323,83"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_bound_cell.html" title="WireCell::BoundCell" alt="" coords="372,5,512,32"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_blob.html" title="WireCell::IBlob" alt="" coords="387,56,497,83"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_simple_cell.html" title="WireCell::SimpleCell" alt="" coords="371,107,513,133"/>
+</map>

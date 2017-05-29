@@ -1,0 +1,13 @@
+<map id="WireCell::Binning::nbins" name="WireCell::Binning::nbins">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a2e06ee1004e36eb341e6ced34df98ba7" title="WireCell::Gen::BinnedDiffusion\l::impact_data" alt="" coords="188,135,392,176"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="696,131,884,172"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="932,99,1092,140"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="937,211,1087,252"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#aea60e9edf425d6f585273a61af1ab6a8" title="WireCell::Gen::BinnedDiffusion\l::time_bin_range" alt="" coords="188,200,392,242"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_binning.html#a76d15fa7ac7d60e63f7d77c28f2acac8" title="WireCell::Binning::\lBinning" alt="" coords="225,318,355,359"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_binning.html#a6bbcf5f258e115803cbd83cb25f839d4" title="WireCell::Binning::set" alt="" coords="215,384,365,410"/>
+<area shape="rect" id="node11" href="$class_wire_cell_1_1_plane_impact_response.html#a94fa159e1651a486df8a9ea451f7ede9" title="WireCell::PlaneImpactResponse\l::PlaneImpactResponse" alt="" coords="184,435,396,476"/>
+<area shape="rect" id="node12" href="$class_wire_cell_1_1_response_1_1_generator.html#a571c13c36686dc25f987b0c189a6ce92" title="Lay down the function into a binned waveform. " alt="" coords="217,500,363,542"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a591802616cdace8a8c9f74935e0531fa" title="WireCell::Gen::BinnedDiffusion\l::tbins" alt="" coords="444,190,648,231"/>
+<area shape="rect" id="node10" href="$class_wire_cell_1_1_pimpos.html#a3cced28a957f1b3f9610166e29441934" title="WireCell::Pimpos::Pimpos" alt="" coords="458,384,634,410"/>
+</map>

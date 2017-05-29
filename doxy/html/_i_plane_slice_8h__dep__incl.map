@@ -1,0 +1,13 @@
+<map id="iface/inc/WireCellIface/IPlaneSlice.h" name="iface/inc/WireCellIface/IPlaneSlice.h">
+<area shape="rect" id="node2" href="$_i_digislicer_8h.html" title="iface/inc/WireCellIface\l/IDigislicer.h" alt="" coords="13,95,167,136"/>
+<area shape="rect" id="node5" href="$_i_plane_ductor_8h.html" title="iface/inc/WireCellIface\l/IPlaneDuctor.h" alt="" coords="597,95,751,136"/>
+<area shape="rect" id="node8" href="$_i_plane_slice_merger_8h.html" title="iface/inc/WireCellIface\l/IPlaneSliceMerger.h" alt="" coords="195,95,350,136"/>
+<area shape="rect" id="node11" href="$_simple_plane_slice_8h.html" title="iface/inc/WireCellIface\l/SimplePlaneSlice.h" alt="" coords="374,95,529,136"/>
+<area shape="rect" id="node3" href="$_digislicer_8h.html" title="gen/inc/WireCellGen\l/Digislicer.h" alt="" coords="11,184,153,225"/>
+<area shape="rect" id="node4" href="$_digislicer_8cxx.html" title="gen/src/Digislicer.cxx" alt="" coords="5,273,153,300"/>
+<area shape="rect" id="node6" href="$_plane_ductor_8h.html" title="gen/inc/WireCellGen\l/PlaneDuctor.h" alt="" coords="647,184,789,225"/>
+<area shape="rect" id="node7" href="$_plane_ductor_8cxx.html" title="gen/src/PlaneDuctor.cxx" alt="" coords="516,273,683,300"/>
+<area shape="rect" id="node9" href="$_plane_slice_merger_8h.html" title="gen/inc/WireCellGen\l/PlaneSliceMerger.h" alt="" coords="201,184,344,225"/>
+<area shape="rect" id="node10" href="$_plane_slice_merger_8cxx.html" title="gen/src/PlaneSliceMerger.cxx" alt="" coords="177,273,373,300"/>
+<area shape="rect" id="node12" href="$_simple_plane_slice_8cxx.html" title="iface/src/SimplePlaneSlice.cxx" alt="" coords="419,191,622,218"/>
+</map>

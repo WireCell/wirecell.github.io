@@ -1,0 +1,8 @@
+<map id="WirePlaneCache::WirePlaneCache" name="WirePlaneCache::WirePlaneCache">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_wire_plane_id.html#ac89c9225c0de27e9625ca1c0b6efe8e4" title="Layer as index number (0,1 or 2). &#45;1 if unknown. " alt="" coords="241,5,392,47"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell.html#a3e825e090f86eed7647960e8e611a144" title="WireCell::ray_vector" alt="" coords="246,71,387,98"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_d3_vector.html#a761993e0685f4abba8521c674fea986a" title="Return a normalized vector in the direction of this vector. " alt="" coords="249,123,384,164"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_d3_vector.html#afb733895e40ea382662bb3c1f4bc5fb7" title="Return the magnitude of this vector. " alt="" coords="249,188,384,229"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_wire_plane_id.html#a60ce522b7b0fe97c7d56466afc38cf66" title="Layer as enum. " alt="" coords="440,5,591,47"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_wire_plane_id.html#a8a8f02e6f50ec8374be3ca6c3476dd06" title="Layer as integer (not index!) " alt="" coords="639,5,789,47"/>
+</map>

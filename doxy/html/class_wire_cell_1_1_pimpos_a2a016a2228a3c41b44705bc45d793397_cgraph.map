@@ -1,0 +1,5 @@
+<map id="WireCell::Pimpos::closest" name="WireCell::Pimpos::closest">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_binning.html#a87e63f53f3b31ad1597ab38c2d890db7" title="WireCell::Binning::bin" alt="" coords="228,5,376,32"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_binning.html#a7d805b052354fe1a7fb537569fe00c10" title="WireCell::Binning::\lcenter" alt="" coords="237,57,367,98"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_binning.html#a761a6c2bae7db77393e7e834a41f9d88" title="WireCell::Binning::\lbinsize" alt="" coords="237,122,367,163"/>
+</map>

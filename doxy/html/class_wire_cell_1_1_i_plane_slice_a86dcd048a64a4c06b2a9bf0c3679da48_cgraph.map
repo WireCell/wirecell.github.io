@@ -1,0 +1,6 @@
+<map id="WireCell::IPlaneSlice::~IPlaneSlice" name="WireCell::IPlaneSlice::~IPlaneSlice">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_plane_slice.html#a7e2f927c544283a23dc4dd63c9dfb45e" title="Where: the plane ID. " alt="" coords="200,5,347,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_plane_slice.html#a0dd34166e4920766d42baed3edfcf067" title="When: the absolute time to which this slice corresponds. " alt="" coords="200,71,347,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_plane_slice.html#aeb42ccee49d87c18fee30bca90a555e4" title="What: return all wire charge runs. " alt="" coords="200,136,347,177"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_i_plane_slice.html#a4e7f659fdc21802a7361e1fe1b6bb769" title="WireCell::IPlaneSlice\l::flatten" alt="" coords="200,201,347,243"/>
+</map>

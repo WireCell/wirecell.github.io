@@ -1,0 +1,20 @@
+<map id="WireCell::SigProc::SimpleChannelNoiseDB::bad_channels" name="WireCell::SigProc::SimpleChannelNoiseDB::bad_channels">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a9ede3bdc966580756f9fff4070e8348b" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_sampling" alt="" coords="216,5,379,61"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a566b36743c0a1cb0bd831a0086dad3b7" title="Set nominal baseline in units of ADC (eg uB is &#45;2048 for U/V, &#45;400 for W) " alt="" coords="216,85,379,141"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a82e2e7cf205e61e1ab1e7970aa6655cb" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_gains_shapings" alt="" coords="216,805,379,861"/>
+<area shape="rect" id="node10" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#adce8a777da71112d25e077a610de2a94" title="Set a response offset for the given set of channels. " alt="" coords="216,165,379,221"/>
+<area shape="rect" id="node11" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#aeb80b3766efb4756055bbe016cd58e2c" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_pad_window_front" alt="" coords="216,245,379,301"/>
+<area shape="rect" id="node12" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a08eb429fdab1899edfe52bf8593ba56e" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_pad_window_back" alt="" coords="216,325,379,381"/>
+<area shape="rect" id="node13" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a1ef94360b00d37aa08ff91fbc89aeccd" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_min_rms_cut" alt="" coords="216,405,379,461"/>
+<area shape="rect" id="node14" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#ae58ed0c5c6686f388206cede0dc84de0" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_min_rms_cut_one" alt="" coords="216,485,379,541"/>
+<area shape="rect" id="node15" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a65b84b3b6a44bad2a0fb90010d44ba9e" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_max_rms_cut" alt="" coords="216,565,379,621"/>
+<area shape="rect" id="node16" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a5fb096a6e12047190a23928f108194aa" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_max_rms_cut_one" alt="" coords="216,645,379,701"/>
+<area shape="rect" id="node17" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a1c4c378e91ff2ead5aff08bc3615b1d2" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_rcrc_constant" alt="" coords="216,885,379,941"/>
+<area shape="rect" id="node19" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#ae5a4c212b9589940124fcce6075f8996" title="Set a detector response spectrum for the set of channels. " alt="" coords="216,725,379,781"/>
+<area shape="rect" id="node4" href="$_simple_channel_noise_d_b_8cxx.html#aa029422b4b46c8772bf181e84f17f3fb" title="set_one" alt="" coords="474,500,542,527"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_response_1_1_generator.html#aceed932e0bab5af1cb80981507667e5e" title="FIXME: eradicate Domain in favor of Binning. " alt="" coords="435,882,581,923"/>
+<area shape="rect" id="node7" href="$namespace_wire_cell_1_1_waveform.html#a6cfae9f74c1bf06f69d6991f3f82cef5" title="WireCell::Waveform::dft" alt="" coords="427,831,589,857"/>
+<area shape="rect" id="node8" href="$namespace_wire_cell_1_1_waveform.html#adad443bd3c3ee1a0c2e65c9a39282a53" title="Shrink (divide) seq values by values from the other sequence. " alt="" coords="438,765,578,806"/>
+<area shape="rect" id="node9" href="$namespace_wire_cell_1_1_waveform.html#ae368e58f014b0d634028afcbb05887cb" title="WireCell::Waveform\l::edge" alt="" coords="637,765,777,806"/>
+<area shape="rect" id="node18" href="$namespace_wire_cell_1_1_waveform.html#aa8d25ae88346929b5e54cd116f7a4f47" title="Scale (multiply) sequence values by scalar. " alt="" coords="438,947,578,989"/>
+</map>

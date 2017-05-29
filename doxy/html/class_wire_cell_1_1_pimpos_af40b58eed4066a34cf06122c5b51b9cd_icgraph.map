@@ -1,0 +1,5 @@
+<map id="WireCell::Pimpos::region_binning" name="WireCell::Pimpos::region_binning">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="461,5,611,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="220,64,408,105"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="456,71,616,112"/>
+</map>

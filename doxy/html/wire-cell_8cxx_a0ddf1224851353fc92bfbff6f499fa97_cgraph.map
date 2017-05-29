@@ -1,0 +1,26 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_config_manager.html#aed279ee9c005dddbd183fb3cf98aca68" title="Return the number of configuration objects. " alt="" coords="584,93,752,135"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_config_manager.html#a4168a64d0957e95cf64565ef8f74fbf8" title="Remove configuration at given index and return it. " alt="" coords="800,101,997,127"/>
+<area shape="rect" id="node4" href="$namespace_wire_cell_1_1_persist.html#a4584ce5a980d065abe88d8be810b809e" title="WireCell::Persist::load" alt="" coords="126,333,279,359"/>
+<area shape="rect" id="node12" href="$class_wire_cell_1_1_config_manager.html#abd465f55ebf6135f5e24b5074020fa36" title="Extend current list of configuration objects with more. " alt="" coords="119,435,287,476"/>
+<area shape="rect" id="node14" href="$class_wire_cell_1_1_config_manager.html#a8fac96e46fb00631259c8c8e59f94c62" title="WireCell::ConfigManager\l::index" alt="" coords="359,195,527,236"/>
+<area shape="rect" id="node15" href="$class_wire_cell_1_1_plugin_manager.html#aa1a081d67e99b8ef796b879e450fc8e0" title="WireCell::PluginManager\l::instance" alt="" coords="119,500,286,541"/>
+<area shape="rect" id="node16" href="$namespace_wire_cell_1_1_string.html#aa275a51c718c16893c21d2a915cab1e6" title="WireCell::String::parse_pair" alt="" coords="1045,475,1228,502"/>
+<area shape="rect" id="node17" href="$class_wire_cell_1_1_plugin_manager.html#a91f5a66757079562b579ef7eae374c6d" title="Add a plugin. If libname is not given, try to derive it. " alt="" coords="105,566,300,593"/>
+<area shape="rect" id="node19" href="$class_wire_cell_1_1_config_manager.html#ad0c910f62795d771556ed3855899c5bc" title="Return top&#45;level, aggregate configuration. " alt="" coords="108,181,297,207"/>
+<area shape="rect" id="node21" href="$namespace_wire_cell.html#a1f69a2598e2cdb413ffac1157b50670a" title="WireCell::type" alt="" coords="150,617,255,643"/>
+<area shape="rect" id="node23" href="$namespace_wire_cell.html#a5d4ad22423a3c77cc4f57d3a7aa95f49" title="Merge dictionary b into a, return a. " alt="" coords="143,667,262,694"/>
+<area shape="rect" id="node24" href="$class_wire_cell_1_1_config_manager.html#a7e1e1b91cdecd2c5464d2b8bf422d329" title="WireCell::ConfigManager::add" alt="" coords="104,282,301,309"/>
+<area shape="rect" id="node25" href="$namespace_wire_cell_1_1_persist.html#a2acf48c85b54dfa84e3a42b610cdf780" title="WireCell::Persist::dump" alt="" coords="122,718,283,745"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_persist.html#a222a8187746d148cdc44b0b43b109e53" title="WireCell::Persist::\lresolve" alt="" coords="1072,333,1201,375"/>
+<area shape="rect" id="node8" href="$namespace_wire_cell_1_1_persist.html#ac286cb66e4f8d84eff1951e4ae5c021d" title="WireCell::Persist::\levaluate_jsonnet_file" alt="" coords="596,304,740,345"/>
+<area shape="rect" id="node10" href="$namespace_wire_cell_1_1_persist.html#a25359fd9189802ba07dce1de7e450315" title="WireCell::Persist::\ljson2object" alt="" coords="378,363,507,404"/>
+<area shape="rect" id="node6" href="$namespace_wire_cell_1_1_persist.html#a3b9a35a2580c04da89629682d43eae40" title="Return true file exists (no file resolution performed). " alt="" coords="1276,377,1405,419"/>
+<area shape="rect" id="node7" href="$namespace_wire_cell_1_1_string.html#aef23d7b89dbe21e34a499c9156dd1e60" title="WireCell::String::split" alt="" coords="1453,425,1600,451"/>
+<area shape="rect" id="node9" href="$namespace_wire_cell_1_1_persist.html#a65787a912677f1990c010e7ee4610a9f" title="WireCell::Persist::\lslurp" alt="" coords="834,304,963,345"/>
+<area shape="rect" id="node11" href="$namespace_wire_cell_1_1_persist.html#a0708c44d45ae6981779eb12dcb367634" title="WireCell::Persist::\levaluate_jsonnet_text" alt="" coords="593,421,743,463"/>
+<area shape="rect" id="node13" href="$namespace_wire_cell.html#acbed381be380ba3a92f80dc5bbcac91f" title="Return an array which is composed of the array b appended to the array a. " alt="" coords="381,479,504,506"/>
+<area shape="rect" id="node18" href="$class_wire_cell_1_1_plugin.html#ac49914ee387d36891a68c4f2308d8f6d" title="WireCell::Plugin::Plugin" alt="" coords="363,566,523,593"/>
+<area shape="rect" id="node20" href="$class_wire_cell_1_1_config_manager.html#a62d084d1761b5d4f3a698a5cb3ebd015" title="WireCell::ConfigManager::at" alt="" coords="349,143,536,170"/>
+<area shape="rect" id="node22" href="$namespace_wire_cell.html#a7d0326b3a49de0eeba671d6dc20a1959" title="WireCell::demangle" alt="" coords="375,617,511,643"/>
+</map>

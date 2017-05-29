@@ -1,0 +1,18 @@
+<map id="iface/inc/WireCellIface/IDigislicer.h" name="iface/inc/WireCellIface/IDigislicer.h">
+<area shape="rect" id="node2" href="$_i_join_node_8h.html" title="WireCellIface/IJoinNode.h" alt="" coords="430,95,604,121"/>
+<area shape="rect" id="node16" href="$_i_channel_slice_8h.html" title="WireCellIface/IChannelSlice.h" alt="" coords="1330,95,1528,121"/>
+<area shape="rect" id="node25" href="$_i_plane_slice_8h.html" title="WireCellIface/IPlaneSlice.h" alt="" coords="1552,95,1735,121"/>
+<area shape="rect" id="node32" href="$_i_wire_8h.html" title="WireCellIface/IWire.h" alt="" coords="1922,95,2069,121"/>
+<area shape="rect" id="node3" href="$_i_node_8h.html" title="WireCellIface/INode.h" alt="" coords="116,169,267,196"/>
+<area shape="rect" id="node8" href="$_tuple_helpers_8h.html" title="WireCellUtil/TupleHelpers.h" alt="" coords="542,169,726,196"/>
+<area shape="rect" id="node4" href="$_i_component_8h.html" title="WireCellUtil/IComponent.h" alt="" coords="38,251,217,278"/>
+<area shape="rect" id="node5" href="$_interface_8h.html" title="WireCellUtil/Interface.h" alt="" coords="143,341,302,367"/>
+<area shape="rect" id="node17" href="$_quantity_8h.html" title="WireCellUtil/Quantity.h" alt="" coords="1651,169,1807,196"/>
+<area shape="rect" id="node20" href="$_i_data_8h.html" title="WireCellIface/IData.h" alt="" coords="1224,169,1372,196"/>
+<area shape="rect" id="node22" href="$_i_sequence_8h.html" title="WireCellIface/ISequence.h" alt="" coords="1448,169,1626,196"/>
+<area shape="rect" id="node23" href="$_iterator_base_8h.html" title="WireCellUtil/IteratorBase.h" alt="" coords="1448,251,1626,278"/>
+<area shape="rect" id="node26" href="$_wire_plane_id_8h.html" title="WireCellIface/WirePlaneId.h" alt="" coords="1902,169,2089,196"/>
+<area shape="rect" id="node27" href="$_configuration_8h.html" title="WireCellUtil/Configuration.h" alt="" coords="1946,251,2130,278"/>
+<area shape="rect" id="node33" href="$_point_8h.html" title="WireCellUtil/Point.h" alt="" coords="2166,169,2303,196"/>
+<area shape="rect" id="node34" href="$_d3_vector_8h.html" title="WireCellUtil/D3Vector.h" alt="" coords="2154,251,2317,278"/>
+</map>

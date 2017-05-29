@@ -1,0 +1,9 @@
+<map id="WireCell::Persist::loads" name="WireCell::Persist::loads">
+<area shape="rect" id="node2" href="$class_wire_cell_apps_1_1_node_dumper.html#a1992ac15751517ac24d800c876fa9ac7" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="183,5,369,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_diffuser.html#af4c30505b60f38a7dc70c905e49d3a91" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="201,71,351,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_plane_ductor.html#aafa093e0ec08fd805961d3e0f0b0fcd5" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="200,136,352,177"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_gen_1_1_track_depos.html#a679d1fdbf18c006c64a35fcab5be248c" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="185,201,367,243"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_wire_params.html#a720dc30bce7ed53966e3aa26716f551a" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="200,267,352,308"/>
+<area shape="rect" id="node7" href="$class_wire_cell_sst_1_1_frame_source.html#a3dc9eb9defba61ce37b9939017af41a3" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="187,332,365,373"/>
+<area shape="rect" id="node8" href="$class_wire_cell_tbb_1_1_tbb_flow.html#a53611116fb220e7089cf1a5f19dd7d6e" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="200,397,352,439"/>
+</map>

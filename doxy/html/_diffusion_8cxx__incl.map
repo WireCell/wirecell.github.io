@@ -1,0 +1,10 @@
+<map id="gen/src/Diffusion.cxx" name="gen/src/Diffusion.cxx">
+<area shape="rect" id="node2" href="$_diffusion_8h.html" title="WireCellGen/Diffusion.h" alt="" coords="417,80,580,107"/>
+<area shape="rect" id="node3" href="$_i_diffusion_8h.html" title="WireCellIface/IDiffusion.h" alt="" coords="289,155,461,181"/>
+<area shape="rect" id="node8" href="$_i_depo_8h.html" title="WireCellIface/IDepo.h" alt="" coords="423,229,574,256"/>
+<area shape="rect" id="node4" href="$_i_data_8h.html" title="WireCellIface/IData.h" alt="" coords="183,304,331,331"/>
+<area shape="rect" id="node9" href="$_point_8h.html" title="WireCellUtil/Point.h" alt="" coords="510,304,647,331"/>
+<area shape="rect" id="node20" href="$_units_8h.html" title="WireCellUtil/Units.h" alt="" coords="723,304,861,331"/>
+<area shape="rect" id="node10" href="$_d3_vector_8h.html" title="WireCellUtil/D3Vector.h" alt="" coords="616,386,779,413"/>
+<area shape="rect" id="node14" href="$_configuration_8h.html" title="WireCellUtil/Configuration.h" alt="" coords="307,386,491,413"/>
+</map>

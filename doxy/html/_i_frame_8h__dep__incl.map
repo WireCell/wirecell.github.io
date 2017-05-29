@@ -1,0 +1,34 @@
+<map id="iface/inc/WireCellIface/IFrame.h" name="iface/inc/WireCellIface/IFrame.h">
+<area shape="rect" id="node2" href="$_i_detsim_8h.html" title="iface/inc/WireCellIface\l/IDetsim.h" alt="" coords="150,95,305,136"/>
+<area shape="rect" id="node4" href="$_i_ductor_8h.html" title="iface/inc/WireCellIface\l/IDuctor.h" alt="" coords="658,95,813,136"/>
+<area shape="rect" id="node9" href="$_i_frame_filter_8h.html" title="iface/inc/WireCellIface\l/IFrameFilter.h" alt="" coords="865,95,1019,136"/>
+<area shape="rect" id="node14" href="$_i_framer_8h.html" title="iface/inc/WireCellIface\l/IFramer.h" alt="" coords="1341,95,1495,136"/>
+<area shape="rect" id="node17" href="$_i_frame_sink_8h.html" title="iface/inc/WireCellIface\l/IFrameSink.h" alt="" coords="402,95,557,136"/>
+<area shape="rect" id="node22" href="$_i_frame_source_8h.html" title="iface/inc/WireCellIface\l/IFrameSource.h" alt="" coords="1742,95,1897,136"/>
+<area shape="rect" id="node30" href="$_simple_frame_8h.html" title="iface/inc/WireCellIface\l/SimpleFrame.h" alt="" coords="1379,184,1534,225"/>
+<area shape="rect" id="node33" href="$_frame_util_8h.html" title="gen/inc/WireCellGen\l/FrameUtil.h" alt="" coords="1207,184,1349,225"/>
+<area shape="rect" id="node3" href="$_detsim_8h.html" title="gen/inc/WireCellGen\l/Detsim.h" alt="" coords="5,184,148,225"/>
+<area shape="rect" id="node5" href="$_ductor_8h.html" title="gen/inc/WireCellGen\l/Ductor.h" alt="" coords="497,184,640,225"/>
+<area shape="rect" id="node7" href="$_fourdee_8h.html" title="gen/inc/WireCellGen\l/Fourdee.h" alt="" coords="664,184,807,225"/>
+<area shape="rect" id="node6" href="$_ductor_8cxx.html" title="gen/src/Ductor.cxx" alt="" coords="507,281,641,307"/>
+<area shape="rect" id="node8" href="$_fourdee_8cxx.html" title="gen/src/Fourdee.cxx" alt="" coords="665,281,806,307"/>
+<area shape="rect" id="node10" href="$_digitizer_8h.html" title="gen/inc/WireCellGen\l/Digitizer.h" alt="" coords="831,184,973,225"/>
+<area shape="rect" id="node12" href="$_omnibus_noise_filter_8h.html" title="sigproc/inc/WireCellSigProc\l/OmnibusNoiseFilter.h" alt="" coords="997,184,1183,225"/>
+<area shape="rect" id="node11" href="$_digitizer_8cxx.html" title="gen/src/Digitizer.cxx" alt="" coords="829,281,972,307"/>
+<area shape="rect" id="node13" href="$_omnibus_noise_filter_8cxx.html" title="sigproc/src/OmnibusNoise\lFilter.cxx" alt="" coords="997,273,1173,315"/>
+<area shape="rect" id="node15" href="$_framer_8h.html" title="gen/inc/WireCellGen\l/Framer.h" alt="" coords="1565,184,1708,225"/>
+<area shape="rect" id="node16" href="$_framer_8cxx.html" title="gen/src/Framer.cxx" alt="" coords="1576,281,1711,307"/>
+<area shape="rect" id="node18" href="$_dump_frames_8h.html" title="gen/inc/WireCellGen\l/DumpFrames.h" alt="" coords="331,184,473,225"/>
+<area shape="rect" id="node20" href="$_hist_frame_sink_8h.html" title="sio/inc/WireCellSio\l/HistFrameSink.h" alt="" coords="173,184,306,225"/>
+<area shape="rect" id="node19" href="$_dump_frames_8cxx.html" title="gen/src/DumpFrames.cxx" alt="" coords="310,281,483,307"/>
+<area shape="rect" id="node21" href="$_hist_frame_sink_8cxx.html" title="sio/src/HistFrameSink.cxx" alt="" coords="108,281,285,307"/>
+<area shape="rect" id="node23" href="$_noise_source_8h.html" title="gen/inc/WireCellGen\l/NoiseSource.h" alt="" coords="1748,184,1891,225"/>
+<area shape="rect" id="node25" href="$_silent_noise_8h.html" title="gen/inc/WireCellGen\l/SilentNoise.h" alt="" coords="1927,184,2069,225"/>
+<area shape="rect" id="node27" href="$_frame_source_8h.html" title="sst/inc/WireCellSst\l/FrameSource.h" alt="" coords="2131,184,2265,225"/>
+<area shape="rect" id="node24" href="$_noise_source_8cxx.html" title="gen/src/NoiseSource.cxx" alt="" coords="1735,281,1904,307"/>
+<area shape="rect" id="node26" href="$_silent_noise_8cxx.html" title="gen/src/SilentNoise.cxx" alt="" coords="1928,281,2089,307"/>
+<area shape="rect" id="node28" href="$sst-dumper_8cxx.html" title="sst/apps/sst&#45;dumper.cxx" alt="" coords="2307,281,2473,307"/>
+<area shape="rect" id="node29" href="$_frame_source_8cxx.html" title="sst/src/FrameSource.cxx" alt="" coords="2113,281,2283,307"/>
+<area shape="rect" id="node31" href="$_simple_frame_8cxx.html" title="iface/src/SimpleFrame.cxx" alt="" coords="1373,281,1551,307"/>
+<area shape="rect" id="node32" href="$_frame_util_8cxx.html" title="gen/src/FrameUtil.cxx" alt="" coords="1197,281,1348,307"/>
+</map>

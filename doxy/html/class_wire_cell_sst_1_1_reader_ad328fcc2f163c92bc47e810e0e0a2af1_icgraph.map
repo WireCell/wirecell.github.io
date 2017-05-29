@@ -1,0 +1,4 @@
+<map id="WireCellSst::Reader::load" name="WireCellSst::Reader::load">
+<area shape="rect" id="node2" href="$class_wire_cell_sst_1_1_reader.html#a52b6c4a0bf3021199a0a98057b190b62" title="Load and return the next entry. Return nullptr on end of file or error. " alt="" coords="196,5,339,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_sst_1_1_depo_source.html#a9f7093a2597f85aa677ea6a2d02eab1c" title="The calling signature: " alt="" coords="387,5,559,47"/>
+</map>

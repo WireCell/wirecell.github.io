@@ -1,0 +1,13 @@
+<map id="util/inc/WireCellUtil/BoundingBox.h" name="util/inc/WireCellUtil/BoundingBox.h">
+<area shape="rect" id="node2" href="$_bounding_box_8cxx.html" title="util/src/BoundingBox.cxx" alt="" coords="50,102,217,129"/>
+<area shape="rect" id="node3" href="$_i_wire_summary_8h.html" title="iface/inc/WireCellIface\l/IWireSummary.h" alt="" coords="241,95,396,136"/>
+<area shape="rect" id="node10" href="$_anode_plane_8cxx.html" title="gen/src/AnodePlane.cxx" alt="" coords="421,102,585,129"/>
+<area shape="rect" id="node11" href="$_bound_cells_8cxx.html" title="gen/src/BoundCells.cxx" alt="" coords="609,102,770,129"/>
+<area shape="rect" id="node12" href="$_hist_frame_sink_8cxx.html" title="sio/src/HistFrameSink.cxx" alt="" coords="794,102,971,129"/>
+<area shape="rect" id="node4" href="$_i_geometry_8h.html" title="iface/inc/WireCellIface\l/IGeometry.h" alt="" coords="5,184,160,225"/>
+<area shape="rect" id="node5" href="$_i_wire_summarizer_8h.html" title="iface/inc/WireCellIface\l/IWireSummarizer.h" alt="" coords="184,184,339,225"/>
+<area shape="rect" id="node6" href="$_wire_summarizer_8h.html" title="gen/inc/WireCellGen\l/WireSummarizer.h" alt="" coords="247,273,390,315"/>
+<area shape="rect" id="node8" href="$_wire_summary_8h.html" title="gen/inc/WireCellGen\l/WireSummary.h" alt="" coords="414,184,557,225"/>
+<area shape="rect" id="node7" href="$_wire_summarizer_8cxx.html" title="gen/src/WireSummarizer.cxx" alt="" coords="278,363,469,389"/>
+<area shape="rect" id="node9" href="$_wire_summary_8cxx.html" title="gen/src/WireSummary.cxx" alt="" coords="466,281,643,307"/>
+</map>

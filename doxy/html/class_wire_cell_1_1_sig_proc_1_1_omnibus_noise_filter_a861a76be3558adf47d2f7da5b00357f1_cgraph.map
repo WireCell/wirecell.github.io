@@ -1,0 +1,6 @@
+<map id="WireCell::SigProc::OmnibusNoiseFilter::operator()" name="WireCell::SigProc::OmnibusNoiseFilter::operator()">
+<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_waveform.html#a992189c16e04b7302539d42c94f9e296" title="Return a new list with any overlaps formed into unions. " alt="" coords="199,5,339,47"/>
+<area shape="rect" id="node3" href="$namespace_wire_cell.html#aeda39bc129b6bab40d0e35ffb4af55ef" title="Return dictionary in given list if it value at dotpath matches. " alt="" coords="218,71,319,98"/>
+<area shape="rect" id="node4" href="$namespace_wire_cell.html#ade8a8d63c0beb7335d7f969903bfeedc" title="Follow a dot.separated.path and return the branch there. " alt="" coords="387,71,505,98"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_string.html#aef23d7b89dbe21e34a499c9156dd1e60" title="WireCell::String::split" alt="" coords="553,71,700,98"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="iface/inc/WireCellIface/ICellSummary.h" name="iface/inc/WireCellIface/ICellSummary.h">
+<area shape="rect" id="node2" href="$_i_tiling_8h.html" title="iface/inc/WireCellIface\l/ITiling.h" alt="" coords="147,95,301,136"/>
+<area shape="rect" id="node6" href="$_tiling_graph_8h.html" title="gen/inc/WireCellGen\l/TilingGraph.h" alt="" coords="326,95,469,136"/>
+<area shape="rect" id="node3" href="$_i_geometry_8h.html" title="iface/inc/WireCellIface\l/IGeometry.h" alt="" coords="5,184,160,225"/>
+<area shape="rect" id="node4" href="$_tiling_8h.html" title="gen/inc/WireCellGen\l/Tiling.h" alt="" coords="185,184,327,225"/>
+<area shape="rect" id="node5" href="$_tiling_8cxx.html" title="gen/src/Tiling.cxx" alt="" coords="248,273,373,300"/>
+<area shape="rect" id="node7" href="$_tiling_graph_8cxx.html" title="gen/src/TilingGraph.cxx" alt="" coords="403,191,563,218"/>
+</map>

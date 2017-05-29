@@ -1,0 +1,9 @@
+<map id="WireCell::IAnodePlane::~IAnodePlane" name="WireCell::IAnodePlane::~IAnodePlane">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_anode_plane.html#a18dfeccffc41a8fca3631a4e98967c57" title="Return the ident number of this plane. " alt="" coords="208,5,363,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_anode_plane.html#ace24697d669e5b25613db8ad110611f0" title="Return number of faces (eg, MicroBooNE=1, DUNE=2) " alt="" coords="208,71,363,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_anode_plane.html#ad420395805cd4a1c07253b535768fd5a" title="Return a anode face by its ident number. " alt="" coords="208,136,363,177"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_i_anode_plane.html#a22ebdffd5613bf8007e0ae314984c36a" title="Return all faces. " alt="" coords="208,201,363,243"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_i_anode_plane.html#a566ba20aec7e85b99a9f4304f073afa0" title="Resolve a channel ident number to a WirePlaneId. " alt="" coords="208,267,363,308"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_i_anode_plane.html#a8de1ff56146e343b9ad266eaa011065a" title="Return a collection of all channel ident numbers. " alt="" coords="208,332,363,373"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_i_anode_plane.html#abc2ecbbec9207caa515d84a97fb5a406" title="Return all wires connected into the given channel ident number. " alt="" coords="208,397,363,439"/>
+</map>

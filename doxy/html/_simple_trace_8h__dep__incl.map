@@ -1,0 +1,9 @@
+<map id="iface/inc/WireCellIface/SimpleTrace.h" name="iface/inc/WireCellIface/SimpleTrace.h">
+<area shape="rect" id="node2" href="$_simple_trace_8cxx.html" title="iface/src/SimpleTrace.cxx" alt="" coords="5,102,180,129"/>
+<area shape="rect" id="node3" href="$_digitizer_8cxx.html" title="gen/src/Digitizer.cxx" alt="" coords="204,102,347,129"/>
+<area shape="rect" id="node4" href="$_ductor_8cxx.html" title="gen/src/Ductor.cxx" alt="" coords="371,102,505,129"/>
+<area shape="rect" id="node5" href="$_frame_util_8cxx.html" title="gen/src/FrameUtil.cxx" alt="" coords="529,102,680,129"/>
+<area shape="rect" id="node6" href="$_noise_source_8cxx.html" title="gen/src/NoiseSource.cxx" alt="" coords="704,102,873,129"/>
+<area shape="rect" id="node7" href="$_omnibus_noise_filter_8cxx.html" title="sigproc/src/OmnibusNoise\lFilter.cxx" alt="" coords="898,95,1074,136"/>
+<area shape="rect" id="node8" href="$_frame_source_8cxx.html" title="sst/src/FrameSource.cxx" alt="" coords="1099,102,1268,129"/>
+</map>

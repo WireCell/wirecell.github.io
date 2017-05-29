@@ -1,0 +1,6 @@
+<map id="WireCell::ICellSummary::~ICellSummary" name="WireCell::ICellSummary::~ICellSummary">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_cell_summary.html#a2b1540eb32627ff7df1a0cdc7587a097" title="WireCell::ICellSummary\l::wires" alt="" coords="216,5,379,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_cell_summary.html#af751aa8b0db00d2f6538924ae4eabf1f" title="WireCell::ICellSummary\l::cell" alt="" coords="216,71,379,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_cell_summary.html#a4637642aa6288db02e7142aff0266e89" title="Return a sequence of cells associated with the given wire. " alt="" coords="216,136,379,177"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_i_cell_summary.html#a8f0ca7ed79528817bd54e88493e27585" title="Return collection of nearest neighbor cells. " alt="" coords="216,201,379,243"/>
+</map>

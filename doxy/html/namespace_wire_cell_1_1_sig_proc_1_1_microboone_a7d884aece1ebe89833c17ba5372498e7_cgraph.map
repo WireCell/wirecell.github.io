@@ -1,0 +1,14 @@
+<map id="WireCell::SigProc::Microboone::Subtract_WScaling" name="WireCell::SigProc::Microboone::Subtract_WScaling">
+<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_waveform.html#a6aa0cf31fb8548b1f74ffb3f77350668" title="Return sum of square of all entries in sequence. " alt="" coords="207,195,347,236"/>
+<area shape="rect" id="node13" href="$namespace_wire_cell_1_1_sig_proc_1_1_derivations.html#a3119f257567050bd02427bbcd2cd3a7b" title="WireCell::SigProc::\lDerivations::CalcRMS" alt="" coords="200,68,353,109"/>
+<area shape="rect" id="node3" href="$namespace_wire_cell_1_1_waveform.html#af0395e9b0e5e9e86a26579badb834092" title="WireCell::Waveform\l::mean_rms" alt="" coords="413,5,553,47"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_waveform.html#a4348c1d300f0e7cecd97ec4443bac27d" title="WireCell::Waveform\l::median" alt="" coords="413,71,553,112"/>
+<area shape="rect" id="node6" href="$namespace_wire_cell_1_1_waveform.html#a9a72f0b40ec9e5b44713c59f338f6fd3" title="WireCell::Waveform\l::median_binned" alt="" coords="413,136,553,177"/>
+<area shape="rect" id="node7" href="$namespace_wire_cell_1_1_waveform.html#ae080d239c8b4426a6d74f9fd8ce85f1a" title="WireCell::Waveform\l::percentile_binned" alt="" coords="629,165,769,207"/>
+<area shape="rect" id="node8" href="$namespace_wire_cell_1_1_waveform.html#abebd55cb4d46383e13c15bad4e91dd0d" title="WireCell::Waveform\l::percentile" alt="" coords="413,253,553,295"/>
+<area shape="rect" id="node9" href="$namespace_wire_cell_1_1_waveform.html#a6cfae9f74c1bf06f69d6991f3f82cef5" title="WireCell::Waveform::dft" alt="" coords="401,319,564,346"/>
+<area shape="rect" id="node10" href="$namespace_wire_cell_1_1_waveform.html#afc13ff04207445a607d7863d6013a2bb" title="WireCell::Waveform\l::dftd" alt="" coords="413,371,553,412"/>
+<area shape="rect" id="node11" href="$namespace_wire_cell_1_1_waveform.html#a69255dad704fcb71fa53745e90a2f0e1" title="WireCell::Waveform\l::idft" alt="" coords="413,436,553,477"/>
+<area shape="rect" id="node12" href="$namespace_wire_cell_1_1_waveform.html#a1dbb2b476e3a24dc5342bd33612025ff" title="WireCell::Waveform\l::idftd" alt="" coords="413,501,553,543"/>
+<area shape="rect" id="node4" href="$namespace_wire_cell_1_1_waveform.html#a4c7b82a4567d6c94227398f9511ffb92" title="Return sum of all entries in sequence. " alt="" coords="612,13,785,39"/>
+</map>

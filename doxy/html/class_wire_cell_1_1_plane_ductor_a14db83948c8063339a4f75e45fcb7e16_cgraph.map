@@ -1,0 +1,9 @@
+<map id="WireCell::PlaneDuctor::operator()" name="WireCell::PlaneDuctor::operator()">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_wire_plane_id.html#a60ce522b7b0fe97c7d56466afc38cf66" title="Layer as enum. " alt="" coords="206,5,357,47"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_plane_ductor.html#a2f6a902dbe7b835c69e8e117ef6482b8" title="WireCell::PlaneDuctor\l::purge_bygone" alt="" coords="205,71,357,112"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_plane_ductor.html#a354ab913c2a6802e50a18a11867e2887" title="WireCell::PlaneDuctor\l::latch_one" alt="" coords="205,136,357,177"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_plane_ductor.html#acb5217919dc539843719fabd5c4314ee" title="WireCell::PlaneDuctor\l::starved" alt="" coords="205,201,357,243"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_wire_plane_id.html#a8a8f02e6f50ec8374be3ca6c3476dd06" title="Layer as integer (not index!) " alt="" coords="406,5,557,47"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_plane_ductor.html#a1514e7ac8f7a9875fa020bbe504170e0" title="WireCell::PlaneDuctor\l::latch_hits" alt="" coords="405,136,557,177"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_wire_plane_id.html#a96f452696cb0843e14eb317dd971be60" title="Unit ID as integer. " alt="" coords="605,136,756,177"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="WireCell::SigProc::Microboone::OneChannelNoise::apply" name="WireCell::SigProc::Microboone::OneChannelNoise::apply">
+<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_waveform.html#af74deccaeb9e2147865029e16840e799" title="Increase (shift) sequence values by scalar. " alt="" coords="311,5,451,47"/>
+<area shape="rect" id="node3" href="$namespace_wire_cell_1_1_waveform.html#aa8d25ae88346929b5e54cd116f7a4f47" title="Scale (multiply) sequence values by scalar. " alt="" coords="311,71,451,112"/>
+<area shape="rect" id="node4" href="$namespace_wire_cell_1_1_waveform.html#a6cfae9f74c1bf06f69d6991f3f82cef5" title="WireCell::Waveform::dft" alt="" coords="300,137,463,163"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_waveform.html#adad443bd3c3ee1a0c2e65c9a39282a53" title="Shrink (divide) seq values by values from the other sequence. " alt="" coords="311,188,451,229"/>
+<area shape="rect" id="node7" href="$namespace_wire_cell_1_1_waveform.html#a69255dad704fcb71fa53745e90a2f0e1" title="WireCell::Waveform\l::idft" alt="" coords="311,253,451,295"/>
+<area shape="rect" id="node8" href="$namespace_wire_cell_1_1_waveform.html#a9a72f0b40ec9e5b44713c59f338f6fd3" title="WireCell::Waveform\l::median_binned" alt="" coords="591,348,731,389"/>
+<area shape="rect" id="node10" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a16d44a6eccccc47fd7f7967b37f8ba61" title="WireCell::SigProc::\lMicroboone::Chirp_raise\l_baseline" alt="" coords="300,370,463,426"/>
+<area shape="rect" id="node11" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a09348aad9dc69ef1d18d6145b03547ee" title="WireCell::SigProc::\lMicroboone::SignalFilter" alt="" coords="300,449,463,491"/>
+<area shape="rect" id="node13" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a05c4b5687320b38db3ada0478e9b729b" title="WireCell::SigProc::\lMicroboone::RawAdapativeBaselineAlg" alt="" coords="256,515,507,556"/>
+<area shape="rect" id="node14" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a8e98649e920ae702925434c6fe7676b9" title="WireCell::SigProc::\lMicroboone::NoisyFilterAlg" alt="" coords="292,580,471,621"/>
+<area shape="rect" id="node15" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a772813d4954fff2b2089d97db4bd5875" title="WireCell::SigProc::\lMicroboone::RemoveFilterFlags" alt="" coords="278,645,485,687"/>
+<area shape="rect" id="node6" href="$namespace_wire_cell_1_1_waveform.html#ae368e58f014b0d634028afcbb05887cb" title="WireCell::Waveform\l::edge" alt="" coords="591,188,731,229"/>
+<area shape="rect" id="node9" href="$namespace_wire_cell_1_1_waveform.html#ae080d239c8b4426a6d74f9fd8ce85f1a" title="WireCell::Waveform\l::percentile_binned" alt="" coords="816,399,956,440"/>
+<area shape="rect" id="node12" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#ae364f8dbc0dad92d515850a86baefb13" title="WireCell::SigProc::\lMicroboone::CalcRMSWithFlags" alt="" coords="555,449,768,491"/>
+</map>

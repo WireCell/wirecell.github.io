@@ -1,0 +1,6 @@
+<map id="WireCell::IAnodeFace::~IAnodeFace" name="WireCell::IAnodeFace::~IAnodeFace">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_anode_face.html#a2090bdf3aac37747dcc831ce1529bf53" title="Return the ident number of this face. " alt="" coords="204,5,355,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_anode_face.html#a5423e72fe99935c08c3076bda3a7354f" title="Return the number of wire planes in the given side. " alt="" coords="204,71,355,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_anode_face.html#a79559335fb83389b656504e480eb2eb7" title="Return the wire plane with the given ident or nullptr if unknown. " alt="" coords="204,136,355,177"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_i_anode_face.html#ae3ff56137d41a1ab6bf0dfa6892bd293" title="Return all wires planes. " alt="" coords="204,201,355,243"/>
+</map>

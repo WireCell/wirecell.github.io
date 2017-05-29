@@ -1,0 +1,5 @@
+<map id="WireCell::ImpactResponse::spectrum" name="WireCell::ImpactResponse::spectrum">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="232,39,420,80"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="468,5,628,47"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="473,71,623,112"/>
+</map>

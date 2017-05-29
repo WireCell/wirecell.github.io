@@ -1,0 +1,34 @@
+<map id="util/inc/WireCellUtil/Singleton.h" name="util/inc/WireCellUtil/Singleton.h">
+<area shape="rect" id="node2" href="$_named_factory_8h.html" title="util/inc/WireCellUtil\l/NamedFactory.h" alt="" coords="2724,95,2859,136"/>
+<area shape="rect" id="node3" href="$wire-cell_8cxx.html" title="apps/apps/wire&#45;cell.cxx" alt="" coords="5,184,164,211"/>
+<area shape="rect" id="node4" href="$_config_dumper_8cxx.html" title="apps/src/ConfigDumper.cxx" alt="" coords="188,184,373,211"/>
+<area shape="rect" id="node5" href="$_node_dumper_8cxx.html" title="apps/src/NodeDumper.cxx" alt="" coords="398,184,577,211"/>
+<area shape="rect" id="node6" href="$_config_manager_8cxx.html" title="util/src/ConfigManager.cxx" alt="" coords="601,184,779,211"/>
+<area shape="rect" id="node7" href="$_anode_plane_8cxx.html" title="gen/src/AnodePlane.cxx" alt="" coords="804,184,968,211"/>
+<area shape="rect" id="node8" href="$_bound_cells_8cxx.html" title="gen/src/BoundCells.cxx" alt="" coords="992,184,1153,211"/>
+<area shape="rect" id="node9" href="$_diffuser_8cxx.html" title="gen/src/Diffuser.cxx" alt="" coords="1177,184,1317,211"/>
+<area shape="rect" id="node10" href="$_digislicer_8cxx.html" title="gen/src/Digislicer.cxx" alt="" coords="1341,184,1489,211"/>
+<area shape="rect" id="node11" href="$_digitizer_8cxx.html" title="gen/src/Digitizer.cxx" alt="" coords="1513,184,1656,211"/>
+<area shape="rect" id="node12" href="$_drifter_8cxx.html" title="gen/src/Drifter.cxx" alt="" coords="1679,184,1810,211"/>
+<area shape="rect" id="node13" href="$_ductor_8cxx.html" title="gen/src/Ductor.cxx" alt="" coords="1834,184,1967,211"/>
+<area shape="rect" id="node14" href="$_dump_depos_8cxx.html" title="gen/src/DumpDepos.cxx" alt="" coords="1992,184,2159,211"/>
+<area shape="rect" id="node15" href="$_dump_frames_8cxx.html" title="gen/src/DumpFrames.cxx" alt="" coords="2183,184,2357,211"/>
+<area shape="rect" id="node16" href="$_fourdee_8cxx.html" title="gen/src/Fourdee.cxx" alt="" coords="2381,184,2522,211"/>
+<area shape="rect" id="node17" href="$_framer_8cxx.html" title="gen/src/Framer.cxx" alt="" coords="2547,184,2681,211"/>
+<area shape="rect" id="node18" href="$hanyu___drifter_8cxx.html" title="gen/src/hanyu_Drifter.cxx" alt="" coords="2705,184,2877,211"/>
+<area shape="rect" id="node19" href="$_noise_source_8cxx.html" title="gen/src/NoiseSource.cxx" alt="" coords="2901,184,3071,211"/>
+<area shape="rect" id="node20" href="$_plane_ductor_8cxx.html" title="gen/src/PlaneDuctor.cxx" alt="" coords="3095,184,3261,211"/>
+<area shape="rect" id="node21" href="$_plane_slice_merger_8cxx.html" title="gen/src/PlaneSliceMerger.cxx" alt="" coords="3285,184,3481,211"/>
+<area shape="rect" id="node22" href="$_recombination_models_8cxx.html" title="gen/src/RecombinationModels.cxx" alt="" coords="3505,184,3728,211"/>
+<area shape="rect" id="node23" href="$_silent_noise_8cxx.html" title="gen/src/SilentNoise.cxx" alt="" coords="3752,184,3913,211"/>
+<area shape="rect" id="node24" href="$_tiling_8cxx.html" title="gen/src/Tiling.cxx" alt="" coords="3938,184,4063,211"/>
+<area shape="rect" id="node25" href="$_track_depos_8cxx.html" title="gen/src/TrackDepos.cxx" alt="" coords="4087,184,4253,211"/>
+<area shape="rect" id="node26" href="$_wire_generator_8cxx.html" title="gen/src/WireGenerator.cxx" alt="" coords="4277,184,4455,211"/>
+<area shape="rect" id="node27" href="$_wire_params_8cxx.html" title="gen/src/WireParams.cxx" alt="" coords="4480,184,4647,211"/>
+<area shape="rect" id="node28" href="$gen_2src_2_wire_source_8cxx.html" title="gen/src/WireSource.cxx" alt="" coords="4671,184,4834,211"/>
+<area shape="rect" id="node29" href="$_wire_summarizer_8cxx.html" title="gen/src/WireSummarizer.cxx" alt="" coords="4859,184,5049,211"/>
+<area shape="rect" id="node30" href="$_hist_frame_sink_8cxx.html" title="sio/src/HistFrameSink.cxx" alt="" coords="5073,184,5251,211"/>
+<area shape="rect" id="node31" href="$_json_depo_source_8cxx.html" title="sio/src/JsonDepoSource.cxx" alt="" coords="5275,184,5465,211"/>
+<area shape="rect" id="node32" href="$_data_flow_graph_8cxx.html" title="tbb/src/DataFlowGraph.cxx" alt="" coords="5489,184,5672,211"/>
+<area shape="rect" id="node33" href="$_tbb_flow_8cxx.html" title="tbb/src/TbbFlow.cxx" alt="" coords="5697,184,5838,211"/>
+</map>

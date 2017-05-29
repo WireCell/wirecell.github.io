@@ -1,0 +1,4 @@
+<map id="WireCellSst::DepoSource::operator()" name="WireCellSst::DepoSource::operator()">
+<area shape="rect" id="node2" href="$class_wire_cell_sst_1_1_reader.html#a52b6c4a0bf3021199a0a98057b190b62" title="Load and return the next entry. Return nullptr on end of file or error. " alt="" coords="225,5,368,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_sst_1_1_reader.html#ad328fcc2f163c92bc47e810e0e0a2af1" title="Load and return the n&#39;th entry. Return nullptr on end of file or error. " alt="" coords="416,5,559,47"/>
+</map>

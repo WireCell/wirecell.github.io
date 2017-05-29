@@ -1,0 +1,5 @@
+<map id="WireCell::Gen::BinnedDiffusion::time_bin_range" name="WireCell::Gen::BinnedDiffusion::time_bin_range">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#ab5aac666cae41334faed3ab5dc5b3fe2" title="WireCell::Gen::BinnedDiffusion\l::time_range" alt="" coords="257,5,461,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_binning.html#a87e63f53f3b31ad1597ab38c2d890db7" title="WireCell::Binning::bin" alt="" coords="285,71,433,98"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_binning.html#a660fabec0c4f630322c58fd3ed28b09c" title="WireCell::Binning::\lnbins" alt="" coords="294,123,425,164"/>
+</map>

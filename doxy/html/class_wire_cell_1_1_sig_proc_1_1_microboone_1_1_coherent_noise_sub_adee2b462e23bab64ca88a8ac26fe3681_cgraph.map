@@ -1,0 +1,24 @@
+<map id="WireCell::SigProc::Microboone::CoherentNoiseSub::apply" name="WireCell::SigProc::Microboone::CoherentNoiseSub::apply">
+<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_sig_proc_1_1_derivations.html#a162c77ac9d9ea28303c9a0c843e052a8" title="WireCell::SigProc::\lDerivations::CalcMedian" alt="" coords="500,195,665,236"/>
+<area shape="rect" id="node14" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#aa55c914dc4a2643e07e952531a429b01" title="WireCell::SigProc::\lMicroboone::SignalProtection" alt="" coords="260,455,452,496"/>
+<area shape="rect" id="node23" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a7d884aece1ebe89833c17ba5372498e7" title="WireCell::SigProc::\lMicroboone::Subtract\l_WScaling" alt="" coords="283,291,429,347"/>
+<area shape="rect" id="node3" href="$namespace_wire_cell_1_1_waveform.html#af0395e9b0e5e9e86a26579badb834092" title="WireCell::Waveform\l::mean_rms" alt="" coords="713,312,853,353"/>
+<area shape="rect" id="node7" href="$namespace_wire_cell_1_1_waveform.html#a9a72f0b40ec9e5b44713c59f338f6fd3" title="WireCell::Waveform\l::median_binned" alt="" coords="1134,5,1274,47"/>
+<area shape="rect" id="node4" href="$namespace_wire_cell_1_1_waveform.html#a4c7b82a4567d6c94227398f9511ffb92" title="Return sum of all entries in sequence. " alt="" coords="901,319,1075,346"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_waveform.html#a6aa0cf31fb8548b1f74ffb3f77350668" title="Return sum of square of all entries in sequence. " alt="" coords="918,253,1058,295"/>
+<area shape="rect" id="node6" href="$namespace_wire_cell_1_1_waveform.html#a4348c1d300f0e7cecd97ec4443bac27d" title="WireCell::Waveform\l::median" alt="" coords="1134,71,1274,112"/>
+<area shape="rect" id="node8" href="$namespace_wire_cell_1_1_waveform.html#ae080d239c8b4426a6d74f9fd8ce85f1a" title="WireCell::Waveform\l::percentile_binned" alt="" coords="1333,68,1473,109"/>
+<area shape="rect" id="node9" href="$namespace_wire_cell_1_1_waveform.html#abebd55cb4d46383e13c15bad4e91dd0d" title="WireCell::Waveform\l::percentile" alt="" coords="1134,188,1274,229"/>
+<area shape="rect" id="node10" href="$namespace_wire_cell_1_1_waveform.html#a6cfae9f74c1bf06f69d6991f3f82cef5" title="WireCell::Waveform::dft" alt="" coords="1123,385,1285,411"/>
+<area shape="rect" id="node11" href="$namespace_wire_cell_1_1_waveform.html#afc13ff04207445a607d7863d6013a2bb" title="WireCell::Waveform\l::dftd" alt="" coords="1134,253,1274,295"/>
+<area shape="rect" id="node12" href="$namespace_wire_cell_1_1_waveform.html#a69255dad704fcb71fa53745e90a2f0e1" title="WireCell::Waveform\l::idft" alt="" coords="1134,436,1274,477"/>
+<area shape="rect" id="node13" href="$namespace_wire_cell_1_1_waveform.html#a1dbb2b476e3a24dc5342bd33612025ff" title="WireCell::Waveform\l::idftd" alt="" coords="1134,319,1274,360"/>
+<area shape="rect" id="node15" href="$namespace_wire_cell_1_1_sig_proc_1_1_derivations.html#a3119f257567050bd02427bbcd2cd3a7b" title="WireCell::SigProc::\lDerivations::CalcRMS" alt="" coords="506,312,659,353"/>
+<area shape="rect" id="node16" href="$namespace_wire_cell_1_1_waveform.html#adad443bd3c3ee1a0c2e65c9a39282a53" title="Shrink (divide) seq values by values from the other sequence. " alt="" coords="513,484,653,525"/>
+<area shape="rect" id="node18" href="$_microboone_8cxx.html#a94de968b0c02e8752b87276d53f4b5e6" title="filter_time" alt="" coords="543,550,622,577"/>
+<area shape="rect" id="node19" href="$_microboone_8cxx.html#ab8491daccf985ce1593789db6bc4f1aa" title="filter_low" alt="" coords="545,601,620,627"/>
+<area shape="rect" id="node20" href="$namespace_wire_cell.html#aeda39bc129b6bab40d0e35ffb4af55ef" title="Return dictionary in given list if it value at dotpath matches. " alt="" coords="532,651,633,678"/>
+<area shape="rect" id="node17" href="$namespace_wire_cell_1_1_waveform.html#ae368e58f014b0d634028afcbb05887cb" title="WireCell::Waveform\l::edge" alt="" coords="713,484,853,525"/>
+<area shape="rect" id="node21" href="$namespace_wire_cell.html#ade8a8d63c0beb7335d7f969903bfeedc" title="Follow a dot.separated.path and return the branch there. " alt="" coords="724,651,843,678"/>
+<area shape="rect" id="node22" href="$namespace_wire_cell_1_1_string.html#aef23d7b89dbe21e34a499c9156dd1e60" title="WireCell::String::split" alt="" coords="915,651,1061,678"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="WireCell::SigProc::SimpleChannelNoiseDB::sample_time" name="WireCell::SigProc::SimpleChannelNoiseDB::sample_time">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a18b8d83d2fc97694049788966a0aab55" title="Return a nominal baseline correction (additive offset) " alt="" coords="231,5,394,61"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a9614310938da51fc19f86759e14a0bab" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::gain_correction" alt="" coords="231,85,394,141"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a3697977102a06b6c4840429682eb0882" title="Return a time offset associated with the response(). " alt="" coords="231,165,394,221"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#af32b919199d78e405435c5eae3287461" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::pad_window_front" alt="" coords="231,245,394,301"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a5972ff694d3c7f0213ccaf2bde71d910" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::pad_window_back" alt="" coords="231,325,394,381"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a2ee7c296ace4bf2f7921bbf6e45211ec" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::min_rms_cut" alt="" coords="231,405,394,461"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a451589328444eeb4737461cffaeaf756" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::max_rms_cut" alt="" coords="231,485,394,541"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a02784eb6f8a15452a6aa7172eacd62f9" title="Return the filter for the RC+RC coupling response function. " alt="" coords="216,565,409,606"/>
+<area shape="rect" id="node10" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a818e2bd7e557349f3d30673902aa509a" title="Return the filter to correct any wrongly configured channels. " alt="" coords="231,629,394,685"/>
+<area shape="rect" id="node11" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#ae317043356f117f93d0acb12101a7dd2" title="Return the filter to attenuate noise. " alt="" coords="231,709,394,765"/>
+<area shape="rect" id="node12" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#abc051115b61eecb34f84f145ffab9953" title="A nominal detector response spectrum for a given channel. " alt="" coords="231,789,394,845"/>
+</map>

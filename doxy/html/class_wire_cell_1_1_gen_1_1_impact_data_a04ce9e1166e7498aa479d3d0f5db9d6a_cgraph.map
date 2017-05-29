@@ -1,0 +1,6 @@
+<map id="WireCell::Gen::ImpactData::diffusions" name="WireCell::Gen::ImpactData::diffusions">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_impact_data.html#a70cfb59b63d1beaae23757ce449156c5" title="WireCell::Gen::ImpactData\l::calculate" alt="" coords="233,5,413,47"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_impact_data.html#af6b1664d2188286dfa740c8e761738a2" title="WireCell::Gen::ImpactData\l::waveform" alt="" coords="233,71,413,112"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_gen_1_1_impact_data.html#a9899969f2e58c13a8014ad6db13e1421" title="WireCell::Gen::ImpactData\l::spectrum" alt="" coords="233,136,413,177"/>
+<area shape="rect" id="node3" href="$namespace_wire_cell_1_1_waveform.html#a6cfae9f74c1bf06f69d6991f3f82cef5" title="WireCell::Waveform::dft" alt="" coords="461,13,624,39"/>
+</map>

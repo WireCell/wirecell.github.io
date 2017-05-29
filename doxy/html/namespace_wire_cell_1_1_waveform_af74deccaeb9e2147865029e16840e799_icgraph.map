@@ -1,0 +1,7 @@
+<map id="WireCell::Waveform::increase" name="WireCell::Waveform::increase">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="201,37,389,79"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_one_channel_noise.html#a2c2a24aedd8c8eb46e246f07f7e73cfd" title="WireCell::SigProc::\lMicroboone::OneChannelNoise\l::apply" alt="" coords="193,102,396,158"/>
+<area shape="rect" id="node6" href="$namespace_wire_cell_1_1_waveform.html#a3e92e2c63b937617bf8870412e7a6da7" title="WireCell::Waveform\l::increase" alt="" coords="225,181,365,223"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="444,5,604,47"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="449,71,599,112"/>
+</map>

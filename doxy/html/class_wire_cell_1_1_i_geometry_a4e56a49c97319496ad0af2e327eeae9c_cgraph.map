@@ -1,0 +1,6 @@
+<map id="WireCell::IGeometry::~IGeometry" name="WireCell::IGeometry::~IGeometry">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_geometry.html#a52c1d46aaeca40dda47684a85c0198e1" title="WireCell::IGeometry\l::wires" alt="" coords="195,5,336,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_geometry.html#a3aa164f3fc00c488889d3467e5e434ab" title="WireCell::IGeometry\l::cells" alt="" coords="195,71,336,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_geometry.html#aaa5f10ca87ff0c159eed9d8a987f873b" title="WireCell::IGeometry\l::tiling" alt="" coords="195,136,336,177"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_i_geometry.html#a8d93a955af58372f0811d0f791f40e25" title="WireCell::IGeometry\l::wire_summary" alt="" coords="195,201,336,243"/>
+</map>

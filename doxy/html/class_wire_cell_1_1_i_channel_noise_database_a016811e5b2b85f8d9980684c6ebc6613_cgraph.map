@@ -1,0 +1,16 @@
+<map id="WireCell::IChannelNoiseDatabase::~IChannelNoiseDatabase" name="WireCell::IChannelNoiseDatabase::~IChannelNoiseDatabase">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_channel_noise_database.html#aec18493972c2cc4c510d19d9c26cca72" title="FIXME: how to handle state changes? " alt="" coords="276,5,499,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_channel_noise_database.html#a82406ba30d65412db34e038e789be95c" title="Return the sample size (time in system of units) " alt="" coords="276,71,499,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_channel_noise_database.html#a253f602c70bddb7986e63dc14b8d8e6e" title="Return a nominal baseline correction (additive offset) " alt="" coords="276,136,499,177"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_i_channel_noise_database.html#ad2cdf46aea4ac11f8b7d097bd19c2e80" title="WireCell::IChannelNoiseDatabase\l::gain_correction" alt="" coords="276,201,499,243"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_i_channel_noise_database.html#a5a1d081b5cd6d32ac7209b99eb2c61dc" title="Return a time offset associated with the response(). " alt="" coords="276,267,499,308"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_i_channel_noise_database.html#a77f82280942595e1a2506f49a6f76f56" title="WireCell::IChannelNoiseDatabase\l::pad_window_front" alt="" coords="276,332,499,373"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_i_channel_noise_database.html#a4d772c3ba5f7071a2d869264f37dfecc" title="WireCell::IChannelNoiseDatabase\l::pad_window_back" alt="" coords="276,397,499,439"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_i_channel_noise_database.html#a575578a5eff07e287f03bff057aa6c95" title="WireCell::IChannelNoiseDatabase\l::min_rms_cut" alt="" coords="276,463,499,504"/>
+<area shape="rect" id="node10" href="$class_wire_cell_1_1_i_channel_noise_database.html#a1a2278f6ba4866f44d988cfdb81f4b02" title="WireCell::IChannelNoiseDatabase\l::max_rms_cut" alt="" coords="276,528,499,569"/>
+<area shape="rect" id="node11" href="$class_wire_cell_1_1_i_channel_noise_database.html#a8f9fa5547062c23f689fde9bb810361b" title="Return the filter for the RC+RC coupling response function. " alt="" coords="276,593,499,635"/>
+<area shape="rect" id="node12" href="$class_wire_cell_1_1_i_channel_noise_database.html#af6887aa00ed134c7fcb1ee85bd950311" title="Return the filter to correct any wrongly configured channels. " alt="" coords="276,659,499,700"/>
+<area shape="rect" id="node13" href="$class_wire_cell_1_1_i_channel_noise_database.html#a1197551d9dcfd6dc8f656a8aecd5b962" title="Return the filter to attenuate noise. " alt="" coords="276,724,499,765"/>
+<area shape="rect" id="node14" href="$class_wire_cell_1_1_i_channel_noise_database.html#ad3c42f59a26e8a8e115199a894d881da" title="A nominal detector response spectrum for a given channel. " alt="" coords="276,789,499,831"/>
+<area shape="rect" id="node15" href="$class_wire_cell_1_1_i_channel_noise_database.html#a0f220478d9d7ed3c913b925e84b39138" title="Return channel grouping for coherent noise subtraction. " alt="" coords="276,855,499,896"/>
+</map>

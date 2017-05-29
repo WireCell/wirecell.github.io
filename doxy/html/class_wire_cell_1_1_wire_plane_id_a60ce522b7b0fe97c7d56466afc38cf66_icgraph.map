@@ -1,0 +1,14 @@
+<map id="WireCell::WirePlaneId::layer" name="WireCell::WirePlaneId::layer">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_plane_ductor.html#a14db83948c8063339a4f75e45fcb7e16" title="The calling signature: " alt="" coords="204,231,356,272"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_wire_plane_id.html#ac89c9225c0de27e9625ca1c0b6efe8e4" title="Layer as index number (0,1 or 2). &#45;1 if unknown. " alt="" coords="205,296,355,337"/>
+<area shape="rect" id="node13" href="$namespace_wire_cell.html#a470282420df828d72316462cefed8139" title="WireCell::operator\&lt;\&lt;" alt="" coords="663,501,805,527"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a2d1c7a1dded73fe3b51cbcfb8d9e0e04" title="Accept a configuration. " alt="" coords="408,201,591,243"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_digislicer.html#ac07932d19ea7fd8d1cbc8767f6d6ab93" title="WireCell::Digislicer\l::operator()" alt="" coords="432,267,567,308"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_gen_1_1_digitizer.html#a06ba39eb87a8acb50a3311f290d814a4" title="The calling signature: " alt="" coords="654,347,814,388"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_gen_wire.html#a928116ebd7da67e30e13e6c9f58088fe" title="WireCell::GenWire::\lident" alt="" coords="430,5,569,47"/>
+<area shape="rect" id="node9" href="$struct_wire_plane_cache.html#a2cefdea150e8bbd0eb82a2efdca9bbf4" title="WirePlaneCache::WirePlane\lCache" alt="" coords="405,71,593,112"/>
+<area shape="rect" id="node10" href="$struct_wire_summary_1_1_wire_summary_cache.html#a07cff10416e77d84eceeb80622e67d2e" title="WireCell::WireSummary\l::WireSummaryCache::plane" alt="" coords="404,136,595,177"/>
+<area shape="rect" id="node11" href="$class_wire_cell_1_1_wire_plane_id.html#a23130308500b957f2c99612cd696d1ea" title="return true if valid " alt="" coords="424,384,575,425"/>
+<area shape="rect" id="node12" href="$class_wire_cell_1_1_wire_plane_id.html#addc8729f389598caf82777cf5cddb30a" title="WireCell::WirePlaneId\l::operator\&lt;" alt="" coords="659,423,809,464"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a41df48506ad084531fa7ac376f454894" title="WireCell::Gen::AnodePlane\l::~AnodePlane" alt="" coords="643,201,825,243"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="gen/inc/WireCellGen/ImpactData.h" name="gen/inc/WireCellGen/ImpactData.h">
+<area shape="rect" id="node2" href="$_binned_diffusion_8h.html" title="gen/inc/WireCellGen\l/BinnedDiffusion.h" alt="" coords="241,95,384,136"/>
+<area shape="rect" id="node9" href="$_impact_data_8cxx.html" title="gen/src/ImpactData.cxx" alt="" coords="409,102,571,129"/>
+<area shape="rect" id="node3" href="$_drift_sim_8h.html" title="gen/inc/WireCellGen\l/DriftSim.h" alt="" coords="12,184,155,225"/>
+<area shape="rect" id="node5" href="$_impact_zipper_8h.html" title="gen/inc/WireCellGen\l/ImpactZipper.h" alt="" coords="187,184,329,225"/>
+<area shape="rect" id="node6" href="$_ductor_8cxx.html" title="gen/src/Ductor.cxx" alt="" coords="367,273,501,300"/>
+<area shape="rect" id="node8" href="$_binned_diffusion_8cxx.html" title="gen/src/BinnedDiffusion.cxx" alt="" coords="405,191,591,218"/>
+<area shape="rect" id="node4" href="$_drift_sim_8cxx.html" title="gen/src/DriftSim.cxx" alt="" coords="5,273,148,300"/>
+<area shape="rect" id="node7" href="$_impact_zipper_8cxx.html" title="gen/src/ImpactZipper.cxx" alt="" coords="173,273,343,300"/>
+</map>

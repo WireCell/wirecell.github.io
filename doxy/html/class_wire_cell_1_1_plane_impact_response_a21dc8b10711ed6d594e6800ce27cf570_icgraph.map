@@ -1,0 +1,8 @@
+<map id="WireCell::PlaneImpactResponse::nwires" name="WireCell::PlaneImpactResponse::nwires">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_plane_impact_response.html#ade895762952fdcedf8af59b502837f91" title="WireCell::PlaneImpactResponse\l::closest_wire_impact" alt="" coords="265,39,477,80"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_plane_impact_response.html#ae504ae44865d56648ef0afbde06c9a65" title="WireCell::PlaneImpactResponse\l::closest" alt="" coords="525,5,737,47"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_plane_impact_response.html#ab5feb18e1d4499ac792179c56481b5eb" title="WireCell::PlaneImpactResponse\l::bounded" alt="" coords="525,71,737,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="785,39,973,80"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="1021,5,1181,47"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="1026,71,1177,112"/>
+</map>

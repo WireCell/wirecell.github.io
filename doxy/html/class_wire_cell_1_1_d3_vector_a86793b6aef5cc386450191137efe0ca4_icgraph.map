@@ -1,0 +1,8 @@
+<map id="WireCell::D3Vector::x" name="WireCell::D3Vector::x">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_d3_vector.html#ac4e9bfc29a9da7c5bcbe059e4bfa5121" title="Return the dot product of this vector and the other. " alt="" coords="214,5,349,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_d3_vector.html#afb733895e40ea382662bb3c1f4bc5fb7" title="Return the magnitude of this vector. " alt="" coords="205,71,357,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_d3_vector.html#a761993e0685f4abba8521c674fea986a" title="Return a normalized vector in the direction of this vector. " alt="" coords="214,136,349,177"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_d3_vector.html#a78fa147737bea9bd9a0a1434a6a73303" title="Return the cross product of this vector and the other. " alt="" coords="214,201,349,243"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_d3_vector.html#abedcfe309d70c71618e58005d043efd3" title="WireCell::D3Vector\l\&lt; double \&gt;::operator\&lt;" alt="" coords="208,267,355,308"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_d3_vector.html#a8a235eba65334ae4a2ff5e22bc58b815" title="WireCell::D3Vector\l\&lt; double \&gt;::operator+=" alt="" coords="204,332,359,373"/>
+</map>

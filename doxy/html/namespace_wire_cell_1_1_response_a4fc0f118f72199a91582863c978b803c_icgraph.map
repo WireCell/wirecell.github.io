@@ -1,0 +1,4 @@
+<map id="WireCell::Response::coldelec" name="WireCell::Response::coldelec">
+<area shape="rect" id="node2" href="$struct_wire_cell_1_1_response_1_1_schema_1_1_field_response.html#a28ae333c27be1047dcaaf2f059858b9e" title="WireCell::Response\l::Schema::FieldResponse\l::FieldResponse" alt="" coords="192,5,365,61"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_response_1_1_cold_elec.html#ade8ff697dd072a38955704d0e8a2f399" title="WireCell::Response\l::ColdElec::operator()" alt="" coords="205,85,352,126"/>
+</map>

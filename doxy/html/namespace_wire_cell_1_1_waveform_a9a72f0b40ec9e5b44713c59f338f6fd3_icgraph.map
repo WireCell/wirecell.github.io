@@ -1,0 +1,10 @@
+<map id="WireCell::Waveform::median_binned" name="WireCell::Waveform::median_binned">
+<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_sig_proc_1_1_derivations.html#a162c77ac9d9ea28303c9a0c843e052a8" title="WireCell::SigProc::\lDerivations::CalcMedian" alt="" coords="632,10,797,52"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_one_channel_noise.html#a2c2a24aedd8c8eb46e246f07f7e73cfd" title="WireCell::SigProc::\lMicroboone::OneChannelNoise\l::apply" alt="" coords="193,32,396,88"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_waveform.html#a6aa0cf31fb8548b1f74ffb3f77350668" title="Return sum of square of all entries in sequence. " alt="" coords="225,112,365,153"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_coherent_noise_sub.html#adee2b462e23bab64ca88a8ac26fe3681" title="WireCell::SigProc::\lMicroboone::CoherentNoiseSub\l::apply" alt="" coords="1085,62,1292,118"/>
+<area shape="rect" id="node6" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a7d884aece1ebe89833c17ba5372498e7" title="WireCell::SigProc::\lMicroboone::Subtract\l_WScaling" alt="" coords="868,134,1015,190"/>
+<area shape="rect" id="node7" href="$namespace_wire_cell_1_1_waveform.html#af0395e9b0e5e9e86a26579badb834092" title="WireCell::Waveform\l::mean_rms" alt="" coords="444,82,584,124"/>
+<area shape="rect" id="node8" href="$namespace_wire_cell_1_1_sig_proc_1_1_derivations.html#a3119f257567050bd02427bbcd2cd3a7b" title="WireCell::SigProc::\lDerivations::CalcRMS" alt="" coords="638,82,791,124"/>
+<area shape="rect" id="node9" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#aa55c914dc4a2643e07e952531a429b01" title="WireCell::SigProc::\lMicroboone::SignalProtection" alt="" coords="845,69,1037,110"/>
+</map>

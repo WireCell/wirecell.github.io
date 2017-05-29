@@ -1,0 +1,14 @@
+<map id="WireCell::Binning::bin" name="WireCell::Binning::bin">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#aea60e9edf425d6f585273a61af1ab6a8" title="WireCell::Gen::BinnedDiffusion\l::time_bin_range" alt="" coords="431,173,635,215"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_binning.html#a519cf4b45937da429dd480ca70bbe999" title="WireCell::Binning::\lsample_bin_range" alt="" coords="223,235,354,276"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_pimpos.html#a2a016a2228a3c41b44705bc45d793397" title="WireCell::Pimpos::closest" alt="" coords="201,123,376,150"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a591802616cdace8a8c9f74935e0531fa" title="WireCell::Gen::BinnedDiffusion\l::tbins" alt="" coords="972,123,1176,164"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="1224,68,1412,109"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="1460,71,1620,112"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="1465,5,1615,47"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_gen_1_1_gaussian_diffusion.html#a1db218b4ab71db281975afb244bfca0c" title="WireCell::Gen::GaussianDiffusion\l::set_sampling" alt="" coords="424,239,643,280"/>
+<area shape="rect" id="node10" href="$class_wire_cell_1_1_pimpos.html#af0c730caf8ea37b117cf581917e06a23" title="WireCell::Pimpos::impact\l_binning" alt="" coords="448,79,619,120"/>
+<area shape="rect" id="node11" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a9c4c6664c76ad07ad29d71bdb8fb92f1" title="WireCell::Gen::BinnedDiffusion::add" alt="" coords="691,13,924,39"/>
+<area shape="rect" id="node12" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a2e06ee1004e36eb341e6ced34df98ba7" title="WireCell::Gen::BinnedDiffusion\l::impact_data" alt="" coords="705,64,909,105"/>
+<area shape="rect" id="node13" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a2c507a53d1f31eccb99a1432a84bce3f" title="WireCell::Gen::BinnedDiffusion\l::impact_bin_range" alt="" coords="705,129,909,171"/>
+</map>

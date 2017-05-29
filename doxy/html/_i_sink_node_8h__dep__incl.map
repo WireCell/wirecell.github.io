@@ -1,0 +1,18 @@
+<map id="iface/inc/WireCellIface/ISinkNode.h" name="iface/inc/WireCellIface/ISinkNode.h">
+<area shape="rect" id="node2" href="$_i_cell_slice_sink_8h.html" title="iface/inc/WireCellIface\l/ICellSliceSink.h" alt="" coords="5,95,160,136"/>
+<area shape="rect" id="node3" href="$_i_cell_vector_sink_8h.html" title="iface/inc/WireCellIface\l/ICellVectorSink.h" alt="" coords="184,95,339,136"/>
+<area shape="rect" id="node4" href="$_i_depo_sink_8h.html" title="iface/inc/WireCellIface\l/IDepoSink.h" alt="" coords="363,95,517,136"/>
+<area shape="rect" id="node7" href="$_i_frame_sink_8h.html" title="iface/inc/WireCellIface\l/IFrameSink.h" alt="" coords="541,95,696,136"/>
+<area shape="rect" id="node14" href="$_i_point_field_sink_8h.html" title="iface/inc/WireCellIface\l/IPointFieldSink.h" alt="" coords="720,95,875,136"/>
+<area shape="rect" id="node15" href="$_i_scalar_field_sink_8h.html" title="iface/inc/WireCellIface\l/IScalarFieldSink.h" alt="" coords="899,95,1053,136"/>
+<area shape="rect" id="node16" href="$_sink_cat_8h.html" title="tbb/inc/WireCellTbb\l/SinkCat.h" alt="" coords="1078,95,1215,136"/>
+<area shape="rect" id="node5" href="$_dump_depos_8h.html" title="gen/inc/WireCellGen\l/DumpDepos.h" alt="" coords="271,184,414,225"/>
+<area shape="rect" id="node6" href="$_dump_depos_8cxx.html" title="gen/src/DumpDepos.cxx" alt="" coords="246,273,413,300"/>
+<area shape="rect" id="node8" href="$_dump_frames_8h.html" title="gen/inc/WireCellGen\l/DumpFrames.h" alt="" coords="457,184,599,225"/>
+<area shape="rect" id="node10" href="$_fourdee_8h.html" title="gen/inc/WireCellGen\l/Fourdee.h" alt="" coords="630,184,773,225"/>
+<area shape="rect" id="node12" href="$_hist_frame_sink_8h.html" title="sio/inc/WireCellSio\l/HistFrameSink.h" alt="" coords="815,184,948,225"/>
+<area shape="rect" id="node9" href="$_dump_frames_8cxx.html" title="gen/src/DumpFrames.cxx" alt="" coords="437,273,611,300"/>
+<area shape="rect" id="node11" href="$_fourdee_8cxx.html" title="gen/src/Fourdee.cxx" alt="" coords="635,273,776,300"/>
+<area shape="rect" id="node13" href="$_hist_frame_sink_8cxx.html" title="sio/src/HistFrameSink.cxx" alt="" coords="801,273,978,300"/>
+<area shape="rect" id="node17" href="$_wrapper_factory_8cxx.html" title="tbb/src/WrapperFactory.cxx" alt="" coords="1055,191,1239,218"/>
+</map>

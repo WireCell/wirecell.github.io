@@ -1,0 +1,6 @@
+<map id="WireCell::Pimpos::distance" name="WireCell::Pimpos::distance">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_pimpos.html#a8a492b2dcdcf3465d08d1e29d29de369" title="WireCell::Pimpos::axis" alt="" coords="235,56,391,83"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_pimpos.html#a51589772676367a1e7a16fcecf949954" title="Return the vector from the origin to the given point. " alt="" coords="673,5,848,32"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_d3_vector.html#ac4e9bfc29a9da7c5bcbe059e4bfa5121" title="Return the dot product of this vector and the other. " alt="" coords="680,81,841,108"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_pimpos.html#ab797b7f78cda737d42f7cc7348116517" title="WireCell::Pimpos::transform" alt="" coords="439,56,625,83"/>
+</map>

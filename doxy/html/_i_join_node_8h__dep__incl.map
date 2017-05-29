@@ -1,0 +1,8 @@
+<map id="iface/inc/WireCellIface/IJoinNode.h" name="iface/inc/WireCellIface/IJoinNode.h">
+<area shape="rect" id="node2" href="$_i_channel_cell_selector_8h.html" title="iface/inc/WireCellIface\l/IChannelCellSelector.h" alt="" coords="5,95,165,136"/>
+<area shape="rect" id="node3" href="$_i_digislicer_8h.html" title="iface/inc/WireCellIface\l/IDigislicer.h" alt="" coords="189,95,344,136"/>
+<area shape="rect" id="node6" href="$_join_cat_8h.html" title="tbb/inc/WireCellTbb\l/JoinCat.h" alt="" coords="377,95,514,136"/>
+<area shape="rect" id="node4" href="$_digislicer_8h.html" title="gen/inc/WireCellGen\l/Digislicer.h" alt="" coords="191,184,334,225"/>
+<area shape="rect" id="node5" href="$_digislicer_8cxx.html" title="gen/src/Digislicer.cxx" alt="" coords="189,273,337,300"/>
+<area shape="rect" id="node7" href="$_wrapper_factory_8cxx.html" title="tbb/src/WrapperFactory.cxx" alt="" coords="359,191,543,218"/>
+</map>

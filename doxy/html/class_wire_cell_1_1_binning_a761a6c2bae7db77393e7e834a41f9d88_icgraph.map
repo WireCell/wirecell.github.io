@@ -1,0 +1,13 @@
+<map id="WireCell::Binning::binsize" name="WireCell::Binning::binsize">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="1443,38,1594,80"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_gaussian_diffusion.html#a1db218b4ab71db281975afb244bfca0c" title="WireCell::Gen::GaussianDiffusion\l::set_sampling" alt="" coords="184,48,403,89"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_pimpos.html#a2a016a2228a3c41b44705bc45d793397" title="WireCell::Pimpos::closest" alt="" coords="206,114,381,140"/>
+<area shape="rect" id="node12" href="$class_wire_cell_1_1_plane_impact_response.html#a94fa159e1651a486df8a9ea451f7ede9" title="WireCell::PlaneImpactResponse\l::PlaneImpactResponse" alt="" coords="187,165,399,206"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_pimpos.html#af0c730caf8ea37b117cf581917e06a23" title="WireCell::Pimpos::impact\l_binning" alt="" coords="451,102,621,144"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a9c4c6664c76ad07ad29d71bdb8fb92f1" title="WireCell::Gen::BinnedDiffusion::add" alt="" coords="669,48,903,75"/>
+<area shape="rect" id="node10" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a2e06ee1004e36eb341e6ced34df98ba7" title="WireCell::Gen::BinnedDiffusion\l::impact_data" alt="" coords="684,165,888,206"/>
+<area shape="rect" id="node11" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a2c507a53d1f31eccb99a1432a84bce3f" title="WireCell::Gen::BinnedDiffusion\l::impact_bin_range" alt="" coords="684,100,888,141"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a591802616cdace8a8c9f74935e0531fa" title="WireCell::Gen::BinnedDiffusion\l::tbins" alt="" coords="951,101,1155,142"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="1203,104,1391,145"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="1439,104,1599,145"/>
+</map>

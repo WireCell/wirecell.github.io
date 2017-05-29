@@ -1,0 +1,5 @@
+<map id="WireCell::SigProc::Derivations::CalcRMS" name="WireCell::SigProc::Derivations::CalcRMS">
+<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a7d884aece1ebe89833c17ba5372498e7" title="WireCell::SigProc::\lMicroboone::Subtract\l_WScaling" alt="" coords="229,5,376,61"/>
+<area shape="rect" id="node4" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#aa55c914dc4a2643e07e952531a429b01" title="WireCell::SigProc::\lMicroboone::SignalProtection" alt="" coords="207,85,399,126"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_coherent_noise_sub.html#adee2b462e23bab64ca88a8ac26fe3681" title="WireCell::SigProc::\lMicroboone::CoherentNoiseSub\l::apply" alt="" coords="447,41,653,97"/>
+</map>

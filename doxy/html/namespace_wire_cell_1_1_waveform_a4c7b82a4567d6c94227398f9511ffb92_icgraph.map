@@ -1,0 +1,10 @@
+<map id="WireCell::Waveform::sum" name="WireCell::Waveform::sum">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_sig_proc_1_1_diagnostics_1_1_partial.html#af20d55f0c998504cc1471dc8086e2417" title="Return true if given frequency spectrum consistent with a partial waveform. " alt="" coords="229,5,365,61"/>
+<area shape="rect" id="node3" href="$namespace_wire_cell_1_1_waveform.html#af0395e9b0e5e9e86a26579badb834092" title="WireCell::Waveform\l::mean_rms" alt="" coords="227,85,367,126"/>
+<area shape="rect" id="node4" href="$namespace_wire_cell_1_1_sig_proc_1_1_derivations.html#a3119f257567050bd02427bbcd2cd3a7b" title="WireCell::SigProc::\lDerivations::CalcRMS" alt="" coords="415,117,568,158"/>
+<area shape="rect" id="node8" href="$namespace_wire_cell_1_1_sig_proc_1_1_derivations.html#a162c77ac9d9ea28303c9a0c843e052a8" title="WireCell::SigProc::\lDerivations::CalcMedian" alt="" coords="629,185,795,226"/>
+<area shape="rect" id="node9" href="$namespace_wire_cell_1_1_waveform.html#a6aa0cf31fb8548b1f74ffb3f77350668" title="Return sum of square of all entries in sequence. " alt="" coords="421,51,561,93"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a7d884aece1ebe89833c17ba5372498e7" title="WireCell::SigProc::\lMicroboone::Subtract\l_WScaling" alt="" coords="639,40,785,96"/>
+<area shape="rect" id="node7" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#aa55c914dc4a2643e07e952531a429b01" title="WireCell::SigProc::\lMicroboone::SignalProtection" alt="" coords="616,119,808,161"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_coherent_noise_sub.html#adee2b462e23bab64ca88a8ac26fe3681" title="WireCell::SigProc::\lMicroboone::CoherentNoiseSub\l::apply" alt="" coords="856,112,1063,168"/>
+</map>

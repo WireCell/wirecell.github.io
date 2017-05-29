@@ -1,0 +1,6 @@
+<map id="WireCell::find" name="WireCell::find">
+<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#aa55c914dc4a2643e07e952531a429b01" title="WireCell::SigProc::\lMicroboone::SignalProtection" alt="" coords="165,13,357,54"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_sig_proc_1_1_omnibus_noise_filter.html#a861a76be3558adf47d2f7da5b00357f1" title="IFrameFilter interface. " alt="" coords="188,77,333,133"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_plane_impact_response.html#a94fa159e1651a486df8a9ea451f7ede9" title="WireCell::PlaneImpactResponse\l::PlaneImpactResponse" alt="" coords="155,157,367,198"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_coherent_noise_sub.html#adee2b462e23bab64ca88a8ac26fe3681" title="WireCell::SigProc::\lMicroboone::CoherentNoiseSub\l::apply" alt="" coords="415,5,621,61"/>
+</map>

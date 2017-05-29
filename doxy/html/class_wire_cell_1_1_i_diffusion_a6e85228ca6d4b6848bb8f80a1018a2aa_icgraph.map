@@ -1,0 +1,7 @@
+<map id="WireCell::IDiffusion::lpos" name="WireCell::IDiffusion::lpos">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_diffusion.html#aaf1af50163da6f7d5248dcad73608e96" title="Return begin of diffusion patch in longitudinal direction. " alt="" coords="189,5,325,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_diffusion.html#a855057e461c5ab64cf1c56c63f52c6e9" title="Return end of diffusion patch in longitudinal direction. " alt="" coords="189,71,325,112"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_diffusion.html#acadc3bcafcba43e6fcc3a263e3a19b5c" title="Return bins size in longitudinal direction. " alt="" coords="189,136,325,177"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_diffusion.html#a5cec68960d93a5a1293b1c3539035cca" title="WireCell::Diffusion\l::Diffusion" alt="" coords="373,103,505,144"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_diffusion.html#a0885a5749da6caaa46e6e1092364890b" title="WireCell::Diffusion\l::lpos" alt="" coords="373,168,505,209"/>
+</map>

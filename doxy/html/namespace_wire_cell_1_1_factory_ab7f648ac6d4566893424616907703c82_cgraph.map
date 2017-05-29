@@ -1,0 +1,13 @@
+<map id="WireCell::Factory::lookup" name="WireCell::Factory::lookup">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_named_factory_registry.html#ac435d066a6844b0a8ab54b2051ec95f5" title="WireCell::NamedFactoryRegistry\l::instance" alt="" coords="185,90,400,131"/>
+<area shape="rect" id="node10" href="$struct_wire_cell_1_1_factory_exception.html#a7dd558501fd0306a953c2642552fb770" title="WireCell::FactoryException\l::FactoryException" alt="" coords="683,151,865,193"/>
+<area shape="rect" id="node3" href="$namespace_wire_cell_1_1_factory.html#a33318e89ff05184cf57267d20bdc076c" title="Lookup up a factory for the given type. " alt="" coords="467,57,599,98"/>
+<area shape="rect" id="node11" href="$class_wire_cell_1_1_i_named_factory.html#aab305aa4c3d65450f97f95b26475d3fe" title="Create an instance by name. " alt="" coords="448,122,619,163"/>
+<area shape="rect" id="node12" href="$namespace_wire_cell.html#a1f69a2598e2cdb413ffac1157b50670a" title="WireCell::type" alt="" coords="721,5,827,32"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_named_factory_registry.html#a355e9be03e1950d63a14ae9bb2989918" title="Look up an existing factory by the name of the &quot;class&quot; it can create. " alt="" coords="667,57,881,98"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell.html#a7d0326b3a49de0eeba671d6dc20a1959" title="WireCell::demangle" alt="" coords="945,5,1081,32"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_plugin_manager.html#aa1a081d67e99b8ef796b879e450fc8e0" title="WireCell::PluginManager\l::instance" alt="" coords="929,57,1096,98"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_plugin_manager.html#ad83fad032405351bde15ad4abeeef819" title="WireCell::PluginManager\l::find" alt="" coords="929,122,1096,163"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_plugin.html#ab8f49d4beba0924fa53ba45ec54ad649" title="WireCell::Plugin::contains" alt="" coords="1144,129,1317,156"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_plugin.html#a6532d3eb05241c25780a18194cd6572f" title="WireCell::Plugin::raw" alt="" coords="1365,129,1511,156"/>
+</map>

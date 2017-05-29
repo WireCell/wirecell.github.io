@@ -1,0 +1,4 @@
+<map id="WireCell::D3Vector::magnitude" name="WireCell::D3Vector::magnitude">
+<area shape="rect" id="node2" href="$struct_wire_plane_cache.html#a2cefdea150e8bbd0eb82a2efdca9bbf4" title="WirePlaneCache::WirePlane\lCache" alt="" coords="188,5,376,47"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_d3_vector.html#a761993e0685f4abba8521c674fea986a" title="Return a normalized vector in the direction of this vector. " alt="" coords="215,71,349,112"/>
+</map>

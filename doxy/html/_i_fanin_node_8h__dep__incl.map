@@ -1,0 +1,7 @@
+<map id="iface/inc/WireCellIface/IFaninNode.h" name="iface/inc/WireCellIface/IFaninNode.h">
+<area shape="rect" id="node2" href="$_i_plane_slice_merger_8h.html" title="iface/inc/WireCellIface\l/IPlaneSliceMerger.h" alt="" coords="30,95,185,136"/>
+<area shape="rect" id="node5" href="$_fanin_cat_8h.html" title="tbb/inc/WireCellTbb\l/FaninCat.h" alt="" coords="217,95,355,136"/>
+<area shape="rect" id="node3" href="$_plane_slice_merger_8h.html" title="gen/inc/WireCellGen\l/PlaneSliceMerger.h" alt="" coords="32,184,175,225"/>
+<area shape="rect" id="node4" href="$_plane_slice_merger_8cxx.html" title="gen/src/PlaneSliceMerger.cxx" alt="" coords="5,273,201,300"/>
+<area shape="rect" id="node6" href="$_wrapper_factory_8cxx.html" title="tbb/src/WrapperFactory.cxx" alt="" coords="199,191,383,218"/>
+</map>

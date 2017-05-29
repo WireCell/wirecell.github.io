@@ -1,0 +1,12 @@
+<map id="sigproc/src/Microboone.cxx" name="sigproc/src/Microboone.cxx">
+<area shape="rect" id="node2" href="$_microboone_8h.html" title="WireCellSigProc/Microboone.h" alt="" coords="731,80,931,107"/>
+<area shape="rect" id="node22" href="$_derivations_8h.html" title="WireCellSigProc/Derivations.h" alt="" coords="1075,80,1274,107"/>
+<area shape="rect" id="node3" href="$_waveform_8h.html" title="WireCellUtil/Waveform.h" alt="" coords="854,244,1021,271"/>
+<area shape="rect" id="node10" href="$_i_channel_filter_8h.html" title="WireCellIface/IChannelFilter.h" alt="" coords="1025,162,1223,189"/>
+<area shape="rect" id="node14" href="$_i_configurable_8h.html" title="WireCellIface/IConfigurable.h" alt="" coords="315,162,509,189"/>
+<area shape="rect" id="node20" href="$_i_channel_noise_database_8h.html" title="WireCellIface/IChannelNoise\lDatabase.h" alt="" coords="533,155,723,196"/>
+<area shape="rect" id="node21" href="$_diagnostics_8h.html" title="WireCellSigProc/Diagnostics.h" alt="" coords="799,162,1001,189"/>
+<area shape="rect" id="node11" href="$_i_component_8h.html" title="WireCellUtil/IComponent.h" alt="" coords="540,244,719,271"/>
+<area shape="rect" id="node12" href="$_interface_8h.html" title="WireCellUtil/Interface.h" alt="" coords="550,326,709,353"/>
+<area shape="rect" id="node15" href="$_configuration_8h.html" title="WireCellUtil/Configuration.h" alt="" coords="305,244,489,271"/>
+</map>

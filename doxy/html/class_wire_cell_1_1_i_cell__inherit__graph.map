@@ -1,0 +1,6 @@
+<map id="WireCell::ICell" name="WireCell::ICell">
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_bound_cell.html" title="WireCell::BoundCell" alt="" coords="5,155,145,181"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_blob.html" title="WireCell::IBlob" alt="" coords="169,155,280,181"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_simple_cell.html" title="WireCell::SimpleCell" alt="" coords="304,155,447,181"/>
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_data.html" title="WireCell::IData\&lt; ICell \&gt;" alt="" coords="143,5,306,32"/>
+</map>

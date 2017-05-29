@@ -1,0 +1,13 @@
+<map id="WireCell::PlaneImpactResponse::PlaneImpactResponse" name="WireCell::PlaneImpactResponse::PlaneImpactResponse">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_plane_impact_response.html#a681247565c32273dcabaff358a472039" title="WireCell::PlaneImpactResponse\l::plane_response" alt="" coords="265,13,477,54"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_response_1_1_generator.html#aceed932e0bab5af1cb80981507667e5e" title="FIXME: eradicate Domain in favor of Binning. " alt="" coords="299,78,444,119"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_waveform.html#aa8d25ae88346929b5e54cd116f7a4f47" title="Scale (multiply) sequence values by scalar. " alt="" coords="301,143,441,185"/>
+<area shape="rect" id="node6" href="$namespace_wire_cell_1_1_waveform.html#a6cfae9f74c1bf06f69d6991f3f82cef5" title="WireCell::Waveform::dft" alt="" coords="290,209,453,236"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_binning.html#a660fabec0c4f630322c58fd3ed28b09c" title="WireCell::Binning::\lnbins" alt="" coords="306,261,437,302"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_binning.html#a761a6c2bae7db77393e7e834a41f9d88" title="WireCell::Binning::\lbinsize" alt="" coords="306,326,437,367"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_binning.html#a7d805b052354fe1a7fb537569fe00c10" title="WireCell::Binning::\lcenter" alt="" coords="306,391,437,433"/>
+<area shape="rect" id="node10" href="$namespace_wire_cell.html#aeda39bc129b6bab40d0e35ffb4af55ef" title="Return dictionary in given list if it value at dotpath matches. " alt="" coords="321,457,422,484"/>
+<area shape="rect" id="node3" href="$struct_wire_cell_1_1_response_1_1_schema_1_1_field_response.html#ae156e1d6bbf8be35451100d1d43d9aaa" title="WireCell::Response\l::Schema::FieldResponse\l::plane" alt="" coords="525,5,699,61"/>
+<area shape="rect" id="node11" href="$namespace_wire_cell.html#ade8a8d63c0beb7335d7f969903bfeedc" title="Follow a dot.separated.path and return the branch there. " alt="" coords="553,457,671,484"/>
+<area shape="rect" id="node12" href="$namespace_wire_cell_1_1_string.html#aef23d7b89dbe21e34a499c9156dd1e60" title="WireCell::String::split" alt="" coords="747,457,893,484"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="WireCell::Pimpos::wire_impact" name="WireCell::Pimpos::wire_impact">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_pimpos.html#af0c730caf8ea37b117cf581917e06a23" title="WireCell::Pimpos::impact\l_binning" alt="" coords="425,64,596,105"/>
+<area shape="rect" id="node10" href="$class_wire_cell_1_1_pimpos.html#a2f71c31702b5df010711ba0f9e8871f2" title="WireCell::Pimpos::wire\l_impacts" alt="" coords="215,64,371,105"/>
+<area shape="rect" id="node11" href="$class_wire_cell_1_1_pimpos.html#ae71906afd5671ade8472fe4e09d2ac79" title="WireCell::Pimpos::reflect" alt="" coords="209,130,377,157"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a9c4c6664c76ad07ad29d71bdb8fb92f1" title="WireCell::Gen::BinnedDiffusion::add" alt="" coords="644,13,877,39"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a2e06ee1004e36eb341e6ced34df98ba7" title="WireCell::Gen::BinnedDiffusion\l::impact_data" alt="" coords="659,129,863,171"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a2c507a53d1f31eccb99a1432a84bce3f" title="WireCell::Gen::BinnedDiffusion\l::impact_bin_range" alt="" coords="659,64,863,105"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_binned_diffusion.html#a591802616cdace8a8c9f74935e0531fa" title="WireCell::Gen::BinnedDiffusion\l::tbins" alt="" coords="925,65,1129,107"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="1418,5,1569,47"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_gen_1_1_impact_zipper.html#a3c87bd32d0dfedebfe4cc729ee23e4d2" title="WireCell::Gen::ImpactZipper\l::waveform" alt="" coords="1177,68,1365,109"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_gen_1_1_drift_sim.html#af0b85066c57f2fafc497360ac2d8f329" title="WireCell::Gen::DriftSim\l::latch" alt="" coords="1413,71,1573,112"/>
+</map>

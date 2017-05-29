@@ -1,0 +1,10 @@
+<map id="iface/inc/WireCellIface/IChannelSlice.h" name="iface/inc/WireCellIface/IChannelSlice.h">
+<area shape="rect" id="node2" href="$_i_channel_cell_selector_8h.html" title="iface/inc/WireCellIface\l/IChannelCellSelector.h" alt="" coords="5,95,165,136"/>
+<area shape="rect" id="node3" href="$_i_digislicer_8h.html" title="iface/inc/WireCellIface\l/IDigislicer.h" alt="" coords="189,95,344,136"/>
+<area shape="rect" id="node6" href="$_i_framer_8h.html" title="iface/inc/WireCellIface\l/IFramer.h" alt="" coords="368,95,523,136"/>
+<area shape="rect" id="node9" href="$_simple_channel_slice_8h.html" title="iface/inc/WireCellIface\l/SimpleChannelSlice.h" alt="" coords="547,95,701,136"/>
+<area shape="rect" id="node4" href="$_digislicer_8h.html" title="gen/inc/WireCellGen\l/Digislicer.h" alt="" coords="195,184,338,225"/>
+<area shape="rect" id="node5" href="$_digislicer_8cxx.html" title="gen/src/Digislicer.cxx" alt="" coords="193,273,341,300"/>
+<area shape="rect" id="node7" href="$_framer_8h.html" title="gen/inc/WireCellGen\l/Framer.h" alt="" coords="374,184,517,225"/>
+<area shape="rect" id="node8" href="$_framer_8cxx.html" title="gen/src/Framer.cxx" alt="" coords="378,273,513,300"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="WireCell::Pimpos::impact_binning" name="WireCell::Pimpos::impact_binning">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_pimpos.html#a2a016a2228a3c41b44705bc45d793397" title="WireCell::Pimpos::closest" alt="" coords="224,69,399,96"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_pimpos.html#ad250242dab5de5a7de3bae549a716dc9" title="Return the impact position index coincident with the wire index. " alt="" coords="447,187,603,229"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_pimpos.html#a2f71c31702b5df010711ba0f9e8871f2" title="WireCell::Pimpos::wire\l_impacts" alt="" coords="233,182,389,223"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_pimpos.html#ae71906afd5671ade8472fe4e09d2ac79" title="WireCell::Pimpos::reflect" alt="" coords="227,248,395,275"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_binning.html#a87e63f53f3b31ad1597ab38c2d890db7" title="WireCell::Binning::bin" alt="" coords="451,5,599,32"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_binning.html#a7d805b052354fe1a7fb537569fe00c10" title="WireCell::Binning::\lcenter" alt="" coords="459,57,590,98"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_binning.html#a761a6c2bae7db77393e7e834a41f9d88" title="WireCell::Binning::\lbinsize" alt="" coords="459,122,590,163"/>
+</map>

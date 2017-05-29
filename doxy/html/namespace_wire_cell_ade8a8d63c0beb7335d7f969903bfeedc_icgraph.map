@@ -1,0 +1,10 @@
+<map id="WireCell::branch" name="WireCell::branch">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_sio_1_1_json_depo_source.html#abc06840de469269082caee8f8c2369e0" title="Accept a configuration. " alt="" coords="172,5,379,47"/>
+<area shape="rect" id="node3" href="$namespace_wire_cell.html#abb75ebf5f2ee143cd568e7d8db4f4db4" title="WireCell::convert\&lt;\l std::vector\&lt; double \&gt; \&gt;" alt="" coords="194,71,357,112"/>
+<area shape="rect" id="node4" href="$namespace_wire_cell.html#aeda39bc129b6bab40d0e35ffb4af55ef" title="Return dictionary in given list if it value at dotpath matches. " alt="" coords="225,137,326,163"/>
+<area shape="rect" id="node9" href="$namespace_wire_cell.html#addd60cc21dab98058698afa8222239bc" title="Get value in configuration at the dotted path from or return default. " alt="" coords="226,187,325,214"/>
+<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#aa55c914dc4a2643e07e952531a429b01" title="WireCell::SigProc::\lMicroboone::SignalProtection" alt="" coords="437,57,629,99"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_sig_proc_1_1_omnibus_noise_filter.html#a861a76be3558adf47d2f7da5b00357f1" title="IFrameFilter interface. " alt="" coords="460,122,605,178"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_plane_impact_response.html#a94fa159e1651a486df8a9ea451f7ede9" title="WireCell::PlaneImpactResponse\l::PlaneImpactResponse" alt="" coords="427,201,639,243"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_coherent_noise_sub.html#adee2b462e23bab64ca88a8ac26fe3681" title="WireCell::SigProc::\lMicroboone::CoherentNoiseSub\l::apply" alt="" coords="687,50,893,106"/>
+</map>

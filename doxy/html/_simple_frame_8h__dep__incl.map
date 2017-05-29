@@ -1,0 +1,11 @@
+<map id="iface/inc/WireCellIface/SimpleFrame.h" name="iface/inc/WireCellIface/SimpleFrame.h">
+<area shape="rect" id="node2" href="$_simple_frame_8cxx.html" title="iface/src/SimpleFrame.cxx" alt="" coords="5,102,184,129"/>
+<area shape="rect" id="node3" href="$_digitizer_8cxx.html" title="gen/src/Digitizer.cxx" alt="" coords="209,102,351,129"/>
+<area shape="rect" id="node4" href="$_ductor_8cxx.html" title="gen/src/Ductor.cxx" alt="" coords="376,102,509,129"/>
+<area shape="rect" id="node5" href="$_framer_8cxx.html" title="gen/src/Framer.cxx" alt="" coords="534,102,669,129"/>
+<area shape="rect" id="node6" href="$_frame_util_8cxx.html" title="gen/src/FrameUtil.cxx" alt="" coords="693,102,843,129"/>
+<area shape="rect" id="node7" href="$_noise_source_8cxx.html" title="gen/src/NoiseSource.cxx" alt="" coords="867,102,1037,129"/>
+<area shape="rect" id="node8" href="$_silent_noise_8cxx.html" title="gen/src/SilentNoise.cxx" alt="" coords="1061,102,1222,129"/>
+<area shape="rect" id="node9" href="$_omnibus_noise_filter_8cxx.html" title="sigproc/src/OmnibusNoise\lFilter.cxx" alt="" coords="1247,95,1423,136"/>
+<area shape="rect" id="node10" href="$_frame_source_8cxx.html" title="sst/src/FrameSource.cxx" alt="" coords="1447,102,1617,129"/>
+</map>

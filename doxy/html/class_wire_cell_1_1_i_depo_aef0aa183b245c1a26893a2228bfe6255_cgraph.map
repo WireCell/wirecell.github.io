@@ -1,0 +1,6 @@
+<map id="WireCell::IDepo::~IDepo" name="WireCell::IDepo::~IDepo">
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_depo.html#a6ea54d469c6d0429d16425917ec24241" title="The location of the deposition. " alt="" coords="229,5,373,32"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_depo.html#abec395a8a8335d76ae07db2baf57ed83" title="WireCell::IDepo::time" alt="" coords="227,56,375,83"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_i_depo.html#a096a0b84b90685700f26950b0523c43c" title="The number charge (in units of number of electrons) deposited. " alt="" coords="220,107,383,133"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_i_depo.html#a440532d005a463cc9df5731ddb96f601" title="If the deposition is drifted, this may allow access to the original. " alt="" coords="227,157,375,184"/>
+</map>

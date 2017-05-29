@@ -1,0 +1,7 @@
+<map id="iface/inc/WireCellIface/IWireSelectors.h" name="iface/inc/WireCellIface/IWireSelectors.h">
+<area shape="rect" id="node2" href="$_i_wire_selectors_8cxx.html" title="iface/src/IWireSelectors.cxx" alt="" coords="5,95,192,121"/>
+<area shape="rect" id="node3" href="$_bound_cells_8cxx.html" title="gen/src/BoundCells.cxx" alt="" coords="217,95,378,121"/>
+<area shape="rect" id="node4" href="$_digislicer_8cxx.html" title="gen/src/Digislicer.cxx" alt="" coords="402,95,550,121"/>
+<area shape="rect" id="node5" href="$_digitizer_8cxx.html" title="gen/src/Digitizer.cxx" alt="" coords="574,95,717,121"/>
+<area shape="rect" id="node6" href="$_wire_summary_8cxx.html" title="gen/src/WireSummary.cxx" alt="" coords="741,95,918,121"/>
+</map>

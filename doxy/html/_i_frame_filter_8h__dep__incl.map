@@ -1,0 +1,8 @@
+<map id="iface/inc/WireCellIface/IFrameFilter.h" name="iface/inc/WireCellIface/IFrameFilter.h">
+<area shape="rect" id="node2" href="$_digitizer_8h.html" title="gen/inc/WireCellGen\l/Digitizer.h" alt="" coords="5,95,148,136"/>
+<area shape="rect" id="node4" href="$_fourdee_8h.html" title="gen/inc/WireCellGen\l/Fourdee.h" alt="" coords="172,95,315,136"/>
+<area shape="rect" id="node6" href="$_omnibus_noise_filter_8h.html" title="sigproc/inc/WireCellSigProc\l/OmnibusNoiseFilter.h" alt="" coords="339,95,524,136"/>
+<area shape="rect" id="node3" href="$_digitizer_8cxx.html" title="gen/src/Digitizer.cxx" alt="" coords="5,191,148,218"/>
+<area shape="rect" id="node5" href="$_fourdee_8cxx.html" title="gen/src/Fourdee.cxx" alt="" coords="173,191,314,218"/>
+<area shape="rect" id="node7" href="$_omnibus_noise_filter_8cxx.html" title="sigproc/src/OmnibusNoise\lFilter.cxx" alt="" coords="343,184,519,225"/>
+</map>

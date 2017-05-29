@@ -1,0 +1,3 @@
+<map id="WireCellSst::Reader::next" name="WireCellSst::Reader::next">
+<area shape="rect" id="node2" href="$class_wire_cell_sst_1_1_reader.html#ad328fcc2f163c92bc47e810e0e0a2af1" title="Load and return the n&#39;th entry. Return nullptr on end of file or error. " alt="" coords="196,5,339,47"/>
+</map>

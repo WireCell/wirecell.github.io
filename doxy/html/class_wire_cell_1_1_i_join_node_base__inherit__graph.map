@@ -1,0 +1,11 @@
+<map id="WireCell::IJoinNodeBase" name="WireCell::IJoinNodeBase">
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_i_join_node.html" title="WireCell::IJoinNode\l\&lt; std::tuple\&lt; IChannelSlice,\l ICell::vector \&gt;, ICellSlice \&gt;" alt="" coords="763,5,948,61"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_i_join_node.html" title="WireCell::IJoinNode\l\&lt; std::tuple\&lt; IPlaneSlice\l::vector, IWire::vector\l \&gt;, IChannelSlice \&gt;" alt="" coords="772,86,939,157"/>
+<area shape="rect" id="node10" href="$class_wire_cell_1_1_i_join_node.html" title="WireCell::IJoinNode\l\&lt; InputTuple, OutputType \&gt;" alt="" coords="764,181,947,222"/>
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_node.html" title="WireCell::INode" alt="" coords="383,108,497,135"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_component.html" title="WireCell::IComponent\l\&lt; INode \&gt;" alt="" coords="184,101,335,142"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_interface.html" title="WireCell::Interface" alt="" coords="5,108,136,135"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_i_channel_cell_selector.html" title="WireCell::IChannelCellSelector" alt="" coords="996,20,1199,47"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_i_digislicer.html" title="WireCell::IDigislicer" alt="" coords="1028,108,1167,135"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_digislicer.html" title="WireCell::Digislicer" alt="" coords="1247,108,1381,135"/>
+</map>
