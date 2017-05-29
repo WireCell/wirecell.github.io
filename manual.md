@@ -62,16 +62,16 @@
   - [`wire-cell-util`](#pkg-util)
     - [Units](#util-units)
     - [Persistence](#util-persistence)
-    - [Etc](#org672c6b8)
+    - [Etc](#org19e1334)
   - [`wire-cell-iface`](#pkg-iface)
-    - [Data](#orgfa83956)
-    - [Nodes](#org4ad1123)
-    - [Misc](#org10bfc94)
+    - [Data](#org417d572)
+    - [Nodes](#org6157248)
+    - [Misc](#orgc66fad7)
   - [`wire-cell-gen`](#pkg-gen)
-    - [Depositions](#org3a63e73)
-    - [Drifting](#org9879ed6)
-    - [Response](#org0ebb8c4)
-    - [Digitizing](#org09f1938)
+    - [Depositions](#org91621f1)
+    - [Drifting](#org0e86d1f)
+    - [Response](#orgf595a6b)
+    - [Digitizing](#org8b294d2)
   - [`wire-cell-waftools`](#pkg-waftools)
     - [Recreating `wcb`](#generate-wcb)
     - [Included Waf tools](#bundle-waf-tools)
@@ -1052,7 +1052,7 @@ from wirecell import units
 ```
 
 
-<a id="org49c67da"></a>
+<a id="orgb42f1a5"></a>
 
 #### `sigproc`
 
@@ -1082,7 +1082,7 @@ Describe units.
 Describe support for persistent files including compression and location.
 
 
-<a id="org672c6b8"></a>
+<a id="org19e1334"></a>
 
 ### Etc
 
@@ -1096,21 +1096,21 @@ Describe support for persistent files including compression and location.
 Brief overview but it&rsquo;s also in <./internals.md> so don&rsquo; t over do it.
 
 
-<a id="orgfa83956"></a>
+<a id="org417d572"></a>
 
 ### Data
 
 tbd
 
 
-<a id="org4ad1123"></a>
+<a id="org6157248"></a>
 
 ### Nodes
 
 tbd
 
 
-<a id="org10bfc94"></a>
+<a id="orgc66fad7"></a>
 
 ### Misc
 
@@ -1124,28 +1124,28 @@ tbd
 Scope and intro blah blah.
 
 
-<a id="org3a63e73"></a>
+<a id="org91621f1"></a>
 
 ### Depositions
 
 TBD.
 
 
-<a id="org9879ed6"></a>
+<a id="org0e86d1f"></a>
 
 ### Drifting
 
 TBD.
 
 
-<a id="org0ebb8c4"></a>
+<a id="orgf595a6b"></a>
 
 ### Response
 
 TBD.
 
 
-<a id="org09f1938"></a>
+<a id="org8b294d2"></a>
 
 ### Digitizing
 
