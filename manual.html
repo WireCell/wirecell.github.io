@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-04-18 Tue 17:21 -->
+<!-- 2017-05-28 Sun 21:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Wire Cell Toolkit Manual</title>
@@ -198,7 +198,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -239,6 +239,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -247,116 +269,147 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9ecf1bc">1. Installation</a>
+<li><a href="#installation">1. Installation</a>
 <ul>
-<li><a href="#org1f6280e">1.1. Toolkit installation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span>&#xa0;<span class="developer">developer</span></span></a>
+<li><a href="#toolkit-installation">1.1. Toolkit installation</a>
 <ul>
-<li><a href="#org5f5df53">1.1.1. Source code</a></li>
-<li><a href="#org2680abe">1.1.2. Configuring the source</a></li>
-<li><a href="#org60dc31c">1.1.3. Building the source</a></li>
-<li><a href="#org7c9ccfb">1.1.4. Install the results</a></li>
-<li><a href="#org086e778">1.1.5. Other build commands</a></li>
+<li><a href="#source-code">1.1.1. Source code</a></li>
+<li><a href="#configuring-the-source">1.1.2. Configuring the source</a></li>
+<li><a href="#building-the-source">1.1.3. Building the source</a></li>
+<li><a href="#running-unit-tests">1.1.4. Running unit tests</a></li>
+<li><a href="#install-built-code">1.1.5. Install the results</a></li>
+<li><a href="#other-build-commands">1.1.6. Other build commands</a></li>
 </ul>
 </li>
-<li><a href="#orge3fcc04">1.2. Runtime environment&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span></span></a></li>
-<li><a href="#orgb7eec0b">1.3. Guide for installation of dependencies&#xa0;&#xa0;&#xa0;<span class="tag"><span class="installer">installer</span></span></a>
+<li><a href="#runtime-environment">1.2. Runtime environment</a></li>
+<li><a href="#installing-dependencies">1.3. Guide for installation of dependencies</a>
 <ul>
-<li><a href="#orge74ba0f">1.3.1. Manual</a></li>
-<li><a href="#org2a12ed2">1.3.2. Spack</a></li>
-<li><a href="#orgec1adce">1.3.3. UPS</a></li>
+<li><a href="#manual-externals-install">1.3.1. Manual</a></li>
+<li><a href="#spack-installed-externals">1.3.2. Spack</a></li>
+<li><a href="#using-externals-from-ups">1.3.3. UPS</a></li>
 </ul>
 </li>
-<li><a href="#org686a053">1.4. Release management&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="developer">developer</span></span></a>
+<li><a href="#release-management">1.4. Release management</a>
 <ul>
-<li><a href="#org9bea9e7">1.4.1. Release versions</a></li>
-<li><a href="#org55ea201">1.4.2. Branch policy</a></li>
-<li><a href="#orge468465">1.4.3. Branch mechanics</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgd2c0ee6">2. Configuration</a>
-<ul>
-<li><a href="#org0a542a8">2.1. Introduction</a></li>
-<li><a href="#orgc2736b0">2.2. Configuration from a user point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span></span></a>
-<ul>
-<li><a href="#org35b79d3">2.2.1. File formats</a></li>
-<li><a href="#org1578f64">2.2.2. Basic command line</a></li>
-<li><a href="#orgad3d77e">2.2.3. Dump default configuration</a></li>
-<li><a href="#org7151beb">2.2.4. Diving into JSON</a></li>
-<li><a href="#org7cb60b5">2.2.5. Limitations of JSON</a></li>
-<li><a href="#org1aa19eb">2.2.6. Learning Jsonnet</a></li>
-<li><a href="#orgc1f8629">2.2.7. Specific detector support</a></li>
-<li><a href="#org505753b">2.2.8. Using Jsonnet</a></li>
-</ul>
-</li>
-<li><a href="#org5a448e6">2.3. <span class="todo TODO">TODO</span> Configuration from a developer point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="devel">devel</span></span></a></li>
-</ul>
-</li>
-<li><a href="#org1908890">3. Howtos</a>
-<ul>
-<li><a href="#orgd1fce20">3.1. Run <code>wire-cell</code> command line program</a></li>
-<li><a href="#orgb63c205">3.2. Add a new component class</a></li>
-</ul>
-</li>
-<li><a href="#org2081b40">4. Internals</a>
-<ul>
-<li><a href="#org6d10345">4.1. Toolkit packages</a>
-<ul>
-<li><a href="#orgd756750">4.1.1. Names</a></li>
-<li><a href="#org426a20c">4.1.2. Dependencies</a></li>
-<li><a href="#orgc2a9550">4.1.3. Package structure</a></li>
-<li><a href="#orgb4d3ac4">4.1.4. Build package</a></li>
-<li><a href="#org01e93fc">4.1.5. Adding a new code package</a></li>
-</ul>
-</li>
-<li><a href="#org25ecb95">4.2. Coding conventions</a>
-<ul>
-<li><a href="#orgcaad58c">4.2.1. C++ code formatting</a></li>
-<li><a href="#org82711dc">4.2.2. C++ namespaces</a></li>
-</ul>
-</li>
-<li><a href="#orgdfb14b0">4.3. Interfaces</a></li>
-<li><a href="#org19ea3c1">4.4. Components</a></li>
-<li><a href="#orge3c8424">4.5. Configuration</a></li>
-<li><a href="#org0593c90">4.6. Execution Models</a>
-<ul>
-<li><a href="#orge734da8">4.6.1. Ad-hoc</a></li>
-<li><a href="#org6e12e3f">4.6.2. Component</a></li>
-<li><a href="#orgad661b7">4.6.3. Interface</a></li>
-<li><a href="#org2aea43d">4.6.4. Data flow programming</a></li>
+<li><a href="#release-versions">1.4.1. Release versions</a></li>
+<li><a href="#branch-policy">1.4.2. Branch policy</a></li>
+<li><a href="#branch-mechanics">1.4.3. Branch mechanics</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org736f0bb">5. Packages</a>
+<li><a href="#configuration">2. Configuration</a>
 <ul>
-<li><a href="#orgc15842c">5.1. Utilities</a>
+<li><a href="#configuration-introduction">2.1. Introduction</a></li>
+<li><a href="#user-configuration">2.2. Configuration from a user point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span></span></a>
 <ul>
-<li><a href="#org572b8b2">5.1.1. Units</a></li>
-<li><a href="#org27b65c5">5.1.2. Persistence</a></li>
-<li><a href="#orgf2254b0">5.1.3. Etc</a></li>
+<li><a href="#configuration-file-formats">2.2.1. File formats</a></li>
+<li><a href="#configuration-command-line">2.2.2. Basic command line</a></li>
+<li><a href="#dump-default-configuration">2.2.3. Dump default configuration</a></li>
+<li><a href="#diving-into-json">2.2.4. Diving into JSON</a></li>
+<li><a href="#json-limitations">2.2.5. Limitations of JSON</a></li>
+<li><a href="#learning-jsonnet">2.2.6. Learning Jsonnet</a></li>
+<li><a href="#configuration-for-specific-detectors">2.2.7. Specific detector support</a></li>
+<li><a href="#jsonnet-command-line">2.2.8. Using Jsonnet</a></li>
 </ul>
 </li>
-<li><a href="#org5411cb7">5.2. Interfaces</a>
-<ul>
-<li><a href="#org149e6a4">5.2.1. Data</a></li>
-<li><a href="#orgb28e19e">5.2.2. Nodes</a></li>
-<li><a href="#org062915c">5.2.3. Misc</a></li>
+<li><a href="#developer-configuration">2.3. <span class="todo TODO">TODO</span> Configuration from a developer point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="devel">devel</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org742907e">5.3. Simulation</a>
+<li><a href="#howtos">3. Howtos</a>
 <ul>
-<li><a href="#org5df80f7">5.3.1. Depositions</a></li>
-<li><a href="#org6b01fa4">5.3.2. Drifting</a></li>
-<li><a href="#org57eeae7">5.3.3. Response</a></li>
-<li><a href="#org8c8beb6">5.3.4. Digitizing</a></li>
+<li><a href="#run-wire-cell-cli">3.1. Run <code>wire-cell</code> command line program</a></li>
+<li><a href="#add-a-component">3.2. Add a new component class</a>
+<ul>
+<li><a href="#component-concept">3.2.1. Conceptual design</a></li>
+<li><a href="#component-dependencies">3.2.2. Estimating dependencies</a></li>
+<li><a href="#component-package">3.2.3. Selecting a package</a></li>
+<li><a href="#component-interfaces">3.2.4. Selecting interfaces</a></li>
+<li><a href="#component-header">3.2.5. Component header</a></li>
+<li><a href="#component-implementation">3.2.6. Component implementation</a></li>
 </ul>
 </li>
-<li><a href="#orgf552394">5.4. Waf tools</a>
+</ul>
+</li>
+<li><a href="#internals">4. Internals</a>
 <ul>
-<li><a href="#orgcfb8cf2">5.4.1. Recreating <code>wcb</code></a></li>
-<li><a href="#orga2364ff">5.4.2. Included Waf tools</a></li>
+<li><a href="#toolkit-packages">4.1. Toolkit packages</a>
+<ul>
+<li><a href="#package-names">4.1.1. Names</a></li>
+<li><a href="#package-dependencies">4.1.2. Dependencies</a></li>
+<li><a href="#package-structure">4.1.3. Package structure</a></li>
+<li><a href="#build-package">4.1.4. Build package</a></li>
+<li><a href="#add-new-package-to-build">4.1.5. Adding a new code package</a></li>
+</ul>
+</li>
+<li><a href="#coding-conventions">4.2. Coding conventions</a>
+<ul>
+<li><a href="#c++-code-formatting">4.2.1. C++ code formatting</a></li>
+<li><a href="#c++-namespaces">4.2.2. C++ namespaces</a></li>
+</ul>
+</li>
+<li><a href="#interface-internals">4.3. Interfaces</a></li>
+<li><a href="#component-internals">4.4. Components</a></li>
+<li><a href="#configuration-internals">4.5. Configuration</a></li>
+<li><a href="#execution-models">4.6. Execution Models</a>
+<ul>
+<li><a href="#ad-hoc-execution">4.6.1. Ad-hoc</a></li>
+<li><a href="#execution-concrete-components">4.6.2. Concrete</a></li>
+<li><a href="#execution-via-interfaces">4.6.3. Interface</a></li>
+<li><a href="#dfp-execution">4.6.4. Data flow programming execution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#packages">5. Packages</a>
+<ul>
+<li><a href="#pkg-python">5.1. <code>wire-cell-python</code></a>
+<ul>
+<li><a href="#install-wire-cell-python">5.1.1. Installing <code>wire-cell-python</code></a></li>
+<li><a href="#python-programs">5.1.2. Python command line programs</a></li>
+<li><a href="#python-modules">5.1.3. <code>wirecell</code> Python modules</a></li>
+</ul>
+</li>
+<li><a href="#pkg-util">5.2. <code>wire-cell-util</code></a>
+<ul>
+<li><a href="#util-units">5.2.1. Units</a></li>
+<li><a href="#util-persistence">5.2.2. Persistence</a></li>
+<li><a href="#orgf37bec3">5.2.3. Etc</a></li>
+</ul>
+</li>
+<li><a href="#pkg-iface">5.3. <code>wire-cell-iface</code></a>
+<ul>
+<li><a href="#orgc61a2dc">5.3.1. Data</a></li>
+<li><a href="#orgaf804b1">5.3.2. Nodes</a></li>
+<li><a href="#orga2833be">5.3.3. Misc</a></li>
+</ul>
+</li>
+<li><a href="#pkg-gen">5.4. <code>wire-cell-gen</code></a>
+<ul>
+<li><a href="#org7b7d954">5.4.1. Depositions</a></li>
+<li><a href="#org390f70f">5.4.2. Drifting</a></li>
+<li><a href="#org86e0e77">5.4.3. Response</a></li>
+<li><a href="#org44147d7">5.4.4. Digitizing</a></li>
+</ul>
+</li>
+<li><a href="#pkg-waftools">5.5. <code>wire-cell-waftools</code></a>
+<ul>
+<li><a href="#generate-wcb">5.5.1. Recreating <code>wcb</code></a></li>
+<li><a href="#bundle-waf-tools">5.5.2. Included Waf tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#data-flow-programming">6. Data Flow Programming</a></li>
+<li><a href="#other-topics">7. Other Topics</a>
+<ul>
+<li><a href="#garfield-2d-support">7.1. Garfield 2D Support</a>
+<ul>
+<li><a href="#garfield-2d-data">7.1.1. Garfield 2D data</a></li>
+<li><a href="#preprocessing-garfield-data">7.1.2. Preprocessing of Garfield 2D data</a></li>
+<li><a href="#eyeball-garfield">7.1.3. Eyeballing Garfield 2D with <code>wirecell.sigproc.garfield</code></a></li>
+<li><a href="#garfield-validation-plots">7.1.4. Validation plots</a></li>
+<li><a href="#convert-garfield-data-to-json">7.1.5. Producing WCT Field Response Data File</a></li>
 </ul>
 </li>
 </ul>
@@ -366,20 +419,20 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org9ecf1bc" class="outline-2">
-<h2 id="org9ecf1bc"><span class="section-number-2">1</span> Installation</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgb09f39f" class="outline-2">
+<h2 id="installation"><a id="orgb09f39f"></a><a id="installation"></a><a id="user-content-installation" class="anchor" href="#installation" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-2">1</span> Installation</h2>
+<div class="outline-text-2" id="text-installation">
 <p>
 The Wire Cell Toolkit (WCT) should be easy to build on any POSIX&rsquo;y system with a recent C++ compiler.  This section describes how to build releases and development branches, it gives guidance for supplying the few software dependencies, and documents how releases are made.
 </p>
 </div>
 
-<div id="outline-container-org1f6280e" class="outline-3">
-<h3 id="org1f6280e"><span class="section-number-3">1.1</span> Toolkit installation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span>&#xa0;<span class="developer">developer</span></span></h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org31b2938" class="outline-3">
+<h3 id="toolkit-installation"><a id="org31b2938"></a><a id="user-content-toolkit-installation" class="anchor" href="#toolkit-installation" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">1.1</span> Toolkit installation</h3>
+<div class="outline-text-3" id="text-toolkit-installation">
 <div class="warning">
 <p>
-This assumes you already have available the required dependencies.  See section <a href="#orgb7eec0b">1.3</a>.
+This assumes you already have available the required dependencies.  See section <a href="#installing-dependencies">1.3</a>.
 </p>
 
 </div>
@@ -395,11 +448,11 @@ Installation requires four steps:
 </ol>
 </div>
 
-<div id="outline-container-org5f5df53" class="outline-4">
-<h4 id="org5f5df53"><span class="section-number-4">1.1.1</span> Source code</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<div id="outline-container-org2595074" class="outline-4">
+<h4 id="source-code"><a id="org2595074"></a><a id="user-content-source-code" class="anchor" href="#source-code" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.1.1</span> Source code</h4>
+<div class="outline-text-4" id="text-source-code">
 <p>
-WCT source is composed of several packages (see section <a href="#org736f0bb">5</a>) and all source is available from the <a href="https://github.com/WireCell/">Wire Cell GitHub organization</a>.  Releases of each package are made and documented on GitHub (<i>eg</i> <a href="https://github.com/WireCell/wire-cell-build/releases">here</a>) and can be downloaded as archives.  However, using git to assemble a working source area is recommended and easier.  Releases and development branches are handled slightly differently.
+WCT source is composed of several packages (see section <a href="#packages">5</a>) and all source is available from the <a href="https://github.com/WireCell/">Wire Cell GitHub organization</a>.  Releases of each package are made and documented on GitHub (<i>eg</i> <a href="https://github.com/WireCell/wire-cell-build/releases">here</a>) and can be downloaded as archives.  However, using git to assemble a working source area is recommended and easier.  Releases and development branches are handled slightly differently.
 </p>
 
 <p>
@@ -441,9 +494,9 @@ At some time later if there is a need to switch between HTTP or SSH a <code>swit
 </div>
 </div>
 
-<div id="outline-container-org2680abe" class="outline-4">
-<h4 id="org2680abe"><span class="section-number-4">1.1.2</span> Configuring the source</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-org258abc3" class="outline-4">
+<h4 id="configuring-the-source"><a id="org258abc3"></a><a id="user-content-configuring-the-source" class="anchor" href="#configuring-the-source" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.1.2</span> Configuring the source</h4>
+<div class="outline-text-4" id="text-configuring-the-source">
 <p>
 At a minimum, the source must be configured with an installation location for the build results and to allow it to find its dependencies.  This, and the remaining steps are done with the provided <code>wcb</code> script which is an instance of <a href="https://waf.io/">Waf</a>.
 </p>
@@ -478,9 +531,9 @@ This example assumes all externals are available in a directory set by the <code
 </div>
 </div>
 
-<div id="outline-container-org60dc31c" class="outline-4">
-<h4 id="org60dc31c"><span class="section-number-4">1.1.3</span> Building the source</h4>
-<div class="outline-text-4" id="text-1-1-3">
+<div id="outline-container-orgd817f22" class="outline-4">
+<h4 id="building-the-source"><a id="orgd817f22"></a><a id="user-content-building-the-source" class="anchor" href="#building-the-source" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.1.3</span> Building the source</h4>
+<div class="outline-text-4" id="text-building-the-source">
 <p>
 After a successful source configure step, the results are cached and any long command line need not be repeated.  To build the source simply run:
 </p>
@@ -503,9 +556,56 @@ $ ./wcb --notests
 </div>
 </div>
 
-<div id="outline-container-org7c9ccfb" class="outline-4">
-<h4 id="org7c9ccfb"><span class="section-number-4">1.1.4</span> Install the results</h4>
-<div class="outline-text-4" id="text-1-1-4">
+<div id="outline-container-org2e657c4" class="outline-4">
+<h4 id="running-unit-tests"><a id="org2e657c4"></a><a id="user-content-running-unit-tests" class="anchor" href="#running-unit-tests" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.1.4</span> Running unit tests</h4>
+<div class="outline-text-4" id="text-running-unit-tests">
+<p>
+Unless <code>--notests</code> are passed as above, the build system will build and run the many unit test programs.  In general, all unit tests should run successfully (in practice some small fraction may not).  To give them a chance to succeed they must at least be run with a properly set up environment.  In particular <code>LD_LIBRARY_PATH</code> must contain all library directories for external packages.  Setting this is user/system dependent and so is left to the user.
+</p>
+
+<div class="INFO">
+<p>
+Developers wishing to run unit tests that exercise code they are developing should take care in setting <code>LD_LIBRARY_PATH</code>.  If the WCT installation area is included then the unit tests will run against those libraries, effectively masking the locally built versions in the development area.  Alternatively, they must run <code>./wcb install</code> and then manually re-run the unit test.
+</p>
+
+</div>
+
+<p>
+Setting <code>LD_LIBRARY_PATH</code> is <b>not</b> as above required for building.  To avoid polluting the build environment with superfluous settings it is possible to create a little shell script that will be used to run each test.  As an example, we create <code>tester.sh</code> that looks like:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/bin/</span><span style="font-weight: bold;">sh</span>
+/usr/bin/env <span style="font-weight: bold; font-style: italic;">LD_LIBRARY_PATH</span>=/path/to/extern1/lib:/path/to/extern2/lib <span style="font-style: italic;">"$@"</span>
+</pre>
+</div>
+
+<p>
+After making this script executable it can be used like:
+</p>
+
+<pre class="example">
+$ ./wcb --testcmd="/path/to/tester.sh %s"
+</pre>
+
+<p>
+Another useful option is <code>--dump-test-scripts</code> which will produce a <code>test_&lt;name&gt;_run.py</code> file for each <code>test_&lt;name&gt;</code> that bakes in the environment and gives you a per-test runner that you can execute directly.  You can use the same <code>tester.sh</code> script here
+</p>
+
+<pre class="example">
+$ /path/to/tester.sh ./wcb --dump-test-scripts --alltests
+$ ./build/util/test_fft_run.py
+</pre>
+
+<p>
+Where these two commands are executed in a shell that has no <code>LD_LIBRARY_PATH</code> set.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4f387bd" class="outline-4">
+<h4 id="install-built-code"><a id="org4f387bd"></a><a id="user-content-install-built-code" class="anchor" href="#install-built-code" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.1.5</span> Install the results</h4>
+<div class="outline-text-4" id="text-install-built-code">
 <p>
 To install the build results into the location given by <code>--prefix</code> simply issue:
 </p>
@@ -515,9 +615,9 @@ $ ./wcb install
 </div>
 </div>
 
-<div id="outline-container-org086e778" class="outline-4">
-<h4 id="org086e778"><span class="section-number-4">1.1.5</span> Other build commands</h4>
-<div class="outline-text-4" id="text-1-1-5">
+<div id="outline-container-orge0e2ba3" class="outline-4">
+<h4 id="other-build-commands"><a id="orge0e2ba3"></a><a id="user-content-other-build-commands" class="anchor" href="#other-build-commands" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.1.6</span> Other build commands</h4>
+<div class="outline-text-4" id="text-other-build-commands">
 <p>
 These other commands may be useful:
 </p>
@@ -537,9 +637,10 @@ $ ./wcb --help         # see more options.
 </div>
 </div>
 
-<div id="outline-container-orge3fcc04" class="outline-3">
-<h3 id="orge3fcc04"><span class="section-number-3">1.2</span> Runtime environment&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span>&#xa0;<span class="installer">installer</span></span></h3>
-<div class="outline-text-3" id="text-1-2">
+
+<div id="outline-container-orgfc98dd0" class="outline-3">
+<h3 id="runtime-environment"><a id="orgfc98dd0"></a><a id="user-content-runtime-environment" class="anchor" href="#runtime-environment" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">1.2</span> Runtime environment</h3>
+<div class="outline-text-3" id="text-runtime-environment">
 <p>
 Managing environment is usually a personal choice or computer facility policy and WCT does not place any significant requirements on this.  The usual setting of <code>PATH</code> like variables will likely be needed.  
 </p>
@@ -549,14 +650,14 @@ FIXME: we should look into setting <code>RPATH</code>.
 </p>
 
 <p>
-Internally, WCT does not require any environment however it will search a <code>WIRECELL_PATH</code> when locating configuration or other (non data) input files.  More information is in the section <a href="#orgd2c0ee6">2</a>.
+Internally, WCT does not require any environment however it will search a <code>WIRECELL_PATH</code> when locating configuration or other (non data) input files.  More information is in the section <a href="#configuration">2</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb7eec0b" class="outline-3">
-<h3 id="orgb7eec0b"><span class="section-number-3">1.3</span> Guide for installation of dependencies&#xa0;&#xa0;&#xa0;<span class="tag"><span class="installer">installer</span></span></h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org4e949aa" class="outline-3">
+<h3 id="installing-dependencies"><a id="org4e949aa"></a><a id="user-content-installing-dependencies" class="anchor" href="#installing-dependencies" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">1.3</span> Guide for installation of dependencies</h3>
+<div class="outline-text-3" id="text-installing-dependencies">
 <p>
 The WCT depends on a number of third-party software packages.  They are intentionally limited to reduce the requirements for installation.  Some packages are optional.  Here lists packages that users may not already have as part of a &ldquo;reasonably POSIX&rsquo;y system and some guidance is given on how to install them.
 </p>
@@ -597,9 +698,9 @@ To get a full, up-to-date list of what packages WCT can use run <code>./wcb --he
 </p>
 </div>
 
-<div id="outline-container-orge74ba0f" class="outline-4">
-<h4 id="orge74ba0f"><span class="section-number-4">1.3.1</span> Manual</h4>
-<div class="outline-text-4" id="text-1-3-1">
+<div id="outline-container-orga89a933" class="outline-4">
+<h4 id="manual-externals-install"><a id="orga89a933"></a><a id="user-content-manual-externals-install" class="anchor" href="#manual-externals-install" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.3.1</span> Manual</h4>
+<div class="outline-text-4" id="text-manual-externals-install">
 <p>
 In the DIY mode, the installer is free to provide the third-party packages in any convenient way.  Many of them are available on well supported operating systems such as Debian/Ubuntu.  Homebrew for Mac OS X is not a core developer platform but may provide many.  Redhat derived Linux distributions may find suitable package on EPEL.  Most of the required packages are fairly easy to build from source.
 </p>
@@ -610,9 +711,9 @@ However the installer decides to build in DIY-mode the WCT build system should b
 </div>
 </div>
 
-<div id="outline-container-org2a12ed2" class="outline-4">
-<h4 id="org2a12ed2"><span class="section-number-4">1.3.2</span> Spack</h4>
-<div class="outline-text-4" id="text-1-3-2">
+<div id="outline-container-org49fbd6e" class="outline-4">
+<h4 id="spack-installed-externals"><a id="org49fbd6e"></a><a id="user-content-spack-installed-externals" class="anchor" href="#spack-installed-externals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.3.2</span> Spack</h4>
+<div class="outline-text-4" id="text-spack-installed-externals">
 <p>
 <a href="https://github.com/LLNL/spack">Spack</a> is a &ldquo;meta build system&rdquo; that runs the individual build systems that come with packages.  It allows one to manage an ever growing installation area which can accommodate multiple versions of a package.  It also comes with support for <a href="http://modules.sourceforge.net/">Environment Modules</a> to handle your users&rsquo; setup of these packages or can make targeted release &ldquo;views&rdquo; of its package tree.  
 </p>
@@ -627,9 +728,9 @@ An installer that wishes to use wire-cell-spack to provide the dependencies shou
 </div>
 </div>
 
-<div id="outline-container-orgec1adce" class="outline-4">
-<h4 id="orgec1adce"><span class="section-number-4">1.3.3</span> UPS</h4>
-<div class="outline-text-4" id="text-1-3-3">
+<div id="outline-container-orgaeb98d7" class="outline-4">
+<h4 id="using-externals-from-ups"><a id="orgaeb98d7"></a><a id="user-content-using-externals-from-ups" class="anchor" href="#using-externals-from-ups" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.3.3</span> UPS</h4>
+<div class="outline-text-4" id="text-using-externals-from-ups">
 <p>
 Fermi National Accelerator Lab (FNAL) uses a user environment similar but incompatible with to <a href="http://modules.sourceforge.net/">Environment Modules</a>.  It is typical to download binaries provided by FNAL and use UPS to &ldquo;setup&rdquo; a user environment with many environment variables.  For each package so setup there is a variable that gives the installation location.  These can be used to provide suitable values for the <code>--with-*</code> flags to <code>wcb</code> as described above.
 </p>
@@ -637,17 +738,18 @@ Fermi National Accelerator Lab (FNAL) uses a user environment similar but incomp
 </div>
 </div>
 
-<div id="outline-container-org686a053" class="outline-3">
-<h3 id="org686a053"><span class="section-number-3">1.4</span> Release management&#xa0;&#xa0;&#xa0;<span class="tag"><span class="core">core</span>&#xa0;<span class="developer">developer</span></span></h3>
-<div class="outline-text-3" id="text-1-4">
+
+<div id="outline-container-org94de92e" class="outline-3">
+<h3 id="release-management"><a id="org94de92e"></a><a id="user-content-release-management" class="anchor" href="#release-management" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">1.4</span> Release management</h3>
+<div class="outline-text-3" id="text-release-management">
 <p>
 Releases are made by developers as needed and as described in this section.
 </p>
 </div>
 
-<div id="outline-container-org9bea9e7" class="outline-4">
-<h4 id="org9bea9e7"><span class="section-number-4">1.4.1</span> Release versions</h4>
-<div class="outline-text-4" id="text-1-4-1">
+<div id="outline-container-org2621f0e" class="outline-4">
+<h4 id="release-versions"><a id="org2621f0e"></a><a id="user-content-release-versions" class="anchor" href="#release-versions" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.4.1</span> Release versions</h4>
+<div class="outline-text-4" id="text-release-versions">
 <p>
 WCT label releases are made following a fixed procedure.  Releases are labeled with  the common three-number convention: <code>X.Y.Z</code>.  These take the following semantic meanings:
 </p>
@@ -660,18 +762,18 @@ WCT label releases are made following a fixed procedure.  Releases are labeled w
 </div>
 </div>
 
-<div id="outline-container-org55ea201" class="outline-4">
-<h4 id="org55ea201"><span class="section-number-4">1.4.2</span> Branch policy</h4>
-<div class="outline-text-4" id="text-1-4-2">
+<div id="outline-container-orgda2a37f" class="outline-4">
+<h4 id="branch-policy"><a id="orgda2a37f"></a><a id="user-content-branch-policy" class="anchor" href="#branch-policy" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.4.2</span> Branch policy</h4>
+<div class="outline-text-4" id="text-branch-policy">
 <p>
 Any new major or minor releases produce a new Git branch in each package.  Only bug fixes are made to this branch. Where applicable, release bug fixes should be applied to <code>master</code>.  Nominally, all development is on the <code>master</code> branch however developers are free to make their own feature branches.  They are encourage to do this if their development is expected to be disruptive to other developers.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge468465" class="outline-4">
-<h4 id="orge468465"><span class="section-number-4">1.4.3</span> Branch mechanics</h4>
-<div class="outline-text-4" id="text-1-4-3">
+<div id="outline-container-org36f02a6" class="outline-4">
+<h4 id="branch-mechanics"><a id="org36f02a6"></a><a id="user-content-branch-mechanics" class="anchor" href="#branch-mechanics" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">1.4.3</span> Branch mechanics</h4>
+<div class="outline-text-4" id="text-branch-mechanics">
 <p>
 To make releases, the above details are baked into two test scripts <a href="https://github.com/WireCell/waf-tools/blob/master/make-release.sh">make-release.sh</a> and <a href="https://github.com/WireCell/waf-tools/blob/master/test-release.sh">test-release.sh</a>.  See comments at the top of each for how to run them.  These scripts can be used by others but are meant for developers to make official releases.  
 </p>
@@ -680,17 +782,17 @@ To make releases, the above details are baked into two test scripts <a href="htt
 </div>
 </div>
 
-<div id="outline-container-orgd2c0ee6" class="outline-2">
-<h2 id="orgd2c0ee6"><span class="section-number-2">2</span> Configuration</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgc175c21" class="outline-2">
+<h2 id="configuration"><a id="orgc175c21"></a><a id="user-content-configuration" class="anchor" href="#configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-2">2</span> Configuration</h2>
+<div class="outline-text-2" id="text-configuration">
 <p>
 As the Wire Cell Toolkit (WCT) is a toolkit, it is up to the parent application to provide some mechanism for the user to provide configuration information to WCT <i>components</i>.  Users of an application not provided by the WCT itself should refer to its documentation.  This section of the manual documents the configuration mechanism that is provided by WCT itself.  If an application decides to use the WCT file format then its users may refer to this document.  Developers of WCT components should read it as well.
 </p>
 </div>
 
-<div id="outline-container-org0a542a8" class="outline-3">
-<h3 id="org0a542a8"><span class="section-number-3">2.1</span> Introduction</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-org2d39c7c" class="outline-3">
+<h3 id="configuration-introduction"><a id="org2d39c7c"></a><a id="user-content-configuration-introduction" class="anchor" href="#configuration-introduction" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">2.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-configuration-introduction">
 <p>
 WCT itself provides a such a mechanism which is exposed to the user by the <code>wire-cell</code> command line application.  Any application may easily adopt this same mechanism by making use of the <code>WireCell::ConfigManager</code> class.  
 </p>
@@ -723,26 +825,26 @@ In the next section,  WCT user-configuration support is described.  The followin
 </div>
 </div>
 
-<div id="outline-container-orgc2736b0" class="outline-3">
-<h3 id="orgc2736b0"><span class="section-number-3">2.2</span> Configuration from a user point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span></span></h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgd969eb2" class="outline-3">
+<h3 id="user-configuration"><a id="orgd969eb2"></a><a id="user-content-user-configuration" class="anchor" href="#user-configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">2.2</span> Configuration from a user point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span></span></h3>
+<div class="outline-text-3" id="text-user-configuration">
 <p>
 Users of the WCT command line interface <code>wire-cell</code> or any WCT application that uses <code>WireCell::ConfigManager</code> can provide configuration information in the form of one or more files.  This files express the same ordered list of configuration objects as described above.
 </p>
 </div>
 
-<div id="outline-container-org35b79d3" class="outline-4">
-<h4 id="org35b79d3"><span class="section-number-4">2.2.1</span> File formats</h4>
-<div class="outline-text-4" id="text-2-2-1">
+<div id="outline-container-orgaba3f7f" class="outline-4">
+<h4 id="configuration-file-formats"><a id="orgaba3f7f"></a><a id="user-content-configuration-file-formats" class="anchor" href="#configuration-file-formats" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">2.2.1</span> File formats</h4>
+<div class="outline-text-4" id="text-configuration-file-formats">
 <p>
 WCT supports two related configuration file formats:  <a href="http://www.json.org/">JSON</a> and <a href="http://jsonnet.org/">Jsonnet</a>.  Of the two, JSON is more fundamental while Jsonnet provides a way to better organize and construct complex configurations.  Jsonnet support is a compile-time option.  The stand-alone <code>jsonnet</code> program may also be used to evaluate Jsonnet into JSON.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1578f64" class="outline-4">
-<h4 id="org1578f64"><span class="section-number-4">2.2.2</span> Basic command line</h4>
-<div class="outline-text-4" id="text-2-2-2">
+<div id="outline-container-org9504929" class="outline-4">
+<h4 id="configuration-command-line"><a id="org9504929"></a><a id="user-content-configuration-command-line" class="anchor" href="#configuration-command-line" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">2.2.2</span> Basic command line</h4>
+<div class="outline-text-4" id="text-configuration-command-line">
 <p>
 A user gives one or more configuration files to the <code>wire-cell</code> application each with a <code>-c</code> flag:
 </p>
@@ -755,9 +857,9 @@ If a relative path is given, the file will be searched for starting in the curre
 </div>
 </div>
 
-<div id="outline-container-orgad3d77e" class="outline-4">
-<h4 id="orgad3d77e"><span class="section-number-4">2.2.3</span> Dump default configuration</h4>
-<div class="outline-text-4" id="text-2-2-3">
+<div id="outline-container-orgea14228" class="outline-4">
+<h4 id="dump-default-configuration"><a id="orgea14228"></a><a id="user-content-dump-default-configuration" class="anchor" href="#dump-default-configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">2.2.3</span> Dump default configuration</h4>
+<div class="outline-text-4" id="text-dump-default-configuration">
 <p>
 The user can also dump out the hard-coded default configuration for one or more components:
 </p>
@@ -778,9 +880,9 @@ The user must know what components to dump.  There is no way for the application
 </div>
 </div>
 
-<div id="outline-container-org7151beb" class="outline-4">
-<h4 id="org7151beb"><span class="section-number-4">2.2.4</span> Diving into JSON</h4>
-<div class="outline-text-4" id="text-2-2-4">
+<div id="outline-container-org41371c0" class="outline-4">
+<h4 id="diving-into-json"><a id="org41371c0"></a><a id="user-content-diving-into-json" class="anchor" href="#diving-into-json" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">2.2.4</span> Diving into JSON</h4>
+<div class="outline-text-4" id="text-diving-into-json">
 <p>
 An example configuration dump from this command
 </p>
@@ -809,14 +911,14 @@ Here we see an array holding one element which is an object with the <code>type<
 </p>
 
 <p>
-The <code>tracks</code> array in this example is empty and no depositions would be produced.  The user most certainly should specify a nonempty set of tracks.  In principle, the user may produces a huge <code>tracks</code> array.  WCT support bzip2 compressed JSON files (see the section on <a href="./util.html#org290a717">persistence in the util package manual</a>).
+The <code>tracks</code> array in this example is empty and no depositions would be produced.  The user most certainly should specify a nonempty set of tracks.  In principle, the user may produces a huge <code>tracks</code> array.  WCT support bzip2 compressed JSON files (see the section on <a href="./util.html#orgc1092a1">persistence in the util package manual</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7cb60b5" class="outline-4">
-<h4 id="org7cb60b5"><span class="section-number-4">2.2.5</span> Limitations of JSON</h4>
-<div class="outline-text-4" id="text-2-2-5">
+<div id="outline-container-orgcafeefc" class="outline-4">
+<h4 id="json-limitations"><a id="orgcafeefc"></a><a id="user-content-json-limitations" class="anchor" href="#json-limitations" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">2.2.5</span> Limitations of JSON</h4>
+<div class="outline-text-4" id="text-json-limitations">
 <p>
 As the complexity of a <code>wire-cell</code> job grows, hand crafting JSON becomes tedious and error prone.  Splitting the files and/or using <code>WIRECELL_PATH</code> can provide some rudimentary means of organizing a large, complex configuration.  
 </p>
@@ -826,7 +928,7 @@ However, a user will quickly outgrow direct authoring of JSON files.  An accompl
 </p>
 
 <p>
-Another limitation is that any numerical quantities <b>must</b> be expressed in the base units used by the WCT <i>system of units</i> (see the section on <a href="./util.html#orgc9220a8">units in the Utilities manual</a>).  This places a burden on the configuration author and is a source of error.
+Another limitation is that any numerical quantities <b>must</b> be expressed in the base units used by the WCT <i>system of units</i> (see the section on <a href="./util.html#org3f1f859">units in the Utilities manual</a>).  This places a burden on the configuration author and is a source of error.
 </p>
 
 <p>
@@ -836,9 +938,9 @@ However, WCT provides a second, more powerful JSON-like configuration file forma
 </div>
 </div>
 
-<div id="outline-container-org1aa19eb" class="outline-4">
-<h4 id="org1aa19eb"><span class="section-number-4">2.2.6</span> Learning Jsonnet</h4>
-<div class="outline-text-4" id="text-2-2-6">
+<div id="outline-container-org51ea6c7" class="outline-4">
+<h4 id="learning-jsonnet"><a id="org51ea6c7"></a><a id="user-content-learning-jsonnet" class="anchor" href="#learning-jsonnet" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">2.2.6</span> Learning Jsonnet</h4>
+<div class="outline-text-4" id="text-learning-jsonnet">
 <p>
 WCT provides support for configuration files following the <a href="http://jsonnet.org/">Jsonnet data templating language</a>.  This language is evaluated to produce JSON.  If WCT is compiled with support it can evaluation Jsonnet files directly.  Otherwise the user may install and run the <code>jsonnet</code> command line program to produce JSON for feeding to WCT.
 </p>
@@ -852,11 +954,11 @@ WCT locates Jsonnet files as it does JSON files and in particular using the envi
 </p>
 </div>
 
-<div id="outline-container-org1a55909" class="outline-5">
-<h5 id="org1a55909"><span class="section-number-5">2.2.6.1</span> System of units</h5>
-<div class="outline-text-5" id="text-2-2-6-1">
+<div id="outline-container-org9519a12" class="outline-5">
+<h5 id="system-of-units-in-jsonnet"><a id="org9519a12"></a><a id="user-content-system-of-units-in-jsonnet" class="anchor" href="#system-of-units-in-jsonnet" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">2.2.6.1</span> System of units</h5>
+<div class="outline-text-5" id="text-system-of-units-in-jsonnet">
 <p>
-Wire Cell provides an internal system of units as described in the section on <a href="./util.html#orgc9220a8">units in the Utilities manual</a> and as stated above, users must take care to give numerical quantities in WCT units when providing JSON.  However, when writing Jsonnet one can provide explicit units which is easy and far less error prone.  For example:
+Wire Cell provides an internal system of units as described in the section on <a href="./util.html#org3f1f859">units in the Utilities manual</a> and as stated above, users must take care to give numerical quantities in WCT units when providing JSON.  However, when writing Jsonnet one can provide explicit units which is easy and far less error prone.  For example:
 </p>
 <div class="org-src-container">
 <pre class="src src-js">local wc = <span style="font-weight: bold;">import</span> <span style="font-style: italic;">"wirecell.jsonnet"</span>;
@@ -874,9 +976,9 @@ Wire Cell provides an internal system of units as described in the section on <a
 </div>
 </div>
 
-<div id="outline-container-org57305b2" class="outline-5">
-<h5 id="org57305b2"><span class="section-number-5">2.2.6.2</span> Functions</h5>
-<div class="outline-text-5" id="text-2-2-6-2">
+<div id="outline-container-orgea1be78" class="outline-5">
+<h5 id="jsonnet-helper-functions"><a id="orgea1be78"></a><a id="user-content-jsonnet-helper-functions" class="anchor" href="#jsonnet-helper-functions" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">2.2.6.2</span> Functions</h5>
+<div class="outline-text-5" id="text-jsonnet-helper-functions">
 <p>
 Some data sub-structures are needed in multiple laces and it can be laborious to write them by hand.  Jsonnet provides functions to assist in this.  A number of functions are defined to assist in representing common data types. For example <code>point()</code> and <code>ray()</code>:
 </p>
@@ -891,9 +993,9 @@ Some data sub-structures are needed in multiple laces and it can be laborious to
 </div>
 </div>
 
-<div id="outline-container-orgcc581ec" class="outline-5">
-<h5 id="orgcc581ec"><span class="section-number-5">2.2.6.3</span> Default parameters</h5>
-<div class="outline-text-5" id="text-2-2-6-3">
+<div id="outline-container-org0b049f4" class="outline-5">
+<h5 id="default-parameters-in-jsonnet"><a id="org0b049f4"></a><a id="user-content-default-parameters-in-jsonnet" class="anchor" href="#default-parameters-in-jsonnet" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">2.2.6.3</span> Default parameters</h5>
+<div class="outline-text-5" id="text-default-parameters-in-jsonnet">
 <p>
 It is typical that different components must share common values, or separate values which derive from common values.  Jsonnet allows for this to be expressed in the configuration in a simple manner.  For example, in the <code>gen</code> package both <code>Drifter</code> and <code>Ductor</code> may apply statistical fluctuations.  For debugging it can be useful to turn this feature off.  This can be done in a consistent manner like in a global parameter file
 </p>
@@ -942,9 +1044,9 @@ See next how these definitions are used.
 </div>
 </div>
 
-<div id="outline-container-orgfcb73db" class="outline-5">
-<h5 id="orgfcb73db"><span class="section-number-5">2.2.6.4</span> Default structures</h5>
-<div class="outline-text-5" id="text-2-2-6-4">
+<div id="outline-container-orgc2d11bf" class="outline-5">
+<h5 id="default-data-structures-in-jsonnet"><a id="orgc2d11bf"></a><a id="user-content-default-data-structures-in-jsonnet" class="anchor" href="#default-data-structures-in-jsonnet" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">2.2.6.4</span> Default structures</h5>
+<div class="outline-text-5" id="text-default-data-structures-in-jsonnet">
 <p>
 One useful way to factor a configuration is to have one Jsonnet file which holds default values and one or more that customize on top of those defaults.  For example one the <a href="https://github.com/WireCell/wire-cell-cfg/tree/master/uboone">MicroBooNE configuration</a> provided by <code>wire-cell-cfg</code> defines a default configuration for the <code>FourDee</code> WCT app.  
 </p>
@@ -1005,9 +1107,9 @@ This says to override <code>uboone.fourdee</code> with what&rsquo;s given.  The 
 </div>
 </div>
 
-<div id="outline-container-orgcbdfd99" class="outline-5">
-<h5 id="orgcbdfd99"><span class="section-number-5">2.2.6.5</span> Commas</h5>
-<div class="outline-text-5" id="text-2-2-6-5">
+<div id="outline-container-org167b225" class="outline-5">
+<h5 id="jsonnet-is-comma-friendly"><a id="org167b225"></a><a id="user-content-jsonnet-is-comma-friendly" class="anchor" href="#jsonnet-is-comma-friendly" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">2.2.6.5</span> Commas</h5>
+<div class="outline-text-5" id="text-jsonnet-is-comma-friendly">
 <p>
 One of the most irritating aspect of crafting JSON files by hand is that any array or object must <b>not</b> have an internal trailing comma.   Jsonnet allows this otherwise extraneous comma, as shown in the example above.  For this reason alone and if no other features are used, writing Jsonnet instead of raw JSON is worth the added dependency!
 </p>
@@ -1015,18 +1117,18 @@ One of the most irritating aspect of crafting JSON files by hand is that any arr
 </div>
 </div>
 
-<div id="outline-container-orgc1f8629" class="outline-4">
-<h4 id="orgc1f8629"><span class="section-number-4">2.2.7</span> Specific detector support</h4>
-<div class="outline-text-4" id="text-2-2-7">
+<div id="outline-container-orgd4c4f3d" class="outline-4">
+<h4 id="configuration-for-specific-detectors"><a id="orgd4c4f3d"></a><a id="user-content-configuration-for-specific-detectors" class="anchor" href="#configuration-for-specific-detectors" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">2.2.7</span> Specific detector support</h4>
+<div class="outline-text-4" id="text-configuration-for-specific-detectors">
 <p>
 The <code>wire-cell-cfg</code> package also provides support for popular LArTPC detectors.  You can find these files under a directory named for the experiment  (such as <a href="https://github.com/WireCell/wire-cell-cfg/tree/master/uboone">that for MicroBooNE</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-org505753b" class="outline-4">
-<h4 id="org505753b"><span class="section-number-4">2.2.8</span> Using Jsonnet</h4>
-<div class="outline-text-4" id="text-2-2-8">
+<div id="outline-container-org0723b29" class="outline-4">
+<h4 id="jsonnet-command-line"><a id="org0723b29"></a><a id="user-content-jsonnet-command-line" class="anchor" href="#jsonnet-command-line" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">2.2.8</span> Using Jsonnet</h4>
+<div class="outline-text-4" id="text-jsonnet-command-line">
 <p>
 Jsonnet&rsquo;s command line program <code>jsonnet</code> is fast and gives good error messages.  It&rsquo;s often easiest to develop a Jsonnet configuration with periodic checking.  Assuming the current working directory is the top of the WCT source then running the following: 
 </p>
@@ -1051,11 +1153,11 @@ This relies on the <code>WIRECELL_PATH</code> to include the <code>cfg/</code> d
 </div>
 
 
-<div id="outline-container-org5a448e6" class="outline-3">
-<h3 id="org5a448e6"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> Configuration from a developer point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="devel">devel</span></span></h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-org893c26a" class="outline-3">
+<h3 id="developer-configuration"><a id="org893c26a"></a><a id="user-content-developer-configuration" class="anchor" href="#developer-configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> Configuration from a developer point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="devel">devel</span></span></h3>
+<div class="outline-text-3" id="text-developer-configuration">
 <p>
-For the C++ part of developing WCT components or applications the developer should refer to the <a href="./internals.html#orgb52c057">configuration section in the manual on WCT Internals</a>.
+For the C++ part of developing WCT components or applications the developer should refer to the <a href="./internals.html#org071e000">configuration section in the manual on WCT Internals</a> and the <a href="#component-configuration">section on configuration implementation</a>.
 </p>
 
 <p>
@@ -1069,34 +1171,183 @@ In particular, if the developer writes multiple components, an application compo
 </div>
 </div>
 
-<div id="outline-container-org1908890" class="outline-2">
-<h2 id="org1908890"><span class="section-number-2">3</span> Howtos</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org24eb2a1" class="outline-2">
+<h2 id="howtos"><a id="org24eb2a1"></a><a id="user-content-howtos" class="anchor" href="#howtos" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-2">3</span> Howtos</h2>
+<div class="outline-text-2" id="text-howtos">
 <p>
 This section of the manual gives brief guidance on how to do various things with WCT.
 </p>
 </div>
 
-<div id="outline-container-orgd1fce20" class="outline-3">
-<h3 id="orgd1fce20"><span class="section-number-3">3.1</span> Run <code>wire-cell</code> command line program</h3>
-</div>
-
-<div id="outline-container-orgb63c205" class="outline-3">
-<h3 id="orgb63c205"><span class="section-number-3">3.2</span> Add a new component class</h3>
+<div id="outline-container-org80a574b" class="outline-3">
+<h3 id="run-wire-cell-cli"><a id="org80a574b"></a><a id="user-content-run-wire-cell-cli" class="anchor" href="#run-wire-cell-cli" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">3.1</span> Run <code>wire-cell</code> command line program</h3>
+<div class="outline-text-3" id="text-run-wire-cell-cli">
 </div>
 </div>
 
-<div id="outline-container-org2081b40" class="outline-2">
-<h2 id="org2081b40"><span class="section-number-2">4</span> Internals</h2>
-<div class="outline-text-2" id="text-4">
+
+<div id="outline-container-org66531c0" class="outline-3">
+<h3 id="add-a-component"><a id="org66531c0"></a><a id="user-content-add-a-component" class="anchor" href="#add-a-component" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">3.2</span> Add a new component class</h3>
+<div class="outline-text-3" id="text-add-a-component">
 <p>
-This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities.  It is intended for developers to read carefully, understand and follow.  It may be of interest to users as well.   It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section <a href="#org736f0bb">5</a>.
+This describes the steps to add a Wire Cell Toolkit <i>component</i>.  As an example, it walks through the creation of a component which will produce noise waveforms.  The sections below are organized more or less in the order in which a developer advances from initial concept to design and implementation.
 </p>
 </div>
 
-<div id="outline-container-org6d10345" class="outline-3">
-<h3 id="org6d10345"><span class="section-number-3">4.1</span> Toolkit packages</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgf7ba6f9" class="outline-4">
+<h4 id="component-concept"><a id="orgf7ba6f9"></a><a id="user-content-component-concept" class="anchor" href="#component-concept" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">3.2.1</span> Conceptual design</h4>
+<div class="outline-text-4" id="text-component-concept">
+<p>
+Noise waveforms will be generated based on a voltage amplitude spectrum represented in the frequency domain.  This amplitude will be sampled and abide by some fluctuation distribution and may have some parameters that allow for parametric scaling or other transformation so that the user may explore the results.  For simplicity, the time domain noise waveforms will be produced given a fixed sample period and readout time which will also be configurable.  It is assumed that the user arranges that these parameters, if needed elsewhere, are set consistently.  (See Sec. <a href="#configuration">2</a>).
+</p>
+
+<p>
+Producing noise waveforms as described here require no other input data and in particular, none that would change over time or be a function of some &ldquo;event&rdquo;   So, the component will follow the pattern of being a <i>source</i> of data.  That is, waveforms will be produced on demand and in a manner which they are independent.  Below will show how this pattern is realized.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeb23d92" class="outline-4">
+<h4 id="component-dependencies"><a id="orgeb23d92"></a><a id="user-content-component-dependencies" class="anchor" href="#component-dependencies" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">3.2.2</span> Estimating dependencies</h4>
+<div class="outline-text-4" id="text-component-dependencies">
+<p>
+Before starting coding up an implementation it is prudent to understand what software dependencies are required to develop it.  Some trade-offs need to be understood.   Relying on &ldquo;external&rdquo; 3rd party packages to perform the &ldquo;heavy lifting&rdquo; of the implementation can make that implementation easier to develop.  However, adding dependencies increase the difficulty in installing and using the result on a wide variety of operating systems and system architectures.
+</p>
+
+<p>
+Investigating dependencies before implementation also forces the developer to make an optimal decision that balances performance, support, documentation, ease of development, portability and a host of other qualifiers.  Relying on whatever software happens to be familiar and available forgoes making this optimal choice.
+</p>
+
+<p>
+One touchstone that has been made by the WCT developers is that the &ldquo;core&rdquo; packages of WCT shall not depend on ROOT.  Depending on ROOT brings in many additional dependencies and this can limit, for example, usage on high-core architectures with limited RAM.  ROOT is very useful, and indeed parts of WCT depend on it (test, I/O packages) but for a package to be considered &ldquo;core&rdquo; its library must not require ROOT.  If a component requires ROOT or other package not accepted by the &ldquo;core&rdquo; packages then the component must be placed in an optional package (see Section <a href="#component-package">3.2.3</a>).
+</p>
+
+<p>
+For the noise source, the main functionality required is drawing random variables from an arbitrary distribution (the noise spectrum) and drawing from some conventional distributions (for the fluctuation).  The spectrum can be provided through WCT configuration services and drawing from it is a simple algorithm based on forming the cumulative distribution that can be directly integrated.  Pseudo random number generation can be done directly in C++ or <a href="https://github.com/WireCell/wire-cell-iface/issues/2">when this ticket is closed</a> the WCT pRNG interface.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org75e0e99" class="outline-4">
+<h4 id="component-package"><a id="org75e0e99"></a><a id="user-content-component-package" class="anchor" href="#component-package" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">3.2.3</span> Selecting a package</h4>
+<div class="outline-text-4" id="text-component-package">
+<p>
+While the implementer is free to develop their component in any manner they wish, if the component is to be distributed as part of the WCT then its code needs to be in some WCT package.   For here, the main thing to note is that the <code>util</code> package is the lowest in the dependency tree, on top of it is <code>iface</code> (more on interfaces below) and above that are all the <i>implementation</i> packages.  The developer must choose an existing package or elect to make a new one depending on two main criteria: what dependencies are required and what implementation category does the component satisfy.
+</p>
+
+<p>
+For the noise waveform source, given the relative lack of dependencies and the fact that it provides a simulation, the <a href="https://github.com/WireCell/wire-cell-gen">wire-cell-gen</a> package provides a suitable home.  If no suitable package exists the developer can see Section <a href="#packages">5</a> for details on WCT packages. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8cf9bd4" class="outline-4">
+<h4 id="component-interfaces"><a id="org8cf9bd4"></a><a id="user-content-component-interfaces" class="anchor" href="#component-interfaces" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">3.2.4</span> Selecting interfaces</h4>
+<div class="outline-text-4" id="text-component-interfaces">
+<p>
+All major functionality, and indeed the defining characteristic of a WCT <i>component</i> is that it implements one or more WCT <i>interfaces</i> which are C++ abstract base classes.  Each interface defines some number of methods that the implementation must provide.  
+</p>
+
+<p>
+More information is in the Section <a href="#interface-internals">4.3</a> but for here, what is needed is that there are several categories of interfaces.  First, any set of related methods can be grouped into an otherwise anonymous interface.  One special interface is <code>IConfigurable</code> which is used if the implementation wishes to receive user-provided configuration information.  Another category contains the interfaces inheriting from <code>INode</code>.  An implementation inherits from one of these if it will participate in the <a href="#data-flow-programming">6</a> paradigm as implemented by WCT.  Or, more generally, if the component is expected to share or pass &ldquo;event&rdquo; data (but really any data) with other component.
+</p>
+
+<p>
+The noise waveform source requires configuration and will be an <code>IFrameSource</code> as it will produce frames of &ldquo;traces&rdquo; (waveform segments).   As development progresses, it may come to light that portions of the implementation are general and are factored into separate classes which themselves may be accessed via an Interface.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb9ab8dc" class="outline-4">
+<h4 id="component-header"><a id="orgb9ab8dc"></a><a id="user-content-component-header" class="anchor" href="#component-header" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">3.2.5</span> Component header</h4>
+<div class="outline-text-4" id="text-component-header">
+<p>
+Developing the noise source component begins with a header file which ties together the interfaces through inheritance, declares the interface methods to be implemented and any private methods and data the implementation may need.    Following the layout conventions this header is placed in <a href="https://github.com/WireCell/wire-cell-gen/blob/master/inc/WireCellGen/NoiseSource.h">gen/inc/WireCellGen/NoiseSource.h</a>.  Some features to note:
+</p>
+
+<ul class="org-ul">
+<li>use <code>#ifndef/#define/#endif</code> include protection</li>
+<li>place inside <code>WireCell</code> namespace and a subnamespace that names the implementation (<code>Gen</code>) in this case</li>
+<li>add methods for each interface.  Due to the templating used in the node interfaces it&rsquo;s not always obvious which methods must be implemented unless one follows their inheritence tree.  However, most high level interfaces based on <code>INode</code> should provide a comment in their header file giving what to implement.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf8d88dc" class="outline-4">
+<h4 id="component-implementation"><a id="orgf8d88dc"></a><a id="user-content-component-implementation" class="anchor" href="#component-implementation" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">3.2.6</span> Component implementation</h4>
+<div class="outline-text-4" id="text-component-implementation">
+<p>
+The implementation of a component, 
+following the layout conventions this header, is placed in <a href="https://github.com/WireCell/wire-cell-gen/blob/master/inc/WireCellGen/NoiseSource.h">gen/src/NoiseSource.cxx</a>.  
+</p>
+</div>
+
+<div id="outline-container-org8574c99" class="outline-5">
+<h5 id="component-boilerplate"><a id="org8574c99"></a><a id="user-content-component-boilerplate" class="anchor" href="#component-boilerplate" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">3.2.6.1</span> Component boilerplate</h5>
+<div class="outline-text-5" id="text-component-boilerplate">
+<p>
+A few lines of boilerplate are needed so that the component can be dynamically resolved by WCT.  Toward the top of the file, and in particular before any <code>using namespace</code> statements the following is needed.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"WireCellUtil/NamedFactory.h"</span>
+
+WIRECELL_FACTORY(NoiseSource, <span style="font-weight: bold; text-decoration: underline;">WireCell</span>::<span style="font-weight: bold; text-decoration: underline;">Gen</span>::NoiseSource, <span style="font-weight: bold; text-decoration: underline;">WireCell</span>::IFrameSource, <span style="font-weight: bold; text-decoration: underline;">WireCell</span>::IConfigurable);
+</pre>
+</div>
+
+
+<p>
+This is a CPP macro with the following arguments:
+</p>
+
+<ul class="org-ul">
+<li>The &ldquo;type name&rdquo; of the component (without quotes).  This is usually the C++ class name with any namespaces removed but it may differ.  It should be unique across all components</li>
+<li>The C++ type of the component</li>
+<li>The remaining arguments are variable in length and enumerate all interfaces through which this component may be accessed.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5598b67" class="outline-5">
+<h5 id="component-configuration"><a id="org5598b67"></a><a id="user-content-component-configuration" class="anchor" href="#component-configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">3.2.6.2</span> Configuration implementation</h5>
+<div class="outline-text-5" id="text-component-configuration">
+<p>
+A WCT <i>configurable component</i> must provide two methods.  The first returns a default configuration object via the <code>default_configuration()</code> method.  This object should represent as much of a working configuration as is possible to specify using hard-coded or otherwise default knowledge.  If some parameter can not meaningfully be given a default value it should nonetheless be included with some default, possibly bogus value, eg <code>null</code>, <code>0</code> or empty string or list.  This can then be dumped via the <code>wire-cell</code> command line program as JSON to give the user guidance on how to provide correct input.
+</p>
+
+<p>
+The second method <code>configure()</code> accepts a configuration object from WCT and applies it to any internal state.  The component should expect this configuration object to follow a data schema determined by the component itself.  The developer of the component should document this schema so that users know what to provide.  When accessing the configuration object the code should, where possible, allow for missing parameters by substituting defaults.  The code should also be written to allow and ignore any unknown parts of the data structure to the extent that the intended data schema is not otherwise violated.
+</p>
+
+<p>
+The component may also provide a constructor or other method which takes configuration in any form.  This can be useful to facilitate developing unit tests for the component to allow configuration to be directly set.  A common pattern is to let configuration information &ldquo;flow&rdquo; starting from the constructor, into private data members of the component, and then out through <code>default_configuration()</code> and finally used to provide default values when accessing the user configuration object inside <code>configure()</code>.  This is illustrated in this <code>NoiseSource</code> example. 
+</p>
+
+<div class="warning">
+<p>
+A component must have a constructor that takes no arguments.  If a constructor which takes arguments is added its arguments must either all have default values or a second argument-free constructor must be also included.
+</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org9464126" class="outline-2">
+<h2 id="internals"><a id="org9464126"></a><a id="user-content-internals" class="anchor" href="#internals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-2">4</span> Internals</h2>
+<div class="outline-text-2" id="text-internals">
+<p>
+This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities.  It is intended for developers to read carefully, understand and follow.  It may be of interest to users as well.   It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section <a href="#packages">5</a>.
+</p>
+</div>
+
+<div id="outline-container-org46838ee" class="outline-3">
+<h3 id="toolkit-packages"><a id="org46838ee"></a><a id="user-content-toolkit-packages" class="anchor" href="#toolkit-packages" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">4.1</span> Toolkit packages</h3>
+<div class="outline-text-3" id="text-toolkit-packages">
 <p>
 The WCT is composed of a number of <i>packages</i>.  Each package has an associated with a Git source repository.
 Most packages produce a shared library, which may also be a WCT plugin library, C++ header files, some number of main or test applications.   Others include a single package holding all Python code in various modules, a package providing support for developing WCT configuration files and the documentation package holding this document.
@@ -1104,9 +1355,9 @@ One special type of package is a <i>build</i> package described more in section 
 </p>
 </div>
 
-<div id="outline-container-orgd756750" class="outline-4">
-<h4 id="orgd756750"><span class="section-number-4">4.1.1</span> Names</h4>
-<div class="outline-text-4" id="text-4-1-1">
+<div id="outline-container-orgd52f39b" class="outline-4">
+<h4 id="package-names"><a id="orgd52f39b"></a><a id="user-content-package-names" class="anchor" href="#package-names" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.1.1</span> Names</h4>
+<div class="outline-text-4" id="text-package-names">
 <p>
 Package repositories are named like <code>wire-cell-&lt;name&gt;</code> where <code>&lt;name&gt;</code> is some short identifier giving indication of the main scope of the package.  In the documentation the <code>wire-cell-</code> prefix is often dropped and only this short name is used.  
 </p>
@@ -1117,11 +1368,11 @@ If a package produces a shared library it should be named in <code>CamelCase</co
 </div>
 </div>
 
-<div id="outline-container-org426a20c" class="outline-4">
-<h4 id="org426a20c"><span class="section-number-4">4.1.2</span> Dependencies</h4>
-<div class="outline-text-4" id="text-4-1-2">
+<div id="outline-container-org86300ed" class="outline-4">
+<h4 id="package-dependencies"><a id="org86300ed"></a><a id="user-content-package-dependencies" class="anchor" href="#package-dependencies" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.1.2</span> Dependencies</h4>
+<div class="outline-text-4" id="text-package-dependencies">
 <p>
-Some of the C++ packages are designated as <i>core</i> packages.  These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, <code>gen</code>, <code>sigproc</code>).   These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections <a href="#orgc2a9550">4.1.3</a> and <a href="#orgb4d3ac4">4.1.4</a>).
+Some of the C++ packages are designated as <i>core</i> packages.  These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, <code>gen</code>, <code>sigproc</code>).   These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections <a href="#package-structure">4.1.3</a> and <a href="#build-package">4.1.4</a>).
 </p>
 
 <p>
@@ -1142,9 +1393,9 @@ Finally, there may be third-party implementation packages.  They are free to mim
 </div>
 </div>
 
-<div id="outline-container-orgc2a9550" class="outline-4">
-<h4 id="orgc2a9550"><span class="section-number-4">4.1.3</span> Package structure</h4>
-<div class="outline-text-4" id="text-4-1-3">
+<div id="outline-container-org08d00ed" class="outline-4">
+<h4 id="package-structure"><a id="org08d00ed"></a><a id="user-content-package-structure" class="anchor" href="#package-structure" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.1.3</span> Package structure</h4>
+<div class="outline-text-4" id="text-package-structure">
 <p>
 The WCT package layout and file extensions must follow some conventions in order to greatly simplify the build system.  In the description below, <code>WireCellName</code> is as described above.
 </p>
@@ -1174,11 +1425,11 @@ Fixme: make a script that generates a dot file and show the graph.
 </div>
 </div>
 
-<div id="outline-container-orgb4d3ac4" class="outline-4">
-<h4 id="orgb4d3ac4"><span class="section-number-4">4.1.4</span> Build package</h4>
-<div class="outline-text-4" id="text-4-1-4">
+<div id="outline-container-org0319391" class="outline-4">
+<h4 id="build-package"><a id="org0319391"></a><a id="user-content-build-package" class="anchor" href="#build-package" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.1.4</span> Build package</h4>
+<div class="outline-text-4" id="text-build-package">
 <p>
-To actually build WCT see the section on toolkit installation (section <a href="#org9ecf1bc">1</a>).  The build system is based on <a href="https::waf.io">Waf</a> and uses the <code>wcb</code> command and a <code>wscript</code> file provided by the top level <i>build package</i>.  More details on the build system are given in section <a href="#orgf552394">5.4</a>)
+To actually build WCT see the section on toolkit installation (section <a href="#installation">1</a>).  The build system is based on <a href="https::waf.io">Waf</a> and uses the <code>wcb</code> command and a <code>wscript</code> file provided by the top level <i>build package</i>.  More details on the build system are given in section <a href="#pkg-waftools">Waf tools</a>.
 </p>
 
 <p>
@@ -1188,9 +1439,9 @@ Besides holding the main build instructions this package aggregates all the othe
 </div>
 
 
-<div id="outline-container-org01e93fc" class="outline-4">
-<h4 id="org01e93fc"><span class="section-number-4">4.1.5</span> Adding a new code package</h4>
-<div class="outline-text-4" id="text-4-1-5">
+<div id="outline-container-orgd98163a" class="outline-4">
+<h4 id="add-new-package-to-build"><a id="orgd98163a"></a><a id="user-content-add-new-package-to-build" class="anchor" href="#add-new-package-to-build" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.1.5</span> Adding a new code package</h4>
+<div class="outline-text-4" id="text-add-new-package-to-build">
 <p>
 To add a new code package to a build package from scratch, select a <code>&lt;name&gt;</code> following guidance above and do something like:
 </p>
@@ -1203,7 +1454,7 @@ $ git add wscript_build
 $ git commit -a -m "Start code package &lt;name&gt;"
 </pre>
 <p>
-Replace <code>&lt;name&gt;</code> with your package name.  You can create and commit actual code at this time as well following the layout in <a href="#orgc2a9550">4.1.3</a>.
+Replace <code>&lt;name&gt;</code> with your package name.  You can create and commit actual code at this time as well following the layout in <a href="#package-structure">4.1.3</a>.
 </p>
 
 <p>
@@ -1233,12 +1484,15 @@ In order to be picked up by the build the new package short name must be added t
 
 
 
-<div id="outline-container-org25ecb95" class="outline-3">
-<h3 id="org25ecb95"><span class="section-number-3">4.2</span> Coding conventions</h3>
-<div class="outline-text-3" id="text-4-2">
-</div><div id="outline-container-orgcaad58c" class="outline-4">
-<h4 id="orgcaad58c"><span class="section-number-4">4.2.1</span> C++ code formatting</h4>
-<div class="outline-text-4" id="text-4-2-1">
+<div id="outline-container-orga5699b8" class="outline-3">
+<h3 id="coding-conventions"><a id="orga5699b8"></a><a id="user-content-coding-conventions" class="anchor" href="#coding-conventions" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">4.2</span> Coding conventions</h3>
+<div class="outline-text-3" id="text-coding-conventions">
+</div>
+
+
+<div id="outline-container-org39bb55d" class="outline-4">
+<h4 id="c++-code-formatting"><a id="org39bb55d"></a><a id="user-content-c++-code-formatting" class="anchor" href="#c++-code-formatting" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.2.1</span> C++ code formatting</h4>
+<div class="outline-text-4" id="text-c++-code-formatting">
 <ul class="org-ul">
 <li>Base indentation <i>should</i> be four spaces.</li>
 
@@ -1266,9 +1520,9 @@ In order to be picked up by the build the new package short name must be added t
 </div>
 
 
-<div id="outline-container-org82711dc" class="outline-4">
-<h4 id="org82711dc"><span class="section-number-4">4.2.2</span> C++ namespaces</h4>
-<div class="outline-text-4" id="text-4-2-2">
+<div id="outline-container-orgff077b1" class="outline-4">
+<h4 id="c++-namespaces"><a id="orgff077b1"></a><a id="user-content-c++-namespaces" class="anchor" href="#c++-namespaces" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.2.2</span> C++ namespaces</h4>
+<div class="outline-text-4" id="text-c++-namespaces">
 <ul class="org-ul">
 <li>All C++ code part of WCT proper and which may be accessed by other packages (eg, exported via &ldquo;public headers&rdquo;) <i>must</i> be under the <code>WireCell::</code> namespace.</li>
 
@@ -1283,9 +1537,9 @@ In order to be picked up by the build the new package short name must be added t
 </div>
 
 
-<div id="outline-container-orgdfb14b0" class="outline-3">
-<h3 id="orgdfb14b0"><span class="section-number-3">4.3</span> Interfaces</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-org375d22e" class="outline-3">
+<h3 id="interface-internals"><a id="org375d22e"></a><a id="user-content-interface-internals" class="anchor" href="#interface-internals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">4.3</span> Interfaces</h3>
+<div class="outline-text-3" id="text-interface-internals">
 <p>
 A central design aspect of the WCT is that all &ldquo;important&rdquo; functionality which may have more than one implementation must be accessed via an <i>pure abstract interface class</i>.  All such interface classes are held in the <a href="https://github.com/wirecell/wire-cell-iface">iface</a> package.  Interface classes should present a very limited number of purely abstract methods that express a single, cohesive concept.  Implementations typically inherent from more than one interface.  If two concepts are close but not cohesive they are best put into two interface classes.
 Besides defining the method interface, Interface classes may define types.  They may also be templated.
@@ -1305,9 +1559,9 @@ Another category of interfaces are those which express the &ldquo;node&rdquo; co
 </div>
 </div>
 
-<div id="outline-container-org19ea3c1" class="outline-3">
-<h3 id="org19ea3c1"><span class="section-number-3">4.4</span> Components</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-orgd9589fc" class="outline-3">
+<h3 id="component-internals"><a id="orgd9589fc"></a><a id="user-content-component-internals" class="anchor" href="#component-internals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">4.4</span> Components</h3>
+<div class="outline-text-3" id="text-component-internals">
 <p>
 Components are implementations an interface which itself inherits from the <code>WireCell::IComponponent</code> interface class (this interface class is in <code>util</code> as a special case due to dependency issues.  fixme: needs to be solved with a general package depending on both <code>iface and =util</code>).  This inheritance follows <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">CRTP</a>.
 </p>
@@ -1354,9 +1608,9 @@ Not typically required by most code but there exists also a function <code>looku
 </div>
 
 
-<div id="outline-container-orge3c8424" class="outline-3">
-<h3 id="orge3c8424"><span class="section-number-3">4.5</span> Configuration</h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-org11e4aaf" class="outline-3">
+<h3 id="configuration-internals"><a id="org11e4aaf"></a><a id="user-content-configuration-internals" class="anchor" href="#configuration-internals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">4.5</span> Configuration</h3>
+<div class="outline-text-3" id="text-configuration-internals">
 <p>
 One somewhat special component interface is <code>IConfigurable</code>.  A class inheriting from this interface is considered a <i>configurable component</i> such as <code>TrackDepos</code> in the above example.  It is <i>required</i> for any main application using the WCT toolkit to adhere to the Wire Cell Toolkit Configuration Protocol.  This is a contract by which the main application promises to do the following:
 </p>
@@ -1399,132 +1653,243 @@ Developers of new configurables should keep this protocol in mind and should ref
 
 
 
-<div id="outline-container-org0593c90" class="outline-3">
-<h3 id="org0593c90"><span class="section-number-3">4.6</span> Execution Models</h3>
-<div class="outline-text-3" id="text-4-6">
-</div><div id="outline-container-orge734da8" class="outline-4">
-<h4 id="orge734da8"><span class="section-number-4">4.6.1</span> Ad-hoc</h4>
-<div class="outline-text-4" id="text-4-6-1">
+<div id="outline-container-org6374681" class="outline-3">
+<h3 id="execution-models"><a id="org6374681"></a><a id="user-content-execution-models" class="anchor" href="#execution-models" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">4.6</span> Execution Models</h3>
+<div class="outline-text-3" id="text-execution-models">
+</div>
+
+<div id="outline-container-org69d3939" class="outline-4">
+<h4 id="ad-hoc-execution"><a id="org69d3939"></a><a id="user-content-ad-hoc-execution" class="anchor" href="#ad-hoc-execution" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.6.1</span> Ad-hoc</h4>
+<div class="outline-text-4" id="text-ad-hoc-execution">
 <p>
 Direct calling of utility functions and concrete objects.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6e12e3f" class="outline-4">
-<h4 id="org6e12e3f"><span class="section-number-4">4.6.2</span> Component</h4>
-<div class="outline-text-4" id="text-4-6-2">
+<div id="outline-container-orge0b2013" class="outline-4">
+<h4 id="execution-concrete-components"><a id="orge0b2013"></a><a id="user-content-execution-concrete-components" class="anchor" href="#execution-concrete-components" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.6.2</span> Concrete</h4>
+<div class="outline-text-4" id="text-execution-concrete-components">
 <p>
 Concrete components.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgad661b7" class="outline-4">
-<h4 id="orgad661b7"><span class="section-number-4">4.6.3</span> Interface</h4>
-<div class="outline-text-4" id="text-4-6-3">
+<div id="outline-container-org3578a39" class="outline-4">
+<h4 id="execution-via-interfaces"><a id="org3578a39"></a><a id="user-content-execution-via-interfaces" class="anchor" href="#execution-via-interfaces" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.6.3</span> Interface</h4>
+<div class="outline-text-4" id="text-execution-via-interfaces">
 <p>
 Using NamedFactory.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2aea43d" class="outline-4">
-<h4 id="org2aea43d"><span class="section-number-4">4.6.4</span> Data flow programming</h4>
-<div class="outline-text-4" id="text-4-6-4">
+<div id="outline-container-org2f57591" class="outline-4">
+<h4 id="dfp-execution"><a id="org2f57591"></a><a id="user-content-dfp-execution" class="anchor" href="#dfp-execution" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">4.6.4</span> Data flow programming execution</h4>
+<div class="outline-text-4" id="text-dfp-execution">
 <p>
-Using abstract DFP
+Using abstract DFP.  A whole section on <a href="#data-flow-programming">6</a> is also available.
 </p>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org736f0bb" class="outline-2">
-<h2 id="org736f0bb"><span class="section-number-2">5</span> Packages</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-orgc15842c" class="outline-3">
-<h3 id="orgc15842c"><span class="section-number-3">5.1</span> Utilities</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgc569251" class="outline-2">
+<h2 id="packages"><a id="orgc569251"></a><a id="user-content-packages" class="anchor" href="#packages" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-2">5</span> Packages</h2>
+<div class="outline-text-2" id="text-packages">
+</div>
+
+
+<div id="outline-container-org9dbca06" class="outline-3">
+<h3 id="pkg-python"><a id="org9dbca06"></a><a id="user-content-pkg-python" class="anchor" href="#pkg-python" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">5.1</span> <code>wire-cell-python</code></h3>
+<div class="outline-text-3" id="text-pkg-python">
+<p>
+Wire Cell Toolkit provides some support for Python and requires it for some preprocessing, plotting and validation.  This support is held in the <a href="https://github.com/wirecell/wire-cell-python">wire-cell-python</a> package
+</p>
+</div>
+
+<div id="outline-container-org6ccb4f3" class="outline-4">
+<h4 id="install-wire-cell-python"><a id="org6ccb4f3"></a><a id="user-content-install-wire-cell-python" class="anchor" href="#install-wire-cell-python" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.1.1</span> Installing <code>wire-cell-python</code></h4>
+<div class="outline-text-4" id="text-install-wire-cell-python">
+<p>
+It&rsquo;s just a &ldquo;normal&rdquo; Python package.  Use your favorite method, such as
+</p>
+
+<pre class="example">
+$ virtualenv --system-site-packages venv
+$ source venv/bin/activate
+$ git clone https://github.com/WireCell/wire-cell-python.git
+$ cd wire-cell-python/
+$ python setup.py develop  
+$ wirecell-sigproc --help
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org76a307f" class="outline-4">
+<h4 id="python-programs"><a id="org76a307f"></a><a id="user-content-python-programs" class="anchor" href="#python-programs" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.1.2</span> Python command line programs</h4>
+<div class="outline-text-4" id="text-python-programs">
+<p>
+A number of python command line programs are provided.  They are typically named like:
+</p>
+
+<pre class="example">
+wirecell-&lt;name&gt;
+</pre>
+<p>
+Where <code>&lt;name&gt;</code> is one a package short name (eg, <code>util</code>, <code>sigproc</code>, <code>gen</code>).
+</p>
+
+<p>
+All use the same command line interface (CLI) module (<a href="http://click.pocoo.org/">Click</a>) so have similar usage.  In particular, run the program without any arguments to get a help screen.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orge3c0eae" class="outline-4">
+<h4 id="python-modules"><a id="orge3c0eae"></a><a id="user-content-python-modules" class="anchor" href="#python-modules" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.1.3</span> <code>wirecell</code> Python modules</h4>
+<div class="outline-text-4" id="text-python-modules">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">from</span> wirecell <span style="font-weight: bold;">import</span> units
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org45e727e" class="outline-5">
+<h5 id="org45e727e"><a id="user-content-org45e727e" class="anchor" href="#org45e727e" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">5.1.3.1</span> <code>sigproc</code></h5>
+<div class="outline-text-5" id="text-5-1-3-1">
+</div><ol class="org-ol"><li><a id="org1e2adc2"></a><code>garfield</code><br /><div class="outline-text-6" id="text-5-1-3-1-1">
+<p>
+See the section <a href="#garfield-2d-support">7.1</a>.
+</p>
+</div></li></ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org833a138" class="outline-3">
+<h3 id="pkg-util"><a id="org833a138"></a><a id="user-content-pkg-util" class="anchor" href="#pkg-util" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">5.2</span> <code>wire-cell-util</code></h3>
+<div class="outline-text-3" id="text-pkg-util">
 <p>
 Introduction.
 </p>
 </div>
 
-<div id="outline-container-org572b8b2" class="outline-4">
-<h4 id="org572b8b2"><span class="section-number-4">5.1.1</span> Units</h4>
-<div class="outline-text-4" id="text-5-1-1">
+<div id="outline-container-org0af5cdd" class="outline-4">
+<h4 id="util-units"><a id="org0af5cdd"></a><a id="user-content-util-units" class="anchor" href="#util-units" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.2.1</span> Units</h4>
+<div class="outline-text-4" id="text-util-units">
 <p>
 Describe units.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org27b65c5" class="outline-4">
-<h4 id="org27b65c5"><span class="section-number-4">5.1.2</span> Persistence</h4>
-<div class="outline-text-4" id="text-5-1-2">
+<div id="outline-container-orge08ecda" class="outline-4">
+<h4 id="util-persistence"><a id="orge08ecda"></a><a id="user-content-util-persistence" class="anchor" href="#util-persistence" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.2.2</span> Persistence</h4>
+<div class="outline-text-4" id="text-util-persistence">
 <p>
 Describe support for persistent files including compression and location.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf2254b0" class="outline-4">
-<h4 id="orgf2254b0"><span class="section-number-4">5.1.3</span> Etc</h4>
-<div class="outline-text-4" id="text-5-1-3">
+<div id="outline-container-orgf37bec3" class="outline-4">
+<h4 id="orgf37bec3"><a id="user-content-orgf37bec3" class="anchor" href="#orgf37bec3" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.2.3</span> Etc</h4>
+<div class="outline-text-4" id="text-5-2-3">
 <p>
 &#x2026;.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5411cb7" class="outline-3">
-<h3 id="org5411cb7"><span class="section-number-3">5.2</span> Interfaces</h3>
-<div class="outline-text-3" id="text-5-2">
+
+<div id="outline-container-orgf53284a" class="outline-3">
+<h3 id="pkg-iface"><a id="orgf53284a"></a><a id="user-content-pkg-iface" class="anchor" href="#pkg-iface" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">5.3</span> <code>wire-cell-iface</code></h3>
+<div class="outline-text-3" id="text-pkg-iface">
 <p>
 Brief overview but it&rsquo;s also in <a href="./internals.html">./internals.html</a> so don&rsquo; t over do it.
 </p>
 </div>
 
-<div id="outline-container-org149e6a4" class="outline-4">
-<h4 id="org149e6a4"><span class="section-number-4">5.2.1</span> Data</h4>
+<div id="outline-container-orgc61a2dc" class="outline-4">
+<h4 id="orgc61a2dc"><a id="user-content-orgc61a2dc" class="anchor" href="#orgc61a2dc" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.3.1</span> Data</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<p>
+tbd
+</p>
+</div>
 </div>
 
-<div id="outline-container-orgb28e19e" class="outline-4">
-<h4 id="orgb28e19e"><span class="section-number-4">5.2.2</span> Nodes</h4>
+<div id="outline-container-orgaf804b1" class="outline-4">
+<h4 id="orgaf804b1"><a id="user-content-orgaf804b1" class="anchor" href="#orgaf804b1" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.3.2</span> Nodes</h4>
+<div class="outline-text-4" id="text-5-3-2">
+<p>
+tbd
+</p>
+</div>
 </div>
 
-<div id="outline-container-org062915c" class="outline-4">
-<h4 id="org062915c"><span class="section-number-4">5.2.3</span> Misc</h4>
+<div id="outline-container-orga2833be" class="outline-4">
+<h4 id="orga2833be"><a id="user-content-orga2833be" class="anchor" href="#orga2833be" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.3.3</span> Misc</h4>
+<div class="outline-text-4" id="text-5-3-3">
+<p>
+tbd
+</p>
 </div>
 </div>
-<div id="outline-container-org742907e" class="outline-3">
-<h3 id="org742907e"><span class="section-number-3">5.3</span> Simulation</h3>
-<div class="outline-text-3" id="text-5-3">
+</div>
+
+<div id="outline-container-org485859f" class="outline-3">
+<h3 id="pkg-gen"><a id="org485859f"></a><a id="user-content-pkg-gen" class="anchor" href="#pkg-gen" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">5.4</span> <code>wire-cell-gen</code></h3>
+<div class="outline-text-3" id="text-pkg-gen">
 <p>
 Scope and intro blah blah.
 </p>
 </div>
 
-<div id="outline-container-org5df80f7" class="outline-4">
-<h4 id="org5df80f7"><span class="section-number-4">5.3.1</span> Depositions</h4>
+<div id="outline-container-org7b7d954" class="outline-4">
+<h4 id="org7b7d954"><a id="user-content-org7b7d954" class="anchor" href="#org7b7d954" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.4.1</span> Depositions</h4>
+<div class="outline-text-4" id="text-5-4-1">
+<p>
+TBD.
+</p>
+</div>
 </div>
 
-<div id="outline-container-org6b01fa4" class="outline-4">
-<h4 id="org6b01fa4"><span class="section-number-4">5.3.2</span> Drifting</h4>
+<div id="outline-container-org390f70f" class="outline-4">
+<h4 id="org390f70f"><a id="user-content-org390f70f" class="anchor" href="#org390f70f" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.4.2</span> Drifting</h4>
+<div class="outline-text-4" id="text-5-4-2">
+<p>
+TBD.
+</p>
+</div>
 </div>
 
-<div id="outline-container-org57eeae7" class="outline-4">
-<h4 id="org57eeae7"><span class="section-number-4">5.3.3</span> Response</h4>
+<div id="outline-container-org86e0e77" class="outline-4">
+<h4 id="org86e0e77"><a id="user-content-org86e0e77" class="anchor" href="#org86e0e77" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.4.3</span> Response</h4>
+<div class="outline-text-4" id="text-5-4-3">
+<p>
+TBD.
+</p>
+</div>
 </div>
 
-<div id="outline-container-org8c8beb6" class="outline-4">
-<h4 id="org8c8beb6"><span class="section-number-4">5.3.4</span> Digitizing</h4>
+<div id="outline-container-org44147d7" class="outline-4">
+<h4 id="org44147d7"><a id="user-content-org44147d7" class="anchor" href="#org44147d7" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.4.4</span> Digitizing</h4>
+<div class="outline-text-4" id="text-5-4-4">
+<p>
+TBD.
+</p>
 </div>
 </div>
-<div id="outline-container-orgf552394" class="outline-3">
-<h3 id="orgf552394"><span class="section-number-3">5.4</span> Waf tools</h3>
-<div class="outline-text-3" id="text-5-4">
+</div>
+
+<div id="outline-container-orge071060" class="outline-3">
+<h3 id="pkg-waftools"><a id="orge071060"></a><a id="user-content-pkg-waftools" class="anchor" href="#pkg-waftools" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">5.5</span> <code>wire-cell-waftools</code></h3>
+<div class="outline-text-3" id="text-pkg-waftools">
 <p>
 The WCT build system is based on <a href="https://waf.io/">Waf</a>.  The parts of the build system include:
 </p>
@@ -1536,9 +1901,9 @@ The WCT build system is based on <a href="https://waf.io/">Waf</a>.  The parts o
 </ul>
 </div>
 
-<div id="outline-container-orgcfb8cf2" class="outline-4">
-<h4 id="orgcfb8cf2"><span class="section-number-4">5.4.1</span> Recreating <code>wcb</code></h4>
-<div class="outline-text-4" id="text-5-4-1">
+<div id="outline-container-orga94d5c5" class="outline-4">
+<h4 id="generate-wcb"><a id="orga94d5c5"></a><a id="user-content-generate-wcb" class="anchor" href="#generate-wcb" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.5.1</span> Recreating <code>wcb</code></h4>
+<div class="outline-text-4" id="text-generate-wcb">
 <p>
 The <code>wcb</code> command bundles some optional Waf tools which are not included in the default version of the <code>waf</code> command.  In case new versions of Waf or new tools are needed it can be recreated like this:
 </p>
@@ -1554,9 +1919,9 @@ $ git commit [...]
 </div>
 </div>
 
-<div id="outline-container-orga2364ff" class="outline-4">
-<h4 id="orga2364ff"><span class="section-number-4">5.4.2</span> Included Waf tools</h4>
-<div class="outline-text-4" id="text-5-4-2">
+<div id="outline-container-orgd25f8db" class="outline-4">
+<h4 id="bundle-waf-tools"><a id="orgd25f8db"></a><a id="user-content-bundle-waf-tools" class="anchor" href="#bundle-waf-tools" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">5.5.2</span> Included Waf tools</h4>
+<div class="outline-text-4" id="text-bundle-waf-tools">
 <p>
 A number of Waf tools are provided in the <a href="https://github.com/wirecell/wire-cell-waftools">waftools</a> submodule.  This provides a Python module for each software package which is a required or optional dependency and which is not already covered by Waf itself. New dependencies can be added by using existing modules as examples.  It is the <code>smplpkgs.py</code> module which handles the building of the WCT packages themselves.  The <code>wcb.py</code> module is used as a simple aggregate of all the other modules.  It is this that is loaded by the main <code>wscript</code>.
 </p>
@@ -1571,10 +1936,321 @@ The scripts to make and test releases are also housed in this package.
 </div>
 </div>
 </div>
+
+<div id="outline-container-org1bd089c" class="outline-2">
+<h2 id="data-flow-programming"><a id="org1bd089c"></a><a id="user-content-data-flow-programming" class="anchor" href="#data-flow-programming" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-2">6</span> Data Flow Programming</h2>
+<div class="outline-text-2" id="text-data-flow-programming">
+<p>
+All about data flow programming support in WCT.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc495af1" class="outline-2">
+<h2 id="other-topics"><a id="orgc495af1"></a><a id="user-content-other-topics" class="anchor" href="#other-topics" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-2">7</span> Other Topics</h2>
+<div class="outline-text-2" id="text-other-topics">
+</div>
+
+<div id="outline-container-org19bc788" class="outline-3">
+<h3 id="garfield-2d-support"><a id="org19bc788"></a><a id="user-content-garfield-2d-support" class="anchor" href="#garfield-2d-support" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-3">7.1</span> Garfield 2D Support</h3>
+<div class="outline-text-3" id="text-garfield-2d-support">
+<p>
+Garfield 2D is used to provide field response functions for WCT signal processing and simulation.  This section collects some documentation of this.
+</p>
+</div>
+
+<div id="outline-container-org3203119" class="outline-4">
+<h4 id="garfield-2d-data"><a id="org3203119"></a><a id="user-content-garfield-2d-data" class="anchor" href="#garfield-2d-data" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">7.1.1</span> Garfield 2D data</h4>
+<div class="outline-text-4" id="text-garfield-2d-data">
+<p>
+Garfield 2D is used to calculate various things:
+</p>
+
+<ul class="org-ul">
+<li>the electrostatic or drift field near the wire planes</li>
+<li>electron drift paths through this field starting from an array of points at a (nominal) fixed drift distance and terminating on an electrode</li>
+<li>the Shockley-Ramo <i>weighting field</i> for one <i>central wire</i> of each wire plane</li>
+<li>the instantaneous current in each central wire separately for each drift path and regularly sampled over time.</li>
+</ul>
+
+<p>
+The Garfield 2D user is free to pick the array drift path starting points however, a choice was made for initial field calculations and processing of Garfield 2D output assumes it holds.  In particular:
+</p>
+
+<ul class="org-ul">
+<li>The drift paths all start with a fixed &ldquo;X&rdquo; coordinate value</li>
+<li>There is one drift path exactly aligned with each wire in the transverse direction.</li>
+<li>There is one drift path on one side of each wire starting exactly at the transverse midpoint with its neighbor</li>
+<li>There are four more equal spaced drift paths between these two.</li>
+</ul>
+
+<p>
+These paths are said to start at <i>impact positions</i>.  These impact positions extend across the entire transverse domain, bounded by one half wire pitch below the lowest wire and one half pitch above the highest wire.  The impact positions where Garfield 2D paths start represent half of the total.  The remaining half are defined through symmetry.
+</p>
+
+<div class="warning">
+<p>
+In the initial <code>ub_10</code> data set with 21 wires \(\times\) 6 impact positions \(\times\) 3 planes the counting of impact position numbers and wire numbers are in opposite transverse directions.  This is corrected for in the preprocessing.  If future Garfield 2D runs attempt to &ldquo;fix&rdquo; this it will break the preprocessing.
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc63008a" class="outline-4">
+<h4 id="preprocessing-garfield-data"><a id="orgc63008a"></a><a id="user-content-preprocessing-garfield-data" class="anchor" href="#preprocessing-garfield-data" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">7.1.2</span> Preprocessing of Garfield 2D data</h4>
+<div class="outline-text-4" id="text-preprocessing-garfield-data">
+<p>
+WCT provides a Python module to assist in generating a WCT field response file in compressed JSON format.  It also is responsible for filling in missing drift paths, correcting any vagaries, normalizing units.
+</p>
+
+<div class="info">
+<p>
+The output field response functions must be given in the form of a sampled, electric current waveform due to the passage of a <b>single electron</b> along the drift path and the current must be expressed in the WCT system of units for electric current.  The response function is <b>not</b> in units of electric charge.  
+</p>
+
+</div>
+
+<p>
+The main entry point into the Garfield 2D support is:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> wirecell.sigproc.garfield <span style="font-weight: bold;">as</span> garfield
+</pre>
+</div>
+
+<p>
+The next section gives some detailed examples of use and subsequent ones give some plots.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5813b43" class="outline-4">
+<h4 id="eyeball-garfield"><a id="org5813b43"></a><a id="user-content-eyeball-garfield" class="anchor" href="#eyeball-garfield" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">7.1.3</span> Eyeballing Garfield 2D with <code>wirecell.sigproc.garfield</code></h4>
+<div class="outline-text-4" id="text-eyeball-garfield">
+<p>
+This is from the <code>ub_10</code> data set.
+</p>
+
+<p>
+Taking raw Garfield output shows, apparently, two electrons were drifted per path.  It&rsquo;s unclear why it&rsquo;s slightly more than 2.0 electrons of charge though.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> wirecell.sigproc.garfield <span style="font-weight: bold;">as</span> garfield
+dat = garfield.load(<span style="font-style: italic;">"/opt/bviren/wct-dev/share/wirecell/data/ub_10.tar.gz"</span>)
+w = [r <span style="font-weight: bold;">for</span> r <span style="font-weight: bold;">in</span> dat <span style="font-weight: bold;">if</span> r.impact == 0 <span style="font-weight: bold;">and</span> r.region == 0 <span style="font-weight: bold;">and</span> r.plane == <span style="font-style: italic;">'w'</span>][0]
+<span style="font-weight: bold;">sum</span>(w.response)
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; -0.020265450377670812</span>
+w.times[1] / units.us
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; 0.1</span>
+<span style="font-weight: bold;">sum</span>(w.response) * w.times[1] / units.coulomb
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; -3.2468828093569448e-19</span>
+<span style="font-weight: bold;">sum</span>(w.response) * w.times[1] / units.eplus
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; -2.0265450377670811</span>
+w0 = [r <span style="font-weight: bold;">for</span> r <span style="font-weight: bold;">in</span> dat <span style="font-weight: bold;">if</span> r.region == 0 <span style="font-weight: bold;">and</span> r.plane == <span style="font-style: italic;">'w'</span>]
+<span style="font-weight: bold;">len</span>(w0)
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; 6</span>
+w0[0].region
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; 0</span>
+<span style="font-weight: bold;">sum</span>(w0[0].response)/units.microampere
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; -3.2577267395296085e-06</span>
+[<span style="font-weight: bold;">sum</span>(w.response)*w.times[1]/units.eplus <span style="font-weight: bold;">for</span> w <span style="font-weight: bold;">in</span> w0]
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; [-2.033313287245619,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">-2.0184390655262097,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">-2.061704680164814,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">-2.057934020579546,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">-2.0501410482117408,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">-2.0265450377670811]</span>
+</pre>
+</div>
+
+<p>
+Modify <code>garfield.load()</code> to normalize all responses so that this last array averages to 1.0.  After that change:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">[<span style="font-weight: bold;">sum</span>(r.response)*r.times[1]/units.eplus <span style="font-weight: bold;">for</span> r <span style="font-weight: bold;">in</span> dat2 <span style="font-weight: bold;">if</span> r.region == 0 <span style="font-weight: bold;">and</span> r.plane == <span style="font-style: italic;">'w'</span>]
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; [0.99606489937379161,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">0.98877842254157267,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">1.0099730708830847,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">1.0081259272658833,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">1.0043083619718129,</span>
+<span style="font-weight: bold; font-style: italic;">#     </span><span style="font-weight: bold; font-style: italic;">0.99274931796385024]</span>
+<span style="font-weight: bold;">sum</span>([<span style="font-weight: bold;">sum</span>(r.response)*r.times[1]/units.eplus <span style="font-weight: bold;">for</span> r <span style="font-weight: bold;">in</span> dat2 <span style="font-weight: bold;">if</span> r.region == 0 <span style="font-weight: bold;">and</span> r.plane == <span style="font-style: italic;">'w'</span>])/6.0
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">-&gt; 0.99999999999999944</span>
+</pre>
+</div>
+
+<p>
+Same region 0 average in units of <code>eplus</code> for U is -6.9e-3  and for V is -5.5e-3.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0b2c0d6" class="outline-4">
+<h4 id="garfield-validation-plots"><a id="org0b2c0d6"></a><a id="user-content-garfield-validation-plots" class="anchor" href="#garfield-validation-plots" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">7.1.4</span> Validation plots</h4>
+<div class="outline-text-4" id="text-garfield-validation-plots">
+<p>
+Some critical validation plots can be made from the command line using the <code>wirecell-sigproc</code> program.  In the examples below it is assumed, for brevity that the Garfield 2D data set is available via the <code>$G2D</code> environment variable set for example like:
+</p>
+
+<pre class="example">
+$ export G2D=/opt/bviren/wct-dev/share/wirecell/data/ub_10.tar.gz
+</pre>
+</div>
+
+<div id="outline-container-orge9c5dcf" class="outline-5">
+<h5 id="garfield-isochronous-track"><a id="orge9c5dcf"></a><a id="user-content-garfield-isochronous-track" class="anchor" href="#garfield-isochronous-track" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">7.1.4.1</span> Perpendicular ideal track</h5>
+<div class="outline-text-5" id="text-garfield-isochronous-track">
+<p>
+A perpendicular ideal track can be &ldquo;simulated&rdquo; by summing response functions.  This is because the response on neighboring wires due to a charge drifting near the central wire is equivalent to the response on the central wire due to charge drifting near neighboring wires.  
+</p>
+
+<p>
+There are three main data tiers:
+</p>
+
+<ol class="org-ol">
+<li>instantaneous induced current</li>
+<li>sampled voltage after preamplifier gain and shaping done in the FEE</li>
+<li>digitized ADC waveform of that voltage</li>
+</ol>
+
+<p>
+This command can be used to make plots of these with different parameterizations:
+</p>
+
+<pre class="example">
+$ wirecell-sigproc plot-garfield-track-response --help
+Usage: wirecell-sigproc plot-garfield-track-response [OPTIONS]
+                                                     GARFIELD_FILESET PDFFILE
+
+  Plot Garfield response assuming a perpendicular track.
+
+Options:
+  -o, --output TEXT         Set output data file
+  -g, --gain FLOAT          Set gain in mV/fC.
+  -s, --shaping FLOAT       Set shaping time in us.
+  -t, --tick FLOAT          Set tick time in us (0.1 is good for no shaping).
+  -n, --norm INTEGER        Set normalization in units of electron charge.
+  -a, --adc-gain FLOAT      Set ADC gain (unitless).
+  --adc-voltage FLOAT       Set ADC voltage range in Volt.
+  --adc-resolution INTEGER  Set ADC resolution in bits.
+  --help                    Show this message and exit.
+</pre>
+
+<p>
+If the shaping is zero, then the induced current is plotted.  If it is nonzero but the ADC gain is zero then pre-ADC voltages are plotted.  If both are nonzero (default) then the ADC waveforms are plotted
+</p>
+</div>
+</div>
+
+<div id="outline-container-org606bc6c" class="outline-5">
+<h5 id="garfield-induced-current"><a id="org606bc6c"></a><a id="user-content-garfield-induced-current" class="anchor" href="#garfield-induced-current" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">7.1.4.2</span> Induced current</h5>
+<div class="outline-text-5" id="text-garfield-induced-current">
+<p>
+Garfield 2D provides instantaneous, sampled induced current waveforms.  Their per-plane sum, as described above equivalent to a perpendicular track, can be plotted with zero shaping time:
+</p>
+
+<pre class="example">
+$ wirecell-sigproc plot-garfield-track-response -s 0.0 $G2D figs/track-response-current.svg
+</pre>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="figs/track-response-current.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<div class="info">
+<p>
+The default normalization is such that there are 16000 electrons per pitch (MIP) and no diffusion.  Just doing the unit conversions, this many electrons arriving over 2-3 us should give a current of about a nanoamp.
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgae616b3" class="outline-5">
+<h5 id="garvield-amplified-voltage"><a id="orgae616b3"></a><a id="user-content-garvield-amplified-voltage" class="anchor" href="#garvield-amplified-voltage" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">7.1.4.3</span> Amplified Voltage</h5>
+<div class="outline-text-5" id="text-garvield-amplified-voltage">
+<p>
+The results of convolution with electronics response can be plotted with a zero per-ADC gain:
+</p>
+
+<pre class="example">
+$ wirecell-sigproc plot-garfield-track-response -a 0.0 $G2D figs/track-response-voltage.svg
+</pre>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="figs/track-response-voltage.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<div class="info">
+<p>
+The default preamplifier gain is 14 mV/fC.  This means that a delta-function current integrating to 1 fC would produce a smooth voltage curve with a <b>peak</b> of 14 mV.  The default 16000 electrons per pitch, if producing a delta-function of current, would produce 36 mV.  Because of broadening and finite width as shown in the previous plot, this peak should be reduced and smeared.
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org148ca10" class="outline-5">
+<h5 id="garfield-adc-waveform"><a id="org148ca10"></a><a id="user-content-garfield-adc-waveform" class="anchor" href="#garfield-adc-waveform" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-5">7.1.4.4</span> Digitized ADC Waveform</h5>
+<div class="outline-text-5" id="text-garfield-adc-waveform">
+<p>
+Finally, the expected ADC output is plotted by default.
+</p>
+
+<pre class="example">
+$ wirecell-sigproc plot-garfield-track-response $G2D figs/track-response-adc.svg
+</pre>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="figs/track-response-adc.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<div class="info">
+<p>
+This assumes the default 12 bit ADC spanning 2 volts.
+</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga6b6dd2" class="outline-4">
+<h4 id="convert-garfield-data-to-json"><a id="orga6b6dd2"></a><a id="user-content-convert-garfield-data-to-json" class="anchor" href="#convert-garfield-data-to-json" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg> </a><span class="section-number-4">7.1.5</span> Producing WCT Field Response Data File</h4>
+<div class="outline-text-4" id="text-convert-garfield-data-to-json">
+<p>
+The WCT does not directly read Garfield 2D data sets but instead requires the information to be compiled into a single, compressed JSON file.  This is done like:
+</p>
+
+<pre class="example">
+$ wirecell-sigproc convert-garfield $G2D garfield-1d-3planes-21wires-6impacts-v5.json.bz2
+</pre>
+
+<p>
+FIXME: distribution of these data files needs some formal mechanism.  For now, they may be available here: <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/data/">http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/data/</a>.
+</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2017-04-18 Tue 17:21</p>
+<p class="date">Created: 2017-05-28 Sun 21:47</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

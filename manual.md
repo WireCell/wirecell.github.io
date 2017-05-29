@@ -1,85 +1,104 @@
-- [Installation](#orgd1d76f6)
-  - [Toolkit installation](#org6629a59)
-    - [Source code](#org0b4d554)
-    - [Configuring the source](#orgedeb777)
-    - [Building the source](#org98679a1)
-    - [Install the results](#org4fb6fa2)
-    - [Other build commands](#org3c4be57)
-  - [Runtime environment](#orga5c76c5)
-  - [Guide for installation of dependencies](#org94bfbe2)
-    - [Manual](#orgcd90a28)
-    - [Spack](#orgf6c4161)
-    - [UPS](#orgc0aed1a)
-  - [Release management](#orgadae3c9)
-    - [Release versions](#org2be9ed4)
-    - [Branch policy](#orgaec8b56)
-    - [Branch mechanics](#orgaaf14b2)
-- [Configuration](#orgea1340e)
-  - [Introduction](#org26a02e2)
-  - [Configuration from a user point of view](#orgb2eb1ab)
-    - [File formats](#org2e00366)
-    - [Basic command line](#orgadb5d8e)
-    - [Dump default configuration](#orgf7ebe29)
-    - [Diving into JSON](#orgd6441b8)
-    - [Limitations of JSON](#orga071e07)
-    - [Learning Jsonnet](#orge35ee84)
-    - [Specific detector support](#org5e31ad5)
-    - [Using Jsonnet](#orgf77c51b)
-  - [Configuration from a developer point of view](#org0e08810)
-- [Howtos](#org12ef43e)
-  - [Run `wire-cell` command line program](#org3abda9e)
-  - [Add a new component class](#org328b514)
-- [Internals](#org03fc200)
-  - [Toolkit packages](#org7d0a17a)
-    - [Names](#org5905d4c)
-    - [Dependencies](#orgd9e2a37)
-    - [Package structure](#orgb928e97)
-    - [Build package](#org7de875f)
-    - [Adding a new code package](#org8fcc319)
-  - [Coding conventions](#orgcde6a11)
-    - [C++ code formatting](#org77592ef)
-    - [C++ namespaces](#orgf54fc01)
-  - [Interfaces](#orgf01828d)
-  - [Components](#orgd5214c0)
-  - [Configuration](#org0ab032e)
-  - [Execution Models](#org3ed4406)
-    - [Ad-hoc](#orgea0b306)
-    - [Component](#org5d04ca6)
-    - [Interface](#orgc700f34)
-    - [Data flow programming](#org0b8b85e)
-- [Packages](#org69c0692)
-  - [Utilities](#org35ab38e)
-    - [Units](#org533998c)
-    - [Persistence](#org437c079)
-    - [Etc](#orgbe131f2)
-  - [Interfaces](#org2a97b94)
-    - [Data](#orgd086459)
-    - [Nodes](#org4f96cb7)
-    - [Misc](#orgd66fead)
-  - [Simulation](#orgc51c2cf)
-    - [Depositions](#orga1f5ad9)
-    - [Drifting](#org3e0b166)
-    - [Response](#org7cfb0dd)
-    - [Digitizing](#org06e8157)
-  - [Waf tools](#org5a709a2)
-    - [Recreating `wcb`](#org3181422)
-    - [Included Waf tools](#org3e4b2b8)
+- [Installation](#installation)
+  - [Toolkit installation](#toolkit-installation)
+    - [Source code](#source-code)
+    - [Configuring the source](#configuring-the-source)
+    - [Building the source](#building-the-source)
+    - [Running unit tests](#running-unit-tests)
+    - [Install the results](#install-built-code)
+    - [Other build commands](#other-build-commands)
+  - [Runtime environment](#runtime-environment)
+  - [Guide for installation of dependencies](#installing-dependencies)
+    - [Manual](#manual-externals-install)
+    - [Spack](#spack-installed-externals)
+    - [UPS](#using-externals-from-ups)
+  - [Release management](#release-management)
+    - [Release versions](#release-versions)
+    - [Branch policy](#branch-policy)
+    - [Branch mechanics](#branch-mechanics)
+- [Configuration](#configuration)
+  - [Introduction](#configuration-introduction)
+  - [Configuration from a user point of view](#user-configuration)
+    - [File formats](#configuration-file-formats)
+    - [Basic command line](#configuration-command-line)
+    - [Dump default configuration](#dump-default-configuration)
+    - [Diving into JSON](#diving-into-json)
+    - [Limitations of JSON](#json-limitations)
+    - [Learning Jsonnet](#learning-jsonnet)
+    - [Specific detector support](#configuration-for-specific-detectors)
+    - [Using Jsonnet](#jsonnet-command-line)
+  - [Configuration from a developer point of view](#developer-configuration)
+- [Howtos](#howtos)
+  - [Run `wire-cell` command line program](#run-wire-cell-cli)
+  - [Add a new component class](#add-a-component)
+    - [Conceptual design](#component-concept)
+    - [Estimating dependencies](#component-dependencies)
+    - [Selecting a package](#component-package)
+    - [Selecting interfaces](#component-interfaces)
+    - [Component header](#component-header)
+    - [Component implementation](#component-implementation)
+- [Internals](#internals)
+  - [Toolkit packages](#toolkit-packages)
+    - [Names](#package-names)
+    - [Dependencies](#package-dependencies)
+    - [Package structure](#package-structure)
+    - [Build package](#build-package)
+    - [Adding a new code package](#add-new-package-to-build)
+  - [Coding conventions](#coding-conventions)
+    - [C++ code formatting](#c++-code-formatting)
+    - [C++ namespaces](#c++-namespaces)
+  - [Interfaces](#interface-internals)
+  - [Components](#component-internals)
+  - [Configuration](#configuration-internals)
+  - [Execution Models](#execution-models)
+    - [Ad-hoc](#ad-hoc-execution)
+    - [Concrete](#execution-concrete-components)
+    - [Interface](#execution-via-interfaces)
+    - [Data flow programming execution](#dfp-execution)
+- [Packages](#packages)
+  - [`wire-cell-python`](#pkg-python)
+    - [Installing `wire-cell-python`](#install-wire-cell-python)
+    - [Python command line programs](#python-programs)
+    - [`wirecell` Python modules](#python-modules)
+  - [`wire-cell-util`](#pkg-util)
+    - [Units](#util-units)
+    - [Persistence](#util-persistence)
+    - [Etc](#org672c6b8)
+  - [`wire-cell-iface`](#pkg-iface)
+    - [Data](#orgfa83956)
+    - [Nodes](#org4ad1123)
+    - [Misc](#org10bfc94)
+  - [`wire-cell-gen`](#pkg-gen)
+    - [Depositions](#org3a63e73)
+    - [Drifting](#org9879ed6)
+    - [Response](#org0ebb8c4)
+    - [Digitizing](#org09f1938)
+  - [`wire-cell-waftools`](#pkg-waftools)
+    - [Recreating `wcb`](#generate-wcb)
+    - [Included Waf tools](#bundle-waf-tools)
+- [Data Flow Programming](#data-flow-programming)
+- [Other Topics](#other-topics)
+  - [Garfield 2D Support](#garfield-2d-support)
+    - [Garfield 2D data](#garfield-2d-data)
+    - [Preprocessing of Garfield 2D data](#preprocessing-garfield-data)
+    - [Eyeballing Garfield 2D with `wirecell.sigproc.garfield`](#eyeball-garfield)
+    - [Validation plots](#garfield-validation-plots)
+    - [Producing WCT Field Response Data File](#convert-garfield-data-to-json)
 
 
 
-<a id="orgd1d76f6"></a>
+<a id="installation"></a>
 
 # Installation
 
 The Wire Cell Toolkit (WCT) should be easy to build on any POSIX&rsquo;y system with a recent C++ compiler. This section describes how to build releases and development branches, it gives guidance for supplying the few software dependencies, and documents how releases are made.
 
 
-<a id="org6629a59"></a>
+<a id="toolkit-installation"></a>
 
-## Toolkit installation     :user:installer:developer:
+## Toolkit installation
 
 <div class="warning">
-This assumes you already have available the required dependencies. See section [1.3](#org94bfbe2).
+This assumes you already have available the required dependencies. See section [1.3](#installing-dependencies).
 
 </div>
 
@@ -91,11 +110,11 @@ Installation requires four steps:
 4.  install the results
 
 
-<a id="org0b4d554"></a>
+<a id="source-code"></a>
 
 ### Source code
 
-WCT source is composed of several packages (see section [5](#org69c0692)) and all source is available from the [Wire Cell GitHub organization](https://github.com/WireCell/). Releases of each package are made and documented on GitHub (*eg* [here](https://github.com/WireCell/wire-cell-build/releases)) and can be downloaded as archives. However, using git to assemble a working source area is recommended and easier. Releases and development branches are handled slightly differently.
+WCT source is composed of several packages (see section [5](#packages)) and all source is available from the [Wire Cell GitHub organization](https://github.com/WireCell/). Releases of each package are made and documented on GitHub (*eg* [here](https://github.com/WireCell/wire-cell-build/releases)) and can be downloaded as archives. However, using git to assemble a working source area is recommended and easier. Releases and development branches are handled slightly differently.
 
 To obtain a release requires no GitHub authentication:
 
@@ -122,7 +141,7 @@ At some time later if there is a need to switch between HTTP or SSH a `switch-gi
 </div>
 
 
-<a id="orgedeb777"></a>
+<a id="configuring-the-source"></a>
 
 ### Configuring the source
 
@@ -147,7 +166,7 @@ As shown in the example below, the flags to locate Boost are slightly different.
 This example assumes all externals are available in a directory set by the `WCT_EXTERNALS` variable. This variable is **not** used by the build and is only used to make this example brief.
 
 
-<a id="org98679a1"></a>
+<a id="building-the-source"></a>
 
 ### Building the source
 
@@ -164,7 +183,37 @@ The build will try to run tests which can be avoided to save time:
     $ ./wcb --notests
 
 
-<a id="org4fb6fa2"></a>
+<a id="running-unit-tests"></a>
+
+### Running unit tests
+
+Unless `--notests` are passed as above, the build system will build and run the many unit test programs. In general, all unit tests should run successfully (in practice some small fraction may not). To give them a chance to succeed they must at least be run with a properly set up environment. In particular `LD_LIBRARY_PATH` must contain all library directories for external packages. Setting this is user/system dependent and so is left to the user.
+
+<div class="INFO">
+Developers wishing to run unit tests that exercise code they are developing should take care in setting `LD_LIBRARY_PATH`. If the WCT installation area is included then the unit tests will run against those libraries, effectively masking the locally built versions in the development area. Alternatively, they must run `./wcb install` and then manually re-run the unit test.
+
+</div>
+
+Setting `LD_LIBRARY_PATH` is **not** as above required for building. To avoid polluting the build environment with superfluous settings it is possible to create a little shell script that will be used to run each test. As an example, we create `tester.sh` that looks like:
+
+```sh
+#!/bin/sh
+/usr/bin/env LD_LIBRARY_PATH=/path/to/extern1/lib:/path/to/extern2/lib "$@"
+```
+
+After making this script executable it can be used like:
+
+    $ ./wcb --testcmd="/path/to/tester.sh %s"
+
+Another useful option is `--dump-test-scripts` which will produce a `test_<name>_run.py` file for each `test_<name>` that bakes in the environment and gives you a per-test runner that you can execute directly. You can use the same `tester.sh` script here
+
+    $ /path/to/tester.sh ./wcb --dump-test-scripts --alltests
+    $ ./build/util/test_fft_run.py
+
+Where these two commands are executed in a shell that has no `LD_LIBRARY_PATH` set.
+
+
+<a id="install-built-code"></a>
 
 ### Install the results
 
@@ -173,7 +222,7 @@ To install the build results into the location given by `--prefix` simply issue:
     $ ./wcb install
 
 
-<a id="org3c4be57"></a>
+<a id="other-build-commands"></a>
 
 ### Other build commands
 
@@ -190,20 +239,20 @@ These other commands may be useful:
     $ ./wcb --help         # see more options.
 
 
-<a id="orga5c76c5"></a>
+<a id="runtime-environment"></a>
 
-## Runtime environment     :user:installer:
+## Runtime environment
 
 Managing environment is usually a personal choice or computer facility policy and WCT does not place any significant requirements on this. The usual setting of `PATH` like variables will likely be needed.
 
 FIXME: we should look into setting `RPATH`.
 
-Internally, WCT does not require any environment however it will search a `WIRECELL_PATH` when locating configuration or other (non data) input files. More information is in the section [2](#orgea1340e).
+Internally, WCT does not require any environment however it will search a `WIRECELL_PATH` when locating configuration or other (non data) input files. More information is in the section [2](#configuration).
 
 
-<a id="org94bfbe2"></a>
+<a id="installing-dependencies"></a>
 
-## Guide for installation of dependencies     :installer:
+## Guide for installation of dependencies
 
 The WCT depends on a number of third-party software packages. They are intentionally limited to reduce the requirements for installation. Some packages are optional. Here lists packages that users may not already have as part of a &ldquo;reasonably POSIX&rsquo;y system and some guidance is given on how to install them.
 
@@ -229,7 +278,7 @@ Some &ldquo;optional&rdquo; packages may actually be currently required for a su
 This list may not represent current reality. To get a full, up-to-date list of what packages WCT can use run `./wcb --help`.
 
 
-<a id="orgcd90a28"></a>
+<a id="manual-externals-install"></a>
 
 ### Manual
 
@@ -238,7 +287,7 @@ In the DIY mode, the installer is free to provide the third-party packages in an
 However the installer decides to build in DIY-mode the WCT build system should be able to be given proper installation locations via the `--with-*` flags as described above. If it seems not to be the case, please contact the developers.
 
 
-<a id="orgf6c4161"></a>
+<a id="spack-installed-externals"></a>
 
 ### Spack
 
@@ -249,21 +298,21 @@ WCT provides a package [wire-cell-spack](https://github.com/WireCell/wire-cell-s
 An installer that wishes to use wire-cell-spack to provide the dependencies should begin by following its [README](https://github.com/WireCell/wire-cell-spack/blob/master/README.org) file.
 
 
-<a id="orgc0aed1a"></a>
+<a id="using-externals-from-ups"></a>
 
 ### UPS
 
 Fermi National Accelerator Lab (FNAL) uses a user environment similar but incompatible with to [Environment Modules](http://modules.sourceforge.net/). It is typical to download binaries provided by FNAL and use UPS to &ldquo;setup&rdquo; a user environment with many environment variables. For each package so setup there is a variable that gives the installation location. These can be used to provide suitable values for the `--with-*` flags to `wcb` as described above.
 
 
-<a id="orgadae3c9"></a>
+<a id="release-management"></a>
 
-## Release management     :core:developer:
+## Release management
 
 Releases are made by developers as needed and as described in this section.
 
 
-<a id="org2be9ed4"></a>
+<a id="release-versions"></a>
 
 ### Release versions
 
@@ -274,28 +323,28 @@ WCT label releases are made following a fixed procedure. Releases are labeled wi
 -   **Z:** a bug release fixes problems without otherwise substantial changes.
 
 
-<a id="orgaec8b56"></a>
+<a id="branch-policy"></a>
 
 ### Branch policy
 
 Any new major or minor releases produce a new Git branch in each package. Only bug fixes are made to this branch. Where applicable, release bug fixes should be applied to `master`. Nominally, all development is on the `master` branch however developers are free to make their own feature branches. They are encourage to do this if their development is expected to be disruptive to other developers.
 
 
-<a id="orgaaf14b2"></a>
+<a id="branch-mechanics"></a>
 
 ### Branch mechanics
 
 To make releases, the above details are baked into two test scripts [make-release.sh](https://github.com/WireCell/waf-tools/blob/master/make-release.sh) and [test-release.sh](https://github.com/WireCell/waf-tools/blob/master/test-release.sh). See comments at the top of each for how to run them. These scripts can be used by others but are meant for developers to make official releases.
 
 
-<a id="orgea1340e"></a>
+<a id="configuration"></a>
 
 # Configuration
 
 As the Wire Cell Toolkit (WCT) is a toolkit, it is up to the parent application to provide some mechanism for the user to provide configuration information to WCT *components*. Users of an application not provided by the WCT itself should refer to its documentation. This section of the manual documents the configuration mechanism that is provided by WCT itself. If an application decides to use the WCT file format then its users may refer to this document. Developers of WCT components should read it as well.
 
 
-<a id="org26a02e2"></a>
+<a id="configuration-introduction"></a>
 
 ## Introduction
 
@@ -316,21 +365,21 @@ Finally, configurations have a third attribute:
 In the next section, WCT user-configuration support is described. The following section gives guidance to developers who wish to write their own configurable components.
 
 
-<a id="orgb2eb1ab"></a>
+<a id="user-configuration"></a>
 
 ## Configuration from a user point of view     :user:
 
 Users of the WCT command line interface `wire-cell` or any WCT application that uses `WireCell::ConfigManager` can provide configuration information in the form of one or more files. This files express the same ordered list of configuration objects as described above.
 
 
-<a id="org2e00366"></a>
+<a id="configuration-file-formats"></a>
 
 ### File formats
 
 WCT supports two related configuration file formats: [JSON](http://www.json.org/) and [Jsonnet](http://jsonnet.org/). Of the two, JSON is more fundamental while Jsonnet provides a way to better organize and construct complex configurations. Jsonnet support is a compile-time option. The stand-alone `jsonnet` program may also be used to evaluate Jsonnet into JSON.
 
 
-<a id="orgadb5d8e"></a>
+<a id="configuration-command-line"></a>
 
 ### Basic command line
 
@@ -341,7 +390,7 @@ A user gives one or more configuration files to the `wire-cell` application each
 If a relative path is given, the file will be searched for starting in the current working directory and then in each directory listed in a `WIRECELL_PATH` environment variable, if given. When multiple configuration are used, their top-level arrays are conceptually concatenated in the order on which they are given on the command line.
 
 
-<a id="orgf7ebe29"></a>
+<a id="dump-default-configuration"></a>
 
 ### Dump default configuration
 
@@ -358,7 +407,7 @@ Here the components to dump are specified by their &ldquo;type&rdquo; identifier
 The user must know what components to dump. There is no way for the application to iterate over all possible components. In general, it is up to the provider of a plugin to catalog what component types it provides. WCT provides a [simple script](https://github.com/WireCell/wire-cell-cfg/blob/master/scripts/generate-defaults.sh) that will search the WCT source, determine the components and dump them out using `wire-cell`. Result of this dump, possibly out of date, is available in the [wire-cell-cfg](https://github.com/WireCell/wire-cell-cfg/tree/master/defaults) repository.
 
 
-<a id="orgd6441b8"></a>
+<a id="diving-into-json"></a>
 
 ### Diving into JSON
 
@@ -387,7 +436,7 @@ Here we see an array holding one element which is an object with the `type`, (in
 The `tracks` array in this example is empty and no depositions would be produced. The user most certainly should specify a nonempty set of tracks. In principle, the user may produces a huge `tracks` array. WCT support bzip2 compressed JSON files (see the section on [persistence in the util package manual](./util.md)).
 
 
-<a id="orga071e07"></a>
+<a id="json-limitations"></a>
 
 ### Limitations of JSON
 
@@ -400,7 +449,7 @@ Another limitation is that any numerical quantities **must** be expressed in the
 The user is free to generate JSON in any manner they wish as long as the result conforms to the required schema. However, WCT provides a second, more powerful JSON-like configuration file format which described next.
 
 
-<a id="orge35ee84"></a>
+<a id="learning-jsonnet"></a>
 
 ### Learning Jsonnet
 
@@ -411,7 +460,7 @@ To learn how to write Jsonnet in general, the user should refer to its documenta
 WCT locates Jsonnet files as it does JSON files and in particular using the environment variable `WIRECELL_PATH`. However, it does not (currently) support compressed Jsonnet files.
 
 
-<a id="orgb7fc00e"></a>
+<a id="system-of-units-in-jsonnet"></a>
 
 #### System of units
 
@@ -431,7 +480,7 @@ local wc = import "wirecell.jsonnet";
 ```
 
 
-<a id="org035c150"></a>
+<a id="jsonnet-helper-functions"></a>
 
 #### Functions
 
@@ -446,7 +495,7 @@ Some data sub-structures are needed in multiple laces and it can be laborious to
 ```
 
 
-<a id="org8e4f048"></a>
+<a id="default-parameters-in-jsonnet"></a>
 
 #### Default parameters
 
@@ -490,7 +539,7 @@ local params = import "uboone/globals.jsonnet";
 See next how these definitions are used.
 
 
-<a id="org7088e0f"></a>
+<a id="default-data-structures-in-jsonnet"></a>
 
 #### Default structures
 
@@ -541,21 +590,21 @@ local uboone = import "uboone/components.jsonnet";
 This says to override `uboone.fourdee` with what&rsquo;s given. The `type` is inherited. The `data` is replaced by the parent&rsquo;s via `super.data` plus the additional override of the `FrameSink` attribute.
 
 
-<a id="org252ad64"></a>
+<a id="jsonnet-is-comma-friendly"></a>
 
 #### Commas
 
 One of the most irritating aspect of crafting JSON files by hand is that any array or object must **not** have an internal trailing comma. Jsonnet allows this otherwise extraneous comma, as shown in the example above. For this reason alone and if no other features are used, writing Jsonnet instead of raw JSON is worth the added dependency!
 
 
-<a id="org5e31ad5"></a>
+<a id="configuration-for-specific-detectors"></a>
 
 ### Specific detector support
 
 The `wire-cell-cfg` package also provides support for popular LArTPC detectors. You can find these files under a directory named for the experiment (such as [that for MicroBooNE](https://github.com/WireCell/wire-cell-cfg/tree/master/uboone)).
 
 
-<a id="orgf77c51b"></a>
+<a id="jsonnet-command-line"></a>
 
 ### Using Jsonnet
 
@@ -570,49 +619,146 @@ should reward you with a big screen full of JSON. You can then run `wire-cell` s
 This relies on the `WIRECELL_PATH` to include the `cfg/` directory as well as any directories holding any configuration data files referenced by the configuration.
 
 
-<a id="org0e08810"></a>
+<a id="developer-configuration"></a>
 
 ## Configuration from a developer point of view     :devel:
 
-For the C++ part of developing WCT components or applications the developer should refer to the [configuration section in the manual on WCT Internals](./internals.md).
+For the C++ part of developing WCT components or applications the developer should refer to the [configuration section in the manual on WCT Internals](./internals.md) and the [section on configuration implementation](#component-configuration).
 
 In addition, a developer is encouraged to provide Jsonnet files that abstract away any less important details and give users a simplified way to configure the developers components.
 
 In particular, if the developer writes multiple components, an application component or a component that refers to another component, working example configuration files should be provided.
 
 
-<a id="org12ef43e"></a>
+<a id="howtos"></a>
 
 # Howtos
 
 This section of the manual gives brief guidance on how to do various things with WCT.
 
 
-<a id="org3abda9e"></a>
+<a id="run-wire-cell-cli"></a>
 
 ## Run `wire-cell` command line program
 
 
-<a id="org328b514"></a>
+<a id="add-a-component"></a>
 
 ## Add a new component class
 
+This describes the steps to add a Wire Cell Toolkit *component*. As an example, it walks through the creation of a component which will produce noise waveforms. The sections below are organized more or less in the order in which a developer advances from initial concept to design and implementation.
 
-<a id="org03fc200"></a>
+
+<a id="component-concept"></a>
+
+### Conceptual design
+
+Noise waveforms will be generated based on a voltage amplitude spectrum represented in the frequency domain. This amplitude will be sampled and abide by some fluctuation distribution and may have some parameters that allow for parametric scaling or other transformation so that the user may explore the results. For simplicity, the time domain noise waveforms will be produced given a fixed sample period and readout time which will also be configurable. It is assumed that the user arranges that these parameters, if needed elsewhere, are set consistently. (See Sec. [2](#configuration)).
+
+Producing noise waveforms as described here require no other input data and in particular, none that would change over time or be a function of some &ldquo;event&rdquo; So, the component will follow the pattern of being a *source* of data. That is, waveforms will be produced on demand and in a manner which they are independent. Below will show how this pattern is realized.
+
+
+<a id="component-dependencies"></a>
+
+### Estimating dependencies
+
+Before starting coding up an implementation it is prudent to understand what software dependencies are required to develop it. Some trade-offs need to be understood. Relying on &ldquo;external&rdquo; 3rd party packages to perform the &ldquo;heavy lifting&rdquo; of the implementation can make that implementation easier to develop. However, adding dependencies increase the difficulty in installing and using the result on a wide variety of operating systems and system architectures.
+
+Investigating dependencies before implementation also forces the developer to make an optimal decision that balances performance, support, documentation, ease of development, portability and a host of other qualifiers. Relying on whatever software happens to be familiar and available forgoes making this optimal choice.
+
+One touchstone that has been made by the WCT developers is that the &ldquo;core&rdquo; packages of WCT shall not depend on ROOT. Depending on ROOT brings in many additional dependencies and this can limit, for example, usage on high-core architectures with limited RAM. ROOT is very useful, and indeed parts of WCT depend on it (test, I/O packages) but for a package to be considered &ldquo;core&rdquo; its library must not require ROOT. If a component requires ROOT or other package not accepted by the &ldquo;core&rdquo; packages then the component must be placed in an optional package (see Section [3.2.3](#component-package)).
+
+For the noise source, the main functionality required is drawing random variables from an arbitrary distribution (the noise spectrum) and drawing from some conventional distributions (for the fluctuation). The spectrum can be provided through WCT configuration services and drawing from it is a simple algorithm based on forming the cumulative distribution that can be directly integrated. Pseudo random number generation can be done directly in C++ or [when this ticket is closed](https://github.com/WireCell/wire-cell-iface/issues/2) the WCT pRNG interface.
+
+
+<a id="component-package"></a>
+
+### Selecting a package
+
+While the implementer is free to develop their component in any manner they wish, if the component is to be distributed as part of the WCT then its code needs to be in some WCT package. For here, the main thing to note is that the `util` package is the lowest in the dependency tree, on top of it is `iface` (more on interfaces below) and above that are all the *implementation* packages. The developer must choose an existing package or elect to make a new one depending on two main criteria: what dependencies are required and what implementation category does the component satisfy.
+
+For the noise waveform source, given the relative lack of dependencies and the fact that it provides a simulation, the [wire-cell-gen](https://github.com/WireCell/wire-cell-gen) package provides a suitable home. If no suitable package exists the developer can see Section [5](#packages) for details on WCT packages.
+
+
+<a id="component-interfaces"></a>
+
+### Selecting interfaces
+
+All major functionality, and indeed the defining characteristic of a WCT *component* is that it implements one or more WCT *interfaces* which are C++ abstract base classes. Each interface defines some number of methods that the implementation must provide.
+
+More information is in the Section [4.3](#interface-internals) but for here, what is needed is that there are several categories of interfaces. First, any set of related methods can be grouped into an otherwise anonymous interface. One special interface is `IConfigurable` which is used if the implementation wishes to receive user-provided configuration information. Another category contains the interfaces inheriting from `INode`. An implementation inherits from one of these if it will participate in the [6](#data-flow-programming) paradigm as implemented by WCT. Or, more generally, if the component is expected to share or pass &ldquo;event&rdquo; data (but really any data) with other component.
+
+The noise waveform source requires configuration and will be an `IFrameSource` as it will produce frames of &ldquo;traces&rdquo; (waveform segments). As development progresses, it may come to light that portions of the implementation are general and are factored into separate classes which themselves may be accessed via an Interface.
+
+
+<a id="component-header"></a>
+
+### Component header
+
+Developing the noise source component begins with a header file which ties together the interfaces through inheritance, declares the interface methods to be implemented and any private methods and data the implementation may need. Following the layout conventions this header is placed in [gen/inc/WireCellGen/NoiseSource.h](https://github.com/WireCell/wire-cell-gen/blob/master/inc/WireCellGen/NoiseSource.h). Some features to note:
+
+-   use `#ifndef/#define/#endif` include protection
+-   place inside `WireCell` namespace and a subnamespace that names the implementation (`Gen`) in this case
+-   add methods for each interface. Due to the templating used in the node interfaces it&rsquo;s not always obvious which methods must be implemented unless one follows their inheritence tree. However, most high level interfaces based on `INode` should provide a comment in their header file giving what to implement.
+
+
+<a id="component-implementation"></a>
+
+### Component implementation
+
+The implementation of a component, following the layout conventions this header, is placed in [gen/src/NoiseSource.cxx](https://github.com/WireCell/wire-cell-gen/blob/master/inc/WireCellGen/NoiseSource.h).
+
+
+<a id="component-boilerplate"></a>
+
+#### Component boilerplate
+
+A few lines of boilerplate are needed so that the component can be dynamically resolved by WCT. Toward the top of the file, and in particular before any `using namespace` statements the following is needed.
+
+```c++
+#include "WireCellUtil/NamedFactory.h"
+
+WIRECELL_FACTORY(NoiseSource, WireCell::Gen::NoiseSource, WireCell::IFrameSource, WireCell::IConfigurable);
+```
+
+This is a CPP macro with the following arguments:
+
+-   The &ldquo;type name&rdquo; of the component (without quotes). This is usually the C++ class name with any namespaces removed but it may differ. It should be unique across all components
+-   The C++ type of the component
+-   The remaining arguments are variable in length and enumerate all interfaces through which this component may be accessed.
+
+
+<a id="component-configuration"></a>
+
+#### Configuration implementation
+
+A WCT *configurable component* must provide two methods. The first returns a default configuration object via the `default_configuration()` method. This object should represent as much of a working configuration as is possible to specify using hard-coded or otherwise default knowledge. If some parameter can not meaningfully be given a default value it should nonetheless be included with some default, possibly bogus value, eg `null`, `0` or empty string or list. This can then be dumped via the `wire-cell` command line program as JSON to give the user guidance on how to provide correct input.
+
+The second method `configure()` accepts a configuration object from WCT and applies it to any internal state. The component should expect this configuration object to follow a data schema determined by the component itself. The developer of the component should document this schema so that users know what to provide. When accessing the configuration object the code should, where possible, allow for missing parameters by substituting defaults. The code should also be written to allow and ignore any unknown parts of the data structure to the extent that the intended data schema is not otherwise violated.
+
+The component may also provide a constructor or other method which takes configuration in any form. This can be useful to facilitate developing unit tests for the component to allow configuration to be directly set. A common pattern is to let configuration information &ldquo;flow&rdquo; starting from the constructor, into private data members of the component, and then out through `default_configuration()` and finally used to provide default values when accessing the user configuration object inside `configure()`. This is illustrated in this `NoiseSource` example.
+
+<div class="warning">
+A component must have a constructor that takes no arguments. If a constructor which takes arguments is added its arguments must either all have default values or a second argument-free constructor must be also included.
+
+</div>
+
+
+<a id="internals"></a>
 
 # Internals
 
-This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities. It is intended for developers to read carefully, understand and follow. It may be of interest to users as well. It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section [5](#org69c0692).
+This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities. It is intended for developers to read carefully, understand and follow. It may be of interest to users as well. It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section [5](#packages).
 
 
-<a id="org7d0a17a"></a>
+<a id="toolkit-packages"></a>
 
 ## Toolkit packages
 
 The WCT is composed of a number of *packages*. Each package has an associated with a Git source repository. Most packages produce a shared library, which may also be a WCT plugin library, C++ header files, some number of main or test applications. Others include a single package holding all Python code in various modules, a package providing support for developing WCT configuration files and the documentation package holding this document. One special type of package is a *build* package described more in section on the build package.
 
 
-<a id="org5905d4c"></a>
+<a id="package-names"></a>
 
 ### Names
 
@@ -621,11 +767,11 @@ Package repositories are named like `wire-cell-<name>` where `<name>` is some sh
 If a package produces a shared library it should be named in `CamelCase` with a prefix `WireCell`. For example the `gen` package produces a library `libWireCellGen.so`. As a plugin name or an entry in the build system, the `lib` and `.so` are dropped. If the package has public header files to expose to other packages they should use this same name for a subdirectory in which to hold them. Package layout is described move below.
 
 
-<a id="orgd9e2a37"></a>
+<a id="package-dependencies"></a>
 
 ### Dependencies
 
-Some of the C++ packages are designated as *core* packages. These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, `gen`, `sigproc`). These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections [4.1.3](#orgb928e97) and [4.1.4](#org7de875f)).
+Some of the C++ packages are designated as *core* packages. These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, `gen`, `sigproc`). These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections [4.1.3](#package-structure) and [4.1.4](#build-package)).
 
 The base package is `util` and it *must* not depend on any other WCT package. The next most basic is `iface` and it *must* not depend on any other WCT except `util`. Core implementation packages such as `gen` or `sigproc` may depend on both but should not depend on each other.
 
@@ -636,7 +782,7 @@ WCT also provides a number of peripheral implementation packages, which are free
 Finally, there may be third-party implementation packages. They are free to mimic WCT packages but WCT itself will not depend on them. They should not make use of the `WireCell::` C++ namespace.
 
 
-<a id="orgb928e97"></a>
+<a id="package-structure"></a>
 
 ### Package structure
 
@@ -658,16 +804,16 @@ The `bld` object is automagically available. If the package has no dependencies 
 Fixme: make a script that generates a dot file and show the graph.
 
 
-<a id="org7de875f"></a>
+<a id="build-package"></a>
 
 ### Build package
 
-To actually build WCT see the section on toolkit installation (section [1](#orgd1d76f6)). The build system is based on [Waf](https::waf.io) and uses the `wcb` command and a `wscript` file provided by the top level *build package*. More details on the build system are given in section [5.4](#org5a709a2))
+To actually build WCT see the section on toolkit installation (section [1](#installation)). The build system is based on [Waf](https::waf.io) and uses the `wcb` command and a `wscript` file provided by the top level *build package*. More details on the build system are given in section [Waf tools](#pkg-waftools).
 
 Besides holding the main build instructions this package aggregates all the other packages via Git&rsquo;s &ldquo;submodule&rdquo; feature. In principle, there may be more than one build package maintained. This allows developers working on a subset to avoid having to build unwanted code. In practice there is a single build package which is at: <https://github.com/wirecell/wire-cell-build>.
 
 
-<a id="org8fcc319"></a>
+<a id="add-new-package-to-build"></a>
 
 ### Adding a new code package
 
@@ -680,7 +826,7 @@ To add a new code package to a build package from scratch, select a `<name>` fol
     $ git add wscript_build
     $ git commit -a -m "Start code package <name>"
 
-Replace `<name>` with your package name. You can create and commit actual code at this time as well following the layout in [4.1.3](#orgb928e97).
+Replace `<name>` with your package name. You can create and commit actual code at this time as well following the layout in [4.1.3](#package-structure).
 
 Now, make a new repository by going to the [WireCell GitHub](https://github.com/WireCell) and clicking &ldquo;New repository&rdquo; button. Give it a name like `wire-cell-<name>`. Copy-and-paste the two command it tells you to use:
 
@@ -698,12 +844,12 @@ If you made your initial package directory inside the build package move it asid
 In order to be picked up by the build the new package short name must be added to the `wscript` file.
 
 
-<a id="orgcde6a11"></a>
+<a id="coding-conventions"></a>
 
 ## Coding conventions
 
 
-<a id="org77592ef"></a>
+<a id="c++-code-formatting"></a>
 
 ### C++ code formatting
 
@@ -730,7 +876,7 @@ In order to be picked up by the build the new package short name must be added t
 -   Any =#include# need in an implementation file but not the corresponding header file *should not* be in the header file.
 
 
-<a id="orgf54fc01"></a>
+<a id="c++-namespaces"></a>
 
 ### C++ namespaces
 
@@ -743,7 +889,7 @@ In order to be picked up by the build the new package short name must be added t
 -   Any third-party packages providing WCT-based components or otherwise depending on WCT *should not* use the `WireCell::` namespace.
 
 
-<a id="orgf01828d"></a>
+<a id="interface-internals"></a>
 
 ## Interfaces
 
@@ -756,7 +902,7 @@ Interfaces are used not only to access functionality but the data model for majo
 Another category of interfaces are those which express the &ldquo;node&rdquo; concept. They inherit from `WireCell::INode`. These require implementation of an `operator()` method. Nodes make up the main unit of code. They are somewhat equivalent to `Algorithm` concept from the Gaudi framework where the `operator()` method is equivalent to Gaudi&rsquo;s `execute()` method. They also require some additional instrumenting in order to participate in the data flow programming paradigm described below.
 
 
-<a id="orgd5214c0"></a>
+<a id="component-internals"></a>
 
 ## Components
 
@@ -791,7 +937,7 @@ auto d = Factory::lookup_tn<IConfigurable>("TrackeDepos:some instance name");
 The four example differ in if an instance name is known and if it is known separately from the type name or in the canonical join (eg as `type:name`). The returned value in this example is a `std::shared_ptr<const IConfigurable>`. This example accesses the `IConfigurable` interface of `TrackDepos`. Not typically required by most code but there exists also a function `lookup_factory()` to get the factory that constructs the component instance.
 
 
-<a id="org0ab032e"></a>
+<a id="configuration-internals"></a>
 
 ## Configuration
 
@@ -825,124 +971,190 @@ FIXME: shouldn&rsquo;t we put this all inside `ConfigManager`?
 Developers of new configurables should keep this protocol in mind and should refer to existing configurables for various useful patterns to provide their end of the exchange.
 
 
-<a id="org3ed4406"></a>
+<a id="execution-models"></a>
 
 ## Execution Models
 
 
-<a id="orgea0b306"></a>
+<a id="ad-hoc-execution"></a>
 
 ### Ad-hoc
 
 Direct calling of utility functions and concrete objects.
 
 
-<a id="org5d04ca6"></a>
+<a id="execution-concrete-components"></a>
 
-### Component
+### Concrete
 
 Concrete components.
 
 
-<a id="orgc700f34"></a>
+<a id="execution-via-interfaces"></a>
 
 ### Interface
 
 Using NamedFactory.
 
 
-<a id="org0b8b85e"></a>
+<a id="dfp-execution"></a>
 
-### Data flow programming
+### Data flow programming execution
 
-Using abstract DFP
+Using abstract DFP. A whole section on [6](#data-flow-programming) is also available.
 
 
-<a id="org69c0692"></a>
+<a id="packages"></a>
 
 # Packages
 
 
-<a id="org35ab38e"></a>
+<a id="pkg-python"></a>
 
-## Utilities
+## `wire-cell-python`
+
+Wire Cell Toolkit provides some support for Python and requires it for some preprocessing, plotting and validation. This support is held in the [wire-cell-python](https://github.com/wirecell/wire-cell-python) package
+
+
+<a id="install-wire-cell-python"></a>
+
+### Installing `wire-cell-python`
+
+It&rsquo;s just a &ldquo;normal&rdquo; Python package. Use your favorite method, such as
+
+    $ virtualenv --system-site-packages venv
+    $ source venv/bin/activate
+    $ git clone https://github.com/WireCell/wire-cell-python.git
+    $ cd wire-cell-python/
+    $ python setup.py develop  
+    $ wirecell-sigproc --help
+
+
+<a id="python-programs"></a>
+
+### Python command line programs
+
+A number of python command line programs are provided. They are typically named like:
+
+    wirecell-<name>
+
+Where `<name>` is one a package short name (eg, `util`, `sigproc`, `gen`).
+
+All use the same command line interface (CLI) module ([Click](http://click.pocoo.org)) so have similar usage. In particular, run the program without any arguments to get a help screen.
+
+
+<a id="python-modules"></a>
+
+### `wirecell` Python modules
+
+```python
+from wirecell import units
+```
+
+
+<a id="org49c67da"></a>
+
+#### `sigproc`
+
+1.  `garfield`
+
+    See the section [7.1](#garfield-2d-support).
+
+
+<a id="pkg-util"></a>
+
+## `wire-cell-util`
 
 Introduction.
 
 
-<a id="org533998c"></a>
+<a id="util-units"></a>
 
 ### Units
 
 Describe units.
 
 
-<a id="org437c079"></a>
+<a id="util-persistence"></a>
 
 ### Persistence
 
 Describe support for persistent files including compression and location.
 
 
-<a id="orgbe131f2"></a>
+<a id="org672c6b8"></a>
 
 ### Etc
 
 &#x2026;.
 
 
-<a id="org2a97b94"></a>
+<a id="pkg-iface"></a>
 
-## Interfaces
+## `wire-cell-iface`
 
 Brief overview but it&rsquo;s also in <./internals.md> so don&rsquo; t over do it.
 
 
-<a id="orgd086459"></a>
+<a id="orgfa83956"></a>
 
 ### Data
 
+tbd
 
-<a id="org4f96cb7"></a>
+
+<a id="org4ad1123"></a>
 
 ### Nodes
 
+tbd
 
-<a id="orgd66fead"></a>
+
+<a id="org10bfc94"></a>
 
 ### Misc
 
+tbd
 
-<a id="orgc51c2cf"></a>
 
-## Simulation
+<a id="pkg-gen"></a>
+
+## `wire-cell-gen`
 
 Scope and intro blah blah.
 
 
-<a id="orga1f5ad9"></a>
+<a id="org3a63e73"></a>
 
 ### Depositions
 
+TBD.
 
-<a id="org3e0b166"></a>
+
+<a id="org9879ed6"></a>
 
 ### Drifting
 
+TBD.
 
-<a id="org7cfb0dd"></a>
+
+<a id="org0ebb8c4"></a>
 
 ### Response
 
+TBD.
 
-<a id="org06e8157"></a>
+
+<a id="org09f1938"></a>
 
 ### Digitizing
 
+TBD.
 
-<a id="org5a709a2"></a>
 
-## Waf tools
+<a id="pkg-waftools"></a>
+
+## `wire-cell-waftools`
 
 The WCT build system is based on [Waf](https://waf.io/). The parts of the build system include:
 
@@ -951,7 +1163,7 @@ The WCT build system is based on [Waf](https://waf.io/). The parts of the build 
 -   the main `wscript` and per-package `wscript_build` files provide the high-level instructions for building WCT (ie, they are like old fashioned `Makefile` files).
 
 
-<a id="org3181422"></a>
+<a id="generate-wcb"></a>
 
 ### Recreating `wcb`
 
@@ -965,7 +1177,7 @@ The `wcb` command bundles some optional Waf tools which are not included in the 
     $ git commit [...]
 
 
-<a id="org3e4b2b8"></a>
+<a id="bundle-waf-tools"></a>
 
 ### Included Waf tools
 
@@ -975,3 +1187,223 @@ A number of Waf tools are provided in the [waftools](https://github.com/wirecell
 The scripts to make and test releases are also housed in this package.
 
 </div>
+
+
+<a id="data-flow-programming"></a>
+
+# Data Flow Programming
+
+All about data flow programming support in WCT.
+
+
+<a id="other-topics"></a>
+
+# Other Topics
+
+
+<a id="garfield-2d-support"></a>
+
+## Garfield 2D Support
+
+Garfield 2D is used to provide field response functions for WCT signal processing and simulation. This section collects some documentation of this.
+
+
+<a id="garfield-2d-data"></a>
+
+### Garfield 2D data
+
+Garfield 2D is used to calculate various things:
+
+-   the electrostatic or drift field near the wire planes
+-   electron drift paths through this field starting from an array of points at a (nominal) fixed drift distance and terminating on an electrode
+-   the Shockley-Ramo *weighting field* for one *central wire* of each wire plane
+-   the instantaneous current in each central wire separately for each drift path and regularly sampled over time.
+
+The Garfield 2D user is free to pick the array drift path starting points however, a choice was made for initial field calculations and processing of Garfield 2D output assumes it holds. In particular:
+
+-   The drift paths all start with a fixed &ldquo;X&rdquo; coordinate value
+-   There is one drift path exactly aligned with each wire in the transverse direction.
+-   There is one drift path on one side of each wire starting exactly at the transverse midpoint with its neighbor
+-   There are four more equal spaced drift paths between these two.
+
+These paths are said to start at *impact positions*. These impact positions extend across the entire transverse domain, bounded by one half wire pitch below the lowest wire and one half pitch above the highest wire. The impact positions where Garfield 2D paths start represent half of the total. The remaining half are defined through symmetry.
+
+<div class="warning">
+In the initial `ub_10` data set with 21 wires \(\times\) 6 impact positions \(\times\) 3 planes the counting of impact position numbers and wire numbers are in opposite transverse directions. This is corrected for in the preprocessing. If future Garfield 2D runs attempt to &ldquo;fix&rdquo; this it will break the preprocessing.
+
+</div>
+
+
+<a id="preprocessing-garfield-data"></a>
+
+### Preprocessing of Garfield 2D data
+
+WCT provides a Python module to assist in generating a WCT field response file in compressed JSON format. It also is responsible for filling in missing drift paths, correcting any vagaries, normalizing units.
+
+<div class="info">
+The output field response functions must be given in the form of a sampled, electric current waveform due to the passage of a **single electron** along the drift path and the current must be expressed in the WCT system of units for electric current. The response function is **not** in units of electric charge.
+
+</div>
+
+The main entry point into the Garfield 2D support is:
+
+```python
+import wirecell.sigproc.garfield as garfield
+```
+
+The next section gives some detailed examples of use and subsequent ones give some plots.
+
+
+<a id="eyeball-garfield"></a>
+
+### Eyeballing Garfield 2D with `wirecell.sigproc.garfield`
+
+This is from the `ub_10` data set.
+
+Taking raw Garfield output shows, apparently, two electrons were drifted per path. It&rsquo;s unclear why it&rsquo;s slightly more than 2.0 electrons of charge though.
+
+```python
+import wirecell.sigproc.garfield as garfield
+dat = garfield.load("/opt/bviren/wct-dev/share/wirecell/data/ub_10.tar.gz")
+w = [r for r in dat if r.impact == 0 and r.region == 0 and r.plane == 'w'][0]
+sum(w.response)
+# -> -0.020265450377670812
+w.times[1] / units.us
+# -> 0.1
+sum(w.response) * w.times[1] / units.coulomb
+# -> -3.2468828093569448e-19
+sum(w.response) * w.times[1] / units.eplus
+# -> -2.0265450377670811
+w0 = [r for r in dat if r.region == 0 and r.plane == 'w']
+len(w0)
+# -> 6
+w0[0].region
+# -> 0
+sum(w0[0].response)/units.microampere
+# -> -3.2577267395296085e-06
+[sum(w.response)*w.times[1]/units.eplus for w in w0]
+# -> [-2.033313287245619,
+#     -2.0184390655262097,
+#     -2.061704680164814,
+#     -2.057934020579546,
+#     -2.0501410482117408,
+#     -2.0265450377670811]
+```
+
+Modify `garfield.load()` to normalize all responses so that this last array averages to 1.0. After that change:
+
+```python
+[sum(r.response)*r.times[1]/units.eplus for r in dat2 if r.region == 0 and r.plane == 'w']
+# -> [0.99606489937379161,
+#     0.98877842254157267,
+#     1.0099730708830847,
+#     1.0081259272658833,
+#     1.0043083619718129,
+#     0.99274931796385024]
+sum([sum(r.response)*r.times[1]/units.eplus for r in dat2 if r.region == 0 and r.plane == 'w'])/6.0
+# -> 0.99999999999999944
+```
+
+Same region 0 average in units of `eplus` for U is -6.9e-3 and for V is -5.5e-3.
+
+
+<a id="garfield-validation-plots"></a>
+
+### Validation plots
+
+Some critical validation plots can be made from the command line using the `wirecell-sigproc` program. In the examples below it is assumed, for brevity that the Garfield 2D data set is available via the `$G2D` environment variable set for example like:
+
+    $ export G2D=/opt/bviren/wct-dev/share/wirecell/data/ub_10.tar.gz
+
+
+<a id="garfield-isochronous-track"></a>
+
+#### Perpendicular ideal track
+
+A perpendicular ideal track can be &ldquo;simulated&rdquo; by summing response functions. This is because the response on neighboring wires due to a charge drifting near the central wire is equivalent to the response on the central wire due to charge drifting near neighboring wires.
+
+There are three main data tiers:
+
+1.  instantaneous induced current
+2.  sampled voltage after preamplifier gain and shaping done in the FEE
+3.  digitized ADC waveform of that voltage
+
+This command can be used to make plots of these with different parameterizations:
+
+    $ wirecell-sigproc plot-garfield-track-response --help
+    Usage: wirecell-sigproc plot-garfield-track-response [OPTIONS]
+                                                         GARFIELD_FILESET PDFFILE
+    
+      Plot Garfield response assuming a perpendicular track.
+    
+    Options:
+      -o, --output TEXT         Set output data file
+      -g, --gain FLOAT          Set gain in mV/fC.
+      -s, --shaping FLOAT       Set shaping time in us.
+      -t, --tick FLOAT          Set tick time in us (0.1 is good for no shaping).
+      -n, --norm INTEGER        Set normalization in units of electron charge.
+      -a, --adc-gain FLOAT      Set ADC gain (unitless).
+      --adc-voltage FLOAT       Set ADC voltage range in Volt.
+      --adc-resolution INTEGER  Set ADC resolution in bits.
+      --help                    Show this message and exit.
+
+If the shaping is zero, then the induced current is plotted. If it is nonzero but the ADC gain is zero then pre-ADC voltages are plotted. If both are nonzero (default) then the ADC waveforms are plotted
+
+
+<a id="garfield-induced-current"></a>
+
+#### Induced current
+
+Garfield 2D provides instantaneous, sampled induced current waveforms. Their per-plane sum, as described above equivalent to a perpendicular track, can be plotted with zero shaping time:
+
+    $ wirecell-sigproc plot-garfield-track-response -s 0.0 $G2D figs/track-response-current.svg
+
+![img](figs/track-response-current.svg)
+
+<div class="info">
+The default normalization is such that there are 16000 electrons per pitch (MIP) and no diffusion. Just doing the unit conversions, this many electrons arriving over 2-3 us should give a current of about a nanoamp.
+
+</div>
+
+
+<a id="garvield-amplified-voltage"></a>
+
+#### Amplified Voltage
+
+The results of convolution with electronics response can be plotted with a zero per-ADC gain:
+
+    $ wirecell-sigproc plot-garfield-track-response -a 0.0 $G2D figs/track-response-voltage.svg
+
+![img](figs/track-response-voltage.svg)
+
+<div class="info">
+The default preamplifier gain is 14 mV/fC. This means that a delta-function current integrating to 1 fC would produce a smooth voltage curve with a **peak** of 14 mV. The default 16000 electrons per pitch, if producing a delta-function of current, would produce 36 mV. Because of broadening and finite width as shown in the previous plot, this peak should be reduced and smeared.
+
+</div>
+
+
+<a id="garfield-adc-waveform"></a>
+
+#### Digitized ADC Waveform
+
+Finally, the expected ADC output is plotted by default.
+
+    $ wirecell-sigproc plot-garfield-track-response $G2D figs/track-response-adc.svg
+
+![img](figs/track-response-adc.svg)
+
+<div class="info">
+This assumes the default 12 bit ADC spanning 2 volts.
+
+</div>
+
+
+<a id="convert-garfield-data-to-json"></a>
+
+### Producing WCT Field Response Data File
+
+The WCT does not directly read Garfield 2D data sets but instead requires the information to be compiled into a single, compressed JSON file. This is done like:
+
+    $ wirecell-sigproc convert-garfield $G2D garfield-1d-3planes-21wires-6impacts-v5.json.bz2
+
+FIXME: distribution of these data files needs some formal mechanism. For now, they may be available here: <http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/data/>.
