@@ -1,9 +1,10 @@
 - [News](#news)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-23 Fri] </span></span> New Configuration Data Package](#org24f76d0)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-21 Wed] </span></span> Build cleanups](#orgee927ba)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-20 Tue] </span></span> Exceptions](#org94d862a)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-17 Sat]  </span></span>  Basic Simulation Essentially Working and CellTree support](#orgbc5cb86)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-16 Fri] </span></span> Jsonnet now mandatory and CLI parameter injection](#org26c7505)
+  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-07-03 Mon] </span></span> Porting  and Integration](#orgbb4e2ab)
+  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-23 Fri] </span></span> New Configuration Data Package](#org56920cd)
+  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-21 Wed] </span></span> Build cleanups](#org143f7a0)
+  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-20 Tue] </span></span> Exceptions](#org7e173b3)
+  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-17 Sat]  </span></span>  Basic Simulation Essentially Working and CellTree support](#orge76e9a1)
+  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-16 Fri] </span></span> Jsonnet now mandatory and CLI parameter injection](#orgbb74cd3)
 - [Installation](#installation)
   - [Toolkit installation](#toolkit-installation)
     - [Source code](#source-code)
@@ -69,19 +70,19 @@
   - [`wire-cell-util`](#pkg-util)
     - [Units](#util-units)
     - [Persistence](#util-persistence)
-    - [Etc](#org71594d9)
+    - [Etc](#orgdb75f1a)
   - [`wire-cell-iface`](#pkg-iface)
-    - [Data](#org4595e47)
-    - [Nodes](#orgd2e0b51)
-    - [Misc](#org3bc6983)
+    - [Data](#orgb09f167)
+    - [Nodes](#org2654e25)
+    - [Misc](#org3c2ade8)
   - [`wire-cell-gen`](#pkg-gen)
-    - [Depositions](#orgf2b6e1f)
-    - [Drifting](#orga280984)
-    - [Response](#orge703f89)
-    - [Digitizing](#org4391fcc)
-    - [Noise](#org5c43071)
-    - [Frame Summing](#orgbefc538)
-    - [Execution Graphs](#orgb4c72ce)
+    - [Depositions](#org8bd82fd)
+    - [Drifting](#org4e032d5)
+    - [Response](#org5cfdadd)
+    - [Digitizing](#org18c6243)
+    - [Noise](#org53996c1)
+    - [Frame Summing](#org49c3dbb)
+    - [Execution Graphs](#org3be252f)
   - [`wire-cell-waftools`](#pkg-waftools)
     - [Recreating `wcb`](#generate-wcb)
     - [Included Waf tools](#bundle-waf-tools)
@@ -103,7 +104,16 @@
 This section lists a reverse timeline of some newsworthy updates and commits to WCT.
 
 
-<a id="org24f76d0"></a>
+<a id="orgbb4e2ab"></a>
+
+## <span class="timestamp-wrapper"><span class="timestamp">[2017-07-03 Mon] </span></span> Porting  and Integration
+
+Xin concluded an intense effort to port the prototype [signal processing code into the toolkit](https://github.com/WireCell/wire-cell-sigproc).
+
+With hints from Lynn Garren (FNAL) a [method](https://github.com/brettviren/larwirecell/blob/feature/integration/larwirecell/integration.org#set-larwirecell-environment) to set up an environment where both WCT and its LArSoft integration package (`larwirecell`) can be simultaneously developed.
+
+
+<a id="org56920cd"></a>
 
 ## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-23 Fri] </span></span> New Configuration Data Package
 
@@ -120,7 +130,7 @@ See the [README](https://github.com/WireCell/wire-cell-data/blob/master/README.o
 Previously this data was kept online [in a directory](http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/data/) dump. That&rsquo;s still there for now. It includes some files not added to GitHub. In particular the &ldquo;upstream&rdquo; data from which the JSON files are converted (eg, the Garfield output) can be found. And next door to that directory is a [plot dump directory](http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/plots/) which contains some diagnostic plots related to the conversion of these files which may be useful for experts to browse.
 
 
-<a id="orgee927ba"></a>
+<a id="org143f7a0"></a>
 
 ## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-21 Wed] </span></span> Build cleanups
 
@@ -134,7 +144,7 @@ Today sees some long needed cleanups in how we build WCT and WCP and their exter
 -   The cursed XData package is removed from both WCP and WCT.
 
 
-<a id="org94d862a"></a>
+<a id="org7e173b3"></a>
 
 ## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-20 Tue] </span></span> Exceptions
 
@@ -166,7 +176,7 @@ Notes:
 4.  No special C++ is needed to catch exceptions.
 
 
-<a id="orgbc5cb86"></a>
+<a id="orge76e9a1"></a>
 
 ## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-17 Sat]  </span></span>  Basic Simulation Essentially Working and CellTree support
 
@@ -175,7 +185,7 @@ Hanyu Wei has done great job getting the basic drift and response simulation fin
 Hanyu also added a [new frame sink](https://github.com/WireCell/wire-cell-sio/blob/master/src/CelltreeFrameSink.cxx) to write out &ldquo;celltree&rdquo; file format. This ROOT-based format has been used for a while now to transfer data between the Wire-Cell Prototype and other applications.
 
 
-<a id="org26c7505"></a>
+<a id="orgbb74cd3"></a>
 
 ## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-16 Fri] </span></span> Jsonnet now mandatory and CLI parameter injection
 
@@ -516,6 +526,11 @@ If a relative path is given, the file will be searched for starting in the curre
 
 ### Dump default configuration
 
+<div class="warning">
+This dumping functionality is removed from the `wire-cell` CLI for now.
+
+</div>
+
 The user can also dump out the hard-coded default configuration for one or more components:
 
     $ wire-cell \
@@ -532,6 +547,11 @@ The user must know what components to dump. There is no way for the application 
 <a id="diving-into-json"></a>
 
 ### Diving into JSON
+
+<div class="warning">
+This dumping functionality is removed from the `wire-cell` CLI for now.
+
+</div>
 
 An example configuration dump from this command
 
@@ -1181,7 +1201,7 @@ from wirecell import units
 ```
 
 
-<a id="org3e2fc28"></a>
+<a id="orgffa61ff"></a>
 
 #### `sigproc`
 
@@ -1211,7 +1231,7 @@ Describe units.
 Describe support for persistent files including compression and location.
 
 
-<a id="org71594d9"></a>
+<a id="orgdb75f1a"></a>
 
 ### Etc
 
@@ -1225,21 +1245,21 @@ Describe support for persistent files including compression and location.
 Brief overview but it&rsquo;s also in <./internals.md> so don&rsquo; t over do it.
 
 
-<a id="org4595e47"></a>
+<a id="orgb09f167"></a>
 
 ### Data
 
 tbd
 
 
-<a id="orgd2e0b51"></a>
+<a id="org2654e25"></a>
 
 ### Nodes
 
 tbd
 
 
-<a id="org3bc6983"></a>
+<a id="org3c2ade8"></a>
 
 ### Misc
 
@@ -1253,7 +1273,7 @@ tbd
 The `wire-cell-gen` package provides components for the generation of data. It primarily includes components which perform the grand convolution of drifted electron distribution, field and electronics response and associate statistical fluctuations (aka, the &ldquo;drift simulation&rdquo;).
 
 
-<a id="orgf2b6e1f"></a>
+<a id="org8bd82fd"></a>
 
 ### Depositions
 
@@ -1262,42 +1282,42 @@ Depositions (`IDepo` data objects, aka *depo*) are provided by `IDepoSource` com
 The `IDepoSource` components adapt to external sources of information about initial activity in the detector. These sources may provide \(dE\) and \(dX\) in which case two models can be applied to produce associated number of ionized electrons. The external source may provide only \(dE\) in which case the number of ionized electrons will be calculated for the deposition on the assumption that the particle is a MIP. Finally, the ionization process may be handled by the external source and the number of electrons may be given directly.
 
 
-<a id="orga280984"></a>
+<a id="org4e032d5"></a>
 
 ### Drifting
 
 The `IDrifter` components are responsible for transforming a depo at one location and time into another depo at a different location and time while suitably adjusting the number of ionization electrons and their 2D extents. Each call of the component accepts a single depo and returns zero or more output depos. Input depos are assumed to be strictly time ordered and each batch of output depos likewise. In general a drifter must cache depos for some length of time in order to assure it has seen all possible depos to satisfy causality for the output.
 
 
-<a id="orge703f89"></a>
+<a id="org5cfdadd"></a>
 
 ### Response
 
 The field and electronics response of the detector is calculated in an `IDuctor` component. This is typically done by accepting depos at some *input plane* or *response plane*. Up to this plane, any drifting depo is assumed to induce a negligible detector response. For drifting beyond this plane some position dependent response is applied (ie, a field response calculated by 2D Garfield or 3D LARF). Each call to an `IDuctor` components accepts one depo and produces zero or more frames (`IFrame` data object). In general an `IDuctor` component must cache depos long enough to assure the produced frames satisfy causality. Output frames may be sparse in that not all channels may have traces (`ITrace` data objects) and in any given channel the traces may not cover the same span of time. The unit for the waveforms in the frame depend on the detector response applied. If field response alone is applied then the waveform is in units of sampled current (fixme, check code, it may be integrated over tick and thus charge.) If both field and electronics response is applied the waveform is in units of voltage.
 
 
-<a id="org4391fcc"></a>
+<a id="org18c6243"></a>
 
 ### Digitizing
 
 An `IDigitizer` component applies a transformation to the waveform, typically but not necessarily in order to truncate it to ADC. These components are functional in that each call takes and produces one frame. Even if truncating to ADC the frame is still expressed as floating point values.
 
 
-<a id="org5c43071"></a>
+<a id="org53996c1"></a>
 
 ### Noise
 
 t.b.d.
 
 
-<a id="orgbefc538"></a>
+<a id="org49c3dbb"></a>
 
 ### Frame Summing
 
 Right now, frames can be summed by a bare function `FrameUtil::sum()`. This is better put into a component.
 
 
-<a id="orgb4c72ce"></a>
+<a id="org3be252f"></a>
 
 ### Execution Graphs
 
@@ -1310,7 +1330,7 @@ The `gen` package provides high-level `IApplication` components. Primarily, thes
 ![img](figs/multidee.svg)
 
 
-<a id="org392f1a8"></a>
+<a id="orgf8b94a7"></a>
 
 #### Hard-coded vs Configurable
 
