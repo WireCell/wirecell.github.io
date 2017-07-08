@@ -1,0 +1,62 @@
+#+BEGIN_COMMENT
+.. title: Jsonnet now mandatory and CLI parameter injection
+.. slug: jsonnet-now-mandatory-and-cli-parameter-injection
+.. date: 2017-06-16 14:34:03 UTC-04:00
+.. tags: build,config,devel
+.. category: toolkit
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+
+[[Jsonnet]] is now a required external dependency.  It is just far too
+useful to keep optional and it's a very light-weight package so easy
+to build.  However, it is not yet added to ~wire-cell-spack~ (see
+[[https://github.com/WireCell/wire-cell-spack/issues/1][inaugural issue]]).  Building it yourself is simple but non-standard.
+Follow this guide:
+
+1) Get the source and do ~make all~
+2) Copy the two header under ~include/~ at some installation path.
+3) Similarly,   copy the two shared libraries to ~lib/~ at some installation path.
+4) Finally, copy the executable binary ~jsonnet~ to some ~bin/~.
+
+One annoyance with the elaborate configuration which Jsonnet makes
+easy is that, for some things, you do not want to constantly edit a
+file just to make some small change.  In particular, initial input and
+final output files are often best given directly on the command line
+rather than in some configuration file.  Jsonnet also comes to the
+rescue here by allowing external parameters to be "injected" into the
+configuration using its ~std.extVar("name")~ function.  
+
+For this to work, the author of some configuration calls this function
+where they would otherwise type in the value.  Then the user must
+supply that value on the ~wire-cell~ command line or if compiling the
+Jsonnet to JSON via the ~jsonnet~ CLI.  
+
+An example is in the configuration supporting the new "multi-ductor"
+feature (stay tuned for details).  One spot it is used can be found in
+[[https://github.com/WireCell/wire-cell-cfg/blob/master/multi/depos.jsonnet][depos.jsonnet]] where the input file holding depositions is set.  The
+user of ~wire-cell~ or ~jsonnet~ sets a value for this variable in the
+same way: by simply adding a ~-V~ flag.  Here is a full example with
+some comments to explain:
+
+#+BEGIN_EXAMPLE
+  $ wire-cell \
+     -V detector=uboone \                         # (1)
+     -V depofile=g4tuple-qsn-v1-fixed.json.bz2 \  # (2)
+     -V framefile=uboone.root \                   # (3)
+     -c multi/init.jsonnet \                      # (4) 
+     -c multi/multiductor.jsonnet                 # (5)
+#+END_EXAMPLE
+
+Notes:
+1) A variable =detector= is used in various places of the configuration to switch between some global parameters specific to that detector.
+2) The input =depofile= is set.  Remember that WCT will look for JSON/Jonnet files in directories given in the =WIRECELL_PATH= environment variable.  
+3) The output =framefile= is set.  This will hold all the frames of traces (aka the "event") that get simulated.
+4) The first of two configuration files that being the list of configurables.
+5) The "meat" of the configuration.
+
+
+

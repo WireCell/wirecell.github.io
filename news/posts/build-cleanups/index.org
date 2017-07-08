@@ -1,0 +1,22 @@
+#+BEGIN_COMMENT
+.. title: Build Cleanups
+.. slug: build-cleanups
+.. date: 2017-06-21 15:16:40 UTC-04:00
+.. tags: build,devel
+.. category: toolkit
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+Today sees some long needed cleanups in how we build WCT and WCP and their externals.  In particular:
+
+- [[http://jsonnet.org/][Jsonnet]], as previously announced is now *required* by WCT has a build package added to [[https://github.com/WireCell/wire-cell-spack/blob/master/repo/packages/jsonnet/package.py][wire-cell-spack]]. 
+- A [[http://www.phy.bnl.gov/~bviren/wire-cell-spack-mirror/][source mirror]] is now available in case you have trouble getting any required dependencies.  The Spack build will use this mirror automatically after being configured as shown in [[https://github.com/WireCell/wire-cell-spack/blob/master/README.org#failure-to-download-a-package-source][the README]] file.
+- Besides the tip of the =master= branch, specific releases starting with 0.5.2 of WCT can now be installed with Spack.
+- The WCP and its dependencies can now be built using wire-cell-spack.  WCP uses a subset of the packages that WCT requires and the two can be installed side-by-side sharing these packages.
+- See also [[https://github.com/WireCell/wire-cell-spack/blob/master/README.org#using-spack-views][this section of the README]] for recommended way to develop either WCP or WCT code against Spack-built dependencies.
+- The cursed XData package is removed from both WCP and WCT.
+
+

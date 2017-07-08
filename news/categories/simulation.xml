@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News (Posts about simulation)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link type="application/rss+xml" href="http://wirecell.github.io/news/categories/simulation.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2017 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Sat, 08 Jul 2017 19:35:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Basic Simulation Essentially Working and CellTree support</title><link>http://wirecell.github.io/news/posts/basic-simulation-essentially-working-and-celltree-support/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+Hanyu Wei has done great job getting the basic drift and response
+simulation finished.  In particular it now properly handles the
+exceeding fine-scale interpolation that is essential for having
+realistically smooth induction signals as a particle's ionization
+track moves from the region around one field response path to its
+neighbor.  This improvement makes negligible impact on speed.  Also
+included is proper drift processes and their statistics as well as the
+introduction of an addition RC response for amplifier after the preamp
+(for MicroBooNE).  
+&lt;/p&gt;
+
+&lt;p&gt;
+Hanyu also added a &lt;a href="https://github.com/WireCell/wire-cell-sio/blob/master/src/CelltreeFrameSink.cxx"&gt;new frame sink&lt;/a&gt; to write out "celltree" file format.
+This ROOT-based format has been used for a while now to transfer data
+between the Wire-Cell Prototype and other applications.
+&lt;/p&gt;</description><category>devel</category><category>simulation</category><guid>http://wirecell.github.io/news/posts/basic-simulation-essentially-working-and-celltree-support/</guid><pubDate>Sat, 17 Jun 2017 18:50:06 GMT</pubDate></item></channel></rss>

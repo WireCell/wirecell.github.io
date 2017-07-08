@@ -1,0 +1,47 @@
+#+BEGIN_COMMENT
+.. title: Exceptions
+.. slug: exceptions
+.. date: 2017-06-20 15:14:20 UTC-04:00
+.. tags: devel
+.. category: toolkit
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+
+
+Throwing exceptions is now a SOP for indicating some error.  As you
+write configurable components, be particularly liberal with throwing
+exceptions inside of the ~configure()~ method.  The ~wire-cell~ CLI
+will catch these and exit.  Other applications of the WCT that do not,
+will at least fail early if any exception is thrown and thus the user
+can fix the problem without delay.
+
+WCT uses Boost exception support hidden with a thin layer to keep
+things looking simple.  When you program WCT code with exceptions do
+like:
+
+#+BEGIN_SRC cpp
+  #include "WireCellUtil/Exceptions.h"  
+
+  void MyComponent::configure(Configuration cfg)
+  {
+      std::string mytool_tn = get<std::string>(cfg, "mytool");
+      if (mytool_tn.empty()) {
+          THROW(ValueError() << errmsg{"You must set \"mytool\" to something"});
+      }
+       m_mytool = Factory::find_tn<IMyTool>(mytool_tn);
+       if (!m_mytool) {
+           THROW(ValueError() << errmsg{"Failed to find IMyTool: " + mytool_tn});
+       }
+  }
+#+END_SRC
+
+Notes:
+
+1) All exceptions that WCT code may throw are defined in the header file included in the example.  
+2) Instead of the low-level C++ ~throw()~ use the provided CPP macro ~THROW()~ which will give the user extra info in the case that an exception is not caught.
+3) The value returned may have an ~errmsg~ streamed to it which will add some dynamic description of the error in the form of a string.  If a complex string needs to be build see ~WireCell::String::format()~.
+4) No special C++ is needed to catch exceptions.

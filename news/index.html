@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Updates related to Wire Cell.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wire Cell News | Wire Cell News</title>
+<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<link rel="canonical" href="http://wirecell.github.io/news/">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/porting-and-integration-begun/" type="text/html">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<div class="blog-masthead">
+    <div class="container">
+<!-- This keeps the margins nice -->
+        <nav class="blog-nav" role="navigation"><a href="#" class="blog-nav-item">Home</a>
+            <a href="archive.html" class="blog-nav-item">Archive</a>
+            <a href="categories/" class="blog-nav-item">Tags</a>
+            <a href="rss.xml" class="blog-nav-item">RSS feed</a>
+
+            
+
+                
+            
+        </nav>
+</div>
+<!-- /.container -->
+</div>
+<!-- End of Menubar -->
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <div class="blog-header">
+            <h1 class="blog-title">
+                <a href="http://wirecell.github.io/news/">
+                    <img src="images/wcgh.png" alt="Wire Cell News" id="logo"><span id="blog-title">Wire Cell News</span>
+                </a>
+            </h1>
+            <p class="lead blog-description">Updates related to Wire Cell.</p>
+            
+        </div>
+        <!--Body content-->
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+<div class="postindex">
+    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/porting-and-integration-begun/" class="u-url">Porting and Integration Begun</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/porting-and-integration-begun/" rel="bookmark"><time class="published dt-published" datetime="2017-07-03T15:20:25-04:00" title="2017-07-03 15:20">2017-07-03 15:20</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>
+Xin concluded an intense effort to port the prototype <a href="https://github.com/WireCell/wire-cell-sigproc">signal processing code into the toolkit</a>.
+</p>
+
+<p>
+With hints from Lynn Garren (FNAL) a <a href="https://github.com/brettviren/larwirecell/blob/feature/integration/larwirecell/integration.org#set-larwirecell-environment">method</a> to set up an environment where both WCT and its LArSoft integration package (<code>larwirecell</code>) can be simultaneously developed.
+</p>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/new-configuration-data-package/" class="u-url">New Configuration Data Package</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/new-configuration-data-package/" rel="bookmark"><time class="published dt-published" datetime="2017-06-23T15:18:19-04:00" title="2017-06-23 15:18">2017-06-23 15:18</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>
+Today a new package joins the WCT family.  
+</p>
+
+<p>
+<a href="https://github.com/WireCell/wire-cell-data">https://github.com/WireCell/wire-cell-data</a>
+</p>
+
+<p>
+This collects the "configuration data" files which are needed for
+input to WCT.  These are generally compressed JSON files which have
+been converted to a WCT standard format from a variety of sources.
+The data includes wire geometry, field response, noise spectra and a
+couple initial deposition files.  
+</p>
+
+<p>
+Having this repository makes it easier for users to prepare to run
+WCT.  At some point in the future this package may be installed along
+with the code, but for now, users need to clone this repo.  For WCT to
+locate these files the produced directory needs to be added to the
+user's <code>WIRECELL_PATH</code> environment variable.
+</p>
+
+<p>
+See the <a href="https://github.com/WireCell/wire-cell-data/blob/master/README.org">README</a> file for details including a summary of the files
+available and commands to remake these files from their upstream
+sources.
+</p>
+
+<p>
+Previously this data was kept online <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/data/">in a directory</a> dump.  That's
+still there for now.  It includes some files not added to GitHub.  In
+particular the "upstream" data from which the JSON files are converted
+(eg, the Garfield output) can be found.  And next door to that
+directory is a <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/plots/">plot dump directory</a> which contains some diagnostic
+plots related to the conversion of these files which may be useful for
+experts to browse.
+</p>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/build-cleanups/" class="u-url">Build Cleanups</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/build-cleanups/" rel="bookmark"><time class="published dt-published" datetime="2017-06-21T15:16:40-04:00" title="2017-06-21 15:16">2017-06-21 15:16</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>
+Today sees some long needed cleanups in how we build WCT and WCP and their externals.  In particular:
+</p>
+
+<ul class="org-ul">
+<li>
+<a href="http://jsonnet.org/">Jsonnet</a>, as previously announced is now <b>required</b> by WCT has a build package added to <a href="https://github.com/WireCell/wire-cell-spack/blob/master/repo/packages/jsonnet/package.py">wire-cell-spack</a>. 
+</li>
+<li>A <a href="http://www.phy.bnl.gov/~bviren/wire-cell-spack-mirror/">source mirror</a> is now available in case you have trouble getting any required dependencies.  The Spack build will use this mirror automatically after being configured as shown in <a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#failure-to-download-a-package-source">the README</a> file.
+</li>
+<li>Besides the tip of the <code>master</code> branch, specific releases starting with 0.5.2 of WCT can now be installed with Spack.
+</li>
+<li>The WCP and its dependencies can now be built using wire-cell-spack.  WCP uses a subset of the packages that WCT requires and the two can be installed side-by-side sharing these packages.
+</li>
+<li>See also <a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#using-spack-views">this section of the README</a> for recommended way to develop either WCP or WCT code against Spack-built dependencies.
+</li>
+<li>The cursed XData package is removed from both WCP and WCT.
+</li>
+</ul>
+</div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/exceptions/" class="u-url">Exceptions</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/exceptions/" rel="bookmark"><time class="published dt-published" datetime="2017-06-20T15:14:20-04:00" title="2017-06-20 15:14">2017-06-20 15:14</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>
+Throwing exceptions is now a SOP for indicating some error.  As you
+write configurable components, be particularly liberal with throwing
+exceptions inside of the <code>configure()</code> method.  The <code>wire-cell</code> CLI
+will catch these and exit.  Other applications of the WCT that do not,
+will at least fail early if any exception is thrown and thus the user
+can fix the problem without delay.
+</p>
+
+<p>
+WCT uses Boost exception support hidden with a thin layer to keep
+things looking simple.  When you program WCT code with exceptions do
+like:
+</p>
+
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">"WireCellUtil/Exceptions.h"  </span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="n">MyComponent</span><span class="o">::</span><span class="n">configure</span><span class="p">(</span><span class="n">Configuration</span> <span class="n">cfg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">mytool_tn</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="s">"mytool"</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mytool_tn</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+	<span class="n">THROW</span><span class="p">(</span><span class="n">ValueError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">errmsg</span><span class="p">{</span><span class="s">"You must set </span><span class="se">\"</span><span class="s">mytool</span><span class="se">\"</span><span class="s"> to something"</span><span class="p">});</span>
+    <span class="p">}</span>
+     <span class="n">m_mytool</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">::</span><span class="n">find_tn</span><span class="o">&lt;</span><span class="n">IMyTool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mytool_tn</span><span class="p">);</span>
+     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">m_mytool</span><span class="p">)</span> <span class="p">{</span>
+	 <span class="n">THROW</span><span class="p">(</span><span class="n">ValueError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">errmsg</span><span class="p">{</span><span class="s">"Failed to find IMyTool: "</span> <span class="o">+</span> <span class="n">mytool_tn</span><span class="p">});</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+Notes:
+</p>
+
+<ol class="org-ol">
+<li>All exceptions that WCT code may throw are defined in the header file included in the example.  
+</li>
+<li>Instead of the low-level C++ <code>throw()</code> use the provided CPP macro <code>THROW()</code> which will give the user extra info in the case that an exception is not caught.
+</li>
+<li>The value returned may have an <code>errmsg</code> streamed to it which will add some dynamic description of the error in the form of a string.  If a complex string needs to be build see <code>WireCell::String::format()</code>.
+</li>
+<li>No special C++ is needed to catch exceptions.
+</li>
+</ol>
+</div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" class="u-url">Basic Simulation Essentially Working and CellTree support</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" rel="bookmark"><time class="published dt-published" datetime="2017-06-17T14:50:06-04:00" title="2017-06-17 14:50">2017-06-17 14:50</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>
+Hanyu Wei has done great job getting the basic drift and response
+simulation finished.  In particular it now properly handles the
+exceeding fine-scale interpolation that is essential for having
+realistically smooth induction signals as a particle's ionization
+track moves from the region around one field response path to its
+neighbor.  This improvement makes negligible impact on speed.  Also
+included is proper drift processes and their statistics as well as the
+introduction of an addition RC response for amplifier after the preamp
+(for MicroBooNE).  
+</p>
+
+<p>
+Hanyu also added a <a href="https://github.com/WireCell/wire-cell-sio/blob/master/src/CelltreeFrameSink.cxx">new frame sink</a> to write out "celltree" file format.
+This ROOT-based format has been used for a while now to transfer data
+between the Wire-Cell Prototype and other applications.
+</p>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/jsonnet-now-mandatory-and-cli-parameter-injection/" class="u-url">Jsonnet now mandatory and CLI parameter injection</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/jsonnet-now-mandatory-and-cli-parameter-injection/" rel="bookmark"><time class="published dt-published" datetime="2017-06-16T14:34:03-04:00" title="2017-06-16 14:34">2017-06-16 14:34</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>
+<i>Jsonnet</i> is now a required external dependency.  It is just far too
+useful to keep optional and it's a very light-weight package so easy
+to build.  However, it is not yet added to <code>wire-cell-spack</code> (see
+<a href="https://github.com/WireCell/wire-cell-spack/issues/1">inaugural issue</a>).  Building it yourself is simple but non-standard.
+Follow this guide:
+</p>
+
+<ol class="org-ol">
+<li>Get the source and do <code>make all</code>
+</li>
+<li>Copy the two header under <code>include/</code> at some installation path.
+</li>
+<li>Similarly,   copy the two shared libraries to <code>lib/</code> at some installation path.
+</li>
+<li>Finally, copy the executable binary <code>jsonnet</code> to some <code>bin/</code>.
+</li>
+</ol>
+<p>
+One annoyance with the elaborate configuration which Jsonnet makes
+easy is that, for some things, you do not want to constantly edit a
+file just to make some small change.  In particular, initial input and
+final output files are often best given directly on the command line
+rather than in some configuration file.  Jsonnet also comes to the
+rescue here by allowing external parameters to be "injected" into the
+configuration using its <code>std.extVar("name")</code> function.  
+</p>
+
+<p>
+For this to work, the author of some configuration calls this function
+where they would otherwise type in the value.  Then the user must
+supply that value on the <code>wire-cell</code> command line or if compiling the
+Jsonnet to JSON via the <code>jsonnet</code> CLI.  
+</p>
+
+<p>
+An example is in the configuration supporting the new "multi-ductor"
+feature (stay tuned for details).  One spot it is used can be found in
+<a href="https://github.com/WireCell/wire-cell-cfg/blob/master/multi/depos.jsonnet">depos.jsonnet</a> where the input file holding depositions is set.  The
+user of <code>wire-cell</code> or <code>jsonnet</code> sets a value for this variable in the
+same way: by simply adding a <code>-V</code> flag.  Here is a full example with
+some comments to explain:
+</p>
+
+<pre class="example">
+$ wire-cell \
+   -V detector=uboone \                         # (1)
+   -V depofile=g4tuple-qsn-v1-fixed.json.bz2 \  # (2)
+   -V framefile=uboone.root \                   # (3)
+   -c multi/init.jsonnet \                      # (4) 
+   -c multi/multiductor.jsonnet                 # (5)
+</pre>
+
+<p>
+Notes:
+</p>
+<ol class="org-ol">
+<li>A variable <code>detector</code> is used in various places of the configuration to switch between some global parameters specific to that detector.
+</li>
+<li>The input <code>depofile</code> is set.  Remember that WCT will look for JSON/Jonnet files in directories given in the <code>WIRECELL_PATH</code> environment variable.  
+</li>
+<li>The output <code>framefile</code> is set.  This will hold all the frames of traces (aka the "event") that get simulated.
+</li>
+<li>The first of two configuration files that being the list of configurables.
+</li>
+<li>The "meat" of the configuration.
+</li>
+</ol>
+</div>
+    </article>
+</div>
+
+
+    
+
+            </div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                    <div class="sidebar-module sidebar-module-inset">
+      <h4>About</h4>
+      <p>Wire Cell encompasses a collection of techniques and software implementation for the simulation, noise filtering, signal processing, 3D imaging, pattern recognition and reconstruction of liquid argon time projection chamber detectors.</p>
+    </div>
+    <div class="sidebar-module">
+      <h4>Links</h4>
+      <ol class="list-unstyled">
+<li><a href="https://www.phy.bnl.gov/wire-cell/">Main Home page</a></li>
+        <li><a href="http://wirecell.github.io/">Software Documentation</a></li>
+      </ol>
+</div>
+    
+            </div>
+        <!--End of body content-->
+        </div>
+    </div>
+</div>
+
+<footer class="blog-footer" id="footer">
+    Contents © 2017         <a href="mailto:bv@bnl.gov">Wire Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    
+</footer><script src="assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

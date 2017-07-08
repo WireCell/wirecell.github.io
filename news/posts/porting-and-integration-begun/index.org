@@ -1,0 +1,16 @@
+#+BEGIN_COMMENT
+.. title: Porting and Integration Begun
+.. slug: porting-and-integration-begun
+.. date: 2017-07-03 15:20:25 UTC-04:00
+.. tags: build,devel,larsoft
+.. category: toolkit
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+Xin concluded an intense effort to port the prototype [[https://github.com/WireCell/wire-cell-sigproc][signal processing code into the toolkit]].
+
+With hints from Lynn Garren (FNAL) a [[https://github.com/brettviren/larwirecell/blob/feature/integration/larwirecell/integration.org#set-larwirecell-environment][method]] to set up an environment where both WCT and its LArSoft integration package (=larwirecell=) can be simultaneously developed.
+

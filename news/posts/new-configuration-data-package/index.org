@@ -1,0 +1,39 @@
+#+BEGIN_COMMENT
+.. title: New Configuration Data Package
+.. slug: new-configuration-data-package
+.. date: 2017-06-23 15:18:19 UTC-04:00
+.. tags: config,build,devel
+.. category: toolkit
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+Today a new package joins the WCT family.  
+
+https://github.com/WireCell/wire-cell-data
+
+This collects the "configuration data" files which are needed for
+input to WCT.  These are generally compressed JSON files which have
+been converted to a WCT standard format from a variety of sources.
+The data includes wire geometry, field response, noise spectra and a
+couple initial deposition files.  
+
+Having this repository makes it easier for users to prepare to run
+WCT.  At some point in the future this package may be installed along
+with the code, but for now, users need to clone this repo.  For WCT to
+locate these files the produced directory needs to be added to the
+user's =WIRECELL_PATH= environment variable.
+
+See the [[https://github.com/WireCell/wire-cell-data/blob/master/README.org][README]] file for details including a summary of the files
+available and commands to remake these files from their upstream
+sources.
+
+Previously this data was kept online [[http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/data/][in a directory]] dump.  That's
+still there for now.  It includes some files not added to GitHub.  In
+particular the "upstream" data from which the JSON files are converted
+(eg, the Garfield output) can be found.  And next door to that
+directory is a [[http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/plots/][plot dump directory]] which contains some diagnostic
+plots related to the conversion of these files which may be useful for
+experts to browse.

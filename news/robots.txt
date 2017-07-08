@@ -1,0 +1,4 @@
+Sitemap: http://wirecell.github.io/news/sitemapindex.xml
+
+User-Agent: *
+Host: wirecell.github.io

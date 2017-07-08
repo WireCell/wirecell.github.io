@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News (Posts about toolkit)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link type="application/rss+xml" href="http://wirecell.github.io/news/categories/cat_toolkit.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2017 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Sat, 08 Jul 2017 19:35:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Porting and Integration Begun</title><link>http://wirecell.github.io/news/posts/porting-and-integration-begun/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+Xin concluded an intense effort to port the prototype &lt;a href="https://github.com/WireCell/wire-cell-sigproc"&gt;signal processing code into the toolkit&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+With hints from Lynn Garren (FNAL) a &lt;a href="https://github.com/brettviren/larwirecell/blob/feature/integration/larwirecell/integration.org#set-larwirecell-environment"&gt;method&lt;/a&gt; to set up an environment where both WCT and its LArSoft integration package (&lt;code&gt;larwirecell&lt;/code&gt;) can be simultaneously developed.
+&lt;/p&gt;</description><category>build</category><category>devel</category><category>larsoft</category><guid>http://wirecell.github.io/news/posts/porting-and-integration-begun/</guid><pubDate>Mon, 03 Jul 2017 19:20:25 GMT</pubDate></item><item><title>New Configuration Data Package</title><link>http://wirecell.github.io/news/posts/new-configuration-data-package/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+Today a new package joins the WCT family.  
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;a href="https://github.com/WireCell/wire-cell-data"&gt;https://github.com/WireCell/wire-cell-data&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+This collects the "configuration data" files which are needed for
+input to WCT.  These are generally compressed JSON files which have
+been converted to a WCT standard format from a variety of sources.
+The data includes wire geometry, field response, noise spectra and a
+couple initial deposition files.  
+&lt;/p&gt;
+
+&lt;p&gt;
+Having this repository makes it easier for users to prepare to run
+WCT.  At some point in the future this package may be installed along
+with the code, but for now, users need to clone this repo.  For WCT to
+locate these files the produced directory needs to be added to the
+user's &lt;code&gt;WIRECELL_PATH&lt;/code&gt; environment variable.
+&lt;/p&gt;
+
+&lt;p&gt;
+See the &lt;a href="https://github.com/WireCell/wire-cell-data/blob/master/README.org"&gt;README&lt;/a&gt; file for details including a summary of the files
+available and commands to remake these files from their upstream
+sources.
+&lt;/p&gt;
+
+&lt;p&gt;
+Previously this data was kept online &lt;a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/data/"&gt;in a directory&lt;/a&gt; dump.  That's
+still there for now.  It includes some files not added to GitHub.  In
+particular the "upstream" data from which the JSON files are converted
+(eg, the Garfield output) can be found.  And next door to that
+directory is a &lt;a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/plots/"&gt;plot dump directory&lt;/a&gt; which contains some diagnostic
+plots related to the conversion of these files which may be useful for
+experts to browse.
+&lt;/p&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/new-configuration-data-package/</guid><pubDate>Fri, 23 Jun 2017 19:18:19 GMT</pubDate></item><item><title>Build Cleanups</title><link>http://wirecell.github.io/news/posts/build-cleanups/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+Today sees some long needed cleanups in how we build WCT and WCP and their externals.  In particular:
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="http://jsonnet.org/"&gt;Jsonnet&lt;/a&gt;, as previously announced is now &lt;b&gt;required&lt;/b&gt; by WCT has a build package added to &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/repo/packages/jsonnet/package.py"&gt;wire-cell-spack&lt;/a&gt;. 
+&lt;/li&gt;
+&lt;li&gt;A &lt;a href="http://www.phy.bnl.gov/~bviren/wire-cell-spack-mirror/"&gt;source mirror&lt;/a&gt; is now available in case you have trouble getting any required dependencies.  The Spack build will use this mirror automatically after being configured as shown in &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#failure-to-download-a-package-source"&gt;the README&lt;/a&gt; file.
+&lt;/li&gt;
+&lt;li&gt;Besides the tip of the &lt;code&gt;master&lt;/code&gt; branch, specific releases starting with 0.5.2 of WCT can now be installed with Spack.
+&lt;/li&gt;
+&lt;li&gt;The WCP and its dependencies can now be built using wire-cell-spack.  WCP uses a subset of the packages that WCT requires and the two can be installed side-by-side sharing these packages.
+&lt;/li&gt;
+&lt;li&gt;See also &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#using-spack-views"&gt;this section of the README&lt;/a&gt; for recommended way to develop either WCP or WCT code against Spack-built dependencies.
+&lt;/li&gt;
+&lt;li&gt;The cursed XData package is removed from both WCP and WCT.
+&lt;/li&gt;
+&lt;/ul&gt;</description><category>build</category><category>devel</category><guid>http://wirecell.github.io/news/posts/build-cleanups/</guid><pubDate>Wed, 21 Jun 2017 19:16:40 GMT</pubDate></item><item><title>Exceptions</title><link>http://wirecell.github.io/news/posts/exceptions/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+Throwing exceptions is now a SOP for indicating some error.  As you
+write configurable components, be particularly liberal with throwing
+exceptions inside of the &lt;code&gt;configure()&lt;/code&gt; method.  The &lt;code&gt;wire-cell&lt;/code&gt; CLI
+will catch these and exit.  Other applications of the WCT that do not,
+will at least fail early if any exception is thrown and thus the user
+can fix the problem without delay.
+&lt;/p&gt;
+
+&lt;p&gt;
+WCT uses Boost exception support hidden with a thin layer to keep
+things looking simple.  When you program WCT code with exceptions do
+like:
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"WireCellUtil/Exceptions.h"  &lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;MyComponent&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;configure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Configuration&lt;/span&gt; &lt;span class="n"&gt;cfg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;mytool_tn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cfg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"mytool"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mytool_tn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	&lt;span class="n"&gt;THROW&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;errmsg&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;"You must set &lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt;mytool&lt;/span&gt;&lt;span class="se"&gt;\"&lt;/span&gt;&lt;span class="s"&gt; to something"&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+     &lt;span class="n"&gt;m_mytool&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Factory&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;find_tn&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;IMyTool&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mytool_tn&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;m_mytool&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+	 &lt;span class="n"&gt;THROW&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;errmsg&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;"Failed to find IMyTool: "&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;mytool_tn&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+     &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+Notes:
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;All exceptions that WCT code may throw are defined in the header file included in the example.  
+&lt;/li&gt;
+&lt;li&gt;Instead of the low-level C++ &lt;code&gt;throw()&lt;/code&gt; use the provided CPP macro &lt;code&gt;THROW()&lt;/code&gt; which will give the user extra info in the case that an exception is not caught.
+&lt;/li&gt;
+&lt;li&gt;The value returned may have an &lt;code&gt;errmsg&lt;/code&gt; streamed to it which will add some dynamic description of the error in the form of a string.  If a complex string needs to be build see &lt;code&gt;WireCell::String::format()&lt;/code&gt;.
+&lt;/li&gt;
+&lt;li&gt;No special C++ is needed to catch exceptions.
+&lt;/li&gt;
+&lt;/ol&gt;</description><category>devel</category><guid>http://wirecell.github.io/news/posts/exceptions/</guid><pubDate>Tue, 20 Jun 2017 19:14:20 GMT</pubDate></item><item><title>Basic Simulation Essentially Working and CellTree support</title><link>http://wirecell.github.io/news/posts/basic-simulation-essentially-working-and-celltree-support/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+Hanyu Wei has done great job getting the basic drift and response
+simulation finished.  In particular it now properly handles the
+exceeding fine-scale interpolation that is essential for having
+realistically smooth induction signals as a particle's ionization
+track moves from the region around one field response path to its
+neighbor.  This improvement makes negligible impact on speed.  Also
+included is proper drift processes and their statistics as well as the
+introduction of an addition RC response for amplifier after the preamp
+(for MicroBooNE).  
+&lt;/p&gt;
+
+&lt;p&gt;
+Hanyu also added a &lt;a href="https://github.com/WireCell/wire-cell-sio/blob/master/src/CelltreeFrameSink.cxx"&gt;new frame sink&lt;/a&gt; to write out "celltree" file format.
+This ROOT-based format has been used for a while now to transfer data
+between the Wire-Cell Prototype and other applications.
+&lt;/p&gt;</description><category>devel</category><category>simulation</category><guid>http://wirecell.github.io/news/posts/basic-simulation-essentially-working-and-celltree-support/</guid><pubDate>Sat, 17 Jun 2017 18:50:06 GMT</pubDate></item><item><title>Jsonnet now mandatory and CLI parameter injection</title><link>http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+&lt;i&gt;Jsonnet&lt;/i&gt; is now a required external dependency.  It is just far too
+useful to keep optional and it's a very light-weight package so easy
+to build.  However, it is not yet added to &lt;code&gt;wire-cell-spack&lt;/code&gt; (see
+&lt;a href="https://github.com/WireCell/wire-cell-spack/issues/1"&gt;inaugural issue&lt;/a&gt;).  Building it yourself is simple but non-standard.
+Follow this guide:
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;Get the source and do &lt;code&gt;make all&lt;/code&gt;
+&lt;/li&gt;
+&lt;li&gt;Copy the two header under &lt;code&gt;include/&lt;/code&gt; at some installation path.
+&lt;/li&gt;
+&lt;li&gt;Similarly,   copy the two shared libraries to &lt;code&gt;lib/&lt;/code&gt; at some installation path.
+&lt;/li&gt;
+&lt;li&gt;Finally, copy the executable binary &lt;code&gt;jsonnet&lt;/code&gt; to some &lt;code&gt;bin/&lt;/code&gt;.
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+One annoyance with the elaborate configuration which Jsonnet makes
+easy is that, for some things, you do not want to constantly edit a
+file just to make some small change.  In particular, initial input and
+final output files are often best given directly on the command line
+rather than in some configuration file.  Jsonnet also comes to the
+rescue here by allowing external parameters to be "injected" into the
+configuration using its &lt;code&gt;std.extVar("name")&lt;/code&gt; function.  
+&lt;/p&gt;
+
+&lt;p&gt;
+For this to work, the author of some configuration calls this function
+where they would otherwise type in the value.  Then the user must
+supply that value on the &lt;code&gt;wire-cell&lt;/code&gt; command line or if compiling the
+Jsonnet to JSON via the &lt;code&gt;jsonnet&lt;/code&gt; CLI.  
+&lt;/p&gt;
+
+&lt;p&gt;
+An example is in the configuration supporting the new "multi-ductor"
+feature (stay tuned for details).  One spot it is used can be found in
+&lt;a href="https://github.com/WireCell/wire-cell-cfg/blob/master/multi/depos.jsonnet"&gt;depos.jsonnet&lt;/a&gt; where the input file holding depositions is set.  The
+user of &lt;code&gt;wire-cell&lt;/code&gt; or &lt;code&gt;jsonnet&lt;/code&gt; sets a value for this variable in the
+same way: by simply adding a &lt;code&gt;-V&lt;/code&gt; flag.  Here is a full example with
+some comments to explain:
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+$ wire-cell \
+   -V detector=uboone \                         # (1)
+   -V depofile=g4tuple-qsn-v1-fixed.json.bz2 \  # (2)
+   -V framefile=uboone.root \                   # (3)
+   -c multi/init.jsonnet \                      # (4) 
+   -c multi/multiductor.jsonnet                 # (5)
+&lt;/pre&gt;
+
+&lt;p&gt;
+Notes:
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;A variable &lt;code&gt;detector&lt;/code&gt; is used in various places of the configuration to switch between some global parameters specific to that detector.
+&lt;/li&gt;
+&lt;li&gt;The input &lt;code&gt;depofile&lt;/code&gt; is set.  Remember that WCT will look for JSON/Jonnet files in directories given in the &lt;code&gt;WIRECELL_PATH&lt;/code&gt; environment variable.  
+&lt;/li&gt;
+&lt;li&gt;The output &lt;code&gt;framefile&lt;/code&gt; is set.  This will hold all the frames of traces (aka the "event") that get simulated.
+&lt;/li&gt;
+&lt;li&gt;The first of two configuration files that being the list of configurables.
+&lt;/li&gt;
+&lt;li&gt;The "meat" of the configuration.
+&lt;/li&gt;
+&lt;/ol&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/</guid><pubDate>Fri, 16 Jun 2017 18:34:03 GMT</pubDate></item></channel></rss>

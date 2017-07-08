@@ -1,0 +1,26 @@
+#+BEGIN_COMMENT
+.. title: Basic Simulation Essentially Working and CellTree support
+.. slug: basic-simulation-essentially-working-and-celltree-support
+.. date: 2017-06-17 14:50:06 UTC-04:00
+.. tags: simulation,devel
+.. category: toolkit
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+
+Hanyu Wei has done great job getting the basic drift and response
+simulation finished.  In particular it now properly handles the
+exceeding fine-scale interpolation that is essential for having
+realistically smooth induction signals as a particle's ionization
+track moves from the region around one field response path to its
+neighbor.  This improvement makes negligible impact on speed.  Also
+included is proper drift processes and their statistics as well as the
+introduction of an addition RC response for amplifier after the preamp
+(for MicroBooNE).  
+
+Hanyu also added a [[https://github.com/WireCell/wire-cell-sio/blob/master/src/CelltreeFrameSink.cxx][new frame sink]] to write out "celltree" file format.
+This ROOT-based format has been used for a while now to transfer data
+between the Wire-Cell Prototype and other applications.

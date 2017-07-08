@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+ <sitemap>
+  <loc>http://wirecell.github.io/news/categories/build.xml</loc>
+  <lastmod>2017-07-08T19:35:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://wirecell.github.io/news/categories/cat_toolkit.xml</loc>
+  <lastmod>2017-07-08T19:35:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://wirecell.github.io/news/categories/config.xml</loc>
+  <lastmod>2017-07-08T19:35:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://wirecell.github.io/news/categories/devel.xml</loc>
+  <lastmod>2017-07-08T19:35:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://wirecell.github.io/news/categories/larsoft.xml</loc>
+  <lastmod>2017-07-08T19:35:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://wirecell.github.io/news/categories/simulation.xml</loc>
+  <lastmod>2017-07-08T19:35:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://wirecell.github.io/news/galleries/rss.xml</loc>
+  <lastmod>2017-07-08T19:35:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://wirecell.github.io/news/rss.xml</loc>
+  <lastmod>2017-07-08T19:35:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://wirecell.github.io/news/sitemap.xml</loc>
+  <lastmod>2017-07-08T19:35:00Z</lastmod>
+ </sitemap>
+</sitemapindex>
