@@ -1,221 +1,93 @@
-- [News](#news)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-07-03 Mon] </span></span> Porting  and Integration](#orgbb4e2ab)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-23 Fri] </span></span> New Configuration Data Package](#org56920cd)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-21 Wed] </span></span> Build cleanups](#org143f7a0)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-20 Tue] </span></span> Exceptions](#org7e173b3)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-17 Sat]  </span></span>  Basic Simulation Essentially Working and CellTree support](#orge76e9a1)
-  - [<span class="timestamp-wrapper"><span class="timestamp">[2017-06-16 Fri] </span></span> Jsonnet now mandatory and CLI parameter injection](#orgbb74cd3)
-- [Installation](#installation)
-  - [Toolkit installation](#toolkit-installation)
-    - [Source code](#source-code)
-    - [Configuring the source](#configuring-the-source)
-    - [Building the source](#building-the-source)
-    - [Running unit tests](#running-unit-tests)
-    - [Install the results](#install-built-code)
-    - [Other build commands](#other-build-commands)
-  - [Runtime environment](#runtime-environment)
-  - [Guide for installation of dependencies](#installing-dependencies)
-    - [Manual](#manual-externals-install)
-    - [Spack](#spack-installed-externals)
-    - [UPS](#using-externals-from-ups)
-  - [Release management](#release-management)
-    - [Release versions](#release-versions)
-    - [Branch policy](#branch-policy)
-    - [Branch mechanics](#branch-mechanics)
-- [Configuration](#configuration)
-  - [Introduction](#configuration-introduction)
-  - [Configuration from a user point of view](#user-configuration)
-    - [File formats](#configuration-file-formats)
-    - [Basic command line](#configuration-command-line)
-    - [Dump default configuration](#dump-default-configuration)
-    - [Diving into JSON](#diving-into-json)
-    - [Limitations of JSON](#json-limitations)
-    - [Learning Jsonnet](#learning-jsonnet)
-    - [Specific detector support](#configuration-for-specific-detectors)
-    - [Using Jsonnet](#jsonnet-command-line)
-  - [Configuration from a developer point of view](#developer-configuration)
-- [Howtos](#howtos)
-  - [Run `wire-cell` command line program](#run-wire-cell-cli)
-  - [Add a new component class](#add-a-component)
-    - [Conceptual design](#component-concept)
-    - [Estimating dependencies](#component-dependencies)
-    - [Selecting a package](#component-package)
-    - [Selecting interfaces](#component-interfaces)
-    - [Component header](#component-header)
-    - [Component implementation](#component-implementation)
-- [Internals](#internals)
-  - [Toolkit packages](#toolkit-packages)
-    - [Names](#package-names)
-    - [Dependencies](#package-dependencies)
-    - [Package structure](#package-structure)
-    - [Build package](#build-package)
-    - [Adding a new code package](#add-new-package-to-build)
-  - [Coding conventions](#coding-conventions)
-    - [C++ code formatting](#c++-code-formatting)
-    - [C++ namespaces](#c++-namespaces)
-    - [Configuration Parameters](#configuration-conventions)
-  - [Interfaces](#interface-internals)
-  - [Components](#component-internals)
-  - [Configuration](#configuration-internals)
-  - [Execution Models](#execution-models)
-    - [Ad-hoc](#ad-hoc-execution)
-    - [Concrete](#execution-concrete-components)
-    - [Interface](#execution-via-interfaces)
-    - [Data flow programming execution](#dfp-execution)
-- [Packages](#packages)
-  - [`wire-cell-python`](#pkg-python)
-    - [Installing `wire-cell-python`](#install-wire-cell-python)
-    - [Python command line programs](#python-programs)
-    - [`wirecell` Python modules](#python-modules)
-  - [`wire-cell-util`](#pkg-util)
-    - [Units](#util-units)
-    - [Persistence](#util-persistence)
-    - [Etc](#orgdb75f1a)
-  - [`wire-cell-iface`](#pkg-iface)
-    - [Data](#orgb09f167)
-    - [Nodes](#org2654e25)
-    - [Misc](#org3c2ade8)
-  - [`wire-cell-gen`](#pkg-gen)
-    - [Depositions](#org8bd82fd)
-    - [Drifting](#org4e032d5)
-    - [Response](#org5cfdadd)
-    - [Digitizing](#org18c6243)
-    - [Noise](#org53996c1)
-    - [Frame Summing](#org49c3dbb)
-    - [Execution Graphs](#org3be252f)
-  - [`wire-cell-waftools`](#pkg-waftools)
-    - [Recreating `wcb`](#generate-wcb)
-    - [Included Waf tools](#bundle-waf-tools)
-- [Data Flow Programming](#data-flow-programming)
-- [Other Topics](#other-topics)
-  - [Garfield 2D Support](#garfield-2d-support)
-    - [Garfield 2D data](#garfield-2d-data)
-    - [Preprocessing of Garfield 2D data](#preprocessing-garfield-data)
-    - [Eyeballing Garfield 2D with `wirecell.sigproc.garfield`](#eyeball-garfield)
-    - [Validation plots](#garfield-validation-plots)
-    - [Producing WCT Field Response Data File](#convert-garfield-data-to-json)
+- [Installation](#org0803410)
+  - [Toolkit installation](#org34cc83b)
+    - [Source code](#org7fcc63d)
+    - [Configuring the source](#org8f33fa4)
+    - [Building the source](#orge9c17d4)
+    - [Running unit tests](#org880be13)
+    - [Install the results](#orgac9b2b7)
+    - [Other build commands](#orgf8cc39e)
+  - [Runtime environment](#org7c0dde1)
+  - [Guide for installation of dependencies](#org018a306)
+    - [Manual](#orgab3555d)
+    - [Spack](#org3af30cf)
+    - [UPS](#orgc91f651)
+  - [Release management](#org8c05faf)
+    - [Release versions](#orgb9b8862)
+    - [Branch policy](#org27a1e86)
+    - [Branch mechanics](#orgbd92e53)
+- [Configuration](#org3aef4c5)
+  - [Introduction](#org90253ff)
+  - [Configuration from a user point of view](#orge06fa32)
+    - [File formats](#orge9c37d9)
+    - [Basic command line](#org4dbd167)
+    - [Dump default configuration](#org958db1f)
+    - [Diving into JSON](#org674f8d9)
+    - [Limitations of JSON](#orgc64d291)
+    - [Learning Jsonnet](#org8dc3f64)
+    - [Specific detector support](#org3619071)
+    - [Using Jsonnet](#orga3a153a)
+  - [Configuration from a developer point of view](#org5947c43)
+- [Howtos](#org4216705)
+  - [Run `wire-cell` command line program](#org6913bc6)
+  - [Add a new component class](#orgc5be0b4)
+    - [Conceptual design](#org2c2c671)
+    - [Estimating dependencies](#org6b38bd0)
+    - [Selecting a package](#org6a52cc5)
+    - [Selecting interfaces](#org54a7792)
+    - [Component header](#org216d5a7)
+    - [Component implementation](#org3b21fc6)
+- [Internals](#org08d3ecc)
+  - [Toolkit packages](#org6ebab10)
+    - [Names](#org55619a7)
+    - [Dependencies](#org2292f9a)
+    - [Package structure](#orgd93cc0c)
+    - [Build package](#org4a408f3)
+    - [Adding a new code package](#orgf770569)
+  - [Coding conventions](#orgd251c61)
+    - [C++ code formatting](#orge945527)
+    - [C++ namespaces](#org6a05e2e)
+    - [Configuration Parameters](#org23ba8b9)
+  - [Interfaces](#orgf0d84a4)
+  - [Components](#org5c57b4d)
+  - [Configuration](#orgf1bc5ce)
+  - [Execution Models](#org31c3c63)
+    - [Ad-hoc](#org0a6fb81)
+    - [Concrete](#org98a791d)
+    - [Interface](#org1ca9828)
+    - [Data flow programming execution](#orge0c630a)
+- [Packages](#org5428b93)
+  - [`wire-cell-python`](#org3875226)
+    - [Installing `wire-cell-python`](#org0baf9c2)
+    - [Python command line programs](#orgabeb8d7)
+    - [`wirecell` Python modules](#org525c39f)
+  - [`wire-cell-util`](#org7295370)
+    - [Units](#org38cb004)
+    - [Persistence](#org2747b71)
+    - [Etc](#orgb4cf1db)
+  - [`wire-cell-iface`](#orgbe7d7e1)
+    - [Data](#orgc858e42)
+    - [Nodes](#orgb7c4abe)
+    - [Misc](#org24d550a)
+  - [`wire-cell-gen`](#orgf58c4f4)
+    - [Depositions](#org9013152)
+    - [Drifting](#orgc8a206b)
+    - [Response](#orgdbd28b5)
+    - [Digitizing](#orgf247ea5)
+    - [Noise](#org6c8cd42)
+    - [Frame Summing](#orgd9aa219)
+    - [Execution Graphs](#orgf0b64db)
+  - [`wire-cell-waftools`](#orgbb3ac1d)
+    - [Recreating `wcb`](#orga02ebf4)
+    - [Included Waf tools](#orgb6dfb49)
+- [Data Flow Programming](#orga01fc09)
+- [Other Topics](#org8380fde)
+  - [Garfield 2D Support](#orgb80cc97)
+    - [Garfield 2D data](#org59f2a03)
+    - [Preprocessing of Garfield 2D data](#org20900aa)
+    - [Eyeballing Garfield 2D with `wirecell.sigproc.garfield`](#org3a9efac)
+    - [Validation plots](#orgab040fd)
+    - [Producing WCT Field Response Data File](#org4618f2d)
 
-
-
-<a id="news"></a>
-
-# News
-
-This section lists a reverse timeline of some newsworthy updates and commits to WCT.
-
-
-<a id="orgbb4e2ab"></a>
-
-## <span class="timestamp-wrapper"><span class="timestamp">[2017-07-03 Mon] </span></span> Porting  and Integration
-
-Xin concluded an intense effort to port the prototype [signal processing code into the toolkit](https://github.com/WireCell/wire-cell-sigproc).
-
-With hints from Lynn Garren (FNAL) a [method](https://github.com/brettviren/larwirecell/blob/feature/integration/larwirecell/integration.org#set-larwirecell-environment) to set up an environment where both WCT and its LArSoft integration package (`larwirecell`) can be simultaneously developed.
-
-
-<a id="org56920cd"></a>
-
-## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-23 Fri] </span></span> New Configuration Data Package
-
-Today a new package joins the WCT family.
-
-<https://github.com/WireCell/wire-cell-data>
-
-This collects the &ldquo;configuration data&rdquo; files which are needed for input to WCT. These are generally compressed JSON files which have been converted to a WCT standard format from a variety of sources. The data includes wire geometry, field response, noise spectra and a couple initial deposition files.
-
-Having this repository makes it easier for users to prepare to run WCT. At some point in the future this package may be installed along with the code, but for now, users need to clone this repo. For WCT to locate these files the produced directory needs to be added to the user&rsquo;s `WIRECELL_PATH` environment variable.
-
-See the [README](https://github.com/WireCell/wire-cell-data/blob/master/README.org) file for details including a summary of the files available and commands to remake these files from their upstream sources.
-
-Previously this data was kept online [in a directory](http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/data/) dump. That&rsquo;s still there for now. It includes some files not added to GitHub. In particular the &ldquo;upstream&rdquo; data from which the JSON files are converted (eg, the Garfield output) can be found. And next door to that directory is a [plot dump directory](http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/plots/) which contains some diagnostic plots related to the conversion of these files which may be useful for experts to browse.
-
-
-<a id="org143f7a0"></a>
-
-## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-21 Wed] </span></span> Build cleanups
-
-Today sees some long needed cleanups in how we build WCT and WCP and their externals. In particular:
-
--   [Jsonnet](http://jsonnet.org/), now **required** by WCT has a build package added to [wire-cell-spack](https://github.com/WireCell/wire-cell-spack/blob/master/repo/packages/jsonnet/package.py).
--   A [source mirror](http://www.phy.bnl.gov/~bviren/wire-cell-spack-mirror/) is now available in case you have trouble getting any required dependencies. The Spack build will use this mirror automatically after being configured as shown in [the README](https://github.com/WireCell/wire-cell-spack/blob/master/README.org#failure-to-download-a-package-source) file.
--   Besides the tip of the `master` branch, specific releases starting with 0.5.2 of WCT can now be installed with Spack.
--   The WCP and its dependencies can now be built using wire-cell-spack. WCP uses a subset of the packages that WCT requires and the two can be installed side-by-side sharing these packages.
--   See also [this section of the README](https://github.com/WireCell/wire-cell-spack/blob/master/README.org#using-spack-views) for recommended way to develop either WCP or WCT code against Spack-built dependencies.
--   The cursed XData package is removed from both WCP and WCT.
-
-
-<a id="org7e173b3"></a>
-
-## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-20 Tue] </span></span> Exceptions
-
-Throwing exceptions is now a SOP for indicating some error. As you write configurable components, be particularly liberal with throwing exceptions inside of the `configure()` method. The `wire-cell` CLI will catch these and exit. Other applications of the WCT that do not, will at least fail early if any exception is thrown and thus the user can fix the problem without delay.
-
-WCT uses Boost exception support hidden with a thin layer to keep things looking simple. When you program WCT code with exceptions do like:
-
-```c++
-#include "WireCellUtil/Exceptions.h"  
-
-void MyComponent::configure(Configuration cfg)
-{
-    std::string mytool_tn = get<std::string>(cfg, "mytool");
-    if (mytool_tn.empty()) {
-	THROW(ValueError() << errmsg{"You must set \"mytool\" to something"});
-    }
-     m_mytool = Factory::find_tn<IMyTool>(mytool_tn);
-     if (!m_mytool) {
-	 THROW(ValueError() << errmsg{"Failed to find IMyTool: " + mytool_tn});
-     }
-}
-```
-
-Notes:
-
-1.  All exceptions that WCT code may throw are defined in the header file included in the example.
-2.  Instead of the low-level C++ `throw()` use the provided CPP macro `THROW()` which will give the user extra info in the case that an exception is not caught.
-3.  The value returned may have an `errmsg` streamed to it which will add some dynamic description of the error in the form of a string. If a complex string needs to be build see `WireCell::String::format()`.
-4.  No special C++ is needed to catch exceptions.
-
-
-<a id="orge76e9a1"></a>
-
-## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-17 Sat]  </span></span>  Basic Simulation Essentially Working and CellTree support
-
-Hanyu Wei has done great job getting the basic drift and response simulation finished. In particular it now properly handles the exceeding fine-scale interpolation that is essential for having realistically smooth induction signals as a particle&rsquo;s ionization track moves from the region around one field response path to its neighbor. This improvement makes negligible impact on speed. Also included is proper drift processes and their statistics as well as the introduction of an addition RC response for amplifier after the preamp (for MicroBooNE).
-
-Hanyu also added a [new frame sink](https://github.com/WireCell/wire-cell-sio/blob/master/src/CelltreeFrameSink.cxx) to write out &ldquo;celltree&rdquo; file format. This ROOT-based format has been used for a while now to transfer data between the Wire-Cell Prototype and other applications.
-
-
-<a id="orgbb74cd3"></a>
-
-## <span class="timestamp-wrapper"><span class="timestamp">[2017-06-16 Fri] </span></span> Jsonnet now mandatory and CLI parameter injection
-
-[Jsonnet](https://github.com/google/jsonnet) is now a required external dependency. It is just far too useful to keep optional and it&rsquo;s a very light-weight package so easy to build. However, it is not yet added to `wire-cell-spack` (see [inaugural issue](https://github.com/WireCell/wire-cell-spack/issues/1)). Building it yourself is simple but non-standard. Follow this guide:
-
-1.  Get the source and do `make all`
-2.  Copy the two header under `include/` at some installation path.
-3.  Similarly, copy the two shared libraries to `lib/` at some installation path.
-4.  Finally, copy the executable binary `jsonnet` to some `bin/`.
-
-One annoyance with the elaborate configuration which Jsonnet makes easy is that, for some things, you do not want to constantly edit a file just to make some small change. In particular, initial input and final output files are often best given directly on the command line rather than in some configuration file. Jsonnet also comes to the rescue here by allowing external parameters to be &ldquo;injected&rdquo; into the configuration using its `std.extVar("name")` function.
-
-For this to work, the author of some configuration calls this function where they would otherwise type in the value. Then the user must supply that value on the `wire-cell` command line or if compiling the Jsonnet to JSON via the `jsonnet` CLI.
-
-An example is in the configuration supporting the new &ldquo;multi-ductor&rdquo; feature (stay tuned for details). One spot it is used can be found in [depos.jsonnet](https://github.com/WireCell/wire-cell-cfg/blob/master/multi/depos.jsonnet) where the input file holding depositions is set. The user of `wire-cell` or `jsonnet` sets a value for this variable in the same way: by simply adding a `-V` flag. Here is a full example with some comments to explain:
-
-    $ wire-cell \
-       -V detector=uboone \                         # (1)
-       -V depofile=g4tuple-qsn-v1-fixed.json.bz2 \  # (2)
-       -V framefile=uboone.root \                   # (3)
-       -c multi/init.jsonnet \                      # (4) 
-       -c multi/multiductor.jsonnet                 # (5)
-
-Notes:
-
-1.  A variable `detector` is used in various places of the configuration to switch between some global parameters specific to that detector.
-2.  The input `depofile` is set. Remember that WCT will look for JSON/Jonnet files in directories given in the `WIRECELL_PATH` environment variable.
-3.  The output `framefile` is set. This will hold all the frames of traces (aka the &ldquo;event&rdquo;) that get simulated.
-4.  The first of two configuration files that being the list of configurables.
-5.  The &ldquo;meat&rdquo; of the configuration.
 
 
 <a id="installation"></a>
@@ -230,7 +102,7 @@ The Wire Cell Toolkit (WCT) should be easy to build on any POSIX&rsquo;y system 
 ## Toolkit installation
 
 <div class="warning">
-This assumes you already have available the required dependencies. See section [2.3](#installing-dependencies).
+This assumes you already have available the required dependencies. See section [1.3](#installing-dependencies).
 
 </div>
 
@@ -246,7 +118,7 @@ Installation requires four steps:
 
 ### Source code
 
-WCT source is composed of several packages (see section [6](#packages)) and all source is available from the [Wire Cell GitHub organization](https://github.com/WireCell/). Releases of each package are made and documented on GitHub (*eg* [here](https://github.com/WireCell/wire-cell-build/releases)) and can be downloaded as archives. However, using git to assemble a working source area is recommended and easier. Releases and development branches are handled slightly differently.
+WCT source is composed of several packages (see section [5](#packages)) and all source is available from the [Wire Cell GitHub organization](https://github.com/WireCell/). Releases of each package are made and documented on GitHub (*eg* [here](https://github.com/WireCell/wire-cell-build/releases)) and can be downloaded as archives. However, using git to assemble a working source area is recommended and easier. Releases and development branches are handled slightly differently.
 
 To obtain a release requires no GitHub authentication:
 
@@ -379,7 +251,7 @@ Managing environment is usually a personal choice or computer facility policy an
 
 FIXME: we should look into setting `RPATH`.
 
-Internally, WCT does not require any environment however it will search a `WIRECELL_PATH` when locating configuration or other (non data) input files. More information is in the section [3](#configuration).
+Internally, WCT does not require any environment however it will search a `WIRECELL_PATH` when locating configuration or other (non data) input files. More information is in the section [2](#configuration).
 
 
 <a id="installing-dependencies"></a>
@@ -795,7 +667,7 @@ This describes the steps to add a Wire Cell Toolkit *component*. As an example, 
 
 ### Conceptual design
 
-Noise waveforms will be generated based on a voltage amplitude spectrum represented in the frequency domain. This amplitude will be sampled and abide by some fluctuation distribution and may have some parameters that allow for parametric scaling or other transformation so that the user may explore the results. For simplicity, the time domain noise waveforms will be produced given a fixed sample period and readout time which will also be configurable. It is assumed that the user arranges that these parameters, if needed elsewhere, are set consistently. (See Sec. [3](#configuration)).
+Noise waveforms will be generated based on a voltage amplitude spectrum represented in the frequency domain. This amplitude will be sampled and abide by some fluctuation distribution and may have some parameters that allow for parametric scaling or other transformation so that the user may explore the results. For simplicity, the time domain noise waveforms will be produced given a fixed sample period and readout time which will also be configurable. It is assumed that the user arranges that these parameters, if needed elsewhere, are set consistently. (See Sec. [2](#configuration)).
 
 Producing noise waveforms as described here require no other input data and in particular, none that would change over time or be a function of some &ldquo;event&rdquo; So, the component will follow the pattern of being a *source* of data. That is, waveforms will be produced on demand and in a manner which they are independent. Below will show how this pattern is realized.
 
@@ -808,7 +680,7 @@ Before starting coding up an implementation it is prudent to understand what sof
 
 Investigating dependencies before implementation also forces the developer to make an optimal decision that balances performance, support, documentation, ease of development, portability and a host of other qualifiers. Relying on whatever software happens to be familiar and available forgoes making this optimal choice.
 
-One touchstone that has been made by the WCT developers is that the &ldquo;core&rdquo; packages of WCT shall not depend on ROOT. Depending on ROOT brings in many additional dependencies and this can limit, for example, usage on high-core architectures with limited RAM. ROOT is very useful, and indeed parts of WCT depend on it (test, I/O packages) but for a package to be considered &ldquo;core&rdquo; its library must not require ROOT. If a component requires ROOT or other package not accepted by the &ldquo;core&rdquo; packages then the component must be placed in an optional package (see Section [4.2.3](#component-package)).
+One touchstone that has been made by the WCT developers is that the &ldquo;core&rdquo; packages of WCT shall not depend on ROOT. Depending on ROOT brings in many additional dependencies and this can limit, for example, usage on high-core architectures with limited RAM. ROOT is very useful, and indeed parts of WCT depend on it (test, I/O packages) but for a package to be considered &ldquo;core&rdquo; its library must not require ROOT. If a component requires ROOT or other package not accepted by the &ldquo;core&rdquo; packages then the component must be placed in an optional package (see Section [3.2.3](#component-package)).
 
 For the noise source, the main functionality required is drawing random variables from an arbitrary distribution (the noise spectrum) and drawing from some conventional distributions (for the fluctuation). The spectrum can be provided through WCT configuration services and drawing from it is a simple algorithm based on forming the cumulative distribution that can be directly integrated. Pseudo random number generation can be done directly in C++ or [when this ticket is closed](https://github.com/WireCell/wire-cell-iface/issues/2) the WCT pRNG interface.
 
@@ -819,7 +691,7 @@ For the noise source, the main functionality required is drawing random variable
 
 While the implementer is free to develop their component in any manner they wish, if the component is to be distributed as part of the WCT then its code needs to be in some WCT package. For here, the main thing to note is that the `util` package is the lowest in the dependency tree, on top of it is `iface` (more on interfaces below) and above that are all the *implementation* packages. The developer must choose an existing package or elect to make a new one depending on two main criteria: what dependencies are required and what implementation category does the component satisfy.
 
-For the noise waveform source, given the relative lack of dependencies and the fact that it provides a simulation, the [wire-cell-gen](https://github.com/WireCell/wire-cell-gen) package provides a suitable home. If no suitable package exists the developer can see Section [6](#packages) for details on WCT packages.
+For the noise waveform source, given the relative lack of dependencies and the fact that it provides a simulation, the [wire-cell-gen](https://github.com/WireCell/wire-cell-gen) package provides a suitable home. If no suitable package exists the developer can see Section [5](#packages) for details on WCT packages.
 
 
 <a id="component-interfaces"></a>
@@ -828,7 +700,7 @@ For the noise waveform source, given the relative lack of dependencies and the f
 
 All major functionality, and indeed the defining characteristic of a WCT *component* is that it implements one or more WCT *interfaces* which are C++ abstract base classes. Each interface defines some number of methods that the implementation must provide.
 
-More information is in the Section [5.3](#interface-internals) but for here, what is needed is that there are several categories of interfaces. First, any set of related methods can be grouped into an otherwise anonymous interface. One special interface is `IConfigurable` which is used if the implementation wishes to receive user-provided configuration information. Another category contains the interfaces inheriting from `INode`. An implementation inherits from one of these if it will participate in the [7](#data-flow-programming) paradigm as implemented by WCT. Or, more generally, if the component is expected to share or pass &ldquo;event&rdquo; data (but really any data) with other component.
+More information is in the Section [4.3](#interface-internals) but for here, what is needed is that there are several categories of interfaces. First, any set of related methods can be grouped into an otherwise anonymous interface. One special interface is `IConfigurable` which is used if the implementation wishes to receive user-provided configuration information. Another category contains the interfaces inheriting from `INode`. An implementation inherits from one of these if it will participate in the [6](#data-flow-programming) paradigm as implemented by WCT. Or, more generally, if the component is expected to share or pass &ldquo;event&rdquo; data (but really any data) with other component.
 
 The noise waveform source requires configuration and will be an `IFrameSource` as it will produce frames of &ldquo;traces&rdquo; (waveform segments). As development progresses, it may come to light that portions of the implementation are general and are factored into separate classes which themselves may be accessed via an Interface.
 
@@ -890,7 +762,7 @@ A component must have a constructor that takes no arguments. If a constructor wh
 
 # Internals
 
-This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities. It is intended for developers to read carefully, understand and follow. It may be of interest to users as well. It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section [6](#packages).
+This doc describes the Wire Cell Toolkit (WCT) internal structure and support facilities. It is intended for developers to read carefully, understand and follow. It may be of interest to users as well. It does not cover the &ldquo;batteries included&rdquo; or &ldquo;reference implementations&rdquo; such as the simulation, signal processing, imaging, etc which are described in section [5](#packages).
 
 
 <a id="toolkit-packages"></a>
@@ -913,7 +785,7 @@ If a package produces a shared library it should be named in `CamelCase` with a 
 
 ### Dependencies
 
-Some of the C++ packages are designated as *core* packages. These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, `gen`, `sigproc`). These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections [5.1.3](#package-structure) and [5.1.4](#build-package)).
+Some of the C++ packages are designated as *core* packages. These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, `gen`, `sigproc`). These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections [4.1.3](#package-structure) and [4.1.4](#build-package)).
 
 The base package is `util` and it *must* not depend on any other WCT package. The next most basic is `iface` and it *must* not depend on any other WCT except `util`. Core implementation packages such as `gen` or `sigproc` may depend on both but should not depend on each other.
 
@@ -950,7 +822,7 @@ Fixme: make a script that generates a dot file and show the graph.
 
 ### Build package
 
-To actually build WCT see the section on toolkit installation (section [2](#installation)). The build system is based on [Waf](https::waf.io) and uses the `wcb` command and a `wscript` file provided by the top level *build package*. More details on the build system are given in section [Waf tools](#pkg-waftools).
+To actually build WCT see the section on toolkit installation (section [1](#installation)). The build system is based on [Waf](https::waf.io) and uses the `wcb` command and a `wscript` file provided by the top level *build package*. More details on the build system are given in section [Waf tools](#pkg-waftools).
 
 Besides holding the main build instructions this package aggregates all the other packages via Git&rsquo;s &ldquo;submodule&rdquo; feature. In principle, there may be more than one build package maintained. This allows developers working on a subset to avoid having to build unwanted code. In practice there is a single build package which is at: <https://github.com/wirecell/wire-cell-build>.
 
@@ -968,7 +840,7 @@ To add a new code package to a build package from scratch, select a `<name>` fol
     $ git add wscript_build
     $ git commit -a -m "Start code package <name>"
 
-Replace `<name>` with your package name. You can create and commit actual code at this time as well following the layout in [5.1.3](#package-structure).
+Replace `<name>` with your package name. You can create and commit actual code at this time as well following the layout in [4.1.3](#package-structure).
 
 Now, make a new repository by going to the [WireCell GitHub](https://github.com/WireCell) and clicking &ldquo;New repository&rdquo; button. Give it a name like `wire-cell-<name>`. Copy-and-paste the two command it tells you to use:
 
@@ -1150,7 +1022,7 @@ Using NamedFactory.
 
 ### Data flow programming execution
 
-Using abstract DFP. A whole section on [7](#data-flow-programming) is also available.
+Using abstract DFP. A whole section on [6](#data-flow-programming) is also available.
 
 
 <a id="packages"></a>
@@ -1201,13 +1073,13 @@ from wirecell import units
 ```
 
 
-<a id="orgffa61ff"></a>
+<a id="org681b030"></a>
 
 #### `sigproc`
 
 1.  `garfield`
 
-    See the section [8.1](#garfield-2d-support).
+    See the section [7.1](#garfield-2d-support).
 
 
 <a id="pkg-util"></a>
@@ -1231,7 +1103,7 @@ Describe units.
 Describe support for persistent files including compression and location.
 
 
-<a id="orgdb75f1a"></a>
+<a id="orgb4cf1db"></a>
 
 ### Etc
 
@@ -1245,21 +1117,21 @@ Describe support for persistent files including compression and location.
 Brief overview but it&rsquo;s also in <./internals.md> so don&rsquo; t over do it.
 
 
-<a id="orgb09f167"></a>
+<a id="orgc858e42"></a>
 
 ### Data
 
 tbd
 
 
-<a id="org2654e25"></a>
+<a id="orgb7c4abe"></a>
 
 ### Nodes
 
 tbd
 
 
-<a id="org3c2ade8"></a>
+<a id="org24d550a"></a>
 
 ### Misc
 
@@ -1273,7 +1145,7 @@ tbd
 The `wire-cell-gen` package provides components for the generation of data. It primarily includes components which perform the grand convolution of drifted electron distribution, field and electronics response and associate statistical fluctuations (aka, the &ldquo;drift simulation&rdquo;).
 
 
-<a id="org8bd82fd"></a>
+<a id="org9013152"></a>
 
 ### Depositions
 
@@ -1282,42 +1154,42 @@ Depositions (`IDepo` data objects, aka *depo*) are provided by `IDepoSource` com
 The `IDepoSource` components adapt to external sources of information about initial activity in the detector. These sources may provide \(dE\) and \(dX\) in which case two models can be applied to produce associated number of ionized electrons. The external source may provide only \(dE\) in which case the number of ionized electrons will be calculated for the deposition on the assumption that the particle is a MIP. Finally, the ionization process may be handled by the external source and the number of electrons may be given directly.
 
 
-<a id="org4e032d5"></a>
+<a id="orgc8a206b"></a>
 
 ### Drifting
 
 The `IDrifter` components are responsible for transforming a depo at one location and time into another depo at a different location and time while suitably adjusting the number of ionization electrons and their 2D extents. Each call of the component accepts a single depo and returns zero or more output depos. Input depos are assumed to be strictly time ordered and each batch of output depos likewise. In general a drifter must cache depos for some length of time in order to assure it has seen all possible depos to satisfy causality for the output.
 
 
-<a id="org5cfdadd"></a>
+<a id="orgdbd28b5"></a>
 
 ### Response
 
 The field and electronics response of the detector is calculated in an `IDuctor` component. This is typically done by accepting depos at some *input plane* or *response plane*. Up to this plane, any drifting depo is assumed to induce a negligible detector response. For drifting beyond this plane some position dependent response is applied (ie, a field response calculated by 2D Garfield or 3D LARF). Each call to an `IDuctor` components accepts one depo and produces zero or more frames (`IFrame` data object). In general an `IDuctor` component must cache depos long enough to assure the produced frames satisfy causality. Output frames may be sparse in that not all channels may have traces (`ITrace` data objects) and in any given channel the traces may not cover the same span of time. The unit for the waveforms in the frame depend on the detector response applied. If field response alone is applied then the waveform is in units of sampled current (fixme, check code, it may be integrated over tick and thus charge.) If both field and electronics response is applied the waveform is in units of voltage.
 
 
-<a id="org18c6243"></a>
+<a id="orgf247ea5"></a>
 
 ### Digitizing
 
 An `IDigitizer` component applies a transformation to the waveform, typically but not necessarily in order to truncate it to ADC. These components are functional in that each call takes and produces one frame. Even if truncating to ADC the frame is still expressed as floating point values.
 
 
-<a id="org53996c1"></a>
+<a id="org6c8cd42"></a>
 
 ### Noise
 
 t.b.d.
 
 
-<a id="org49c3dbb"></a>
+<a id="orgd9aa219"></a>
 
 ### Frame Summing
 
 Right now, frames can be summed by a bare function `FrameUtil::sum()`. This is better put into a component.
 
 
-<a id="org3be252f"></a>
+<a id="orgf0b64db"></a>
 
 ### Execution Graphs
 
@@ -1330,7 +1202,7 @@ The `gen` package provides high-level `IApplication` components. Primarily, thes
 ![img](figs/multidee.svg)
 
 
-<a id="orgf8b94a7"></a>
+<a id="org2a476d6"></a>
 
 #### Hard-coded vs Configurable
 
