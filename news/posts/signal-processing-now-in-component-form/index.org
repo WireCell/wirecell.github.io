@@ -1,0 +1,44 @@
+#+BEGIN_COMMENT
+.. title: Signal processing now in component form
+.. slug: signal-processing-now-in-component-form
+.. date: 2017-07-10 18:16:43 UTC-04:00
+.. tags: user,config,sigproc,devel
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+
+
+Following in the footsteps of the recently announced porting of its functionality from the prototype to the toolkit the *signal processing*, is now usable in the form of WCT *components*. This is important as it paves the way to embedding the signal processing in other applications or frameworks, notably LArSoft.  
+
+What are [[https://wirecell.github.io/manual#component-internals][WCT Components]]?  They are simply C++ classes which:
+
+- inherit from a WCT [[https://wirecell.github.io/manual#interface-internals][Interface]] base class
+- give registration code in a WCT *plugin* library
+- optionally, make use of WCT [[https://wirecell.github.io/manual#configuration][Configuration]].
+
+By developing code in the form of components we can strongly define its boundary in terms of data and configuration.  This lets us test bits of code in well constrained ways and be confident that when these components are aggregated into larger applications, and possibly embedded into even larger ones, that they will function as expected.
+
+The simplest way to run WCT components is with the =wire-cell= command
+line.  This example will exercise the components related to the signal processing:
+
+#+BEGIN_EXAMPLE
+  $ export WIRECELL_PATH=/path/to/cfg:/path/to/data
+  $ wire-cell \
+       -V detector=uboone \
+       -V input=magnify-input.root \
+       -V output=magnify-output.root \
+       -c uboone/main/magnify-sigproc-magnify.jsonnet
+  $ root -l magnify-output.root
+#+END_EXAMPLE
+
+Notes: 
+- The configuration in this example is subject to change
+- You can browse the [[https://github.com/wirecell/wire-cell-cfg][example configuration files]] and learn about [[http://jsonnet.org/][Jsonnet]].
+- The job is configured with a "Magnify" file source and file sink component bookend the signal processing and the =input= and =ouput= configuration variables giving these files are "injected" from the command line. 
+- You may find examples of "Magnify" ROOT files for input [[http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/data/data-reduction/v2/][here]].   
+- As usual, see the [[https://wirecell.github.io/manual][manual]] for installation and setup.
+

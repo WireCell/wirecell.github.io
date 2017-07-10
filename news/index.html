@@ -5,13 +5,13 @@ article: http://ogp.me/ns/article#
 " lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Updates related to Wire Cell.">
+<meta name="description" content="Updates on the Wire Cell Toolkit.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wire Cell News | Wire Cell News</title>
 <link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="http://wirecell.github.io/news/">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/porting-and-integration-begun/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/signal-processing-now-in-component-form/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -25,6 +25,7 @@ article: http://ogp.me/ns/article#
             <a href="archive.html" class="blog-nav-item">Archive</a>
             <a href="categories/" class="blog-nav-item">Tags</a>
             <a href="rss.xml" class="blog-nav-item">RSS feed</a>
+            <a href="." class="blog-nav-item">Manual</a>
 
             
 
@@ -44,14 +45,71 @@ article: http://ogp.me/ns/article#
                     <img src="images/wcgh.png" alt="Wire Cell News" id="logo"><span id="blog-title">Wire Cell News</span>
                 </a>
             </h1>
-            <p class="lead blog-description">Updates related to Wire Cell.</p>
+            <p class="lead blog-description">Updates on the Wire Cell Toolkit.</p>
             
         </div>
         <!--Body content-->
         <div class="row">
             <div class="col-sm-8 blog-main">
 <div class="postindex">
-    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/porting-and-integration-begun/" class="u-url">Porting and Integration Begun</a></h2>
+    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/signal-processing-now-in-component-form/" class="u-url">Signal processing now in component form</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/signal-processing-now-in-component-form/" rel="bookmark"><time class="published dt-published" datetime="2017-07-10T18:16:43-04:00" title="2017-07-10 18:16">2017-07-10 18:16</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>
+Following in the footsteps of the recently announced porting of its functionality from the prototype to the toolkit the <b>signal processing</b>, is now usable in the form of WCT <b>components</b>. This is important as it paves the way to embedding the signal processing in other applications or frameworks, notably LArSoft.  
+</p>
+
+<p>
+What are <a href="https://wirecell.github.io/manual#component-internals">WCT Components</a>?  They are simply C++ classes which:
+</p>
+
+<ul class="org-ul">
+<li>inherit from a WCT <a href="https://wirecell.github.io/manual#interface-internals">Interface</a> base class
+</li>
+<li>give registration code in a WCT <b>plugin</b> library
+</li>
+<li>optionally, make use of WCT <a href="https://wirecell.github.io/manual#configuration">Configuration</a>.
+</li>
+</ul>
+<p>
+By developing code in the form of components we can strongly define its boundary in terms of data and configuration.  This lets us test bits of code in well constrained ways and be confident that when these components are aggregated into larger applications, and possibly embedded into even larger ones, that they will function as expected.
+</p>
+
+<p>
+The simplest way to run WCT components is with the <code>wire-cell</code> command
+line.  This example will exercise the components related to the signal processing:
+</p>
+
+<pre class="example">
+$ export WIRECELL_PATH=/path/to/cfg:/path/to/data
+$ wire-cell \
+     -V detector=uboone \
+     -V input=magnify-input.root \
+     -V output=magnify-output.root \
+     -c uboone/main/magnify-sigproc-magnify.jsonnet
+$ root -l magnify-output.root
+</pre>
+
+<p>
+Notes: 
+</p>
+<ul class="org-ul">
+<li>The configuration in this example is subject to change
+</li>
+<li>You can browse the <a href="https://github.com/wirecell/wire-cell-cfg">example configuration files</a> and learn about <a href="http://jsonnet.org/">Jsonnet</a>.
+</li>
+<li>The job is configured with a "Magnify" file source and file sink component bookend the signal processing and the <code>input</code> and <code>ouput</code> configuration variables giving these files are "injected" from the command line. 
+</li>
+<li>You may find examples of "Magnify" ROOT files for input <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/data/data-reduction/v2/">here</a>.   
+</li>
+<li>As usual, see the <a href="https://wirecell.github.io/manual">manual</a> for installation and setup.
+</li>
+</ul>
+</div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/porting-and-integration-begun/" class="u-url">Porting and Integration Begun</a></h2>
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/porting-and-integration-begun/" rel="bookmark"><time class="published dt-published" datetime="2017-07-03T15:20:25-04:00" title="2017-07-03 15:20">2017-07-03 15:20</time></a></p>
