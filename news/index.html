@@ -11,7 +11,7 @@ article: http://ogp.me/ns/article#
 <link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="http://wirecell.github.io/news/">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/signal-processing-now-in-component-form/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/pgrapher-execution-engine/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -52,69 +52,61 @@ article: http://ogp.me/ns/article#
         <div class="row">
             <div class="col-sm-8 blog-main">
 <div class="postindex">
-    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/signal-processing-now-in-component-form/" class="u-url">Signal processing now in component form</a></h2>
+    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/pgrapher-execution-engine/" class="u-url">Pgrapher Execution Engine</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/pgrapher-execution-engine/" rel="bookmark"><time class="published dt-published" datetime="2018-06-22T15:16:42-04:00" title="2018-06-22 15:16">2018-06-22 15:16</time></a></p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>
+The Wire Cell Toolkit is based on functional components which can be
+used as arbitrary "tools" (in the Gaudi sense of the word).  But, they
+can also composed together following the paradigm of <i>data flow
+programming</i> (DFP).  Each component thus becomes a node (aka "vertex")
+in a graph joined to other nodes via edges that represent the transfer
+of data from an output port of one to the input port of the other.  A
+new way to perform this execution has been added to WCT in the form of
+the Pgrapher app.
+</p>
+
+<p class="more"><a href="posts/pgrapher-execution-engine/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/simulation-updates/" class="u-url">Simulation updates</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/simulation-updates/" rel="bookmark"><time class="published dt-published" datetime="2018-06-19T10:33:08-04:00" title="2018-06-19 10:33">2018-06-19 10:33</time></a></p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>
+Despite the lack of news updates, there's been a lot of activity.  Hopefully more posts will follow to catch up.  For now, some news about WCT simulation.
+</p>
+
+<p class="more"><a href="posts/simulation-updates/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/signal-processing-now-in-component-form/" class="u-url">Signal processing now in component form</a></h2>
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/signal-processing-now-in-component-form/" rel="bookmark"><time class="published dt-published" datetime="2017-07-10T18:16:43-04:00" title="2017-07-10 18:16">2017-07-10 18:16</time></a></p>
         </div>
-    </header><div class="e-content entry-content">
-    <p>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>
 Following in the footsteps of the recently announced porting of its functionality from the prototype to the toolkit the <b>signal processing</b>, is now usable in the form of WCT <b>components</b>. This is important as it paves the way to embedding the signal processing in other applications or frameworks, notably LArSoft.  
 </p>
 
-<p>
-What are <a href="https://wirecell.github.io/manual#component-internals">WCT Components</a>?  They are simply C++ classes which:
-</p>
-
-<ul class="org-ul">
-<li>inherit from a WCT <a href="https://wirecell.github.io/manual#interface-internals">Interface</a> base class
-</li>
-<li>give registration code in a WCT <b>plugin</b> library
-</li>
-<li>optionally, make use of WCT <a href="https://wirecell.github.io/manual#configuration">Configuration</a>.
-</li>
-</ul>
-<p>
-By developing code in the form of components we can strongly define its boundary in terms of data and configuration.  This lets us test bits of code in well constrained ways and be confident that when these components are aggregated into larger applications, and possibly embedded into even larger ones, that they will function as expected.
-</p>
-
-<p>
-The simplest way to run WCT components is with the <code>wire-cell</code> command
-line.  This example will exercise the components related to the signal processing:
-</p>
-
-<pre class="example">
-$ export WIRECELL_PATH=/path/to/cfg:/path/to/data
-$ wire-cell \
-     -V detector=uboone \
-     -V input=magnify-input.root \
-     -V output=magnify-output.root \
-     -c uboone/main/magnify-sigproc-magnify.jsonnet
-$ root -l magnify-output.root
-</pre>
-
-<p>
-Notes: 
-</p>
-<ul class="org-ul">
-<li>The configuration in this example is subject to change
-</li>
-<li>You can browse the <a href="https://github.com/wirecell/wire-cell-cfg">example configuration files</a> and learn about <a href="http://jsonnet.org/">Jsonnet</a>.
-</li>
-<li>The job is configured with a "Magnify" file source and file sink component bookend the signal processing and the <code>input</code> and <code>ouput</code> configuration variables giving these files are "injected" from the command line. 
-</li>
-<li>You may find examples of "Magnify" ROOT files for input <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/data/data-reduction/v2/">here</a>.   
-</li>
-<li>As usual, see the <a href="https://wirecell.github.io/manual">manual</a> for installation and setup.
-</li>
-</ul>
+<p class="more"><a href="posts/signal-processing-now-in-component-form/">Read more…</a></p>
 </div>
+    </div>
     </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/porting-and-integration-begun/" class="u-url">Porting and Integration Begun</a></h2>
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/porting-and-integration-begun/" rel="bookmark"><time class="published dt-published" datetime="2017-07-03T15:20:25-04:00" title="2017-07-03 15:20">2017-07-03 15:20</time></a></p>
         </div>
-    </header><div class="e-content entry-content">
+    </header><div class="p-summary entry-summary">
     <p>
 Xin concluded an intense effort to port the prototype <a href="https://github.com/WireCell/wire-cell-sigproc">signal processing code into the toolkit</a>.
 </p>
@@ -128,7 +120,7 @@ With hints from Lynn Garren (FNAL) a <a href="https://github.com/brettviren/larw
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/new-configuration-data-package/" rel="bookmark"><time class="published dt-published" datetime="2017-06-23T15:18:19-04:00" title="2017-06-23 15:18">2017-06-23 15:18</time></a></p>
         </div>
-    </header><div class="e-content entry-content">
+    </header><div class="p-summary entry-summary">
     <p>
 Today a new package joins the WCT family.  
 </p>
@@ -174,7 +166,7 @@ experts to browse.
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/build-cleanups/" rel="bookmark"><time class="published dt-published" datetime="2017-06-21T15:16:40-04:00" title="2017-06-21 15:16">2017-06-21 15:16</time></a></p>
         </div>
-    </header><div class="e-content entry-content">
+    </header><div class="p-summary entry-summary">
     <p>
 Today sees some long needed cleanups in how we build WCT and WCP and their externals.  In particular:
 </p>
@@ -200,58 +192,21 @@ Today sees some long needed cleanups in how we build WCT and WCP and their exter
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/exceptions/" rel="bookmark"><time class="published dt-published" datetime="2017-06-20T15:14:20-04:00" title="2017-06-20 15:14">2017-06-20 15:14</time></a></p>
         </div>
-    </header><div class="e-content entry-content">
-    <p>
-Throwing exceptions is now a SOP for indicating some error.  As you
-write configurable components, be particularly liberal with throwing
-exceptions inside of the <code>configure()</code> method.  The <code>wire-cell</code> CLI
-will catch these and exit.  Other applications of the WCT that do not,
-will at least fail early if any exception is thrown and thus the user
-can fix the problem without delay.
-</p>
-
+    </header><div class="p-summary entry-summary">
+    <div>
 <p>
-WCT uses Boost exception support hidden with a thin layer to keep
-things looking simple.  When you program WCT code with exceptions do
-like:
+Throwing exceptions is now a SOP for indicating some error.  
 </p>
 
-<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">"WireCellUtil/Exceptions.h"  </span><span class="cp"></span>
-
-<span class="kt">void</span> <span class="n">MyComponent</span><span class="o">::</span><span class="n">configure</span><span class="p">(</span><span class="n">Configuration</span> <span class="n">cfg</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">mytool_tn</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="s">"mytool"</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">mytool_tn</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-	<span class="n">THROW</span><span class="p">(</span><span class="n">ValueError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">errmsg</span><span class="p">{</span><span class="s">"You must set </span><span class="se">\"</span><span class="s">mytool</span><span class="se">\"</span><span class="s"> to something"</span><span class="p">});</span>
-    <span class="p">}</span>
-     <span class="n">m_mytool</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">::</span><span class="n">find_tn</span><span class="o">&lt;</span><span class="n">IMyTool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mytool_tn</span><span class="p">);</span>
-     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">m_mytool</span><span class="p">)</span> <span class="p">{</span>
-	 <span class="n">THROW</span><span class="p">(</span><span class="n">ValueError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">errmsg</span><span class="p">{</span><span class="s">"Failed to find IMyTool: "</span> <span class="o">+</span> <span class="n">mytool_tn</span><span class="p">});</span>
-     <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>
-Notes:
-</p>
-
-<ol class="org-ol">
-<li>All exceptions that WCT code may throw are defined in the header file included in the example.  
-</li>
-<li>Instead of the low-level C++ <code>throw()</code> use the provided CPP macro <code>THROW()</code> which will give the user extra info in the case that an exception is not caught.
-</li>
-<li>The value returned may have an <code>errmsg</code> streamed to it which will add some dynamic description of the error in the form of a string.  If a complex string needs to be build see <code>WireCell::String::format()</code>.
-</li>
-<li>No special C++ is needed to catch exceptions.
-</li>
-</ol>
+<p class="more"><a href="posts/exceptions/">Read more…</a></p>
 </div>
+    </div>
     </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" class="u-url">Basic Simulation Essentially Working and CellTree support</a></h2>
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" rel="bookmark"><time class="published dt-published" datetime="2017-06-17T14:50:06-04:00" title="2017-06-17 14:50">2017-06-17 14:50</time></a></p>
         </div>
-    </header><div class="e-content entry-content">
+    </header><div class="p-summary entry-summary">
     <p>
 Hanyu Wei has done great job getting the basic drift and response
 simulation finished.  In particular it now properly handles the
@@ -275,76 +230,15 @@ between the Wire-Cell Prototype and other applications.
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/jsonnet-now-mandatory-and-cli-parameter-injection/" rel="bookmark"><time class="published dt-published" datetime="2017-06-16T14:34:03-04:00" title="2017-06-16 14:34">2017-06-16 14:34</time></a></p>
         </div>
-    </header><div class="e-content entry-content">
-    <p>
-<i>Jsonnet</i> is now a required external dependency.  It is just far too
-useful to keep optional and it's a very light-weight package so easy
-to build.  However, it is not yet added to <code>wire-cell-spack</code> (see
-<a href="https://github.com/WireCell/wire-cell-spack/issues/1">inaugural issue</a>).  Building it yourself is simple but non-standard.
-Follow this guide:
-</p>
-
-<ol class="org-ol">
-<li>Get the source and do <code>make all</code>
-</li>
-<li>Copy the two header under <code>include/</code> at some installation path.
-</li>
-<li>Similarly,   copy the two shared libraries to <code>lib/</code> at some installation path.
-</li>
-<li>Finally, copy the executable binary <code>jsonnet</code> to some <code>bin/</code>.
-</li>
-</ol>
+    </header><div class="p-summary entry-summary">
+    <div>
 <p>
-One annoyance with the elaborate configuration which Jsonnet makes
-easy is that, for some things, you do not want to constantly edit a
-file just to make some small change.  In particular, initial input and
-final output files are often best given directly on the command line
-rather than in some configuration file.  Jsonnet also comes to the
-rescue here by allowing external parameters to be "injected" into the
-configuration using its <code>std.extVar("name")</code> function.  
+<i>Jsonnet</i> is now a required external dependency.  
 </p>
 
-<p>
-For this to work, the author of some configuration calls this function
-where they would otherwise type in the value.  Then the user must
-supply that value on the <code>wire-cell</code> command line or if compiling the
-Jsonnet to JSON via the <code>jsonnet</code> CLI.  
-</p>
-
-<p>
-An example is in the configuration supporting the new "multi-ductor"
-feature (stay tuned for details).  One spot it is used can be found in
-<a href="https://github.com/WireCell/wire-cell-cfg/blob/master/multi/depos.jsonnet">depos.jsonnet</a> where the input file holding depositions is set.  The
-user of <code>wire-cell</code> or <code>jsonnet</code> sets a value for this variable in the
-same way: by simply adding a <code>-V</code> flag.  Here is a full example with
-some comments to explain:
-</p>
-
-<pre class="example">
-$ wire-cell \
-   -V detector=uboone \                         # (1)
-   -V depofile=g4tuple-qsn-v1-fixed.json.bz2 \  # (2)
-   -V framefile=uboone.root \                   # (3)
-   -c multi/init.jsonnet \                      # (4) 
-   -c multi/multiductor.jsonnet                 # (5)
-</pre>
-
-<p>
-Notes:
-</p>
-<ol class="org-ol">
-<li>A variable <code>detector</code> is used in various places of the configuration to switch between some global parameters specific to that detector.
-</li>
-<li>The input <code>depofile</code> is set.  Remember that WCT will look for JSON/Jonnet files in directories given in the <code>WIRECELL_PATH</code> environment variable.  
-</li>
-<li>The output <code>framefile</code> is set.  This will hold all the frames of traces (aka the "event") that get simulated.
-</li>
-<li>The first of two configuration files that being the list of configurables.
-</li>
-<li>The "meat" of the configuration.
-</li>
-</ol>
+<p class="more"><a href="posts/jsonnet-now-mandatory-and-cli-parameter-injection/">Read more…</a></p>
 </div>
+    </div>
     </article>
 </div>
 
@@ -372,7 +266,7 @@ Notes:
 </div>
 
 <footer class="blog-footer" id="footer">
-    Contents © 2017         <a href="mailto:bv@bnl.gov">Wire Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    Contents © 2018         <a href="mailto:bv@bnl.gov">Wire Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
     
 </footer><script src="assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("en");

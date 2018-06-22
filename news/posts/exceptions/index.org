@@ -12,7 +12,12 @@
 
 
 
-Throwing exceptions is now a SOP for indicating some error.  As you
+Throwing exceptions is now a SOP for indicating some error.  
+
+{{{TEASER_END}}}
+
+
+As you
 write configurable components, be particularly liberal with throwing
 exceptions inside of the ~configure()~ method.  The ~wire-cell~ CLI
 will catch these and exit.  Other applications of the WCT that do not,

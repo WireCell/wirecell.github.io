@@ -1,52 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News (Posts about sigproc)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link type="application/rss+xml" href="http://wirecell.github.io/news/categories/sigproc.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2017 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Mon, 10 Jul 2017 23:03:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Signal processing now in component form</title><link>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News (Posts about sigproc)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link type="application/rss+xml" rel="self" href="http://wirecell.github.io/news/categories/sigproc.xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Fri, 22 Jun 2018 19:50:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Signal processing now in component form</title><link>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 Following in the footsteps of the recently announced porting of its functionality from the prototype to the toolkit the &lt;b&gt;signal processing&lt;/b&gt;, is now usable in the form of WCT &lt;b&gt;components&lt;/b&gt;. This is important as it paves the way to embedding the signal processing in other applications or frameworks, notably LArSoft.  
 &lt;/p&gt;
 
-&lt;p&gt;
-What are &lt;a href="https://wirecell.github.io/manual#component-internals"&gt;WCT Components&lt;/a&gt;?  They are simply C++ classes which:
-&lt;/p&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;inherit from a WCT &lt;a href="https://wirecell.github.io/manual#interface-internals"&gt;Interface&lt;/a&gt; base class
-&lt;/li&gt;
-&lt;li&gt;give registration code in a WCT &lt;b&gt;plugin&lt;/b&gt; library
-&lt;/li&gt;
-&lt;li&gt;optionally, make use of WCT &lt;a href="https://wirecell.github.io/manual#configuration"&gt;Configuration&lt;/a&gt;.
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-By developing code in the form of components we can strongly define its boundary in terms of data and configuration.  This lets us test bits of code in well constrained ways and be confident that when these components are aggregated into larger applications, and possibly embedded into even larger ones, that they will function as expected.
-&lt;/p&gt;
-
-&lt;p&gt;
-The simplest way to run WCT components is with the &lt;code&gt;wire-cell&lt;/code&gt; command
-line.  This example will exercise the components related to the signal processing:
-&lt;/p&gt;
-
-&lt;pre class="example"&gt;
-$ export WIRECELL_PATH=/path/to/cfg:/path/to/data
-$ wire-cell \
-     -V detector=uboone \
-     -V input=magnify-input.root \
-     -V output=magnify-output.root \
-     -c uboone/main/magnify-sigproc-magnify.jsonnet
-$ root -l magnify-output.root
-&lt;/pre&gt;
-
-&lt;p&gt;
-Notes: 
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;The configuration in this example is subject to change
-&lt;/li&gt;
-&lt;li&gt;You can browse the &lt;a href="https://github.com/wirecell/wire-cell-cfg"&gt;example configuration files&lt;/a&gt; and learn about &lt;a href="http://jsonnet.org/"&gt;Jsonnet&lt;/a&gt;.
-&lt;/li&gt;
-&lt;li&gt;The job is configured with a "Magnify" file source and file sink component bookend the signal processing and the &lt;code&gt;input&lt;/code&gt; and &lt;code&gt;ouput&lt;/code&gt; configuration variables giving these files are "injected" from the command line. 
-&lt;/li&gt;
-&lt;li&gt;You may find examples of "Magnify" ROOT files for input &lt;a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/data/data-reduction/v2/"&gt;here&lt;/a&gt;.   
-&lt;/li&gt;
-&lt;li&gt;As usual, see the &lt;a href="https://wirecell.github.io/manual"&gt;manual&lt;/a&gt; for installation and setup.
-&lt;/li&gt;
-&lt;/ul&gt;</description><category>config</category><category>devel</category><category>sigproc</category><category>user</category><guid>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</guid><pubDate>Mon, 10 Jul 2017 22:16:43 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>devel</category><category>sigproc</category><category>user</category><guid>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</guid><pubDate>Mon, 10 Jul 2017 22:16:43 GMT</pubDate></item></channel></rss>

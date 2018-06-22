@@ -14,6 +14,8 @@
 
 Following in the footsteps of the recently announced porting of its functionality from the prototype to the toolkit the *signal processing*, is now usable in the form of WCT *components*. This is important as it paves the way to embedding the signal processing in other applications or frameworks, notably LArSoft.  
 
+{{{TEASER_END}}}
+
 What are [[https://wirecell.github.io/manual#component-internals][WCT Components]]?  They are simply C++ classes which:
 
 - inherit from a WCT [[https://wirecell.github.io/manual#interface-internals][Interface]] base class

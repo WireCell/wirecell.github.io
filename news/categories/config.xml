@@ -1,55 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News (Posts about config)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link type="application/rss+xml" href="http://wirecell.github.io/news/categories/config.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2017 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Mon, 10 Jul 2017 23:03:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Signal processing now in component form</title><link>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News (Posts about config)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link type="application/rss+xml" rel="self" href="http://wirecell.github.io/news/categories/config.xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Fri, 22 Jun 2018 19:50:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Signal processing now in component form</title><link>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 Following in the footsteps of the recently announced porting of its functionality from the prototype to the toolkit the &lt;b&gt;signal processing&lt;/b&gt;, is now usable in the form of WCT &lt;b&gt;components&lt;/b&gt;. This is important as it paves the way to embedding the signal processing in other applications or frameworks, notably LArSoft.  
 &lt;/p&gt;
 
-&lt;p&gt;
-What are &lt;a href="https://wirecell.github.io/manual#component-internals"&gt;WCT Components&lt;/a&gt;?  They are simply C++ classes which:
-&lt;/p&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;inherit from a WCT &lt;a href="https://wirecell.github.io/manual#interface-internals"&gt;Interface&lt;/a&gt; base class
-&lt;/li&gt;
-&lt;li&gt;give registration code in a WCT &lt;b&gt;plugin&lt;/b&gt; library
-&lt;/li&gt;
-&lt;li&gt;optionally, make use of WCT &lt;a href="https://wirecell.github.io/manual#configuration"&gt;Configuration&lt;/a&gt;.
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;
-By developing code in the form of components we can strongly define its boundary in terms of data and configuration.  This lets us test bits of code in well constrained ways and be confident that when these components are aggregated into larger applications, and possibly embedded into even larger ones, that they will function as expected.
-&lt;/p&gt;
-
-&lt;p&gt;
-The simplest way to run WCT components is with the &lt;code&gt;wire-cell&lt;/code&gt; command
-line.  This example will exercise the components related to the signal processing:
-&lt;/p&gt;
-
-&lt;pre class="example"&gt;
-$ export WIRECELL_PATH=/path/to/cfg:/path/to/data
-$ wire-cell \
-     -V detector=uboone \
-     -V input=magnify-input.root \
-     -V output=magnify-output.root \
-     -c uboone/main/magnify-sigproc-magnify.jsonnet
-$ root -l magnify-output.root
-&lt;/pre&gt;
-
-&lt;p&gt;
-Notes: 
-&lt;/p&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;The configuration in this example is subject to change
-&lt;/li&gt;
-&lt;li&gt;You can browse the &lt;a href="https://github.com/wirecell/wire-cell-cfg"&gt;example configuration files&lt;/a&gt; and learn about &lt;a href="http://jsonnet.org/"&gt;Jsonnet&lt;/a&gt;.
-&lt;/li&gt;
-&lt;li&gt;The job is configured with a "Magnify" file source and file sink component bookend the signal processing and the &lt;code&gt;input&lt;/code&gt; and &lt;code&gt;ouput&lt;/code&gt; configuration variables giving these files are "injected" from the command line. 
-&lt;/li&gt;
-&lt;li&gt;You may find examples of "Magnify" ROOT files for input &lt;a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/data/data-reduction/v2/"&gt;here&lt;/a&gt;.   
-&lt;/li&gt;
-&lt;li&gt;As usual, see the &lt;a href="https://wirecell.github.io/manual"&gt;manual&lt;/a&gt; for installation and setup.
-&lt;/li&gt;
-&lt;/ul&gt;</description><category>config</category><category>devel</category><category>sigproc</category><category>user</category><guid>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</guid><pubDate>Mon, 10 Jul 2017 22:16:43 GMT</pubDate></item><item><title>New Configuration Data Package</title><link>http://wirecell.github.io/news/posts/new-configuration-data-package/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>devel</category><category>sigproc</category><category>user</category><guid>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</guid><pubDate>Mon, 10 Jul 2017 22:16:43 GMT</pubDate></item><item><title>New Configuration Data Package</title><link>http://wirecell.github.io/news/posts/new-configuration-data-package/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
 Today a new package joins the WCT family.  
 &lt;/p&gt;
 
@@ -87,72 +41,8 @@ particular the "upstream" data from which the JSON files are converted
 directory is a &lt;a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/plots/"&gt;plot dump directory&lt;/a&gt; which contains some diagnostic
 plots related to the conversion of these files which may be useful for
 experts to browse.
-&lt;/p&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/new-configuration-data-package/</guid><pubDate>Fri, 23 Jun 2017 19:18:19 GMT</pubDate></item><item><title>Jsonnet now mandatory and CLI parameter injection</title><link>http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
-&lt;i&gt;Jsonnet&lt;/i&gt; is now a required external dependency.  It is just far too
-useful to keep optional and it's a very light-weight package so easy
-to build.  However, it is not yet added to &lt;code&gt;wire-cell-spack&lt;/code&gt; (see
-&lt;a href="https://github.com/WireCell/wire-cell-spack/issues/1"&gt;inaugural issue&lt;/a&gt;).  Building it yourself is simple but non-standard.
-Follow this guide:
+&lt;/p&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/new-configuration-data-package/</guid><pubDate>Fri, 23 Jun 2017 19:18:19 GMT</pubDate></item><item><title>Jsonnet now mandatory and CLI parameter injection</title><link>http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+&lt;i&gt;Jsonnet&lt;/i&gt; is now a required external dependency.  
 &lt;/p&gt;
 
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;Get the source and do &lt;code&gt;make all&lt;/code&gt;
-&lt;/li&gt;
-&lt;li&gt;Copy the two header under &lt;code&gt;include/&lt;/code&gt; at some installation path.
-&lt;/li&gt;
-&lt;li&gt;Similarly,   copy the two shared libraries to &lt;code&gt;lib/&lt;/code&gt; at some installation path.
-&lt;/li&gt;
-&lt;li&gt;Finally, copy the executable binary &lt;code&gt;jsonnet&lt;/code&gt; to some &lt;code&gt;bin/&lt;/code&gt;.
-&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;
-One annoyance with the elaborate configuration which Jsonnet makes
-easy is that, for some things, you do not want to constantly edit a
-file just to make some small change.  In particular, initial input and
-final output files are often best given directly on the command line
-rather than in some configuration file.  Jsonnet also comes to the
-rescue here by allowing external parameters to be "injected" into the
-configuration using its &lt;code&gt;std.extVar("name")&lt;/code&gt; function.  
-&lt;/p&gt;
-
-&lt;p&gt;
-For this to work, the author of some configuration calls this function
-where they would otherwise type in the value.  Then the user must
-supply that value on the &lt;code&gt;wire-cell&lt;/code&gt; command line or if compiling the
-Jsonnet to JSON via the &lt;code&gt;jsonnet&lt;/code&gt; CLI.  
-&lt;/p&gt;
-
-&lt;p&gt;
-An example is in the configuration supporting the new "multi-ductor"
-feature (stay tuned for details).  One spot it is used can be found in
-&lt;a href="https://github.com/WireCell/wire-cell-cfg/blob/master/multi/depos.jsonnet"&gt;depos.jsonnet&lt;/a&gt; where the input file holding depositions is set.  The
-user of &lt;code&gt;wire-cell&lt;/code&gt; or &lt;code&gt;jsonnet&lt;/code&gt; sets a value for this variable in the
-same way: by simply adding a &lt;code&gt;-V&lt;/code&gt; flag.  Here is a full example with
-some comments to explain:
-&lt;/p&gt;
-
-&lt;pre class="example"&gt;
-$ wire-cell \
-   -V detector=uboone \                         # (1)
-   -V depofile=g4tuple-qsn-v1-fixed.json.bz2 \  # (2)
-   -V framefile=uboone.root \                   # (3)
-   -c multi/init.jsonnet \                      # (4) 
-   -c multi/multiductor.jsonnet                 # (5)
-&lt;/pre&gt;
-
-&lt;p&gt;
-Notes:
-&lt;/p&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;A variable &lt;code&gt;detector&lt;/code&gt; is used in various places of the configuration to switch between some global parameters specific to that detector.
-&lt;/li&gt;
-&lt;li&gt;The input &lt;code&gt;depofile&lt;/code&gt; is set.  Remember that WCT will look for JSON/Jonnet files in directories given in the &lt;code&gt;WIRECELL_PATH&lt;/code&gt; environment variable.  
-&lt;/li&gt;
-&lt;li&gt;The output &lt;code&gt;framefile&lt;/code&gt; is set.  This will hold all the frames of traces (aka the "event") that get simulated.
-&lt;/li&gt;
-&lt;li&gt;The first of two configuration files that being the list of configurables.
-&lt;/li&gt;
-&lt;li&gt;The "meat" of the configuration.
-&lt;/li&gt;
-&lt;/ol&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/</guid><pubDate>Fri, 16 Jun 2017 18:34:03 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/</guid><pubDate>Fri, 16 Jun 2017 18:34:03 GMT</pubDate></item></channel></rss>

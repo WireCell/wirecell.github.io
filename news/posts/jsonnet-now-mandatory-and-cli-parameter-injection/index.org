@@ -11,7 +11,12 @@
 #+END_COMMENT
 
 
-[[Jsonnet]] is now a required external dependency.  It is just far too
+[[Jsonnet]] is now a required external dependency.  
+
+{{{TEASER_END}}}
+
+
+It is just far too
 useful to keep optional and it's a very light-weight package so easy
 to build.  However, it is not yet added to ~wire-cell-spack~ (see
 [[https://github.com/WireCell/wire-cell-spack/issues/1][inaugural issue]]).  Building it yourself is simple but non-standard.
