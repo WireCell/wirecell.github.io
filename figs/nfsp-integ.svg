@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="43cm" height="26cm" viewBox="19 -161 842 502" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="20" y="-160" width="840" height="120"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="20" y="-160" width="840" height="120"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="20" y="-40" width="840" height="380"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="20" y="-40" width="840" height="380"/>
+  </g>
+  <g>
+    <rect style="fill: #1e90ff" x="340" y="20" width="154.9" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="340" y="20" width="154.9" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:italic;font-weight:700" x="417.45" y="39">IArtEventVisitor</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="140" y="80" width="133.5" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="140" y="80" width="133.5" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:italic;font-weight:700" x="206.75" y="99">IFrameSource</text>
+  </g>
+  <g>
+    <rect style="fill: #1e90ff" x="100" y="200" width="166.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="100" y="200" width="166.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="183.1" y="219">RawFrameSource</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="206.75,127.195 206.75,140 183.1,140 183.1,198.996 "/>
+    <polygon style="fill: #ffffff" points="214.75,127.195 206.75,111.195 198.75,127.195 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="214.75,127.195 206.75,111.195 198.75,127.195 "/>
+  </g>
+  <g>
+    <rect style="fill: #0000ff" x="360" y="-60" width="149.45" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="360" y="-60" width="149.45" height="28"/>
+    <text font-size="16" style="fill: #ffffff;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="434.725" y="-41">WCLS (art Tool)</text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="424.279" y1="2.37324" x2="431.484" y2="-30.9902"/>
+    <polygon style="fill: #000000" points="419.392,1.31787 420.902,18.0128 429.167,3.4286 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="419.392,1.31787 420.902,18.0128 429.167,3.4286 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="426.088" y="4">art::Event</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="380" y="80" width="120.45" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="380" y="80" width="120.45" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="440.225" y="99">IFrameFilter</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="320" y="200" width="108.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="320" y="200" width="108.6" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="374.3" y="219">NoiseFilter</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="440" y="200" width="164.5" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="440" y="200" width="164.5" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="522.25" y="219">SignalProcessing</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="440.225,127.243 440.225,162 374.3,162 374.3,198.993 "/>
+    <polygon style="fill: #ffffff" points="448.225,127.243 440.225,111.243 432.225,127.243 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="448.225,127.243 440.225,111.243 432.225,127.243 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="440.225,127.243 440.225,162 522.25,162 522.25,198.993 "/>
+    <polygon style="fill: #ffffff" points="448.225,127.243 440.225,111.243 432.225,127.243 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="448.225,127.243 440.225,111.243 432.225,127.243 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="363" y1="94" x2="273.5" y2="94"/>
+    <polygon style="fill: #000000" points="363,99 379,94 363,89 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="363,99 379,94 363,89 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="326.75" y="104">IFrame</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="580" y="80" width="110.95" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="580" y="80" width="110.95" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:italic;font-weight:700" x="635.475" y="99">IFrameSink</text>
+  </g>
+  <g>
+    <rect style="fill: #1e90ff" x="640" y="200" width="171.45" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="640" y="200" width="171.45" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="725.725" y="219">CookedFrameSink</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="635.475,127.221 635.475,160 725.725,160 725.725,199.01 "/>
+    <polygon style="fill: #ffffff" points="643.475,127.221 635.475,111.221 627.475,127.221 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="643.475,127.221 635.475,111.221 627.475,127.221 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x1="562.012" y1="94" x2="501.443" y2="94"/>
+    <polygon style="fill: #000000" points="562.012,99 578.012,94 562.012,89 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="562.012,99 578.012,94 562.012,89 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="540.228" y="104">IFrame</text>
+  </g>
+  <g>
+    <rect style="fill: #0000ff" x="261" y="-141" width="413" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="261" y="-141" width="413" height="28"/>
+    <text font-size="16" style="fill: #ffffff;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="467.5" y="-122">Any art Module (reference module provided)</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="467.5,-86.8211 467.5,-78.9963 434.725,-78.9963 434.725,-60 "/>
+    <polygon style="fill: #ffffff" points="467.5,-111.993 472.3,-97.9927 467.5,-83.9927 462.7,-97.9927 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="467.5,-111.993 472.3,-97.9927 467.5,-83.9927 462.7,-97.9927 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="451.112" y="-81.9963"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="478.5" y="-99.9927"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="438.725" y="-64"/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="100" y="-40">
+    <tspan x="100" y="-40"></tspan>
+  </text>
+  <text font-size="22.5778" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="60" y="0">
+    <tspan x="60" y="0">Wire Cell side</tspan>
+  </text>
+  <text font-size="22.5778" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="60" y="-60">
+    <tspan x="60" y="-60">LArSoft side</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="513.136,34 725.725,34 725.725,200 "/>
+    <polygon style="fill: #ffffff" points="513.136,26 497.136,34 513.136,42 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="513.136,26 497.136,34 513.136,42 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="321.764,34 79,34 79,214 100,214 "/>
+    <polygon style="fill: #ffffff" points="321.764,42 337.764,34 321.764,26 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="321.764,42 337.764,34 321.764,26 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="200" y="240" width="164.8" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="200" y="240" width="164.8" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:italic;font-weight:700" x="282.4" y="259">IChannelNoiseDB</text>
+  </g>
+  <g>
+    <rect style="fill: #1e90ff" x="100" y="300" width="158.85" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="100" y="300" width="158.85" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="179.425" y="319">ChannelNoiseDB</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="321.764,34 79,34 79,314 100,314 "/>
+    <polygon style="fill: #ffffff" points="321.764,42 337.764,34 321.764,26 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="321.764,42 337.764,34 321.764,26 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="282.4,286.236 282.4,314 258.85,314 "/>
+    <polygon style="fill: #ffffff" points="290.4,286.236 282.4,270.236 274.4,286.236 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="290.4,286.236 282.4,270.236 274.4,286.236 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="294.828,214 282.4,214 282.4,240 "/>
+    <polygon style="fill: #ffffff" points="320,214 306,218.8 292,214 306,209.2 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="320,214 306,218.8 292,214 306,209.2 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="301.2" y="211"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="288" y="211"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="286.4" y="236"/>
+  </g>
+</svg>
