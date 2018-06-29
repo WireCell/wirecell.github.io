@@ -1,0 +1,331 @@
+#+BEGIN_COMMENT
+.. title: Pgrapher Configuration Improvements
+.. slug: pgrapher-configuration-improvements
+.. date: 2018-06-29 14:33:44 UTC-04:00
+.. tags: config,dfp,graph,simulation
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+
+A powerful new idiom has been developed to simplify developing Jsonnet
+configuration files for Wire-Cell toolkit's Pgrapher app component.
+
+{{{TEASER_END}}}
+
+The [[../pgrapher-execution-engine/][previous post]] described the Pgrapher execution engine.  It
+included a short configuration snippet.  Astute readers that studied
+that example may conclude that the power and flexibility of Pgrapher
+may come at a cost of writing a lot of configuration code.  
+
+In part, they'd be right.  It is actually fairly straight-forward to
+configure a simple job and especially if one has in mind a single
+target.  However, the power of Jsonnet and the flexibility of Pgrapher
+essentially begs one to construct modular "chunks" of configuration
+that can be reused to build up to a variety of final targets.  This
+means the configuration author needs a way to encapsulate incomplete
+(sub) graphs, aggregate these into larger graphs, etc, until a fully
+complete graph can be built from the smaller parts.
+
+* Graphs of Nodes and Nodes of Graphs
+
+To jump the the punch line, the idiom that has been developed is to
+allow for an incomplete (sub) graph to be recast into a single "node"
+which may then be used in a larger graph.  This recasting may continue
+as one builds up the graph until one is left with a single node which
+"wraps" the entire graph.  With this abstraction the author may focus
+on one area of the graph, for example the simulation and parts
+therein.  The results may then be exposed as a few high-level nodes
+which hide details of the sub graph they represent.  
+
+What follows are details on how to use this new idiom.  It starts with
+some review of how to configure a Pgrapher "manually" and then goes
+into the new methods.
+
+* Pgrapher Graph
+
+As hinted in the previous post, a Pgrapher graph is ultimately built
+up of /edges/ which connect /nodes/ via their /ports/.  For example
+one edge can be written as:
+
+#+BEGIN_SRC jsonnet
+{
+    tail: { node: wc.tn(fanout), port: 0 },
+    head: { node: wc.tn(sink1) },
+},
+{
+    tail: { node: wc.tn(fanout), port: 1 },
+    head: { node: wc.tn(sink2) },
+},
+#+END_SRC
+
+Here, ~fanout~, ~sink1~, etc, are configuration objects.  They are
+what make up the final /configuration sequence/ that the main Jsonnet
+file must produce.  Their contents follow an object schema as
+described in [[https://wirecell.github.io/manual.html#configuration][the WCT manual]].  The ~wc.tn()~ Jsonnet function (provided
+by [[https://github.com/WireCell/wire-cell-cfg/blob/master/wirecell.jsonnet][wirecell.jsonnet]]) processes an object and returns its canonical
+label.  Not all configuration objects correspond to WCT ~INode~ but
+the ones used in a graph must.  As is also shown, a node may have
+multiple input or output ports and edges that do not connect to port 0
+must have an explicit ~port~ attribute set.
+
+As is, this is all that one needs to know to build up Pgrapher graphs.
+Now consider if you want to take these two edges and use them to build
+a variety of different graphs.  Besides arranging to get this snipped
+used in whatever Jsonnet files you must also keep track of ~fanout~,
+~sink1~, etc objects and make sure they get placed into the final
+/configuration sequence/.  The user of your bit of configuration may
+also want to *break* one of your edges so that they can insert some
+other nodes between, say, ~fanout~ and ~sink1~.
+
+* Pnodes
+
+To provide more flexibility a Jsonnet library [[https://github.com/WireCell/wire-cell-cfg/blob/master/pgraph.jsonnet][pgraph.jsonnet]] has been
+developed.  It hinges on the concept of a ~pnode~.  A ~pnode~ is an
+abstract node which represents ("wraps") either a single ~INode~
+configuration object described above or a number of other ~pnode~
+objects.  
+
+Regardless of what is "inside" a ~pnode~ it still looks and acts like
+a single node.  It may contain an arbitrarily complex (sub) graph but
+all the user must care about is what input and output ports it
+presents.  Thus they present the same level of complexity (simplicity)
+as an individual ~INode~ even if they may have very complex internal
+representations.
+
+At the same time, a ~pnode~ need not be treated as a complete "black
+box".  One thing it holds is a list of internal edges and it is
+possible to derive a new ~pnode~ whereby the user breaks an edge in
+order to insert new edges and nodes.
+
+Besides managing internal edges, a ~pnode~ also manages the other
+nodes which it "uses".  Configuration authors to list object
+dependencies for their ~pnode~ and as nodes are combined their "uses"
+track what is needed.  When the graph is finally built, the "uses"
+array makes up the /configuration sequence/ relevant to the graph and
+the "edges" list is what is given to the Pgrapher app.
+
+* Examples
+
+** Produce a ~pnode~ from an ~INode~ configuration object
+
+It all starts with wrapping a single ~INode~ configuration object.
+This is done through a function:
+
+#+BEGIN_SRC jsonnet
+  local wc = import "wirecell.jsonnet";
+  local g = import "pgraph.jsonnet";               // [1]
+  local other = import "some_other_file.jsonnet";  // [2]
+
+  // a temporary variable holding the basic INode configuration object
+  local my_inode = {                               // [3]
+      type: "MyNode",
+      data: { 
+          my_tool: wc.tn(other.cool_tool),         // [4]
+      },
+  };
+
+  // a temporary holding the pnode wrapper            [5]
+  local my_pnode = g.pnode(my_inode, uses: [other.cool_tool], nin=1, nout=1);
+
+  // finally what we export to the importer of this file
+  {
+      a_truly_great_node: my_pnode,                // [6]
+  }
+#+END_SRC
+
+What's going on?
+1) Import the ~pgraph~ Jsonnet library
+2) Import your friends configuration library providing some cools tool.
+3) Create a temporary variable holding the configuration for your node
+4) Tell your node configuration the instance label for the cool tool (ultimately, this is used to look up the C++ tool by your C++ node implementation).
+5) Wrap your ~inode~ configuration into a ~pnode~.  The ~uses~ argument tells the ~pnode~ what other objects your node depends on and the ~nin~ and ~nout~ give the input/output port multiplicity.
+6) Finally we export the ~pnode~ in an object so that it may be used by yet higher-level configuration code.
+
+Note, Jsonnet syntax doesn't require local node variables.  The above could be shortened to just:
+
+#+BEGIN_SRC jsonnet
+  local wc = import "wirecell.jsonnet";
+  local g = import "pgraph.jsonnet";
+  local other = import "some_other_file.jsonnet";
+
+  {
+      a_truly_great_node: g.pnode({
+          type: "MyNode",
+          data: { 
+              my_tool: wc.tn(other.cool_tool),
+          },
+      }, uses: [other.cool_tool], nin=1, nout=1);
+  }
+#+END_SRC
+
+** Intern Pnodes
+
+So far, this is just more work.  Where the payoff begins is the
+ability to pack up connected ~pnodes~ into an encompassing ~pnode~.
+For example:
+
+#+BEGIN_SRC jsonnet
+  {
+      n1: g.pnode({type:"Node", name:"n1"}, nout=1),
+      n2: g.pnode({type:"Node", name:"n2"}, nin=1, nout=1),
+      n3: g.pnode({type:"Node", name:"n3"}, nin=1),
+      pn: g.intern([$.n1],[$.n3],[$.n2],[
+          g.edge($.n1, $.n2),
+          g.edge($.n2, $.n3)], "pn"),
+#+END_SRC
+
+Here, ~n1~ is a source, ~n2~ is a filter (one input port, out output
+port) and ~n3~ is a sink.
+
+The ~pgraph.intern()~ function takes three lists of nodes (input,
+output and internal) which may be empty, and list of /internal edges/
+that connect those nodes.  In this example ~n1~ is an input, ~n3~ is
+an output and ~n2~ is internal and connected to the other two.  The
+resulting ~pn~ is still but a single node but it represents an entire
+graph (complete in this case).  Continuing with this example:
+
+#+BEGIN_SRC jsonnet
+      n12: g.intern([$.n1],[$.n2],edges=[
+          g.edge($.n1, $.n2)
+      ], name="n12"),
+      n123: g.intern([$.n12],[$.n3],edges=[
+          g.edge($.n12, $.n3),
+      ], name="n123"),
+  }
+#+END_SRC
+
+Here ~n12~ is a ~pnode~ which represents an *incomplete* graph.  It
+has edges that join ~n1~ to ~n2~ while ~n2~'s output port becomes the
+output port of ~n12~.  Another user may form ~n123~ by yet another
+interning to produce a ~pnode~ holding again a complete graph.
+
+** Edge breaking and node insertion
+
+As mentioned above, given knowledge of the order of edges *inside* a
+~pnode~ it is possible to derive a new ~pnode~ which breaks an edge in
+order to insert new ~pnodes~.  Extending the above example further:
+
+#+BEGIN_SRC jsonnet
+      n13: g.intern([$.n1],[$.n3], edges=[
+          g.edge($.n1, $.n3),
+      ], name="n13"),
+
+      n123inserted: g.insert_one($.n13, 0, $.n2, $.n2, name="n123inserted"),
+#+END_SRC
+
+The ~n13~ node has interned ~n1~ and ~n3~ which are connected in a
+kind of "short circuit".  Now, some other user may want to do
+something with the data that flows between this source and sink.
+Knowing that the ~(n1,n3)~ edge is at index 0 in the list of ~n13~
+edges it is possible to break that edge and insert a new node (~n2~)
+which is done when setting ~n123inserted~.
+
+** A fancy example
+
+The above example uses a graph which is really a simple linear
+pipeline.  Real graphs may be much more complex.  For example, in the
+case of simulating signal and noise both represent their own stream of
+data frames.  The two stream must be summed together.  A ~pnode~ can
+be built which makes it easy to build to configuration variants, one
+with just signal and one with also noise.  Without defining
+everything, the noise portion is defined as:
+
+#+BEGIN_SRC jsonnet
+  local noise_source = g.pnode({
+      type: "NoiseSource",
+      data: { ... },
+  }, nout=1);
+  local frame_summer = g.pnode({
+      type: "FrameSummer",
+      data: { ... },
+  }, nin=2, nout=1);
+
+  {
+      nominal: g.intern([frame_summer],[frame_summer],[noise_source],
+                        iports=frame_summer.iports[:1],
+                        oports=frame_summer.oports,
+                        edges=[g.edge(noise_source, frame_summer, 0, 1)],
+                        name="NominalNoise"),
+  }
+#+END_SRC
+
+The produced ~nominal~ ~pnode~ object now has simply one input port
+and one output port, both which are actually provided by the "frame
+summer" node.  The "noise source" node gets carried along properly.
+By default the resulting ~pnode~ input ports consist of all input
+ports of all input nodes and etc for output.  But here, one input port
+of the frame summer is already connected to the noise source.  To
+indicate this special arrangement the ~iports~ and ~oports~ arguments
+are passed.  These explicitly give the port descriptors to use for the
+resulting ~pnode~.
+
+This may seem confusing but once worked out, the user of the resulting
+~pnode~ need not care.  The complexity is hidden.  The user just needs
+to take this ~nominal~ node and connect it to others.  
+
+* Going further
+
+To learn more about this new
+configuration idiom you may wish to run the example (excerpted above):
+
+#+BEGIN_EXAMPLE
+  $ jsonnet -J cfg  cfg/test/test_pgraph.jsonnet
+#+END_EXAMPLE
+
+A working configuration is being developed in [[https://github.com/WireCell/wire-cell-cfg/blob/master/uboone/simsp/][cfg/uboone/simsp/]].  
+
+#+BEGIN_EXAMPLE
+  $ wire-cell -c cfg/uboone/simsp/main-simple-quiet.jsonnet
+#+END_EXAMPLE
+
+That top-level configuration file shows the end-game.  It builds a
+complete graph of ~pnodes~ and uses it to configure the Pgrapher app
+and to provide the final /configuration sequence/.  In summary:
+
+#+BEGIN_SRC jsonnet
+  local graph = g.intern(...);
+  local app = {
+      type: "Pgrapher",
+      data: {
+          edges: graph.edges,
+      }
+  };
+
+  // final configuration sequence.
+  [com.cmdline] + graph.uses + [app]
+#+END_SRC
+
+* Summary
+
+This turned into a long post.  Eventually, I hope it will be distilled
+and integrated into the manual.  It shows what you need to know to get
+started authoring or extending a configuration for WCT jobs based on
+the Pgrapher app.  Of course this ~pnode~ idiom need not be followed
+in your own configuration of WCT.  However WCT is now reaching a point
+where the wide variety of features it provides, still fewer than it
+eventually will, requires something to manage complexity of
+configuration.  Thankfully, Jsonnet provides such a good basis for a
+configuration language that idioms like ~pnode~ can be invented.  This
+idiom will be further explored as a configuration is developed to
+handle the current breath of WCT.  It is targeting these features and
+options:
+
+- signal simulation
+  - nominal vs shorted wire field responses
+  - correctly and incorrectly configured electronics
+- noise simulation
+  - with and without noise
+- optional simulation "truth" waveforms
+- software noise filtering
+  - with and without it
+  - uniform or correcting misconfigured electronics
+- signal processing
+  - nominal 2D deconvolution
+  - optional compressed sensing method to handle shorted wire regions
+
+And, probably several variants I'm forgetting.  
+
