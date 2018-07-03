@@ -1,0 +1,145 @@
+#+BEGIN_COMMENT
+.. title: Response Refactoring
+.. slug: response-refactoring
+.. date: 2018-07-03 18:59:30 UTC-04:00
+.. tags: config,dfp,graph,simulation
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+
+In WCT we try to follow the mantra "everything is a component".  One
+corollary to that is we try to avoid hard-wiring dependencies by
+having functionality accessed by hard-wired construction of concrete
+classes.  The various classes having to do with responses suffered
+from not being available as components.  This led to the entire
+toolkit having hard-wired behavior which hampers support for multiple
+detectors.  This post describes some recent steps to fix this problem.
+
+{{{TEASER_END}}}
+
+* Survey of Responses
+
+There are various responses that matter in LArTPC.  In WCT they include:
+
+- field response :: a waveform giving induced current for a point
+                    charge drifting along a path determined by some
+                    starting point ("impact position")
+- electronics response :: strictly referring to the functional form,
+     parameterized by a gain (in units of Voltage/Charge) and a
+     shaping (peaking) time which gives a voltage waveform when
+     convolved with a charge waveform.  This is models the effect of
+     the BNL cold electronics.
+- rcrc response :: the RC filters in the MicroBooNE electronics after
+                   the cold amplifier.
+- plane impact response :: a roll-up of the above and used for
+     simulation components (~Ductor~ via ~ImpactZipper~)
+
+** Field Response Functions
+
+The field response functions (FR) are a large family of waveforms
+defined along many impact positions that span (so far) up to +/- 10
+wires on either side of the "wire of interest" and defined at 1/10
+pitch positions.  These are (currently) calculated by Garfield and
+then converted to JSON (see the command ~wirecell-sigproc
+convert-garfield~).  Because they represent a lot of detailed data in
+a rather specific and not so friendly format it is recommended that
+users, for the most part, treat these files as "binary blobs".
+
+However, they represent critical data for simulation and signal
+processing.  They need to be used by many components.  In order to
+avoid loading and reloading the same files they should not be loaded
+directly but rather accessed in components by (you guessed it) another
+component.  The component interface is [[https://github.com/WireCell/wire-cell-iface/blob/master/inc/WireCellIface/IFieldResponse.h#L22][~IFieldResponse~]] is rather
+trivial, providing just one method ~field_response()~ which returns a
+reference to the top ~Response::Schema::FieldResponse~ data structure.  
+
+When you need the FR set you should lookup a ~IFieldResponse~
+component based on a configuration parameter given to your component:
+
+#+BEGIN_SRC c++
+  std::string fr_type_name = ...;  // eg, maybe "FieldResponse:InstanceName"
+  auto ifr = Factory::find_tn(fr_type_name);
+  auto fr = ifr->field_response();
+#+END_SRC
+
+You can then iterate through planes and wires until getting actual
+response functions.
+
+** Electronics Response
+
+The Electronics Response is a single function giving a waveform
+parameterized by gain and shaping time.  It has a functional form
+defined deep inside ~wire-cell-util~ but your component code should
+avoid using it directly and instead use an [[https://github.com/WireCell/wire-cell-iface/blob/master/inc/WireCellIface/IWaveform.h][~IWaveform~]] component that
+provides it.  With such a component you can get the waveform sample
+vector as well as start time and sampling period.
+
+The ~ElecResponse~ component is currently the only one available and
+it takes gain and shaping as well as a relative post shaping gain
+(~postgain~).  Your component may look up a configured version.
+Again, your component should take the instance name to use as a
+configuration parameter.
+
+#+BEGIN_SRC c++
+  std::string er_type_name = ...;
+  auto er = Factory::find_tn(er_type_name);
+  cerr << "Tick is " << er->waveform_period() << endl;
+  auto spec = dft(er->waveform_samples()); // do FFT
+#+END_SRC
+
+** RC Response
+
+The RC response is simply that of an RC circuit.  It's parameterized
+by a "width" in units of time.  It also delegates to a hard-wired
+function deep in ~wire-cell-util~ and your component code should look
+it up just like ER.
+
+** Plane Impact Response
+
+The [[https://github.com/WireCell/wire-cell-iface/blob/master/inc/WireCellIface/IPlaneImpactResponse.h][plane impact response (PIR)]] is a special purpose component which
+rolls up the FRs and optionally some number of other responses.  It
+performs a convolution of each FR function with all the other response
+and gives access to the result on a per-impact basis.  This component
+is primarily used by the signal simulation.  It has one implementation
+in ~wire-cell-gen~ which can be configured with the FR instance name
+and a list of instance names for "other" responses.  For simulating
+MicroBooNE for the "other" response includes one ER and two RCs (of
+the same name so that an RC^2 response is effected).
+
+* Why Refactoring?
+
+So, what's with the refactoring?  Well, we used to violate "everything
+is a component" guideline with all these responses.  This started
+mostly due to laziness in not getting around to making them honest
+components.  But there were some misuse of them as well, particularly
+with using PIR:
+
+- to get some simple configuration parameters that a
+  component should best be configured directly.  (Eg, why get a giant
+  PIR with its dependencies just to know how many ticks to make in a
+  readout?)
+
+- for things that the ~Pimpos~ class can provide (this class
+  deserves its own post, and probably should become a component).
+
+- to get at the FRs instead of getting them directly.
+
+Also, given the hard-wiring, we were unable to support different
+responses as needed to support different detectors (eg, the RC^2 is
+MicroBooNE-specific).  This refactoring was needed to break that
+hard-wiring.
+
+* What now
+
+Mostly this refactoring is not a change that users will care about.
+However, some things may have broken in the near term.  There are also
+now some configuration items that are no longer hard-wired and need to
+be supplied in configuration.  Work is ongoing to improve the [[https://github.com/wirecell/wire-cell-cfg][official
+config examples]] to catch up with these changes.  By the [[https://github.com/orgs/WireCell/projects/1][next release]]
+this will be all sorted.
+
+
