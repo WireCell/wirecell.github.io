@@ -1,0 +1,337 @@
+#+BEGIN_COMMENT
+.. title: Default Config Dumper
+.. slug: default-config-dumper
+.. date: 2018-07-05 09:15:44 UTC-04:00
+.. tags: config,cli
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+WCT is very configurable.  It provides a way for the expert that wrote
+the C++ component to provide sane defaults and a way that a user may
+override or augment those defaults.  WCT helps such intrepid users to
+discover the defaults with the ~ConfigDumper~ WCT app component.
+
+{{{TEASER_END}}}
+
+* Quick review of WCT config
+
+The [[https://wirecell.github.io/manual.html#configuration][configuration section of the WCT manual]] has details but for here,
+it's worth giving a quick review of WCT configuration.  Ultimately, a
+WCT job is configured by providing a *configuration sequence*.  This
+is simply an array of data structures.  Each structure corresponds to
+a *component instance*.  This is a C++ object instance of a WCT
+component class which inherits from one or more WCT *interface* base
+classes.  At it's top level, each configuration data structure follows
+a simply *object schema* consisting of three attributes:
+
+- ~type~ :: name the WCT component type (usually similar but not always identical to the corresponding C++ class name).
+- ~name~ :: an optional *instance name* to differentiate multiple instances of the same *type*.
+- ~data~ :: an optional and arbitrary *instance configuration* data structure.
+
+In principle the *configuration sequence* can be provided in a variety
+of forms.  In practice, just one form is supported: JSON, possibly compiled from Jsonnet.  The user thus provides one or more files that ultimately produce a simple configuration sequence array and WCT uses that to instantiate and configure component objects.  
+
+The job finally runs by locating any configured component objects which happen to implement the interface ~IApplication~.  Any and all "apps" that are found are executed and through their own configuration (their instance configuration structure specified by the ~data~ attribute) they make use of other configured component objects.
+
+* Discovering Component Configuration
+
+Okay, so what, you want to configure some component but you don't know
+what parameters it honors.  As always, the best way to know what code
+does is to read it.  Short of that, WCT provides a special "app"
+component called ~ConfigDumper~ that can dispaly the default
+configuration which is hard-coded into the components' C++
+implementation.
+
+You can run this app without any configuration:
+
+#+BEGIN_EXAMPLE
+  $ wire-cell -p WireCellApps -a ConfigDumper
+  [{"data":{"components":[],"filename":"/dev/stdout"},"name":"","type":"ConfigDumper"},{"data":{"filename":"/dev/stdout","nodes":[]},"name":"","type":"NodeDumper"}]
+#+END_EXAMPLE
+
+Or, for something a bit more pretty:
+
+#+BEGIN_EXAMPLE
+  $ wire-cell -p WireCellApps -a ConfigDumper | json_pp 
+  [
+     {
+        "type" : "ConfigDumper",
+        "name" : "",
+        "data" : {
+           "components" : [],
+           "filename" : "/dev/stdout"
+        }
+     },
+     {
+        "type" : "NodeDumper",
+        "name" : "",
+        "data" : {
+           "filename" : "/dev/stdout",
+           "nodes" : []
+        }
+     }
+  ]
+#+END_EXAMPLE
+
+The output is printed to ~stdout~ and the ~stderr~ logging is omitted
+here for clarity.  You may replace the ~json_pp~ with your favorite
+JSON pretty-printer.
+
+By default ~ConfigDumper~ dumps the configuration about all
+configurable components provided by the WCT plugins listed on the
+command line.  At a minimum the ~WireCellApps~ plugin must be listed
+as it is required for WCT to find ~ConfigDumper~ itself.  You can add
+additional plugins and their components will also be dumped.  Here,
+~WireCellGen~ is added:
+
+#+BEGIN_EXAMPLE
+  $ wire-cell -p WireCellGen -p WireCellApps -a ConfigDumper | json_pp 
+  [
+  ...
+     {
+        "name" : "",
+        "type" : "PlaneImpactResponse",
+        "data" : {
+           "plane" : 0,
+           "tick" : 500,
+           "nticks" : 10000,
+           "field_response" : "FieldResponse",
+           "other_responses" : []
+        }
+     },
+  ...
+  ]
+#+END_EXAMPLE
+
+Only one of about three dozen instance configuration data structures
+is shown.  It is the one for ~PlaneImpactResponse~ which was featured
+in a [[../response-refactoring/][recent post]].  
+
+Of course, as shown above, ~ConfigDumper~ itself takes some
+configuration.  Namely the user may set an output file and may limit
+which components are dumped.  This configuration can be provided in a
+usual configuration file but in the next example we use the /process
+substitution/ feature of ~bash~ to do everything on the command line:
+
+#+BEGIN_EXAMPLE
+  $ wire-cell -p WireCellSigProc -p WireCellGen -p WireCellApps \
+              -a ConfigDumper \
+              -c <(echo '[{type:"ConfigDumper",data:{filename:"dump.json",components:["FieldResponse","PlaneImpactResponse"]}}]')
+  $ cat dump.json |json_pp
+  [
+     {
+        "type" : "FieldResponse",
+        "data" : {
+           "filename" : ""
+        },
+        "name" : ""
+     },
+     {
+        "name" : "",
+        "data" : {
+           "plane" : 0,
+           "other_responses" : [],
+           "field_response" : "FieldResponse",
+           "tick" : 500,
+           "nticks" : 10000
+        },
+        "type" : "PlaneImpactResponse"
+     }
+  ]
+#+END_EXAMPLE
+
+* Using Configuration Dumps
+
+After running the ~ConfigDumper~ the user may wish to provide a
+variant configuration which is influenced by what was discovered.  A
+few guidelines and caveats are useful here.
+
+** JSON vs Jsonnet
+
+The ~ConfigDumper~ output is in JSON while humans are likely happier
+writing in the [[https://jsonnet.org][Jsonnet data language]].  By design, the former is a
+strict subset of the latter so it is possible to simply copy-paste a
+snippet of ~ConfigDumper~ output into a Jsonnet file and then modify
+as desired.  However, JSON should be seen as a "lossy" format and some
+manual "up-conversion" to Jsonnet is recomended.  In particular:
+
+- quoting attribute keys is "ugly" (admittedly, this is purely subjective).
+
+- literal numerical quantities in JSON are implicitly expressed in the
+  WCT system of units while it is much more clear and less error prone
+  if they carry explicit units.
+
+- it is best to have one component refer to another not by literal
+  strings but via the ~tn()~ function provided by ~wirecell.jsonnet~.
+
+As an example, one might write a configuration which is merely
+influenced by the dump of ~PlaneImpactResponse~'s default
+configuration above in more "proper" Jsonnet like:
+
+#+BEGIN_SRC jsonnet
+  local wc = import "wirecell.jsonnet";
+  local fr0 = {
+      type: "FieldResponse",
+      data: {
+          filename: "ub-10-half.json.bz2",
+      }
+  };
+
+  local pir = {
+      type : "PlaneImpactResponse",
+      data : {
+          plane : 0,
+          field_response : wc.tn(fr0),
+          tick : 0.5*wc.us,
+          nticks : 9595,
+      },
+  };
+  [fr0, pir, ...]
+#+END_SRC
+
+** Missing or Empty Default Attributes
+
+A /user/ configuration object is "deeply merged" in *to* the /default/
+configuration object by recursively copying /leaf attributes/.  Any
+part of the default structure which does not exist in the user
+structure will be retained.  The result is what is passed to the C++
+component instance referred to by the configuration object itself.
+
+In some cases, the default configuration will have placeholder
+attributes with empty or otherwise "bogus" value.  This can be seen in
+~FieldResponse~ where the ~filename~ attribute is the empty string.
+Left unset this will lead to a runtime error.
+
+In other cases, there may be attributes which are simply not mentioned
+in the default configuration at all and the user must understand what
+is required.  For example the simulation has a component called
+~MultiDuctor~ which implements a facade patter by applying a chain of
+rules that determine which "real" ductor to use to service any given
+energy deposition.  It's default configuration is:
+
+#+BEGIN_EXAMPLE
+  $ wire-cell -p WireCellSigProc -p WireCellGen -p WireCellApps \
+              -a ConfigDumper \
+              -c <(echo '[{type:"ConfigDumper",data:{components:["MultiDuctor"]}}]') \
+      | json_pp
+  [
+     {
+        "name" : "",
+        "data" : {
+           "continuous" : false,
+           "chain" : [],
+           "readout_time" : 5000000,
+           "first_frame_number" : 0,
+           "anode" : "AnodePlane",
+           "start_time" : 0
+        },
+        "type" : "MultiDuctor"
+     }
+  ]
+#+END_EXAMPLE
+
+The default ~chain~ is an empty string.  It must be set to list of a
+list of data structures that associate rules to ductors.  The
+structure of ~chain~ can only (currently) be understood by reading the
+code or existing configuration produced by others.
+
+
+** Seeing what is available 
+
+One can also use the ~ConfigDumper~ on all plugins and without any
+restriction on the component list in order to generate a list of all
+components.  This is particularly useful for someone to do before
+adding a new component as there may already be one that does what is
+needed.  To generate the list one can simply run the dumper and browse
+through the giant JSON text that is produced.  However the immensely
+useful [[https://stedolan.github.io/jq/][~jq~]] tool provides some useful features here.
+
+
+#+BEGIN_EXAMPLE
+  $ wire-cell -p WireCellPgraph -p WireCellTbb -p WireCellSio \
+              -p WireCellSigProc -p WireCellGen -p WireCellApps \
+              -a ConfigDumper|json_pp|wc -l
+  790
+
+  $ wire-cell -p WireCellPgraph -p WireCellTbb -p WireCellSio \
+              -p WireCellSigProc -p WireCellGen -p WireCellApps \
+              -a ConfigDumper|jq '.[].type'|wc -l
+  60
+
+  $ wire-cell -p WireCellPgraph -p WireCellTbb -p WireCellSio \
+              -p WireCellSigProc -p WireCellGen -p WireCellApps \
+              -a ConfigDumper|jq '.[].type'|sort | tr -d '"'
+  AnodePlane
+  BirksRecombination
+  BlipSource
+  BoxRecombination
+  CelltreeFrameSink
+  CelltreeSource
+  ChannelSelector
+  ConfigDumper
+  DepoFanout
+  DepoFramer
+  DepoMerger
+  Diffuser
+  Drifter
+  Ductor
+  ElecResponse
+  EmpiricalNoiseModel
+  FieldResponse
+  FourDee
+  FrameFanin
+  FrameMerger
+  FrameSummer
+  HfFilter
+  HistFrameSink
+  JsonDepoSource
+  L1SPFilter
+  LfFilter
+  MagnifySink
+  MagnifySource
+  MipRecombination
+  Misconfigure
+  MultiDuctor
+  NodeDumper
+  NoiseSource
+  NominalChannelResponse
+  NumpyDepoSaver
+  NumpyFrameSaver
+  OmniChannelNoiseDB
+  Omnibus
+  OmnibusNoiseFilter
+  OmnibusPMTNoiseFilter
+  OmnibusSigProc
+  PerChannelResponse
+  Pgrapher
+  PlaneImpactResponse
+  RCResponse
+  Random
+  SilentNoise
+  StaticChannelStatus
+  TbbDataFlowGraph
+  TbbFlow
+  TrackDepos
+  Truth
+  TruthSmearer
+  VagabondX
+  WireParams
+  WireSchemaFile
+  WireSource
+  mbADCBitShift
+  mbOneChannelNoise
+  mbOneChannelStatus
+#+END_EXAMPLE
+
+
+* Summary
+
+It's always best to read the source code to learn what configuration a
+component expects, and more importantly, what it does with the
+configuration it gets.  With that said, the WCT ~ConfigDumper~ "app"
+provides an easy way to discover or simply remind oneself what is the
+default configuration of some component.  

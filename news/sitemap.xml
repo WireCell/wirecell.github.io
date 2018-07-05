@@ -19,11 +19,11 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/archive.html</loc>
-  <lastmod>2018-07-03T23:29:00Z</lastmod>
+  <lastmod>2018-07-05T14:34:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/</loc>
-  <lastmod>2018-06-22T19:45:00Z</lastmod>
+  <lastmod>2018-07-05T14:34:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/build/</loc>
@@ -32,6 +32,10 @@
  <url>
   <loc>http://wirecell.github.io/news/categories/cat_toolkit/</loc>
   <lastmod>2017-10-05T14:56:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/categories/cli/</loc>
+  <lastmod>2018-07-05T14:34:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/config/</loc>
@@ -75,7 +79,7 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/index-1.html</loc>
-  <lastmod>2018-07-03T23:29:00Z</lastmod>
+  <lastmod>2018-07-05T14:34:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/listings/</loc>
@@ -88,6 +92,10 @@
  <url>
   <loc>http://wirecell.github.io/news/posts/build-cleanups/</loc>
   <lastmod>2017-10-05T14:56:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/posts/default-config-dumper/</loc>
+  <lastmod>2018-07-05T14:34:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/exceptions/</loc>

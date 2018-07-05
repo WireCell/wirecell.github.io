@@ -14,8 +14,12 @@
   <lastmod>2018-06-22T19:50:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://wirecell.github.io/news/categories/cli.xml</loc>
+  <lastmod>2018-07-05T14:34:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://wirecell.github.io/news/categories/config.xml</loc>
-  <lastmod>2018-07-03T23:29:00Z</lastmod>
+  <lastmod>2018-07-05T14:34:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/devel.xml</loc>
@@ -23,7 +27,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/dfp.xml</loc>
-  <lastmod>2018-07-03T23:29:00Z</lastmod>
+  <lastmod>2018-07-03T23:38:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/gen.xml</loc>
@@ -31,7 +35,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/graph.xml</loc>
-  <lastmod>2018-07-03T23:29:00Z</lastmod>
+  <lastmod>2018-07-03T23:38:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/larsoft.xml</loc>
@@ -43,7 +47,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/simulation.xml</loc>
-  <lastmod>2018-07-03T23:29:00Z</lastmod>
+  <lastmod>2018-07-03T23:38:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/user.xml</loc>
@@ -55,10 +59,10 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/rss.xml</loc>
-  <lastmod>2018-07-03T23:29:00Z</lastmod>
+  <lastmod>2018-07-05T14:34:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/sitemap.xml</loc>
-  <lastmod>2018-07-03T23:29:00Z</lastmod>
+  <lastmod>2018-07-05T14:34:00Z</lastmod>
  </sitemap>
 </sitemapindex>

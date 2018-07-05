@@ -53,7 +53,31 @@ article: http://ogp.me/ns/article#
         <div class="row">
             <div class="col-sm-8 blog-main">
 <div class="postindex">
-    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/jsonnet-now-mandatory-and-cli-parameter-injection/" class="u-url">Jsonnet now mandatory and CLI parameter injection</a></h2>
+    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" class="u-url">Basic Simulation Essentially Working and CellTree support</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" rel="bookmark"><time class="published dt-published" datetime="2017-06-17T14:50:06-04:00" title="2017-06-17 14:50">2017-06-17 14:50</time></a></p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <p>
+Hanyu Wei has done great job getting the basic drift and response
+simulation finished.  In particular it now properly handles the
+exceeding fine-scale interpolation that is essential for having
+realistically smooth induction signals as a particle's ionization
+track moves from the region around one field response path to its
+neighbor.  This improvement makes negligible impact on speed.  Also
+included is proper drift processes and their statistics as well as the
+introduction of an addition RC response for amplifier after the preamp
+(for MicroBooNE).  
+</p>
+
+<p>
+Hanyu also added a <a href="https://github.com/WireCell/wire-cell-sio/blob/master/src/CelltreeFrameSink.cxx">new frame sink</a> to write out "celltree" file format.
+This ROOT-based format has been used for a while now to transfer data
+between the Wire-Cell Prototype and other applications.
+</p>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/jsonnet-now-mandatory-and-cli-parameter-injection/" class="u-url">Jsonnet now mandatory and CLI parameter injection</a></h2>
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/jsonnet-now-mandatory-and-cli-parameter-injection/" rel="bookmark"><time class="published dt-published" datetime="2017-06-16T14:34:03-04:00" title="2017-06-16 14:34">2017-06-16 14:34</time></a></p>

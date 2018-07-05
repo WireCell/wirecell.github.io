@@ -12,7 +12,7 @@ article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="http://wirecell.github.io/news/">
 <link rel="next" href="index-1.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/response-refactoring/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/default-config-dumper/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -53,7 +53,24 @@ article: http://ogp.me/ns/article#
         <div class="row">
             <div class="col-sm-8 blog-main">
 <div class="postindex">
-    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/response-refactoring/" class="u-url">Response Refactoring</a></h2>
+    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/default-config-dumper/" class="u-url">Default Config Dumper</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/default-config-dumper/" rel="bookmark"><time class="published dt-published" datetime="2018-07-05T09:15:44-04:00" title="2018-07-05 09:15">2018-07-05 09:15</time></a></p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>
+WCT is very configurable.  It provides a way for the expert that wrote
+the C++ component to provide sane defaults and a way that a user may
+override or augment those defaults.  WCT helps such intrepid users to
+discover the defaults with the <code>ConfigDumper</code> WCT app component.
+</p>
+
+<p class="more"><a href="posts/default-config-dumper/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/response-refactoring/" class="u-url">Response Refactoring</a></h2>
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/response-refactoring/" rel="bookmark"><time class="published dt-published" datetime="2018-07-03T18:59:30-04:00" title="2018-07-03 18:59">2018-07-03 18:59</time></a></p>
@@ -236,30 +253,6 @@ Throwing exceptions is now a SOP for indicating some error.
 
 <p class="more"><a href="posts/exceptions/">Read more…</a></p>
 </div>
-    </div>
-    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" class="u-url">Basic Simulation Essentially Working and CellTree support</a></h2>
-        <div class="metadata blog-post-meta">
-            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
-            <p class="dateline"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" rel="bookmark"><time class="published dt-published" datetime="2017-06-17T14:50:06-04:00" title="2017-06-17 14:50">2017-06-17 14:50</time></a></p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <p>
-Hanyu Wei has done great job getting the basic drift and response
-simulation finished.  In particular it now properly handles the
-exceeding fine-scale interpolation that is essential for having
-realistically smooth induction signals as a particle's ionization
-track moves from the region around one field response path to its
-neighbor.  This improvement makes negligible impact on speed.  Also
-included is proper drift processes and their statistics as well as the
-introduction of an addition RC response for amplifier after the preamp
-(for MicroBooNE).  
-</p>
-
-<p>
-Hanyu also added a <a href="https://github.com/WireCell/wire-cell-sio/blob/master/src/CelltreeFrameSink.cxx">new frame sink</a> to write out "celltree" file format.
-This ROOT-based format has been used for a while now to transfer data
-between the Wire-Cell Prototype and other applications.
-</p>
     </div>
     </article>
 </div>
