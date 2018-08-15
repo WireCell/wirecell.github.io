@@ -1,0 +1,128 @@
+#+BEGIN_COMMENT
+.. title: Overriding Configuration Parameters
+.. slug: overriding-configuration-parameters
+.. date: 2018-08-15 09:38:32 UTC-04:00
+.. tags: config,uboone
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+The WCT configuration language Jsonnet allows to exploit software development patterns such as "don't repeat yourself" (DRY) and object inheritance.  They are exploited to factor a configuration into layers so that it may, in total, serve many uses.  This post describes how to override a parameter from a base object.
+
+{{{TEASER_END}}}
+
+* Frames and Traces and Ticks
+
+First, just to set the stage, one of the main data types in WCT is a
+"frame" which is a collection of "traces" and each "trace" is
+associated with a channel and contains some contiguous charge samples
+(eg, ADC or voltage).  A frame may also hold a superposition of traces
+by giving them "tags".  For example, one may store partial traces
+tagged by the true particle ID that led to their creation by the
+simulation.  In principle, a WCT frame need not have a well specified
+end and it may also be sparse (not every "tick" nor channel need have
+a sample).
+
+Some applications can not work with this generalization of a "frame"
+but rather assume a concept of "frame" being a dense 2D array with
+fixed channel and tick extent and ordering.  WCT has ways to slice its
+frame to match this more limited concept.  For simulation and signal
+processing there are a number of parameters that govern this.
+Expressed in the configuration schema implemented in the [[https://github.com/WireCell/wire-cell-cfg/tree/master/pgrapher][pgrapher]]
+config these are the relevant parameters:
+
+- ~daq.nticks~ :: number of (time) ticks in one "readout" of the detector.  This is relevant for WCT sim producing frames and for WCT noise filter consuming them.
+- ~nf.nsamples~ :: number of (frequency) bins used to perform noise filtering (NF).  It is typically different from ~daq.nticks~.
+
+* MicroBooNE Case
+
+MicroBooNE has a somewhat confusing set of numbers that come into play here.
+
+- 10000 :: WCT's default number of ticks into which frames may be sliced.
+- 9600 :: number of ticks in a LArSoft simulated frame
+- 9595 :: number of ticks in actual detector data
+
+These three numbers are set in the ~daq.nticks~.  Another parameter, ~nf.nsamples~ currently takes one value:
+
+- 9592 :: number of frequency bins for performing NF filtering/convolutions
+
+This value for ~nf.nsamples~ can probably work more or less okay when
+paired with any nearby value of ~daq.nticks~ although will be a small source
+of data loss due to tick-truncation or a small source of artifacts due to zero-padding (when made larger than ~daq.nticks~). 
+
+* Overriding parameters
+
+Finally, we must have a way to override the default value of
+~daq.nticks~ in multiple contexts.  Already it is overridden for
+MicroBooNE in [[https://github.com/WireCell/wire-cell-cfg/blob/master/pgrapher/experiment/uboone/params.jsonnet][the ~params.jsonnet file]] to be 9595 but that only works
+for data.  For jobs which wish to emulate LArSoft simulation's 9600
+they need to further override.
+
+Notes about what *not* to do:
+
+- do *not* directly edit the MicroBooNE ~params.jsonnet~ file to change this value as this will break other users that rely on it to stay as-is.
+- do *not* copy ~params.jsonnet~ to another file as this will cause divergence and make it difficult to fix bug.
+
+Instead, what one *should* do is derive from the MicroBooNE
+~params.jsonnet~ data structure to make yet another data structure
+that contains just the desired changes.
+
+This overriding is actually already being done for many parameters for
+MicroBooNE in that experiment's ~params.jsonnet~ file.  There, (at
+time of this blog bpost) ~daq.nticks~ is set to 9595.  Instead of
+editing this file and modifying the parameter in place, which would
+then break its use for data, it should be overridden in another
+context.
+
+** Overriding in the main Jsonnet file
+
+On a case-by-case basis one can override specific MicroBooNE
+parameters inside the "main" Jsonnet file following the exact same
+patter as is using the MicroBooNE ~params.jsonnet~ file itself.
+
+The ~params~ are used as -- well, parameters -- to parameterize other
+configuration.  They are created in the main Jsonnet file with a line
+like:
+
+#+BEGIN_SRC js
+local params = import "pgrapher/experiment/uboone/params.jsonnet";
+#+END_SRC
+
+Just after creation, one can override using a pattern like:
+
+#+BEGIN_SRC js
+local default_params = import "pgrapher/experiment/uboone/params.jsonnet";
+local params = default_params {
+  daq: super.daq {
+    nticks: 9600,
+  }
+};
+#+END_SRC
+
+** Overriding many parameters
+
+It may come to pass that many parameters must be overriden in common for many uses.  For example, we must pick 9600 ticks for simulation.  It's possible other parameters will need to be modified for all or a subset of common simulation goals.  It becomes tedious to do the above few lines inside ever main file and would be cleaner to move this overriding into its own file to be shared by many mains.  One might then create ~pgrapher/experiment/uboone/params-sim.jsonnet~ with something like:
+
+#+BEGIN_SRC js
+local default_params = import "pgrapher/experiment/uboone/params.jsonnet";
+default_params {
+  daq: super.daq {
+    nticks: 9600,
+  }
+  // extend as needed for simulation
+}
+#+END_SRC
+
+Then, inside the "main" Jsonnet file one would have just one line:
+
+#+BEGIN_SRC js
+local params = import "pgrapher/experiment/uboone/params-sim.jsonnet";
+#+END_SRC
+
+
+
+
+
