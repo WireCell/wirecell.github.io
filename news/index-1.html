@@ -53,7 +53,47 @@ article: http://ogp.me/ns/article#
         <div class="row">
             <div class="col-sm-8 blog-main">
 <div class="postindex">
-    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" class="u-url">Basic Simulation Essentially Working and CellTree support</a></h2>
+    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/build-cleanups/" class="u-url">Build Cleanups</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/build-cleanups/" rel="bookmark"><time class="published dt-published" datetime="2017-06-21T15:16:40-04:00" title="2017-06-21 15:16">2017-06-21 15:16</time></a></p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <p>
+Today sees some long needed cleanups in how we build WCT and WCP and their externals.  In particular:
+</p>
+
+<ul class="org-ul">
+<li>
+<a href="http://jsonnet.org/">Jsonnet</a>, as previously announced is now <b>required</b> by WCT has a build package added to <a href="https://github.com/WireCell/wire-cell-spack/blob/master/repo/packages/jsonnet/package.py">wire-cell-spack</a>. 
+</li>
+<li>A <a href="http://www.phy.bnl.gov/~bviren/wire-cell-spack-mirror/">source mirror</a> is now available in case you have trouble getting any required dependencies.  The Spack build will use this mirror automatically after being configured as shown in <a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#failure-to-download-a-package-source">the README</a> file.
+</li>
+<li>Besides the tip of the <code>master</code> branch, specific releases starting with 0.5.2 of WCT can now be installed with Spack.
+</li>
+<li>The WCP and its dependencies can now be built using wire-cell-spack.  WCP uses a subset of the packages that WCT requires and the two can be installed side-by-side sharing these packages.
+</li>
+<li>See also <a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#using-spack-views">this section of the README</a> for recommended way to develop either WCP or WCT code against Spack-built dependencies.
+</li>
+<li>The cursed XData package is removed from both WCP and WCT.
+</li>
+</ul>
+</div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/exceptions/" class="u-url">Exceptions</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/exceptions/" rel="bookmark"><time class="published dt-published" datetime="2017-06-20T15:14:20-04:00" title="2017-06-20 15:14">2017-06-20 15:14</time></a></p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>
+Throwing exceptions is now a SOP for indicating some error.  
+</p>
+
+<p class="more"><a href="posts/exceptions/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" class="u-url">Basic Simulation Essentially Working and CellTree support</a></h2>
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/basic-simulation-essentially-working-and-celltree-support/" rel="bookmark"><time class="published dt-published" datetime="2017-06-17T14:50:06-04:00" title="2017-06-17 14:50">2017-06-17 14:50</time></a></p>

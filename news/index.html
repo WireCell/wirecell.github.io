@@ -12,7 +12,7 @@ article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="http://wirecell.github.io/news/">
 <link rel="next" href="index-1.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/default-config-dumper/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/singularity-containers-for-wct-and-wcls-running-and-development/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -53,7 +53,45 @@ article: http://ogp.me/ns/article#
         <div class="row">
             <div class="col-sm-8 blog-main">
 <div class="postindex">
-    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/default-config-dumper/" class="u-url">Default Config Dumper</a></h2>
+    <article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/singularity-containers-for-wct-and-wcls-running-and-development/" class="u-url">Singularity Containers for WCT and WC/LS Running and Development</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/singularity-containers-for-wct-and-wcls-running-and-development/" rel="bookmark"><time class="published dt-published" datetime="2018-08-17T09:30:33-04:00" title="2018-08-17 09:30">2018-08-17 09:30</time></a></p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>
+As part of an enjoyable tutorial on applying machine learning
+techniques to LArTPC given by <a href="http://www.codingkazu.com/">Kazu</a> at BNL we were introduced to
+<a href="https://www.sylabs.io/">Singularity containers</a>.  There's been some WCT-related work in the
+past using Docker containers but that fizzled due to Docker's
+complexity and usage barrier (even if that leads to better build
+performance and features).  It was immediately clear from Kazu's
+tutorial that Singularity reduces the usage barrier and would solve a
+big problem for the WCT team.  Namely the difficulties we have in
+building FNAL's <i>art</i> and LArSoft (LS) software ecosystem on our
+computers.  With Singularity containers we now have a way for just one
+person to suffer and let many others benefit.  
+</p>
+
+<p class="more"><a href="posts/singularity-containers-for-wct-and-wcls-running-and-development/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/overriding-configuration-parameters/" class="u-url">Overriding Configuration Parameters</a></h2>
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="posts/overriding-configuration-parameters/" rel="bookmark"><time class="published dt-published" datetime="2018-08-15T09:38:32-04:00" title="2018-08-15 09:38">2018-08-15 09:38</time></a></p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>
+The WCT configuration language Jsonnet allows to exploit software development patterns such as "don't repeat yourself" (DRY) and object inheritance.  They are exploited to factor a configuration into layers so that it may, in total, serve many uses.  This post describes how to override a parameter from a base object.
+</p>
+
+<p class="more"><a href="posts/overriding-configuration-parameters/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/default-config-dumper/" class="u-url">Default Config Dumper</a></h2>
         <div class="metadata blog-post-meta">
             <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
             <p class="dateline"><a href="posts/default-config-dumper/" rel="bookmark"><time class="published dt-published" datetime="2018-07-05T09:15:44-04:00" title="2018-07-05 09:15">2018-07-05 09:15</time></a></p>
@@ -213,46 +251,6 @@ directory is a <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/
 plots related to the conversion of these files which may be useful for
 experts to browse.
 </p>
-    </div>
-    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/build-cleanups/" class="u-url">Build Cleanups</a></h2>
-        <div class="metadata blog-post-meta">
-            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
-            <p class="dateline"><a href="posts/build-cleanups/" rel="bookmark"><time class="published dt-published" datetime="2017-06-21T15:16:40-04:00" title="2017-06-21 15:16">2017-06-21 15:16</time></a></p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <p>
-Today sees some long needed cleanups in how we build WCT and WCP and their externals.  In particular:
-</p>
-
-<ul class="org-ul">
-<li>
-<a href="http://jsonnet.org/">Jsonnet</a>, as previously announced is now <b>required</b> by WCT has a build package added to <a href="https://github.com/WireCell/wire-cell-spack/blob/master/repo/packages/jsonnet/package.py">wire-cell-spack</a>. 
-</li>
-<li>A <a href="http://www.phy.bnl.gov/~bviren/wire-cell-spack-mirror/">source mirror</a> is now available in case you have trouble getting any required dependencies.  The Spack build will use this mirror automatically after being configured as shown in <a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#failure-to-download-a-package-source">the README</a> file.
-</li>
-<li>Besides the tip of the <code>master</code> branch, specific releases starting with 0.5.2 of WCT can now be installed with Spack.
-</li>
-<li>The WCP and its dependencies can now be built using wire-cell-spack.  WCP uses a subset of the packages that WCT requires and the two can be installed side-by-side sharing these packages.
-</li>
-<li>See also <a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#using-spack-views">this section of the README</a> for recommended way to develop either WCP or WCT code against Spack-built dependencies.
-</li>
-<li>The cursed XData package is removed from both WCP and WCT.
-</li>
-</ul>
-</div>
-    </article><article class="blog-post h-entry post-text"><header><h2 class="p-name entry-title blog-post-title"><a href="posts/exceptions/" class="u-url">Exceptions</a></h2>
-        <div class="metadata blog-post-meta">
-            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
-            <p class="dateline"><a href="posts/exceptions/" rel="bookmark"><time class="published dt-published" datetime="2017-06-20T15:14:20-04:00" title="2017-06-20 15:14">2017-06-20 15:14</time></a></p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<p>
-Throwing exceptions is now a SOP for indicating some error.  
-</p>
-
-<p class="more"><a href="posts/exceptions/">Read more…</a></p>
-</div>
     </div>
     </article>
 </div>

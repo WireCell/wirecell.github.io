@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/build.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2018-08-17T13:38:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/cat_toolkit.xml</loc>
@@ -23,7 +23,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/devel.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2018-08-17T13:38:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/dfp.xml</loc>
@@ -39,7 +39,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/larsoft.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2018-08-17T13:38:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/sigproc.xml</loc>
@@ -63,10 +63,10 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/rss.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2018-08-17T13:38:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/sitemap.xml</loc>
-  <lastmod>2018-08-15T14:22:00Z</lastmod>
+  <lastmod>2018-08-17T13:38:00Z</lastmod>
  </sitemap>
 </sitemapindex>

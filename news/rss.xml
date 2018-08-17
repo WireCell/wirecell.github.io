@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates on the Wire Cell Toolkit.</description><atom:link type="application/rss+xml" rel="self" href="http://wirecell.github.io/news/rss.xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Thu, 05 Jul 2018 15:23:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Default Config Dumper</title><link>http://wirecell.github.io/news/posts/default-config-dumper/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Wire Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates on the Wire Cell Toolkit.</description><atom:link type="application/rss+xml" href="http://wirecell.github.io/news/rss.xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Fri, 17 Aug 2018 14:16:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Singularity Containers for WCT and WC/LS Running and Development</title><link>http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+As part of an enjoyable tutorial on applying machine learning
+techniques to LArTPC given by &lt;a href="http://www.codingkazu.com/"&gt;Kazu&lt;/a&gt; at BNL we were introduced to
+&lt;a href="https://www.sylabs.io/"&gt;Singularity containers&lt;/a&gt;.  There's been some WCT-related work in the
+past using Docker containers but that fizzled due to Docker's
+complexity and usage barrier (even if that leads to better build
+performance and features).  It was immediately clear from Kazu's
+tutorial that Singularity reduces the usage barrier and would solve a
+big problem for the WCT team.  Namely the difficulties we have in
+building FNAL's &lt;i&gt;art&lt;/i&gt; and LArSoft (LS) software ecosystem on our
+computers.  With Singularity containers we now have a way for just one
+person to suffer and let many others benefit.  
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/"&gt;Read more…&lt;/a&gt; (4 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>build</category><category>devel</category><category>larsoft</category><guid>http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/</guid><pubDate>Fri, 17 Aug 2018 13:30:33 GMT</pubDate></item><item><title>Overriding Configuration Parameters</title><link>http://wirecell.github.io/news/posts/overriding-configuration-parameters/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+The WCT configuration language Jsonnet allows to exploit software development patterns such as "don't repeat yourself" (DRY) and object inheritance.  They are exploited to factor a configuration into layers so that it may, in total, serve many uses.  This post describes how to override a parameter from a base object.
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/overriding-configuration-parameters/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>uboone</category><guid>http://wirecell.github.io/news/posts/overriding-configuration-parameters/</guid><pubDate>Wed, 15 Aug 2018 13:38:32 GMT</pubDate></item><item><title>Default Config Dumper</title><link>http://wirecell.github.io/news/posts/default-config-dumper/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 WCT is very configurable.  It provides a way for the expert that wrote
 the C++ component to provide sane defaults and a way that a user may
 override or augment those defaults.  WCT helps such intrepid users to
@@ -84,25 +102,4 @@ particular the "upstream" data from which the JSON files are converted
 directory is a &lt;a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/plots/"&gt;plot dump directory&lt;/a&gt; which contains some diagnostic
 plots related to the conversion of these files which may be useful for
 experts to browse.
-&lt;/p&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/new-configuration-data-package/</guid><pubDate>Fri, 23 Jun 2017 19:18:19 GMT</pubDate></item><item><title>Build Cleanups</title><link>http://wirecell.github.io/news/posts/build-cleanups/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
-Today sees some long needed cleanups in how we build WCT and WCP and their externals.  In particular:
-&lt;/p&gt;
-
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a href="http://jsonnet.org/"&gt;Jsonnet&lt;/a&gt;, as previously announced is now &lt;b&gt;required&lt;/b&gt; by WCT has a build package added to &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/repo/packages/jsonnet/package.py"&gt;wire-cell-spack&lt;/a&gt;. 
-&lt;/li&gt;
-&lt;li&gt;A &lt;a href="http://www.phy.bnl.gov/~bviren/wire-cell-spack-mirror/"&gt;source mirror&lt;/a&gt; is now available in case you have trouble getting any required dependencies.  The Spack build will use this mirror automatically after being configured as shown in &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#failure-to-download-a-package-source"&gt;the README&lt;/a&gt; file.
-&lt;/li&gt;
-&lt;li&gt;Besides the tip of the &lt;code&gt;master&lt;/code&gt; branch, specific releases starting with 0.5.2 of WCT can now be installed with Spack.
-&lt;/li&gt;
-&lt;li&gt;The WCP and its dependencies can now be built using wire-cell-spack.  WCP uses a subset of the packages that WCT requires and the two can be installed side-by-side sharing these packages.
-&lt;/li&gt;
-&lt;li&gt;See also &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#using-spack-views"&gt;this section of the README&lt;/a&gt; for recommended way to develop either WCP or WCT code against Spack-built dependencies.
-&lt;/li&gt;
-&lt;li&gt;The cursed XData package is removed from both WCP and WCT.
-&lt;/li&gt;
-&lt;/ul&gt;</description><category>build</category><category>devel</category><guid>http://wirecell.github.io/news/posts/build-cleanups/</guid><pubDate>Wed, 21 Jun 2017 19:16:40 GMT</pubDate></item><item><title>Exceptions</title><link>http://wirecell.github.io/news/posts/exceptions/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
-Throwing exceptions is now a SOP for indicating some error.  
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/exceptions/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>devel</category><guid>http://wirecell.github.io/news/posts/exceptions/</guid><pubDate>Tue, 20 Jun 2017 19:14:20 GMT</pubDate></item></channel></rss>
+&lt;/p&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/new-configuration-data-package/</guid><pubDate>Fri, 23 Jun 2017 19:18:19 GMT</pubDate></item></channel></rss>

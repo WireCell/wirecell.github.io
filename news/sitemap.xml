@@ -19,7 +19,7 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/archive.html</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2018-08-17T13:38:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/</loc>
@@ -83,7 +83,7 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/index-1.html</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2018-08-17T13:38:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/listings/</loc>
@@ -140,5 +140,9 @@
  <url>
   <loc>http://wirecell.github.io/news/posts/simulation-updates/</loc>
   <lastmod>2018-08-15T14:21:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/</loc>
+  <lastmod>2018-08-17T13:38:00Z</lastmod>
  </url>
 </urlset>

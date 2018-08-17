@@ -1,0 +1,164 @@
+#+BEGIN_COMMENT
+.. title: Singularity Containers for WCT and WC/LS Running and Development
+.. slug: singularity-containers-for-wct-and-wcls-running-and-development
+.. date: 2018-08-17 09:30:33 UTC-04:00
+.. tags: build,devel,larsoft
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+#+END_COMMENT
+
+As part of an enjoyable tutorial on applying machine learning
+techniques to LArTPC given by [[http://www.codingkazu.com/][Kazu]] at BNL we were introduced to
+[[https://www.sylabs.io/][Singularity containers]].  There's been some WCT-related work in the
+past using Docker containers but that fizzled due to Docker's
+complexity and usage barrier (even if that leads to better build
+performance and features).  It was immediately clear from Kazu's
+tutorial that Singularity reduces the usage barrier and would solve a
+big problem for the WCT team.  Namely the difficulties we have in
+building FNAL's /art/ and LArSoft (LS) software ecosystem on our
+computers.  With Singularity containers we now have a way for just one
+person to suffer and let many others benefit.  
+
+{{{TEASER_END}}}
+
+This blog post describes how to use and build these containers.
+Besides some wordy introduction it is a cut-down version of [[https://github.com/WireCell/wire-cell-singularity/blob/master/README.org][the README]]
+file from the package holding the container building scripts.  See
+that ~README~ for caveats and help if you have problems.
+
+* What is a container
+
+In this context a "container" of "container image" is ultimately a big
+file that represents an entire OS (excluding the kernel) and any
+additional programs, shared libraries, data files, etc, which which it
+was built.  Given a container image the user can execute a program
+(typically an interactive shell like ~bash~) provided by that
+container.  That program does "sees" only the programs and shared
+libraries provided by the container and not their equivalents provided
+by the native OS.
+
+Except in special cases, the files and file system presented inside
+the container is read-only to the user's program.  However, by default
+the user's home directory is visible so after entering the container
+it is not always easy to notice a difference.  In addition one may
+explicitly "mount" other native directories onto a directory in the
+container.
+
+The rest of this post is organized by describing different types of
+tasks one might want to do in the provided WCT and WC/LS containers.
+Where example commands are given the shell "prompt" indicates if one
+is in the native (~n$~) or container (~c$~) environment like:
+
+#+BEGIN_EXAMPLE
+  n$ echo "this command runs in native environment"
+  c$ echo "this command runs in container environment"
+#+END_EXAMPLE
+
+* I wanna run ~wire-cell~
+
+Download this relatively svelte [[https://www.phy.bnl.gov/~bviren/simg/wctdev.simg][wctdev.simg (717 MB)]] image file and 
+run this:
+
+#+BEGIN_EXAMPLE
+  n$ singularity exec wctdev.simg /bin/bash --rcfile wctrun.rc
+  c$ wire-cell --help
+#+END_EXAMPLE
+
+* I  wanna build the ~wctdev~ image
+
+You should read the [[https://github.com/WireCell/wire-cell-singularity/blob/master/README.org][README]] for caveats but it boils down to setting up
+Singularity, cloning the ~wire-cell-singularity~ repo and running:
+
+#+BEGIN_EXAMPLE
+  n$ wget https://root.cern.ch/download/root_v6.14.02.Linux-ubuntu18-x86_64-gcc7.3.tar.gz
+  n$ sudo singularity build wctdev.simg Singularity.wctdev
+#+END_EXAMPLE
+
+
+* I wanna newer WCT than what is included
+
+Here you basically use the same ~wctdev.simg~ image file but ignore
+the fact it provides a version of WCT and instead you build your own
+copy in your home directory from inside the container:
+
+#+BEGIN_EXAMPLE
+  n$ git clone --recursive git@github.com:WireCell/wire-cell-build.git wct
+  n$ singularity exec wctdev.simg /bin/bash --rcfile wctdev.rc
+  c$ cd wct/
+  c$ ./wcb configure --prefix=`pwd`/install --with-jsonnet=/usr/local --with-eigen-include=/usr/include/eigen3
+  c$ ./wcb -p --notests install
+#+END_EXAMPLE
+
+
+To run the tests or simply use what you just built you'll need to set your ~PATH~-like variables:
+
+#+BEGIN_EXAMPLE
+  c$ export LD_LIBRARY_PATH=`pwd`/install/lib:$LD_LIBRARY_PATH
+  c$ export PATH=`pwd`/install/bin:$PATH
+  c$ ./wcb -p --alltests
+  C$ wire-cell --help
+#+END_EXAMPLE
+
+* I wanna run WC/LS jobs
+
+"WC/LS" means Wire-Cell Toolkit + LArSoft.  It requires going "all in"
+with FNAL software ecosystem.  To get started, 
+download the relatively large [[https://www.phy.bnl.gov/~bviren/simg/wclsdev.simg][wclcdev.simg (4.4 GB)]] and run:
+
+#+BEGIN_EXAMPLE
+  n$ singularity exec wclsdev.simg /bin/bash --rcfile wclsrun.rc
+  c$ wire-cell --help
+  c$ art --help
+#+END_EXAMPLE
+
+
+The WCT this provides is a recent released version built as a "UPS product" named ~wirecell~.
+
+* I wanna build the ~wclsdev~ image
+
+All I can say here is I wish you the best of luck.  UPS and
+Singularity are not friends.  See the [[https://github.com/WireCell/wire-cell-singularity/blob/master/README.org][README]] for guidance.
+
+* I wanna build a newer ~wirecell~ UPS product
+
+Here, the trick is to build WCT "as normal" except for two things:
+
+- use FNAL UPS software ecosystem to provide the dependencies
+- install WCT into a particular, prepared UPS "products" area for a ~dev~ version of the UPS product ~wirecell~
+
+This is somewhat involved and so a cople of scripts are provided in the ~wire-cell-singularity~ repository.  
+
+#+BEGIN_EXAMPLE
+  n$ mkdir wct-ups-install
+  n$ ./bind-wct.sh wclsdev.simg wct-ups-install
+  c$ ./update-wct.sh wct
+#+END_EXAMPLE
+
+
+In the example:
+
+- ~wct-ups-install~ :: some native, empty directory to which you have write permission, it is what gets "mounted" to provide writable space for the ~dev~ version of the ~wirecell~ UPS product
+- ~wct~ :: where you have WCT source cloned.  This is what will be built and installed into the above location.
+
+* I wanna develop WC/LS
+
+This last step is rather involved but straight-forward.  I leave the
+details to the [[https://github.com/WireCell/wire-cell-singularity/blob/master/README.org][README]] and the scripts provided in the
+~wire-cell-singularity~ repo.  To summarize, you will follow these steps:
+
+1) Build the ~dev~ version of the ~wirecell~ UPS product as above.
+2) Set up an ~mrb~ development area in the "standard" way based on the
+   version of larsoft included in the container.
+3) Add a clone of the ~larwirecell~ source repository and check out or
+   create a desired "feature branch"
+4) Hack the UPS bookkeeping to use the ~dev~ UPS ~wirecell~ "product"
+   installed as above.
+5) Build and rebuild ~larwirecell~ via ~mrb~ as "normal".
+6) Build and rebuild WCT into the ~dev~ UPS ~wirecell~ product area as "normal".
+
+Once done you will be able to hack on both packages simultaneously,
+and rebuild and test them in as tight of a loop as I've found possible
+to construct.
