@@ -284,20 +284,31 @@ A working configuration is being developed in [[https://github.com/WireCell/wire
 
 That top-level configuration file shows the end-game.  It builds a
 complete graph of ~pnodes~ and uses it to configure the Pgrapher app
-and to provide the final /configuration sequence/.  In summary:
+and to provide the final /configuration sequence/.  
+In summary:
 
 #+BEGIN_SRC jsonnet
+  local g = import "pgraph.jsonnet";
+  // ...
+
   local graph = g.intern(...);
   local app = {
       type: "Pgrapher",
       data: {
-          edges: graph.edges,
+          edges: g.edges(graph),
       }
   };
 
   // final configuration sequence.
-  [com.cmdline] + graph.uses + [app]
+  [com.cmdline] + g.uses(graph) + [app]
 #+END_SRC
+
+Note that both the ~graph.edges~ and ~graph.uses~ list attributes will
+likely have duplicate entries due to details in how they are
+constructed.  In order to properly strip them of duplicates while
+retaining proper order (in the case of ~.uses~) they must be extracted
+through ~pgraph~ functions of the same name.
+
 
 * Summary
 
@@ -329,3 +340,6 @@ options:
 
 And, probably several variants I'm forgetting.  
 
+* Edits
+
+ - [2018-09-11 Tue] update to call ~pgraph.uses()~ and ~pgraph.edges()~ to build final lists.

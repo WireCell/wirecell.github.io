@@ -431,22 +431,35 @@ $ wire-cell -c cfg/uboone/simsp/main-simple-quiet.jsonnet
 <p>
 That top-level configuration file shows the end-game.  It builds a
 complete graph of <code>pnodes</code> and uses it to configure the Pgrapher app
-and to provide the final <i>configuration sequence</i>.  In summary:
+and to provide the final <i>configuration sequence</i>.  
+In summary:
 </p>
 
-<div class="highlight"><pre>local graph = g.intern(...);
+<div class="highlight"><pre>local g = import "pgraph.jsonnet";
+// ...
+
+local graph = g.intern(...);
 local app = {
     type: "Pgrapher",
     data: {
-	edges: graph.edges,
+	edges: g.edges(graph),
     }
 };
 
 // final configuration sequence.
-[com.cmdline] + graph.uses + [app]
+[com.cmdline] + g.uses(graph) + [app]
 </pre></div>
+
+<p>
+Note that both the <code>graph.edges</code> and <code>graph.uses</code> list attributes will
+likely have duplicate entries due to details in how they are
+constructed.  In order to properly strip them of duplicates while
+retaining proper order (in the case of <code>.uses</code>) they must be extracted
+through <code>pgraph</code> functions of the same name.
+</p>
 </div>
 </div>
+
 
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Summary</h2>
@@ -503,6 +516,17 @@ options:
 <p>
 And, probably several variants I'm forgetting.  
 </p>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Edits</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>
+<span class="timestamp-wrapper"><span class="timestamp">[2018-09-11 Tue]</span></span> update to call <code>pgraph.uses()</code> and <code>pgraph.edges()</code> to build final lists.
+</li>
+</ul>
 </div>
 </div>
     </div>
