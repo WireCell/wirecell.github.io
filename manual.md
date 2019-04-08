@@ -54,6 +54,10 @@
     - [Concrete](#execution-concrete-components)
     - [Interface](#execution-via-interfaces)
     - [Data flow programming execution](#dfp-execution)
+  - [Logging](#logging)
+    - [Logging Command Line Interface](#logging-cli)
+    - [Logging Code Interface](#logging-code)
+    - [Logging Integration](#logging-int)
 - [Packages](#packages)
   - [`wire-cell-python`](#pkg-python)
     - [Installing `wire-cell-python`](#install-wire-cell-python)
@@ -62,23 +66,27 @@
   - [`wire-cell-util`](#pkg-util)
     - [Units](#util-units)
     - [Persistence](#util-persistence)
-    - [Etc](#orga6dfe1b)
+    - [Etc](#org4ba1d1b)
   - [`wire-cell-iface`](#pkg-iface)
-    - [Data](#org4a71611)
-    - [Nodes](#orgd10e43e)
-    - [Misc](#orgd1d6894)
+    - [Data](#org5b83a05)
+    - [Nodes](#org28c9ab7)
+    - [Misc](#orgfcd445f)
   - [`wire-cell-gen`](#pkg-gen)
-    - [Depositions](#org6bb9728)
-    - [Drifting](#org06dde05)
-    - [Response](#org1c814ae)
-    - [Digitizing](#orgf526c7a)
-    - [Noise](#orgfb33e25)
-    - [Frame Summing](#orgc2717fc)
-    - [Execution Graphs](#orgd99698e)
+    - [Depositions](#org2dc498f)
+    - [Drifting](#orgff644f3)
+    - [Response](#orge3d5045)
+    - [Digitizing](#org095b6a7)
+    - [Noise](#orgc77a4f6)
+    - [Frame Summing](#org955cad0)
+    - [Execution Graphs](#orgcc51ac3)
   - [`wire-cell-waftools`](#pkg-waftools)
     - [Recreating `wcb`](#generate-wcb)
     - [Included Waf tools](#bundle-waf-tools)
 - [Data Flow Programming](#data-flow-programming)
+  - [Node basics](#org530a5ea)
+  - [Node execution paradigms](#orgc330fff)
+  - [DFP execution strategies](#orgf02ad3a)
+  - [End-of-stream Protocol](#org70aa213)
 - [Other Topics](#other-topics)
   - [Garfield 2D Support](#garfield-2d-support)
     - [Garfield 2D data](#garfield-2d-data)
@@ -457,8 +465,6 @@ To learn how to write Jsonnet in general, the user should refer to its documenta
 WCT locates Jsonnet files as it does JSON files through the environment variable `WIRECELL_PATH`. Unlike JSON files, Jsonnet files may not be compressed.
 
 
-<a id="system-of-units-in-jsonnet"></a>
-
 #### System of units
 
 Wire Cell provides an internal system of units as described in the section on [units in the Utilities manual](./util.md) and as stated above, users must take care to give numerical quantities in WCT units when providing JSON. However, when writing Jsonnet one can provide explicit units which is easy and far less error prone. For example:
@@ -477,8 +483,6 @@ local wc = import "wirecell.jsonnet";
 ```
 
 
-<a id="jsonnet-helper-functions"></a>
-
 #### Functions
 
 Some data sub-structures are needed in multiple laces and it can be laborious to write them by hand. Jsonnet provides functions to assist in this. A number of functions are defined to assist in representing common data types. For example `point()` and `ray()`:
@@ -491,8 +495,6 @@ Some data sub-structures are needed in multiple laces and it can be laborious to
 },
 ```
 
-
-<a id="default-parameters-in-jsonnet"></a>
 
 #### Default parameters
 
@@ -535,8 +537,6 @@ local params = import "uboone/globals.jsonnet";
 
 See next how these definitions are used.
 
-
-<a id="default-data-structures-in-jsonnet"></a>
 
 #### Default structures
 
@@ -587,8 +587,6 @@ local uboone = import "uboone/components.jsonnet";
 This says to override `uboone.fourdee` with what&rsquo;s given. The `type` is inherited. The `data` is replaced by the parent&rsquo;s via `super.data` plus the additional override of the `FrameSink` attribute.
 
 
-<a id="jsonnet-is-comma-friendly"></a>
-
 #### Commas
 
 One of the most irritating aspect of crafting JSON files by hand is that any array or object must **not** have an internal trailing comma. Jsonnet allows this otherwise extraneous comma, as shown in the example above. For this reason alone and if no other features are used, writing Jsonnet instead of raw JSON is worth the added dependency!
@@ -618,7 +616,7 @@ This relies on the `WIRECELL_PATH` to include the `cfg/` directory as well as an
 
 <a id="developer-configuration"></a>
 
-## Configuration from a developer point of view     :devel:
+## TODO Configuration from a developer point of view     :devel:
 
 For the C++ part of developing WCT components or applications the developer should refer to the [configuration section in the manual on WCT Internals](./internals.md) and the [section on configuration implementation](#component-configuration).
 
@@ -705,8 +703,6 @@ Developing the noise source component begins with a header file which ties toget
 
 The implementation of a component, following the layout conventions this header, is placed in [gen/src/NoiseSource.cxx](https://github.com/WireCell/wire-cell-gen/blob/master/inc/WireCellGen/NoiseSource.h).
 
-
-<a id="component-boilerplate"></a>
 
 #### Component boilerplate
 
@@ -903,14 +899,14 @@ After an implementation of an interface is instantiated and leaves local scope i
 
 Interfaces are used not only to access functionality but the data model for major working data is defined in terms of interfaces inheriting from `WireCell::IData`. Once an instance is created it is immutable.
 
-Another category of interfaces are those which express the &ldquo;node&rdquo; concept. They inherit from `WireCell::INode`. These require implementation of an `operator()` method. Nodes make up the main unit of code. They are somewhat equivalent to `Algorithm` concept from the Gaudi framework where the `operator()` method is equivalent to Gaudi&rsquo;s `execute()` method. They also require some additional instrumenting in order to participate in the data flow programming paradigm described below.
+Another important category of interfaces are those which express the &ldquo;node&rdquo; concept. They inherit from `WireCell::INode`. These require implementation of an `operator()` method which is the entry to one unit of data processing. Thus nodes make up the main unit of code through which data flow in the application. They are somewhat equivalent to `Algorithm` concept from the Gaudi framework where the `operator()` method is equivalent to Gaudi&rsquo;s `execute()` method. As nodes are also *components* they require some additional code instrumenting as described in the next section. In order to participate in the data flow programming paradigm they also have some behavior requirements as described in <./dfp.md>.
 
 
 <a id="component-internals"></a>
 
 ## Components
 
-Components are implementations an interface which itself inherits from the `WireCell::IComponponent` interface class (this interface class is in `util` as a special case due to dependency issues. fixme: needs to be solved with a general package depending on both `iface and =util`). This inheritance follows [CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern).
+Components are implementations of an interface class which itself inherits from the `WireCell::IComponponent` (this interface class is in `util` as a special case due to dependency issues. fixme: needs to be solved with a general package depending on both `iface and =util`). This inheritance follows [CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern).
 
 Components also must have some tooling added in their implementation file. This is in the form of a single CPP macro which generates a function used to load a factory that can create and retain instances based on a *type* name and an *instance* name. For `WireCell::Gen::TrackDepos` the tooling looks like:
 
@@ -1008,6 +1004,147 @@ Using NamedFactory.
 Using abstract DFP. A whole section on [6](#data-flow-programming) is also available.
 
 
+<a id="logging"></a>
+
+## Logging
+
+In WCT, &ldquo;logging&rdquo; means handling of text/string messages generated by WCT code and sent to some external recipient (file, console, etc). WCT uses and includes the logging package [`spdlog`](https://github.com/gabime/spdlog) to provide most of the functionality and a thin wrapper described below is used to provide a simple interface and assert some policy. The `wire-cell` command line and the `Main` app class provide logging setup functionality.
+
+Like most logging systems, WCT relies on the concept of &ldquo;log levels&rdquo; and takes those defined by `spdlog`. The levels have labels and WCT recommends a semantic interpretation as follows, in order of expected decreasing verbosity:
+
+-   **trace:** very verbose, messages generated inside a loop which runs many times per top level &ldquo;event&rdquo; object. Intended for developers to understand detailed code.
+-   **debug:** rather verbose, may be used to identify anomalous activity that is not harmful to running, any particular message should be created no more than once per top level &ldquo;event&rdquo; object (ie, avoid generating **debug** messages inside a loop, use **trace**).
+-   **info:** any given message is produced no more than once per job execution and contains information that is interesting to the user even when the code runs perfectly nominal. Components might produce **info** inside their constructor or configuration methods but should not produce **info** each time they executed.
+-   **warn:** a rare occurrence that indicates some potential problem with input data or configuration but which is sufficiently minor that the code can proceed in an expected or nominal state.
+-   **error:** emitted just prior to some code returning to caller with some error indicator (that isn&rsquo;t necessarily an exception).
+-   **critical:** should precede the throwing of an a exception to provide more information than may be conveniently packed into the exception object.
+
+The other two concepts from `spdlog` that must be understood by user and developer alike are *loggers* and *sinks*. As described in the section below, code sends messages into the WCT logging system via a logger object. The logging system connects these loggers to zero or more sinks for final dispatching of the log messages. WCT encourages all loggers to be connected to all sinks although a more complex topology is allowed.
+
+A log level is associated individually with each log message, each logger and each sink. The logger and sink levels are compared to the message level to determine if the message shall pass. For example, a log message at **info** may be accepted by a logger at **debug** but then fail to be emitted to a sink at **warn**. The levels of loggers and sinks may be set at run time and some compile-time setting is also supported (see below).
+
+
+<a id="logging-cli"></a>
+
+### Logging Command Line Interface
+
+WCT `wire-cell` command line interface and the `Main` app it uses has support for adding sinks, optionally with levels (default is &ldquo;trace&rdquo;), setting the default level of all loggers and setting the level of specific loggers by name. The `--help` output gives a summary of what functionality the CLI provides. The `Main` app class can do similar and developers may see its header file.
+
+    [sl7kc]bviren@hierocles:wct> wire-cell --help
+    ...
+      -l [ --logsink ] arg  log sink, filename or 'stdout' or 'stderr', if added 
+                            ':level' then set a log level for the sink
+      -L [ --loglevel ] arg set lowest log level for a log in form 'name:level' or 
+                            just 'level' for all (level one of 
+                            error,warn,info,debug,trace)
+
+The following example:
+
+    $ wire-cell -L trace -L pgraph:info -l stdout:info -l verbose.log:trace -c ....
+
+will cause:
+
+-   the default logger level to be set down to **trace** from the default **debug**
+-   the `pgraph` logger will be raised to **info** to make it more quiet
+-   everything at **info** and above will be printed to stdout
+-   everything at **trace** and above will be printed to the file `verbose.log`
+
+In this example:
+
+    $ wire-cell -c ....
+
+The only thing that should print to the console are messages from wrongly programmed library code which is violating the &ldquo;no `iostream`&rdquo; rule.
+
+
+<a id="logging-code"></a>
+
+### Logging Code Interface
+
+The use of &ldquo;bare&rdquo; C++ `std::cout` or `std::cerr` is strongly discouraged in all WCT library code although they may be used in unit tests where convenient. Instead, WCT library code should use either an explicit logger object or the default logger.
+
+There is some overhead in getting a logger so one should not be created deep in some loop. Instead, a component class should hold a logger as a class data member and initialize it in its constructor. For example:
+
+```c++
+class MyComponent : public ISomething {
+    Log::logptr_t log;
+public: // ...
+};
+```
+
+Then in the constructor you would initialize something like:
+
+```c++
+MyComponent::MyComponent(...) 
+    : log(Log::logger("myname"))
+{
+    // the constructor body
+    log->debug("I created a MyComponent at {:p}", (void*)this);
+}
+```
+
+The `"myname"` is the name of the logger and allows the logger to be shared by other objects. It is through this name that the user may control logger log levels. For now, the convention is to chose a short name that represents the package providing the code or the codes major functionality. Here are some names currently used:
+
+-   **wct:** the base or default logger
+-   **glue:** any pgraph node which doesn&rsquo;t do much but provide network topology patterns (split, join, fanout/fanin, etc).
+-   **io:** provides some file input/output node
+-   **sim:** provides a simulation component (ie, from the misnamed `wire-cell-gen` package)
+-   **geom:** provides some detector geometry related component
+-   **sys:** core WCT system code/components (main, plugins, etc)
+
+New names are allowed but proliferation should be avoided. Please add any new ones to this list.
+
+Each logger provides a method with the same name as a level that code may call to produce a message at that level. These logger level methods take a string and variadic arguments. The string may include formatting codes used by `fmt` (provided by `spdlog`). See [fmt syntax page](http://fmtlib.net/latest/syntax.html) for details.
+
+```c++
+log->trace("MyComponent: deep inside some loop with x={} and ptr={:p}", x, ptr);
+log->debug("MyComponent: a once per event call with frame {}", frame->ident());
+log->info("loading very important data config file {}", filename);
+log->warn("you asked to drift {} depos way outside the detector, hope you know what you are doing", ndropped);
+
+log->error("Called pass EOS {} times", ++neos);
+return neos > 1;
+
+THROW(ValueError() << errmsg{"divide by zero error"});
+log->critical("This is fine.  *watches fire*");
+```
+
+By definition the **debug** and **trace** level messages may be prodigiously produced. Even if these levels are turned off (see blow) their calls are still made. To avoid wasting CPU on useless operations deep inside some loop these calls maybe compiled away if wrapped in CPP macros. Consider using them for at least **trace**. Eg:
+
+```c++
+void MyComponent::method() {
+    for (...) {
+	SPDLOG_LOGGER_TRACE(log, "This message may not even be compiled in");
+    }
+}
+```
+
+Of course, never place code with side effects inside such CPP macros.
+
+The final code usage pattern is that of the default logger. No explicit logger object is needed which means all messages sent to it can not be disentangled when setting various levels. If one code sprays very verbose messages at **info** level there is no way to filter them out that will not also remove less verbose ones. Thus, this logger should be used sparingly and only in code where creating a named logger is somehow prohibitive. If used, extra care should be taken not to violate the suggested semantic meaning to the levels which was given above. With those caveats given, to use the default loggers call functions provided directly by `spdlog`:
+
+```c++
+using spdlog::debug;
+// ...
+void myfunc() {
+    debug("my func is called");
+    for (const auto& obj : giantarray) {
+	spdlog::trace("super noisy message with obj {}", obj);
+    }
+}
+```
+
+
+<a id="logging-int"></a>
+
+### Logging Integration
+
+WCT, being a toolkit, is meant to be integrated into a larger application or framework. These code bases often provide their own logging system. The choice of including `spdlog` to provide the WCT logging system was in part made to provide a mechanism by which it could also be integrated into whatever logging system the &ldquo;host&rdquo; code base may provide.
+
+If the &ldquo;host&rdquo; also uses `spdlog` then integration is trivial. If it uses some other logging system then integration can be done by developing an `spdlog` *sink* which forwards message to the host&rsquo;s equivalent of a logger. See the `spdlog` wiki entry on [implementing custom sinks](https://github.com/gabime/spdlog/wiki/4.-Sinks#implementing-your-own-sink) for instructions.
+
+Another solution to integrate WCT logging with that of the &ldquo;host&rdquo; code base is to simply do nothing. The `spdlog` console output will naturally multiplex with any that the host may produce. However, users likely must take care to not use the same file to sink both logging systems.
+
+
 <a id="packages"></a>
 
 # Packages
@@ -1056,8 +1193,6 @@ from wirecell import units
 ```
 
 
-<a id="orgd03c5cc"></a>
-
 #### `sigproc`
 
 1.  `garfield`
@@ -1086,7 +1221,7 @@ Describe units.
 Describe support for persistent files including compression and location.
 
 
-<a id="orga6dfe1b"></a>
+<a id="org4ba1d1b"></a>
 
 ### Etc
 
@@ -1100,21 +1235,21 @@ Describe support for persistent files including compression and location.
 Brief overview but it&rsquo;s also in <./internals.md> so don&rsquo; t over do it.
 
 
-<a id="org4a71611"></a>
+<a id="org5b83a05"></a>
 
 ### Data
 
 tbd
 
 
-<a id="orgd10e43e"></a>
+<a id="org28c9ab7"></a>
 
 ### Nodes
 
 tbd
 
 
-<a id="orgd1d6894"></a>
+<a id="orgfcd445f"></a>
 
 ### Misc
 
@@ -1128,7 +1263,7 @@ tbd
 The `wire-cell-gen` package provides components for the generation of data. It primarily includes components which perform the grand convolution of drifted electron distribution, field and electronics response and associate statistical fluctuations (aka, the &ldquo;drift simulation&rdquo;).
 
 
-<a id="org6bb9728"></a>
+<a id="org2dc498f"></a>
 
 ### Depositions
 
@@ -1137,42 +1272,42 @@ Depositions (`IDepo` data objects, aka *depo*) are provided by `IDepoSource` com
 The `IDepoSource` components adapt to external sources of information about initial activity in the detector. These sources may provide \(dE\) and \(dX\) in which case two models can be applied to produce associated number of ionized electrons. The external source may provide only \(dE\) in which case the number of ionized electrons will be calculated for the deposition on the assumption that the particle is a MIP. Finally, the ionization process may be handled by the external source and the number of electrons may be given directly.
 
 
-<a id="org06dde05"></a>
+<a id="orgff644f3"></a>
 
 ### Drifting
 
 The `IDrifter` components are responsible for transforming a depo at one location and time into another depo at a different location and time while suitably adjusting the number of ionization electrons and their 2D extents. Each call of the component accepts a single depo and returns zero or more output depos. Input depos are assumed to be strictly time ordered and each batch of output depos likewise. In general a drifter must cache depos for some length of time in order to assure it has seen all possible depos to satisfy causality for the output.
 
 
-<a id="org1c814ae"></a>
+<a id="orge3d5045"></a>
 
 ### Response
 
 The field and electronics response of the detector is calculated in an `IDuctor` component. This is typically done by accepting depos at some *input plane* or *response plane*. Up to this plane, any drifting depo is assumed to induce a negligible detector response. For drifting beyond this plane some position dependent response is applied (ie, a field response calculated by 2D Garfield or 3D LARF). Each call to an `IDuctor` components accepts one depo and produces zero or more frames (`IFrame` data object). In general an `IDuctor` component must cache depos long enough to assure the produced frames satisfy causality. Output frames may be sparse in that not all channels may have traces (`ITrace` data objects) and in any given channel the traces may not cover the same span of time. The unit for the waveforms in the frame depend on the detector response applied. If field response alone is applied then the waveform is in units of sampled current (fixme, check code, it may be integrated over tick and thus charge.) If both field and electronics response is applied the waveform is in units of voltage.
 
 
-<a id="orgf526c7a"></a>
+<a id="org095b6a7"></a>
 
 ### Digitizing
 
 An `IDigitizer` component applies a transformation to the waveform, typically but not necessarily in order to truncate it to ADC. These components are functional in that each call takes and produces one frame. Even if truncating to ADC the frame is still expressed as floating point values.
 
 
-<a id="orgfb33e25"></a>
+<a id="orgc77a4f6"></a>
 
 ### Noise
 
 t.b.d.
 
 
-<a id="orgc2717fc"></a>
+<a id="org955cad0"></a>
 
 ### Frame Summing
 
 Right now, frames can be summed by a bare function `FrameUtil::sum()`. This is better put into a component.
 
 
-<a id="orgd99698e"></a>
+<a id="orgcc51ac3"></a>
 
 ### Execution Graphs
 
@@ -1184,8 +1319,6 @@ The `gen` package provides high-level `IApplication` components. Primarily, thes
 
 ![img](figs/multidee.svg)
 
-
-<a id="org68aebb4"></a>
 
 #### Hard-coded vs Configurable
 
@@ -1235,7 +1368,83 @@ The scripts to make and test releases are also housed in this package.
 
 # Data Flow Programming
 
-All about data flow programming support in WCT.
+As described in <./internals.md> the Wire-Cell toolkit is based on interfaces and the components that implement them and the data processing components are specialized classes called &ldquo;nodes&rdquo;. This section describes more about nodes and their execution.
+
+
+<a id="org530a5ea"></a>
+
+## Node basics
+
+A &ldquo;node&rdquo; is a callable class (it implements `operator()`). Any data sent in to or received out from the node passes through arguments to that call. These points of passing are conceptually termed &ldquo;ports&rdquo;. A port has an associated direction (input or output). A port also has an associated data type such that it may only be connected to another node&rsquo;s port of the same data type (and one of opposite direction).
+
+There is a &ldquo;zoo&rdquo; of node interface classes which specify the multiplicity and direction of their ports but leave their types as template parameters. For example, `ISourceNode` specifies exactly one output port of some template type. Data is passed through a port either as a single atom in the form of a shared pointer to an `IData` interface or as a queue (`std::deque`) of such shared pointers. In the case where a node has multiple input ports they are collected together and passed to the call via a `std::tuple`. Similar in the case of multiple output ports.
+
+The zoo of node interfaces include:
+
+-   **source:** a single output port providing an atom
+-   **sink:** a single input port accepting an atom
+-   **function:** a single input and output accepting and providing an atom synchronously.
+-   **queuedout:** a single atomic input is accepted and a queue is produced which may be empty
+-   **join:** multiple of atomic inputs, potentially of different types, is accepted and a single output type is produced.
+-   **fanin:** a fixed number of inputs of the same type are accepted and a single output type is produced.
+-   **hydra:** multiple queues of inputs and multiple queues of outputs
+
+Typically, an interface from this zoo is further inherited to provide a more specific interface that selects the type of data. For example, an `IDepoSource` is an `ISourceNode` which produces objects adhering to the `IDepo` data interface. Finally, a concrete implementation inherits from this intermediate interface, such as in the case of a `TrackDepos` which produces ideal line sources of energy depositions.
+
+TBD: describe inheritance hierarchy and type erasure.
+
+
+<a id="orgc330fff"></a>
+
+## Node execution paradigms
+
+A node does not &ldquo;know&rdquo; how it&rsquo;s called and in fact WCT supports multiple node execution paradigms.
+
+-   **stand alone:** a node may be executed in isolation as it is, for example, in unit tests which validate its operation.
+
+-   **hard-wired aggregation:** nodes may be aggregated into a fixed structure that dictates when each node is called relative to the others and how data is marshaled from the output of one node to the input of another. Some flexibility may be provided to the user to specify which implementation of a node interface is used for a particular &ldquo;slot&rdquo; in the structure. Hard-wired aggregation is typically implemented as complex, nested loops and may contain intervening inline code that also does data processing outside of an explicit component.
+
+-   **data flow programming:** (DFP) more reusable generally may be achieved when all processing is encapsulated explicitly in nodes and their execution solely involves marshalling data as opaque objects between node calls. In DFP the nodes are thus arranged into a *directed acyclic graph* (DAG) with edges formed by queues which allow data to pass from one node&rsquo;s output to another node&rsquo;s input.
+
+
+<a id="orgf02ad3a"></a>
+
+## DFP execution strategies
+
+WCT has abstracted the method of execution of a DFP graph and has implemented (or will implement) a number of execution strategies. These include:
+
+-   **single threaded, minimized memory:** WCT component may be executed in a context with limited available RAM per core and a single core such as when they are run as part of a traditional &ldquo;event processing framework&rdquo;. The `pgraph` package provides a DFP engine which will call nodes in the graph such that the amount of data &ldquo;in flight&rdquo; is minimized.
+
+-   **multi-threaded, single event:** if multiple cores are available some nodes in the DFP graph may execute in parallel but the graph as a whole only operates on one &ldquo;event&rdquo; (by some definition) of data at a time. A new &ldquo;event&rdquo; is started, the graph executes and finally completely drains of data before a new &ldquo;event&rdquo; is begun. A job running in this mode must be allocated N cores and depending on the graph topology some cores will typically run idle.
+
+-   **multi-threaded pipeline:** to maxim core utilization, this mode will start new &ldquo;events&rdquo; while the graph is processing prior events.
+
+
+<a id="org70aa213"></a>
+
+## End-of-stream Protocol
+
+While some node types are purely functional in that they do not retain state or otherwise buffer data, others must necessarily do so. As long as new inputs stream into a node the node can continue to make decisions about what data to stream out. However, when its input is exhausted it needs a special notification so that it may invalidate or otherwise flush any buffers. Because an arbitrary DFP graph may execute nodes asynchronously (and possibly in parallel) there is no general out-of-band mechanism to deliver this notification. Instead, it must come in-band which requires defining a special form for any port type to accept or produce to indicate the current stream has ended. This form is called the end-of-stream (EOS) marker or object. Given that an atom of data, as described above, is a (shared) pointer the EOS is marked by a `nullptr`. Ports which pass collections of atoms may naturally have empty queues and thus to mark EOS to these ports the EOS object is placed **in** the passed queue.
+
+The EOS marker is meant to provide synchronization but there is no single rule for how it must be interpreted. Different node types must interpret them differently. For example, a join node which is meant to merge two streams may receive an EOS on one input stream and then continue to receive objects on the other input streams until they all produce an EOS.
+
+Finally, despite the EOS marker indicating an **end** of stream, stream may actually restart. A restart has no explicit marker other than new data being passed. As with the EOS itself, it is up to each node to implement certain behavior when this occurs. For example, a join node that has received an EOS from one input may continue to drain inputs from other ports as above. In the case of a stream restart, this join node may continue to ignore inputs which reached EOS until all inputs have passed an EOS marker.
+
+Besides the in-band EOS marker, the call to a node returns a Boolean value and this is to indicate if the call produced any change either in the nodes internal state or in the output. This out-of-band return is required to notify the engine of activity and avoid deadlock. For example a source must set its output argument to `nullptr` to indicate EOS but from the caller this is indistinguishable from the node simply having no data to produce. This leads to the main EOS protocol rule:
+
+1.  A node&rsquo;s call must return `false` when the call produces no state change. If the call consumes input data, produces output data or changes or internal state relevant to the overall execution then it must return `true`.
+
+From the point of view of a node receiving input it must follow these rules:
+
+1.  A node **must** expect an EOS marker (`nullptr`) to arrive from its input ports. Failure to check for EOS typically leads to a `segfault` as the `nullptr` is dereferenced.
+
+2.  A node **must** expect non-EOS data follow EOS marker and vice versa. Failure to process post EOS data can lead to dead lock or may limit the contexts in which the node may be useful.
+
+From the point of view of a node producing output it must follow these rules:
+
+1.  A node **must** produce an EOS marker as the final objects to each of its output ports.
+
+2.  A node **must** produce output EOS markers that correspond in some way to any EOS markers received on input.
 
 
 <a id="other-topics"></a>
@@ -1358,8 +1567,6 @@ Some critical validation plots can be made from the command line using the `wire
     $ export G2D=/opt/bviren/wct-dev/share/wirecell/data/ub_10.tar.gz
 
 
-<a id="garfield-isochronous-track"></a>
-
 #### Perpendicular ideal track
 
 A perpendicular ideal track can be &ldquo;simulated&rdquo; by summing response functions. This is because the response on neighboring wires due to a charge drifting near the central wire is equivalent to the response on the central wire due to charge drifting near neighboring wires.
@@ -1392,8 +1599,6 @@ This command can be used to make plots of these with different parameterizations
 If the shaping is zero, then the induced current is plotted. If it is nonzero but the ADC gain is zero then pre-ADC voltages are plotted. If both are nonzero (default) then the ADC waveforms are plotted
 
 
-<a id="garfield-induced-current"></a>
-
 #### Induced current
 
 Garfield 2D provides instantaneous, sampled induced current waveforms. Their per-plane sum, as described above equivalent to a perpendicular track, can be plotted with zero shaping time:
@@ -1408,8 +1613,6 @@ The default normalization is such that there are 16000 electrons per pitch (MIP)
 </div>
 
 
-<a id="garvield-amplified-voltage"></a>
-
 #### Amplified Voltage
 
 The results of convolution with electronics response can be plotted with a zero per-ADC gain:
@@ -1423,8 +1626,6 @@ The default preamplifier gain is 14 mV/fC. This means that a delta-function curr
 
 </div>
 
-
-<a id="garfield-adc-waveform"></a>
 
 #### Digitized ADC Waveform
 
@@ -1539,26 +1740,23 @@ WCT components are named in the `apps`, `inputers` and `outputers` parameter lis
 
 ### Runtime
 
-Running WCT inside of *art* entails running *art* which means setting up a runtime environment in the &ldquo;Fermilab way&rdquo;. This requires obtaining binary packages (&ldquo;UPS products&rdquo;) from Fermilab for your host OS. If supported, this can be done in a number of ways:
-
--   **[CVMFS mount](https://cdcvs.fnal.gov/redmine/projects/larsoft/wiki/LArSoft_cvmfs_page):** With a little setup effort this requires the least ongoing attention. It is the best method to provide software to clusters, if the facility supports it. It may not have support for as many OS flavors as other methods
-
--   **[`pullProducts` downloader](https://cdcvs.fnal.gov/redmine/projects/larsoft/wiki/Installation_procedures):** The `pullProducts` script is relatively easy to get started with but requires dedicated disk and does not provide any purge method nor local distribution method. It tends to have available binaries for more OSes than CVMFS.
+Running WCT inside of *art* entails running *art* which means setting up a runtime environment in the &ldquo;Fermilab way&rdquo;. This requires obtaining binary packages (&ldquo;UPS products&rdquo;) from Fermilab for your host OS. If supported, this can be done in a number of ways.
 
 
-<a id="org62ab4fc"></a>
+#### CVMFS mount
 
-#### Preparation
+CVMFS is a way to deliver files (usually ready-to-run binary software builds) to a client via HTTP. If not already available to you (check for the existence of [/cvmfs](file:///cvmfs)) the system administrator of the host will need to provide it. One starting point is [here](https://cernvm.cern.ch/portal/filesystem/quickstart).
 
-Here are the steps to prepare the files in each of the three manners above.
+If CVMFS is available to you, start by setting:
 
-1.  **CVMFS**:
+    $ export PRODUCTS=/cvmfs/fermilab.opensciencegrid.org/products/larsoft
 
-If CVMFS is mounted to the client host then there is nothing to do. Mounting CVMFS is not hard but is not covered here. One starting point is [here](https://cernvm.cern.ch/portal/filesystem/quickstart).
 
-1.  `pullProducts`:
+#### Local binaries
 
-Using `pullProducts` involves these steps. Find desired larsoft version from from [this scisoft directory](http://scisoft.fnal.gov/scisoft/bundles/larsoft/) and navigate to the download guide [eg the one for LS 6.48.00](http://scisoft.fnal.gov/scisoft/bundles/larsoft/v06_48_00/larsoft-v06_48_00.html) and download the script and run it according to the guide.
+It is possible to semi-automatically provide binary software builds via the [`pullProducts` downloader](https://cdcvs.fnal.gov/redmine/projects/larsoft/wiki/Installation_procedures) script. This can (and should) be exercised without root permissions. It requires dedicated disk space of 10-100 GB. More OSes are supported with these binaries than are available in CVMFS (in particular Ubuntu)
+
+To prepare a base installation find a desired larsoft version from from [this scisoft directory](http://scisoft.fnal.gov/scisoft/bundles/larsoft/) and navigate to the download guide [eg the one for LS 6.48.00](http://scisoft.fnal.gov/scisoft/bundles/larsoft/v06_48_00/larsoft-v06_48_00.html) and download the `pullProducts` script and run it according to the guide. One example:
 
     $ mkdir -p ~/dev/pp/products
     $ cd ~/dev/pp
@@ -1569,23 +1767,26 @@ Using `pullProducts` involves these steps. Find desired larsoft version from fro
 
 That last `rm` command is optional but cleans up some unneeded tarballs.
 
-
-<a id="orgb9c61ce"></a>
-
-#### Environment
-
-For CVMFS:
-
-    $ export PRODUCTS=/cvmfs/fermilab.opensciencegrid.org/products/larsoft
-
-For `pullProducts`, using the same example location as above:
-
     $ export PRODUCTS=$HOME/dev/pp/products
 
-Then,
+
+#### General
+
+After providing a base software installation in one of the methods above and setting `PRODUCTS` continue as:
 
     $ source $PRODUCTS/setup
     $ setup larsoft v06_48_00 -q e14:prof
+
+<div class="info">
+Note, in general `PRODUCTS` can be a &ldquo;:&rdquo;-separated list. If for some reason your must have more than one element in PRODUCTS at this point be sure to use proper directory to locate the `setup` script.
+
+</div>
+
+A simple test to see that the `art` and `wire-cell` programs are now available:
+
+    $ art --version
+    art 2.07.03
+    
     $ wire-cell --help
     Options:
       -h [ --help ]         wire-cell [options] [arguments]
@@ -1595,7 +1796,7 @@ Then,
       -V [ --ext-str ] arg  specify a Jsonnet external variable=value
       -P [ --path ] arg     add to JSON/Jsonnet search path
 
-Note, in general `PRODUCTS` is a &ldquo;:&rdquo;-separated list. Use the proper directory to locate the `setup` script.
+With this, the user is ready to run *art*, LArSoft and Wire-Cell.
 
 
 <a id="wcls-dev"></a>
@@ -1604,8 +1805,6 @@ Note, in general `PRODUCTS` is a &ldquo;:&rdquo;-separated list. Use the proper 
 
 The challenge to do development on WC/LS integration code is that the `larwirecell` expects WCT to be provided as a released and built UPS product. Development of course requires constant rebuilding and adding releases and full UPS product building is prohibitive. The solution is to cheat and produce what looks like an installed `wirecell` UPS product area into which the development WCT code is directly built.
 
-
-<a id="orgd5af2cb"></a>
 
 #### Prepare development UPS products area
 
@@ -1630,39 +1829,43 @@ Now, let UPS know about this new products area for future `ups` incantations by 
     $ echo $WIRECELL_VERSION 
     v0_7_dev
 
-
-<a id="orge302192"></a>
-
-#### WCT Source
-
-Independent of the above, and as per usual, get the WCT source:
-
-    # if developing for a future release
-    $ git clone --recursive git@github.com:WireCell/wire-cell-build.git wct-0.7.x
-    # if applying fixes for an existing release
-    $ git clone --recursive --branch 0.5.x https://github.com/WireCell/wire-cell-build.git wct-0.5.x
-
-
-<a id="org9cf0cb5"></a>
-
-#### Configuring WCT source
-
-The WCT source is configured as usual but leveraging some of the numerous UPS variables to locate dependencies. This can be done manually but a shell script is provided (ca. 0.7.x) to simply things.
-
-    $ cd wct-0.7.x/
-    $ ./waftools/wct-configure-for-ups.sh install
-
-This will configure to install into a local directory `install/`. To build into the location pointed to by the UPS configuration (specifically `$WIRECELL_FQ_DIR`) use the special &ldquo;directory&rdquo; `ups`.
-
-    $ ./waftools/wct-configure-for-ups.sh ups
-
 <div class="warning">
-Be cautious to have &ldquo;setup&rdquo; the new version of the `wirecell` UPS product (`v0_7_dev` in the examples here) as installing will overwrite what exists.
+There will not yet be a code actually installed into the just declared `wirecell` UPS product area. As a consequence, the above `setup` command will not actually set some important environment variables (in particular `LD_LIBRARY_PATH`). This is rectified below.
 
 </div>
 
 
-<a id="org87d89d0"></a>
+#### WCT Source
+
+Independent of the above, and as per usual, get the WCT source. You may wish to get the source in one of two ways:
+
+-   Development on the `master` branch, maybe in anticipation of a future release
+
+    $ git clone --recursive git@github.com:WireCell/wire-cell-build.git wct-master
+
+-   Bug fixing an existing release branch called `<BRANCH>` (named after major.minor versions like `A.B.x`, eg `0.6.x`)
+
+    $ git clone --recursive --branch <BRANCH> \
+      https://github.com/WireCell/wire-cell-build.git wct-<BRANCH>
+
+<div class="note">
+The exact name for the source directory is up to you. Below, `wct-src` is used as a placeholder.
+
+</div>
+
+
+#### Configuring WCT source
+
+The WCT source is configured in the same manner as it is for any environment. It must be told where to find the installed dependencies. When building against UPS products, its environment variables may be used to locate the provided dependencies. As this is tedious a script is provided to assist this configuration. It assumes that the calling environment is already properly &ldquo;setup&rdquo;.
+
+<div class="warning">
+This script configures the source to install WCT into the `wirecell` UPS product area. This will overwrite any existing files. Be sure that the environment is properly &ldquo;setup&rdquo; and in particular `$WIRECELL_FQ_DIR` is set as intended.
+
+</div>
+
+    $ cd wct-src/
+    $ ./waftools/wct-configure-for-ups.sh
+
 
 #### Building and running WCT
 
@@ -1673,7 +1876,15 @@ As usual, build and install with the provided `wcb`.
 If the source was configured to install into the UPS product area then everything is ready to run. If it was installed locally then the usual `PATH` like variables need to be set to point into that installation location.
 
 
-<a id="org08bc024"></a>
+<a id="ups-hysteresis"></a>
+
+#### Fix UPS environment hysteresis
+
+As warned above, the UPS `setup` command fails to set important variables after a UPS product is &ldquo;declared&rdquo; but before any code is installed. After WCT is installed as above this UPS inadequacy can be rectified by &ldquo;turning it off and on again&rdquo;:
+
+    $ unsetup wirecell
+    $ setup wirecell v0_7_dev -q e14:prof
+
 
 #### Preparing `mrb` development area
 
@@ -1705,3 +1916,8 @@ Finish setting up development environment and do a build:
     $ cd ~/dev/ls-6.48.00/build_u16.x86_64/
     $ mrbsetenv 
     $ mrb build
+
+<div class="info">
+If this build fails in CMake with cryptic statements about `SOURCE is required` it likely means that your `wirecell` UPS product environment is broken as warned above. See section [7.2.5.5](#ups-hysteresis).
+
+</div>
