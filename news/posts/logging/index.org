@@ -1,0 +1,67 @@
+#+BEGIN_COMMENT
+.. title: Logging
+.. slug: logging
+.. date: 2019-04-25 14:13:49 UTC-04:00
+.. tags: config,devel,cli
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+
+#+END_COMMENT
+
+Out with ~cout~ and its an error to use ~cerr~!
+
+{{{TEASER_END}}}
+
+A user (or devloper) may sometimes want a silent job that emits no
+logging messages and in other cases a very verbose one.  When
+verbosity is desired it is almost always for a specific part of the
+code and not everywhere.  Sometimes the user wants to write logging to
+file, sometimes to stdout and sometimes to stderr.  It is not uncommon
+for uncontrolled verbose logging to dominate job output and lead to
+real practical problems.
+
+When the developer uses ~cout~ and ~cerr~ it leaves the user with no
+control over these messages.  Recently WCT has added a logging system
+and use of ~cout~ and ~cerr~ is strongly discouraged, especially in
+library code.
+
+The WCT logging system is a thin layer on top of [[https://github.com/gabime/spdlog][spdlog]].  The ~spdlog~
+package was chosen after a survey of likely candidates.  It was chosen
+for some of the following reasons:
+
+- it is fast and thread safe
+- a header-only package and includes the nice ~fmt~ sub package
+- provides multiple loggers with individual levels
+- fairly undemanding of the code that uses it
+- may be integrated into application-level logging
+
+The fact that ~spdlog~ is provided as a header-only library means that
+it can and has been added directly into WCT code so that the user need
+not install another external package.
+
+The multiple logger feature is used to define a loosely coupled set of
+loggers identified by name.  Any given logger should be used in
+whatever code might be considered associated.  The use of given logger
+may span packages.  For example, the *glue* logger is used in all
+"simple" DFP components that don't do anything special but
+housekeeping (eg, fanout/fanin type nodes).  One can then turn up or
+down the log levels for these separate from say *sigproc* or *img*
+loggers.
+
+As WCT is a toolkit meant to be embedded in larger frameworks or
+applications and as these tend to provide their own logging systems,
+it is important to provide a mechanism by which WCT logging may be
+integrated.  The ~spdlog~ package allows for new message "sinks" to be
+developed.  This provides the a logging vector from WCT logging to
+application or framework logging.  Thus, a ~spdlog~ sink can be
+developed which simply forwards every message it is given to the app
+logging system.
+
+
+More information on WCT logging can be found in [[https://www.phy.bnl.gov/~bviren/wirecell.github.io/manual.html#logging][the WCT manual]].
+
+
+

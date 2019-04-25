@@ -7,55 +7,59 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/build.xml</loc>
-  <lastmod>2018-08-17T13:38:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://wirecell.github.io/news/categories/cat_posts.xml</loc>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/cat_toolkit.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/cli.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/config.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/devel.xml</loc>
-  <lastmod>2018-08-17T13:38:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/dfp.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/gen.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/graph.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/larsoft.xml</loc>
-  <lastmod>2018-08-17T13:38:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/sigproc.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/simulation.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/uboone.xml</loc>
-  <lastmod>2018-08-15T14:22:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/user.xml</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/galleries/rss.xml</loc>
@@ -63,10 +67,10 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/rss.xml</loc>
-  <lastmod>2018-08-17T13:38:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/sitemap.xml</loc>
-  <lastmod>2018-08-17T13:38:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </sitemap>
 </sitemapindex>

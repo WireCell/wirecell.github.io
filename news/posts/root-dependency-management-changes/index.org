@@ -1,0 +1,55 @@
+#+BEGIN_COMMENT
+.. title: ROOT dependency management changes
+.. slug: root-dependency-management-changes
+.. date: 2019-04-25 14:32:35 UTC-04:00
+.. tags: build,devel
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+
+#+END_COMMENT
+
+A change is recently made to how WCT depends on ROOT.  This dependency
+has been concentrated to a single, new package, not surprisingly
+called [[https://github.com/wirecell/wire-cell-root][~wire-cell-root~]].  
+
+{{{TEASER_END}}}
+
+The WCT build system based on [[https://waf.io/][waf]] uses a very simple source package
+handling which encourages creation of new packages and creating
+flexible combinations of packages into a source distribution.  One
+aspect of this is that it allows three independent dependency trees to
+be expressed.  One tree for "libs", "tests" and "apps" (ie, main
+programs that aren't test programs).  These trees are defined by the
+various ~use~ keyword arguments to the ~bld.smplpkg()~ function called
+inside the ~wscript_build~ file in each package.
+
+Until recently, the dependency policy allowed for ROOT code to be used
+in tests of the core packages but not in the libs of these packages.
+This allowed WCT to be free of ROOT dependency in principle, but not
+in fact.  The user/installer was forced to install ROOT even if it was
+not strictly required.  The benefit to developers was that they could
+house their tests "close" to the code that was being tested.  On
+balance, this benefit to developers does not outweigh the cost to
+user.
+
+A recent refactoring has fixed this balance.  All test code that
+depends on ROOT has been moved to the [[https://github.com/WireCell/wire-cell-root/tree/master/test][~test/~ directory]] of
+~wire-cell-root~.  The only package that had a lib that included ROOT
+was ~wire-cell-sio~ (simple I/O).  Some of its components wrote or read
+ROOT files so explicitly had to depend on ROOT software.  These have
+also been moved to ~wire-cell-root~ and the SIO package can now be
+considered "core".
+
+To explicitly build free of ROOT one may use the ~--with-root~ option:
+
+#+BEGIN_EXAMPLE
+  $ ./wcb configure --with-root=false [...]
+#+END_EXAMPLE
+
+Otherwise the ROOT dependency will continue to be built into WCT but
+only if it is found.  And the installer may still force a particular
+ROOT by providing a location to ~--with-root~.
+

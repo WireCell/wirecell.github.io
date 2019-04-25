@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>http://wirecell.github.io/news/</loc>
-  <lastmod>2018-08-15T14:21:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/2017/</loc>
@@ -18,16 +18,24 @@
   <lastmod>2018-08-15T14:21:00Z</lastmod>
  </url>
  <url>
+  <loc>http://wirecell.github.io/news/2019/</loc>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
+ </url>
+ <url>
   <loc>http://wirecell.github.io/news/archive.html</loc>
-  <lastmod>2018-08-17T13:38:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/</loc>
-  <lastmod>2018-08-15T14:22:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/build/</loc>
   <lastmod>2018-08-15T14:21:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/categories/cat_posts/</loc>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/cat_toolkit/</loc>
@@ -83,7 +91,7 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/index-1.html</loc>
-  <lastmod>2018-08-17T13:38:00Z</lastmod>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/listings/</loc>
@@ -110,6 +118,10 @@
   <lastmod>2018-08-15T14:21:00Z</lastmod>
  </url>
  <url>
+  <loc>http://wirecell.github.io/news/posts/logging/</loc>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
+ </url>
+ <url>
   <loc>http://wirecell.github.io/news/posts/new-configuration-data-package/</loc>
   <lastmod>2018-08-15T14:21:00Z</lastmod>
  </url>
@@ -132,6 +144,10 @@
  <url>
   <loc>http://wirecell.github.io/news/posts/response-refactoring/</loc>
   <lastmod>2018-08-15T14:21:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/posts/root-dependency-management-changes/</loc>
+  <lastmod>2019-04-25T18:49:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</loc>
