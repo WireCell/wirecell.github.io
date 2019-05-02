@@ -23,11 +23,11 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/archive.html</loc>
-  <lastmod>2019-04-25T18:49:00Z</lastmod>
+  <lastmod>2019-05-02T18:00:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/</loc>
-  <lastmod>2019-04-25T18:49:00Z</lastmod>
+  <lastmod>2019-05-02T18:00:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/build/</loc>
@@ -48,6 +48,10 @@
  <url>
   <loc>http://wirecell.github.io/news/categories/config/</loc>
   <lastmod>2018-08-15T14:21:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/categories/data/</loc>
+  <lastmod>2019-05-02T18:00:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/devel/</loc>
@@ -91,7 +95,7 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/index-1.html</loc>
-  <lastmod>2019-04-25T18:49:00Z</lastmod>
+  <lastmod>2019-05-02T18:00:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/listings/</loc>
@@ -104,6 +108,10 @@
  <url>
   <loc>http://wirecell.github.io/news/posts/build-cleanups/</loc>
   <lastmod>2018-08-15T14:21:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/posts/certifiable-singularity/</loc>
+  <lastmod>2019-05-02T18:00:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/default-config-dumper/</loc>

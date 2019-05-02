@@ -1,0 +1,49 @@
+#+BEGIN_COMMENT
+.. title: Certifiable Singularity
+.. slug: certifiable-singularity
+.. date: 2019-05-02 13:49:53 UTC-04:00
+.. tags: build,data
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+
+#+END_COMMENT
+
+A new Singularity container is available which provides Kerberos
+clients, kx509 and other stuff that is needed to download DUNE data.
+
+{{{TEASER_END}}}
+
+
+In [[./singularity-containers-for-wct-and-wcls-running-and-development/][a previous post]] Singularity containers were introduced as the
+preferred method (by some) for providing a base OS for WCT development
+and use.  Coupled with CVMFS they are very simple way to replicate a
+Fermilab Scientific Linux UPS ecosystem without moving to Illinois.
+
+The initial container offered was as minimal as possible in order to
+keep its size small.  A new "kitchen sink" container has been started
+which adds more functionality to the base OS to cover things not
+provided through Fermilab CVMFS.  The latest version adds Kerberos and
+OSG certs and tools needed to copy DUNE data.  It is [[https://www.phy.bnl.gov/~bviren/simg/sl7krb.simg][sl7krb.simg]]
+(currently about 430MB).
+
+Using [[https://github.com/WireCell/wire-cell-singularity/blob/master/wcdo.org][wcdo]] one can do something like:
+
+#+BEGIN_SRC sh
+wcdo.sh init
+wcdo.sh get-image sl7krb
+wcdo.sh make-project krb sl7krb
+./wcdo-krb.sh
+#+END_SRC
+
+Then, in the container:
+
+#+BEGIN_SRC sh
+kinit bv@FNAL.GOV
+kx509
+ifdh cp gsiftp://fndca1.fnal.gov:2811/pnfs/fnal.gov/usr/dune/tape_backed/dunepro/protodune/np04/beam/detector/None/raw/09/59/90/13/np04_raw_run006520_0110_dl7.root /data/big/bviren/
+#+END_SRC
+
+
