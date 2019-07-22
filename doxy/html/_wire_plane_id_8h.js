@@ -1,6 +1,7 @@
 var _wire_plane_id_8h =
 [
     [ "WirePlaneId", "class_wire_cell_1_1_wire_plane_id.html", "class_wire_cell_1_1_wire_plane_id" ],
+    [ "hash< WireCell::WirePlaneId >", "structstd_1_1hash_3_01_wire_cell_1_1_wire_plane_id_01_4.html", "structstd_1_1hash_3_01_wire_cell_1_1_wire_plane_id_01_4" ],
     [ "WirePlaneLayer_t", "_wire_plane_id_8h.html#a761397ff086f0a7e1a1d9ccd251ac618", [
       [ "kUnknownLayer", "_wire_plane_id_8h.html#a761397ff086f0a7e1a1d9ccd251ac618a5e08d3f7bdabe20d6e2f00bc353beff9", null ],
       [ "kUlayer", "_wire_plane_id_8h.html#a761397ff086f0a7e1a1d9ccd251ac618a4543784e91b7463d50a413e9eaea3229", null ],

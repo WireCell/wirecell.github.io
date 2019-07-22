@@ -5,7 +5,6 @@ var files =
     [ "iface", "dir_c9c43e92ea6a99438e1731a11e941e19.html", "dir_c9c43e92ea6a99438e1731a11e941e19" ],
     [ "sigproc", "dir_d339dbdfd2276157b776b079e2944280.html", "dir_d339dbdfd2276157b776b079e2944280" ],
     [ "sio", "dir_0d31ba68d8d8266942888972353ac2d8.html", "dir_0d31ba68d8d8266942888972353ac2d8" ],
-    [ "sst", "dir_6d60794728faf04d3e2edf1cb53f53ff.html", "dir_6d60794728faf04d3e2edf1cb53f53ff" ],
     [ "tbb", "dir_525f2cc589630bacbdc3bb450847427e.html", "dir_525f2cc589630bacbdc3bb450847427e" ],
     [ "util", "dir_23ec12649285f9fabf3a6b7380226c28.html", "dir_23ec12649285f9fabf3a6b7380226c28" ],
     [ "README.org", "_r_e_a_d_m_e_8org.html", null ]

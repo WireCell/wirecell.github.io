@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['ident',['ident',['../struct_wire_cell_1_1_wire_schema_1_1_wire.html#ae829271f99f04ba6932ce9757a6d243d',1,'WireCell::WireSchema::Wire::ident()'],['../struct_wire_cell_1_1_wire_schema_1_1_plane.html#aa77a3d78e86cd3cd9840600a3939d6c1',1,'WireCell::WireSchema::Plane::ident()'],['../struct_wire_cell_1_1_wire_schema_1_1_face.html#a55af671f3a685ee674256edf72adc33a',1,'WireCell::WireSchema::Face::ident()'],['../struct_wire_cell_1_1_wire_schema_1_1_anode.html#abab2b1721d2d4858454210a290ce42eb',1,'WireCell::WireSchema::Anode::ident()']]],
-  ['index',['index',['../class_wire_cell_1_1_indexed_set.html#a96af7dbb2545b3247831e1150a52b10c',1,'WireCell::IndexedSet']]],
-  ['iplane2layer',['iplane2layer',['../namespace_wire_cell.html#ae1f5243cecaaeeea6ddd0b5ac75719df',1,'WireCell']]]
+  ['handler',['handler',['../structinternal_1_1width__adapter.html#a59aef299a378b11fca5f9f46ebfd63b2',1,'internal::width_adapter::handler()'],['../structinternal_1_1precision__adapter.html#ad82984ec771924019a6df49aff881f67',1,'internal::precision_adapter::handler()'],['../structinternal_1_1id__adapter.html#a0db6b62cfd71e15f58fc5006d5cbd54e',1,'internal::id_adapter::handler()']]],
+  ['head',['head',['../struct_wire_cell_1_1_dfp_graph_1_1_edge_property.html#a159b254ccbf3bd852eb6d44571b67228',1,'WireCell::DfpGraph::EdgeProperty::head()'],['../struct_wire_cell_1_1_wire_schema_1_1_wire.html#a3deb60b43f43a80f83ac7352ea948497',1,'WireCell::WireSchema::Wire::head()']]]
 ];

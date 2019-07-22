@@ -4,10 +4,12 @@ var class_wire_cell_1_1_gen_1_1_impact_data =
     [ "pointer", "class_wire_cell_1_1_gen_1_1_impact_data.html#a4fb9b565e1525c7ccde05ded67f467c2", null ],
     [ "ImpactData", "class_wire_cell_1_1_gen_1_1_impact_data.html#a7e5a8376b65210d695b42d0cd587372f", null ],
     [ "add", "class_wire_cell_1_1_gen_1_1_impact_data.html#ac43cc32d2ea372cfc6807a72774493ec", null ],
-    [ "calculate", "class_wire_cell_1_1_gen_1_1_impact_data.html#a70cfb59b63d1beaae23757ce449156c5", null ],
-    [ "diffusions", "class_wire_cell_1_1_gen_1_1_impact_data.html#a04ce9e1166e7498aa479d3d0f5db9d6a", null ],
-    [ "impact_number", "class_wire_cell_1_1_gen_1_1_impact_data.html#aea4286124056ffbb84ad0e066a4b68e2", null ],
-    [ "span", "class_wire_cell_1_1_gen_1_1_impact_data.html#afb46c8373c5af6cc8c5f5e32c92535c0", null ],
-    [ "spectrum", "class_wire_cell_1_1_gen_1_1_impact_data.html#a9899969f2e58c13a8014ad6db13e1421", null ],
-    [ "waveform", "class_wire_cell_1_1_gen_1_1_impact_data.html#af6b1664d2188286dfa740c8e761738a2", null ]
+    [ "calculate", "class_wire_cell_1_1_gen_1_1_impact_data.html#a323019d50d44dea084f1691da674b755", null ],
+    [ "diffusions", "class_wire_cell_1_1_gen_1_1_impact_data.html#a90443997dcd6a04fafe2f1c1fbd90bce", null ],
+    [ "impact_number", "class_wire_cell_1_1_gen_1_1_impact_data.html#a00db275ffb82f82831016b7ebaaed6e3", null ],
+    [ "span", "class_wire_cell_1_1_gen_1_1_impact_data.html#acccaa5e82f44245eaa0bfbd6f99eecce", null ],
+    [ "spectrum", "class_wire_cell_1_1_gen_1_1_impact_data.html#afb1c936f26afc1f968f727b3f72af2e4", null ],
+    [ "waveform", "class_wire_cell_1_1_gen_1_1_impact_data.html#a80d2f6a9ccdbba236c9e75360316b014", null ],
+    [ "weight_spectrum", "class_wire_cell_1_1_gen_1_1_impact_data.html#a81cef30a2ec41d8b63f07267506582d1", null ],
+    [ "weightform", "class_wire_cell_1_1_gen_1_1_impact_data.html#a8a2ccedf08eab6acee300809308ef216", null ]
 ];

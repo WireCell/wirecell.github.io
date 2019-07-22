@@ -1,20 +1,7 @@
 <map id="WireCell::Persist::json2object" name="WireCell::Persist::json2object">
-<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_persist.html#a4584ce5a980d065abe88d8be810b809e" title="WireCell::Persist::load" alt="" coords="183,195,336,221"/>
-<area shape="rect" id="node12" href="$namespace_wire_cell_1_1_persist.html#a3f605a8ac7644501e41705771c7ce8d4" title="WireCell::Persist::\lloads" alt="" coords="195,547,324,589"/>
-<area shape="rect" id="node3" href="$wire-cell_8cxx.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="462,5,513,32"/>
-<area shape="rect" id="node4" href="$class_wire_cell_sst_1_1_wire_source.html#a05ff85939aa607f2fea4dab006a59378" title="WireCellSst::WireSource\l::WireSource" alt="" coords="403,57,571,98"/>
-<area shape="rect" id="node5" href="$class_wire_cell_sst_1_1_wire_source.html#a4303ed2d08729aeb007ab905528b5bd7" title="WireCellSst::WireSource\l::load" alt="" coords="403,122,571,163"/>
-<area shape="rect" id="node6" href="$class_wire_cell_1_1_sio_1_1_json_depo_source.html#abc06840de469269082caee8f8c2369e0" title="Accept a configuration. " alt="" coords="384,187,591,229"/>
-<area shape="rect" id="node7" href="$namespace_wire_cell_1_1_response_1_1_schema.html#a4b86873ce3e615148bc29b75b74bab9c" title="WireCell::Response\l::Schema::load" alt="" coords="418,318,557,359"/>
-<area shape="rect" id="node11" href="$namespace_wire_cell_1_1_wire_schema.html#a0543dcae10ded4ff64c32a3e43743cbb" title="WireCell::WireSchema\l::load" alt="" coords="410,253,565,294"/>
-<area shape="rect" id="node8" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a2d1c7a1dded73fe3b51cbcfb8d9e0e04" title="Accept a configuration. " alt="" coords="639,253,821,294"/>
-<area shape="rect" id="node10" href="$struct_wire_cell_1_1_response_1_1_schema_1_1_field_response.html#a28ae333c27be1047dcaaf2f059858b9e" title="WireCell::Response\l::Schema::FieldResponse\l::FieldResponse" alt="" coords="643,317,817,373"/>
-<area shape="rect" id="node9" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a41df48506ad084531fa7ac376f454894" title="WireCell::Gen::AnodePlane\l::~AnodePlane" alt="" coords="869,253,1052,294"/>
-<area shape="rect" id="node13" href="$class_wire_cell_apps_1_1_node_dumper.html#a1992ac15751517ac24d800c876fa9ac7" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="394,383,581,425"/>
-<area shape="rect" id="node14" href="$class_wire_cell_1_1_diffuser.html#af4c30505b60f38a7dc70c905e49d3a91" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="412,449,563,490"/>
-<area shape="rect" id="node15" href="$class_wire_cell_1_1_plane_ductor.html#aafa093e0ec08fd805961d3e0f0b0fcd5" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="411,514,563,555"/>
-<area shape="rect" id="node16" href="$class_wire_cell_1_1_gen_1_1_track_depos.html#a679d1fdbf18c006c64a35fcab5be248c" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="396,579,579,621"/>
-<area shape="rect" id="node17" href="$class_wire_cell_1_1_wire_params.html#a720dc30bce7ed53966e3aa26716f551a" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="411,645,563,686"/>
-<area shape="rect" id="node18" href="$class_wire_cell_sst_1_1_frame_source.html#a3dc9eb9defba61ce37b9939017af41a3" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="398,710,577,751"/>
-<area shape="rect" id="node19" href="$class_wire_cell_tbb_1_1_tbb_flow.html#a53611116fb220e7089cf1a5f19dd7d6e" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="411,775,563,817"/>
+<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_persist.html#adce7b2acfe82eb122ed5d06f261e155e" title="WireCell::Persist::\lloads" alt="" coords="183,71,312,112"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_persist_1_1_parser.html#a3438a15f2e7c437d5c931348f1f1a29f" title="WireCell::Persist::\lParser::loads" alt="" coords="183,136,312,177"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_diffuser.html#a9f2f7a5bae385df91a7a9c1ef035f3a6" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="361,5,511,47"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_wire_params.html#a062a30e00693380e0cf1d74f463b63b9" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="360,71,512,112"/>
+<area shape="rect" id="node5" href="$class_wire_cell_tbb_1_1_tbb_flow.html#a8dacc14b5763a06f06e508aff481b9d2" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="360,136,512,177"/>
 </map>

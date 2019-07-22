@@ -1,6 +1,3 @@
 <map id="util/inc/WireCellUtil/IndexedSet.h" name="util/inc/WireCellUtil/IndexedSet.h">
-<area shape="rect" id="node2" href="$_wire_cell_util_8cxx.html" title="util/src/WireCellUtil.cxx" alt="" coords="5,102,165,129"/>
-<area shape="rect" id="node3" href="$_tiling_graph_8h.html" title="gen/inc/WireCellGen\l/TilingGraph.h" alt="" coords="190,95,333,136"/>
-<area shape="rect" id="node4" href="$_tiling_8cxx.html" title="gen/src/Tiling.cxx" alt="" coords="115,184,240,211"/>
-<area shape="rect" id="node5" href="$_tiling_graph_8cxx.html" title="gen/src/TilingGraph.cxx" alt="" coords="264,184,424,211"/>
+<area shape="rect" id="node2" href="$_wire_cell_util_8cxx.html" title="util/src/WireCellUtil.cxx" alt="" coords="5,95,165,121"/>
 </map>

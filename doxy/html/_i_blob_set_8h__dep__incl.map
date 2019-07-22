@@ -1,0 +1,11 @@
+<map id="iface/inc/WireCellIface/IBlobSet.h" name="iface/inc/WireCellIface/IBlobSet.h">
+<area shape="rect" id="node2" href="$_i_blob_set_fanin_8h.html" title="iface/inc/WireCellIface\l/IBlobSetFanin.h" alt="" coords="5,95,160,136"/>
+<area shape="rect" id="node3" href="$_iface_desctructors_8cxx.html" title="iface/src/IfaceDesctructors.cxx" alt="" coords="567,184,772,211"/>
+<area shape="rect" id="node4" href="$_i_blob_set_fanout_8h.html" title="iface/inc/WireCellIface\l/IBlobSetFanout.h" alt="" coords="235,95,389,136"/>
+<area shape="rect" id="node5" href="$_i_blob_set_processor_8h.html" title="iface/inc/WireCellIface\l/IBlobSetProcessor.h" alt="" coords="413,95,568,136"/>
+<area shape="rect" id="node6" href="$_i_blob_set_sink_8h.html" title="iface/inc/WireCellIface\l/IBlobSetSink.h" alt="" coords="592,95,747,136"/>
+<area shape="rect" id="node7" href="$_i_clustering_8h.html" title="iface/inc/WireCellIface\l/IClustering.h" alt="" coords="771,95,925,136"/>
+<area shape="rect" id="node8" href="$_i_tiling_8h.html" title="iface/inc/WireCellIface\l/ITiling.h" alt="" coords="949,95,1104,136"/>
+<area shape="rect" id="node9" href="$_simple_blob_8h.html" title="iface/inc/WireCellIface\l/SimpleBlob.h" alt="" coords="1128,95,1283,136"/>
+<area shape="rect" id="node10" href="$_i_blob_set_8cxx.html" title="iface/src/IBlobSet.cxx" alt="" coords="1307,102,1458,129"/>
+</map>

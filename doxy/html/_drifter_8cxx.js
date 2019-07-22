@@ -1,5 +1,5 @@
 var _drifter_8cxx =
 [
-    [ "random_poisson", "_drifter_8cxx.html#ac5780ec7ce1a3e8f066fc64927120f00", null ],
-    [ "WIRECELL_FACTORY", "_drifter_8cxx.html#ad9b2d2b6f02444715ddca1f5eceadd12", null ]
+    [ "by_time", "_drifter_8cxx.html#a311f8859a31d2991fe3dec71c9d2b78e", null ],
+    [ "WIRECELL_FACTORY", "_drifter_8cxx.html#ab9e34b1c0a5b3187c137a1565ffe0b47", null ]
 ];

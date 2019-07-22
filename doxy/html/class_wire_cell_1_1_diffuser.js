@@ -5,7 +5,7 @@ var class_wire_cell_1_1_diffuser =
     [ "~Diffuser", "class_wire_cell_1_1_diffuser.html#a17f86117d655968d3d46bf25aa92f5eb", null ],
     [ "bounds", "class_wire_cell_1_1_diffuser.html#a2b37e9c8a8e88697620fda6acb8ef3b1", null ],
     [ "configure", "class_wire_cell_1_1_diffuser.html#a494d8aa964610d4b129f4305630491f6", null ],
-    [ "default_configuration", "class_wire_cell_1_1_diffuser.html#af4c30505b60f38a7dc70c905e49d3a91", null ],
+    [ "default_configuration", "class_wire_cell_1_1_diffuser.html#a9f2f7a5bae385df91a7a9c1ef035f3a6", null ],
     [ "diffuse", "class_wire_cell_1_1_diffuser.html#adc579ba4d356101b4b9afdb8422087b6", null ],
     [ "oned", "class_wire_cell_1_1_diffuser.html#a19e1586fdca351c264970065699e9c39", null ],
     [ "operator()", "class_wire_cell_1_1_diffuser.html#a05506f9621f1221253d4d4f6701ca180", null ],

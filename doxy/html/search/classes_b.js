@@ -1,8 +1,11 @@
 var searchData=
 [
-  ['namedfactory',['NamedFactory',['../class_wire_cell_1_1_named_factory.html',1,'WireCell']]],
-  ['namedfactoryregistry',['NamedFactoryRegistry',['../class_wire_cell_1_1_named_factory_registry.html',1,'WireCell']]],
-  ['nodedumper',['NodeDumper',['../class_wire_cell_apps_1_1_node_dumper.html',1,'WireCellApps']]],
-  ['nodewrapper',['NodeWrapper',['../class_wire_cell_tbb_1_1_node_wrapper.html',1,'WireCellTbb']]],
-  ['noisesource',['NoiseSource',['../class_wire_cell_1_1_gen_1_1_noise_source.html',1,'WireCell::Gen']]]
+  ['l1spfilter',['L1SPFilter',['../class_wire_cell_1_1_sig_proc_1_1_l1_s_p_filter.html',1,'WireCell::SigProc']]],
+  ['level_5fformatter',['level_formatter',['../classspdlog_1_1details_1_1level__formatter.html',1,'spdlog::details']]],
+  ['lffilter',['LfFilter',['../class_wire_cell_1_1_sig_proc_1_1_lf_filter.html',1,'WireCell::SigProc::LfFilter'],['../class_wire_cell_1_1_response_1_1_lf_filter.html',1,'WireCell::Response::LfFilter']]],
+  ['linterp',['linterp',['../class_wire_cell_1_1linterp.html',1,'WireCell']]],
+  ['linterp_3c_20double_20_3e',['linterp&lt; double &gt;',['../class_wire_cell_1_1linterp.html',1,'WireCell']]],
+  ['locale_5fref',['locale_ref',['../classinternal_1_1locale__ref.html',1,'internal']]],
+  ['log_5fmsg',['log_msg',['../structspdlog_1_1details_1_1log__msg.html',1,'spdlog::details']]],
+  ['logger',['logger',['../classspdlog_1_1logger.html',1,'spdlog']]]
 ];

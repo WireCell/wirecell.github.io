@@ -1,7 +1,10 @@
 <map id="iface/inc/WireCellIface/IFaninNode.h" name="iface/inc/WireCellIface/IFaninNode.h">
-<area shape="rect" id="node2" href="$_i_plane_slice_merger_8h.html" title="iface/inc/WireCellIface\l/IPlaneSliceMerger.h" alt="" coords="30,95,185,136"/>
-<area shape="rect" id="node5" href="$_fanin_cat_8h.html" title="tbb/inc/WireCellTbb\l/FaninCat.h" alt="" coords="217,95,355,136"/>
-<area shape="rect" id="node3" href="$_plane_slice_merger_8h.html" title="gen/inc/WireCellGen\l/PlaneSliceMerger.h" alt="" coords="32,184,175,225"/>
-<area shape="rect" id="node4" href="$_plane_slice_merger_8cxx.html" title="gen/src/PlaneSliceMerger.cxx" alt="" coords="5,273,201,300"/>
-<area shape="rect" id="node6" href="$_wrapper_factory_8cxx.html" title="tbb/src/WrapperFactory.cxx" alt="" coords="199,191,383,218"/>
+<area shape="rect" id="node2" href="$_i_blob_set_fanin_8h.html" title="iface/inc/WireCellIface\l/IBlobSetFanin.h" alt="" coords="5,95,160,136"/>
+<area shape="rect" id="node3" href="$_iface_desctructors_8cxx.html" title="iface/src/IfaceDesctructors.cxx" alt="" coords="141,191,347,218"/>
+<area shape="rect" id="node4" href="$_i_cluster_fanin_8h.html" title="iface/inc/WireCellIface\l/IClusterFanin.h" alt="" coords="235,95,389,136"/>
+<area shape="rect" id="node5" href="$_i_frame_fanin_8h.html" title="iface/inc/WireCellIface\l/IFrameFanin.h" alt="" coords="413,95,568,136"/>
+<area shape="rect" id="node8" href="$_fanin_cat_8h.html" title="tbb/inc/WireCellTbb\l/FaninCat.h" alt="" coords="601,95,738,136"/>
+<area shape="rect" id="node6" href="$_frame_fanin_8h.html" title="gen/inc/WireCellGen\l/FrameFanin.h" alt="" coords="414,184,557,225"/>
+<area shape="rect" id="node7" href="$_frame_fanin_8cxx.html" title="gen/src/FrameFanin.cxx" alt="" coords="404,273,567,300"/>
+<area shape="rect" id="node9" href="$_wrapper_factory_8cxx.html" title="tbb/src/WrapperFactory.cxx" alt="" coords="581,191,765,218"/>
 </map>

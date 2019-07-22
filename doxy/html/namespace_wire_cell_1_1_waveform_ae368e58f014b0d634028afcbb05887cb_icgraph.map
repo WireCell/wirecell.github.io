@@ -1,9 +1,10 @@
 <map id="WireCell::Waveform::edge" name="WireCell::Waveform::edge">
-<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_ductor.html#a2e5f7a0246fe8918d7b241a8be8e1917" title="Accept a configuration. " alt="" coords="193,19,344,61"/>
-<area shape="rect" id="node3" href="$namespace_wire_cell_1_1_waveform.html#adad443bd3c3ee1a0c2e65c9a39282a53" title="Shrink (divide) seq values by values from the other sequence. " alt="" coords="199,85,339,126"/>
-<area shape="rect" id="node4" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#aa55c914dc4a2643e07e952531a429b01" title="WireCell::SigProc::\lMicroboone::SignalProtection" alt="" coords="397,13,589,54"/>
-<area shape="rect" id="node6" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_one_channel_noise.html#a2c2a24aedd8c8eb46e246f07f7e73cfd" title="WireCell::SigProc::\lMicroboone::OneChannelNoise\l::apply" alt="" coords="392,77,595,133"/>
-<area shape="rect" id="node7" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a82e2e7cf205e61e1ab1e7970aa6655cb" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_gains_shapings" alt="" coords="412,157,575,213"/>
-<area shape="rect" id="node5" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_coherent_noise_sub.html#adee2b462e23bab64ca88a8ac26fe3681" title="WireCell::SigProc::\lMicroboone::CoherentNoiseSub\l::apply" alt="" coords="643,5,849,61"/>
-<area shape="rect" id="node8" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a00cdc41c2e14dcebe02682996b9d212d" title="Return channels which are considered a&#39;priori &quot;bad&quot;. " alt="" coords="665,157,827,213"/>
+<area shape="rect" id="node2" href="$namespace_wire_cell_1_1_waveform.html#adad443bd3c3ee1a0c2e65c9a39282a53" title="Shrink (divide) seq values by values from the other sequence. " alt="" coords="193,166,333,207"/>
+<area shape="rect" id="node3" href="$namespace_wire_cell_1_1_sig_proc_1_1_microboone.html#a3502d22dc7280eeea95f3a2f2d52891c" title="WireCell::SigProc::\lMicroboone::SignalProtection" alt="" coords="387,13,579,54"/>
+<area shape="rect" id="node5" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_one_channel_noise.html#a4d5cb537b5d9ca736fc1bbd3c463b76f" title="WireCell::SigProc::\lMicroboone::OneChannelNoise\l::apply" alt="" coords="381,79,584,135"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_sig_proc_1_1_omni_channel_noise_d_b.html#af33aa262d6af04f4252abef453156799" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="401,159,564,215"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_sig_proc_1_1_protodune_1_1_one_channel_noise.html#a2f0a41f11d154f971da95d9127be594d" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="385,239,580,295"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#a82e2e7cf205e61e1ab1e7970aa6655cb" title="WireCell::SigProc::\lSimpleChannelNoiseDB\l::set_gains_shapings" alt="" coords="401,319,564,375"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_sig_proc_1_1_microboone_1_1_coherent_noise_sub.html#a0c98bcbea0288592dfe6603e92b742b5" title="WireCell::SigProc::\lMicroboone::CoherentNoiseSub\l::apply" alt="" coords="632,5,839,61"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_sig_proc_1_1_simple_channel_noise_d_b.html#abc31faca2ae9ee69ebfd01b9edd36289" title="Return channels which are considered a&#39;priori &quot;bad&quot;. " alt="" coords="654,319,817,375"/>
 </map>

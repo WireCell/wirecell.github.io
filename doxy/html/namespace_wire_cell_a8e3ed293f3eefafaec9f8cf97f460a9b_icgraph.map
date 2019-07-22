@@ -1,5 +1,3 @@
 <map id="WireCell::ray_pitch" name="WireCell::ray_pitch">
-<area shape="rect" id="node2" href="$class_wire_cell_1_1_bound_cell.html#af9622032a0979269cbe62f26ac0030ee" title="WireCell::BoundCell\l::wires" alt="" coords="187,5,327,47"/>
-<area shape="rect" id="node3" href="$_bound_cells_8cxx.html#ad5471888f27146232b686e56f5a4aa7b" title="origin_cross" alt="" coords="211,71,303,98"/>
-<area shape="rect" id="node4" href="$class_wire_cell_1_1_bound_cells.html#acc318dad69ddb4251d20c500d4ad2e00" title="The calling signature: " alt="" coords="375,64,521,105"/>
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_ray_grid_1_1_coordinates.html#a4b9a727396d48768585d9d13916b88c1" title="WireCell::RayGrid::\lCoordinates::Coordinates" alt="" coords="187,5,357,47"/>
 </map>

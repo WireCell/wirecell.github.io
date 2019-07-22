@@ -1,33 +1,30 @@
 <map id="WireCell::Gen::AnodePlane::~AnodePlane" name="WireCell::Gen::AnodePlane::~AnodePlane">
-<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a2d1c7a1dded73fe3b51cbcfb8d9e0e04" title="Accept a configuration. " alt="" coords="236,507,419,549"/>
-<area shape="rect" id="node31" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a9f2895cef83ce43e56e600e4bfceb95c" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="236,697,419,738"/>
-<area shape="rect" id="node3" href="$namespace_wire_cell_1_1_response_1_1_schema.html#a4b86873ce3e615148bc29b75b74bab9c" title="WireCell::Response\l::Schema::load" alt="" coords="489,122,627,163"/>
-<area shape="rect" id="node14" href="$namespace_wire_cell_1_1_wire_schema.html#a0543dcae10ded4ff64c32a3e43743cbb" title="WireCell::WireSchema\l::load" alt="" coords="481,217,635,258"/>
-<area shape="rect" id="node16" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a13e242cbd6d2829c81b6cd2df6cae29a" title="Return number of faces (eg, MicroBooNE=1, DUNE=2) " alt="" coords="467,282,649,323"/>
-<area shape="rect" id="node19" href="$class_wire_cell_1_1_wire_plane_id.html#ac89c9225c0de27e9625ca1c0b6efe8e4" title="Layer as index number (0,1 or 2). &#45;1 if unknown. " alt="" coords="483,347,633,389"/>
-<area shape="rect" id="node22" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#ab00af8f2f83f0c24e81cd39771434913" title="Return all wires connected into the given channel ident number. " alt="" coords="467,413,649,454"/>
-<area shape="rect" id="node23" href="$class_wire_cell_1_1_wire_plane_id.html#a96f452696cb0843e14eb317dd971be60" title="Unit ID as integer. " alt="" coords="483,478,633,519"/>
-<area shape="rect" id="node24" href="$namespace_wire_cell.html#a3e825e090f86eed7647960e8e611a144" title="WireCell::ray_vector" alt="" coords="487,544,629,571"/>
-<area shape="rect" id="node25" href="$class_wire_cell_1_1_d3_vector.html#a761993e0685f4abba8521c674fea986a" title="Return a normalized vector in the direction of this vector. " alt="" coords="491,595,625,637"/>
-<area shape="rect" id="node26" href="$class_wire_cell_1_1_d3_vector.html#a78fa147737bea9bd9a0a1434a6a73303" title="Return the cross product of this vector and the other. " alt="" coords="491,661,625,702"/>
-<area shape="rect" id="node27" href="$namespace_wire_cell_1_1_response_1_1_schema.html#afa06d368e365ce3036977a458754aa6a" title="WireCell::Response\l::Schema::lie" alt="" coords="489,726,627,767"/>
-<area shape="rect" id="node29" href="$class_wire_cell_1_1_bounding_box.html#a6c3267e0b40c3e95f644b0d28ca97391" title="Return the ray representing the bounds. " alt="" coords="479,791,637,833"/>
-<area shape="rect" id="node4" href="$struct_wire_cell_1_1_response_1_1_schema_1_1_field_response.html#a9f3b786a9adf83b6bf536d6442d53207" title="WireCell::Response\l::Schema::FieldResponse\l::FieldResponse" alt="" coords="702,5,875,61"/>
-<area shape="rect" id="node5" href="$namespace_wire_cell_1_1_persist.html#a4584ce5a980d065abe88d8be810b809e" title="WireCell::Persist::load" alt="" coords="712,165,865,192"/>
-<area shape="rect" id="node13" href="$struct_wire_cell_1_1_response_1_1_schema_1_1_field_response.html#ae156e1d6bbf8be35451100d1d43d9aaa" title="WireCell::Response\l::Schema::FieldResponse\l::plane" alt="" coords="702,85,875,141"/>
-<area shape="rect" id="node6" href="$namespace_wire_cell_1_1_persist.html#a222a8187746d148cdc44b0b43b109e53" title="WireCell::Persist::\lresolve" alt="" coords="1533,199,1663,241"/>
-<area shape="rect" id="node9" href="$namespace_wire_cell_1_1_persist.html#ac286cb66e4f8d84eff1951e4ae5c021d" title="WireCell::Persist::\levaluate_jsonnet_file" alt="" coords="1161,191,1305,233"/>
-<area shape="rect" id="node11" href="$namespace_wire_cell_1_1_persist.html#a25359fd9189802ba07dce1de7e450315" title="WireCell::Persist::\ljson2object" alt="" coords="955,242,1084,283"/>
-<area shape="rect" id="node7" href="$namespace_wire_cell_1_1_persist.html#a3b9a35a2580c04da89629682d43eae40" title="Return true file exists (no file resolution performed). " alt="" coords="1711,213,1840,254"/>
-<area shape="rect" id="node8" href="$namespace_wire_cell_1_1_string.html#aef23d7b89dbe21e34a499c9156dd1e60" title="WireCell::String::split" alt="" coords="1888,253,2035,280"/>
-<area shape="rect" id="node10" href="$namespace_wire_cell_1_1_persist.html#a65787a912677f1990c010e7ee4610a9f" title="WireCell::Persist::\lslurp" alt="" coords="1356,191,1485,233"/>
-<area shape="rect" id="node12" href="$namespace_wire_cell_1_1_persist.html#a0708c44d45ae6981779eb12dcb367634" title="WireCell::Persist::\levaluate_jsonnet_text" alt="" coords="1159,309,1308,350"/>
-<area shape="rect" id="node15" href="$namespace_wire_cell.html#aaf4b353f8d18d8e510569614e22b8bab" title="WireCell::convert\&lt;\l int \&gt;" alt="" coords="723,217,854,258"/>
-<area shape="rect" id="node17" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a4e260a72c0762e0bf611607d613c27d1" title="Return a anode face by its ident number. " alt="" coords="697,282,880,323"/>
-<area shape="rect" id="node18" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a9ad0564eb6d1e6a445fe2fd2de062724" title="IAnodePlane interface. " alt="" coords="928,307,1111,349"/>
-<area shape="rect" id="node20" href="$class_wire_cell_1_1_wire_plane_id.html#a60ce522b7b0fe97c7d56466afc38cf66" title="Layer as enum. " alt="" coords="713,399,864,441"/>
-<area shape="rect" id="node21" href="$class_wire_cell_1_1_wire_plane_id.html#a8a8f02e6f50ec8374be3ca6c3476dd06" title="Layer as integer (not index!) " alt="" coords="944,399,1095,441"/>
-<area shape="rect" id="node28" href="$class_wire_cell_1_1_d3_vector.html#ac4e9bfc29a9da7c5bcbe059e4bfa5121" title="Return the dot product of this vector and the other. " alt="" coords="708,733,869,760"/>
-<area shape="rect" id="node30" href="$class_wire_cell_1_1_bounding_box.html#a223a5a27ee7198e141c2c7da91292ddc" title="Create a bounding box bounding an initial point. " alt="" coords="710,791,867,833"/>
-<area shape="rect" id="node32" href="$namespace_wire_cell.html#a86bf5b387104e6d8db8e9b8fa2d09e9c" title="Put value in configuration at the dotted path. " alt="" coords="1371,312,1470,339"/>
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a2d1c7a1dded73fe3b51cbcfb8d9e0e04" title="Accept a configuration. " alt="" coords="236,375,419,417"/>
+<area shape="rect" id="node27" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#acc2e184daee40976feb1b2a1b6171905" title="Optional, override to return a hard&#45;coded default configuration. " alt="" coords="236,163,419,205"/>
+<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a67547b54d01b3112b8a194660d1d2f2a" title="Return number of faces (eg, MicroBooNE=1, DUNE=2) " alt="" coords="467,127,649,169"/>
+<area shape="rect" id="node7" href="$class_wire_cell_1_1_wire_plane_id.html#a72e32df6a0f0721dba0f1c5c76649c9a" title="Layer as index number (0,1 or 2). &#45;1 if unknown. " alt="" coords="483,193,633,234"/>
+<area shape="rect" id="node10" href="$class_wire_cell_1_1_wire_plane_id.html#adff770cfb3d3ddfa42ff55dbbb5cf0b9" title="Unit ID as integer. " alt="" coords="483,258,633,299"/>
+<area shape="rect" id="node11" href="$core_8h.html#ae4af59c87c10d9a8d3ebd3eb455a25c1" title="format" alt="" coords="529,324,587,351"/>
+<area shape="rect" id="node19" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#ad16d32c787a7ee9ea8c6c556bbab2e4f" title="Return all wires connected into the given channel ident number. " alt="" coords="467,375,649,417"/>
+<area shape="rect" id="node20" href="$class_wire_cell_1_1_bounding_box.html#a3a0816d852fb478e057496a0409e0c72" title="Return the ray representing the bounds. " alt="" coords="479,441,637,482"/>
+<area shape="rect" id="node23" href="$class_wire_cell_1_1_d3_vector.html#ad116deec8357b27dcad6be127c209490" title="Return the dot product of this vector and the other. " alt="" coords="477,507,639,533"/>
+<area shape="rect" id="node24" href="$class_wire_cell_1_1_d3_vector.html#aa163ee62b7a8643fa374b2c4d3e3b386" title="WireCell::D3Vector::y" alt="" coords="483,557,633,584"/>
+<area shape="rect" id="node25" href="$class_wire_cell_1_1_d3_vector.html#aabb1a5422a461697542a6755f30b575e" title="WireCell::D3Vector::z" alt="" coords="483,608,633,635"/>
+<area shape="rect" id="node26" href="$class_wire_cell_1_1_simple_channel.html#af41051f35a8568c3da51dd28821c3330" title="WireCell::SimpleChannel\l::set_index" alt="" coords="474,659,642,701"/>
+<area shape="rect" id="node4" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a429403f80c922cd168213c049ecadeea" title="Return a anode face by its ident number. " alt="" coords="697,73,880,114"/>
+<area shape="rect" id="node6" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#afe12d9d6f826b42e66d9ab9da7799dae" title="IAnodePlane interface. " alt="" coords="928,98,1111,139"/>
+<area shape="rect" id="node5" href="$format_8h.html#ae6bfbee71e8bd00280b2d936f93f7b88" title="ptr" alt="" coords="1000,8,1039,35"/>
+<area shape="rect" id="node8" href="$class_wire_cell_1_1_wire_plane_id.html#a203ede27a759b00518be11b8d23776fd" title="Layer as enum. " alt="" coords="713,190,864,231"/>
+<area shape="rect" id="node9" href="$class_wire_cell_1_1_wire_plane_id.html#a33a565cfc76f84e9bc103b1ca33d0974" title="Layer as integer (not index!) " alt="" coords="944,190,1095,231"/>
+<area shape="rect" id="node12" href="$namespaceinternal.html#a581988072e193a0fb0f54827f1b42cfd" title="internal::vformat" alt="" coords="731,439,847,465"/>
+<area shape="rect" id="node14" href="$namespaceinternal.html#a153fda3826e43649ab74f70396f9d5bc" title="internal::to_string_view" alt="" coords="1159,348,1315,375"/>
+<area shape="rect" id="node16" href="$core_8h.html#a7122c6820a7e6319d6fc2f30d1292faa" title="vprint" alt="" coords="761,352,816,379"/>
+<area shape="rect" id="node13" href="$namespaceinternal.html#a9f6f592ec8a979251038265f241e7d48" title="internal::vformat_to" alt="" coords="952,439,1087,465"/>
+<area shape="rect" id="node15" href="$format_8h.html#afe05b087244838ced775fa3f28134c34" title="to_string" alt="" coords="983,489,1055,516"/>
+<area shape="rect" id="node17" href="$classinternal_1_1basic__buffer.html#ab4a96d7d4394f469568d290fde5a75a7" title="internal::basic_buffer\l::data" alt="" coords="948,307,1091,349"/>
+<area shape="rect" id="node18" href="$classinternal_1_1basic__buffer.html#abc95713c3873c5820f10105fe7c7af93" title="internal::basic_buffer\l::size" alt="" coords="948,373,1091,414"/>
+<area shape="rect" id="node21" href="$class_wire_cell_1_1_bounding_box.html#a2f43d9aa9cf70e9515cdad9e43537575" title="Enlarge bounds to hold point. " alt="" coords="710,515,867,557"/>
+<area shape="rect" id="node22" href="$class_wire_cell_1_1_bounding_box.html#a142836bb402b1c40c0dd19dd4c88a548" title="WireCell::BoundingBox\l::empty" alt="" coords="941,541,1098,582"/>
+<area shape="rect" id="node28" href="$namespace_wire_cell.html#a86bf5b387104e6d8db8e9b8fa2d09e9c" title="Put value in configuration at the dotted path. " alt="" coords="509,21,607,48"/>
+<area shape="rect" id="node29" href="$namespace_wire_cell_1_1_string.html#aef23d7b89dbe21e34a499c9156dd1e60" title="WireCell::String::split" alt="" coords="715,21,862,48"/>
 </map>

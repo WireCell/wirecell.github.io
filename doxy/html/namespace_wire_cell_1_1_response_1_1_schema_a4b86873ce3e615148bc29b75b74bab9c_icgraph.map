@@ -1,5 +1,3 @@
 <map id="WireCell::Response::Schema::load" name="WireCell::Response::Schema::load">
-<area shape="rect" id="node2" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a2d1c7a1dded73fe3b51cbcfb8d9e0e04" title="Accept a configuration. " alt="" coords="192,5,375,47"/>
-<area shape="rect" id="node4" href="$struct_wire_cell_1_1_response_1_1_schema_1_1_field_response.html#a28ae333c27be1047dcaaf2f059858b9e" title="WireCell::Response\l::Schema::FieldResponse\l::FieldResponse" alt="" coords="197,70,370,126"/>
-<area shape="rect" id="node3" href="$class_wire_cell_1_1_gen_1_1_anode_plane.html#a41df48506ad084531fa7ac376f454894" title="WireCell::Gen::AnodePlane\l::~AnodePlane" alt="" coords="423,5,605,47"/>
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_sig_proc_1_1_field_response.html#aebaaef66bd121652084b5eb2e68cabfa" title="Accept a configuration. " alt="" coords="192,5,363,47"/>
 </map>

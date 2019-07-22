@@ -1,16 +1,16 @@
 var class_wire_cell_1_1_pimpos =
 [
     [ "Pimpos", "class_wire_cell_1_1_pimpos.html#a3cced28a957f1b3f9610166e29441934", null ],
-    [ "axis", "class_wire_cell_1_1_pimpos.html#a8a492b2dcdcf3465d08d1e29d29de369", null ],
-    [ "closest", "class_wire_cell_1_1_pimpos.html#a2a016a2228a3c41b44705bc45d793397", null ],
-    [ "distance", "class_wire_cell_1_1_pimpos.html#ac1fd48bc641e04cd9ec9a94408d5d789", null ],
-    [ "impact_binning", "class_wire_cell_1_1_pimpos.html#af0c730caf8ea37b117cf581917e06a23", null ],
-    [ "nimpbins_per_wire", "class_wire_cell_1_1_pimpos.html#adb5c94ee65fd75f5bd0c7d6557211e00", null ],
-    [ "origin", "class_wire_cell_1_1_pimpos.html#a3923a7f83dd79d88fafde5e365bf5123", null ],
-    [ "reflect", "class_wire_cell_1_1_pimpos.html#ae71906afd5671ade8472fe4e09d2ac79", null ],
-    [ "region_binning", "class_wire_cell_1_1_pimpos.html#af40b58eed4066a34cf06122c5b51b9cd", null ],
-    [ "relative", "class_wire_cell_1_1_pimpos.html#a51589772676367a1e7a16fcecf949954", null ],
-    [ "transform", "class_wire_cell_1_1_pimpos.html#ab797b7f78cda737d42f7cc7348116517", null ],
-    [ "wire_impact", "class_wire_cell_1_1_pimpos.html#ad250242dab5de5a7de3bae549a716dc9", null ],
-    [ "wire_impacts", "class_wire_cell_1_1_pimpos.html#a2f71c31702b5df010711ba0f9e8871f2", null ]
+    [ "axis", "class_wire_cell_1_1_pimpos.html#a0eed2ce13249e92b343e94e0ecaa3953", null ],
+    [ "closest", "class_wire_cell_1_1_pimpos.html#ae3a8be480718c7cf1ad0551947591fc3", null ],
+    [ "distance", "class_wire_cell_1_1_pimpos.html#abeadf8b503815d0dbfaf5d94d245b5bd", null ],
+    [ "impact_binning", "class_wire_cell_1_1_pimpos.html#a1b8aef1ec7d1cf9eb9d5d78a6359e2aa", null ],
+    [ "nimpbins_per_wire", "class_wire_cell_1_1_pimpos.html#a2728ed20a76edaab2b09f7cfacf5d99b", null ],
+    [ "origin", "class_wire_cell_1_1_pimpos.html#a9e7fe5e650d32ca5bc66bf69123e83f0", null ],
+    [ "reflect", "class_wire_cell_1_1_pimpos.html#a712e8a7789b061dd96f1e21f15ecdc42", null ],
+    [ "region_binning", "class_wire_cell_1_1_pimpos.html#ac2d0a4ce2474237948537f0e4bd358f5", null ],
+    [ "relative", "class_wire_cell_1_1_pimpos.html#a291dda9270d9feb2a0f8afa18e4cf9e2", null ],
+    [ "transform", "class_wire_cell_1_1_pimpos.html#a0d2db56d6956aee06d0218ee50400f25", null ],
+    [ "wire_impact", "class_wire_cell_1_1_pimpos.html#ae91d0c7565196dba1fbf9bd83760d25e", null ],
+    [ "wire_impacts", "class_wire_cell_1_1_pimpos.html#a185f13fbfd5be1350fe5ba268f7557ca", null ]
 ];

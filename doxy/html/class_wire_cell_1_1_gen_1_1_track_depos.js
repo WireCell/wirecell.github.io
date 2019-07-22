@@ -5,8 +5,8 @@ var class_wire_cell_1_1_gen_1_1_track_depos =
     [ "~TrackDepos", "class_wire_cell_1_1_gen_1_1_track_depos.html#a41f8d22bd935a3f211bee15f2dbbef2c", null ],
     [ "add_track", "class_wire_cell_1_1_gen_1_1_track_depos.html#adae13601f092202fbdc66c3d0be8be8a", null ],
     [ "configure", "class_wire_cell_1_1_gen_1_1_track_depos.html#a0a3e984c40fe60a0b8fbd451091a008b", null ],
-    [ "default_configuration", "class_wire_cell_1_1_gen_1_1_track_depos.html#a679d1fdbf18c006c64a35fcab5be248c", null ],
-    [ "depos", "class_wire_cell_1_1_gen_1_1_track_depos.html#a3e1be0e4285418f241aff98043b45990", null ],
+    [ "default_configuration", "class_wire_cell_1_1_gen_1_1_track_depos.html#ad96354353f477b5efeed326167b5b531", null ],
+    [ "depos", "class_wire_cell_1_1_gen_1_1_track_depos.html#a443e4c53c68ad46102395e7e86d24653", null ],
     [ "operator()", "class_wire_cell_1_1_gen_1_1_track_depos.html#a336b9bcb6d5d3e494ff295d7a70c94cc", null ],
-    [ "tracks", "class_wire_cell_1_1_gen_1_1_track_depos.html#a29f48faad333efafd995c45bb479782e", null ]
+    [ "tracks", "class_wire_cell_1_1_gen_1_1_track_depos.html#a9a2eca2798c0655336150e7237e8c5cd", null ]
 ];

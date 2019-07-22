@@ -1,7 +1,7 @@
 var class_wire_cell_1_1_i_wire =
 [
     [ "~IWire", "class_wire_cell_1_1_i_wire.html#a99180a0590802eabb706eead70d3cd65", null ],
-    [ "center", "class_wire_cell_1_1_i_wire.html#a5fb17061f5b92a8200dc56a10a106b9d", null ],
+    [ "center", "class_wire_cell_1_1_i_wire.html#aec6abd930c2209a7bd809b30a871d1b6", null ],
     [ "channel", "class_wire_cell_1_1_i_wire.html#a24de34af80ad78b15137adb196ed1189", null ],
     [ "ident", "class_wire_cell_1_1_i_wire.html#a0e188a183e202dfb6dce25f6b16fc390", null ],
     [ "index", "class_wire_cell_1_1_i_wire.html#abe81fe1d38c3d0a73e812e765f2081cd", null ],

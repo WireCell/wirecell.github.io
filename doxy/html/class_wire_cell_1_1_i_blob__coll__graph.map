@@ -1,4 +1,3 @@
 <map id="WireCell::IBlob" name="WireCell::IBlob">
-<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_cell.html" title="Interface to information about a cell. " alt="" coords="33,80,140,107"/>
-<area shape="rect" id="node3" href="$class_wire_cell_1_1_i_data.html" title="WireCell::IData\&lt; ICell \&gt;" alt="" coords="5,5,168,32"/>
+<area shape="rect" id="node2" href="$class_wire_cell_1_1_i_data.html" title="WireCell::IData\&lt; IBlob \&gt;" alt="" coords="5,5,172,32"/>
 </map>

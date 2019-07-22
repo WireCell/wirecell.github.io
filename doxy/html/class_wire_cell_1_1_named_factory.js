@@ -6,5 +6,6 @@ var class_wire_cell_1_1_named_factory =
     [ "classname", "class_wire_cell_1_1_named_factory.html#a55b839d7786ecca7b85bcabb7c163daa", null ],
     [ "create", "class_wire_cell_1_1_named_factory.html#a1f5abc7490577953e98a1bfd65671236", null ],
     [ "create", "class_wire_cell_1_1_named_factory.html#aaf8b55bd335453198f23f412b8174419", null ],
+    [ "find", "class_wire_cell_1_1_named_factory.html#a1c0faed7ba682bd801069997d60ea81b", null ],
     [ "set_classname", "class_wire_cell_1_1_named_factory.html#afd42539ccd3d6f8b49b0afa5b675747b", null ]
 ];

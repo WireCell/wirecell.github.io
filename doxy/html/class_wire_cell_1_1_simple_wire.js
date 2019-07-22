@@ -1,11 +1,11 @@
 var class_wire_cell_1_1_simple_wire =
 [
     [ "SimpleWire", "class_wire_cell_1_1_simple_wire.html#a22c2fdb5b8d74747e273e8854cabf691", null ],
-    [ "~SimpleWire", "class_wire_cell_1_1_simple_wire.html#a79b7a5e0c16dbfa95fd4b15ce8f1eae5", null ],
-    [ "channel", "class_wire_cell_1_1_simple_wire.html#a3f391f2dbdd892bebd1faec35f91119c", null ],
-    [ "ident", "class_wire_cell_1_1_simple_wire.html#ad88b982aab61514fe68e9b018edfdfac", null ],
-    [ "index", "class_wire_cell_1_1_simple_wire.html#a7cbef3fe3c3c56e8fa07dd7d453b2033", null ],
-    [ "planeid", "class_wire_cell_1_1_simple_wire.html#ac99a302b3013ca4ef943b56a6b96caa0", null ],
-    [ "ray", "class_wire_cell_1_1_simple_wire.html#ae8513a22f6141eb694a19a19bb787397", null ],
-    [ "segment", "class_wire_cell_1_1_simple_wire.html#a804bd2ec578b8041db98779a7fdf30e9", null ]
+    [ "~SimpleWire", "class_wire_cell_1_1_simple_wire.html#a9be6fb69d27f23c5e08d6f3c513a8e59", null ],
+    [ "channel", "class_wire_cell_1_1_simple_wire.html#afc85442561cf9421725bde79eb55b611", null ],
+    [ "ident", "class_wire_cell_1_1_simple_wire.html#a7e7a70124200787e3b325351ab34ec8e", null ],
+    [ "index", "class_wire_cell_1_1_simple_wire.html#a30b573d4e30069df22532b79b72d084f", null ],
+    [ "planeid", "class_wire_cell_1_1_simple_wire.html#a73c7459a542146db971644530f8f8d0d", null ],
+    [ "ray", "class_wire_cell_1_1_simple_wire.html#a428dfadc5733bf94b4a422762e55b7f7", null ],
+    [ "segment", "class_wire_cell_1_1_simple_wire.html#a965be3ecc234084376422ef89af0958c", null ]
 ];

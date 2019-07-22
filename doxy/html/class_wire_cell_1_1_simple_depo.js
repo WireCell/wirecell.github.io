@@ -1,10 +1,13 @@
 var class_wire_cell_1_1_simple_depo =
 [
-    [ "SimpleDepo", "class_wire_cell_1_1_simple_depo.html#afbb0e6a64e1e30ff86722a52711a4088", null ],
-    [ "charge", "class_wire_cell_1_1_simple_depo.html#a38a0101f8f282a2b593cdf16e1820112", null ],
-    [ "extent_long", "class_wire_cell_1_1_simple_depo.html#ad2fe6fd16d77ae461f76af844e9da259", null ],
-    [ "extent_tran", "class_wire_cell_1_1_simple_depo.html#a530a5858a0d7032496a1dd70585573c9", null ],
-    [ "pos", "class_wire_cell_1_1_simple_depo.html#a07b4fd67181d292d4c6bcff59c9c7e43", null ],
-    [ "prior", "class_wire_cell_1_1_simple_depo.html#aa61beb275600488fe0d18b616ac499e3", null ],
-    [ "time", "class_wire_cell_1_1_simple_depo.html#a9d8a2535544ac0bd75cebe2eb8a63ffe", null ]
+    [ "SimpleDepo", "class_wire_cell_1_1_simple_depo.html#a9cd203c648b15f9213979a054a8696c5", null ],
+    [ "charge", "class_wire_cell_1_1_simple_depo.html#a07e9a03fcc18207e8e55ac3ed201828c", null ],
+    [ "energy", "class_wire_cell_1_1_simple_depo.html#acea11f65dc7accc767a196963d93cd02", null ],
+    [ "extent_long", "class_wire_cell_1_1_simple_depo.html#aebb13d9a9c5a5bc0f821d2e690c88c46", null ],
+    [ "extent_tran", "class_wire_cell_1_1_simple_depo.html#ac03d9904acf5117c23c363c7168310cd", null ],
+    [ "id", "class_wire_cell_1_1_simple_depo.html#a30d9b06e6e65bba3d0b4fa17f64c52f5", null ],
+    [ "pdg", "class_wire_cell_1_1_simple_depo.html#a632331ca715c30e2600b2b115139fb0d", null ],
+    [ "pos", "class_wire_cell_1_1_simple_depo.html#ab41e2325f1fdff081ef6724389419529", null ],
+    [ "prior", "class_wire_cell_1_1_simple_depo.html#a23c734fee4ed0184b032e99a193f6f8e", null ],
+    [ "time", "class_wire_cell_1_1_simple_depo.html#aadb43cf11d4612fcad2279b9a32d697a", null ]
 ];

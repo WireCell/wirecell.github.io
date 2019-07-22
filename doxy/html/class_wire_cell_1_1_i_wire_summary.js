@@ -1,6 +1,6 @@
 var class_wire_cell_1_1_i_wire_summary =
 [
-    [ "~IWireSummary", "class_wire_cell_1_1_i_wire_summary.html#a61b77306c1fc97e2cfa27bf2f4de3917", null ],
+    [ "~IWireSummary", "class_wire_cell_1_1_i_wire_summary.html#add8f74cd11ca13a3d91d8ae3bc9bfca4", null ],
     [ "bounding_wires", "class_wire_cell_1_1_i_wire_summary.html#a13c8567121a0ab3dc34f402eddd5f718", null ],
     [ "box", "class_wire_cell_1_1_i_wire_summary.html#a58909d3b43592b2633c9d4d9109c90fb", null ],
     [ "by_channel", "class_wire_cell_1_1_i_wire_summary.html#a145ad4b5e1099d7914754459cc3a5a41", null ],
