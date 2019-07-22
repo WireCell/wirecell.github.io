@@ -27,6 +27,9 @@
     - [Using the `jsonnet` command line program](#jsonnet-command-line)
   - [Configuration from a developer point of view](#developer-configuration)
 - [Howtos](#howtos)
+  - [Install wire-cell with singularity container](#install-wire-cell-with-singularity-container)
+    - [A) singularity and cvmfs](#a-singularity-and-cvmfs)
+    - [B) wcdo](#b-wcdo)
   - [Run `wire-cell` command line program](#run-wire-cell-cli)
   - [Add a new component class](#add-a-component)
     - [Conceptual design](#component-concept)
@@ -66,27 +69,27 @@
   - [`wire-cell-util`](#pkg-util)
     - [Units](#util-units)
     - [Persistence](#util-persistence)
-    - [Etc](#org4ba1d1b)
+    - [Etc](#org716d3b8)
   - [`wire-cell-iface`](#pkg-iface)
-    - [Data](#org5b83a05)
-    - [Nodes](#org28c9ab7)
-    - [Misc](#orgfcd445f)
+    - [Data](#org1e4cba7)
+    - [Nodes](#org2650b8e)
+    - [Misc](#org1157370)
   - [`wire-cell-gen`](#pkg-gen)
-    - [Depositions](#org2dc498f)
-    - [Drifting](#orgff644f3)
-    - [Response](#orge3d5045)
-    - [Digitizing](#org095b6a7)
-    - [Noise](#orgc77a4f6)
-    - [Frame Summing](#org955cad0)
-    - [Execution Graphs](#orgcc51ac3)
+    - [Depositions](#org2b77716)
+    - [Drifting](#orgd58cae7)
+    - [Response](#orgfbbcf89)
+    - [Digitizing](#org7780281)
+    - [Noise](#org17798a5)
+    - [Frame Summing](#org36fabdb)
+    - [Execution Graphs](#org7dccffc)
   - [`wire-cell-waftools`](#pkg-waftools)
     - [Recreating `wcb`](#generate-wcb)
     - [Included Waf tools](#bundle-waf-tools)
 - [Data Flow Programming](#data-flow-programming)
-  - [Node basics](#org530a5ea)
-  - [Node execution paradigms](#orgc330fff)
-  - [DFP execution strategies](#orgf02ad3a)
-  - [End-of-stream Protocol](#org70aa213)
+  - [Node basics](#org74ce1c9)
+  - [Node execution paradigms](#org7a05e26)
+  - [DFP execution strategies](#org7b00481)
+  - [End-of-stream Protocol](#org71e4436)
 - [Other Topics](#other-topics)
   - [Garfield 2D Support](#garfield-2d-support)
     - [Garfield 2D data](#garfield-2d-data)
@@ -632,6 +635,239 @@ In particular, if the developer writes multiple components, an application compo
 This section of the manual gives brief guidance on how to do various things with WCT.
 
 
+<a id="install-wire-cell-with-singularity-container"></a>
+
+## Install wire-cell with singularity container
+
+This is a markdown version of Wenqiang&rsquo;s google doc [here](https://docs.google.com/document/d/1cXfifmLUx6UroHm66uJRzG1PEYJ7jLFNRA1LDZ7y5ls/edit), with some updates that works on July 10th 2019 for the following versions:
+
+-   larsoft version: `v08_24_00`
+-   larwirecell version: `v08_05_08`
+-   wirecell: `v0_12_3`
+-   Check [this](https://cdcvs.fnal.gov/redmine/projects/larwirecell/repository) for the latest version
+
+
+<a id="a-singularity-and-cvmfs"></a>
+
+### A) singularity and cvmfs
+
+Install singlularity and cvmfs following [this](https://github.com/WireCell/wire-cell-singularity).
+
+
+<a id="b-wcdo"></a>
+
+### B) wcdo
+
+This step-by-setp guide showed an example of using wcdo. For more, refer [this](https://github.com/WireCell/wire-cell-singularity/blob/master/wcdo.org)
+
+
+#### B.1) Obain and configure a singularity image
+
+```sh
+mkdir -p ~/wcdo/example
+cd ~/wcdo/example
+wcdo.sh init
+wcdo.sh wct
+wcdo.sh get-image sl7krb
+wcdo.sh make-project myproj sl7krb
+vim wcdo-local-myproj.rc
+wcdo_mrb_project_name="larsoft"
+wcdo_mrb_project_version="v08_24_00"
+wcdo_mrb_project_quals="e17:prof"
+./wcdo-myproj.sh
+```
+
+
+#### B.2) install ups and wcdo
+
+**in the singularity container**
+
+```sh
+source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+path-prepend $wcdo_ups_products PRODUCTS
+wcdo-mrb-init
+```
+
+output
+
+```sh
+IMPORTANT: You must type
+    source /wcdo/src/mrb/localProducts_larsoft_v08_24_00_e17_prof/setup
+NOW and whenever you log in
+```
+
+chekcout a feature branch
+
+```sh
+wcdo-mrb-add-source larwirecell v080508 v08_05_08
+```
+
+output
+
+```sh
+Summary of actions:
+- A new branch 'feature/v080508' was created, based on 'v080508-branch'
+- You are now on branch 'feature/v080508'
+
+Now, start committing on your feature. When done, use:
+
+     git flow feature finish v080508
+```
+
+**build wirecell**
+
+```sh
+wcdo-ups-declare wirecell wctdev
+setup wirecell wctdev -q e17:prof
+
+wcdo-ups-wct-configure-source
+./wcb -p --notests install
+```
+
+output
+
+```sh
+Checking for program 'rootcint'          : /cvmfs/larsoft.opensciencegrid.org/products/root/v6_12_06a/Linux64bit+3.10-2.17-e17-prof/bin/rootcint 
+Checking for program 'rlibmap'           : not found 
+Checking for header Rtypes.h             : yes 
+Checking for program 'dpkg-architecture' : not found 
+Checking boost includes                  : 1.66.0 
+...
+Waf: Entering directory `/wcdo/src/wct/build'
+Building: apps, cfg, gen, iface, img, pgraph, ress, root, sigproc, sio, util
+[206/206][100%][-][======================>][13m28.686s]
+Waf: Leaving directory `/wcdo/src/wct/build'
+'install' finished successfully (13m28.745s)
+```
+
+```sh
+setup wirecell wctdev -q e17:prof
+wcdo-wirecell-path default
+```
+
+**Build larwirecell**
+
+```sh
+vim /wcdo/src/mrb/srcs/larwirecell/ups/product_deps
+(change: wirecell v0_10_5 ==> wirecell wctdev)
+
+mrbsetenv
+mrb i
+mrbslp
+```
+
+
+#### B.3) Test: you should see similar results
+
+**test 1**
+
+```sh
+ups active | grep wirecell
+```
+
+output
+
+```sh
+larwirecell v08_05_08 -f Linux64bit+4.18-2.17 -q e17:prof -z /wcdo/src/mrb/localProducts_larsoft_v08_24_00_e17_prof
+wirecell wctdev -f Linux64bit+4.18-2.17-sl7-6 -q e17:prof -z /wcdo/lib/ups
+```
+
+**test 2**
+
+```sh
+ups list -aK+ wirecell | tail
+```
+
+output
+
+```sh
+"wirecell" "v0_12_3" "Linux64bit+2.6-2.12" "c2:debug" "" 
+"wirecell" "v0_12_3" "Darwin64bit+18" "c2:debug" "" 
+"wirecell" "v0_12_3" "Linux64bit+2.6-2.12" "e17:prof" "" 
+"wirecell" "v0_12_3" "Linux64bit+2.6-2.12" "debug:e17" "" 
+"wirecell" "v0_12_3" "Darwin64bit+17" "c2:prof" "" 
+"wirecell" "v0_12_3" "Darwin64bit+17" "c2:debug" "" 
+"wirecell" "v0_12_3" "Linux64bit+3.10-2.17" "debug:e17:py3" "" 
+"wirecell" "v0_12_3" "Linux64bit+3.10-2.17" "e17:prof:py3" "" 
+"wirecell" "v0_12_3" "Linux64bit+3.10-2.17" "c2:prof:py3" "" 
+"wirecell" "v0_12_3" "Linux64bit+3.10-2.17" "c2:debug:py3" ""
+```
+
+So far, you should have a workable singularity with wirecell + larsoft.
+
+
+#### examples of wcdo-local-myproj.rc
+
+**Haiwang&rsquo;s**
+
+```sh
+#!/bin/bash
+
+# This is a local wcdo rc file for project myproj.
+# It was initally generated but is recomended for customizing by you, dear user.
+# It is included at the end of the main RC files.
+
+# These are optional but required if wcdo-mrb-* commands are to be used.
+wcdo_mrb_project_name="larsoft"
+wcdo_mrb_project_version="v08_24_00"
+wcdo_mrb_project_quals="e17:prof"
+
+# Additional variables may be usefully set since this file was 
+# first generated.  
+
+# It is perhaps useful to end this with some command to be called 
+# on each entry to the contaner.
+# source /cvmfs/larsoft.opensciencegrid.org/products/setup
+
+
+bind '"\e[A":history-search-backward' #PageUp
+bind '"\e[B":history-search-forward' #PageDown
+set autolist
+set autoexpand
+export PS1='[s]$(pwd)\n$'
+alias ls='ls --color=auto'
+alias ll='ls -lh'
+```
+
+**Wenqiang&rsquo;s**
+
+```sh
+#!/bin/bash
+
+# This is a local wcdo rc file for project myproj.
+# It was initally generated but is recomended for customizing by you, dear user.
+# It is included at the end of the main RC files.
+
+# These are optional but required if wcdo-mrb-* commands are to be used.
+wcdo_mrb_project_name="larsoft"
+wcdo_mrb_project_version="v07_13_00"
+wcdo_mrb_project_quals="e17:prof"
+
+# Additional variables may be usefully set since this file was
+# first generated.  
+
+# It is perhaps useful to end this with some command to be called 
+# on each entry to the contaner.
+# source /cvmfs/larsoft.opensciencegrid.org/products/setup
+source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+setup dunetpc v07_13_00 -q e17:prof
+path-prepend $wcdo_ups_products PRODUCTS
+wcdo-mrb-init
+wcdo-ups-init
+
+setup wirecell wctdev -q e17:prof
+export WIRECELL_PATH=/wcdo/src/wct/cfg:/wcdo/share/wirecell/data
+#optional: wcdo-wirecell-path default
+echo WIRECELL_PATH=$WIRECELL_PATH
+
+mrbsetenv
+mrbslp
+export FHICL_FILE_PATH=$WIRECELL_PATH:$FHICL_FILE_PATH
+```
+
+Now please enjoy it: ./wcdo-myproj.sh
+
+
 <a id="run-wire-cell-cli"></a>
 
 ## Run `wire-cell` command line program
@@ -661,7 +897,7 @@ Before starting coding up an implementation it is prudent to understand what sof
 
 Investigating dependencies before implementation also forces the developer to make an optimal decision that balances performance, support, documentation, ease of development, portability and a host of other qualifiers. Relying on whatever software happens to be familiar and available forgoes making this optimal choice.
 
-One touchstone that has been made by the WCT developers is that the &ldquo;core&rdquo; packages of WCT shall not depend on ROOT. Depending on ROOT brings in many additional dependencies and this can limit, for example, usage on high-core architectures with limited RAM. ROOT is very useful, and indeed parts of WCT depend on it (test, I/O packages) but for a package to be considered &ldquo;core&rdquo; its library must not require ROOT. If a component requires ROOT or other package not accepted by the &ldquo;core&rdquo; packages then the component must be placed in an optional package (see Section [3.2.3](#component-package)).
+One touchstone that has been made by the WCT developers is that the &ldquo;core&rdquo; packages of WCT shall not depend on ROOT. Depending on ROOT brings in many additional dependencies and this can limit, for example, usage on high-core architectures with limited RAM. ROOT is very useful, and indeed parts of WCT depend on it (test, I/O packages) but for a package to be considered &ldquo;core&rdquo; its library must not require ROOT. If a component requires ROOT or other package not accepted by the &ldquo;core&rdquo; packages then the component must be placed in an optional package (see Section [3.3.3](#component-package)).
 
 For the noise source, the main functionality required is drawing random variables from an arbitrary distribution (the noise spectrum) and drawing from some conventional distributions (for the fluctuation). The spectrum can be provided through WCT configuration services and drawing from it is a simple algorithm based on forming the cumulative distribution that can be directly integrated. Pseudo random number generation can be done directly in C++ or [when this ticket is closed](https://github.com/WireCell/wire-cell-iface/issues/2) the WCT pRNG interface.
 
@@ -1221,7 +1457,7 @@ Describe units.
 Describe support for persistent files including compression and location.
 
 
-<a id="org4ba1d1b"></a>
+<a id="org716d3b8"></a>
 
 ### Etc
 
@@ -1235,21 +1471,21 @@ Describe support for persistent files including compression and location.
 Brief overview but it&rsquo;s also in <./internals.md> so don&rsquo; t over do it.
 
 
-<a id="org5b83a05"></a>
+<a id="org1e4cba7"></a>
 
 ### Data
 
 tbd
 
 
-<a id="org28c9ab7"></a>
+<a id="org2650b8e"></a>
 
 ### Nodes
 
 tbd
 
 
-<a id="orgfcd445f"></a>
+<a id="org1157370"></a>
 
 ### Misc
 
@@ -1263,7 +1499,7 @@ tbd
 The `wire-cell-gen` package provides components for the generation of data. It primarily includes components which perform the grand convolution of drifted electron distribution, field and electronics response and associate statistical fluctuations (aka, the &ldquo;drift simulation&rdquo;).
 
 
-<a id="org2dc498f"></a>
+<a id="org2b77716"></a>
 
 ### Depositions
 
@@ -1272,42 +1508,42 @@ Depositions (`IDepo` data objects, aka *depo*) are provided by `IDepoSource` com
 The `IDepoSource` components adapt to external sources of information about initial activity in the detector. These sources may provide \(dE\) and \(dX\) in which case two models can be applied to produce associated number of ionized electrons. The external source may provide only \(dE\) in which case the number of ionized electrons will be calculated for the deposition on the assumption that the particle is a MIP. Finally, the ionization process may be handled by the external source and the number of electrons may be given directly.
 
 
-<a id="orgff644f3"></a>
+<a id="orgd58cae7"></a>
 
 ### Drifting
 
 The `IDrifter` components are responsible for transforming a depo at one location and time into another depo at a different location and time while suitably adjusting the number of ionization electrons and their 2D extents. Each call of the component accepts a single depo and returns zero or more output depos. Input depos are assumed to be strictly time ordered and each batch of output depos likewise. In general a drifter must cache depos for some length of time in order to assure it has seen all possible depos to satisfy causality for the output.
 
 
-<a id="orge3d5045"></a>
+<a id="orgfbbcf89"></a>
 
 ### Response
 
 The field and electronics response of the detector is calculated in an `IDuctor` component. This is typically done by accepting depos at some *input plane* or *response plane*. Up to this plane, any drifting depo is assumed to induce a negligible detector response. For drifting beyond this plane some position dependent response is applied (ie, a field response calculated by 2D Garfield or 3D LARF). Each call to an `IDuctor` components accepts one depo and produces zero or more frames (`IFrame` data object). In general an `IDuctor` component must cache depos long enough to assure the produced frames satisfy causality. Output frames may be sparse in that not all channels may have traces (`ITrace` data objects) and in any given channel the traces may not cover the same span of time. The unit for the waveforms in the frame depend on the detector response applied. If field response alone is applied then the waveform is in units of sampled current (fixme, check code, it may be integrated over tick and thus charge.) If both field and electronics response is applied the waveform is in units of voltage.
 
 
-<a id="org095b6a7"></a>
+<a id="org7780281"></a>
 
 ### Digitizing
 
 An `IDigitizer` component applies a transformation to the waveform, typically but not necessarily in order to truncate it to ADC. These components are functional in that each call takes and produces one frame. Even if truncating to ADC the frame is still expressed as floating point values.
 
 
-<a id="orgc77a4f6"></a>
+<a id="org17798a5"></a>
 
 ### Noise
 
 t.b.d.
 
 
-<a id="org955cad0"></a>
+<a id="org36fabdb"></a>
 
 ### Frame Summing
 
 Right now, frames can be summed by a bare function `FrameUtil::sum()`. This is better put into a component.
 
 
-<a id="orgcc51ac3"></a>
+<a id="org7dccffc"></a>
 
 ### Execution Graphs
 
@@ -1371,7 +1607,7 @@ The scripts to make and test releases are also housed in this package.
 As described in <./internals.md> the Wire-Cell toolkit is based on interfaces and the components that implement them and the data processing components are specialized classes called &ldquo;nodes&rdquo;. This section describes more about nodes and their execution.
 
 
-<a id="org530a5ea"></a>
+<a id="org74ce1c9"></a>
 
 ## Node basics
 
@@ -1394,7 +1630,7 @@ Typically, an interface from this zoo is further inherited to provide a more spe
 TBD: describe inheritance hierarchy and type erasure.
 
 
-<a id="orgc330fff"></a>
+<a id="org7a05e26"></a>
 
 ## Node execution paradigms
 
@@ -1407,7 +1643,7 @@ A node does not &ldquo;know&rdquo; how it&rsquo;s called and in fact WCT support
 -   **data flow programming:** (DFP) more reusable generally may be achieved when all processing is encapsulated explicitly in nodes and their execution solely involves marshalling data as opaque objects between node calls. In DFP the nodes are thus arranged into a *directed acyclic graph* (DAG) with edges formed by queues which allow data to pass from one node&rsquo;s output to another node&rsquo;s input.
 
 
-<a id="orgf02ad3a"></a>
+<a id="org7b00481"></a>
 
 ## DFP execution strategies
 
@@ -1420,7 +1656,7 @@ WCT has abstracted the method of execution of a DFP graph and has implemented (o
 -   **multi-threaded pipeline:** to maxim core utilization, this mode will start new &ldquo;events&rdquo; while the graph is processing prior events.
 
 
-<a id="org70aa213"></a>
+<a id="org71e4436"></a>
 
 ## End-of-stream Protocol
 

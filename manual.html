@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-04-08 Mon 17:12 -->
+<!-- 2019-07-22 Mon 14:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Wire Cell Toolkit Manual</title>
@@ -331,15 +331,21 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#howtos">3. Howtos</a>
 <ul>
-<li><a href="#run-wire-cell-cli">3.1. Run <code>wire-cell</code> command line program</a></li>
-<li><a href="#add-a-component">3.2. Add a new component class</a>
+<li><a href="#install-wire-cell-with-singularity-container">3.1. Install wire-cell with singularity container</a>
 <ul>
-<li><a href="#component-concept">3.2.1. Conceptual design</a></li>
-<li><a href="#component-dependencies">3.2.2. Estimating dependencies</a></li>
-<li><a href="#component-package">3.2.3. Selecting a package</a></li>
-<li><a href="#component-interfaces">3.2.4. Selecting interfaces</a></li>
-<li><a href="#component-header">3.2.5. Component header</a></li>
-<li><a href="#component-implementation">3.2.6. Component implementation</a></li>
+<li><a href="#a-singularity-and-cvmfs">3.1.1. A) singularity and cvmfs</a></li>
+<li><a href="#b-wcdo">3.1.2. B) wcdo</a></li>
+</ul>
+</li>
+<li><a href="#run-wire-cell-cli">3.2. Run <code>wire-cell</code> command line program</a></li>
+<li><a href="#add-a-component">3.3. Add a new component class</a>
+<ul>
+<li><a href="#component-concept">3.3.1. Conceptual design</a></li>
+<li><a href="#component-dependencies">3.3.2. Estimating dependencies</a></li>
+<li><a href="#component-package">3.3.3. Selecting a package</a></li>
+<li><a href="#component-interfaces">3.3.4. Selecting interfaces</a></li>
+<li><a href="#component-header">3.3.5. Component header</a></li>
+<li><a href="#component-implementation">3.3.6. Component implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -395,25 +401,25 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#util-units">5.2.1. Units</a></li>
 <li><a href="#util-persistence">5.2.2. Persistence</a></li>
-<li><a href="#orge0816b4">5.2.3. Etc</a></li>
+<li><a href="#org1a6fa9c">5.2.3. Etc</a></li>
 </ul>
 </li>
 <li><a href="#pkg-iface">5.3. <code>wire-cell-iface</code></a>
 <ul>
-<li><a href="#orgdaf6b9b">5.3.1. Data</a></li>
-<li><a href="#orgb224389">5.3.2. Nodes</a></li>
-<li><a href="#orgcc0b3ee">5.3.3. Misc</a></li>
+<li><a href="#orgd1814aa">5.3.1. Data</a></li>
+<li><a href="#org89959a3">5.3.2. Nodes</a></li>
+<li><a href="#org50f46b9">5.3.3. Misc</a></li>
 </ul>
 </li>
 <li><a href="#pkg-gen">5.4. <code>wire-cell-gen</code></a>
 <ul>
-<li><a href="#org1f6ddf7">5.4.1. Depositions</a></li>
-<li><a href="#org2d913d8">5.4.2. Drifting</a></li>
-<li><a href="#orgaaa1bce">5.4.3. Response</a></li>
-<li><a href="#org99d3520">5.4.4. Digitizing</a></li>
-<li><a href="#org8c613bf">5.4.5. Noise</a></li>
-<li><a href="#org2dfa15a">5.4.6. Frame Summing</a></li>
-<li><a href="#org9da4063">5.4.7. Execution Graphs</a></li>
+<li><a href="#org09c51f6">5.4.1. Depositions</a></li>
+<li><a href="#org65d6983">5.4.2. Drifting</a></li>
+<li><a href="#org0bbacba">5.4.3. Response</a></li>
+<li><a href="#orgc3735c2">5.4.4. Digitizing</a></li>
+<li><a href="#orgd7f7303">5.4.5. Noise</a></li>
+<li><a href="#org7840ce4">5.4.6. Frame Summing</a></li>
+<li><a href="#org186390b">5.4.7. Execution Graphs</a></li>
 </ul>
 </li>
 <li><a href="#pkg-waftools">5.5. <code>wire-cell-waftools</code></a>
@@ -426,10 +432,10 @@ for the JavaScript code in this tag.
 </li>
 <li><a href="#data-flow-programming">6. Data Flow Programming</a>
 <ul>
-<li><a href="#org9cd6214">6.1. Node basics</a></li>
-<li><a href="#orgf7ace42">6.2. Node execution paradigms</a></li>
-<li><a href="#orgf392de8">6.3. DFP execution strategies</a></li>
-<li><a href="#org2d49b5c">6.4. End-of-stream Protocol</a></li>
+<li><a href="#org5810dfa">6.1. Node basics</a></li>
+<li><a href="#orgcc21f7e">6.2. Node execution paradigms</a></li>
+<li><a href="#org2656f6b">6.3. DFP execution strategies</a></li>
+<li><a href="#org96a9891">6.4. End-of-stream Protocol</a></li>
 </ul>
 </li>
 <li><a href="#other-topics">7. Other Topics</a>
@@ -459,7 +465,7 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org33fca4d" class="outline-2">
+<div id="outline-container-orga7919bf" class="outline-2">
 <h2 id="installation"><a id="user-content-installation" class="anchor" href="#installation" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-installation">
 <p>
@@ -467,7 +473,7 @@ The Wire Cell Toolkit (WCT) should be easy to build on any POSIX&rsquo;y system 
 </p>
 </div>
 
-<div id="outline-container-orgaddc09c" class="outline-3">
+<div id="outline-container-orgfa59fdf" class="outline-3">
 <h3 id="toolkit-installation"><a id="user-content-toolkit-installation" class="anchor" href="#toolkit-installation" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">1.1</span> Toolkit installation</h3>
 <div class="outline-text-3" id="text-toolkit-installation">
 <div class="warning">
@@ -488,7 +494,7 @@ Installation requires four steps:
 </ol>
 </div>
 
-<div id="outline-container-org5b1849a" class="outline-4">
+<div id="outline-container-orgc4366f5" class="outline-4">
 <h4 id="source-code"><a id="user-content-source-code" class="anchor" href="#source-code" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.1.1</span> Source code</h4>
 <div class="outline-text-4" id="text-source-code">
 <p>
@@ -536,7 +542,7 @@ At some time later if there is a need to switch between HTTP or SSH a <code>swit
 </div>
 </div>
 
-<div id="outline-container-org2417b36" class="outline-4">
+<div id="outline-container-orgf06b6fe" class="outline-4">
 <h4 id="configuring-the-source"><a id="user-content-configuring-the-source" class="anchor" href="#configuring-the-source" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.1.2</span> Configuring the source</h4>
 <div class="outline-text-4" id="text-configuring-the-source">
 <p>
@@ -573,7 +579,7 @@ If the externals are not all in one directory then their locations must be accor
 </div>
 </div>
 
-<div id="outline-container-orge089b8c" class="outline-4">
+<div id="outline-container-org58e29b5" class="outline-4">
 <h4 id="building-the-source"><a id="user-content-building-the-source" class="anchor" href="#building-the-source" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.1.3</span> Building the source</h4>
 <div class="outline-text-4" id="text-building-the-source">
 <p>
@@ -598,7 +604,7 @@ $ ./wcb --notests
 </div>
 </div>
 
-<div id="outline-container-org724a738" class="outline-4">
+<div id="outline-container-orgd06a3a9" class="outline-4">
 <h4 id="running-unit-tests"><a id="user-content-running-unit-tests" class="anchor" href="#running-unit-tests" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.1.4</span> Running unit tests</h4>
 <div class="outline-text-4" id="text-running-unit-tests">
 <div class="note">
@@ -652,7 +658,7 @@ Where these two commands are executed in a shell that has no <code>LD_LIBRARY_PA
 </div>
 </div>
 
-<div id="outline-container-org3a8af84" class="outline-4">
+<div id="outline-container-org0114858" class="outline-4">
 <h4 id="install-built-code"><a id="user-content-install-built-code" class="anchor" href="#install-built-code" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.1.5</span> Install the results</h4>
 <div class="outline-text-4" id="text-install-built-code">
 <p>
@@ -664,7 +670,7 @@ $ ./wcb install
 </div>
 </div>
 
-<div id="outline-container-org45a8ee1" class="outline-4">
+<div id="outline-container-org6c12a22" class="outline-4">
 <h4 id="other-build-commands"><a id="user-content-other-build-commands" class="anchor" href="#other-build-commands" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.1.6</span> Other build commands</h4>
 <div class="outline-text-4" id="text-other-build-commands">
 <p>
@@ -687,7 +693,7 @@ $ ./wcb --help         # see more options.
 </div>
 
 
-<div id="outline-container-org7693c70" class="outline-3">
+<div id="outline-container-orgf449cbd" class="outline-3">
 <h3 id="runtime-environment"><a id="user-content-runtime-environment" class="anchor" href="#runtime-environment" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">1.2</span> Runtime environment</h3>
 <div class="outline-text-3" id="text-runtime-environment">
 <p>
@@ -704,7 +710,7 @@ Internally, WCT does not require any environment however it will search a <code>
 </div>
 </div>
 
-<div id="outline-container-orgcec5942" class="outline-3">
+<div id="outline-container-org6d0d35d" class="outline-3">
 <h3 id="installing-dependencies"><a id="user-content-installing-dependencies" class="anchor" href="#installing-dependencies" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">1.3</span> Guide for installation of dependencies</h3>
 <div class="outline-text-3" id="text-installing-dependencies">
 <p>
@@ -743,7 +749,7 @@ The following subsections gives some guidance for obtaining these &ldquo;externa
 </p>
 </div>
 
-<div id="outline-container-orgdb5dca9" class="outline-4">
+<div id="outline-container-org9969a43" class="outline-4">
 <h4 id="manual-externals-install"><a id="user-content-manual-externals-install" class="anchor" href="#manual-externals-install" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.3.1</span> Manual Installation of Externals</h4>
 <div class="outline-text-4" id="text-manual-externals-install">
 <p>
@@ -756,7 +762,7 @@ However the installer decides to build in DIY-mode the WCT build system should b
 </div>
 </div>
 
-<div id="outline-container-org87dffc0" class="outline-4">
+<div id="outline-container-org6f5bb2d" class="outline-4">
 <h4 id="spack-installed-externals"><a id="user-content-spack-installed-externals" class="anchor" href="#spack-installed-externals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.3.2</span> Automated Installation with Spack</h4>
 <div class="outline-text-4" id="text-spack-installed-externals">
 <p>
@@ -773,7 +779,7 @@ An installer that wishes to use wire-cell-spack to provide the dependencies shou
 </div>
 </div>
 
-<div id="outline-container-orga0d0fb9" class="outline-4">
+<div id="outline-container-org2f27281" class="outline-4">
 <h4 id="using-externals-from-ups"><a id="user-content-using-externals-from-ups" class="anchor" href="#using-externals-from-ups" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.3.3</span> Externals provided by UPS</h4>
 <div class="outline-text-4" id="text-using-externals-from-ups">
 <p>
@@ -784,7 +790,7 @@ Fermi National Accelerator Lab (FNAL) uses a user environment system similar to 
 </div>
 
 
-<div id="outline-container-org5de9857" class="outline-3">
+<div id="outline-container-orgeccfacf" class="outline-3">
 <h3 id="release-management"><a id="user-content-release-management" class="anchor" href="#release-management" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">1.4</span> Release management</h3>
 <div class="outline-text-3" id="text-release-management">
 <p>
@@ -792,7 +798,7 @@ Releases are made by developers as needed and as described in this section.
 </p>
 </div>
 
-<div id="outline-container-orgfeb36c8" class="outline-4">
+<div id="outline-container-org89a6325" class="outline-4">
 <h4 id="release-versions"><a id="user-content-release-versions" class="anchor" href="#release-versions" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.4.1</span> Release versions</h4>
 <div class="outline-text-4" id="text-release-versions">
 <p>
@@ -807,7 +813,7 @@ WCT label releases are made following a fixed procedure.  Releases are labeled w
 </div>
 </div>
 
-<div id="outline-container-orga09d3e6" class="outline-4">
+<div id="outline-container-orgade0e3a" class="outline-4">
 <h4 id="branch-policy"><a id="user-content-branch-policy" class="anchor" href="#branch-policy" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.4.2</span> Branch policy</h4>
 <div class="outline-text-4" id="text-branch-policy">
 <p>
@@ -816,7 +822,7 @@ Any new major or minor releases produce a new Git branch in each package.  Only 
 </div>
 </div>
 
-<div id="outline-container-org7400f6b" class="outline-4">
+<div id="outline-container-orgf63cf81" class="outline-4">
 <h4 id="branch-mechanics"><a id="user-content-branch-mechanics" class="anchor" href="#branch-mechanics" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">1.4.3</span> Branch mechanics</h4>
 <div class="outline-text-4" id="text-branch-mechanics">
 <p>
@@ -827,7 +833,7 @@ To make releases, the above details are baked into two test scripts <a href="htt
 </div>
 </div>
 
-<div id="outline-container-orge54f32a" class="outline-2">
+<div id="outline-container-org108e655" class="outline-2">
 <h2 id="configuration"><a id="user-content-configuration" class="anchor" href="#configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-2">2</span> Configuration</h2>
 <div class="outline-text-2" id="text-configuration">
 <p>
@@ -835,7 +841,7 @@ As the Wire Cell Toolkit (WCT) is a toolkit, it is up to the parent application 
 </p>
 </div>
 
-<div id="outline-container-org4563360" class="outline-3">
+<div id="outline-container-orgf66443a" class="outline-3">
 <h3 id="configuration-introduction"><a id="user-content-configuration-introduction" class="anchor" href="#configuration-introduction" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">2.1</span> Introduction</h3>
 <div class="outline-text-3" id="text-configuration-introduction">
 <p>
@@ -879,7 +885,7 @@ In the next section,  WCT user-configuration support is described.  After it, th
 </div>
 </div>
 
-<div id="outline-container-org169ee6c" class="outline-3">
+<div id="outline-container-org8931f2f" class="outline-3">
 <h3 id="user-configuration"><a id="user-content-user-configuration" class="anchor" href="#user-configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">2.2</span> Configuration from a user point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="user">user</span></span></h3>
 <div class="outline-text-3" id="text-user-configuration">
 <p>
@@ -887,7 +893,7 @@ Users of the WCT command line interface <code>wire-cell</code> (or any WCT appli
 </p>
 </div>
 
-<div id="outline-container-orga0c818e" class="outline-4">
+<div id="outline-container-orgc97ddac" class="outline-4">
 <h4 id="configuration-file-formats"><a id="user-content-configuration-file-formats" class="anchor" href="#configuration-file-formats" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">2.2.1</span> File formats</h4>
 <div class="outline-text-4" id="text-configuration-file-formats">
 <p>
@@ -896,7 +902,7 @@ WCT supports two related configuration file formats:  <a href="http://www.json.o
 </div>
 </div>
 
-<div id="outline-container-org892857c" class="outline-4">
+<div id="outline-container-orga1b2c79" class="outline-4">
 <h4 id="configuration-command-line"><a id="user-content-configuration-command-line" class="anchor" href="#configuration-command-line" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">2.2.2</span> Basic command line</h4>
 <div class="outline-text-4" id="text-configuration-command-line">
 <p>
@@ -911,7 +917,7 @@ If a relative path is given, the file will be searched for starting in the curre
 </div>
 </div>
 
-<div id="outline-container-org02930e2" class="outline-4">
+<div id="outline-container-org9d6b937" class="outline-4">
 <h4 id="diving-into-json"><a id="user-content-diving-into-json" class="anchor" href="#diving-into-json" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">2.2.3</span> Diving into JSON</h4>
 <div class="outline-text-4" id="text-diving-into-json">
 <p>
@@ -941,7 +947,7 @@ The <code>tracks</code> array in this example is empty and no depositions would 
 </div>
 </div>
 
-<div id="outline-container-orgf81f09d" class="outline-4">
+<div id="outline-container-orgb17c694" class="outline-4">
 <h4 id="json-limitations"><a id="user-content-json-limitations" class="anchor" href="#json-limitations" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">2.2.4</span> Limitations of JSON</h4>
 <div class="outline-text-4" id="text-json-limitations">
 <p>
@@ -963,7 +969,7 @@ However, WCT provides a second, more powerful JSON-like configuration file forma
 </div>
 </div>
 
-<div id="outline-container-orgb6b9810" class="outline-4">
+<div id="outline-container-org4669d9f" class="outline-4">
 <h4 id="learning-jsonnet"><a id="user-content-learning-jsonnet" class="anchor" href="#learning-jsonnet" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">2.2.5</span> Learning Jsonnet</h4>
 <div class="outline-text-4" id="text-learning-jsonnet">
 <p>
@@ -979,7 +985,7 @@ WCT locates Jsonnet files as it does JSON files through the environment variable
 </p>
 </div>
 
-<div id="outline-container-org66f3fe2" class="outline-5">
+<div id="outline-container-org17a886e" class="outline-5">
 <h5 id="system-of-units-in-jsonnet"><a id="user-content-system-of-units-in-jsonnet" class="anchor" href="#system-of-units-in-jsonnet" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">2.2.5.1</span> System of units</h5>
 <div class="outline-text-5" id="text-system-of-units-in-jsonnet">
 <p>
@@ -1001,7 +1007,7 @@ Wire Cell provides an internal system of units as described in the section on <a
 </div>
 </div>
 
-<div id="outline-container-org4ca0342" class="outline-5">
+<div id="outline-container-org4c39d45" class="outline-5">
 <h5 id="jsonnet-helper-functions"><a id="user-content-jsonnet-helper-functions" class="anchor" href="#jsonnet-helper-functions" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">2.2.5.2</span> Functions</h5>
 <div class="outline-text-5" id="text-jsonnet-helper-functions">
 <p>
@@ -1018,7 +1024,7 @@ Some data sub-structures are needed in multiple laces and it can be laborious to
 </div>
 </div>
 
-<div id="outline-container-orgc6a9a06" class="outline-5">
+<div id="outline-container-org6b6e0ee" class="outline-5">
 <h5 id="default-parameters-in-jsonnet"><a id="user-content-default-parameters-in-jsonnet" class="anchor" href="#default-parameters-in-jsonnet" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">2.2.5.3</span> Default parameters</h5>
 <div class="outline-text-5" id="text-default-parameters-in-jsonnet">
 <p>
@@ -1069,7 +1075,7 @@ See next how these definitions are used.
 </div>
 </div>
 
-<div id="outline-container-org979fb4e" class="outline-5">
+<div id="outline-container-org322c451" class="outline-5">
 <h5 id="default-data-structures-in-jsonnet"><a id="user-content-default-data-structures-in-jsonnet" class="anchor" href="#default-data-structures-in-jsonnet" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">2.2.5.4</span> Default structures</h5>
 <div class="outline-text-5" id="text-default-data-structures-in-jsonnet">
 <p>
@@ -1132,7 +1138,7 @@ This says to override <code>uboone.fourdee</code> with what&rsquo;s given.  The 
 </div>
 </div>
 
-<div id="outline-container-org1624166" class="outline-5">
+<div id="outline-container-orgf325a6c" class="outline-5">
 <h5 id="jsonnet-is-comma-friendly"><a id="user-content-jsonnet-is-comma-friendly" class="anchor" href="#jsonnet-is-comma-friendly" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">2.2.5.5</span> Commas</h5>
 <div class="outline-text-5" id="text-jsonnet-is-comma-friendly">
 <p>
@@ -1142,7 +1148,7 @@ One of the most irritating aspect of crafting JSON files by hand is that any arr
 </div>
 </div>
 
-<div id="outline-container-org2bbe85c" class="outline-4">
+<div id="outline-container-org4df7d74" class="outline-4">
 <h4 id="configuration-for-specific-detectors"><a id="user-content-configuration-for-specific-detectors" class="anchor" href="#configuration-for-specific-detectors" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">2.2.6</span> Specific detector support</h4>
 <div class="outline-text-4" id="text-configuration-for-specific-detectors">
 <p>
@@ -1151,7 +1157,7 @@ The <code>wire-cell-cfg</code> package also provides support for popular LArTPC 
 </div>
 </div>
 
-<div id="outline-container-orgfa9abeb" class="outline-4">
+<div id="outline-container-orgb9dd487" class="outline-4">
 <h4 id="jsonnet-command-line"><a id="user-content-jsonnet-command-line" class="anchor" href="#jsonnet-command-line" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">2.2.7</span> Using the <code>jsonnet</code> command line program</h4>
 <div class="outline-text-4" id="text-jsonnet-command-line">
 <p>
@@ -1178,7 +1184,7 @@ This relies on the <code>WIRECELL_PATH</code> to include the <code>cfg/</code> d
 </div>
 
 
-<div id="outline-container-org98643d8" class="outline-3">
+<div id="outline-container-orgbcb225a" class="outline-3">
 <h3 id="developer-configuration"><a id="user-content-developer-configuration" class="anchor" href="#developer-configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> Configuration from a developer point of view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="devel">devel</span></span></h3>
 <div class="outline-text-3" id="text-developer-configuration">
 <p>
@@ -1196,7 +1202,7 @@ In particular, if the developer writes multiple components, an application compo
 </div>
 </div>
 
-<div id="outline-container-org6491912" class="outline-2">
+<div id="outline-container-org8a4cb68" class="outline-2">
 <h2 id="howtos"><a id="user-content-howtos" class="anchor" href="#howtos" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-2">3</span> Howtos</h2>
 <div class="outline-text-2" id="text-howtos">
 <p>
@@ -1204,23 +1210,324 @@ This section of the manual gives brief guidance on how to do various things with
 </p>
 </div>
 
-<div id="outline-container-org09944fe" class="outline-3">
-<h3 id="run-wire-cell-cli"><a id="user-content-run-wire-cell-cli" class="anchor" href="#run-wire-cell-cli" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">3.1</span> Run <code>wire-cell</code> command line program</h3>
+<div id="outline-container-orgad1bd84" class="outline-3">
+<h3 id="install-wire-cell-with-singularity-container"><a id="user-content-install-wire-cell-with-singularity-container" class="anchor" href="#install-wire-cell-with-singularity-container" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">3.1</span> Install wire-cell with singularity container</h3>
+<div class="outline-text-3" id="text-install-wire-cell-with-singularity-container">
+<p>
+This is a markdown version of Wenqiang&rsquo;s google doc
+<a href="https://docs.google.com/document/d/1cXfifmLUx6UroHm66uJRzG1PEYJ7jLFNRA1LDZ7y5ls/edit">here</a>,
+with some updates that works on July 10th 2019 for the following
+versions:
+</p>
+
+<ul class="org-ul">
+<li>larsoft version: <code>v08_24_00</code></li>
+<li>larwirecell version: <code>v08_05_08</code></li>
+<li>wirecell: <code>v0_12_3</code></li>
+<li>Check
+<a href="https://cdcvs.fnal.gov/redmine/projects/larwirecell/repository">this</a>
+for the latest version</li>
+</ul>
+</div>
+
+<div id="outline-container-org18938db" class="outline-4">
+<h4 id="a-singularity-and-cvmfs"><a id="user-content-a-singularity-and-cvmfs" class="anchor" href="#a-singularity-and-cvmfs" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.1.1</span> A) singularity and cvmfs</h4>
+<div class="outline-text-4" id="text-a-singularity-and-cvmfs">
+<p>
+Install singlularity and cvmfs following
+<a href="https://github.com/WireCell/wire-cell-singularity">this</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5a24f82" class="outline-4">
+<h4 id="b-wcdo"><a id="user-content-b-wcdo" class="anchor" href="#b-wcdo" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.1.2</span> B) wcdo</h4>
+<div class="outline-text-4" id="text-b-wcdo">
+<p>
+This step-by-setp guide showed an example of using wcdo. For more, refer
+<a href="https://github.com/WireCell/wire-cell-singularity/blob/master/wcdo.org">this</a>
+</p>
+</div>
+
+<div id="outline-container-orgef71e7c" class="outline-5">
+<h5 id="b.1-obain-and-configure-a-singularity-image"><a id="user-content-b.1-obain-and-configure-a-singularity-image" class="anchor" href="#b.1-obain-and-configure-a-singularity-image" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">3.1.2.1</span> B.1) Obain and configure a singularity image</h5>
+<div class="outline-text-5" id="text-b.1-obain-and-configure-a-singularity-image">
+<div class="org-src-container">
+<pre class="src src-sh">mkdir -p ~/wcdo/example
+cd ~/wcdo/example
+wcdo.sh init
+wcdo.sh wct
+wcdo.sh get-image sl7krb
+wcdo.sh make-project myproj sl7krb
+vim wcdo-local-myproj.rc
+wcdo_mrb_project_name="larsoft"
+wcdo_mrb_project_version="v08_24_00"
+wcdo_mrb_project_quals="e17:prof"
+./wcdo-myproj.sh
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8115f6d" class="outline-5">
+<h5 id="b.2-install-ups-and-wcdo"><a id="user-content-b.2-install-ups-and-wcdo" class="anchor" href="#b.2-install-ups-and-wcdo" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">3.1.2.2</span> B.2) install ups and wcdo</h5>
+<div class="outline-text-5" id="text-b.2-install-ups-and-wcdo">
+<p>
+<b>in the singularity container</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+path-prepend $wcdo_ups_products PRODUCTS
+wcdo-mrb-init
+</pre>
+</div>
+
+<p>
+output
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">IMPORTANT: You must type
+    source /wcdo/src/mrb/localProducts_larsoft_v08_24_00_e17_prof/setup
+NOW and whenever you log in
+</pre>
+</div>
+
+<p>
+chekcout a feature branch
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">wcdo-mrb-add-source larwirecell v080508 v08_05_08
+</pre>
+</div>
+
+<p>
+output
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">Summary of actions:
+- A new branch 'feature/v080508' was created, based on 'v080508-branch'
+- You are now on branch 'feature/v080508'
+
+Now, start committing on your feature. When done, use:
+
+     git flow feature finish v080508
+</pre>
+</div>
+
+<p>
+<b>build wirecell</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">wcdo-ups-declare wirecell wctdev
+setup wirecell wctdev -q e17:prof
+
+wcdo-ups-wct-configure-source
+./wcb -p --notests install
+</pre>
+</div>
+
+<p>
+output
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">Checking for program 'rootcint'          : /cvmfs/larsoft.opensciencegrid.org/products/root/v6_12_06a/Linux64bit+3.10-2.17-e17-prof/bin/rootcint 
+Checking for program 'rlibmap'           : not found 
+Checking for header Rtypes.h             : yes 
+Checking for program 'dpkg-architecture' : not found 
+Checking boost includes                  : 1.66.0 
+...
+Waf: Entering directory `/wcdo/src/wct/build'
+Building: apps, cfg, gen, iface, img, pgraph, ress, root, sigproc, sio, util
+[206/206][100%][-][======================&gt;][13m28.686s]
+Waf: Leaving directory `/wcdo/src/wct/build'
+'install' finished successfully (13m28.745s)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">setup wirecell wctdev -q e17:prof
+wcdo-wirecell-path default
+</pre>
+</div>
+
+<p>
+<b>Build larwirecell</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">vim /wcdo/src/mrb/srcs/larwirecell/ups/product_deps
+(change: wirecell v0_10_5 ==&gt; wirecell wctdev)
+
+mrbsetenv
+mrb i
+mrbslp
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org77a0a0a" class="outline-5">
+<h5 id="b.3-test-you-should-see-similar-results"><a id="user-content-b.3-test-you-should-see-similar-results" class="anchor" href="#b.3-test-you-should-see-similar-results" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">3.1.2.3</span> B.3) Test: you should see similar results</h5>
+<div class="outline-text-5" id="text-b.3-test-you-should-see-similar-results">
+<p>
+<b>test 1</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ups active | grep wirecell
+</pre>
+</div>
+
+<p>
+output
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">larwirecell v08_05_08 -f Linux64bit+4.18-2.17 -q e17:prof -z /wcdo/src/mrb/localProducts_larsoft_v08_24_00_e17_prof
+wirecell wctdev -f Linux64bit+4.18-2.17-sl7-6 -q e17:prof -z /wcdo/lib/ups
+</pre>
+</div>
+
+<p>
+<b>test 2</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ups list -aK+ wirecell | tail
+</pre>
+</div>
+
+<p>
+output
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">"wirecell" "v0_12_3" "Linux64bit+2.6-2.12" "c2:debug" "" 
+"wirecell" "v0_12_3" "Darwin64bit+18" "c2:debug" "" 
+"wirecell" "v0_12_3" "Linux64bit+2.6-2.12" "e17:prof" "" 
+"wirecell" "v0_12_3" "Linux64bit+2.6-2.12" "debug:e17" "" 
+"wirecell" "v0_12_3" "Darwin64bit+17" "c2:prof" "" 
+"wirecell" "v0_12_3" "Darwin64bit+17" "c2:debug" "" 
+"wirecell" "v0_12_3" "Linux64bit+3.10-2.17" "debug:e17:py3" "" 
+"wirecell" "v0_12_3" "Linux64bit+3.10-2.17" "e17:prof:py3" "" 
+"wirecell" "v0_12_3" "Linux64bit+3.10-2.17" "c2:prof:py3" "" 
+"wirecell" "v0_12_3" "Linux64bit+3.10-2.17" "c2:debug:py3" ""
+</pre>
+</div>
+
+<p>
+So far, you should have a workable singularity with wirecell + larsoft.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2e47d0d" class="outline-5">
+<h5 id="examples-of-wcdo-local-myproj.rc"><a id="user-content-examples-of-wcdo-local-myproj.rc" class="anchor" href="#examples-of-wcdo-local-myproj.rc" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">3.1.2.4</span> examples of wcdo-local-myproj.rc</h5>
+<div class="outline-text-5" id="text-examples-of-wcdo-local-myproj.rc">
+<p>
+<b>Haiwang&rsquo;s</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">#!/bin/bash
+
+# This is a local wcdo rc file for project myproj.
+# It was initally generated but is recomended for customizing by you, dear user.
+# It is included at the end of the main RC files.
+
+# These are optional but required if wcdo-mrb-* commands are to be used.
+wcdo_mrb_project_name="larsoft"
+wcdo_mrb_project_version="v08_24_00"
+wcdo_mrb_project_quals="e17:prof"
+
+# Additional variables may be usefully set since this file was 
+# first generated.  
+
+# It is perhaps useful to end this with some command to be called 
+# on each entry to the contaner.
+# source /cvmfs/larsoft.opensciencegrid.org/products/setup
+
+
+bind '"\e[A":history-search-backward' #PageUp
+bind '"\e[B":history-search-forward' #PageDown
+set autolist
+set autoexpand
+export PS1='[s]$(pwd)\n$'
+alias ls='ls --color=auto'
+alias ll='ls -lh'
+</pre>
+</div>
+
+<p>
+<b>Wenqiang&rsquo;s</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">#!/bin/bash
+
+# This is a local wcdo rc file for project myproj.
+# It was initally generated but is recomended for customizing by you, dear user.
+# It is included at the end of the main RC files.
+
+# These are optional but required if wcdo-mrb-* commands are to be used.
+wcdo_mrb_project_name="larsoft"
+wcdo_mrb_project_version="v07_13_00"
+wcdo_mrb_project_quals="e17:prof"
+
+# Additional variables may be usefully set since this file was
+# first generated.  
+
+# It is perhaps useful to end this with some command to be called 
+# on each entry to the contaner.
+# source /cvmfs/larsoft.opensciencegrid.org/products/setup
+source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+setup dunetpc v07_13_00 -q e17:prof
+path-prepend $wcdo_ups_products PRODUCTS
+wcdo-mrb-init
+wcdo-ups-init
+
+setup wirecell wctdev -q e17:prof
+export WIRECELL_PATH=/wcdo/src/wct/cfg:/wcdo/share/wirecell/data
+#optional: wcdo-wirecell-path default
+echo WIRECELL_PATH=$WIRECELL_PATH
+
+mrbsetenv
+mrbslp
+export FHICL_FILE_PATH=$WIRECELL_PATH:$FHICL_FILE_PATH
+</pre>
+</div>
+
+<p>
+Now please enjoy it: ./wcdo-myproj.sh
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org972f9a8" class="outline-3">
+<h3 id="run-wire-cell-cli"><a id="user-content-run-wire-cell-cli" class="anchor" href="#run-wire-cell-cli" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">3.2</span> Run <code>wire-cell</code> command line program</h3>
 <div class="outline-text-3" id="text-run-wire-cell-cli">
 </div>
 </div>
 
 
-<div id="outline-container-org2b57162" class="outline-3">
-<h3 id="add-a-component"><a id="user-content-add-a-component" class="anchor" href="#add-a-component" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">3.2</span> Add a new component class</h3>
+<div id="outline-container-orgcddef94" class="outline-3">
+<h3 id="add-a-component"><a id="user-content-add-a-component" class="anchor" href="#add-a-component" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">3.3</span> Add a new component class</h3>
 <div class="outline-text-3" id="text-add-a-component">
 <p>
 This describes the steps to add a Wire Cell Toolkit <i>component</i>.  As an example, it walks through the creation of a component which will produce noise waveforms.  The sections below are organized more or less in the order in which a developer advances from initial concept to design and implementation.
 </p>
 </div>
 
-<div id="outline-container-org077009e" class="outline-4">
-<h4 id="component-concept"><a id="user-content-component-concept" class="anchor" href="#component-concept" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.2.1</span> Conceptual design</h4>
+<div id="outline-container-orgac2e875" class="outline-4">
+<h4 id="component-concept"><a id="user-content-component-concept" class="anchor" href="#component-concept" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.3.1</span> Conceptual design</h4>
 <div class="outline-text-4" id="text-component-concept">
 <p>
 Noise waveforms will be generated based on a voltage amplitude spectrum represented in the frequency domain.  This amplitude will be sampled and abide by some fluctuation distribution and may have some parameters that allow for parametric scaling or other transformation so that the user may explore the results.  For simplicity, the time domain noise waveforms will be produced given a fixed sample period and readout time which will also be configurable.  It is assumed that the user arranges that these parameters, if needed elsewhere, are set consistently.  (See Sec. <a href="#configuration">2</a>).
@@ -1232,8 +1539,8 @@ Producing noise waveforms as described here require no other input data and in p
 </div>
 </div>
 
-<div id="outline-container-org72350b7" class="outline-4">
-<h4 id="component-dependencies"><a id="user-content-component-dependencies" class="anchor" href="#component-dependencies" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.2.2</span> Estimating dependencies</h4>
+<div id="outline-container-org5436d33" class="outline-4">
+<h4 id="component-dependencies"><a id="user-content-component-dependencies" class="anchor" href="#component-dependencies" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.3.2</span> Estimating dependencies</h4>
 <div class="outline-text-4" id="text-component-dependencies">
 <p>
 Before starting coding up an implementation it is prudent to understand what software dependencies are required to develop it.  Some trade-offs need to be understood.   Relying on &ldquo;external&rdquo; 3rd party packages to perform the &ldquo;heavy lifting&rdquo; of the implementation can make that implementation easier to develop.  However, adding dependencies increase the difficulty in installing and using the result on a wide variety of operating systems and system architectures.
@@ -1244,7 +1551,7 @@ Investigating dependencies before implementation also forces the developer to ma
 </p>
 
 <p>
-One touchstone that has been made by the WCT developers is that the &ldquo;core&rdquo; packages of WCT shall not depend on ROOT.  Depending on ROOT brings in many additional dependencies and this can limit, for example, usage on high-core architectures with limited RAM.  ROOT is very useful, and indeed parts of WCT depend on it (test, I/O packages) but for a package to be considered &ldquo;core&rdquo; its library must not require ROOT.  If a component requires ROOT or other package not accepted by the &ldquo;core&rdquo; packages then the component must be placed in an optional package (see Section <a href="#component-package">3.2.3</a>).
+One touchstone that has been made by the WCT developers is that the &ldquo;core&rdquo; packages of WCT shall not depend on ROOT.  Depending on ROOT brings in many additional dependencies and this can limit, for example, usage on high-core architectures with limited RAM.  ROOT is very useful, and indeed parts of WCT depend on it (test, I/O packages) but for a package to be considered &ldquo;core&rdquo; its library must not require ROOT.  If a component requires ROOT or other package not accepted by the &ldquo;core&rdquo; packages then the component must be placed in an optional package (see Section <a href="#component-package">3.3.3</a>).
 </p>
 
 <p>
@@ -1253,8 +1560,8 @@ For the noise source, the main functionality required is drawing random variable
 </div>
 </div>
 
-<div id="outline-container-orgdcb48d1" class="outline-4">
-<h4 id="component-package"><a id="user-content-component-package" class="anchor" href="#component-package" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.2.3</span> Selecting a package</h4>
+<div id="outline-container-org8d89b71" class="outline-4">
+<h4 id="component-package"><a id="user-content-component-package" class="anchor" href="#component-package" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.3.3</span> Selecting a package</h4>
 <div class="outline-text-4" id="text-component-package">
 <p>
 While the implementer is free to develop their component in any manner they wish, if the component is to be distributed as part of the WCT then its code needs to be in some WCT package.   For here, the main thing to note is that the <code>util</code> package is the lowest in the dependency tree, on top of it is <code>iface</code> (more on interfaces below) and above that are all the <i>implementation</i> packages.  The developer must choose an existing package or elect to make a new one depending on two main criteria: what dependencies are required and what implementation category does the component satisfy.
@@ -1266,8 +1573,8 @@ For the noise waveform source, given the relative lack of dependencies and the f
 </div>
 </div>
 
-<div id="outline-container-orga0221c4" class="outline-4">
-<h4 id="component-interfaces"><a id="user-content-component-interfaces" class="anchor" href="#component-interfaces" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.2.4</span> Selecting interfaces</h4>
+<div id="outline-container-orgcf0ab6d" class="outline-4">
+<h4 id="component-interfaces"><a id="user-content-component-interfaces" class="anchor" href="#component-interfaces" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.3.4</span> Selecting interfaces</h4>
 <div class="outline-text-4" id="text-component-interfaces">
 <p>
 All major functionality, and indeed the defining characteristic of a WCT <i>component</i> is that it implements one or more WCT <i>interfaces</i> which are C++ abstract base classes.  Each interface defines some number of methods that the implementation must provide.  
@@ -1283,8 +1590,8 @@ The noise waveform source requires configuration and will be an <code>IFrameSour
 </div>
 </div>
 
-<div id="outline-container-orgf16eefa" class="outline-4">
-<h4 id="component-header"><a id="user-content-component-header" class="anchor" href="#component-header" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.2.5</span> Component header</h4>
+<div id="outline-container-org974822a" class="outline-4">
+<h4 id="component-header"><a id="user-content-component-header" class="anchor" href="#component-header" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.3.5</span> Component header</h4>
 <div class="outline-text-4" id="text-component-header">
 <p>
 Developing the noise source component begins with a header file which ties together the interfaces through inheritance, declares the interface methods to be implemented and any private methods and data the implementation may need.    Following the layout conventions this header is placed in <a href="https://github.com/WireCell/wire-cell-gen/blob/master/inc/WireCellGen/NoiseSource.h">gen/inc/WireCellGen/NoiseSource.h</a>.  Some features to note:
@@ -1298,8 +1605,8 @@ Developing the noise source component begins with a header file which ties toget
 </div>
 </div>
 
-<div id="outline-container-org275c002" class="outline-4">
-<h4 id="component-implementation"><a id="user-content-component-implementation" class="anchor" href="#component-implementation" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.2.6</span> Component implementation</h4>
+<div id="outline-container-orgc6187a9" class="outline-4">
+<h4 id="component-implementation"><a id="user-content-component-implementation" class="anchor" href="#component-implementation" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">3.3.6</span> Component implementation</h4>
 <div class="outline-text-4" id="text-component-implementation">
 <p>
 The implementation of a component, 
@@ -1307,8 +1614,8 @@ following the layout conventions this header, is placed in <a href="https://gith
 </p>
 </div>
 
-<div id="outline-container-orgd4ae908" class="outline-5">
-<h5 id="component-boilerplate"><a id="user-content-component-boilerplate" class="anchor" href="#component-boilerplate" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">3.2.6.1</span> Component boilerplate</h5>
+<div id="outline-container-orge13ba68" class="outline-5">
+<h5 id="component-boilerplate"><a id="user-content-component-boilerplate" class="anchor" href="#component-boilerplate" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">3.3.6.1</span> Component boilerplate</h5>
 <div class="outline-text-5" id="text-component-boilerplate">
 <p>
 A few lines of boilerplate are needed so that the component can be dynamically resolved by WCT.  Toward the top of the file, and in particular before any <code>using namespace</code> statements the following is needed.
@@ -1334,8 +1641,8 @@ This is a CPP macro with the following arguments:
 </div>
 </div>
 
-<div id="outline-container-org6697081" class="outline-5">
-<h5 id="component-configuration"><a id="user-content-component-configuration" class="anchor" href="#component-configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">3.2.6.2</span> Configuration implementation</h5>
+<div id="outline-container-org76149cc" class="outline-5">
+<h5 id="component-configuration"><a id="user-content-component-configuration" class="anchor" href="#component-configuration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">3.3.6.2</span> Configuration implementation</h5>
 <div class="outline-text-5" id="text-component-configuration">
 <p>
 A WCT <i>configurable component</i> must provide two methods.  The first returns a default configuration object via the <code>default_configuration()</code> method.  This object should represent as much of a working configuration as is possible to specify using hard-coded or otherwise default knowledge.  If some parameter can not meaningfully be given a default value it should nonetheless be included with some default, possibly bogus value, eg <code>null</code>, <code>0</code> or empty string or list.  This can then be dumped via the <code>wire-cell</code> command line program as JSON to give the user guidance on how to provide correct input.
@@ -1362,7 +1669,7 @@ A component must have a constructor that takes no arguments.  If a constructor w
 </div>
 
 
-<div id="outline-container-org3612db2" class="outline-2">
+<div id="outline-container-org797c410" class="outline-2">
 <h2 id="internals"><a id="user-content-internals" class="anchor" href="#internals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-2">4</span> Internals</h2>
 <div class="outline-text-2" id="text-internals">
 <p>
@@ -1370,7 +1677,7 @@ This doc describes the Wire Cell Toolkit (WCT) internal structure and support fa
 </p>
 </div>
 
-<div id="outline-container-orgaaa64c3" class="outline-3">
+<div id="outline-container-org1099258" class="outline-3">
 <h3 id="toolkit-packages"><a id="user-content-toolkit-packages" class="anchor" href="#toolkit-packages" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">4.1</span> Toolkit packages</h3>
 <div class="outline-text-3" id="text-toolkit-packages">
 <p>
@@ -1380,7 +1687,7 @@ One special type of package is a <i>build</i> package described more in section 
 </p>
 </div>
 
-<div id="outline-container-orge17e582" class="outline-4">
+<div id="outline-container-org11c2a94" class="outline-4">
 <h4 id="package-names"><a id="user-content-package-names" class="anchor" href="#package-names" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.1.1</span> Names</h4>
 <div class="outline-text-4" id="text-package-names">
 <p>
@@ -1393,7 +1700,7 @@ If a package produces a shared library it should be named in <code>CamelCase</co
 </div>
 </div>
 
-<div id="outline-container-orgb7d1b10" class="outline-4">
+<div id="outline-container-org25b40f3" class="outline-4">
 <h4 id="package-dependencies"><a id="user-content-package-dependencies" class="anchor" href="#package-dependencies" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.1.2</span> Dependencies</h4>
 <div class="outline-text-4" id="text-package-dependencies">
 <p>
@@ -1418,7 +1725,7 @@ Finally, there may be third-party implementation packages.  They are free to mim
 </div>
 </div>
 
-<div id="outline-container-orgbebd692" class="outline-4">
+<div id="outline-container-orgf89c7b7" class="outline-4">
 <h4 id="package-structure"><a id="user-content-package-structure" class="anchor" href="#package-structure" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.1.3</span> Package structure</h4>
 <div class="outline-text-4" id="text-package-structure">
 <p>
@@ -1450,7 +1757,7 @@ Fixme: make a script that generates a dot file and show the graph.
 </div>
 </div>
 
-<div id="outline-container-org0fbf50d" class="outline-4">
+<div id="outline-container-org18f0846" class="outline-4">
 <h4 id="build-package"><a id="user-content-build-package" class="anchor" href="#build-package" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.1.4</span> Build package</h4>
 <div class="outline-text-4" id="text-build-package">
 <p>
@@ -1464,7 +1771,7 @@ Besides holding the main build instructions this package aggregates all the othe
 </div>
 
 
-<div id="outline-container-org3ecbec7" class="outline-4">
+<div id="outline-container-orgf133f16" class="outline-4">
 <h4 id="add-new-package-to-build"><a id="user-content-add-new-package-to-build" class="anchor" href="#add-new-package-to-build" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.1.5</span> Adding a new code package</h4>
 <div class="outline-text-4" id="text-add-new-package-to-build">
 <p>
@@ -1509,13 +1816,13 @@ In order to be picked up by the build the new package short name must be added t
 
 
 
-<div id="outline-container-orga31eb24" class="outline-3">
+<div id="outline-container-org42471c8" class="outline-3">
 <h3 id="coding-conventions"><a id="user-content-coding-conventions" class="anchor" href="#coding-conventions" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">4.2</span> Coding conventions</h3>
 <div class="outline-text-3" id="text-coding-conventions">
 </div>
 
 
-<div id="outline-container-orgfd59167" class="outline-4">
+<div id="outline-container-org50a1361" class="outline-4">
 <h4 id="c++-code-formatting"><a id="user-content-c++-code-formatting" class="anchor" href="#c++-code-formatting" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.2.1</span> C++ code formatting</h4>
 <div class="outline-text-4" id="text-c++-code-formatting">
 <ul class="org-ul">
@@ -1545,7 +1852,7 @@ In order to be picked up by the build the new package short name must be added t
 </div>
 
 
-<div id="outline-container-org5aeb946" class="outline-4">
+<div id="outline-container-org972ef0b" class="outline-4">
 <h4 id="c++-namespaces"><a id="user-content-c++-namespaces" class="anchor" href="#c++-namespaces" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.2.2</span> C++ namespaces</h4>
 <div class="outline-text-4" id="text-c++-namespaces">
 <ul class="org-ul">
@@ -1561,7 +1868,7 @@ In order to be picked up by the build the new package short name must be added t
 </div>
 
 
-<div id="outline-container-org560d33c" class="outline-4">
+<div id="outline-container-orgc483392" class="outline-4">
 <h4 id="configuration-conventions"><a id="user-content-configuration-conventions" class="anchor" href="#configuration-conventions" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.2.3</span> Configuration Parameters</h4>
 <div class="outline-text-4" id="text-configuration-conventions">
 <ul class="org-ul">
@@ -1572,7 +1879,7 @@ In order to be picked up by the build the new package short name must be added t
 </div>
 
 
-<div id="outline-container-orgb344707" class="outline-3">
+<div id="outline-container-org94661aa" class="outline-3">
 <h3 id="interface-internals"><a id="user-content-interface-internals" class="anchor" href="#interface-internals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">4.3</span> Interfaces</h3>
 <div class="outline-text-3" id="text-interface-internals">
 <p>
@@ -1594,7 +1901,7 @@ Another important category of interfaces are those which express the &ldquo;node
 </div>
 </div>
 
-<div id="outline-container-org5ad860e" class="outline-3">
+<div id="outline-container-org82a1e54" class="outline-3">
 <h3 id="component-internals"><a id="user-content-component-internals" class="anchor" href="#component-internals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">4.4</span> Components</h3>
 <div class="outline-text-3" id="text-component-internals">
 <p>
@@ -1643,7 +1950,7 @@ Not typically required by most code but there exists also a function <code>looku
 </div>
 
 
-<div id="outline-container-orgb5db016" class="outline-3">
+<div id="outline-container-org17fe344" class="outline-3">
 <h3 id="configuration-internals"><a id="user-content-configuration-internals" class="anchor" href="#configuration-internals" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">4.5</span> Configuration</h3>
 <div class="outline-text-3" id="text-configuration-internals">
 <p>
@@ -1688,12 +1995,12 @@ Developers of new configurables should keep this protocol in mind and should ref
 
 
 
-<div id="outline-container-orgf9022f5" class="outline-3">
+<div id="outline-container-org5725513" class="outline-3">
 <h3 id="execution-models"><a id="user-content-execution-models" class="anchor" href="#execution-models" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">4.6</span> Execution Models</h3>
 <div class="outline-text-3" id="text-execution-models">
 </div>
 
-<div id="outline-container-org0a3a4e3" class="outline-4">
+<div id="outline-container-org40bd969" class="outline-4">
 <h4 id="ad-hoc-execution"><a id="user-content-ad-hoc-execution" class="anchor" href="#ad-hoc-execution" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.6.1</span> Ad-hoc</h4>
 <div class="outline-text-4" id="text-ad-hoc-execution">
 <p>
@@ -1702,7 +2009,7 @@ Direct calling of utility functions and concrete objects.
 </div>
 </div>
 
-<div id="outline-container-orga2d8a77" class="outline-4">
+<div id="outline-container-orgec62d20" class="outline-4">
 <h4 id="execution-concrete-components"><a id="user-content-execution-concrete-components" class="anchor" href="#execution-concrete-components" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.6.2</span> Concrete</h4>
 <div class="outline-text-4" id="text-execution-concrete-components">
 <p>
@@ -1711,7 +2018,7 @@ Concrete components.
 </div>
 </div>
 
-<div id="outline-container-org76c1b63" class="outline-4">
+<div id="outline-container-org0d4d2c9" class="outline-4">
 <h4 id="execution-via-interfaces"><a id="user-content-execution-via-interfaces" class="anchor" href="#execution-via-interfaces" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.6.3</span> Interface</h4>
 <div class="outline-text-4" id="text-execution-via-interfaces">
 <p>
@@ -1720,7 +2027,7 @@ Using NamedFactory.
 </div>
 </div>
 
-<div id="outline-container-org14b509a" class="outline-4">
+<div id="outline-container-orgd9ecedf" class="outline-4">
 <h4 id="dfp-execution"><a id="user-content-dfp-execution" class="anchor" href="#dfp-execution" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.6.4</span> Data flow programming execution</h4>
 <div class="outline-text-4" id="text-dfp-execution">
 <p>
@@ -1731,7 +2038,7 @@ Using abstract DFP.  A whole section on <a href="#data-flow-programming">6</a> i
 </div>
 
 
-<div id="outline-container-org8ab8ca6" class="outline-3">
+<div id="outline-container-org46ffa30" class="outline-3">
 <h3 id="logging"><a id="user-content-logging" class="anchor" href="#logging" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">4.7</span> Logging</h3>
 <div class="outline-text-3" id="text-logging">
 <p>
@@ -1761,7 +2068,7 @@ A log level is associated individually with each log message, each logger and ea
 </div>
 
 
-<div id="outline-container-org5f8f848" class="outline-4">
+<div id="outline-container-org04018f5" class="outline-4">
 <h4 id="logging-cli"><a id="user-content-logging-cli" class="anchor" href="#logging-cli" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.7.1</span> Logging Command Line Interface</h4>
 <div class="outline-text-4" id="text-logging-cli">
 <p>
@@ -1812,7 +2119,7 @@ The only thing that should print to the console are messages from wrongly progra
 
 
 
-<div id="outline-container-org6c933a1" class="outline-4">
+<div id="outline-container-org14cfd76" class="outline-4">
 <h4 id="logging-code"><a id="user-content-logging-code" class="anchor" href="#logging-code" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.7.2</span> Logging Code Interface</h4>
 <div class="outline-text-4" id="text-logging-code">
 <p>
@@ -1914,7 +2221,7 @@ void myfunc() {
 
 
 
-<div id="outline-container-org8e581dc" class="outline-4">
+<div id="outline-container-org396c7fc" class="outline-4">
 <h4 id="logging-int"><a id="user-content-logging-int" class="anchor" href="#logging-int" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">4.7.3</span> Logging Integration</h4>
 <div class="outline-text-4" id="text-logging-int">
 <p>
@@ -1933,13 +2240,13 @@ Another solution to integrate WCT logging with that of the &ldquo;host&rdquo; co
 </div>
 </div>
 
-<div id="outline-container-org8158a72" class="outline-2">
+<div id="outline-container-org41426ac" class="outline-2">
 <h2 id="packages"><a id="user-content-packages" class="anchor" href="#packages" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-2">5</span> Packages</h2>
 <div class="outline-text-2" id="text-packages">
 </div>
 
 
-<div id="outline-container-org8d37907" class="outline-3">
+<div id="outline-container-org916d54f" class="outline-3">
 <h3 id="pkg-python"><a id="user-content-pkg-python" class="anchor" href="#pkg-python" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">5.1</span> <code>wire-cell-python</code></h3>
 <div class="outline-text-3" id="text-pkg-python">
 <p>
@@ -1947,7 +2254,7 @@ Wire Cell Toolkit provides some support for Python and requires it for some prep
 </p>
 </div>
 
-<div id="outline-container-org006b974" class="outline-4">
+<div id="outline-container-org0413a8a" class="outline-4">
 <h4 id="install-wire-cell-python"><a id="user-content-install-wire-cell-python" class="anchor" href="#install-wire-cell-python" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.1.1</span> Installing <code>wire-cell-python</code></h4>
 <div class="outline-text-4" id="text-install-wire-cell-python">
 <p>
@@ -1965,7 +2272,7 @@ $ wirecell-sigproc --help
 </div>
 </div>
 
-<div id="outline-container-org8a2dfbf" class="outline-4">
+<div id="outline-container-orga503596" class="outline-4">
 <h4 id="python-programs"><a id="user-content-python-programs" class="anchor" href="#python-programs" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.1.2</span> Python command line programs</h4>
 <div class="outline-text-4" id="text-python-programs">
 <p>
@@ -1986,7 +2293,7 @@ All use the same command line interface (CLI) module (<a href="http://click.poco
 </div>
 
 
-<div id="outline-container-org8ae8aec" class="outline-4">
+<div id="outline-container-orgf732abf" class="outline-4">
 <h4 id="python-modules"><a id="user-content-python-modules" class="anchor" href="#python-modules" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.1.3</span> <code>wirecell</code> Python modules</h4>
 <div class="outline-text-4" id="text-python-modules">
 <div class="org-src-container">
@@ -1995,12 +2302,12 @@ All use the same command line interface (CLI) module (<a href="http://click.poco
 </div>
 </div>
 
-<div id="outline-container-org36e001c" class="outline-5">
-<h5 id="org36e001c"><a id="user-content-org36e001c" class="anchor" href="#org36e001c" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">5.1.3.1</span> <code>sigproc</code></h5>
+<div id="outline-container-org629609e" class="outline-5">
+<h5 id="org629609e"><a id="user-content-org629609e" class="anchor" href="#org629609e" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">5.1.3.1</span> <code>sigproc</code></h5>
 <div class="outline-text-5" id="text-5-1-3-1">
 </div>
 <ol class="org-ol">
-<li><a id="org4e9150d"></a><code>garfield</code><br />
+<li><a id="orgd3abf0a"></a><code>garfield</code><br />
 <div class="outline-text-6" id="text-5-1-3-1-1">
 <p>
 See the section <a href="#garfield-2d-support">7.1</a>.
@@ -2012,7 +2319,7 @@ See the section <a href="#garfield-2d-support">7.1</a>.
 </div>
 </div>
 
-<div id="outline-container-org2d78a07" class="outline-3">
+<div id="outline-container-org4fee04e" class="outline-3">
 <h3 id="pkg-util"><a id="user-content-pkg-util" class="anchor" href="#pkg-util" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">5.2</span> <code>wire-cell-util</code></h3>
 <div class="outline-text-3" id="text-pkg-util">
 <p>
@@ -2020,7 +2327,7 @@ Introduction.
 </p>
 </div>
 
-<div id="outline-container-orgf67914f" class="outline-4">
+<div id="outline-container-org5a64383" class="outline-4">
 <h4 id="util-units"><a id="user-content-util-units" class="anchor" href="#util-units" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.2.1</span> Units</h4>
 <div class="outline-text-4" id="text-util-units">
 <p>
@@ -2029,7 +2336,7 @@ Describe units.
 </div>
 </div>
 
-<div id="outline-container-org2284638" class="outline-4">
+<div id="outline-container-orge8bd0b0" class="outline-4">
 <h4 id="util-persistence"><a id="user-content-util-persistence" class="anchor" href="#util-persistence" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.2.2</span> Persistence</h4>
 <div class="outline-text-4" id="text-util-persistence">
 <p>
@@ -2038,8 +2345,8 @@ Describe support for persistent files including compression and location.
 </div>
 </div>
 
-<div id="outline-container-orge0816b4" class="outline-4">
-<h4 id="orge0816b4"><a id="user-content-orge0816b4" class="anchor" href="#orge0816b4" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.2.3</span> Etc</h4>
+<div id="outline-container-org1a6fa9c" class="outline-4">
+<h4 id="org1a6fa9c"><a id="user-content-org1a6fa9c" class="anchor" href="#org1a6fa9c" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.2.3</span> Etc</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <p>
 &#x2026;.
@@ -2048,7 +2355,7 @@ Describe support for persistent files including compression and location.
 </div>
 </div>
 
-<div id="outline-container-org758930b" class="outline-3">
+<div id="outline-container-orgdbe6407" class="outline-3">
 <h3 id="pkg-iface"><a id="user-content-pkg-iface" class="anchor" href="#pkg-iface" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">5.3</span> <code>wire-cell-iface</code></h3>
 <div class="outline-text-3" id="text-pkg-iface">
 <p>
@@ -2056,8 +2363,8 @@ Brief overview but it&rsquo;s also in <a href="./internals.html">./internals.htm
 </p>
 </div>
 
-<div id="outline-container-orgdaf6b9b" class="outline-4">
-<h4 id="orgdaf6b9b"><a id="user-content-orgdaf6b9b" class="anchor" href="#orgdaf6b9b" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.3.1</span> Data</h4>
+<div id="outline-container-orgd1814aa" class="outline-4">
+<h4 id="orgd1814aa"><a id="user-content-orgd1814aa" class="anchor" href="#orgd1814aa" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.3.1</span> Data</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 tbd
@@ -2065,8 +2372,8 @@ tbd
 </div>
 </div>
 
-<div id="outline-container-orgb224389" class="outline-4">
-<h4 id="orgb224389"><a id="user-content-orgb224389" class="anchor" href="#orgb224389" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.3.2</span> Nodes</h4>
+<div id="outline-container-org89959a3" class="outline-4">
+<h4 id="org89959a3"><a id="user-content-org89959a3" class="anchor" href="#org89959a3" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.3.2</span> Nodes</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <p>
 tbd
@@ -2074,8 +2381,8 @@ tbd
 </div>
 </div>
 
-<div id="outline-container-orgcc0b3ee" class="outline-4">
-<h4 id="orgcc0b3ee"><a id="user-content-orgcc0b3ee" class="anchor" href="#orgcc0b3ee" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.3.3</span> Misc</h4>
+<div id="outline-container-org50f46b9" class="outline-4">
+<h4 id="org50f46b9"><a id="user-content-org50f46b9" class="anchor" href="#org50f46b9" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.3.3</span> Misc</h4>
 <div class="outline-text-4" id="text-5-3-3">
 <p>
 tbd
@@ -2084,7 +2391,7 @@ tbd
 </div>
 </div>
 
-<div id="outline-container-orgf34d97f" class="outline-3">
+<div id="outline-container-orga3bbad6" class="outline-3">
 <h3 id="pkg-gen"><a id="user-content-pkg-gen" class="anchor" href="#pkg-gen" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">5.4</span> <code>wire-cell-gen</code></h3>
 <div class="outline-text-3" id="text-pkg-gen">
 <p>
@@ -2092,8 +2399,8 @@ The <code>wire-cell-gen</code> package provides components for the generation of
 </p>
 </div>
 
-<div id="outline-container-org1f6ddf7" class="outline-4">
-<h4 id="org1f6ddf7"><a id="user-content-org1f6ddf7" class="anchor" href="#org1f6ddf7" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.1</span> Depositions</h4>
+<div id="outline-container-org09c51f6" class="outline-4">
+<h4 id="org09c51f6"><a id="user-content-org09c51f6" class="anchor" href="#org09c51f6" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.1</span> Depositions</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <p>
 Depositions (<code>IDepo</code> data objects, aka <i>depo</i>) are provided by <code>IDepoSource</code> components.  A single depo is provided on each call to the source and are expected to be produce in <i>strict time order</i>.  In general a depo represents a 2D  distribution (ie, Gaussian) of drifting electrons spread in longitudinal and transverse directions.  A depo may be confined to a single point where the two <i>extents</i> of the distribution are zero.  
@@ -2105,8 +2412,8 @@ The <code>IDepoSource</code> components adapt to external sources of information
 </div>
 </div>
 
-<div id="outline-container-org2d913d8" class="outline-4">
-<h4 id="org2d913d8"><a id="user-content-org2d913d8" class="anchor" href="#org2d913d8" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.2</span> Drifting</h4>
+<div id="outline-container-org65d6983" class="outline-4">
+<h4 id="org65d6983"><a id="user-content-org65d6983" class="anchor" href="#org65d6983" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.2</span> Drifting</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <p>
 The <code>IDrifter</code> components are responsible for transforming a depo at one location and time into another depo at a different location and time while suitably adjusting the number of ionization electrons and their 2D extents.  Each call of the component accepts a single depo and returns zero or more output depos.  Input depos are assumed to be strictly time ordered and each batch of output depos likewise.  In general a drifter must cache depos for some length of time in order to assure it has seen all possible depos to satisfy causality for the output.
@@ -2114,8 +2421,8 @@ The <code>IDrifter</code> components are responsible for transforming a depo at 
 </div>
 </div>
 
-<div id="outline-container-orgaaa1bce" class="outline-4">
-<h4 id="orgaaa1bce"><a id="user-content-orgaaa1bce" class="anchor" href="#orgaaa1bce" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.3</span> Response</h4>
+<div id="outline-container-org0bbacba" class="outline-4">
+<h4 id="org0bbacba"><a id="user-content-org0bbacba" class="anchor" href="#org0bbacba" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.3</span> Response</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <p>
 The field and electronics response of the detector is calculated in an <code>IDuctor</code> component.  This is typically done by accepting depos at some <i>input plane</i> or <i>response plane</i>.  Up to this plane, any drifting depo is assumed to induce a negligible detector response.  For drifting beyond this plane some position dependent  response is applied (ie, a field response calculated by 2D Garfield or 3D LARF).  Each call to an <code>IDuctor</code> components accepts one depo and produces zero or more frames (<code>IFrame</code> data object).  In general an <code>IDuctor</code> component must cache depos long enough to assure the produced frames satisfy causality.  Output frames may be sparse in that not all channels may have traces (<code>ITrace</code> data objects) and in any given channel the traces may not cover the same span of time.  The unit for the waveforms in the frame depend on the detector response applied.  If field response alone is applied then the waveform is in units of sampled current (fixme, check code, it may be integrated over tick and thus charge.)  If both field and electronics response is applied the waveform is in units of voltage.
@@ -2124,8 +2431,8 @@ The field and electronics response of the detector is calculated in an <code>IDu
 </div>
 
 
-<div id="outline-container-org99d3520" class="outline-4">
-<h4 id="org99d3520"><a id="user-content-org99d3520" class="anchor" href="#org99d3520" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.4</span> Digitizing</h4>
+<div id="outline-container-orgc3735c2" class="outline-4">
+<h4 id="orgc3735c2"><a id="user-content-orgc3735c2" class="anchor" href="#orgc3735c2" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.4</span> Digitizing</h4>
 <div class="outline-text-4" id="text-5-4-4">
 <p>
 An <code>IDigitizer</code> component applies a transformation to the waveform, typically but not necessarily in order to truncate it to ADC.  These components are functional in that each call takes and produces one frame.  Even if truncating to ADC the frame is still expressed as floating point values.
@@ -2133,8 +2440,8 @@ An <code>IDigitizer</code> component applies a transformation to the waveform, t
 </div>
 </div>
 
-<div id="outline-container-org8c613bf" class="outline-4">
-<h4 id="org8c613bf"><a id="user-content-org8c613bf" class="anchor" href="#org8c613bf" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.5</span> Noise</h4>
+<div id="outline-container-orgd7f7303" class="outline-4">
+<h4 id="orgd7f7303"><a id="user-content-orgd7f7303" class="anchor" href="#orgd7f7303" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.5</span> Noise</h4>
 <div class="outline-text-4" id="text-5-4-5">
 <p>
 t.b.d.
@@ -2142,8 +2449,8 @@ t.b.d.
 </div>
 </div>
 
-<div id="outline-container-org2dfa15a" class="outline-4">
-<h4 id="org2dfa15a"><a id="user-content-org2dfa15a" class="anchor" href="#org2dfa15a" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.6</span> Frame Summing</h4>
+<div id="outline-container-org7840ce4" class="outline-4">
+<h4 id="org7840ce4"><a id="user-content-org7840ce4" class="anchor" href="#org7840ce4" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.6</span> Frame Summing</h4>
 <div class="outline-text-4" id="text-5-4-6">
 <p>
 Right now, frames can be summed by a bare function <code>FrameUtil::sum()</code>.  This is better put into a component.
@@ -2151,8 +2458,8 @@ Right now, frames can be summed by a bare function <code>FrameUtil::sum()</code>
 </div>
 </div>
 
-<div id="outline-container-org9da4063" class="outline-4">
-<h4 id="org9da4063"><a id="user-content-org9da4063" class="anchor" href="#org9da4063" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.7</span> Execution Graphs</h4>
+<div id="outline-container-org186390b" class="outline-4">
+<h4 id="org186390b"><a id="user-content-org186390b" class="anchor" href="#org186390b" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.4.7</span> Execution Graphs</h4>
 <div class="outline-text-4" id="text-5-4-7">
 <p>
 The <code>gen</code> package provides high-level <code>IApplication</code> components.  Primarily, these provide aggregation of the various components described above (and others).  The aggregation is conceptually of the form of a call graph which connects outputs of components to inputs of others.  This aggregation is <b>hard-coded</b> so that the application determines the connectivity of the resulting execution graph.  
@@ -2172,8 +2479,8 @@ Sorry, your browser does not support SVG.</object>
 </div>
 </div>
 
-<div id="outline-container-org1dee4d3" class="outline-5">
-<h5 id="org1dee4d3"><a id="user-content-org1dee4d3" class="anchor" href="#org1dee4d3" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">5.4.7.1</span> Hard-coded vs Configurable</h5>
+<div id="outline-container-org0904963" class="outline-5">
+<h5 id="org0904963"><a id="user-content-org0904963" class="anchor" href="#org0904963" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">5.4.7.1</span> Hard-coded vs Configurable</h5>
 <div class="outline-text-5" id="text-5-4-7-1">
 <p>
 WCT supports construction of general execution graphs through user-provided configuration.  
@@ -2187,7 +2494,7 @@ t.b.d. this code needs reworking and retesting.
 </div>
 </div>
 
-<div id="outline-container-orgcb4dc13" class="outline-3">
+<div id="outline-container-org8c7d3b6" class="outline-3">
 <h3 id="pkg-waftools"><a id="user-content-pkg-waftools" class="anchor" href="#pkg-waftools" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">5.5</span> <code>wire-cell-waftools</code></h3>
 <div class="outline-text-3" id="text-pkg-waftools">
 <p>
@@ -2201,7 +2508,7 @@ The WCT build system is based on <a href="https://waf.io/">Waf</a>.  The parts o
 </ul>
 </div>
 
-<div id="outline-container-org3327204" class="outline-4">
+<div id="outline-container-orgd009d1a" class="outline-4">
 <h4 id="generate-wcb"><a id="user-content-generate-wcb" class="anchor" href="#generate-wcb" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.5.1</span> Recreating <code>wcb</code></h4>
 <div class="outline-text-4" id="text-generate-wcb">
 <p>
@@ -2219,7 +2526,7 @@ $ git commit [...]
 </div>
 </div>
 
-<div id="outline-container-org5c284bc" class="outline-4">
+<div id="outline-container-org83d7936" class="outline-4">
 <h4 id="bundle-waf-tools"><a id="user-content-bundle-waf-tools" class="anchor" href="#bundle-waf-tools" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">5.5.2</span> Included Waf tools</h4>
 <div class="outline-text-4" id="text-bundle-waf-tools">
 <p>
@@ -2237,7 +2544,7 @@ The scripts to make and test releases are also housed in this package.
 </div>
 </div>
 
-<div id="outline-container-org8b9cccc" class="outline-2">
+<div id="outline-container-org4e68cb9" class="outline-2">
 <h2 id="data-flow-programming"><a id="user-content-data-flow-programming" class="anchor" href="#data-flow-programming" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-2">6</span> Data Flow Programming</h2>
 <div class="outline-text-2" id="text-data-flow-programming">
 <p>
@@ -2245,8 +2552,8 @@ As described in <a href="./internals.html">./internals.html</a> the Wire-Cell to
 </p>
 </div>
 
-<div id="outline-container-org9cd6214" class="outline-3">
-<h3 id="org9cd6214"><a id="user-content-org9cd6214" class="anchor" href="#org9cd6214" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">6.1</span> Node basics</h3>
+<div id="outline-container-org5810dfa" class="outline-3">
+<h3 id="org5810dfa"><a id="user-content-org5810dfa" class="anchor" href="#org5810dfa" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">6.1</span> Node basics</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 A &ldquo;node&rdquo; is a callable class (it implements <code>operator()</code>).  Any data sent in to or received out from the node passes through arguments to that call.  These points of passing are conceptually termed &ldquo;ports&rdquo;.  A port has an associated direction (input or output).  A port also has an associated data type such that it may only be connected to another node&rsquo;s port of the same data type (and one of opposite direction).  
@@ -2280,8 +2587,8 @@ TBD: describe inheritance hierarchy and type erasure.
 </div>
 </div>
 
-<div id="outline-container-orgf7ace42" class="outline-3">
-<h3 id="orgf7ace42"><a id="user-content-orgf7ace42" class="anchor" href="#orgf7ace42" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">6.2</span> Node execution paradigms</h3>
+<div id="outline-container-orgcc21f7e" class="outline-3">
+<h3 id="orgcc21f7e"><a id="user-content-orgcc21f7e" class="anchor" href="#orgcc21f7e" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">6.2</span> Node execution paradigms</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 A node does not &ldquo;know&rdquo; how it&rsquo;s called and in fact WCT supports multiple node execution paradigms.  
@@ -2297,8 +2604,8 @@ A node does not &ldquo;know&rdquo; how it&rsquo;s called and in fact WCT support
 </div>
 </div>
 
-<div id="outline-container-orgf392de8" class="outline-3">
-<h3 id="orgf392de8"><a id="user-content-orgf392de8" class="anchor" href="#orgf392de8" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">6.3</span> DFP execution strategies</h3>
+<div id="outline-container-org2656f6b" class="outline-3">
+<h3 id="org2656f6b"><a id="user-content-org2656f6b" class="anchor" href="#org2656f6b" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">6.3</span> DFP execution strategies</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 WCT has abstracted the method of execution of a DFP graph and has implemented (or will implement) a number of execution strategies.  These include:
@@ -2314,8 +2621,8 @@ WCT has abstracted the method of execution of a DFP graph and has implemented (o
 </div>
 </div>
 
-<div id="outline-container-org2d49b5c" class="outline-3">
-<h3 id="org2d49b5c"><a id="user-content-org2d49b5c" class="anchor" href="#org2d49b5c" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">6.4</span> End-of-stream Protocol</h3>
+<div id="outline-container-org96a9891" class="outline-3">
+<h3 id="org96a9891"><a id="user-content-org96a9891" class="anchor" href="#org96a9891" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">6.4</span> End-of-stream Protocol</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 While some node types are purely functional in that they do not retain state or otherwise buffer data, others must necessarily do so.  As long as new inputs stream into a node the node can continue to make decisions about what data to stream out.  However, when its input is exhausted it needs a special notification so that it may invalidate or otherwise flush any buffers.  Because an arbitrary DFP graph may execute nodes asynchronously (and possibly in parallel) there is no general out-of-band mechanism to deliver this notification.  Instead, it must come in-band which requires defining a special form for any port type to accept or produce to indicate the current stream has ended.  This form is called the end-of-stream (EOS) marker or object.  Given that an atom of data, as described above, is a (shared) pointer the EOS is marked by a <code>nullptr</code>.  Ports which pass collections of atoms may naturally have empty queues and thus to mark EOS to these ports the EOS object is placed <b>in</b> the passed queue.
@@ -2360,12 +2667,12 @@ From the point of view of a node producing output it must follow these rules:
 </div>
 </div>
 
-<div id="outline-container-org6382641" class="outline-2">
+<div id="outline-container-orgfc528e8" class="outline-2">
 <h2 id="other-topics"><a id="user-content-other-topics" class="anchor" href="#other-topics" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-2">7</span> Other Topics</h2>
 <div class="outline-text-2" id="text-other-topics">
 </div>
 
-<div id="outline-container-org1864d84" class="outline-3">
+<div id="outline-container-org81f0fa3" class="outline-3">
 <h3 id="garfield-2d-support"><a id="user-content-garfield-2d-support" class="anchor" href="#garfield-2d-support" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">7.1</span> Garfield 2D Support</h3>
 <div class="outline-text-3" id="text-garfield-2d-support">
 <p>
@@ -2373,7 +2680,7 @@ Garfield 2D is used to provide field response functions for WCT signal processin
 </p>
 </div>
 
-<div id="outline-container-orgc5a9671" class="outline-4">
+<div id="outline-container-org9658a9b" class="outline-4">
 <h4 id="garfield-2d-data"><a id="user-content-garfield-2d-data" class="anchor" href="#garfield-2d-data" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.1.1</span> Garfield 2D data</h4>
 <div class="outline-text-4" id="text-garfield-2d-data">
 <p>
@@ -2411,7 +2718,7 @@ In the initial <code>ub_10</code> data set with 21 wires \(\times\) 6 impact pos
 </div>
 </div>
 
-<div id="outline-container-org36f7ccb" class="outline-4">
+<div id="outline-container-orgd884897" class="outline-4">
 <h4 id="preprocessing-garfield-data"><a id="user-content-preprocessing-garfield-data" class="anchor" href="#preprocessing-garfield-data" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.1.2</span> Preprocessing of Garfield 2D data</h4>
 <div class="outline-text-4" id="text-preprocessing-garfield-data">
 <p>
@@ -2440,7 +2747,7 @@ The next section gives some detailed examples of use and subsequent ones give so
 </div>
 </div>
 
-<div id="outline-container-orgeed6591" class="outline-4">
+<div id="outline-container-org22ed492" class="outline-4">
 <h4 id="eyeball-garfield"><a id="user-content-eyeball-garfield" class="anchor" href="#eyeball-garfield" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.1.3</span> Eyeballing Garfield 2D with <code>wirecell.sigproc.garfield</code></h4>
 <div class="outline-text-4" id="text-eyeball-garfield">
 <p>
@@ -2503,7 +2810,7 @@ Same region 0 average in units of <code>eplus</code> for U is -6.9e-3  and for V
 </div>
 </div>
 
-<div id="outline-container-org3a4ee1c" class="outline-4">
+<div id="outline-container-org5344abe" class="outline-4">
 <h4 id="garfield-validation-plots"><a id="user-content-garfield-validation-plots" class="anchor" href="#garfield-validation-plots" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.1.4</span> Validation plots</h4>
 <div class="outline-text-4" id="text-garfield-validation-plots">
 <p>
@@ -2515,7 +2822,7 @@ $ export G2D=/opt/bviren/wct-dev/share/wirecell/data/ub_10.tar.gz
 </pre>
 </div>
 
-<div id="outline-container-orgd3d65e9" class="outline-5">
+<div id="outline-container-org5d38619" class="outline-5">
 <h5 id="garfield-isochronous-track"><a id="user-content-garfield-isochronous-track" class="anchor" href="#garfield-isochronous-track" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.1.4.1</span> Perpendicular ideal track</h5>
 <div class="outline-text-5" id="text-garfield-isochronous-track">
 <p>
@@ -2561,7 +2868,7 @@ If the shaping is zero, then the induced current is plotted.  If it is nonzero b
 </div>
 </div>
 
-<div id="outline-container-org30347e8" class="outline-5">
+<div id="outline-container-org896858f" class="outline-5">
 <h5 id="garfield-induced-current"><a id="user-content-garfield-induced-current" class="anchor" href="#garfield-induced-current" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.1.4.2</span> Induced current</h5>
 <div class="outline-text-5" id="text-garfield-induced-current">
 <p>
@@ -2588,7 +2895,7 @@ The default normalization is such that there are 16000 electrons per pitch (MIP)
 </div>
 </div>
 
-<div id="outline-container-org3d67e1e" class="outline-5">
+<div id="outline-container-orgbb48ffc" class="outline-5">
 <h5 id="garvield-amplified-voltage"><a id="user-content-garvield-amplified-voltage" class="anchor" href="#garvield-amplified-voltage" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.1.4.3</span> Amplified Voltage</h5>
 <div class="outline-text-5" id="text-garvield-amplified-voltage">
 <p>
@@ -2615,7 +2922,7 @@ The default preamplifier gain is 14 mV/fC.  This means that a delta-function cur
 </div>
 </div>
 
-<div id="outline-container-org4a2acdc" class="outline-5">
+<div id="outline-container-orgffb8cbe" class="outline-5">
 <h5 id="garfield-adc-waveform"><a id="user-content-garfield-adc-waveform" class="anchor" href="#garfield-adc-waveform" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.1.4.4</span> Digitized ADC Waveform</h5>
 <div class="outline-text-5" id="text-garfield-adc-waveform">
 <p>
@@ -2643,7 +2950,7 @@ This assumes the default 12 bit ADC spanning 2 volts.
 </div>
 </div>
 
-<div id="outline-container-org77af004" class="outline-4">
+<div id="outline-container-org5f555d6" class="outline-4">
 <h4 id="convert-garfield-data-to-json"><a id="user-content-convert-garfield-data-to-json" class="anchor" href="#convert-garfield-data-to-json" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.1.5</span> Producing WCT Field Response Data File</h4>
 <div class="outline-text-4" id="text-convert-garfield-data-to-json">
 <p>
@@ -2661,7 +2968,7 @@ FIXME: distribution of these data files needs some formal mechanism.  For now, t
 </div>
 </div>
 
-<div id="outline-container-orgb4f15ac" class="outline-3">
+<div id="outline-container-org80f2eba" class="outline-3">
 <h3 id="larsoft-integration"><a id="user-content-larsoft-integration" class="anchor" href="#larsoft-integration" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-3">7.2</span> Running inside of art/LArSoft</h3>
 <div class="outline-text-3" id="text-larsoft-integration">
 <p>
@@ -2669,7 +2976,7 @@ Wire Cell Toolkit can be run &ldquo;stand alone&rdquo; via the <code>wire-cell</
 </p>
 </div>
 
-<div id="outline-container-orge32e59f" class="outline-4">
+<div id="outline-container-orgd5860a6" class="outline-4">
 <h4 id="wcls-overview"><a id="user-content-wcls-overview" class="anchor" href="#wcls-overview" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.2.1</span> Overview</h4>
 <div class="outline-text-4" id="text-wcls-overview">
 <p>
@@ -2682,7 +2989,7 @@ The sections below cover the integration software design, special issues relatin
 </div>
 </div>
 
-<div id="outline-container-org5f0d58f" class="outline-4">
+<div id="outline-container-org8224a36" class="outline-4">
 <h4 id="wcls-design"><a id="user-content-wcls-design" class="anchor" href="#wcls-design" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.2.2</span> Design</h4>
 <div class="outline-text-4" id="text-wcls-design">
 <p>
@@ -2716,7 +3023,7 @@ Bracketed by these &ldquo;two (inter)faced&rdquo; converter objects are the usua
 </div>
 </div>
 
-<div id="outline-container-orgc5f83e0" class="outline-4">
+<div id="outline-container-orgea32f9f" class="outline-4">
 <h4 id="wcls-config"><a id="user-content-wcls-config" class="anchor" href="#wcls-config" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.2.3</span> Configuration</h4>
 <div class="outline-text-4" id="text-wcls-config">
 <p>
@@ -2784,7 +3091,7 @@ WCT components are named in the <code>apps</code>, <code>inputers</code> and <co
 </div>
 </div>
 
-<div id="outline-container-org674fa30" class="outline-4">
+<div id="outline-container-org0be63dd" class="outline-4">
 <h4 id="wcls-run"><a id="user-content-wcls-run" class="anchor" href="#wcls-run" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.2.4</span> Runtime</h4>
 <div class="outline-text-4" id="text-wcls-run">
 <p>
@@ -2792,7 +3099,7 @@ Running WCT inside of <i>art</i> entails running <i>art</i> which means setting 
 </p>
 </div>
 
-<div id="outline-container-org01dd6f8" class="outline-5">
+<div id="outline-container-orgc4b83a1" class="outline-5">
 <h5 id="wcls-run-cvmfs"><a id="user-content-wcls-run-cvmfs" class="anchor" href="#wcls-run-cvmfs" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.2.4.1</span> CVMFS mount</h5>
 <div class="outline-text-5" id="text-wcls-run-cvmfs">
 <p>
@@ -2811,7 +3118,7 @@ $ export PRODUCTS=/cvmfs/fermilab.opensciencegrid.org/products/larsoft
 </div>
 </div>
 
-<div id="outline-container-org9560980" class="outline-5">
+<div id="outline-container-orgbcbd4a3" class="outline-5">
 <h5 id="wcls-run-local"><a id="user-content-wcls-run-local" class="anchor" href="#wcls-run-local" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.2.4.2</span> Local binaries</h5>
 <div class="outline-text-5" id="text-wcls-run-local">
 <p>
@@ -2845,7 +3152,7 @@ $ export PRODUCTS=$HOME/dev/pp/products
 </div>
 </div>
 
-<div id="outline-container-org663ceaa" class="outline-5">
+<div id="outline-container-orgc3da069" class="outline-5">
 <h5 id="wcls-run-general"><a id="user-content-wcls-run-general" class="anchor" href="#wcls-run-general" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.2.4.3</span> General</h5>
 <div class="outline-text-5" id="text-wcls-run-general">
 <p>
@@ -2890,7 +3197,7 @@ With this, the user is ready to run <i>art</i>, LArSoft and Wire-Cell.
 </div>
 </div>
 
-<div id="outline-container-orge67c3d2" class="outline-4">
+<div id="outline-container-orgefb5d04" class="outline-4">
 <h4 id="wcls-dev"><a id="user-content-wcls-dev" class="anchor" href="#wcls-dev" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-4">7.2.5</span> Development</h4>
 <div class="outline-text-4" id="text-wcls-dev">
 <p>
@@ -2898,7 +3205,7 @@ The challenge to do development on WC/LS integration code is that the <code>larw
 </p>
 </div>
 
-<div id="outline-container-orgf191c9e" class="outline-5">
+<div id="outline-container-org9e7b2c9" class="outline-5">
 <h5 id="wcls-dev-prep-ups"><a id="user-content-wcls-dev-prep-ups" class="anchor" href="#wcls-dev-prep-ups" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.2.5.1</span> Prepare development UPS products area</h5>
 <div class="outline-text-5" id="text-wcls-dev-prep-ups">
 <p>
@@ -2945,7 +3252,7 @@ There will not yet be a code actually installed into the just declared <code>wir
 </div>
 </div>
 
-<div id="outline-container-orgcd8c631" class="outline-5">
+<div id="outline-container-org4d16cb5" class="outline-5">
 <h5 id="wcls-dev-get-source"><a id="user-content-wcls-dev-get-source" class="anchor" href="#wcls-dev-get-source" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.2.5.2</span> WCT Source</h5>
 <div class="outline-text-5" id="text-wcls-dev-get-source">
 <p>
@@ -2978,7 +3285,7 @@ The exact name for the source directory is up to you.  Below, <code>wct-src</cod
 </div>
 </div>
 
-<div id="outline-container-org10cc7a2" class="outline-5">
+<div id="outline-container-orgd795ced" class="outline-5">
 <h5 id="wcls-dev-config-source"><a id="user-content-wcls-dev-config-source" class="anchor" href="#wcls-dev-config-source" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.2.5.3</span> Configuring WCT source</h5>
 <div class="outline-text-5" id="text-wcls-dev-config-source">
 <p>
@@ -3001,7 +3308,7 @@ $ ./waftools/wct-configure-for-ups.sh
 </div>
 
 
-<div id="outline-container-orgd6f0156" class="outline-5">
+<div id="outline-container-org33987a3" class="outline-5">
 <h5 id="wcls-build-wct"><a id="user-content-wcls-build-wct" class="anchor" href="#wcls-build-wct" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.2.5.4</span> Building and running WCT</h5>
 <div class="outline-text-5" id="text-wcls-build-wct">
 <p>
@@ -3018,7 +3325,7 @@ If the source was configured to install into the UPS product area then everythin
 </div>
 </div>
 
-<div id="outline-container-org5e2156c" class="outline-5">
+<div id="outline-container-orgfa3587f" class="outline-5">
 <h5 id="ups-hysteresis"><a id="user-content-ups-hysteresis" class="anchor" href="#ups-hysteresis" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.2.5.5</span> Fix UPS environment hysteresis</h5>
 <div class="outline-text-5" id="text-ups-hysteresis">
 <p>
@@ -3032,7 +3339,7 @@ $ setup wirecell v0_7_dev -q e14:prof
 </div>
 </div>
 
-<div id="outline-container-orgcd2439b" class="outline-5">
+<div id="outline-container-org79393eb" class="outline-5">
 <h5 id="wcls-prep-mrb"><a id="user-content-wcls-prep-mrb" class="anchor" href="#wcls-prep-mrb" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><span class="section-number-5">7.2.5.6</span> Preparing <code>mrb</code> development area</h5>
 <div class="outline-text-5" id="text-wcls-prep-mrb">
 <p>
@@ -3094,7 +3401,7 @@ If this build fails in CMake with cryptic statements about <code>SOURCE is requi
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2019-04-08 Mon 17:12</p>
+<p class="date">Created: 2019-07-22 Mon 14:58</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
