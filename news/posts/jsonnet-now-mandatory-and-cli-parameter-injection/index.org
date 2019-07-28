@@ -11,7 +11,7 @@
 #+END_COMMENT
 
 
-[[Jsonnet]] is now a required external dependency.  
+[[https://jsonnet.org][Jsonnet]] is now a required external dependency.  
 
 {{{TEASER_END}}}
 

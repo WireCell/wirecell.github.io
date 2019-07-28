@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News (Posts about toolkit)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link href="http://wirecell.github.io/news/categories/cat_toolkit.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Thu, 25 Apr 2019 18:49:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Porting and Integration Begun</title><link>http://wirecell.github.io/news/posts/porting-and-integration-begun/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News (Posts about toolkit)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link href="http://wirecell.github.io/news/categories/cat_toolkit.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Sun, 28 Jul 2019 15:57:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Porting and Integration Begun</title><link>http://wirecell.github.io/news/posts/porting-and-integration-begun/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
 Xin concluded an intense effort to port the prototype &lt;a href="https://github.com/WireCell/wire-cell-sigproc"&gt;signal processing code into the toolkit&lt;/a&gt;.
 &lt;/p&gt;
 
@@ -48,18 +48,12 @@ Today sees some long needed cleanups in how we build WCT and WCP and their exter
 &lt;/p&gt;
 
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a href="http://jsonnet.org/"&gt;Jsonnet&lt;/a&gt;, as previously announced is now &lt;b&gt;required&lt;/b&gt; by WCT has a build package added to &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/repo/packages/jsonnet/package.py"&gt;wire-cell-spack&lt;/a&gt;. 
-&lt;/li&gt;
-&lt;li&gt;A &lt;a href="http://www.phy.bnl.gov/~bviren/wire-cell-spack-mirror/"&gt;source mirror&lt;/a&gt; is now available in case you have trouble getting any required dependencies.  The Spack build will use this mirror automatically after being configured as shown in &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#failure-to-download-a-package-source"&gt;the README&lt;/a&gt; file.
-&lt;/li&gt;
-&lt;li&gt;Besides the tip of the &lt;code&gt;master&lt;/code&gt; branch, specific releases starting with 0.5.2 of WCT can now be installed with Spack.
-&lt;/li&gt;
-&lt;li&gt;The WCP and its dependencies can now be built using wire-cell-spack.  WCP uses a subset of the packages that WCT requires and the two can be installed side-by-side sharing these packages.
-&lt;/li&gt;
-&lt;li&gt;See also &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#using-spack-views"&gt;this section of the README&lt;/a&gt; for recommended way to develop either WCP or WCT code against Spack-built dependencies.
-&lt;/li&gt;
-&lt;li&gt;The cursed XData package is removed from both WCP and WCT.
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://jsonnet.org/"&gt;Jsonnet&lt;/a&gt;, as previously announced is now &lt;b&gt;required&lt;/b&gt; by WCT has a build package added to &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/repo/packages/jsonnet/package.py"&gt;wire-cell-spack&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;A &lt;a href="http://www.phy.bnl.gov/~bviren/wire-cell-spack-mirror/"&gt;source mirror&lt;/a&gt; is now available in case you have trouble getting any required dependencies.  The Spack build will use this mirror automatically after being configured as shown in &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#failure-to-download-a-package-source"&gt;the README&lt;/a&gt; file.&lt;/li&gt;
+&lt;li&gt;Besides the tip of the &lt;code&gt;master&lt;/code&gt; branch, specific releases starting with 0.5.2 of WCT can now be installed with Spack.&lt;/li&gt;
+&lt;li&gt;The WCP and its dependencies can now be built using wire-cell-spack.  WCP uses a subset of the packages that WCT requires and the two can be installed side-by-side sharing these packages.&lt;/li&gt;
+&lt;li&gt;See also &lt;a href="https://github.com/WireCell/wire-cell-spack/blob/master/README.org#using-spack-views"&gt;this section of the README&lt;/a&gt; for recommended way to develop either WCP or WCT code against Spack-built dependencies.&lt;/li&gt;
+&lt;li&gt;The cursed XData package is removed from both WCP and WCT.&lt;/li&gt;
 &lt;/ul&gt;</description><category>build</category><category>devel</category><guid>http://wirecell.github.io/news/posts/build-cleanups/</guid><pubDate>Wed, 21 Jun 2017 19:16:40 GMT</pubDate></item><item><title>Exceptions</title><link>http://wirecell.github.io/news/posts/exceptions/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 Throwing exceptions is now a SOP for indicating some error.  
 &lt;/p&gt;
@@ -81,7 +75,7 @@ Hanyu also added a &lt;a href="https://github.com/WireCell/wire-cell-sio/blob/ma
 This ROOT-based format has been used for a while now to transfer data
 between the Wire-Cell Prototype and other applications.
 &lt;/p&gt;</description><category>devel</category><category>simulation</category><guid>http://wirecell.github.io/news/posts/basic-simulation-essentially-working-and-celltree-support/</guid><pubDate>Sat, 17 Jun 2017 18:50:06 GMT</pubDate></item><item><title>Jsonnet now mandatory and CLI parameter injection</title><link>http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
-&lt;i&gt;Jsonnet&lt;/i&gt; is now a required external dependency.  
+&lt;a href="https://jsonnet.org"&gt;Jsonnet&lt;/a&gt; is now a required external dependency.  
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/</guid><pubDate>Fri, 16 Jun 2017 18:34:03 GMT</pubDate></item></channel></rss>
