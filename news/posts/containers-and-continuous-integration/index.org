@@ -32,9 +32,9 @@ execute.
 Currently, the Wire-Cell Toolkit has enabled Travis-CI on two
 repositories:
 
-- code :: [[https://travis-ci.org/WireCell/wire-cell-build][https://api.travis-ci.org/WireCell/wire-cell-build.svg?branch=master]]   [[https://github.com/WireCell/wire-cell-build/blob/master/.travis.yml][wire-cell-build/.travis.yml]]
+- code :: [[https://travis-ci.org/WireCell/wire-cell-build][https://api.travis-ci.org/WireCell/wire-cell-build.svg]]  [[https://github.com/WireCell/wire-cell-build/blob/master/.travis.yml][wire-cell-build/.travis.yml]]
 
-- docs :: [[https://travis-ci.org/WireCell/wire-cell-docs][https://api.travis-ci.org/WireCell/wire-cell-docs.svg?branch=master]] [[https://github.com/WireCell/wire-cell-docs/blob/master/.travis.yml][wire-cell-docs/.travis.yml]]
+- docs :: [[https://travis-ci.org/WireCell/wire-cell-docs][https://api.travis-ci.org/WireCell/wire-cell-docs.svg]] [[https://github.com/WireCell/wire-cell-docs/blob/master/.travis.yml][wire-cell-docs/.travis.yml]]
 
 If those icons are "green" then the most recent build has succeeded.  Otherwise, the source may be broken or something is wrong with the Docker images or with the configuration for Travis-CI.
 The rest of this post gives some details on this system.
