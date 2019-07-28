@@ -84,9 +84,9 @@ detectors.  This post describes some recent steps to fix this problem.
 
 <!-- TEASER_END -->
 
-<div id="outline-container-orgd7d0d1b" class="outline-2">
-<h2 id="orgd7d0d1b">Survey of Responses</h2>
-<div class="outline-text-2" id="text-orgd7d0d1b">
+<div id="outline-container-orga0e52fa" class="outline-2">
+<h2 id="orga0e52fa">Survey of Responses</h2>
+<div class="outline-text-2" id="text-orga0e52fa">
 <p>
 There are various responses that matter in LArTPC.  In WCT they include:
 </p>
@@ -111,9 +111,9 @@ simulation components (<code>Ductor</code> via <code>ImpactZipper</code>)</dd>
 </dl>
 </div>
 
-<div id="outline-container-org9c4eb98" class="outline-3">
-<h3 id="org9c4eb98">Field Response Functions</h3>
-<div class="outline-text-3" id="text-org9c4eb98">
+<div id="outline-container-org6f31f00" class="outline-3">
+<h3 id="org6f31f00">Field Response Functions</h3>
+<div class="outline-text-3" id="text-org6f31f00">
 <p>
 The field response functions (FR) are a large family of waveforms
 defined along many impact positions that span (so far) up to +/- 10
@@ -152,9 +152,9 @@ response functions.
 </div>
 </div>
 
-<div id="outline-container-org88c058f" class="outline-3">
-<h3 id="org88c058f">Electronics Response</h3>
-<div class="outline-text-3" id="text-org88c058f">
+<div id="outline-container-orgb97af96" class="outline-3">
+<h3 id="orgb97af96">Electronics Response</h3>
+<div class="outline-text-3" id="text-orgb97af96">
 <p>
 The Electronics Response is a single function giving a waveform
 parameterized by gain and shaping time.  It has a functional form
@@ -180,9 +180,9 @@ configuration parameter.
 </div>
 </div>
 
-<div id="outline-container-orgde65cb5" class="outline-3">
-<h3 id="orgde65cb5">RC Response</h3>
-<div class="outline-text-3" id="text-orgde65cb5">
+<div id="outline-container-org0e40993" class="outline-3">
+<h3 id="org0e40993">RC Response</h3>
+<div class="outline-text-3" id="text-org0e40993">
 <p>
 The RC response is simply that of an RC circuit.  It's parameterized
 by a "width" in units of time.  It also delegates to a hard-wired
@@ -192,9 +192,9 @@ it up just like ER.
 </div>
 </div>
 
-<div id="outline-container-org31e089b" class="outline-3">
-<h3 id="org31e089b">Plane Impact Response</h3>
-<div class="outline-text-3" id="text-org31e089b">
+<div id="outline-container-org6728a83" class="outline-3">
+<h3 id="org6728a83">Plane Impact Response</h3>
+<div class="outline-text-3" id="text-org6728a83">
 <p>
 The <a href="https://github.com/WireCell/wire-cell-iface/blob/master/inc/WireCellIface/IPlaneImpactResponse.h">plane impact response (PIR)</a> is a special purpose component which
 rolls up the FRs and optionally some number of other responses.  It
@@ -210,9 +210,9 @@ the same name so that an RC<sup>2</sup> response is effected).
 </div>
 </div>
 
-<div id="outline-container-orgc3ecefe" class="outline-2">
-<h2 id="orgc3ecefe">Why Refactoring?</h2>
-<div class="outline-text-2" id="text-orgc3ecefe">
+<div id="outline-container-orga4c4e57" class="outline-2">
+<h2 id="orga4c4e57">Why Refactoring?</h2>
+<div class="outline-text-2" id="text-orga4c4e57">
 <p>
 So, what's with the refactoring?  Well, we used to violate "everything
 is a component" guideline with all these responses.  This started
@@ -241,9 +241,9 @@ hard-wiring.
 </div>
 </div>
 
-<div id="outline-container-orgb2d8620" class="outline-2">
-<h2 id="orgb2d8620">What now</h2>
-<div class="outline-text-2" id="text-orgb2d8620">
+<div id="outline-container-orgb33771d" class="outline-2">
+<h2 id="orgb33771d">What now</h2>
+<div class="outline-text-2" id="text-orgb33771d">
 <p>
 Mostly this refactoring is not a change that users will care about.
 However, some things may have broken in the near term.  There are also

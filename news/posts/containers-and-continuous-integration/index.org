@@ -11,9 +11,10 @@
 
 #+END_COMMENT
 
-Previously, [[singularity-containers-for-wct-and-wcls-running-and-development/][Singularity containers]] were introduce to ease development.
-Recently, Docker container descriptions have been developed to
-introduce Travis-CI continuous integration to the Wire-Cell Toolkit.
+Previously posts have discussed Singularity containers which were
+introduced to provide easy development environments.  Recently, Docker
+container descriptions have been developed to introduce Travis-CI
+continuous integration to the Wire-Cell Toolkit.
 
 {{{TEASER_END}}}
 

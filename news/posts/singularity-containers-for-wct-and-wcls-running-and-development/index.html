@@ -95,9 +95,9 @@ file from the package holding the container building scripts.  See
 that <code>README</code> for caveats and help if you have problems.
 </p>
 
-<div id="outline-container-org592d3d2" class="outline-2">
-<h2 id="org592d3d2">What is a container</h2>
-<div class="outline-text-2" id="text-org592d3d2">
+<div id="outline-container-orgbefd7ed" class="outline-2">
+<h2 id="orgbefd7ed">What is a container</h2>
+<div class="outline-text-2" id="text-orgbefd7ed">
 <p>
 In this context a "container" of "container image" is ultimately a big
 file that represents an entire OS (excluding the kernel) and any
@@ -132,10 +132,10 @@ c$ echo "this command runs in container environment"
 </div>
 </div>
 
-<div id="outline-container-orgce2762a" class="outline-2">
-<h2 id="orgce2762a">I wanna run <code>wire-cell</code>
+<div id="outline-container-orge30d10f" class="outline-2">
+<h2 id="orge30d10f">I wanna run <code>wire-cell</code>
 </h2>
-<div class="outline-text-2" id="text-orgce2762a">
+<div class="outline-text-2" id="text-orge30d10f">
 <p>
 Download this relatively svelte <a href="https://www.phy.bnl.gov/~bviren/simg/wctdev.simg">wctdev.simg (717 MB)</a> image file and 
 run this:
@@ -148,9 +148,9 @@ c$ wire-cell --help
 </div>
 </div>
 
-<div id="outline-container-org1a0bfa4" class="outline-2">
-<h2 id="org1a0bfa4">I  wanna build the <code>wctdev</code> image</h2>
-<div class="outline-text-2" id="text-org1a0bfa4">
+<div id="outline-container-orgcf6719a" class="outline-2">
+<h2 id="orgcf6719a">I  wanna build the <code>wctdev</code> image</h2>
+<div class="outline-text-2" id="text-orgcf6719a">
 <p>
 You should read the <a href="https://github.com/WireCell/wire-cell-singularity/blob/master/README.org">README</a> for caveats but it boils down to setting up
 Singularity, cloning the <code>wire-cell-singularity</code> repo and running:
@@ -164,9 +164,9 @@ n$ sudo singularity build wctdev.simg Singularity.wctdev
 </div>
 
 
-<div id="outline-container-orgf778823" class="outline-2">
-<h2 id="orgf778823">I wanna newer WCT than what is included</h2>
-<div class="outline-text-2" id="text-orgf778823">
+<div id="outline-container-org46740ce" class="outline-2">
+<h2 id="org46740ce">I wanna newer WCT than what is included</h2>
+<div class="outline-text-2" id="text-org46740ce">
 <p>
 Here you basically use the same <code>wctdev.simg</code> image file but ignore
 the fact it provides a version of WCT and instead you build your own
@@ -195,9 +195,9 @@ C$ wire-cell --help
 </div>
 </div>
 
-<div id="outline-container-orgd0788f2" class="outline-2">
-<h2 id="orgd0788f2">I wanna run WC/LS jobs</h2>
-<div class="outline-text-2" id="text-orgd0788f2">
+<div id="outline-container-org975a5c2" class="outline-2">
+<h2 id="org975a5c2">I wanna run WC/LS jobs</h2>
+<div class="outline-text-2" id="text-org975a5c2">
 <p>
 "WC/LS" means Wire-Cell Toolkit + LArSoft.  It requires going "all in"
 with FNAL software ecosystem.  To get started, 
@@ -217,9 +217,9 @@ The WCT this provides is a recent released version built as a "UPS product" name
 </div>
 </div>
 
-<div id="outline-container-orgdba3eca" class="outline-2">
-<h2 id="orgdba3eca">I wanna build the <code>wclsdev</code> image</h2>
-<div class="outline-text-2" id="text-orgdba3eca">
+<div id="outline-container-org6f97f44" class="outline-2">
+<h2 id="org6f97f44">I wanna build the <code>wclsdev</code> image</h2>
+<div class="outline-text-2" id="text-org6f97f44">
 <p>
 All I can say here is I wish you the best of luck.  UPS and
 Singularity are not friends.  See the <a href="https://github.com/WireCell/wire-cell-singularity/blob/master/README.org">README</a> for guidance.
@@ -227,9 +227,9 @@ Singularity are not friends.  See the <a href="https://github.com/WireCell/wire-
 </div>
 </div>
 
-<div id="outline-container-org532cde4" class="outline-2">
-<h2 id="org532cde4">I wanna build a newer <code>wirecell</code> UPS product</h2>
-<div class="outline-text-2" id="text-org532cde4">
+<div id="outline-container-orgc3d6967" class="outline-2">
+<h2 id="orgc3d6967">I wanna build a newer <code>wirecell</code> UPS product</h2>
+<div class="outline-text-2" id="text-orgc3d6967">
 <p>
 Here, the trick is to build WCT "as normal" except for two things:
 </p>
@@ -263,9 +263,9 @@ In the example:
 </div>
 </div>
 
-<div id="outline-container-org51f7cfe" class="outline-2">
-<h2 id="org51f7cfe">I wanna develop WC/LS</h2>
-<div class="outline-text-2" id="text-org51f7cfe">
+<div id="outline-container-orgf1545e4" class="outline-2">
+<h2 id="orgf1545e4">I wanna develop WC/LS</h2>
+<div class="outline-text-2" id="text-orgf1545e4">
 <p>
 This last step is rather involved but straight-forward.  I leave the
 details to the <a href="https://github.com/WireCell/wire-cell-singularity/blob/master/README.org">README</a> and the scripts provided in the

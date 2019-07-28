@@ -17,7 +17,7 @@ clients, kx509 and other stuff that is needed to download DUNE data.
 {{{TEASER_END}}}
 
 
-In [[./singularity-containers-for-wct-and-wcls-running-and-development/][a previous post]] Singularity containers were introduced as the
+In a previous post Singularity containers were introduced as the
 preferred method (by some) for providing a base OS for WCT development
 and use.  Coupled with CVMFS they are very simple way to replicate a
 Fermilab Scientific Linux UPS ecosystem without moving to Illinois.

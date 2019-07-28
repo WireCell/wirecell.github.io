@@ -74,9 +74,9 @@ The WCT configuration language Jsonnet allows to exploit software development pa
 
 <!-- TEASER_END -->
 
-<div id="outline-container-org464142e" class="outline-2">
-<h2 id="org464142e">Frames and Traces and Ticks</h2>
-<div class="outline-text-2" id="text-org464142e">
+<div id="outline-container-org828d108" class="outline-2">
+<h2 id="org828d108">Frames and Traces and Ticks</h2>
+<div class="outline-text-2" id="text-org828d108">
 <p>
 First, just to set the stage, one of the main data types in WCT is a
 "frame" which is a collection of "traces" and each "trace" is
@@ -108,9 +108,9 @@ config these are the relevant parameters:
 </div>
 </div>
 
-<div id="outline-container-org47412b4" class="outline-2">
-<h2 id="org47412b4">MicroBooNE Case</h2>
-<div class="outline-text-2" id="text-org47412b4">
+<div id="outline-container-orge02be00" class="outline-2">
+<h2 id="orge02be00">MicroBooNE Case</h2>
+<div class="outline-text-2" id="text-orge02be00">
 <p>
 MicroBooNE has a somewhat confusing set of numbers that come into play here.
 </p>
@@ -139,9 +139,9 @@ of data loss due to tick-truncation or a small source of artifacts due to zero-p
 </div>
 </div>
 
-<div id="outline-container-orgf88fcbf" class="outline-2">
-<h2 id="orgf88fcbf">Overriding parameters</h2>
-<div class="outline-text-2" id="text-orgf88fcbf">
+<div id="outline-container-org87becfe" class="outline-2">
+<h2 id="org87becfe">Overriding parameters</h2>
+<div class="outline-text-2" id="text-org87becfe">
 <p>
 Finally, we must have a way to override the default value of
 <code>daq.nticks</code> in multiple contexts.  Already it is overridden for
@@ -174,9 +174,9 @@ context.
 </p>
 </div>
 
-<div id="outline-container-org8258dde" class="outline-3">
-<h3 id="org8258dde">Overriding in the main Jsonnet file</h3>
-<div class="outline-text-3" id="text-org8258dde">
+<div id="outline-container-orgf18f929" class="outline-3">
+<h3 id="orgf18f929">Overriding in the main Jsonnet file</h3>
+<div class="outline-text-3" id="text-orgf18f929">
 <p>
 On a case-by-case basis one can override specific MicroBooNE
 parameters inside the "main" Jsonnet file following the exact same
@@ -206,9 +206,9 @@ Just after creation, one can override using a pattern like:
 </div>
 </div>
 
-<div id="outline-container-org0106959" class="outline-3">
-<h3 id="org0106959">Overriding many parameters</h3>
-<div class="outline-text-3" id="text-org0106959">
+<div id="outline-container-org7731525" class="outline-3">
+<h3 id="org7731525">Overriding many parameters</h3>
+<div class="outline-text-3" id="text-org7731525">
 <p>
 It may come to pass that many parameters must be overriden in common for many uses.  For example, we must pick 9600 ticks for simulation.  It's possible other parameters will need to be modified for all or a subset of common simulation goals.  It becomes tedious to do the above few lines inside ever main file and would be cleaner to move this overriding into its own file to be shared by many mains.  One might then create <code>pgrapher/experiment/uboone/params-sim.jsonnet</code> with something like:
 </p>

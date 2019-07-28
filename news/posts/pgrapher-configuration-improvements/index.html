@@ -102,9 +102,9 @@ means the configuration author needs a way to encapsulate incomplete
 complete graph can be built from the smaller parts.
 </p>
 
-<div id="outline-container-org5059b26" class="outline-2">
-<h2 id="org5059b26">Graphs of Nodes and Nodes of Graphs</h2>
-<div class="outline-text-2" id="text-org5059b26">
+<div id="outline-container-orgae8664e" class="outline-2">
+<h2 id="orgae8664e">Graphs of Nodes and Nodes of Graphs</h2>
+<div class="outline-text-2" id="text-orgae8664e">
 <p>
 To jump the the punch line, the idiom that has been developed is to
 allow for an incomplete (sub) graph to be recast into a single "node"
@@ -124,9 +124,9 @@ into the new methods.
 </div>
 </div>
 
-<div id="outline-container-org6b4d25f" class="outline-2">
-<h2 id="org6b4d25f">Pgrapher Graph</h2>
-<div class="outline-text-2" id="text-org6b4d25f">
+<div id="outline-container-orgd0b4370" class="outline-2">
+<h2 id="orgd0b4370">Pgrapher Graph</h2>
+<div class="outline-text-2" id="text-orgd0b4370">
 <p>
 As hinted in the previous post, a Pgrapher graph is ultimately built
 up of <i>edges</i> which connect <i>nodes</i> via their <i>ports</i>.  For example
@@ -168,9 +168,9 @@ other nodes between, say, <code>fanout</code> and <code>sink1</code>.
 </div>
 </div>
 
-<div id="outline-container-org4e2ba57" class="outline-2">
-<h2 id="org4e2ba57">Pnodes</h2>
-<div class="outline-text-2" id="text-org4e2ba57">
+<div id="outline-container-orga934c37" class="outline-2">
+<h2 id="orga934c37">Pnodes</h2>
+<div class="outline-text-2" id="text-orga934c37">
 <p>
 To provide more flexibility a Jsonnet library <a href="https://github.com/WireCell/wire-cell-cfg/blob/master/pgraph.jsonnet">pgraph.jsonnet</a> has been
 developed.  It hinges on the concept of a <code>pnode</code>.  A <code>pnode</code> is an
@@ -206,13 +206,13 @@ the "edges" list is what is given to the Pgrapher app.
 </div>
 </div>
 
-<div id="outline-container-orgbc4d0af" class="outline-2">
-<h2 id="orgbc4d0af">Examples</h2>
-<div class="outline-text-2" id="text-orgbc4d0af">
+<div id="outline-container-orgaa04e28" class="outline-2">
+<h2 id="orgaa04e28">Examples</h2>
+<div class="outline-text-2" id="text-orgaa04e28">
 </div>
-<div id="outline-container-org139d9ae" class="outline-3">
-<h3 id="org139d9ae">Produce a <code>pnode</code> from an <code>INode</code> configuration object</h3>
-<div class="outline-text-3" id="text-org139d9ae">
+<div id="outline-container-org4bdbc04" class="outline-3">
+<h3 id="org4bdbc04">Produce a <code>pnode</code> from an <code>INode</code> configuration object</h3>
+<div class="outline-text-3" id="text-org4bdbc04">
 <p>
 It all starts with wrapping a single <code>INode</code> configuration object.
 This is done through a function:
@@ -270,9 +270,9 @@ local other = import "some_other_file.jsonnet";
 </div>
 </div>
 
-<div id="outline-container-orgf00a0d9" class="outline-3">
-<h3 id="orgf00a0d9">Intern Pnodes</h3>
-<div class="outline-text-3" id="text-orgf00a0d9">
+<div id="outline-container-org4d84bda" class="outline-3">
+<h3 id="org4d84bda">Intern Pnodes</h3>
+<div class="outline-text-3" id="text-org4d84bda">
 <p>
 So far, this is just more work.  Where the payoff begins is the
 ability to pack up connected <code>pnodes</code> into an encompassing <code>pnode</code>.
@@ -320,9 +320,9 @@ interning to produce a <code>pnode</code> holding again a complete graph.
 </div>
 </div>
 
-<div id="outline-container-org3f10639" class="outline-3">
-<h3 id="org3f10639">Edge breaking and node insertion</h3>
-<div class="outline-text-3" id="text-org3f10639">
+<div id="outline-container-org703563a" class="outline-3">
+<h3 id="org703563a">Edge breaking and node insertion</h3>
+<div class="outline-text-3" id="text-org703563a">
 <p>
 As mentioned above, given knowledge of the order of edges <b>inside</b> a
 <code>pnode</code> it is possible to derive a new <code>pnode</code> which breaks an edge in
@@ -347,9 +347,9 @@ which is done when setting <code>n123inserted</code>.
 </div>
 </div>
 
-<div id="outline-container-org7c67df8" class="outline-3">
-<h3 id="org7c67df8">A fancy example</h3>
-<div class="outline-text-3" id="text-org7c67df8">
+<div id="outline-container-org91369a9" class="outline-3">
+<h3 id="org91369a9">A fancy example</h3>
+<div class="outline-text-3" id="text-org91369a9">
 <p>
 The above example uses a graph which is really a simple linear
 pipeline.  Real graphs may be much more complex.  For example, in the
@@ -399,9 +399,9 @@ to take this <code>nominal</code> node and connect it to others.
 </div>
 </div>
 
-<div id="outline-container-orgc3b65f0" class="outline-2">
-<h2 id="orgc3b65f0">Going further</h2>
-<div class="outline-text-2" id="text-orgc3b65f0">
+<div id="outline-container-org3ac3e6d" class="outline-2">
+<h2 id="org3ac3e6d">Going further</h2>
+<div class="outline-text-2" id="text-org3ac3e6d">
 <p>
 To learn more about this new
 configuration idiom you may wish to run the example (excerpted above):
@@ -452,9 +452,9 @@ through <code>pgraph</code> functions of the same name.
 </div>
 
 
-<div id="outline-container-org1b4f5a1" class="outline-2">
-<h2 id="org1b4f5a1">Summary</h2>
-<div class="outline-text-2" id="text-org1b4f5a1">
+<div id="outline-container-orga59a69e" class="outline-2">
+<h2 id="orga59a69e">Summary</h2>
+<div class="outline-text-2" id="text-orga59a69e">
 <p>
 This turned into a long post.  Eventually, I hope it will be distilled
 and integrated into the manual.  It shows what you need to know to get
@@ -502,9 +502,9 @@ And, probably several variants I'm forgetting.
 </div>
 </div>
 
-<div id="outline-container-org146ac61" class="outline-2">
-<h2 id="org146ac61">Edits</h2>
-<div class="outline-text-2" id="text-org146ac61">
+<div id="outline-container-orgad90acd" class="outline-2">
+<h2 id="orgad90acd">Edits</h2>
+<div class="outline-text-2" id="text-orgad90acd">
 <ul class="org-ul">
 <li>
 <span class="timestamp-wrapper"><span class="timestamp">[2018-09-11 Tue] </span></span> update to call <code>pgraph.uses()</code> and <code>pgraph.edges()</code> to build final lists.</li>

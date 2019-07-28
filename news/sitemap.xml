@@ -7,166 +7,170 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>http://wirecell.github.io/news/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/2017/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/2018/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/2019/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/archive.html</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:56:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/</loc>
-  <lastmod>2019-07-28T15:57:00Z</lastmod>
+  <lastmod>2019-07-28T17:56:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/build/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/cat_posts/</loc>
-  <lastmod>2019-07-28T15:57:00Z</lastmod>
+  <lastmod>2019-07-28T17:56:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/cat_toolkit/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/cli/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/config/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/data/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/devel/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/dfp/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/gen/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/graph/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/larsoft/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/sigproc/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/simulation/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/uboone/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/user/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/galleries/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/index-1.html</loc>
-  <lastmod>2019-07-28T15:57:00Z</lastmod>
+  <lastmod>2019-07-28T17:56:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/listings/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/basic-simulation-essentially-working-and-celltree-support/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/build-cleanups/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/certifiable-singularity/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/posts/containers-and-continuous-integration/</loc>
+  <lastmod>2019-07-28T17:56:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/default-config-dumper/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/exceptions/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/jsonnet-now-mandatory-and-cli-parameter-injection/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/logging/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/new-configuration-data-package/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/overriding-configuration-parameters/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/pgrapher-configuration-improvements/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/pgrapher-execution-engine/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/porting-and-integration-begun/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/response-refactoring/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/root-dependency-management-changes/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/signal-processing-now-in-component-form/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/simulation-updates/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/</loc>
-  <lastmod>2019-07-28T15:56:00Z</lastmod>
+  <lastmod>2019-07-28T17:55:00Z</lastmod>
  </url>
 </urlset>
