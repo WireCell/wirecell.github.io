@@ -1,0 +1,112 @@
+#+BEGIN_COMMENT
+.. title: Containers and Continuous Integration
+.. slug: containers-and-continuous-integration
+.. date: 2019-07-28 12:56:36 UTC-04:00
+.. tags: build,devel,user
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+
+#+END_COMMENT
+
+Previously, [[singularity-containers-for-wct-and-wcls-running-and-development/][Singularity containers]] were introduce to ease development.
+Recently, Docker container descriptions have been developed to
+introduce Travis-CI continuous integration to the Wire-Cell Toolkit.
+
+{{{TEASER_END}}}
+
+Travis-CI is a popular /continuous integration/ service that can perform
+builds triggered by commits to GitHub.  To do this it must set up an
+entire OS and build environment from scratch each time it is
+triggered.  One of the best ways to make this reasonably fast is to
+bundle as much as possible into a Docker container.
+
+For builds to trigger, a GitHub repository must be connected to a
+Travis-CI account and a ~.travis.yml~ file must be placed in the
+repository.  This file contains instructions that Travis-CI will
+execute.  
+
+Currently, the Wire-Cell Toolkit has enabled Travis-CI on two
+repositories:
+
+- code :: [[https://travis-ci.org/WireCell/wire-cell-build][https://api.travis-ci.org/WireCell/wire-cell-build.svg?branch=master]]   [[https://github.com/WireCell/wire-cell-build/blob/master/.travis.yml][wire-cell-build/.travis.yml]]
+
+- docs :: [[https://travis-ci.org/WireCell/wire-cell-docs][https://api.travis-ci.org/WireCell/wire-cell-docs.svg?branch=master]] [[https://github.com/WireCell/wire-cell-docs/blob/master/.travis.yml][wire-cell-docs/.travis.yml]]
+
+If those icons are "green" then the most recent build has succeeded.  Otherwise, the source may be broken or something is wrong with the Docker images or with the configuration for Travis-CI.
+The rest of this post gives some details on this system.
+
+* Using the Docker Images
+
+Besides providing the basis for the CI, these Docker images can be
+used by developers or end users that want to avoid building up a
+working environment by other means.  In the future, Singularity images
+may be derived from the Docker images which will provide even more
+ease of use but for now, Docker must be installed in order to make use
+of them.
+
+To run inside the same environment as used by the CI to test the WCT code:
+
+#+BEGIN_EXAMPLE
+  native$ docker run brettviren/wct-testing 
+  docker$ ./run.sh
+#+END_EXAMPLE
+
+*Note:* by default any modifications made while inside the container
+will *be lost* once the container is exited.
+
+To run inside the environment used to test the WCT docs:
+
+#+BEGIN_EXAMPLE
+  native$ docker run -it brettviren/wct-documentation
+  docker$ ./anonbuild.sh
+#+END_EXAMPLE
+
+Currently, there is no facility to extra build artifacts from the Travis-CI environment.  However the container has support for uploading the results of building the documentation to the GitHub repository that is reflected at https://wirecell.github.io/:
+
+#+BEGIN_EXAMPLE
+  $ docker run \
+     -e COMMIT_USER="$(git config user.name)" \
+     -e COMMIT_EMAIL="$(git config user.email)" \
+     -e SSH_KEY="$(cat ~/.ssh/id_rsa_wctghdocs)" \
+     -it brettviren/wct-documentation ./update.sh
+#+END_EXAMPLE
+
+The *public* SSH key corresponding to the *private* key that is passed
+through the environment above must be added to the ~WireCell~
+organization as a "deployment key" for the eventual ~git push~ to
+succeed.
+
+
+* Building The Docker Images
+
+You can rebuild the Docker images for local use or uploading to Docker
+Hub.
+
+#+BEGIN_EXAMPLE
+  $ git clone git@github.com:WireCell/wire-cell-containers.git
+  $ cd wire-cell-containers/docker/
+  $ docker build -t brettviren/wct-deb debian/
+  $ docker build -t brettviren/wct-testing testing/
+  $ docker build -t brettviren/wct-documentation documentation/
+
+  # optionally push results to docker-hub
+  $ docker push brettviren/wct-deb 
+  $ docker push brettviren/wct-testing
+  $ docker push brettviren/wct-documentation
+#+END_EXAMPLE 
+
+Of course, replace ~brettviren~ with your own label, as desired.  
+
+* To do
+
+Some possible items of future development may include:
+
+- [ ] derive Singularity images from Docker images.
+- [ ] add ROOT to ~wct-testing~.
+- [ ] create a variant image which includes CVMFS to provide externals needed for testing WCT integrated into LArSoft.
+- [ ] find a way to upload build of docs to ~wirecell.github.io~
+- [ ] include automated building of Doxygen reference docs.
+
