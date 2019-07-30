@@ -69,27 +69,27 @@
   - [`wire-cell-util`](#pkg-util)
     - [Units](#util-units)
     - [Persistence](#util-persistence)
-    - [Etc](#org3c5c689)
+    - [Etc](#orge14a024)
   - [`wire-cell-iface`](#pkg-iface)
-    - [Data](#org4f63b96)
-    - [Nodes](#org9d5bcbb)
-    - [Misc](#orgf41dcd3)
+    - [Data](#org35ea46d)
+    - [Nodes](#org3f60772)
+    - [Misc](#org4784582)
   - [`wire-cell-gen`](#pkg-gen)
-    - [Depositions](#org5b83d62)
-    - [Drifting](#org5924e1c)
-    - [Response](#org53f22fd)
-    - [Digitizing](#org923d2d8)
-    - [Noise](#orgc78782b)
-    - [Frame Summing](#org759cf19)
-    - [Execution Graphs](#org3c533ed)
+    - [Depositions](#org7894239)
+    - [Drifting](#org7172d84)
+    - [Response](#org8dd256f)
+    - [Digitizing](#orgece7b65)
+    - [Noise](#orgeb59506)
+    - [Frame Summing](#org3c8a140)
+    - [Execution Graphs](#org08d3ae5)
   - [`wire-cell-waftools`](#pkg-waftools)
     - [Recreating `wcb`](#generate-wcb)
     - [Included Waf tools](#bundle-waf-tools)
 - [Data Flow Programming](#data-flow-programming)
-  - [Node basics](#orgc0f3196)
-  - [Node execution paradigms](#org909e9ad)
-  - [DFP execution strategies](#org05fdce8)
-  - [End-of-stream Protocol](#orgfc0bd59)
+  - [Node basics](#org6a6ffca)
+  - [Node execution paradigms](#org47e2a5b)
+  - [DFP execution strategies](#org70c9a5a)
+  - [End-of-stream Protocol](#org4a65bc1)
 - [Other Topics](#other-topics)
   - [Garfield 2D Support](#garfield-2d-support)
     - [Garfield 2D data](#garfield-2d-data)
@@ -1457,7 +1457,7 @@ Describe units.
 Describe support for persistent files including compression and location.
 
 
-<a id="org3c5c689"></a>
+<a id="orge14a024"></a>
 
 ### Etc
 
@@ -1471,21 +1471,21 @@ Describe support for persistent files including compression and location.
 Brief overview but it&rsquo;s also in <./internals.md> so don&rsquo; t over do it.
 
 
-<a id="org4f63b96"></a>
+<a id="org35ea46d"></a>
 
 ### Data
 
 tbd
 
 
-<a id="org9d5bcbb"></a>
+<a id="org3f60772"></a>
 
 ### Nodes
 
 tbd
 
 
-<a id="orgf41dcd3"></a>
+<a id="org4784582"></a>
 
 ### Misc
 
@@ -1499,7 +1499,7 @@ tbd
 The `wire-cell-gen` package provides components for the generation of data. It primarily includes components which perform the grand convolution of drifted electron distribution, field and electronics response and associate statistical fluctuations (aka, the &ldquo;drift simulation&rdquo;).
 
 
-<a id="org5b83d62"></a>
+<a id="org7894239"></a>
 
 ### Depositions
 
@@ -1508,42 +1508,42 @@ Depositions (`IDepo` data objects, aka *depo*) are provided by `IDepoSource` com
 The `IDepoSource` components adapt to external sources of information about initial activity in the detector. These sources may provide \(dE\) and \(dX\) in which case two models can be applied to produce associated number of ionized electrons. The external source may provide only \(dE\) in which case the number of ionized electrons will be calculated for the deposition on the assumption that the particle is a MIP. Finally, the ionization process may be handled by the external source and the number of electrons may be given directly.
 
 
-<a id="org5924e1c"></a>
+<a id="org7172d84"></a>
 
 ### Drifting
 
 The `IDrifter` components are responsible for transforming a depo at one location and time into another depo at a different location and time while suitably adjusting the number of ionization electrons and their 2D extents. Each call of the component accepts a single depo and returns zero or more output depos. Input depos are assumed to be strictly time ordered and each batch of output depos likewise. In general a drifter must cache depos for some length of time in order to assure it has seen all possible depos to satisfy causality for the output.
 
 
-<a id="org53f22fd"></a>
+<a id="org8dd256f"></a>
 
 ### Response
 
 The field and electronics response of the detector is calculated in an `IDuctor` component. This is typically done by accepting depos at some *input plane* or *response plane*. Up to this plane, any drifting depo is assumed to induce a negligible detector response. For drifting beyond this plane some position dependent response is applied (ie, a field response calculated by 2D Garfield or 3D LARF). Each call to an `IDuctor` components accepts one depo and produces zero or more frames (`IFrame` data object). In general an `IDuctor` component must cache depos long enough to assure the produced frames satisfy causality. Output frames may be sparse in that not all channels may have traces (`ITrace` data objects) and in any given channel the traces may not cover the same span of time. The unit for the waveforms in the frame depend on the detector response applied. If field response alone is applied then the waveform is in units of sampled current (fixme, check code, it may be integrated over tick and thus charge.) If both field and electronics response is applied the waveform is in units of voltage.
 
 
-<a id="org923d2d8"></a>
+<a id="orgece7b65"></a>
 
 ### Digitizing
 
 An `IDigitizer` component applies a transformation to the waveform, typically but not necessarily in order to truncate it to ADC. These components are functional in that each call takes and produces one frame. Even if truncating to ADC the frame is still expressed as floating point values.
 
 
-<a id="orgc78782b"></a>
+<a id="orgeb59506"></a>
 
 ### Noise
 
 t.b.d.
 
 
-<a id="org759cf19"></a>
+<a id="org3c8a140"></a>
 
 ### Frame Summing
 
 Right now, frames can be summed by a bare function `FrameUtil::sum()`. This is better put into a component.
 
 
-<a id="org3c533ed"></a>
+<a id="org08d3ae5"></a>
 
 ### Execution Graphs
 
@@ -1607,7 +1607,7 @@ The scripts to make and test releases are also housed in this package.
 As described in <./internals.md> the Wire-Cell toolkit is based on interfaces and the components that implement them and the data processing components are specialized classes called &ldquo;nodes&rdquo;. This section describes more about nodes and their execution.
 
 
-<a id="orgc0f3196"></a>
+<a id="org6a6ffca"></a>
 
 ## Node basics
 
@@ -1630,7 +1630,7 @@ Typically, an interface from this zoo is further inherited to provide a more spe
 TBD: describe inheritance hierarchy and type erasure.
 
 
-<a id="org909e9ad"></a>
+<a id="org47e2a5b"></a>
 
 ## Node execution paradigms
 
@@ -1643,7 +1643,7 @@ A node does not &ldquo;know&rdquo; how it&rsquo;s called and in fact WCT support
 -   **data flow programming:** (DFP) more reusable generally may be achieved when all processing is encapsulated explicitly in nodes and their execution solely involves marshalling data as opaque objects between node calls. In DFP the nodes are thus arranged into a *directed acyclic graph* (DAG) with edges formed by queues which allow data to pass from one node&rsquo;s output to another node&rsquo;s input.
 
 
-<a id="org05fdce8"></a>
+<a id="org70c9a5a"></a>
 
 ## DFP execution strategies
 
@@ -1656,7 +1656,7 @@ WCT has abstracted the method of execution of a DFP graph and has implemented (o
 -   **multi-threaded pipeline:** to maxim core utilization, this mode will start new &ldquo;events&rdquo; while the graph is processing prior events.
 
 
-<a id="orgfc0bd59"></a>
+<a id="org4a65bc1"></a>
 
 ## End-of-stream Protocol
 

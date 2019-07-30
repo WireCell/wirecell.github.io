@@ -79,9 +79,9 @@ discover the defaults with the <code>ConfigDumper</code> WCT app component.
 
 <!-- TEASER_END -->
 
-<div id="outline-container-org31cbe56" class="outline-2">
-<h2 id="org31cbe56">Quick review of WCT config</h2>
-<div class="outline-text-2" id="text-org31cbe56">
+<div id="outline-container-org3aa2394" class="outline-2">
+<h2 id="org3aa2394">Quick review of WCT config</h2>
+<div class="outline-text-2" id="text-org3aa2394">
 <p>
 The <a href="https://wirecell.github.io/manual.html#configuration">configuration section of the WCT manual</a> has details but for here,
 it's worth giving a quick review of WCT configuration.  Ultimately, a
@@ -112,9 +112,9 @@ The job finally runs by locating any configured component objects which happen t
 </div>
 </div>
 
-<div id="outline-container-orgea46f23" class="outline-2">
-<h2 id="orgea46f23">Discovering Component Configuration</h2>
-<div class="outline-text-2" id="text-orgea46f23">
+<div id="outline-container-orge774317" class="outline-2">
+<h2 id="orge774317">Discovering Component Configuration</h2>
+<div class="outline-text-2" id="text-orge774317">
 <p>
 Okay, so what, you want to configure some component but you don't know
 what parameters it honors.  As always, the best way to know what code
@@ -236,9 +236,9 @@ $ cat dump.json |json_pp
 </div>
 </div>
 
-<div id="outline-container-orgdb811bc" class="outline-2">
-<h2 id="orgdb811bc">Using Configuration Dumps</h2>
-<div class="outline-text-2" id="text-orgdb811bc">
+<div id="outline-container-orgb6e39e4" class="outline-2">
+<h2 id="orgb6e39e4">Using Configuration Dumps</h2>
+<div class="outline-text-2" id="text-orgb6e39e4">
 <p>
 After running the <code>ConfigDumper</code> the user may wish to provide a
 variant configuration which is influenced by what was discovered.  A
@@ -246,9 +246,9 @@ few guidelines and caveats are useful here.
 </p>
 </div>
 
-<div id="outline-container-org4e6131c" class="outline-3">
-<h3 id="org4e6131c">JSON vs Jsonnet</h3>
-<div class="outline-text-3" id="text-org4e6131c">
+<div id="outline-container-org5d2d1ae" class="outline-3">
+<h3 id="org5d2d1ae">JSON vs Jsonnet</h3>
+<div class="outline-text-3" id="text-org5d2d1ae">
 <p>
 The <code>ConfigDumper</code> output is in JSON while humans are likely happier
 writing in the <a href="https://jsonnet.org">Jsonnet data language</a>.  By design, the former is a
@@ -296,9 +296,9 @@ local pir = {
 </div>
 </div>
 
-<div id="outline-container-org7442f05" class="outline-3">
-<h3 id="org7442f05">Missing or Empty Default Attributes</h3>
-<div class="outline-text-3" id="text-org7442f05">
+<div id="outline-container-org2fff406" class="outline-3">
+<h3 id="org2fff406">Missing or Empty Default Attributes</h3>
+<div class="outline-text-3" id="text-org2fff406">
 <p>
 A <i>user</i> configuration object is "deeply merged" in <b>to</b> the <i>default</i>
 configuration object by recursively copying <i>leaf attributes</i>.  Any
@@ -354,9 +354,9 @@ code or existing configuration produced by others.
 </div>
 
 
-<div id="outline-container-org5b8ee3f" class="outline-3">
-<h3 id="org5b8ee3f">Seeing what is available</h3>
-<div class="outline-text-3" id="text-org5b8ee3f">
+<div id="outline-container-org814081a" class="outline-3">
+<h3 id="org814081a">Seeing what is available</h3>
+<div class="outline-text-3" id="text-org814081a">
 <p>
 One can also use the <code>ConfigDumper</code> on all plugins and without any
 restriction on the component list in order to generate a list of all
@@ -448,9 +448,9 @@ mbOneChannelStatus
 </div>
 
 
-<div id="outline-container-orgee90627" class="outline-2">
-<h2 id="orgee90627">Summary</h2>
-<div class="outline-text-2" id="text-orgee90627">
+<div id="outline-container-org97b9df7" class="outline-2">
+<h2 id="org97b9df7">Summary</h2>
+<div class="outline-text-2" id="text-org97b9df7">
 <p>
 It's always best to read the source code to learn what configuration a
 component expects, and more importantly, what it does with the
