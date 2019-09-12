@@ -95,9 +95,9 @@ file from the package holding the container building scripts.  See
 that <code>README</code> for caveats and help if you have problems.
 </p>
 
-<div id="outline-container-org9980583" class="outline-2">
-<h2 id="org9980583">What is a container</h2>
-<div class="outline-text-2" id="text-org9980583">
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">What is a container</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 In this context a "container" of "container image" is ultimately a big
 file that represents an entire OS (excluding the kernel) and any
@@ -132,10 +132,10 @@ c$ echo "this command runs in container environment"
 </div>
 </div>
 
-<div id="outline-container-orgff0d8d4" class="outline-2">
-<h2 id="orgff0d8d4">I wanna run <code>wire-cell</code>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">I wanna run <code>wire-cell</code>
 </h2>
-<div class="outline-text-2" id="text-orgff0d8d4">
+<div class="outline-text-2" id="text-2">
 <p>
 Download this relatively svelte <a href="https://www.phy.bnl.gov/~bviren/simg/wctdev.simg">wctdev.simg (717 MB)</a> image file and 
 run this:
@@ -148,9 +148,9 @@ c$ wire-cell --help
 </div>
 </div>
 
-<div id="outline-container-org2afc4aa" class="outline-2">
-<h2 id="org2afc4aa">I  wanna build the <code>wctdev</code> image</h2>
-<div class="outline-text-2" id="text-org2afc4aa">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">I  wanna build the <code>wctdev</code> image</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 You should read the <a href="https://github.com/WireCell/wire-cell-singularity/blob/master/README.org">README</a> for caveats but it boils down to setting up
 Singularity, cloning the <code>wire-cell-singularity</code> repo and running:
@@ -164,9 +164,9 @@ n$ sudo singularity build wctdev.simg Singularity.wctdev
 </div>
 
 
-<div id="outline-container-org2c5a5d4" class="outline-2">
-<h2 id="org2c5a5d4">I wanna newer WCT than what is included</h2>
-<div class="outline-text-2" id="text-org2c5a5d4">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">I wanna newer WCT than what is included</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 Here you basically use the same <code>wctdev.simg</code> image file but ignore
 the fact it provides a version of WCT and instead you build your own
@@ -195,9 +195,9 @@ C$ wire-cell --help
 </div>
 </div>
 
-<div id="outline-container-orgbbc7e36" class="outline-2">
-<h2 id="orgbbc7e36">I wanna run WC/LS jobs</h2>
-<div class="outline-text-2" id="text-orgbbc7e36">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">I wanna run WC/LS jobs</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 "WC/LS" means Wire-Cell Toolkit + LArSoft.  It requires going "all in"
 with FNAL software ecosystem.  To get started, 
@@ -217,9 +217,9 @@ The WCT this provides is a recent released version built as a "UPS product" name
 </div>
 </div>
 
-<div id="outline-container-org4493486" class="outline-2">
-<h2 id="org4493486">I wanna build the <code>wclsdev</code> image</h2>
-<div class="outline-text-2" id="text-org4493486">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">I wanna build the <code>wclsdev</code> image</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 All I can say here is I wish you the best of luck.  UPS and
 Singularity are not friends.  See the <a href="https://github.com/WireCell/wire-cell-singularity/blob/master/README.org">README</a> for guidance.
@@ -227,15 +227,16 @@ Singularity are not friends.  See the <a href="https://github.com/WireCell/wire-
 </div>
 </div>
 
-<div id="outline-container-orge011502" class="outline-2">
-<h2 id="orge011502">I wanna build a newer <code>wirecell</code> UPS product</h2>
-<div class="outline-text-2" id="text-orge011502">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">I wanna build a newer <code>wirecell</code> UPS product</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 Here, the trick is to build WCT "as normal" except for two things:
 </p>
 
 <ul class="org-ul">
-<li>use FNAL UPS software ecosystem to provide the dependencies</li>
+<li>use FNAL UPS software ecosystem to provide the dependencies
+</li>
 <li>install WCT into a particular, prepared UPS "products" area for a <code>dev</code> version of the UPS product <code>wirecell</code>
 </li>
 </ul>
@@ -255,17 +256,19 @@ In the example:
 </p>
 
 <dl class="org-dl">
-<dt><code>wct-ups-install</code></dt>
-<dd>some native, empty directory to which you have write permission, it is what gets "mounted" to provide writable space for the <code>dev</code> version of the <code>wirecell</code> UPS product</dd>
-<dt><code>wct</code></dt>
-<dd>where you have WCT source cloned.  This is what will be built and installed into the above location.</dd>
+<dt> <code>wct-ups-install</code> </dt>
+<dd>some native, empty directory to which you have write permission, it is what gets "mounted" to provide writable space for the <code>dev</code> version of the <code>wirecell</code> UPS product
+</dd>
+<dt> <code>wct</code> </dt>
+<dd>where you have WCT source cloned.  This is what will be built and installed into the above location.
+</dd>
 </dl>
 </div>
 </div>
 
-<div id="outline-container-org193e8ad" class="outline-2">
-<h2 id="org193e8ad">I wanna develop WC/LS</h2>
-<div class="outline-text-2" id="text-org193e8ad">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">I wanna develop WC/LS</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 This last step is rather involved but straight-forward.  I leave the
 details to the <a href="https://github.com/WireCell/wire-cell-singularity/blob/master/README.org">README</a> and the scripts provided in the
@@ -273,15 +276,21 @@ details to the <a href="https://github.com/WireCell/wire-cell-singularity/blob/m
 </p>
 
 <ol class="org-ol">
-<li>Build the <code>dev</code> version of the <code>wirecell</code> UPS product as above.</li>
+<li>Build the <code>dev</code> version of the <code>wirecell</code> UPS product as above.
+</li>
 <li>Set up an <code>mrb</code> development area in the "standard" way based on the
-version of larsoft included in the container.</li>
+version of larsoft included in the container.
+</li>
 <li>Add a clone of the <code>larwirecell</code> source repository and check out or
-create a desired "feature branch"</li>
+create a desired "feature branch"
+</li>
 <li>Hack the UPS bookkeeping to use the <code>dev</code> UPS <code>wirecell</code> "product"
-installed as above.</li>
-<li>Build and rebuild <code>larwirecell</code> via <code>mrb</code> as "normal".</li>
-<li>Build and rebuild WCT into the <code>dev</code> UPS <code>wirecell</code> product area as "normal".</li>
+installed as above.
+</li>
+<li>Build and rebuild <code>larwirecell</code> via <code>mrb</code> as "normal".
+</li>
+<li>Build and rebuild WCT into the <code>dev</code> UPS <code>wirecell</code> product area as "normal".
+</li>
 </ol>
 <p>
 Once done you will be able to hack on both packages simultaneously,

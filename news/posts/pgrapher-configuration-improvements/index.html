@@ -102,9 +102,9 @@ means the configuration author needs a way to encapsulate incomplete
 complete graph can be built from the smaller parts.
 </p>
 
-<div id="outline-container-org33b76b5" class="outline-2">
-<h2 id="org33b76b5">Graphs of Nodes and Nodes of Graphs</h2>
-<div class="outline-text-2" id="text-org33b76b5">
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Graphs of Nodes and Nodes of Graphs</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 To jump the the punch line, the idiom that has been developed is to
 allow for an incomplete (sub) graph to be recast into a single "node"
@@ -124,16 +124,16 @@ into the new methods.
 </div>
 </div>
 
-<div id="outline-container-org43421fd" class="outline-2">
-<h2 id="org43421fd">Pgrapher Graph</h2>
-<div class="outline-text-2" id="text-org43421fd">
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Pgrapher Graph</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 As hinted in the previous post, a Pgrapher graph is ultimately built
 up of <i>edges</i> which connect <i>nodes</i> via their <i>ports</i>.  For example
 one edge can be written as:
 </p>
 
-<div class="highlight"><pre><span></span>{
+<div class="highlight"><pre>{
     tail: { node: wc.tn(fanout), port: 0 },
     head: { node: wc.tn(sink1) },
 },
@@ -168,9 +168,9 @@ other nodes between, say, <code>fanout</code> and <code>sink1</code>.
 </div>
 </div>
 
-<div id="outline-container-org97f04d2" class="outline-2">
-<h2 id="org97f04d2">Pnodes</h2>
-<div class="outline-text-2" id="text-org97f04d2">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Pnodes</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 To provide more flexibility a Jsonnet library <a href="https://github.com/WireCell/wire-cell-cfg/blob/master/pgraph.jsonnet">pgraph.jsonnet</a> has been
 developed.  It hinges on the concept of a <code>pnode</code>.  A <code>pnode</code> is an
@@ -206,19 +206,19 @@ the "edges" list is what is given to the Pgrapher app.
 </div>
 </div>
 
-<div id="outline-container-org6d10685" class="outline-2">
-<h2 id="org6d10685">Examples</h2>
-<div class="outline-text-2" id="text-org6d10685">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Examples</h2>
+<div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org916760a" class="outline-3">
-<h3 id="org916760a">Produce a <code>pnode</code> from an <code>INode</code> configuration object</h3>
-<div class="outline-text-3" id="text-org916760a">
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">Produce a <code>pnode</code> from an <code>INode</code> configuration object</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 It all starts with wrapping a single <code>INode</code> configuration object.
 This is done through a function:
 </p>
 
-<div class="highlight"><pre><span></span>local wc = import "wirecell.jsonnet";
+<div class="highlight"><pre>local wc = import "wirecell.jsonnet";
 local g = import "pgraph.jsonnet";               // [1]
 local other = import "some_other_file.jsonnet";  // [2]
 
@@ -243,18 +243,24 @@ local my_pnode = g.pnode(my_inode, uses: [other.cool_tool], nin=1, nout=1);
 What's going on?
 </p>
 <ol class="org-ol">
-<li>Import the <code>pgraph</code> Jsonnet library</li>
-<li>Import your friends configuration library providing some cools tool.</li>
-<li>Create a temporary variable holding the configuration for your node</li>
-<li>Tell your node configuration the instance label for the cool tool (ultimately, this is used to look up the C++ tool by your C++ node implementation).</li>
-<li>Wrap your <code>inode</code> configuration into a <code>pnode</code>.  The <code>uses</code> argument tells the <code>pnode</code> what other objects your node depends on and the <code>nin</code> and <code>nout</code> give the input/output port multiplicity.</li>
-<li>Finally we export the <code>pnode</code> in an object so that it may be used by yet higher-level configuration code.</li>
+<li>Import the <code>pgraph</code> Jsonnet library
+</li>
+<li>Import your friends configuration library providing some cools tool.
+</li>
+<li>Create a temporary variable holding the configuration for your node
+</li>
+<li>Tell your node configuration the instance label for the cool tool (ultimately, this is used to look up the C++ tool by your C++ node implementation).
+</li>
+<li>Wrap your <code>inode</code> configuration into a <code>pnode</code>.  The <code>uses</code> argument tells the <code>pnode</code> what other objects your node depends on and the <code>nin</code> and <code>nout</code> give the input/output port multiplicity.
+</li>
+<li>Finally we export the <code>pnode</code> in an object so that it may be used by yet higher-level configuration code.
+</li>
 </ol>
 <p>
 Note, Jsonnet syntax doesn't require local node variables.  The above could be shortened to just:
 </p>
 
-<div class="highlight"><pre><span></span>local wc = import "wirecell.jsonnet";
+<div class="highlight"><pre>local wc = import "wirecell.jsonnet";
 local g = import "pgraph.jsonnet";
 local other = import "some_other_file.jsonnet";
 
@@ -270,16 +276,16 @@ local other = import "some_other_file.jsonnet";
 </div>
 </div>
 
-<div id="outline-container-orgcda287a" class="outline-3">
-<h3 id="orgcda287a">Intern Pnodes</h3>
-<div class="outline-text-3" id="text-orgcda287a">
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">Intern Pnodes</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 So far, this is just more work.  Where the payoff begins is the
 ability to pack up connected <code>pnodes</code> into an encompassing <code>pnode</code>.
 For example:
 </p>
 
-<div class="highlight"><pre><span></span>{
+<div class="highlight"><pre>{
     n1: g.pnode({type:"Node", name:"n1"}, nout=1),
     n2: g.pnode({type:"Node", name:"n2"}, nin=1, nout=1),
     n3: g.pnode({type:"Node", name:"n3"}, nin=1),
@@ -302,7 +308,7 @@ resulting <code>pn</code> is still but a single node but it represents an entire
 graph (complete in this case).  Continuing with this example:
 </p>
 
-<div class="highlight"><pre><span></span>    n12: g.intern([$.n1],[$.n2],edges=[
+<div class="highlight"><pre>    n12: g.intern([$.n1],[$.n2],edges=[
 	g.edge($.n1, $.n2)
     ], name="n12"),
     n123: g.intern([$.n12],[$.n3],edges=[
@@ -320,16 +326,16 @@ interning to produce a <code>pnode</code> holding again a complete graph.
 </div>
 </div>
 
-<div id="outline-container-orgd394c45" class="outline-3">
-<h3 id="orgd394c45">Edge breaking and node insertion</h3>
-<div class="outline-text-3" id="text-orgd394c45">
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">Edge breaking and node insertion</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 As mentioned above, given knowledge of the order of edges <b>inside</b> a
 <code>pnode</code> it is possible to derive a new <code>pnode</code> which breaks an edge in
 order to insert new <code>pnodes</code>.  Extending the above example further:
 </p>
 
-<div class="highlight"><pre><span></span>n13: g.intern([$.n1],[$.n3], edges=[
+<div class="highlight"><pre>n13: g.intern([$.n1],[$.n3], edges=[
     g.edge($.n1, $.n3),
 ], name="n13"),
 
@@ -347,9 +353,9 @@ which is done when setting <code>n123inserted</code>.
 </div>
 </div>
 
-<div id="outline-container-org0f230b3" class="outline-3">
-<h3 id="org0f230b3">A fancy example</h3>
-<div class="outline-text-3" id="text-org0f230b3">
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4">A fancy example</h3>
+<div class="outline-text-3" id="text-4-4">
 <p>
 The above example uses a graph which is really a simple linear
 pipeline.  Real graphs may be much more complex.  For example, in the
@@ -360,7 +366,7 @@ with just signal and one with also noise.  Without defining
 everything, the noise portion is defined as:
 </p>
 
-<div class="highlight"><pre><span></span>local noise_source = g.pnode({
+<div class="highlight"><pre>local noise_source = g.pnode({
     type: "NoiseSource",
     data: { ... },
 }, nout=1);
@@ -399,9 +405,9 @@ to take this <code>nominal</code> node and connect it to others.
 </div>
 </div>
 
-<div id="outline-container-org31f7f28" class="outline-2">
-<h2 id="org31f7f28">Going further</h2>
-<div class="outline-text-2" id="text-org31f7f28">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Going further</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 To learn more about this new
 configuration idiom you may wish to run the example (excerpted above):
@@ -426,7 +432,7 @@ and to provide the final <i>configuration sequence</i>.
 In summary:
 </p>
 
-<div class="highlight"><pre><span></span>local g = import "pgraph.jsonnet";
+<div class="highlight"><pre>local g = import "pgraph.jsonnet";
 // ...
 
 local graph = g.intern(...);
@@ -452,9 +458,9 @@ through <code>pgraph</code> functions of the same name.
 </div>
 
 
-<div id="outline-container-org3444e1a" class="outline-2">
-<h2 id="org3444e1a">Summary</h2>
-<div class="outline-text-2" id="text-org3444e1a">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Summary</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 This turned into a long post.  Eventually, I hope it will be distilled
 and integrated into the manual.  It shows what you need to know to get
@@ -473,26 +479,34 @@ options:
 <ul class="org-ul">
 <li>signal simulation
 <ul class="org-ul">
-<li>nominal vs shorted wire field responses</li>
-<li>correctly and incorrectly configured electronics</li>
+<li>nominal vs shorted wire field responses
+</li>
+<li>correctly and incorrectly configured electronics
+</li>
 </ul>
 </li>
 <li>noise simulation
 <ul class="org-ul">
-<li>with and without noise</li>
+<li>with and without noise
+</li>
 </ul>
 </li>
-<li>optional simulation "truth" waveforms</li>
+<li>optional simulation "truth" waveforms
+</li>
 <li>software noise filtering
 <ul class="org-ul">
-<li>with and without it</li>
-<li>uniform or correcting misconfigured electronics</li>
+<li>with and without it
+</li>
+<li>uniform or correcting misconfigured electronics
+</li>
 </ul>
 </li>
 <li>signal processing
 <ul class="org-ul">
-<li>nominal 2D deconvolution</li>
-<li>optional compressed sensing method to handle shorted wire regions</li>
+<li>nominal 2D deconvolution
+</li>
+<li>optional compressed sensing method to handle shorted wire regions
+</li>
 </ul>
 </li>
 </ul>
@@ -502,12 +516,13 @@ And, probably several variants I'm forgetting.
 </div>
 </div>
 
-<div id="outline-container-org4079e20" class="outline-2">
-<h2 id="org4079e20">Edits</h2>
-<div class="outline-text-2" id="text-org4079e20">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Edits</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>
-<span class="timestamp-wrapper"><span class="timestamp">[2018-09-11 Tue] </span></span> update to call <code>pgraph.uses()</code> and <code>pgraph.edges()</code> to build final lists.</li>
+<span class="timestamp-wrapper"><span class="timestamp">[2018-09-11 Tue]</span></span> update to call <code>pgraph.uses()</code> and <code>pgraph.edges()</code> to build final lists.
+</li>
 </ul>
 </div>
 </div>

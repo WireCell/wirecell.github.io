@@ -81,9 +81,12 @@ What are <a href="https://wirecell.github.io/manual#component-internals">WCT Com
 </p>
 
 <ul class="org-ul">
-<li>inherit from a WCT <a href="https://wirecell.github.io/manual#interface-internals">Interface</a> base class</li>
-<li>give registration code in a WCT <b>plugin</b> library</li>
-<li>optionally, make use of WCT <a href="https://wirecell.github.io/manual#configuration">Configuration</a>.</li>
+<li>inherit from a WCT <a href="https://wirecell.github.io/manual#interface-internals">Interface</a> base class
+</li>
+<li>give registration code in a WCT <b>plugin</b> library
+</li>
+<li>optionally, make use of WCT <a href="https://wirecell.github.io/manual#configuration">Configuration</a>.
+</li>
 </ul>
 <p>
 By developing code in the form of components we can strongly define its boundary in terms of data and configuration.  This lets us test bits of code in well constrained ways and be confident that when these components are aggregated into larger applications, and possibly embedded into even larger ones, that they will function as expected.
@@ -108,11 +111,16 @@ $ root -l magnify-output.root
 Notes: 
 </p>
 <ul class="org-ul">
-<li>The configuration in this example is subject to change</li>
-<li>You can browse the <a href="https://github.com/wirecell/wire-cell-cfg">example configuration files</a> and learn about <a href="http://jsonnet.org/">Jsonnet</a>.</li>
-<li>The job is configured with a "Magnify" file source and file sink component bookend the signal processing and the <code>input</code> and <code>ouput</code> configuration variables giving these files are "injected" from the command line.</li>
-<li>You may find examples of "Magnify" ROOT files for input <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/data/data-reduction/v2/">here</a>.</li>
-<li>As usual, see the <a href="https://wirecell.github.io/manual">manual</a> for installation and setup.</li>
+<li>The configuration in this example is subject to change
+</li>
+<li>You can browse the <a href="https://github.com/wirecell/wire-cell-cfg">example configuration files</a> and learn about <a href="http://jsonnet.org/">Jsonnet</a>.
+</li>
+<li>The job is configured with a "Magnify" file source and file sink component bookend the signal processing and the <code>input</code> and <code>ouput</code> configuration variables giving these files are "injected" from the command line. 
+</li>
+<li>You may find examples of "Magnify" ROOT files for input <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/data/data-reduction/v2/">here</a>.   
+</li>
+<li>As usual, see the <a href="https://wirecell.github.io/manual">manual</a> for installation and setup.
+</li>
 </ul>
 </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">

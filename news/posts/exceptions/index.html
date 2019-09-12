@@ -98,7 +98,7 @@ things looking simple.  When you program WCT code with exceptions do
 like:
 </p>
 
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"WireCellUtil/Exceptions.h"  </span><span class="cp"></span>
+<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">"WireCellUtil/Exceptions.h"  </span><span class="cp"></span>
 
 <span class="kt">void</span> <span class="n">MyComponent</span><span class="o">::</span><span class="n">configure</span><span class="p">(</span><span class="n">Configuration</span> <span class="n">cfg</span><span class="p">)</span>
 <span class="p">{</span>
@@ -118,10 +118,14 @@ Notes:
 </p>
 
 <ol class="org-ol">
-<li>All exceptions that WCT code may throw are defined in the header file included in the example.</li>
-<li>Instead of the low-level C++ <code>throw()</code> use the provided CPP macro <code>THROW()</code> which will give the user extra info in the case that an exception is not caught.</li>
-<li>The value returned may have an <code>errmsg</code> streamed to it which will add some dynamic description of the error in the form of a string.  If a complex string needs to be build see <code>WireCell::String::format()</code>.</li>
-<li>No special C++ is needed to catch exceptions.</li>
+<li>All exceptions that WCT code may throw are defined in the header file included in the example.  
+</li>
+<li>Instead of the low-level C++ <code>throw()</code> use the provided CPP macro <code>THROW()</code> which will give the user extra info in the case that an exception is not caught.
+</li>
+<li>The value returned may have an <code>errmsg</code> streamed to it which will add some dynamic description of the error in the form of a string.  If a complex string needs to be build see <code>WireCell::String::format()</code>.
+</li>
+<li>No special C++ is needed to catch exceptions.
+</li>
 </ol>
 </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">

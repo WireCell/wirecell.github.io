@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repository Reorganization | Wire Cell News</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="http://wirecell.github.io/news/posts/repository-reorganization/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Brett Viren">
+<link rel="prev" href="../containers-and-continuous-integration/" title="Containers and Continuous Integration" type="text/html">
+<meta property="og:site_name" content="Wire Cell News">
+<meta property="og:title" content="Repository Reorganization">
+<meta property="og:url" content="http://wirecell.github.io/news/posts/repository-reorganization/">
+<meta property="og:description" content="Meet the new wire-cell-toolkit source repository.
+
+
+
+
+
+Up through the 0.12.x release, the Wire-Cell Toolkit source code was
+aggregated through the wire-cell-build top-level repository.  Starting
+with ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-09-12T14:49:32-04:00">
+<meta property="article:tag" content="build">
+<meta property="article:tag" content="devel">
+<meta property="article:tag" content="source">
+<meta property="article:tag" content="user">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<div class="blog-masthead">
+    <div class="container">
+<!-- This keeps the margins nice -->
+        <nav class="blog-nav" role="navigation"><a href="../../index.html" class="blog-nav-item">Home</a>
+            <a href="../../archive.html" class="blog-nav-item">Archive</a>
+            <a href="../../categories/" class="blog-nav-item">Tags</a>
+            <a href="../../rss.xml" class="blog-nav-item">RSS feed</a>
+            <a href="../../" class="blog-nav-item">Manual</a>
+
+            
+
+    <a href="index.org" class="blog-nav-item blog-nav-item-aside" id="sourcelink">Source</a>
+                
+            
+        </nav>
+</div>
+<!-- /.container -->
+</div>
+<!-- End of Menubar -->
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <div class="blog-header">
+            <h1 class="blog-title">
+                <a href="http://wirecell.github.io/news/">
+                    <img src="../../images/wcgh.png" alt="Wire Cell News" id="logo"><span id="blog-title">Wire Cell News</span>
+                </a>
+            </h1>
+            <p class="lead blog-description">Updates on the Wire Cell Toolkit.</p>
+            
+        </div>
+        <!--Body content-->
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title blog-post-title" itemprop="headline name"><a href="." class="u-url">Repository Reorganization</a></h2>
+
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2019-09-12T14:49:32-04:00" itemprop="datePublished" title="2019-09-12 14:49">2019-09-12 14:49</time></a></p>
+                    <p class="sourceline"><a href="index.org" id="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>
+Meet the new <a href="https://github.com/wirecell/wire-cell-toolkit"><code>wire-cell-toolkit</code></a> source repository.
+</p>
+
+<!-- TEASER_END -->
+
+<p>
+Up through the 0.12.x release, the Wire-Cell Toolkit source code was
+aggregated through the <a href="https://github.com/WireCell/wire-cell-build"><code>wire-cell-build</code></a> top-level repository.  Starting
+with the next releases the top-level source package will be
+<a href="https://github.com/wirecell/wire-cell-toolkit"><code>wire-cell-toolkit</code></a>.
+</p>
+
+<p>
+The content of the new repository starts with all the same source
+and history as the old repository.  The only difference is that while
+<code>wire-cell-build</code> aggregated WCT packages using <code>git submodule</code> the new <code>wire-cell-toolkit</code> uses <code>git subtree</code>.
+</p>
+
+<p>
+As a consequence, it is much easier for users and most developers to
+work with the source as the code is available as a single <b>monolithic</b>
+repository.  No more recursive cloning or messing with <code>git submodule</code>.
+</p>
+
+<p>
+The reason that submodules were used in the past was that it was
+envisioned that different developers would work on different "views"
+of the source code.  Each developer would have one or more top level
+code aggregation packages like the main <code>wire-cell-build</code> with some
+subset of packages of interest.  This pattern of development never
+took off (although has been used in the Wire-Cell Prototype).
+</p>
+
+<p>
+With <code>git subrepo</code> we may still maintain the option to have multiple
+top-level "aggregation" packages but it will require manual
+intervention and will only have to be done by experts.  For users and
+most developers, the single monolithic view of the source should make
+many tasks simpler including:
+</p>
+
+<ul class="org-ul">
+<li>one go-to place for any and all <a href="https://github.com/WireCell/wire-cell-toolkit/issues">issues</a>
+</li>
+<li>simpler cloning, no recursion needed</li>
+<li>easier contributions via fork + <a href="https://github.com/WireCell/wire-cell-toolkit/pulls">pull request</a>
+</li>
+<li>easier <a href="https://github.com/WireCell/wire-cell-toolkit/branches">branching</a>, particularly simplifying the making of <a href="https://github.com/WireCell/wire-cell-toolkit/releases">releases</a>.</li>
+</ul>
+<p>
+The old, fine-grained repositories are kept on GitHub but to avoid
+confusion and complication of any future <code>git subrepo</code> synchronization,
+direct push access has been removed.  Contact the WCT team if you have
+need for this now deprecated access method.  
+</p>
+
+<p>
+<b>Enjoy the new monorepo.</b>
+</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/build/" rel="tag">build</a></li>
+            <li><a class="tag p-category" href="../../categories/devel/" rel="tag">devel</a></li>
+            <li><a class="tag p-category" href="../../categories/source/" rel="tag">source</a></li>
+            <li><a class="tag p-category" href="../../categories/user/" rel="tag">user</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../containers-and-continuous-integration/" rel="prev" title="Containers and Continuous Integration">Previous post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                    <div class="sidebar-module sidebar-module-inset">
+      <h4>About</h4>
+      <p>Wire Cell encompasses a collection of techniques and software implementation for the simulation, noise filtering, signal processing, 3D imaging, pattern recognition and reconstruction of liquid argon time projection chamber detectors.</p>
+    </div>
+    <div class="sidebar-module">
+      <h4>Links</h4>
+      <ol class="list-unstyled">
+<li><a href="https://www.phy.bnl.gov/wire-cell/">Main Home page</a></li>
+        <li><a href="http://wirecell.github.io/">Software Documentation</a></li>
+      </ol>
+</div>
+    
+            </div>
+        <!--End of body content-->
+        </div>
+    </div>
+</div>
+
+<footer class="blog-footer" id="footer">
+    Contents © 2019         <a href="mailto:bv@bnl.gov">Wire Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    
+</footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

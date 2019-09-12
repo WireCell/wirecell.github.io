@@ -79,9 +79,9 @@ discover the defaults with the <code>ConfigDumper</code> WCT app component.
 
 <!-- TEASER_END -->
 
-<div id="outline-container-org3aa2394" class="outline-2">
-<h2 id="org3aa2394">Quick review of WCT config</h2>
-<div class="outline-text-2" id="text-org3aa2394">
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Quick review of WCT config</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 The <a href="https://wirecell.github.io/manual.html#configuration">configuration section of the WCT manual</a> has details but for here,
 it's worth giving a quick review of WCT configuration.  Ultimately, a
@@ -94,12 +94,15 @@ a simply <b>object schema</b> consisting of three attributes:
 </p>
 
 <dl class="org-dl">
-<dt><code>type</code></dt>
-<dd>name the WCT component type (usually similar but not always identical to the corresponding C++ class name).</dd>
-<dt><code>name</code></dt>
-<dd>an optional <b>instance name</b> to differentiate multiple instances of the same <b>type</b>.</dd>
-<dt><code>data</code></dt>
-<dd>an optional and arbitrary <b>instance configuration</b> data structure.</dd>
+<dt> <code>type</code> </dt>
+<dd>name the WCT component type (usually similar but not always identical to the corresponding C++ class name).
+</dd>
+<dt> <code>name</code> </dt>
+<dd>an optional <b>instance name</b> to differentiate multiple instances of the same <b>type</b>.
+</dd>
+<dt> <code>data</code> </dt>
+<dd>an optional and arbitrary <b>instance configuration</b> data structure.
+</dd>
 </dl>
 <p>
 In principle the <b>configuration sequence</b> can be provided in a variety
@@ -112,9 +115,9 @@ The job finally runs by locating any configured component objects which happen t
 </div>
 </div>
 
-<div id="outline-container-orge774317" class="outline-2">
-<h2 id="orge774317">Discovering Component Configuration</h2>
-<div class="outline-text-2" id="text-orge774317">
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Discovering Component Configuration</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 Okay, so what, you want to configure some component but you don't know
 what parameters it honors.  As always, the best way to know what code
@@ -236,9 +239,9 @@ $ cat dump.json |json_pp
 </div>
 </div>
 
-<div id="outline-container-orgb6e39e4" class="outline-2">
-<h2 id="orgb6e39e4">Using Configuration Dumps</h2>
-<div class="outline-text-2" id="text-orgb6e39e4">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Using Configuration Dumps</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 After running the <code>ConfigDumper</code> the user may wish to provide a
 variant configuration which is influenced by what was discovered.  A
@@ -246,9 +249,9 @@ few guidelines and caveats are useful here.
 </p>
 </div>
 
-<div id="outline-container-org5d2d1ae" class="outline-3">
-<h3 id="org5d2d1ae">JSON vs Jsonnet</h3>
-<div class="outline-text-3" id="text-org5d2d1ae">
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">JSON vs Jsonnet</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 The <code>ConfigDumper</code> output is in JSON while humans are likely happier
 writing in the <a href="https://jsonnet.org">Jsonnet data language</a>.  By design, the former is a
@@ -259,14 +262,17 @@ manual "up-conversion" to Jsonnet is recomended.  In particular:
 </p>
 
 <ul class="org-ul">
-<li>quoting attribute keys is "ugly" (admittedly, this is purely subjective).</li>
+<li>quoting attribute keys is "ugly" (admittedly, this is purely subjective).
+</li>
 
 <li>literal numerical quantities in JSON are implicitly expressed in the
 WCT system of units while it is much more clear and less error prone
-if they carry explicit units.</li>
+if they carry explicit units.
+</li>
 
 <li>it is best to have one component refer to another not by literal
-strings but via the <code>tn()</code> function provided by <code>wirecell.jsonnet</code>.</li>
+strings but via the <code>tn()</code> function provided by <code>wirecell.jsonnet</code>.
+</li>
 </ul>
 <p>
 As an example, one might write a configuration which is merely
@@ -274,7 +280,7 @@ influenced by the dump of <code>PlaneImpactResponse</code>'s default
 configuration above in more "proper" Jsonnet like:
 </p>
 
-<div class="highlight"><pre><span></span>local wc = import "wirecell.jsonnet";
+<div class="highlight"><pre>local wc = import "wirecell.jsonnet";
 local fr0 = {
     type: "FieldResponse",
     data: {
@@ -296,9 +302,9 @@ local pir = {
 </div>
 </div>
 
-<div id="outline-container-org2fff406" class="outline-3">
-<h3 id="org2fff406">Missing or Empty Default Attributes</h3>
-<div class="outline-text-3" id="text-org2fff406">
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">Missing or Empty Default Attributes</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 A <i>user</i> configuration object is "deeply merged" in <b>to</b> the <i>default</i>
 configuration object by recursively copying <i>leaf attributes</i>.  Any
@@ -354,9 +360,9 @@ code or existing configuration produced by others.
 </div>
 
 
-<div id="outline-container-org814081a" class="outline-3">
-<h3 id="org814081a">Seeing what is available</h3>
-<div class="outline-text-3" id="text-org814081a">
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">Seeing what is available</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 One can also use the <code>ConfigDumper</code> on all plugins and without any
 restriction on the component list in order to generate a list of all
@@ -448,9 +454,9 @@ mbOneChannelStatus
 </div>
 
 
-<div id="outline-container-org97b9df7" class="outline-2">
-<h2 id="org97b9df7">Summary</h2>
-<div class="outline-text-2" id="text-org97b9df7">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Summary</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 It's always best to read the source code to learn what configuration a
 component expects, and more importantly, what it does with the

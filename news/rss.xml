@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates on the Wire Cell Toolkit.</description><atom:link href="http://wirecell.github.io/news/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Tue, 30 Jul 2019 23:17:00 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Containers and Continuous Integration</title><link>http://wirecell.github.io/news/posts/containers-and-continuous-integration/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates on the Wire Cell Toolkit.</description><atom:link href="http://wirecell.github.io/news/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Thu, 12 Sep 2019 20:14:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Repository Reorganization</title><link>http://wirecell.github.io/news/posts/repository-reorganization/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+Meet the new &lt;a href="https://github.com/wirecell/wire-cell-toolkit"&gt;&lt;code&gt;wire-cell-toolkit&lt;/code&gt;&lt;/a&gt; source repository.
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/repository-reorganization/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>build</category><category>devel</category><category>source</category><category>user</category><guid>http://wirecell.github.io/news/posts/repository-reorganization/</guid><pubDate>Thu, 12 Sep 2019 18:49:32 GMT</pubDate></item><item><title>Containers and Continuous Integration</title><link>http://wirecell.github.io/news/posts/containers-and-continuous-integration/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 Previously posts have discussed Singularity containers which were
 introduced to provide easy development environments.  Recently, Docker
 container descriptions have been developed to introduce Travis-CI
@@ -35,7 +39,7 @@ computers.  With Singularity containers we now have a way for just one
 person to suffer and let many others benefit.  
 &lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>build</category><category>devel</category><category>larsoft</category><guid>http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/</guid><pubDate>Fri, 17 Aug 2018 13:30:33 GMT</pubDate></item><item><title>Overriding Configuration Parameters</title><link>http://wirecell.github.io/news/posts/overriding-configuration-parameters/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/"&gt;Read more…&lt;/a&gt; (4 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>build</category><category>devel</category><category>larsoft</category><guid>http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/</guid><pubDate>Fri, 17 Aug 2018 13:30:33 GMT</pubDate></item><item><title>Overriding Configuration Parameters</title><link>http://wirecell.github.io/news/posts/overriding-configuration-parameters/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 The WCT configuration language Jsonnet allows to exploit software development patterns such as "don't repeat yourself" (DRY) and object inheritance.  They are exploited to factor a configuration into layers so that it may, in total, serve many uses.  This post describes how to override a parameter from a base object.
 &lt;/p&gt;
 
@@ -61,15 +65,4 @@ A powerful new idiom has been developed to simplify developing Jsonnet
 configuration files for Wire-Cell toolkit's Pgrapher app component.
 &lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/pgrapher-configuration-improvements/"&gt;Read more…&lt;/a&gt; (8 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>dfp</category><category>graph</category><category>simulation</category><guid>http://wirecell.github.io/news/posts/pgrapher-configuration-improvements/</guid><pubDate>Fri, 29 Jun 2018 18:33:44 GMT</pubDate></item><item><title>Pgrapher Execution Engine</title><link>http://wirecell.github.io/news/posts/pgrapher-execution-engine/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
-The Wire Cell Toolkit is based on functional components which can be
-used as arbitrary "tools" (in the Gaudi sense of the word).  But, they
-can also composed together following the paradigm of &lt;i&gt;data flow
-programming&lt;/i&gt; (DFP).  Each component thus becomes a node (aka "vertex")
-in a graph joined to other nodes via edges that represent the transfer
-of data from an output port of one to the input port of the other.  A
-new way to perform this execution has been added to WCT in the form of
-the Pgrapher app.
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/pgrapher-execution-engine/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>dfp</category><category>graph</category><guid>http://wirecell.github.io/news/posts/pgrapher-execution-engine/</guid><pubDate>Fri, 22 Jun 2018 19:16:42 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/pgrapher-configuration-improvements/"&gt;Read more…&lt;/a&gt; (8 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>dfp</category><category>graph</category><category>simulation</category><guid>http://wirecell.github.io/news/posts/pgrapher-configuration-improvements/</guid><pubDate>Fri, 29 Jun 2018 18:33:44 GMT</pubDate></item></channel></rss>

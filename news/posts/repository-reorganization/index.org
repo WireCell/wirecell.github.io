@@ -1,0 +1,54 @@
+#+BEGIN_COMMENT
+.. title: Repository Reorganization
+.. slug: repository-reorganization
+.. date: 2019-09-12 14:49:32 UTC-04:00
+.. tags: source,build,devel,user
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+
+#+END_COMMENT
+
+Meet the new [[https://github.com/wirecell/wire-cell-toolkit][~wire-cell-toolkit~]] source repository.
+
+{{{TEASER_END}}}
+
+Up through the 0.12.x release, the Wire-Cell Toolkit source code was
+aggregated through the [[https://github.com/WireCell/wire-cell-build][~wire-cell-build~]] top-level repository.  Starting
+with the next releases the top-level source package will be
+[[https://github.com/wirecell/wire-cell-toolkit][~wire-cell-toolkit~]].
+
+The content of the new repository starts with all the same source
+and history as the old repository.  The only difference is that while
+~wire-cell-build~ aggregated WCT packages using ~git submodule~ the new ~wire-cell-toolkit~ uses ~git subtree~.
+
+As a consequence, it is much easier for users and most developers to
+work with the source as the code is available as a single *monolithic*
+repository.  No more recursive cloning or messing with ~git submodule~.
+
+The reason that submodules were used in the past was that it was
+envisioned that different developers would work on different "views"
+of the source code.  Each developer would have one or more top level
+code aggregation packages like the main ~wire-cell-build~ with some
+subset of packages of interest.  This pattern of development never
+took off (although has been used in the Wire-Cell Prototype).
+
+With ~git subrepo~ we may still maintain the option to have multiple
+top-level "aggregation" packages but it will require manual
+intervention and will only have to be done by experts.  For users and
+most developers, the single monolithic view of the source should make
+many tasks simpler including:
+
+- one go-to place for any and all [[https://github.com/WireCell/wire-cell-toolkit/issues][issues]]
+- simpler cloning, no recursion needed
+- easier contributions via fork + [[https://github.com/WireCell/wire-cell-toolkit/pulls][pull request]]
+- easier [[https://github.com/WireCell/wire-cell-toolkit/branches][branching]], particularly simplifying the making of [[https://github.com/WireCell/wire-cell-toolkit/releases][releases]].
+
+The old, fine-grained repositories are kept on GitHub but to avoid
+confusion and complication of any future ~git subrepo~ synchronization,
+direct push access has been removed.  Contact the WCT team if you have
+need for this now deprecated access method.  
+
+*Enjoy the new monorepo.*
