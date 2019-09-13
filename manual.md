@@ -3,12 +3,13 @@
     - [Source code](#source-code)
     - [Configuring the source](#configuring-the-source)
     - [Building the source](#building-the-source)
-    - [Running unit tests](#running-unit-tests)
     - [Install the results](#install-built-code)
+    - [Running unit tests](#running-unit-tests)
     - [Other build commands](#other-build-commands)
   - [Runtime environment](#runtime-environment)
   - [Guide for installation of dependencies](#installing-dependencies)
     - [Manual Installation of Externals](#manual-externals-install)
+    - [Singularity containers and CVMFS](#singularity-cvmfs-externals)
     - [Automated Installation with Spack](#spack-installed-externals)
     - [Externals provided by UPS](#using-externals-from-ups)
   - [Release management](#release-management)
@@ -69,27 +70,28 @@
   - [`wire-cell-util`](#pkg-util)
     - [Units](#util-units)
     - [Persistence](#util-persistence)
-    - [Etc](#orge14a024)
+    - [Etc](#org531e5e8)
   - [`wire-cell-iface`](#pkg-iface)
-    - [Data](#org35ea46d)
-    - [Nodes](#org3f60772)
-    - [Misc](#org4784582)
+    - [Data](#org438ce1e)
+    - [Nodes](#orgbc79ed0)
+    - [Misc](#orgffc091a)
   - [`wire-cell-gen`](#pkg-gen)
-    - [Depositions](#org7894239)
-    - [Drifting](#org7172d84)
-    - [Response](#org8dd256f)
-    - [Digitizing](#orgece7b65)
-    - [Noise](#orgeb59506)
-    - [Frame Summing](#org3c8a140)
-    - [Execution Graphs](#org08d3ae5)
+    - [Depositions](#orgcef4386)
+    - [Drifting](#org12303b4)
+    - [Response](#orgc3b71e4)
+    - [Digitizing](#orgc047466)
+    - [Noise](#orgd682037)
+    - [Frame Summing](#orgb8f7bcc)
+    - [Execution Graphs](#org81e64ce)
   - [`wire-cell-waftools`](#pkg-waftools)
     - [Recreating `wcb`](#generate-wcb)
     - [Included Waf tools](#bundle-waf-tools)
+    - [The main `wscript`](#main-wscript)
 - [Data Flow Programming](#data-flow-programming)
-  - [Node basics](#org6a6ffca)
-  - [Node execution paradigms](#org47e2a5b)
-  - [DFP execution strategies](#org70c9a5a)
-  - [End-of-stream Protocol](#org4a65bc1)
+  - [Node basics](#orgf538228)
+  - [Node execution paradigms](#org6932ca4)
+  - [DFP execution strategies](#orgd9c0aa3)
+  - [End-of-stream Protocol](#org0570845)
 - [Other Topics](#other-topics)
   - [Garfield 2D Support](#garfield-2d-support)
     - [Garfield 2D data](#garfield-2d-data)
@@ -134,48 +136,41 @@ Installation requires four steps:
 
 ### Source code
 
-WCT source is composed of several packages (see section [5](#packages)) and all source is available from the [Wire Cell GitHub organization](https://github.com/WireCell/). Releases of each package are made and documented on GitHub (*eg* [here](https://github.com/WireCell/wire-cell-build/releases)) and can be downloaded as archives. However, using git to assemble a working source area is recommended and easier. Releases and development branches are handled slightly differently.
+WCT source is composed of several packages (see section [5](#packages)) and all source is available from the [Wire Cell GitHub organization](https://github.com/WireCell/). Releases of each package are made and documented on GitHub (*eg* [here](https://github.com/WireCell/wire-cell-toolkit/releases)) and can be downloaded as archives. However, using git to assemble a working source area is recommended and easier. Releases and development branches are handled slightly differently.
 
 To obtain a release requires no GitHub authentication:
 
-    $ git clone --recursive --branch 0.5.x \
-          https://github.com/WireCell/wire-cell-build.git
+    $ git clone --branch 0.5.x \
+          https://github.com/WireCell/wire-cell-toolkit.git
 
-This gets the tip of the release branch for the `0.5.x` series. If a specific release is desired a few more commands are needed. For example, if the `0.5.0` release that started the series is wanted:
+This gets the tip of a release branch (the `0.5.x` series in this example). A specific point release can then be checked out:
 
     $ git checkout -b 0.5.0 0.5.0
-    $ git submodule init
-    $ git submodule update
-    $ git submodule foreach git checkout -b 0.5.0 0.5.0
 
-To obtain the development branch requires SSH authentication with GitHub:
+To contribute new development to the toolkit, even as a &ldquo;core&rdquo; developer, it&rsquo;s recommended to *fork* the `wire-cell-toolkit` repository on GitHub, do your work there and make GitHub Pull Requests (PR). This gives an opportunity for other developers to give a quick check on new code.
 
-    $ git clone --recursive \
-          git@github.com:WireCell/wire-cell-build.git wct
+Core developers can nonetheless directly push to the central repository. It&rsquo;s suggested to do so via an SSH authenticated clone:
 
-Which ever way the source is obtained, enter the resulting directory
-
-    $ cd wire-cell-build/
-
-<div class="tip">
-At some time later if there is a need to switch between HTTP or SSH a `switch-git-urls` script is available in this directory.
-
-</div>
+    $ git clone git@github.com:WireCell/wire-cell-toolkit.git wct
 
 
 <a id="configuring-the-source"></a>
 
 ### Configuring the source
 
-At a minimum, the source must be configured with an installation location for the build results and to allow it to find its dependencies. This, and the remaining steps are done with the provided `wcb` script which is an instance of [Waf](https://waf.io/).
+Prior to building, the source must be configured to specify an installation location and provide options to direct how to find external software dependencies and/or to select which optional dependencies. More details on the build system are in <./waftools.md>.
 
-    $ ./wcb --prefix=/path/to/install configure
+On systems where software dependencies can be auto-detected, the configuration step may be as simple as:
+
+    $ ./wcb configure \
+       --prefix=/path/to/install
 
 This will print the results of the attempts to detect required and optional dependencies. Missing but optional dependencies will not cause failure. See below for guidance on installing dependencies if this step fails or if desired optional dependencies are not found.
 
-Dependencies will likely be found automatically if `pkg-config` is available possibly by suitably setting the `PKG_CONFIG_PATH` environment variable. If automatic location fails then missing locations can be explicitly specified. The following shows an example where all externals are installed at a single location identified by the `WCT_EXTERNALS` environment variable (not, this variable has no other special meaning other than to make this example brief).
+Dependencies may be automatically located if `pkg-config` is available and possibly by suitably setting the `PKG_CONFIG_PATH` environment variable. If automatic location fails then missing locations can be explicitly specified. The following shows an example where all externals are installed at a single location identified by the `WCT_EXTERNALS` environment variable (not, this variable has no other special meaning other than to make this example brief).
 
-    $ ./wcb configure --prefix=/path/to/install \
+    $ ./wcb configure \
+       --prefix=/path/to/install \
        --boost-includes=$WCT_EXTERNALS/include \
        --boost-libs=$WCT_EXTERNALS/lib --boost-mt \
        --with-root=$WCT_EXTERNALS \
@@ -192,52 +187,13 @@ If the externals are not all in one directory then their locations must be accor
 
 ### Building the source
 
-After the above is successful the `configure` results are cached and all other build related commands are brief. To build the code to the temporary `build/` directory one simply runs:
+It is suggested to first build the code before running tests.
 
-    $ ./wcb
+    $ ./wcb -p --notests
 
 If there are build failures more information can be obtained by repeating the build with more verbosity:
 
     $ ./wcb -vv
-
-The build will try to run tests which can be avoided to save time:
-
-    $ ./wcb --notests
-
-
-<a id="running-unit-tests"></a>
-
-### Running unit tests
-
-<div class="note">
-Unit tests are meant to be small, focused tests. Some have grown beyond this intention and into full, if ad-hoc, applications themselves. These need to be reworked or moved into the [wire-cell-validate](https://github.com/wirecell/wire-cell-validate) package.
-
-</div>
-
-Unless `--notests` are passed as above, the build system will build and run the many unit test programs. In general, all unit tests should run successfully (in practice some small fraction may not). To give them a chance to succeed they must at least be run with a properly set up environment. In particular `LD_LIBRARY_PATH` must contain all library directories for external packages. Setting this is user/system dependent and so is left to the user.
-
-<div class="INFO">
-Developers wishing to run unit tests that exercise code they are developing should take care in setting `LD_LIBRARY_PATH`. If the WCT installation area is included then the unit tests will run against those libraries, effectively masking the locally built versions in the development area. Alternatively, they must run `./wcb install` and then manually re-run the unit test.
-
-</div>
-
-Setting `LD_LIBRARY_PATH` is **not** as above required for building. To avoid polluting the build environment with superfluous settings it is possible to create a little shell script that will be used to run each test. As an example, we create `tester.sh` that looks like:
-
-```sh
-#!/bin/sh
-/usr/bin/env LD_LIBRARY_PATH=/path/to/extern1/lib:/path/to/extern2/lib "$@"
-```
-
-After making this script executable it can be used like:
-
-    $ ./wcb --testcmd="/path/to/tester.sh %s"
-
-Another useful option is `--dump-test-scripts` which will produce a `test_<name>_run.py` file for each `test_<name>` that bakes in the environment and gives you a per-test runner that you can execute directly. You can use the same `tester.sh` script here
-
-    $ /path/to/tester.sh ./wcb --dump-test-scripts --alltests
-    $ ./build/util/test_fft_run.py
-
-Where these two commands are executed in a shell that has no `LD_LIBRARY_PATH` set.
 
 
 <a id="install-built-code"></a>
@@ -246,7 +202,34 @@ Where these two commands are executed in a shell that has no `LD_LIBRARY_PATH` s
 
 To install the build results into the location given by `--prefix` simply issue:
 
-    $ ./wcb install
+    $ ./wcb install --notests
+
+
+<a id="running-unit-tests"></a>
+
+### Running unit tests
+
+<div class="note">
+Unit tests are meant to be small, focused tests. More elaborate tests may be found in the [wire-cell-validate](https://github.com/wirecell/wire-cell-validate) package.
+
+</div>
+
+Tests are run by default by `./wcb` unless `--notests` is given. Running the tests can take a while but should be run on new installations and after any significant development. The developers should not leave broken tests so any failure should be treated as important. However, some tests require proper user environment to run correctly. In particular, tests need to find some Wire-Cell configuration files and the executable programs and shared libraries of the external software dependencies need to be located. Below shows an example:
+
+    $ export WIRECELL_PATH=$HOME/dev/wct/wire-cell-data:$HOME/dev/wct/wire-cell-toolkit/cfg
+    $ export LD_LIBRARY_PATH=$HOME/dev/wct/install/lib:$HOME/opt/jsonnet/lib
+    $ ./wcb -p --alltests
+    ...
+    execution summary 
+      tests that pass 83/83
+        ... 
+      tests that fail 0/83 
+    'build' finished successfully (15.192s)
+
+<div class="INFO">
+Developers wishing to run unit tests that exercise code they are developing should take care in setting `LD_LIBRARY_PATH`. If the WCT installation area is included then the unit tests will run against those libraries, effectively masking the locally built versions in the development area. Alternatively, they must run `./wcb install` and then manually re-run the unit test.
+
+</div>
 
 
 <a id="other-build-commands"></a>
@@ -272,9 +255,9 @@ These other commands may be useful:
 
 Managing environment is usually a personal choice or computer facility policy and WCT does not place any significant requirements on this. The usual setting of `PATH` like variables will likely be needed.
 
-FIXME: we should look into setting `RPATH`.
+Internally, WCT requires a minimum of environment variables:
 
-Internally, WCT does not require any environment however it will search a `WIRECELL_PATH` when locating configuration or other (non data) input files. More information is in the section [2](#configuration).
+-   **`WIRECELL_PATH`:** a list of directories to search when locating configuration files. More information is in the section [2](#configuration).
 
 
 <a id="installing-dependencies"></a>
@@ -288,11 +271,12 @@ The WCT depends on a number of third-party &ldquo;external&rdquo; software packa
 -   **FFTW3:** for fast Fast Fourier Transforms
 -   **JsonCPP:** basis for configuration and input data files
 -   **Jsonnet:** structured configuration files.
--   **ROOT:** for many tests and I/O packages, but not the core library code
 
 Additional, optional package are needed for additional functionality:
 
--   **TBB:** for data flow programming paradigm support
+-   **ROOT:** for the `root/` sub-package, not required for core code
+-   **TBB:** for parallel, multi-threaded data flow programming paradigm support
+-   **CUDA:** support for some GPU technologies
 
 <div class="note">
 This list may not represent current reality. To get a full, up-to-date list of what packages WCT can use run `./wcb --help`.
@@ -309,6 +293,13 @@ The following subsections gives some guidance for obtaining these &ldquo;externa
 In the DIY mode, the installer is free to provide the third-party packages in any convenient way. Many of them are available on well supported operating systems such as Debian/Ubuntu. Homebrew for Mac OS X is not a core developer platform but may provide many. Redhat derived Linux distributions may find suitable package on EPEL. Most of the required packages are fairly easy to build from source.
 
 However the installer decides to build in DIY-mode the WCT build system should be able to be given proper installation locations via the `--with-*` flags as described above. If it seems not to be the case, please contact the developers.
+
+
+<a id="singularity-cvmfs-externals"></a>
+
+### Singularity containers and CVMFS
+
+One mostly &ldquo;turn key&rdquo; sway to provide an environment for WCT development and running is to use Singularity containers possibly augmented with CVMFS. Instructions and support can be found in the [wire-cell-singularity](https://github.com/WireCell/wire-cell-singularity) package.
 
 
 <a id="spack-installed-externals"></a>
@@ -984,14 +975,33 @@ This doc describes the Wire Cell Toolkit (WCT) internal structure and support fa
 
 ## Toolkit packages
 
-The WCT is composed of a number of *packages*. Each package has an associated with a Git source repository. Most packages produce a shared library, which may also be a WCT plugin library, C++ header files, some number of main or test applications. Others include a single package holding all Python code in various modules, a package providing support for developing WCT configuration files and the documentation package holding this document. One special type of package is a *build* package described more in section on the build package.
+The WCT is composed of a number of *packages*. Each package is a sub-directory of the `wire-cell-toolkit`. Packages either hold code and produce a shared library, header files and possibly executable programs. A few &ldquo;special&rdquo; packages also exist:
+
+-   **python:** a variety of Python modules and command-line interfaces
+-   **cfg:** support for developing WCT configuration using Jsonnet
+-   **tools:** support for building WCT with [Waf](https://waf.io/).
+
+Other important packages not included directly in the `wire-cell-toolkit` include:
+
+-   **data:** a set of large and generated configuration files
+-   **bee:** a web based visualization system used with Wire-Cell and other data
+-   **docs:** holding this manual, the news &ldquo;blog&rdquo; and other documentation
+-   **singularity:** support for creating and using Singularity containers
+-   **containers:** support for creating and using Docker containers
+-   **spack:** support for building WCT and externals with Spack
+-   **validate:** tests that are larger or otherwise do not fit as unit tests.
+
+<div class="note">
+Each package actually has its own git repository which is aggregated into `wire-cell-toolkit` via the `git subrepo` command.
+
+</div>
 
 
 <a id="package-names"></a>
 
 ### Names
 
-Package repositories are named like `wire-cell-<name>` where `<name>` is some short identifier giving indication of the main scope of the package. In the documentation the `wire-cell-` prefix is often dropped and only this short name is used.
+Packages are broken up by their primary scope or if they hold implementation requiring a major external software dependency. Each package should be named with a single, short word. If it is held in a separate repository, that is usually named `wire-cell-<name>`.
 
 If a package produces a shared library it should be named in `CamelCase` with a prefix `WireCell`. For example the `gen` package produces a library `libWireCellGen.so`. As a plugin name or an entry in the build system, the `lib` and `.so` are dropped. If the package has public header files to expose to other packages they should use this same name for a subdirectory in which to hold them. Package layout is described move below.
 
@@ -1002,13 +1012,9 @@ If a package produces a shared library it should be named in `CamelCase` with a 
 
 Some of the C++ packages are designated as *core* packages. These include the packages providing the toolkit C++ structure (described later in this document) as well as the reference implementations (eg, `gen`, `sigproc`). These packages have strict requirements on what dependencies may be introduced and in particular their shared libraries are not allowed to depend on ROOT (although their apps and tests are, see sections [4.1.3](#package-structure) and [4.1.4](#build-package)).
 
-The base package is `util` and it *must* not depend on any other WCT package. The next most basic is `iface` and it *must* not depend on any other WCT except `util`. Core implementation packages such as `gen` or `sigproc` may depend on both but should not depend on each other.
+The base package is `util` and it *must* not depend on any other WCT package. The next most basic is `iface` and it *must* not depend on any other WCT except `util`. Core implementation packages such as `gen` or `sigproc` may depend on both but *must* not depend on each other.
 
-Fixme: there is a need to factor some general utility routines and data structures that depend on `iface` and which the implementation packages should use that needs to be created.
-
-WCT also provides a number of peripheral implementation packages, which are free to have more dependencies, including ROOT, than &ldquo;core&rdquo; packages. These are mostly for the purpose of providing WCT components which provide file I/O. The `sst` package in particular support the so called `celltree` ROOT `TTree` format used by the Wire Cell prototype code.
-
-Finally, there may be third-party implementation packages. They are free to mimic WCT packages but WCT itself will not depend on them. They should not make use of the `WireCell::` C++ namespace.
+Third-party implementation packages may be developed outside of WCT. They are free to mimic WCT packages and of course depend on WCT and WCT itself shall not depend on them. They should not make use of the `WireCell::` C++ namespace.
 
 
 <a id="package-structure"></a>
@@ -1019,8 +1025,8 @@ The WCT package layout and file extensions must follow some conventions in order
 
 -   **`src/*.cxx`:** C++ source file for libraries with .cxx extensions or private headers
 -   **`inc/WireCellName/*.h`:** public/API C++ header files with .h extensions
--   **`test/test_*.cxx`:** main C++ programs named like test<sub>\*</sub>.cxx, may also hold Python, shell scripts, private headers
--   **`apps/*.cxx`:** main application(s), one appname.cxx file for each app named `appname`, should be very limited in number
+-   **`test/test_*.*`:** unit tests. C++ programs named like `test_*.cxx` will be built and run as will any `test_*.{py,sh}`,
+-   **`apps/*.cxx`:** main application(s), one appname.cxx file for each app named `appname`. Apps should be limited in number and code. WCT provides a single `wire-cell` main application as a CLI to the shared libraries.
 
 In the root of each C++ package directory must exist a file called `wscript_build`. It typically consist of a single line with a method call like:
 
@@ -1037,40 +1043,21 @@ Fixme: make a script that generates a dot file and show the graph.
 
 ### Build package
 
-To actually build WCT see the section on toolkit installation (section [1](#installation)). The build system is based on [Waf](https::waf.io) and uses the `wcb` command and a `wscript` file provided by the top level *build package*. More details on the build system are given in section [Waf tools](#pkg-waftools).
-
-Besides holding the main build instructions this package aggregates all the other packages via Git&rsquo;s &ldquo;submodule&rdquo; feature. In principle, there may be more than one build package maintained. This allows developers working on a subset to avoid having to build unwanted code. In practice there is a single build package which is at: <https://github.com/wirecell/wire-cell-build>.
+The `wire-cell-toolkit` provides a monolithic view of all the core WCT packages. It is maintained using `git subrepo` and this is transparent to users and most developers. To actually build WCT see the section on toolkit installation (section [1](#installation))
 
 
 <a id="add-new-package-to-build"></a>
 
 ### Adding a new code package
 
-To add a new code package to a build package from scratch, select a `<name>` following guidance above and do something like:
+A new core WCT code package may be initially developed outside of `wire-cell-toolkit` proper and added via `git subrepo` or it may be created simply as a sub-directory of `wire-cell-toolkit`.
 
     $ mkdir <name>
-    $ cd <name>/
-    $ echo "bld.smplpkg('WireCell<Name>', use='WireCellUtil WireCellIface')" > wscript_build
-    $ git init
-    $ git add wscript_build
+    $ echo "bld.smplpkg('WireCell<Name>', use='WireCellUtil WireCellIface')" > <name>/wscript_build
+    $ emacs wscript
     $ git commit -a -m "Start code package <name>"
 
-Replace `<name>` with your package name. You can create and commit actual code at this time as well following the layout in [4.1.3](#package-structure).
-
-Now, make a new repository by going to the [WireCell GitHub](https://github.com/WireCell) and clicking &ldquo;New repository&rdquo; button. Give it a name like `wire-cell-<name>`. Copy-and-paste the two command it tells you to use:
-
-    $ git remote add origin git@github.com:WireCell/wire-cell-<name>.git
-    $ git push -u origin master
-
-If you made your initial package directory inside the build package move it aside. Then, from the build package directory, add this new repository as a Git submodule:
-
-    $ cd wire-cell-build/ # or whatever you named it
-    $ git submodule add -- git@github.com:WireCell/wire-cell-<name>.git <name>
-    $ git submodule update
-    $ git commit -a -m "Added <name> to top-level build package."
-    $ git push
-
-In order to be picked up by the build the new package short name must be added to the `wscript` file.
+Replace `<name>` with your package name. You can create and commit actual code at this time as well following the layout in [4.1.3](#package-structure). See section [5.5.3](#main-wscript) for how to modify the `wscript` file.
 
 
 <a id="coding-conventions"></a>
@@ -1084,7 +1071,7 @@ In order to be picked up by the build the new package short name must be added t
 
 -   Base indentation *should* be four spaces.
 
--   Tabs *should* not be used.
+-   Tabs *should* not be used for indentation.
 
 -   Opening braces *should not* be on a line onto themselves, closing braces *should be*.
 
@@ -1100,9 +1087,9 @@ In order to be picked up by the build the new package short name must be added t
 
 -   The C++ `using namespace` keyword *must not* be used at top file scope in a header.
 
--   Unused headers *should not* be retained.
+-   Only headers defining symbols required by a file *should* be included.
 
--   Any =#include# need in an implementation file but not the corresponding header file *should not* be in the header file.
+-   Any `#include` needed in an implementation file but not required by the corresponding header file *should not* be in the header file.
 
 
 <a id="c++-namespaces"></a>
@@ -1457,7 +1444,7 @@ Describe units.
 Describe support for persistent files including compression and location.
 
 
-<a id="orge14a024"></a>
+<a id="org531e5e8"></a>
 
 ### Etc
 
@@ -1471,21 +1458,21 @@ Describe support for persistent files including compression and location.
 Brief overview but it&rsquo;s also in <./internals.md> so don&rsquo; t over do it.
 
 
-<a id="org35ea46d"></a>
+<a id="org438ce1e"></a>
 
 ### Data
 
 tbd
 
 
-<a id="org3f60772"></a>
+<a id="orgbc79ed0"></a>
 
 ### Nodes
 
 tbd
 
 
-<a id="org4784582"></a>
+<a id="orgffc091a"></a>
 
 ### Misc
 
@@ -1499,7 +1486,7 @@ tbd
 The `wire-cell-gen` package provides components for the generation of data. It primarily includes components which perform the grand convolution of drifted electron distribution, field and electronics response and associate statistical fluctuations (aka, the &ldquo;drift simulation&rdquo;).
 
 
-<a id="org7894239"></a>
+<a id="orgcef4386"></a>
 
 ### Depositions
 
@@ -1508,42 +1495,42 @@ Depositions (`IDepo` data objects, aka *depo*) are provided by `IDepoSource` com
 The `IDepoSource` components adapt to external sources of information about initial activity in the detector. These sources may provide \(dE\) and \(dX\) in which case two models can be applied to produce associated number of ionized electrons. The external source may provide only \(dE\) in which case the number of ionized electrons will be calculated for the deposition on the assumption that the particle is a MIP. Finally, the ionization process may be handled by the external source and the number of electrons may be given directly.
 
 
-<a id="org7172d84"></a>
+<a id="org12303b4"></a>
 
 ### Drifting
 
 The `IDrifter` components are responsible for transforming a depo at one location and time into another depo at a different location and time while suitably adjusting the number of ionization electrons and their 2D extents. Each call of the component accepts a single depo and returns zero or more output depos. Input depos are assumed to be strictly time ordered and each batch of output depos likewise. In general a drifter must cache depos for some length of time in order to assure it has seen all possible depos to satisfy causality for the output.
 
 
-<a id="org8dd256f"></a>
+<a id="orgc3b71e4"></a>
 
 ### Response
 
 The field and electronics response of the detector is calculated in an `IDuctor` component. This is typically done by accepting depos at some *input plane* or *response plane*. Up to this plane, any drifting depo is assumed to induce a negligible detector response. For drifting beyond this plane some position dependent response is applied (ie, a field response calculated by 2D Garfield or 3D LARF). Each call to an `IDuctor` components accepts one depo and produces zero or more frames (`IFrame` data object). In general an `IDuctor` component must cache depos long enough to assure the produced frames satisfy causality. Output frames may be sparse in that not all channels may have traces (`ITrace` data objects) and in any given channel the traces may not cover the same span of time. The unit for the waveforms in the frame depend on the detector response applied. If field response alone is applied then the waveform is in units of sampled current (fixme, check code, it may be integrated over tick and thus charge.) If both field and electronics response is applied the waveform is in units of voltage.
 
 
-<a id="orgece7b65"></a>
+<a id="orgc047466"></a>
 
 ### Digitizing
 
 An `IDigitizer` component applies a transformation to the waveform, typically but not necessarily in order to truncate it to ADC. These components are functional in that each call takes and produces one frame. Even if truncating to ADC the frame is still expressed as floating point values.
 
 
-<a id="orgeb59506"></a>
+<a id="orgd682037"></a>
 
 ### Noise
 
 t.b.d.
 
 
-<a id="org3c8a140"></a>
+<a id="orgb8f7bcc"></a>
 
 ### Frame Summing
 
 Right now, frames can be summed by a bare function `FrameUtil::sum()`. This is better put into a component.
 
 
-<a id="org08d3ae5"></a>
+<a id="org81e64ce"></a>
 
 ### Execution Graphs
 
@@ -1569,9 +1556,9 @@ t.b.d. this code needs reworking and retesting.
 
 The WCT build system is based on [Waf](https://waf.io/). The parts of the build system include:
 
--   the `wcb` command provided by `wire-cell-build` which is a bundled version of Waf&rsquo;s `waf` command.
--   a number of Waf tools provide instructions for finding the required and optional software dependencies
--   the main `wscript` and per-package `wscript_build` files provide the high-level instructions for building WCT (ie, they are like old fashioned `Makefile` files).
+-   the `wcb` command found at top level in the `wire-cell-toolki` source is the `waf` command from <https://waf.io/> with extra tools bundled.
+-   a number of additional &ldquo;loose&rdquo; Waf tools are provided in the `tools/` sub directory to find required and optional software dependencies
+-   a main `wscript` and per-package `wscript_build` files provide the high-level instructions for building WCT (ie, they are Waf equivalent to old fashioned `Makefile` files).
 
 
 <a id="generate-wcb"></a>
@@ -1583,8 +1570,8 @@ The `wcb` command bundles some optional Waf tools which are not included in the 
     $ git clone https://github.com/waf-project/waf.git
     $ cd waf/
     $ ./waf-light --tools=compat15,doxygen,boost,bjam
-    $ cp waf /path/to/wire-cell-build/wcb
-    $ cd /path/to/wire-cell-build
+    $ cp waf /path/to/wire-cell-toolkit/wcb
+    $ cd /path/to/wire-cell-toolkit
     $ git commit [...]
 
 
@@ -1592,12 +1579,19 @@ The `wcb` command bundles some optional Waf tools which are not included in the 
 
 ### Included Waf tools
 
-A number of Waf tools are provided in the [waftools](https://github.com/wirecell/wire-cell-waftools) submodule. This provides a Python module for each software package which is a required or optional dependency and which is not already covered by Waf itself. New dependencies can be added by using existing modules as examples. It is the `smplpkgs.py` module which handles the building of the WCT packages themselves. The `wcb.py` module is used as a simple aggregate of all the other modules. It is this that is loaded by the main `wscript`.
+A number of Waf tools are provided in the `tools/` subdirectory. They provide Python modules for each software package which is a required or optional dependency and which is not already covered by Waf itself. New dependencies can be added by using existing modules as examples. It is the `smplpkgs.py` module which handles the building of the WCT packages themselves. The `wcb.py` module is used as a simple aggregate of all the other modules. It is this that is loaded by the main `wscript`.
 
 <div class="note">
-The scripts to make and test releases are also housed in this package.
+Some scripts to help make and test releases are also housed in this package.
 
 </div>
+
+
+<a id="main-wscript"></a>
+
+### The main `wscript`
+
+The `wscript` file directs all aspects of building WCT. It locates core WCT packages automatically so generally does not require modification to add new externals or new WCT core packages. However, it does contain hand-wired code to disable certain packages if their dependencies are not found.
 
 
 <a id="data-flow-programming"></a>
@@ -1607,7 +1601,7 @@ The scripts to make and test releases are also housed in this package.
 As described in <./internals.md> the Wire-Cell toolkit is based on interfaces and the components that implement them and the data processing components are specialized classes called &ldquo;nodes&rdquo;. This section describes more about nodes and their execution.
 
 
-<a id="org6a6ffca"></a>
+<a id="orgf538228"></a>
 
 ## Node basics
 
@@ -1630,7 +1624,7 @@ Typically, an interface from this zoo is further inherited to provide a more spe
 TBD: describe inheritance hierarchy and type erasure.
 
 
-<a id="org47e2a5b"></a>
+<a id="org6932ca4"></a>
 
 ## Node execution paradigms
 
@@ -1643,7 +1637,7 @@ A node does not &ldquo;know&rdquo; how it&rsquo;s called and in fact WCT support
 -   **data flow programming:** (DFP) more reusable generally may be achieved when all processing is encapsulated explicitly in nodes and their execution solely involves marshalling data as opaque objects between node calls. In DFP the nodes are thus arranged into a *directed acyclic graph* (DAG) with edges formed by queues which allow data to pass from one node&rsquo;s output to another node&rsquo;s input.
 
 
-<a id="org70c9a5a"></a>
+<a id="orgd9c0aa3"></a>
 
 ## DFP execution strategies
 
@@ -1656,7 +1650,7 @@ WCT has abstracted the method of execution of a DFP graph and has implemented (o
 -   **multi-threaded pipeline:** to maxim core utilization, this mode will start new &ldquo;events&rdquo; while the graph is processing prior events.
 
 
-<a id="org4a65bc1"></a>
+<a id="org0570845"></a>
 
 ## End-of-stream Protocol
 
@@ -2073,19 +2067,10 @@ There will not yet be a code actually installed into the just declared `wirecell
 
 #### WCT Source
 
-Independent of the above, and as per usual, get the WCT source. You may wish to get the source in one of two ways:
-
--   Development on the `master` branch, maybe in anticipation of a future release
-
-    $ git clone --recursive git@github.com:WireCell/wire-cell-build.git wct-master
-
--   Bug fixing an existing release branch called `<BRANCH>` (named after major.minor versions like `A.B.x`, eg `0.6.x`)
-
-    $ git clone --recursive --branch <BRANCH> \
-      https://github.com/WireCell/wire-cell-build.git wct-<BRANCH>
+WCT source is cloned in the usual way. See section on [1.1.1](#source-code) for details.
 
 <div class="note">
-The exact name for the source directory is up to you. Below, `wct-src` is used as a placeholder.
+The exact name to use for the source directory is up to you. Below, `wct-src` is used as a placeholder.
 
 </div>
 

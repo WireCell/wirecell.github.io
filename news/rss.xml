@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates on the Wire Cell Toolkit.</description><atom:link href="http://wirecell.github.io/news/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Thu, 12 Sep 2019 20:14:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Repository Reorganization</title><link>http://wirecell.github.io/news/posts/repository-reorganization/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates on the Wire Cell Toolkit.</description><atom:link href="http://wirecell.github.io/news/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:bv@bnl.gov"&gt;Wire Cell Team&lt;/a&gt; </copyright><lastBuildDate>Fri, 13 Sep 2019 13:08:35 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Wire-Cell Logos</title><link>http://wirecell.github.io/news/posts/wire-cell-logos/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+Wire-Cell and Bee have logos!
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/wire-cell-logos/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>pr</category><guid>http://wirecell.github.io/news/posts/wire-cell-logos/</guid><pubDate>Fri, 13 Sep 2019 12:55:10 GMT</pubDate></item><item><title>Repository Reorganization</title><link>http://wirecell.github.io/news/posts/repository-reorganization/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 Meet the new &lt;a href="https://github.com/wirecell/wire-cell-toolkit"&gt;&lt;code&gt;wire-cell-toolkit&lt;/code&gt;&lt;/a&gt; source repository.
 &lt;/p&gt;
 
@@ -60,9 +64,4 @@ toolkit having hard-wired behavior which hampers support for multiple
 detectors.  This post describes some recent steps to fix this problem.
 &lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/response-refactoring/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>dfp</category><category>graph</category><category>simulation</category><guid>http://wirecell.github.io/news/posts/response-refactoring/</guid><pubDate>Tue, 03 Jul 2018 22:59:30 GMT</pubDate></item><item><title>Pgrapher Configuration Improvements</title><link>http://wirecell.github.io/news/posts/pgrapher-configuration-improvements/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
-A powerful new idiom has been developed to simplify developing Jsonnet
-configuration files for Wire-Cell toolkit's Pgrapher app component.
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/pgrapher-configuration-improvements/"&gt;Read more…&lt;/a&gt; (8 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>dfp</category><category>graph</category><category>simulation</category><guid>http://wirecell.github.io/news/posts/pgrapher-configuration-improvements/</guid><pubDate>Fri, 29 Jun 2018 18:33:44 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/response-refactoring/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>dfp</category><category>graph</category><category>simulation</category><guid>http://wirecell.github.io/news/posts/response-refactoring/</guid><pubDate>Tue, 03 Jul 2018 22:59:30 GMT</pubDate></item></channel></rss>

@@ -1,0 +1,46 @@
+#+BEGIN_COMMENT
+.. title: Wire-Cell Logos
+.. slug: wire-cell-logos
+.. date: 2019-09-13 08:55:10 UTC-04:00
+.. tags: pr
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+
+#+END_COMMENT
+
+Wire-Cell and Bee have logos!
+
+{{{TEASER_END}}}
+
+For a while, the "branding" for Wire-Cell on this blog and on GitHub
+has been in the form of an image of ionization activity reconstructed
+using Wire-Cell imaging and displayed in the [[https://www.phy.bnl.gov/wire-cell/bee/][Bee]] event visualization
+system:
+
+[[img-url:/images/wcgh.png]]
+
+Xin Qian recently came up with an initial concept for a new and proper
+logo and Chao Zhang tuned it up including a variant for his [[https://www.phy.bnl.gov/wire-cell/bee/][Bee]] event
+visualization system.  The main Wire-Cell logo is now:
+
+[[img-url:/images/wire-cell-logo.png]]
+
+As can be noticed by frequent visitors to this blog, it has already
+replaced the old screen shot branding.  A version with a transparent
+background is also produced:
+
+[[img-url:/images/wire-cell-notext-400x400-transparent.png]]
+
+The logo specialized for Bee is:
+
+[[img-url:/images/wire-cell-bee-logo.png]]
+
+We lack vector PDF and SVG versions of these which are needed for
+producing quality presentations and papers.  If anyone has the skills
+to produce these forms, please do so and contribute them!
+
+
+
