@@ -7,11 +7,11 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/build.xml</loc>
-  <lastmod>2019-09-13T13:28:00Z</lastmod>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/cat_posts.xml</loc>
-  <lastmod>2019-09-13T13:28:00Z</lastmod>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/cat_toolkit.xml</loc>
@@ -31,7 +31,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/devel.xml</loc>
-  <lastmod>2019-09-13T13:28:00Z</lastmod>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/dfp.xml</loc>
@@ -63,7 +63,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/source.xml</loc>
-  <lastmod>2019-09-13T13:28:00Z</lastmod>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/uboone.xml</loc>
@@ -79,10 +79,10 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/rss.xml</loc>
-  <lastmod>2019-09-13T13:28:00Z</lastmod>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/sitemap.xml</loc>
-  <lastmod>2019-09-13T13:31:00Z</lastmod>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
  </sitemap>
 </sitemapindex>

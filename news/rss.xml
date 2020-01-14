@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire-Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates from the Wire-Cell team.</description><atom:link href="http://wirecell.github.io/news/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:bv@bnl.gov"&gt;Wire-Cell Team&lt;/a&gt; </copyright><lastBuildDate>Fri, 13 Sep 2019 13:28:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Wire-Cell Logos</title><link>http://wirecell.github.io/news/posts/wire-cell-logos/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire-Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates from the Wire-Cell team.</description><atom:link href="http://wirecell.github.io/news/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:bv@bnl.gov"&gt;Wire-Cell Team&lt;/a&gt; </copyright><lastBuildDate>Tue, 14 Jan 2020 18:25:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Build system cleanup</title><link>http://wirecell.github.io/news/posts/build-system-cleanup/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+The Waf-based build system for the toolkit is recently cleaned up and
+expanded to support user packages.  For existing users this change
+should be invisible.  This post gives the details of the change, what
+to do when updates to the build system are needed and how to use it
+for to build your own WCT-related packages.
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/build-system-cleanup/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>build</category><category>devel</category><category>source</category><guid>http://wirecell.github.io/news/posts/build-system-cleanup/</guid><pubDate>Tue, 14 Jan 2020 15:32:43 GMT</pubDate></item><item><title>Wire-Cell Logos</title><link>http://wirecell.github.io/news/posts/wire-cell-logos/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 Wire-Cell and Bee have logos!
 &lt;/p&gt;
 
@@ -54,14 +62,4 @@ override or augment those defaults.  WCT helps such intrepid users to
 discover the defaults with the &lt;code&gt;ConfigDumper&lt;/code&gt; WCT app component.
 &lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/default-config-dumper/"&gt;Read more…&lt;/a&gt; (6 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>cli</category><category>config</category><guid>http://wirecell.github.io/news/posts/default-config-dumper/</guid><pubDate>Thu, 05 Jul 2018 13:15:44 GMT</pubDate></item><item><title>Response Refactoring</title><link>http://wirecell.github.io/news/posts/response-refactoring/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
-In WCT we try to follow the mantra "everything is a component".  One
-corollary to that is we try to avoid hard-wiring dependencies by
-having functionality accessed by hard-wired construction of concrete
-classes.  The various classes having to do with responses suffered
-from not being available as components.  This led to the entire
-toolkit having hard-wired behavior which hampers support for multiple
-detectors.  This post describes some recent steps to fix this problem.
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/response-refactoring/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>dfp</category><category>graph</category><category>simulation</category><guid>http://wirecell.github.io/news/posts/response-refactoring/</guid><pubDate>Tue, 03 Jul 2018 22:59:30 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/default-config-dumper/"&gt;Read more…&lt;/a&gt; (6 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>cli</category><category>config</category><guid>http://wirecell.github.io/news/posts/default-config-dumper/</guid><pubDate>Thu, 05 Jul 2018 13:15:44 GMT</pubDate></item></channel></rss>

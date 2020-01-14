@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>http://wirecell.github.io/news/</loc>
-  <lastmod>2019-09-09T13:52:00Z</lastmod>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/2017/</loc>
@@ -22,8 +22,12 @@
   <lastmod>2019-09-09T13:52:00Z</lastmod>
  </url>
  <url>
+  <loc>http://wirecell.github.io/news/2020/</loc>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
+ </url>
+ <url>
   <loc>http://wirecell.github.io/news/archive.html</loc>
-  <lastmod>2019-09-13T13:31:00Z</lastmod>
+  <lastmod>2020-01-14T18:22:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/</loc>
@@ -103,7 +107,11 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/index-1.html</loc>
-  <lastmod>2019-09-13T13:31:00Z</lastmod>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/index-2.html</loc>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/listings/</loc>
@@ -116,6 +124,10 @@
  <url>
   <loc>http://wirecell.github.io/news/posts/build-cleanups/</loc>
   <lastmod>2019-09-09T13:52:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/posts/build-system-cleanup/</loc>
+  <lastmod>2020-01-14T18:24:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/certifiable-singularity/</loc>

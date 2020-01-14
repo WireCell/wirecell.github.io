@@ -1,0 +1,83 @@
+#+BEGIN_COMMENT
+.. title: Build system cleanup
+.. slug: build-system-cleanup
+.. date: 2020-01-14 10:32:43 UTC-05:00
+.. tags: build,devel,source
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+
+#+END_COMMENT
+
+The Waf-based build system for the toolkit is recently cleaned up and
+expanded to support user packages.  For existing users this change
+should be invisible.  This post gives the details of the change, what
+to do when updates to the build system are needed and how to use it
+for to build your own WCT-related packages.
+
+{{{TEASER_END}}}
+
+* Consolidation and cleanup
+
+Previously, the [[https://github.com/wirecell/waf-tools][waf-tools]] repository was available under a similarly
+named subpackage in the toolkit source.  This repository holds add-on
+tools to [[https://waf.io][Waf]] to build WCT packages and locate its software
+dependencies.  The contents of this package are still relevant but
+they are now fully "baked" into the ~wcb~ build program and the
+~waftools/~ directory is now absent from the [[https://github.com/WireCell/wire-cell-toolkit][wire-cell-toolkit]]
+repositry.  The bulk of the main [[https://github.com/WireCell/wire-cell-toolkit/blob/master/wscript][wscript]] file has also been moved into
+waf-tools and baked into ~wcb~.
+
+* Updating ~wcb~
+
+As a consequence of this consolidation, there is very little "guts" of
+the build system obviously exposed to the casual users or even
+developers.  This makes the ~wcb~ and ~wscript~ easy to transfer and adapt
+to other WCT related packages (see next section) but means that when
+an update to the build system it needed the ~wcb~ program must itself be
+rebuilt.  
+
+Rebuilding ~wcb~ is easy but only a few people will ever need to do it.
+It is performed like:
+
+#+begin_example 
+  $ git clone https://github.com/WireCell/waf-tools.git
+  $ WTEXTRA=$(echo $(pwd)/waf-tools/*.py | tr ' ' ,)
+
+  $ git clone https://github.com/waf-project/waf.git
+  $ cd waf/
+  $ ./waf-light --tools=doxygen,boost,bjam,$WTEXTRA
+  ...
+  adding /home/bv/dev/waf-tools/smplpkgs.py as waflib/extras/smplpkgs.py
+  adding /home/bv/dev/waf-tools/wcb.py as waflib/extras/wcb.py
+  ...
+  $ cp waf /path/to/wire-cell-toolkit/wcb
+  $ cd /path/to/wire-cell-toolkit
+  $ git commit -am "Update wcb" && git push
+#+end_example
+
+* Using ~wcb~ to build your own package
+
+Using ~wcb~ to build WCT itself is unchanged.  It is also possible to
+use ~wcb~ and start with the ~wscript~ file from WCT itself to easily
+create a build system for your won WCT-based packages.  An [[https://github.com/WireCell/example-package][example
+package]] has been created to give a, well, an example.  You may use it
+as a starting point or simply for inspiration.
+
+To use ~example-package~ as a starting point:
+
+1) download the source [[https://github.com/WireCell/example-package/archive/master.zip][eg as a zip file]] (don't clone, or if you do, don't push changes)
+2) edit it's [[https://github.com/WireCell/example-package/blob/master/wscript][wscript]] file to select a unique name in ~bld.smplpkg()~
+3) Add any additional WCT-provided dependencies in that function.
+4) Define any new dependencies at the top in the
+~wcb.package_descriptions~ dictionary and add them to the ~bld.smplpkg()~
+function.
+
+* More info
+
+- [[https://github.com/WireCell/waf-tools][WCT waf-tools]] 
+- [[https://wirecell.bnl.gov/manual.html#toolkit-packages][WCT package conventions]]
+- [[https://wirecell.bnl.gov/manual.html#add-a-component][add a WCT component class]]
+
