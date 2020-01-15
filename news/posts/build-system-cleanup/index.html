@@ -79,9 +79,9 @@ for to build your own WCT-related packages.
 
 <!-- TEASER_END -->
 
-<div id="outline-container-org78261fc" class="outline-2">
-<h2 id="org78261fc">Consolidation and cleanup</h2>
-<div class="outline-text-2" id="text-org78261fc">
+<div id="outline-container-org19f0de8" class="outline-2">
+<h2 id="org19f0de8">Consolidation and cleanup</h2>
+<div class="outline-text-2" id="text-org19f0de8">
 <p>
 Previously, the <a href="https://github.com/wirecell/waf-tools">waf-tools</a> repository was available under a similarly
 named subpackage in the toolkit source.  This repository holds add-on
@@ -95,10 +95,10 @@ waf-tools and baked into <code>wcb</code>.
 </div>
 </div>
 
-<div id="outline-container-org797c922" class="outline-2">
-<h2 id="org797c922">Updating <code>wcb</code>
+<div id="outline-container-org31c6d9a" class="outline-2">
+<h2 id="org31c6d9a">Updating <code>wcb</code>
 </h2>
-<div class="outline-text-2" id="text-org797c922">
+<div class="outline-text-2" id="text-org31c6d9a">
 <p>
 As a consequence of this consolidation, there is very little "guts" of
 the build system obviously exposed to the casual users or even
@@ -109,31 +109,29 @@ rebuilt.
 </p>
 
 <p>
-Rebuilding <code>wcb</code> is easy but only a few people will ever need to do it.
-It is performed like:
+Rebuilding <code>wcb</code> is easy (but very few people need to do it):
 </p>
 
 <pre class="example">
-$ git clone https://github.com/WireCell/waf-tools.git
-$ WTEXTRA=$(echo $(pwd)/waf-tools/*.py | tr ' ' ,)
+$ cd /path/to/your/waf-tools
+$ ./refresh-wcb -o /path/to/your/wire-cell-toolkit/wcb
 
-$ git clone https://github.com/waf-project/waf.git
-$ cd waf/
-$ ./waf-light --tools=doxygen,boost,bjam,$WTEXTRA
-...
-adding /home/bv/dev/waf-tools/smplpkgs.py as waflib/extras/smplpkgs.py
-adding /home/bv/dev/waf-tools/wcb.py as waflib/extras/wcb.py
-...
-$ cp waf /path/to/wire-cell-toolkit/wcb
-$ cd /path/to/wire-cell-toolkit
-$ git commit -am "Update wcb" &amp;&amp; git push
+$ cd /path/to/your/wire-cell-toolkit
+(...test...)
+$ git commit -am "Refresh to wcb X.Y.Z" &amp;&amp; git push
+
+$ cd /path/to/your/waf-tools
+$ git tag -am "...useful message..." X.Y.Z
+$ git push --tags
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org3abe4c8" class="outline-2">
-<h2 id="org3abe4c8">Using <code>wcb</code> to build your own package</h2>
-<div class="outline-text-2" id="text-org3abe4c8">
+
+
+<div id="outline-container-org9342b03" class="outline-2">
+<h2 id="org9342b03">Using <code>wcb</code> to build your own package</h2>
+<div class="outline-text-2" id="text-org9342b03">
 <p>
 Using <code>wcb</code> to build WCT itself is unchanged.  It is also possible to
 use <code>wcb</code> and start with the <code>wscript</code> file from WCT itself to easily
@@ -160,9 +158,9 @@ function.
 </div>
 </div>
 
-<div id="outline-container-orgc920840" class="outline-2">
-<h2 id="orgc920840">More info</h2>
-<div class="outline-text-2" id="text-orgc920840">
+<div id="outline-container-org4ce782f" class="outline-2">
+<h2 id="org4ce782f">More info</h2>
+<div class="outline-text-2" id="text-org4ce782f">
 <ul class="org-ul">
 <li><a href="https://github.com/WireCell/waf-tools">WCT waf-tools</a></li>
 <li><a href="https://wirecell.bnl.gov/manual.html#toolkit-packages">WCT package conventions</a></li>
