@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wire-Cell fans | Wire-Cell News</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="http://wirecell.github.io/news/posts/wire-cell-fans/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Brett Viren">
+<link rel="prev" href="../build-system-cleanup/" title="Build system cleanup" type="text/html">
+<meta property="og:site_name" content="Wire-Cell News">
+<meta property="og:title" content="Wire-Cell fans">
+<meta property="og:url" content="http://wirecell.github.io/news/posts/wire-cell-fans/">
+<meta property="og:description" content="Of course, everyone is a fan of Wire-Cell.  This post isn't about you.
+It's about a common pattern that is found in Wire-Cell data flow
+graphs and how this pattern is realized at the WCT C++ level and">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-12-03T09:50:51-05:00">
+<meta property="article:tag" content="config">
+<meta property="article:tag" content="graph">
+<meta property="article:tag" content="user">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<div class="blog-masthead">
+    <div class="container">
+<!-- This keeps the margins nice -->
+        <nav class="blog-nav" role="navigation"><a href="../../index.html" class="blog-nav-item">Home</a>
+            <a href="../../archive.html" class="blog-nav-item">Archive</a>
+            <a href="../../categories/" class="blog-nav-item">Tags</a>
+            <a href="../../rss.xml" class="blog-nav-item">RSS feed</a>
+
+            
+
+    <a href="index.org" class="blog-nav-item blog-nav-item-aside" id="sourcelink">Source</a>
+                
+            
+        </nav>
+</div>
+<!-- /.container -->
+</div>
+<!-- End of Menubar -->
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <div class="blog-header">
+            <h1 class="blog-title">
+                <a href="http://wirecell.github.io/news/">
+                    <img src="../../images/wire-cell-logo.png" alt="Wire-Cell News" id="logo"><span id="blog-title">Wire-Cell News</span>
+                </a>
+            </h1>
+            <p class="lead blog-description">Updates from the Wire-Cell team.</p>
+            
+        </div>
+        <!--Body content-->
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title blog-post-title" itemprop="headline name"><a href="." class="u-url">Wire-Cell fans</a></h2>
+
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2020-12-03T09:50:51-05:00" itemprop="datePublished" title="2020-12-03 09:50">2020-12-03 09:50</time></a></p>
+                    <p class="sourceline"><a href="index.org" id="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>
+Of course, everyone is a fan of Wire-Cell.  This post isn't about you.
+It's about a common pattern that is found in Wire-Cell data flow
+graphs and how this pattern is realized at the WCT C++ level and how
+to form it in WCT configuration.  
+</p>
+
+<!-- TEASER_END -->
+
+<p>
+This pattern we talk about is generally called a "fan" of which there
+are two variants: fanin and fanout.
+</p>
+
+<ul class="org-ul">
+<li>fanout : a map of one input to a number of outputs of the same type</li>
+<li>fanin : a map of a number of inputs of the same type to one output</li>
+</ul>
+<p>
+Let's look at how fans are represented in Wire-Cell C++ and then in
+the configuration.
+</p>
+
+<div id="outline-container-org0ad3c35" class="outline-2">
+<h2 id="org0ad3c35">Fans at the C++ level</h2>
+<div class="outline-text-2" id="text-org0ad3c35">
+<p>
+In Wire-Cell, a <b>fanout</b> node implements the <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/iface/inc/WireCellIface/IFanoutNode.h"><code>IFanoutNode</code></a> base and a
+<b>fanin</b> implements <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/iface/inc/WireCellIface/IFaninNode.h"><code>IFaninNode</code></a> base.  These assure the fan-side ports
+carry all the same type of data and that a <b>fan multiplicity</b> is honored
+by the graph edges.
+</p>
+</div>
+
+<div id="outline-container-org12c0635" class="outline-3">
+<h3 id="org12c0635">Fan multiplicity</h3>
+<div class="outline-text-3" id="text-org12c0635">
+<p>
+The fan multiplicity needs some detail.  
+</p>
+
+<p>
+By default, it is set by a C++ template argument to <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/iface/inc/WireCellIface/IDepoFanout.h"><code>IDepoFanout</code></a> or
+<a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/iface/inc/WireCellIface/IDepoFanin.h"><code>IDepoFanin</code></a>.  It is then used to set the size of the vectors returned
+by the <code>output_types()</code> or <code>input_types()</code> methods required by the base
+<code>INode</code> interface.
+</p>
+
+<p>
+But in some cases, we want fanout and fanin nodes which may have the
+fan multiplicity set at runtime (ie, by configuration).  This is done
+for example by <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/gen/inc/WireCellGen/DepoFanout.h"><code>DepoFanout</code></a> by satisfying the requirement set by
+<code>IDepoFanout</code> that it <b>must</b> supply <code>output_types()</code>.  It does that by
+accepting a "multiplicity" configuration argument which sets the size
+of the vector of output ports at run time.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcddf6ac" class="outline-3">
+<h3 id="orgcddf6ac">Multiplicity Limitations</h3>
+<div class="outline-text-3" id="text-orgcddf6ac">
+<p>
+There is one last implementation detail.
+</p>
+
+<p>
+When Wire-Cell uses the multi-threaded graph execution engine based on
+TBB the fanout nodes are mapped via the <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/tbb/inc/WireCellTbb/FanoutCat.h">fanout category</a> to a
+<code>tbb::flow::split_node</code> type and the fanin nodes are mapped via the
+<a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/tbb/inc/WireCellTbb/FaninCat.h">fanin category</a> to a <code>tbb::flow::join_node</code>.  
+</p>
+
+<p>
+This detail is important as there are two limits placed on the
+multiplicity.  
+</p>
+
+<p>
+At the WCT level, a translation between run-time and compile-time
+multiplicity is done in the TBB fanout category which exhaustively
+iterates over allowed sizes up to some max (currently 6 as of this
+writing).  This limit can be trivially raised.
+</p>
+
+<p>
+At the TBB level, the allowed maximum multiplicity depends on the
+version and how it is compiled.  Older TBB versions may be limited to
+15 or less.  Newer TBB requires modern C++ and uses variadic templates and <code>std::tuple</code> and may have a higher limit.  
+</p>
+
+<p>
+When pushing beyond the current max fan multiplicity of 6, explicit
+testing will be needed.  At the end we will give some pointers.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org08f0886" class="outline-2">
+<h2 id="org08f0886">Fans at the config level</h2>
+<div class="outline-text-2" id="text-org08f0886">
+<p>
+Wire-Cell provides a Jsonnet module <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/cfg/pgraph.jsonnet"><code>pgraph.jsonnet</code></a> which provides
+functions to help construct the flow graph configuration.  In
+particular it provides some fan-related functions under the <code>fan</code>
+object.  Below is a tour of its functions.
+</p>
+</div>
+
+<div id="outline-container-orgba21c91" class="outline-3">
+<h3 id="orgba21c91">Caveat</h3>
+<div class="outline-text-3" id="text-orgba21c91">
+<p>
+This section presents some WCT configuration examples.  While they are
+syntactically correct, they are <b>not</b> guaranteed to be fleshed out to
+properly provide all required information to be used to run a
+<code>wire-cell</code> job.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org53490bc" class="outline-3">
+<h3 id="org53490bc">Atomic fan node</h3>
+<div class="outline-text-3" id="text-org53490bc">
+<p>
+No special help is needed to make a simple, atomic fanout of fanin
+node.  For example, consider:
+</p>
+
+<div class="highlight"><pre><span></span>local g = import "pgraph.jsonnet";
+local fanout = g.pnode({
+    type: "DepoFanout",
+}, nin=1, nout=6);
+</pre></div>
+
+<p>
+This defines a 1-to-6 fanout of type <code>DepoFanout</code>.  This is simple
+enough, but the complexity comes in when one wants to attach many
+nodes to the outputs.  There the <code>pgraph.jsonnet</code> functions will help.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc32f9a8" class="outline-3">
+<h3 id="orgc32f9a8">Construct a fanout subgraph</h3>
+<div class="outline-text-3" id="text-orgc32f9a8">
+<p>
+A fanout subgraph can be constructed with:
+</p>
+
+<div class="highlight"><pre><span></span>fan.fanout(fantype, pipelines, name="fanout", tag_rules=[])
+</pre></div>
+
+<p>
+This function constructs an aggregate pnode around an atomic fanout
+type, which it also constructs into an atomic pnode in the aggregate.
+The <code>pipelines</code> array hold pnodes, each of which will be attached to an
+output of the fan.  
+</p>
+
+<p>
+It is specifically tested in <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/cfg/test/test-fan-out.jsonnet"><code>test-fan-out.jsonnet</code></a> which can be
+visualized with:
+</p>
+
+<pre class="example">
+$ jsonnet -J cfg cfg/test/test-fan-out.jsonnet &gt; test-fan-out.json
+$ wirecell-pgraph dotify --jpath=-1 test-fan-out.json test-fan-out.dot
+$ dot -Tpng -o test-fan-out.png test-fan-out.dot
+</pre>
+
+<p>
+<img src="../../images/test-fan-out.png" alt="nil"></p>
+
+<p>
+In this example, the <code>TrackDepos</code> and <code>DumpDepos</code> nodes are added in order
+to produce a complete graph and are not required, per se, just for the
+fanout subgraph.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc768b57" class="outline-3">
+<h3 id="orgc768b57">Construct a fanin subgraph</h3>
+<div class="outline-text-3" id="text-orgc768b57">
+<p>
+A fanin subgraph can be constructed with:
+</p>
+
+<div class="highlight"><pre><span></span>fan.fanin(fantype, pipelines, name="fanin", outtags=[])
+</pre></div>
+
+<p>
+This function creates the opposite pattern as <code>fan.fanout()</code>.  It is
+tested in <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/cfg/test/test-fan-in.jsonnet"><code>test-fan-in.jsonnet</code></a> which can be visualized similarly to
+the above:
+</p>
+
+<p>
+<img src="../../images/test-fan-in.png" alt="nil"></p>
+</div>
+</div>
+
+<div id="outline-container-org1994f6c" class="outline-3">
+<h3 id="org1994f6c">Construct a "fan pipe"</h3>
+<div class="outline-text-3" id="text-org1994f6c">
+<p>
+A fan pipe can be constructed with:
+</p>
+
+<div class="highlight"><pre><span></span>fan.pipe(fout, pipelines, fin, name="fanpipe", outtags=[], tag_rules=[])
+</pre></div>
+
+<p>
+In the <code>fan.fanout()</code> example above, we had to manually make a fanin and
+vice versa for the <code>fan.fanin()</code> example in order to "cap off" all ports
+so that total graph is complete.  The <code>fan.pipe()</code> function allows
+joining these two patterns to result in an aggregate with one input
+and one output (ie, a pipe).
+</p>
+
+<p>
+This pattern is tested in  <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/cfg/test/test-fan-pipe.jsonnet"><code>test-fan-pipe.jsonnet</code></a> which visualizes as:
+</p>
+
+<p>
+<img src="../../images/test-fan-pipe.png" alt="nil"></p>
+</div>
+</div>
+
+
+<div id="outline-container-orgd8c3180" class="outline-3">
+<h3 id="orgd8c3180">General subgraph construction</h3>
+<div class="outline-text-3" id="text-orgd8c3180">
+<p>
+The special <code>fan</code> functions described above help by creating an
+aggregate node following a some special graph pattern.  They all use
+the <code>intern()</code> function for the "heavy lifting".  
+</p>
+
+<p>
+If no special <code>fan</code> function or other helper function builds a pattern
+which is needed you may always use <code>intern()</code> directly.  This is because
+the <code>intern()</code> function performs <b>arbitrary connections</b> between a set of
+"input nodes", "output nodes" and "internal nodes" in order to form a
+single "aggregate node".  Here is its calling interface:
+</p>
+
+<div class="highlight"><pre><span></span>intern(innodes=[], outnodes=[], centernodes=[], 
+       edges=[], iports=[], oports=[], name="")
+</pre></div>
+
+<p>
+As is shown, all arguments are optional.  These arguments are define as:
+</p>
+
+<dl class="org-dl">
+<dt><code>innodes</code></dt>
+<dd>list of pnode node objects which will automatically (see
+<code>iports</code>) have their input ports exposed as input nodes for the
+resulting aggregate node.</dd>
+<dt><code>outnodes</code></dt>
+<dd>as above but for output ports</dd>
+<dt><code>centernodes</code></dt>
+<dd>nodes which expose no ports outside the resulting
+aggregate node.</dd>
+<dt><code>edges</code></dt>
+<dd>edges between output ports of inputs nodes, vice versa, or
+between ports of centernodes and output ports of input nodes or
+input ports of output nodes.</dd>
+<dt><code>iports</code></dt>
+<dd>explicitly list the ports to expose on the resulting
+aggregate node.  If empty, then it will automatic be determined from
+the <code>innodes</code>.</dd>
+<dt><code>oports</code></dt>
+<dd>etc for output ports.</dd>
+<dt><code>name</code></dt>
+<dd>the name of the resulting pnode.</dd>
+</dl>
+<p>
+If you end up needing to use <code>intern()</code> directly consider if your
+subgraph pattern is "specifically generic" enough (contradiction
+noted!).  If so, consider adding a new helper function to
+<code>pgraph.jsonnet</code> so other people may benefit.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf81fe93" class="outline-2">
+<h2 id="orgf81fe93">Multi-layer fans</h2>
+<div class="outline-text-2" id="text-orgf81fe93">
+<p>
+When a fan multiplicity larger than the limit is required one can
+produce it from a "fan of fans", each of which keeps a multiplicity
+within the limit.
+</p>
+
+<p>
+This pattern is exercised in the test file <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/cfg/test/test-fan-fan.jsonnet"><code>test-fan-fan.jsonnet</code></a> and
+we'll close out this overly long blog post with an overly long
+visualization of this double-fanout:
+</p>
+
+<p>
+<img src="../../images/test-fan-fan.png" alt="nil"></p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/config/" rel="tag">config</a></li>
+            <li><a class="tag p-category" href="../../categories/graph/" rel="tag">graph</a></li>
+            <li><a class="tag p-category" href="../../categories/user/" rel="tag">user</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../build-system-cleanup/" rel="prev" title="Build system cleanup">Previous post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                    <div class="sidebar-module sidebar-module-inset">
+      <h4>About</h4>
+      <p>Wire-Cell encompasses a collection of techniques and software implementation for the simulation, noise filtering, signal processing, 3D imaging, pattern recognition and reconstruction of liquid argon time projection chamber detectors.</p>
+    </div>
+    <div class="sidebar-module">
+      <h4>Links</h4>
+      <ol class="list-unstyled">
+<li><a href="https://lar.bnl.gov/wire-cell/">home page</a></li>
+        <li><a href="http://wirecell.github.io/">documentation</a></li>
+        <li><a href="http://github.io/WireCell">repositories</a></li>
+      </ol>
+</div>
+    
+            </div>
+        <!--End of body content-->
+        </div>
+    </div>
+</div>
+
+<footer class="blog-footer" id="footer">
+    Contents © 2020         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    
+</footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
