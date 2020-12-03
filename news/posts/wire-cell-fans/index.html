@@ -92,9 +92,9 @@ Let's look at how fans are represented in Wire-Cell C++ and then in
 the configuration.
 </p>
 
-<div id="outline-container-org0ad3c35" class="outline-2">
-<h2 id="org0ad3c35">Fans at the C++ level</h2>
-<div class="outline-text-2" id="text-org0ad3c35">
+<div id="outline-container-orga4f5bda" class="outline-2">
+<h2 id="orga4f5bda">Fans at the C++ level</h2>
+<div class="outline-text-2" id="text-orga4f5bda">
 <p>
 In Wire-Cell, a <b>fanout</b> node implements the <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/iface/inc/WireCellIface/IFanoutNode.h"><code>IFanoutNode</code></a> base and a
 <b>fanin</b> implements <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/iface/inc/WireCellIface/IFaninNode.h"><code>IFaninNode</code></a> base.  These assure the fan-side ports
@@ -103,9 +103,9 @@ by the graph edges.
 </p>
 </div>
 
-<div id="outline-container-org12c0635" class="outline-3">
-<h3 id="org12c0635">Fan multiplicity</h3>
-<div class="outline-text-3" id="text-org12c0635">
+<div id="outline-container-org7e60e9a" class="outline-3">
+<h3 id="org7e60e9a">Fan multiplicity</h3>
+<div class="outline-text-3" id="text-org7e60e9a">
 <p>
 The fan multiplicity needs some detail.  
 </p>
@@ -128,9 +128,9 @@ of the vector of output ports at run time.
 </div>
 </div>
 
-<div id="outline-container-orgcddf6ac" class="outline-3">
-<h3 id="orgcddf6ac">Multiplicity Limitations</h3>
-<div class="outline-text-3" id="text-orgcddf6ac">
+<div id="outline-container-org8ddbeb3" class="outline-3">
+<h3 id="org8ddbeb3">Multiplicity Limitations</h3>
+<div class="outline-text-3" id="text-org8ddbeb3">
 <p>
 There is one last implementation detail.
 </p>
@@ -168,9 +168,9 @@ testing will be needed.  At the end we will give some pointers.
 </div>
 </div>
 
-<div id="outline-container-org08f0886" class="outline-2">
-<h2 id="org08f0886">Fans at the config level</h2>
-<div class="outline-text-2" id="text-org08f0886">
+<div id="outline-container-org0f8c026" class="outline-2">
+<h2 id="org0f8c026">Fans at the config level</h2>
+<div class="outline-text-2" id="text-org0f8c026">
 <p>
 Wire-Cell provides a Jsonnet module <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/cfg/pgraph.jsonnet"><code>pgraph.jsonnet</code></a> which provides
 functions to help construct the flow graph configuration.  In
@@ -179,9 +179,9 @@ object.  Below is a tour of its functions.
 </p>
 </div>
 
-<div id="outline-container-orgba21c91" class="outline-3">
-<h3 id="orgba21c91">Caveat</h3>
-<div class="outline-text-3" id="text-orgba21c91">
+<div id="outline-container-orged10ceb" class="outline-3">
+<h3 id="orged10ceb">Caveat</h3>
+<div class="outline-text-3" id="text-orged10ceb">
 <p>
 This section presents some WCT configuration examples.  While they are
 syntactically correct, they are <b>not</b> guaranteed to be fleshed out to
@@ -191,9 +191,9 @@ properly provide all required information to be used to run a
 </div>
 </div>
 
-<div id="outline-container-org53490bc" class="outline-3">
-<h3 id="org53490bc">Atomic fan node</h3>
-<div class="outline-text-3" id="text-org53490bc">
+<div id="outline-container-orgfedb99c" class="outline-3">
+<h3 id="orgfedb99c">Atomic fan node</h3>
+<div class="outline-text-3" id="text-orgfedb99c">
 <p>
 No special help is needed to make a simple, atomic fanout of fanin
 node.  For example, consider:
@@ -213,9 +213,9 @@ nodes to the outputs.  There the <code>pgraph.jsonnet</code> functions will help
 </div>
 </div>
 
-<div id="outline-container-orgc32f9a8" class="outline-3">
-<h3 id="orgc32f9a8">Construct a fanout subgraph</h3>
-<div class="outline-text-3" id="text-orgc32f9a8">
+<div id="outline-container-org6d49b13" class="outline-3">
+<h3 id="org6d49b13">Construct a fanout subgraph</h3>
+<div class="outline-text-3" id="text-org6d49b13">
 <p>
 A fanout subgraph can be constructed with:
 </p>
@@ -252,9 +252,9 @@ fanout subgraph.
 </div>
 </div>
 
-<div id="outline-container-orgc768b57" class="outline-3">
-<h3 id="orgc768b57">Construct a fanin subgraph</h3>
-<div class="outline-text-3" id="text-orgc768b57">
+<div id="outline-container-org29ba060" class="outline-3">
+<h3 id="org29ba060">Construct a fanin subgraph</h3>
+<div class="outline-text-3" id="text-org29ba060">
 <p>
 A fanin subgraph can be constructed with:
 </p>
@@ -273,9 +273,9 @@ the above:
 </div>
 </div>
 
-<div id="outline-container-org1994f6c" class="outline-3">
-<h3 id="org1994f6c">Construct a "fan pipe"</h3>
-<div class="outline-text-3" id="text-org1994f6c">
+<div id="outline-container-org5d603fe" class="outline-3">
+<h3 id="org5d603fe">Construct a "fan pipe"</h3>
+<div class="outline-text-3" id="text-org5d603fe">
 <p>
 A fan pipe can be constructed with:
 </p>
@@ -301,9 +301,9 @@ This pattern is tested in  <a href="https://github.com/WireCell/wire-cell-toolki
 </div>
 
 
-<div id="outline-container-orgd8c3180" class="outline-3">
-<h3 id="orgd8c3180">General subgraph construction</h3>
-<div class="outline-text-3" id="text-orgd8c3180">
+<div id="outline-container-org052b022" class="outline-3">
+<h3 id="org052b022">General subgraph construction</h3>
+<div class="outline-text-3" id="text-org052b022">
 <p>
 The special <code>fan</code> functions described above help by creating an
 aggregate node following a some special graph pattern.  They all use
@@ -359,9 +359,9 @@ noted!).  If so, consider adding a new helper function to
 </div>
 </div>
 
-<div id="outline-container-orgf81fe93" class="outline-2">
-<h2 id="orgf81fe93">Multi-layer fans</h2>
-<div class="outline-text-2" id="text-orgf81fe93">
+<div id="outline-container-orgbb7b2ff" class="outline-2">
+<h2 id="orgbb7b2ff">Multi-layer fans</h2>
+<div class="outline-text-2" id="text-orgbb7b2ff">
 <p>
 When a fan multiplicity larger than the limit is required one can
 produce it from a "fan of fans", each of which keeps a multiplicity

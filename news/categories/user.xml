@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire-Cell News (Posts about user)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link href="http://wirecell.github.io/news/categories/user.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:bv@bnl.gov"&gt;Wire-Cell Team&lt;/a&gt; </copyright><lastBuildDate>Fri, 13 Sep 2019 13:28:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Repository Reorganization</title><link>http://wirecell.github.io/news/posts/repository-reorganization/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire-Cell News (Posts about user)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link href="http://wirecell.github.io/news/categories/user.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:bv@bnl.gov"&gt;Wire-Cell Team&lt;/a&gt; </copyright><lastBuildDate>Thu, 03 Dec 2020 18:53:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Wire-Cell fans</title><link>http://wirecell.github.io/news/posts/wire-cell-fans/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+Of course, everyone is a fan of Wire-Cell.  This post isn't about you.
+It's about a common pattern that is found in Wire-Cell data flow
+graphs and how this pattern is realized at the WCT C++ level and how
+to form it in WCT configuration.  
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/wire-cell-fans/"&gt;Read more…&lt;/a&gt; (6 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>graph</category><category>user</category><guid>http://wirecell.github.io/news/posts/wire-cell-fans/</guid><pubDate>Thu, 03 Dec 2020 14:50:51 GMT</pubDate></item><item><title>Repository Reorganization</title><link>http://wirecell.github.io/news/posts/repository-reorganization/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 Meet the new &lt;a href="https://github.com/wirecell/wire-cell-toolkit"&gt;&lt;code&gt;wire-cell-toolkit&lt;/code&gt;&lt;/a&gt; source repository.
 &lt;/p&gt;
 
