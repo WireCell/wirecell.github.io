@@ -11,11 +11,11 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/cat_posts.xml</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T19:48:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/cat_toolkit.xml</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T18:53:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/cli.xml</loc>
@@ -23,7 +23,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/config.xml</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T18:53:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/data.xml</loc>
@@ -31,7 +31,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/devel.xml</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T19:48:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/dfp.xml</loc>
@@ -43,7 +43,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/graph.xml</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T18:53:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/larsoft.xml</loc>
@@ -71,7 +71,7 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/categories/user.xml</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T18:53:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/galleries/rss.xml</loc>
@@ -79,10 +79,10 @@
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/rss.xml</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T19:48:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://wirecell.github.io/news/sitemap.xml</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T19:48:00Z</lastmod>
  </sitemap>
 </sitemapindex>

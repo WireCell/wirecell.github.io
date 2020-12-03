@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire-Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates from the Wire-Cell team.</description><atom:link href="http://wirecell.github.io/news/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:bv@bnl.gov"&gt;Wire-Cell Team&lt;/a&gt; </copyright><lastBuildDate>Thu, 03 Dec 2020 18:53:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Wire-Cell fans</title><link>http://wirecell.github.io/news/posts/wire-cell-fans/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire-Cell News</title><link>http://wirecell.github.io/news/</link><description>Updates from the Wire-Cell team.</description><atom:link href="http://wirecell.github.io/news/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:bv@bnl.gov"&gt;Wire-Cell Team&lt;/a&gt; </copyright><lastBuildDate>Thu, 03 Dec 2020 20:35:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>App components</title><link>http://wirecell.github.io/news/posts/app-components/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+As Wire-Cell Toolkit is a toolkit, it does not force a top-down
+structure starting from a &lt;code&gt;main()&lt;/code&gt; function.  But, it does provide a
+layered top-down structure that applications may use after taking
+their own choice of entry point.  This post talks about a layer of
+this structure called a WCT "app".
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/app-components/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>devel</category><guid>http://wirecell.github.io/news/posts/app-components/</guid><pubDate>Thu, 03 Dec 2020 19:38:32 GMT</pubDate></item><item><title>Wire-Cell fans</title><link>http://wirecell.github.io/news/posts/wire-cell-fans/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 Of course, everyone is a fan of Wire-Cell.  This post isn't about you.
 It's about a common pattern that is found in Wire-Cell data flow
 graphs and how this pattern is realized at the WCT C++ level and how
@@ -58,8 +66,4 @@ computers.  With Singularity containers we now have a way for just one
 person to suffer and let many others benefit.  
 &lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>build</category><category>devel</category><category>larsoft</category><guid>http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/</guid><pubDate>Fri, 17 Aug 2018 13:30:33 GMT</pubDate></item><item><title>Overriding Configuration Parameters</title><link>http://wirecell.github.io/news/posts/overriding-configuration-parameters/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
-The WCT configuration language Jsonnet allows to exploit software development patterns such as "don't repeat yourself" (DRY) and object inheritance.  They are exploited to factor a configuration into layers so that it may, in total, serve many uses.  This post describes how to override a parameter from a base object.
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/overriding-configuration-parameters/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>config</category><category>uboone</category><guid>http://wirecell.github.io/news/posts/overriding-configuration-parameters/</guid><pubDate>Wed, 15 Aug 2018 13:38:32 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>build</category><category>devel</category><category>larsoft</category><guid>http://wirecell.github.io/news/posts/singularity-containers-for-wct-and-wcls-running-and-development/</guid><pubDate>Fri, 17 Aug 2018 13:30:33 GMT</pubDate></item></channel></rss>

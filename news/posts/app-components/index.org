@@ -1,0 +1,136 @@
+#+BEGIN_COMMENT
+.. title: App components
+.. slug: app-components
+.. date: 2020-12-03 14:38:32 UTC-05:00
+.. tags: devel
+.. category: toolkit
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+
+#+END_COMMENT
+
+As Wire-Cell Toolkit is a toolkit, it does not force a top-down
+structure starting from a ~main()~ function.  But, it does provide a
+layered top-down structure that applications may use after taking
+their own choice of entry point.  This post talks about a layer of
+this structure called a WCT "app".
+
+{{{TEASER_END}}}
+
+The top-down structure that WCT provides is layered roughly like this:
+
+1. environment / user code
+2. the [[https://github.com/WireCell/wire-cell-toolkit/blob/master/apps/inc/WireCellApps/Main.h][~WireCell::Main~]] class
+3. one or more [[https://github.com/WireCell/wire-cell-toolkit/blob/master/iface/inc/WireCellIface/IApplication.h][~WireCell::IApplication~]] implementations
+4. app-dependent components, for example, ~Pgrapher~ and ~TbbFlow~ "app" objects use operate on data flow graph "node" components
+
+* App object life cycle via ~Main~
+
+When a ~Main~ object is used to organize WCT components its "app"
+objects have well defined life cycle.
+
+1. If the "app" implements the ~IConfigurable~ interface its ~configure()~
+   method will be called soon after any user configuration is parsed.
+   After all configurable components are called, execution is returned
+   to the user code.
+
+2. The user code may then call ~Main~ (which is a callable object).  It
+   is typically called once per overall process execution but the user
+   code may elect to do differently.  When called, the ~Main~ object
+   will call ~execute()~ on every component which implements
+   ~IApplication~ and which has been given to ~Main~ as an "app" object".
+   The order of calling is that of the order of the "apps"
+   configuration attribute.
+
+3. If an app object (or any component) implements ~ITerminal~ then its
+   ~finalize()~ method is called.  The order of calling is the same
+   order as the configuration sequence.
+
+* Command line and "app" objects
+
+When using the ~wire-cell~ command line you may specify "app" objects
+with:
+
+#+begin_example
+  $ wire-cell -a app1 -a app2 [...] -c config.jsonnet
+#+end_example
+
+The names used must be associated with some component in the configuration.
+
+
+* Config file and "app" objects
+
+Typically we "bake" in which applications to use by listing them in
+the configuration using the special component type "wire-cell".  This
+only works for the ~wire-cell~ CLI.  Other environments such as for
+interfacing with /art/ provide similar special configuration means.
+
+Here's the tail end of a configuration file that shows the ~Pgrapher~
+app being configured and told to the ~wire-cell~ CLI:
+
+#+begin_src jsonnet
+local app = {
+    type: "Pgrapher",
+    data: {
+        edges: g.edges(graph),
+    },
+};
+
+local cmdline = {
+    type: "wire-cell",
+    data: {
+        plugins: ["WireCellGen", "WireCellPgraph", "WireCellSio", "WireCellSigProc"],
+        apps: ["Pgrapher"]
+    }
+};
+
+// Finally, the configuration sequence which is emitted.
+[cmdline] + g.uses(graph) + [app]
+#+end_src
+
+* Ordering of "app" calls
+
+Typically, only one "app" object runs in a WCT job.  In the rare case
+that multiple "app" objects run, there may be some care about the
+ordering.  The order is as:
+
+
+1. ~IConfigurable~ are constructed in their order of the configuration sequence
+2. ~IApplication~ are constructed in order of the "apps" list and if they are not also ~IConfigurable~.
+3. ~IConfigurable~ have ~configure()~ called in their order of the configuration sequence
+4. User code calls ~Main~ typically once which calls ~IApplication::execute()~ on each "app" object in order of the "apps" list.
+5. User code destroys ~Main~ which calls ~ITerminal::finalize()~ in the configuration sequence order.q
+
+* Global initialization and finalization
+
+An "app" object may be used to enact a global initialization and
+finalization, eg to manage some global resource or code.  Currently
+WCT can not guarantee truly first/last semantics.  But, one can get
+close by adding an "app" to an existing job *early* in the "apps" list
+and *late* in the configuration sequence.  Eg:
+
+#+begin_src jsonnet
+local graph = ...;
+local global = { name: "Global", ... };
+local cmdline = {
+    type: "wire-cell",
+    data: {
+        apps: ["Global", "Pgrapher"]
+        ...
+    }
+};
+[cmdline] + g.uses(graph) + [app, global]
+#+end_src
+
+The "Global" app object may do relatively early operations in its
+constructor.  As long as no other components try to access the
+"global" resource in their own constructors then "Global" will have
+time to do what it needs.  Since "Global" app is first in the "apps"
+sequence it may "execute" just prior to the primary "app" object
+(here, "Pgrapher").  Then it is placed *last* in the configuration
+sequence so that it may get the final ~finalize()~ call.
+
+
+

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App components | Wire-Cell News</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="http://wirecell.github.io/news/posts/app-components/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Brett Viren">
+<link rel="prev" href="../wire-cell-fans/" title="Wire-Cell fans" type="text/html">
+<meta property="og:site_name" content="Wire-Cell News">
+<meta property="og:title" content="App components">
+<meta property="og:url" content="http://wirecell.github.io/news/posts/app-components/">
+<meta property="og:description" content="As Wire-Cell Toolkit is a toolkit, it does not force a top-down
+structure starting from a main() function.  But, it does provide a
+layered top-down structure that applications may use after taking
+the">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-12-03T14:38:32-05:00">
+<meta property="article:tag" content="devel">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<div class="blog-masthead">
+    <div class="container">
+<!-- This keeps the margins nice -->
+        <nav class="blog-nav" role="navigation"><a href="../../index.html" class="blog-nav-item">Home</a>
+            <a href="../../archive.html" class="blog-nav-item">Archive</a>
+            <a href="../../categories/" class="blog-nav-item">Tags</a>
+            <a href="../../rss.xml" class="blog-nav-item">RSS feed</a>
+
+            
+
+    <a href="index.org" class="blog-nav-item blog-nav-item-aside" id="sourcelink">Source</a>
+                
+            
+        </nav>
+</div>
+<!-- /.container -->
+</div>
+<!-- End of Menubar -->
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <div class="blog-header">
+            <h1 class="blog-title">
+                <a href="http://wirecell.github.io/news/">
+                    <img src="../../images/wire-cell-logo.png" alt="Wire-Cell News" id="logo"><span id="blog-title">Wire-Cell News</span>
+                </a>
+            </h1>
+            <p class="lead blog-description">Updates from the Wire-Cell team.</p>
+            
+        </div>
+        <!--Body content-->
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title blog-post-title" itemprop="headline name"><a href="." class="u-url">App components</a></h2>
+
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2020-12-03T14:38:32-05:00" itemprop="datePublished" title="2020-12-03 14:38">2020-12-03 14:38</time></a></p>
+                    <p class="sourceline"><a href="index.org" id="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>
+As Wire-Cell Toolkit is a toolkit, it does not force a top-down
+structure starting from a <code>main()</code> function.  But, it does provide a
+layered top-down structure that applications may use after taking
+their own choice of entry point.  This post talks about a layer of
+this structure called a WCT "app".
+</p>
+
+<!-- TEASER_END -->
+
+<p>
+The top-down structure that WCT provides is layered roughly like this:
+</p>
+
+<ol class="org-ol">
+<li>environment / user code</li>
+<li>the <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/apps/inc/WireCellApps/Main.h"><code>WireCell::Main</code></a> class</li>
+<li>one or more <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/iface/inc/WireCellIface/IApplication.h"><code>WireCell::IApplication</code></a> implementations</li>
+<li>app-dependent components, for example, <code>Pgrapher</code> and <code>TbbFlow</code> "app" objects use operate on data flow graph "node" components</li>
+</ol>
+<div id="outline-container-orgd8ac086" class="outline-2">
+<h2 id="orgd8ac086">App object life cycle via <code>Main</code>
+</h2>
+<div class="outline-text-2" id="text-orgd8ac086">
+<p>
+When a <code>Main</code> object is used to organize WCT components its "app"
+objects have well defined life cycle.
+</p>
+
+<ol class="org-ol">
+<li>If the "app" implements the <code>IConfigurable</code> interface its <code>configure()</code>
+method will be called soon after any user configuration is parsed.
+After all configurable components are called, execution is returned
+to the user code.</li>
+
+<li>The user code may then call <code>Main</code> (which is a callable object).  It
+is typically called once per overall process execution but the user
+code may elect to do differently.  When called, the <code>Main</code> object
+will call <code>execute()</code> on every component which implements
+<code>IApplication</code> and which has been given to <code>Main</code> as an "app" object".
+The order of calling is that of the order of the "apps"
+configuration attribute.</li>
+
+<li>If an app object (or any component) implements <code>ITerminal</code> then its
+<code>finalize()</code> method is called.  The order of calling is the same
+order as the configuration sequence.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org235bc6f" class="outline-2">
+<h2 id="org235bc6f">Command line and "app" objects</h2>
+<div class="outline-text-2" id="text-org235bc6f">
+<p>
+When using the <code>wire-cell</code> command line you may specify "app" objects
+with:
+</p>
+
+<pre class="example">
+$ wire-cell -a app1 -a app2 [...] -c config.jsonnet
+</pre>
+
+<p>
+The names used must be associated with some component in the configuration.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgc96d5f5" class="outline-2">
+<h2 id="orgc96d5f5">Config file and "app" objects</h2>
+<div class="outline-text-2" id="text-orgc96d5f5">
+<p>
+Typically we "bake" in which applications to use by listing them in
+the configuration using the special component type "wire-cell".  This
+only works for the <code>wire-cell</code> CLI.  Other environments such as for
+interfacing with <i>art</i> provide similar special configuration means.
+</p>
+
+<p>
+Here's the tail end of a configuration file that shows the <code>Pgrapher</code>
+app being configured and told to the <code>wire-cell</code> CLI:
+</p>
+
+<div class="highlight"><pre><span></span>local app = {
+    type: "Pgrapher",
+    data: {
+	edges: g.edges(graph),
+    },
+};
+
+local cmdline = {
+    type: "wire-cell",
+    data: {
+	plugins: ["WireCellGen", "WireCellPgraph", "WireCellSio", "WireCellSigProc"],
+	apps: ["Pgrapher"]
+    }
+};
+
+// Finally, the configuration sequence which is emitted.
+[cmdline] + g.uses(graph) + [app]
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgeb3733d" class="outline-2">
+<h2 id="orgeb3733d">Ordering of "app" calls</h2>
+<div class="outline-text-2" id="text-orgeb3733d">
+<p>
+Typically, only one "app" object runs in a WCT job.  In the rare case
+that multiple "app" objects run, there may be some care about the
+ordering.  The order is as:
+</p>
+
+
+<ol class="org-ol">
+<li>
+<code>IConfigurable</code> are constructed in their order of the configuration sequence</li>
+<li>
+<code>IApplication</code> are constructed in order of the "apps" list and if they are not also <code>IConfigurable</code>.</li>
+<li>
+<code>IConfigurable</code> have <code>configure()</code> called in their order of the configuration sequence</li>
+<li>User code calls <code>Main</code> typically once which calls <code>IApplication::execute()</code> on each "app" object in order of the "apps" list.</li>
+<li>User code destroys <code>Main</code> which calls <code>ITerminal::finalize()</code> in the configuration sequence order.q</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgf6e6346" class="outline-2">
+<h2 id="orgf6e6346">Global initialization and finalization</h2>
+<div class="outline-text-2" id="text-orgf6e6346">
+<p>
+An "app" object may be used to enact a global initialization and
+finalization, eg to manage some global resource or code.  Currently
+WCT can not guarantee truly first/last semantics.  But, one can get
+close by adding an "app" to an existing job <b>early</b> in the "apps" list
+and <b>late</b> in the configuration sequence.  Eg:
+</p>
+
+<div class="highlight"><pre><span></span>local graph = ...;
+local global = { name: "Global", ... };
+local cmdline = {
+    type: "wire-cell",
+    data: {
+	apps: ["Global", "Pgrapher"]
+	...
+    }
+};
+[cmdline] + g.uses(graph) + [app, global]
+</pre></div>
+
+<p>
+The "Global" app object may do relatively early operations in its
+constructor.  As long as no other components try to access the
+"global" resource in their own constructors then "Global" will have
+time to do what it needs.  Since "Global" app is first in the "apps"
+sequence it may "execute" just prior to the primary "app" object
+(here, "Pgrapher").  Then it is placed <b>last</b> in the configuration
+sequence so that it may get the final <code>finalize()</code> call.
+</p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/devel/" rel="tag">devel</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../wire-cell-fans/" rel="prev" title="Wire-Cell fans">Previous post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                    <div class="sidebar-module sidebar-module-inset">
+      <h4>About</h4>
+      <p>Wire-Cell encompasses a collection of techniques and software implementation for the simulation, noise filtering, signal processing, 3D imaging, pattern recognition and reconstruction of liquid argon time projection chamber detectors.</p>
+    </div>
+    <div class="sidebar-module">
+      <h4>Links</h4>
+      <ol class="list-unstyled">
+<li><a href="https://lar.bnl.gov/wire-cell/">home page</a></li>
+        <li><a href="http://wirecell.github.io/">documentation</a></li>
+        <li><a href="http://github.io/WireCell">repositories</a></li>
+      </ol>
+</div>
+    
+            </div>
+        <!--End of body content-->
+        </div>
+    </div>
+</div>
+
+<footer class="blog-footer" id="footer">
+    Contents © 2020         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    
+</footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

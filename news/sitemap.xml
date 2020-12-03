@@ -27,7 +27,7 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/archive.html</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T19:48:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/categories/</loc>
@@ -111,11 +111,15 @@
  </url>
  <url>
   <loc>http://wirecell.github.io/news/index-2.html</loc>
-  <lastmod>2020-12-03T18:45:00Z</lastmod>
+  <lastmod>2020-12-03T19:48:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/listings/</loc>
   <lastmod>2020-12-03T18:45:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://wirecell.github.io/news/posts/app-components/</loc>
+  <lastmod>2020-12-03T19:48:00Z</lastmod>
  </url>
  <url>
   <loc>http://wirecell.github.io/news/posts/basic-simulation-essentially-working-and-celltree-support/</loc>
