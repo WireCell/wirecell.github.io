@@ -9,6 +9,7 @@
 <link rel="canonical" href="http://wirecell.github.io/news/posts/app-components/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Brett Viren">
 <link rel="prev" href="../wire-cell-fans/" title="Wire-Cell fans" type="text/html">
+<link rel="next" href="../releases-15-16-and-17/" title="Releases 15, 16 and 17" type="text/html">
 <meta property="og:site_name" content="Wire-Cell News">
 <meta property="og:title" content="App components">
 <meta property="og:url" content="http://wirecell.github.io/news/posts/app-components/">
@@ -88,10 +89,10 @@ The top-down structure that WCT provides is layered roughly like this:
 <li>one or more <a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/iface/inc/WireCellIface/IApplication.h"><code>WireCell::IApplication</code></a> implementations</li>
 <li>app-dependent components, for example, <code>Pgrapher</code> and <code>TbbFlow</code> "app" objects use operate on data flow graph "node" components</li>
 </ol>
-<div id="outline-container-orgd8ac086" class="outline-2">
-<h2 id="orgd8ac086">App object life cycle via <code>Main</code>
+<div id="outline-container-org7c6d16e" class="outline-2">
+<h2 id="org7c6d16e">App object life cycle via <code>Main</code>
 </h2>
-<div class="outline-text-2" id="text-orgd8ac086">
+<div class="outline-text-2" id="text-org7c6d16e">
 <p>
 When a <code>Main</code> object is used to organize WCT components its "app"
 objects have well defined life cycle.
@@ -118,15 +119,15 @@ order as the configuration sequence.</li>
 </div>
 </div>
 
-<div id="outline-container-org235bc6f" class="outline-2">
-<h2 id="org235bc6f">Command line and "app" objects</h2>
-<div class="outline-text-2" id="text-org235bc6f">
+<div id="outline-container-org307373f" class="outline-2">
+<h2 id="org307373f">Command line and "app" objects</h2>
+<div class="outline-text-2" id="text-org307373f">
 <p>
 When using the <code>wire-cell</code> command line you may specify "app" objects
 with:
 </p>
 
-<pre class="example">
+<pre class="example" id="org10a3890">
 $ wire-cell -a app1 -a app2 [...] -c config.jsonnet
 </pre>
 
@@ -137,9 +138,9 @@ The names used must be associated with some component in the configuration.
 </div>
 
 
-<div id="outline-container-orgc96d5f5" class="outline-2">
-<h2 id="orgc96d5f5">Config file and "app" objects</h2>
-<div class="outline-text-2" id="text-orgc96d5f5">
+<div id="outline-container-org61cb0e8" class="outline-2">
+<h2 id="org61cb0e8">Config file and "app" objects</h2>
+<div class="outline-text-2" id="text-org61cb0e8">
 <p>
 Typically we "bake" in which applications to use by listing them in
 the configuration using the special component type "wire-cell".  This
@@ -173,9 +174,9 @@ local cmdline = {
 </div>
 </div>
 
-<div id="outline-container-orgeb3733d" class="outline-2">
-<h2 id="orgeb3733d">Ordering of "app" calls</h2>
-<div class="outline-text-2" id="text-orgeb3733d">
+<div id="outline-container-orge00b9e9" class="outline-2">
+<h2 id="orge00b9e9">Ordering of "app" calls</h2>
+<div class="outline-text-2" id="text-orge00b9e9">
 <p>
 Typically, only one "app" object runs in a WCT job.  In the rare case
 that multiple "app" objects run, there may be some care about the
@@ -196,9 +197,9 @@ ordering.  The order is as:
 </div>
 </div>
 
-<div id="outline-container-orgf6e6346" class="outline-2">
-<h2 id="orgf6e6346">Global initialization and finalization</h2>
-<div class="outline-text-2" id="text-orgf6e6346">
+<div id="outline-container-org93df8b2" class="outline-2">
+<h2 id="org93df8b2">Global initialization and finalization</h2>
+<div class="outline-text-2" id="text-org93df8b2">
 <p>
 An "app" object may be used to enact a global initialization and
 finalization, eg to manage some global resource or code.  Currently
@@ -238,6 +239,9 @@ sequence so that it may get the final <code>finalize()</code> call.
 <li class="previous">
                 <a href="../wire-cell-fans/" rel="prev" title="Wire-Cell fans">Previous post</a>
             </li>
+            <li class="next">
+                <a href="../releases-15-16-and-17/" rel="next" title="Releases 15, 16 and 17">Next post</a>
+            </li>
         </ul></nav></aside></article>
 </div>
             <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
@@ -261,7 +265,7 @@ sequence so that it may get the final <code>finalize()</code> call.
 </div>
 
 <footer class="blog-footer" id="footer">
-    Contents © 2020         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    Contents © 2021         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
     
 </footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");

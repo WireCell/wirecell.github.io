@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire-Cell News (Posts about devel)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link href="http://wirecell.github.io/news/categories/devel.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:bv@bnl.gov"&gt;Wire-Cell Team&lt;/a&gt; </copyright><lastBuildDate>Thu, 03 Dec 2020 20:35:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>App components</title><link>http://wirecell.github.io/news/posts/app-components/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wire-Cell News (Posts about devel)</title><link>http://wirecell.github.io/news/</link><description></description><atom:link href="http://wirecell.github.io/news/categories/devel.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2021 &lt;a href="mailto:bv@bnl.gov"&gt;Wire-Cell Team&lt;/a&gt; </copyright><lastBuildDate>Tue, 31 Aug 2021 19:15:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Releases 15, 16 and 17</title><link>http://wirecell.github.io/news/posts/releases-15-16-and-17/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
+Releases 0.15, 0.16 and 0.17 (in prep) come with some changes worth
+mentioning.  So, here we mention them.  At length….
+&lt;/p&gt;
+
+&lt;p&gt;
+Some changes are "breaking" and others provide new, better ways to do
+things.  Many are cleanups which were needed for a while.  As 0.17 is
+not technically cut, it may have additional changes.  So, sit back and
+read about some of the improvements that you may not yet have learned
+about.
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://wirecell.github.io/news/posts/releases-15-16-and-17/"&gt;Read more…&lt;/a&gt; (14 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>devel</category><category>release</category><category>user</category><guid>http://wirecell.github.io/news/posts/releases-15-16-and-17/</guid><pubDate>Tue, 31 Aug 2021 16:52:25 GMT</pubDate></item><item><title>App components</title><link>http://wirecell.github.io/news/posts/app-components/</link><dc:creator>Brett Viren</dc:creator><description>&lt;div&gt;&lt;p&gt;
 As Wire-Cell Toolkit is a toolkit, it does not force a top-down
 structure starting from a &lt;code&gt;main()&lt;/code&gt; function.  But, it does provide a
 layered top-down structure that applications may use after taking
@@ -60,42 +73,4 @@ Xin concluded an intense effort to port the prototype &lt;a href="https://github
 
 &lt;p&gt;
 With hints from Lynn Garren (FNAL) a &lt;a href="https://github.com/brettviren/larwirecell/blob/feature/integration/larwirecell/integration.org#set-larwirecell-environment"&gt;method&lt;/a&gt; to set up an environment where both WCT and its LArSoft integration package (&lt;code&gt;larwirecell&lt;/code&gt;) can be simultaneously developed.
-&lt;/p&gt;</description><category>build</category><category>devel</category><category>larsoft</category><guid>http://wirecell.github.io/news/posts/porting-and-integration-begun/</guid><pubDate>Mon, 03 Jul 2017 19:20:25 GMT</pubDate></item><item><title>New Configuration Data Package</title><link>http://wirecell.github.io/news/posts/new-configuration-data-package/</link><dc:creator>Brett Viren</dc:creator><description>&lt;p&gt;
-Today a new package joins the WCT family.  
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;a href="https://github.com/WireCell/wire-cell-data"&gt;https://github.com/WireCell/wire-cell-data&lt;/a&gt;
-&lt;/p&gt;
-
-&lt;p&gt;
-This collects the "configuration data" files which are needed for
-input to WCT.  These are generally compressed JSON files which have
-been converted to a WCT standard format from a variety of sources.
-The data includes wire geometry, field response, noise spectra and a
-couple initial deposition files.  
-&lt;/p&gt;
-
-&lt;p&gt;
-Having this repository makes it easier for users to prepare to run
-WCT.  At some point in the future this package may be installed along
-with the code, but for now, users need to clone this repo.  For WCT to
-locate these files the produced directory needs to be added to the
-user's &lt;code&gt;WIRECELL_PATH&lt;/code&gt; environment variable.
-&lt;/p&gt;
-
-&lt;p&gt;
-See the &lt;a href="https://github.com/WireCell/wire-cell-data/blob/master/README.org"&gt;README&lt;/a&gt; file for details including a summary of the files
-available and commands to remake these files from their upstream
-sources.
-&lt;/p&gt;
-
-&lt;p&gt;
-Previously this data was kept online &lt;a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/data/"&gt;in a directory&lt;/a&gt; dump.  That's
-still there for now.  It includes some files not added to GitHub.  In
-particular the "upstream" data from which the JSON files are converted
-(eg, the Garfield output) can be found.  And next door to that
-directory is a &lt;a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/share/wirecell/plots/"&gt;plot dump directory&lt;/a&gt; which contains some diagnostic
-plots related to the conversion of these files which may be useful for
-experts to browse.
-&lt;/p&gt;</description><category>build</category><category>config</category><category>devel</category><guid>http://wirecell.github.io/news/posts/new-configuration-data-package/</guid><pubDate>Fri, 23 Jun 2017 19:18:19 GMT</pubDate></item></channel></rss>
+&lt;/p&gt;</description><category>build</category><category>devel</category><category>larsoft</category><guid>http://wirecell.github.io/news/posts/porting-and-integration-begun/</guid><pubDate>Mon, 03 Jul 2017 19:20:25 GMT</pubDate></item></channel></rss>

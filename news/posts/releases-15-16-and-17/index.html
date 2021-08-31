@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Releases 15, 16 and 17 | Wire-Cell News</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="http://wirecell.github.io/news/posts/releases-15-16-and-17/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Brett Viren">
+<link rel="prev" href="../app-components/" title="App components" type="text/html">
+<meta property="og:site_name" content="Wire-Cell News">
+<meta property="og:title" content="Releases 15, 16 and 17">
+<meta property="og:url" content="http://wirecell.github.io/news/posts/releases-15-16-and-17/">
+<meta property="og:description" content='Releases 0.15, 0.16 and 0.17 (in prep) come with some changes worth
+mentioning.  So, here we mention them.  At length….
+
+
+
+Some changes are "breaking" and others provide new, better ways to do
+things.'>
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-08-31T12:52:25-04:00">
+<meta property="article:tag" content="devel">
+<meta property="article:tag" content="release">
+<meta property="article:tag" content="user">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<div class="blog-masthead">
+    <div class="container">
+<!-- This keeps the margins nice -->
+        <nav class="blog-nav" role="navigation"><a href="../../index.html" class="blog-nav-item">Home</a>
+            <a href="../../archive.html" class="blog-nav-item">Archive</a>
+            <a href="../../categories/" class="blog-nav-item">Tags</a>
+            <a href="../../rss.xml" class="blog-nav-item">RSS feed</a>
+
+            
+
+    <a href="index.org" class="blog-nav-item blog-nav-item-aside" id="sourcelink">Source</a>
+                
+            
+        </nav>
+</div>
+<!-- /.container -->
+</div>
+<!-- End of Menubar -->
+
+<div class="container" id="content" role="main">
+    <div class="body-content">
+        <div class="blog-header">
+            <h1 class="blog-title">
+                <a href="http://wirecell.github.io/news/">
+                    <img src="../../images/wire-cell-logo.png" alt="Wire-Cell News" id="logo"><span id="blog-title">Wire-Cell News</span>
+                </a>
+            </h1>
+            <p class="lead blog-description">Updates from the Wire-Cell team.</p>
+            
+        </div>
+        <!--Body content-->
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h2 class="p-name entry-title blog-post-title" itemprop="headline name"><a href="." class="u-url">Releases 15, 16 and 17</a></h2>
+
+        <div class="metadata blog-post-meta">
+            <p class="byline author vcard"><span class="byline-name fn">Brett Viren</span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2021-08-31T12:52:25-04:00" itemprop="datePublished" title="2021-08-31 12:52">2021-08-31 12:52</time></a></p>
+                    <p class="sourceline"><a href="index.org" id="sourcelink">Source</a></p>
+
+        </div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>
+Releases 0.15, 0.16 and 0.17 (in prep) come with some changes worth
+mentioning.  So, here we mention them.  At length….
+</p>
+
+<p>
+Some changes are "breaking" and others provide new, better ways to do
+things.  Many are cleanups which were needed for a while.  As 0.17 is
+not technically cut, it may have additional changes.  So, sit back and
+read about some of the improvements that you may not yet have learned
+about.
+</p>
+
+<!-- TEASER_END -->
+
+<div id="outline-container-org4efdec7" class="outline-2">
+<h2 id="org4efdec7">Release 0.15</h2>
+<div class="outline-text-2" id="text-org4efdec7">
+<p>
+We start with 0.15 made June 2021.  This release was actually
+motivated by upgrades to Boost and TBB that Fermilab wanted to apply
+to <i>art</i> and LArSoft but it also collected a lot of prior development
+after 0.14 from May 2020.
+</p>
+
+<p>
+Starting then and due to backwards incompatible changes in TBB, WCT
+now begins to track minimum versions on some requirements:
+</p>
+
+<ul class="org-ul">
+<li>TBB (oneAPI) 2021.1.1</li>
+<li>Boost 1.75.0</li>
+</ul>
+<p>
+As these may change we will strive to keep the <a href="https://github.com/WireCell/wire-cell-toolkit#external-software-dependencies">list in the main README</a>
+up to date.
+</p>
+
+<p>
+This release also brought
+</p>
+
+<ul class="org-ul">
+<li>Support for Jsonnet "top level arguments" (TLA) which we now
+recommend to "inject" external information instead of the previously
+used <code>std.extVar()</code> idiom.</li>
+<li>Support for the ICARUS and SBND detectors.</li>
+<li>Increased flow graph fanout sizes.</li>
+<li>JSON and Numpy I/O for depos and frames.</li>
+<li>Many other smaller features and bug fixes.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9f6bf05" class="outline-2">
+<h2 id="org9f6bf05">Release 0.16</h2>
+<div class="outline-text-2" id="text-org9f6bf05">
+<p>
+This release is largely a cleanup, made 17 Aug 2021.
+</p>
+
+<ul class="org-ul">
+<li>Signal-ROI refinement finding may be excluded from sigproc (backported to 0.14.1).</li>
+<li>Switch from Jsonnet's C++ API to the C API and the Go implementation.</li>
+<li>Fix out-of-order problems with <code>TbbFlow</code>.</li>
+<li>Add support for streaming I/O via <code>boost::iostreams</code> and a new <code>tar</code> based stream filter.</li>
+</ul>
+<p>
+More details on these follow.
+</p>
+</div>
+
+<div id="outline-container-org02b7523" class="outline-3">
+<h3 id="org02b7523">Go Jsonnet</h3>
+<div class="outline-text-3" id="text-org02b7523">
+<p>
+The C Jsonnet library (<code>libjsonnet.so</code>) is essentially unoptimized.  It
+is easy to create WCT configuration that can take many seconds, even
+minutes to parse.  On the other hand, the Go version (<code>libgojsonnet.so</code>)
+is well optimized.  What may take minutes for the C version to consume
+takes a few hundred milliseconds for the Go version.
+</p>
+
+<p>
+The Go library is not ABI compatible but thankfully it is API
+compatible.  In principle the C++ API could be used to access either
+the C/C++ version or the Go/C++ version.  However, problems were
+uncounted and it was simpler to drop WCT down to the C API.
+</p>
+
+<p>
+At this point, while the Go version is not required, it is <b>strongly
+recommended</b>.  In particular, the WCT team will not work on any
+configuration speed issues that are not reproduced with the Go
+version.
+</p>
+
+<p>
+Like the C version, the Go version build is not totally polished and
+Go is not a common compiler in our ecosystem so here are some brief
+instructions to build.  It assumes the install target is <code>/usr/local</code>
+(such as in this <a href="https://github.com/LS4GAN/containers/blob/master/docker/wirecell/Dockerfile#L35">Dockerfile</a>) so adjust to fit your own desired install
+prefix.
+</p>
+
+<pre class="example" id="org7d437b7">
+$ exportg JSONNET_VERSION=0.17.0
+wget -O /usr/include/libjsonnet.h \
+      https://raw.githubusercontent.com/google/jsonnet/v${JSONNET_VERSION}/include/libjsonnet.h
+git clone https://github.com/google/go-jsonnet.git
+cd go-jsonnet
+git checkout v${JSONNET_VERSION}
+go build ./cmd/jsonnet
+go build ./cmd/jsonnetfmt
+go build ./cmd/jsonnet-deps
+CGO_CXXFLAGS="-std=c++17 -Wall -I/usr/local/include" \
+  go build -o libgojsonnet.so -buildmode=c-shared ./c-bindings
+cp libgojsonnet.h /usr/local/include/
+cp libgojsonnet.so /usr/local/lib/
+cp jsonnet jsonnetfmt jsonnet-deps /usr/local/bin/
+</pre>
+
+<p>
+WCT build has added support to use the Go version of the library:
+</p>
+
+<pre class="example" id="org789b9fd">
+$ ./wcb configure \
+  --with-jsonnet=/usr/local \
+  --with-jsonnet-libs=gojsonnet \
+  [ ... ]
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org7796b2b" class="outline-3">
+<h3 id="org7796b2b">TbbFlow out-of-order</h3>
+<div class="outline-text-3" id="text-org7796b2b">
+<p>
+We got something of a surprise to start seeing out-of-order data on
+<code>TbbFlow</code> flow graph edges.  This ended up being due to several issues
+related to confusion over details of how TBB's <code>flow_graph</code> works with
+respect to concurrency and buffering.
+</p>
+
+<ul class="org-ul">
+<li>We had many nodes configured to use unlimited concurrency and which
+should not have been.</li>
+<li>The TBB <code>split_node</code> that underpins every "fanout" node has unlimited
+concurrency.  This can not be changed but more importantly it was
+not realized to be the case.</li>
+<li>Despite the TBB documentation, the input buffering of <code>function_node</code>
+is not a FIFO and is an undocumented source of out-of-order (which
+apparently others have already stumbled upon).</li>
+</ul>
+<p>
+The solutions include making concurrency of all nodes, where possible,
+be "serial".  We may come back to this at some point to allow more
+concurrency but so far we can do the simple thing and still fill out
+more threads than typically are available.
+</p>
+
+<p>
+To solve the not-a-FIFO buffer problem, <code>TbbFlow</code> will now append
+<code>sequencer_node</code> to existing nodes.  To give this fodder, a sequence
+number is now combined with the normal data payload that is passed on
+<code>TbbFlow</code> edges.  All of this happens in <code>TbbFlow</code> and developers of
+individual <code>INode</code> components need not change anything.
+</p>
+
+<p>
+After figuring out the problem, one mystery was why this had not come
+to bite us earlier.  The reasons are likely some mix of:
+</p>
+
+<ul class="org-ul">
+<li>Though we have tested <code>TbbFlow</code> in the past, its use is increasing as
+we attempt ever larger jobs and higher thread usage.  These jobs are
+reaching new regions of "configuration phase space" and that gets us
+to:</li>
+
+<li>The out-of-order problem will not happen, or at least is very rare,
+unless we, in a sense, "over provisions" TBB with "too many"
+threads.  Eg, a ProtoDUNE-SP job usually has 6 pipelines providing
+the main bottleneck.  Providing 8 threads allows out-of-order while
+fewer threads do not.  Parts of these jobs will have otherwise idle
+threads.</li>
+
+<li>Fast multi-object output from a component also seems to be
+correlated with the out-of-order problem.  This happens with short
+one "event" jobs which then cause a component to emit an output very
+quickly followed with an EOS.  This increases the chance that the
+buffer in a succeeding node will gain two objects and thus have a
+chance to pick the "later" one instead of the desired "earlier" one.</li>
+</ul>
+<p>
+In any case, these problems seem now to be solved and one can safely
+use multi-threading.  Understanding and fixing this began in 0.16 but
+is complete in 0.17.  So, best not use 0.16 if <code>TbbFlow</code> is needed.
+<code>Pgrapher</code> is of course totally unaffected.  (But has other performance
+issues fixed in 0.17).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org82ed6ea" class="outline-3">
+<h3 id="org82ed6ea">Streaming IO</h3>
+<div class="outline-text-3" id="text-org82ed6ea">
+<p>
+WCT already used <code>boost::iostreams</code> to read our somewhat large <code>.json.bz2</code>
+configuration "data" files.  This release adds powerful
+<code>boost::iostreams</code> filters that lets the <code>tar</code> codec be used.  It also
+adds a new Numpy (<code>.npy</code> file) codec (the existing <code>cnpy</code> is still
+available).  Both of these new codecs are implemented from scratch as
+C++ header-only libraries part of the <a href="https://github.com/brettviren/custard">custard</a> project.
+</p>
+
+<p>
+Together, they solve some problems related to saving data beyond the
+various maximum sizes imposed by <code>cnpy</code> (and really by its ZIP format).
+They also give a powerful way to read and write any stream which is
+composed of individual files.  Components have been developed to make
+use of this streaming including I/O for depos, frames and clusters.
+See the <code>*File{Sink,Source}</code> components in <a href="https://github.com/WireCell/wire-cell-toolkit/tree/master/sio/src">sio</a>.  Work on these extend
+into 0.17.
+</p>
+
+<p>
+Not considered part of the WCT release cycle, but <code>wire-cell-python</code>
+also sees updates to make transparent use of <code>.npy</code>-in-<code>.tar</code> files
+(compressed or not) in symmetry with standard <code>.npz</code> Numpy files.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga1a3204" class="outline-2">
+<h2 id="orga1a3204">Release 0.17</h2>
+<div class="outline-text-2" id="text-orga1a3204">
+<p>
+Hot on the tail of 0.16, we are soon making 0.17.  It is not yet
+officially cut but we will ignore that minor detail and describe many
+useful things it brings.  Besides finishing out-of-order fixes and
+streaming I/O components mentioned above this release brings:
+</p>
+
+<ul class="org-ul">
+<li>A version string!</li>
+<li>Logging improvements.</li>
+<li>Removal of vestigial <code>python/</code> sub-directory.</li>
+<li>A "batched" <code>DepoSetDrifter</code> and loader.</li>
+<li>Graph execution tracing in <code>TbbFlow</code>.</li>
+</ul>
+<p>
+Continue reading for details about these items.
+</p>
+</div>
+
+<div id="outline-container-org60323f0" class="outline-3">
+<h3 id="org60323f0">Version string</h3>
+<div class="outline-text-3" id="text-org60323f0">
+<p>
+A long missing feature of WCT is to know what version it is.  A
+version string is now provided which is based on the state of the git
+repository from which WCT was built.  It will not be well defined if
+building from a directory outside of git's control.  When built from
+source managed by git the output of:
+</p>
+
+<pre class="example" id="orga513017">
+git describe --tags
+</pre>
+
+<p>
+gets baked in to <code>libWireCellUtil.so</code> (see top of <code>wscript</code>).  This
+version string can be recovered on the command line:
+</p>
+
+<pre class="example" id="org696948c">
+$ wire-cell --version
+0.16.0-19-gfa04dd3
+</pre>
+
+<p>
+Applications using WCT, may get the version string from the same place
+that <code>wire-cell</code> CLI does:
+</p>
+
+<div class="highlight"><pre><span></span><span class="n">WireCell</span><span class="o">::</span><span class="n">Main</span><span class="p">;</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Main</span><span class="p">.</span><span class="n">version</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-org04a0f2b" class="outline-3">
+<h3 id="org04a0f2b">Logging improvements</h3>
+<div class="outline-text-3" id="text-org04a0f2b">
+<p>
+In the course of debugging the out-of-order problem described above,
+logging was shown to be very inadequate.  Two major problems existed:
+</p>
+
+<ul class="org-ul">
+<li>Variability in log line format made it difficult to understand
+bigger picture.</li>
+<li>Lack of individual node identity was a source of degeneracy.</li>
+</ul>
+<p>
+Given the concurrent nature of the data flow graph execution with
+<code>TbbFlow</code> and the out-of-order problem being worked on these problems
+added up to a real mess!  it was a mess!
+</p>
+
+<p>
+To fix this, the following changes were made:
+</p>
+
+<ul class="org-ul">
+<li>A new <code>INamed</code> interface was introduced as a way to tell components
+their instance names.</li>
+<li>A new <code>Aux::Logger</code> intermediate class provides <code>INamed</code> as well as a
+log object which formats messages consistently with type and
+instance names.</li>
+<li>Additions to low level <code>spdlog</code> handling related to making distinct
+sinks in order to support different format patterns.</li>
+</ul>
+<p>
+To add benefit, all components need the following modifications:
+</p>
+
+<ul class="org-ul">
+<li>Add <code>Aux::Logger</code> to the component inheritance.  Call the new parent
+class constructor as illustrated:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyComponent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Aux</span><span class="o">::</span><span class="n">Logger</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">{};</span><span class="w"></span>
+
+<span class="n">MyComponent</span><span class="o">::</span><span class="n">MyComponent</span><span class="p">(...)</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// shows as "[  mygrp  ] &lt;MyComponent:instancename&gt; ..."</span>
+<span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="n">Aux</span><span class="o">::</span><span class="n">Logger</span><span class="p">(</span><span class="s">"MyComponent"</span><span class="p">,</span><span class="w"> </span><span class="s">"mygrp"</span><span class="p">)</span><span class="w"> </span>
+<span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+
+<ul class="org-ul">
+<li>Replace any locally constructed log objects to the one provided by
+the new parent as the protected data member named <code>log</code>.</li>
+
+<li>Remove from the log message itself any identifiers related to type
+or instance.  They will simply become cluster and are now redundant
+with a standard prefix given to each log line by the <code>Aux::Logger</code>.</li>
+</ul>
+<p>
+At the same time, we also now try to format information in the log
+line body in a more consistent manner using phrases of "key=value"
+like:
+</p>
+
+<pre class="example" id="org5c68fa2">
+log-&gt;debug("call={} value={}", m_count, m_myval);
+</pre>
+
+<p>
+This make it much easier to <code>grep</code> logs for values.  The result allows
+for rational log queries to pull out portions of the graph.
+</p>
+
+<p>
+And, finally, it is especially helpful to revisit configuration to
+rationalize the component instance names.  It is recommended that were
+possible give an instance name which is simply the number associated
+with the pipeline branch (usually the APA ID number).  In some cases
+this would produce type+instance pairs that are degenerate and
+something more must be provided in the instance name.  One such case
+is when multiple <code>FrameFileSink</code> components are on the same pipeline and
+for these it is suggested to use an instance name matching the frame
+"tag" name (eg, "orig1", "gauss5").
+</p>
+
+<p>
+Here is an example of finding logs related to APA 0's pipeline
+executing sim, sigproc and 3D imaging.
+</p>
+
+<pre class="example" id="org297279f">
+$ grep ':0&gt;' log.txt
+...
+[09:54:26.529] D [  gen   ] &lt;DepoTransform:0&gt; call=0 frame=0 ntraces=4887
+[09:54:26.691] D [  gen   ] &lt;Reframer:0&gt; call=0 frame=0 all traces in: 4887 out tag: ""
+[09:54:27.065] D [  gen   ] &lt;AddNoise:0&gt; call=0 frame=0 2560 traces
+[09:54:27.841] D [  gen   ] &lt;DepoTransform:0&gt; EOS at call=1
+[09:54:27.841] D [  gen   ] &lt;Reframer:0&gt; EOS at call=1
+[09:54:27.841] D [  gen   ] &lt;AddNoise:0&gt; EOS at call=1
+[09:54:28.698] D [  gen   ] &lt;Digitizer:0&gt; call=0 traces=2560 frame=0 outtag="orig0"
+[09:54:28.698] D [  gen   ] &lt;Digitizer:0&gt; see EOS at call=1
+[09:54:31.258] D [sigproc ] &lt;OmnibusNoiseFilter:0&gt; call=0, frame=0, ntraces=2560, nticks=6000 intag=orig0 outtag=raw0
+[09:54:31.259] D [sigproc ] &lt;OmnibusNoiseFilter:0&gt; EOS at call=1
+[09:54:31.259] D [sigproc ] &lt;OmnibusSigProc:0&gt; OmnibusSigProc: nticks=6000 tbinmin=0 tbinmax=6000
+[09:54:31.316] D [sigproc ] &lt;OmnibusSigProc:0&gt; plane index: 0 input data identifies 0 bad regions
+[09:54:35.145] D [sigproc ] &lt;OmnibusSigProc:0&gt; plane index: 1 input data identifies 0 bad regions
+[09:54:38.329] D [sigproc ] &lt;OmnibusSigProc:0&gt; plane index: 2 input data identifies 0 bad regions
+[09:54:40.939] D [sigproc ] &lt;OmnibusSigProc:0&gt; save_data plane index: 0, Qtot=147524624 added 800 traces to total 800 indices:[0,799]
+[09:54:41.234] D [sigproc ] &lt;OmnibusSigProc:0&gt; save_data plane index: 0, Qtot=141124311 added 800 traces to total 800 indices:[800,1599]
+[09:54:41.917] D [sigproc ] &lt;OmnibusSigProc:0&gt; save_data plane index: 1, Qtot=138288987 added 800 traces to total 800 indices:[1600,2399]
+[09:54:42.225] D [sigproc ] &lt;OmnibusSigProc:0&gt; save_data plane index: 1, Qtot=133841197 added 2400 traces to total 1600 indices:[800,3199]
+[09:54:42.834] D [sigproc ] &lt;OmnibusSigProc:0&gt; save_data plane index: 2, Qtot=121136654 added 960 traces to total 960 indices:[3200,4159]
+[09:54:43.340] D [sigproc ] &lt;OmnibusSigProc:0&gt; save_data plane index: 2, Qtot=118093358 added 4320 traces to total 2560 indices:[800,5119]
+[09:54:43.405] D [sigproc ] &lt;OmnibusSigProc:0&gt; call=0 produce 5120 traces: 2560 wiener0, 0 decon_charge0, 2560 gauss0, frame tag: sigproc
+[09:54:43.412] D [sigproc ] &lt;OmnibusSigProc:0&gt; EOS at call=1 anode=0
+[09:54:43.521] D [  img   ] &lt;SumSlice:0&gt; frame=0, make 1464 slices in [0,1499] from 1464
+[09:54:43.535] D [  img   ] &lt;SumSlice:0&gt; EOS
+[09:54:43.596] D [  glue  ] &lt;SliceFanout:0&gt; sending out 2 EOSes
+[09:54:43.787] D [  glue  ] &lt;BlobSetSync:0&gt; EOS
+[09:54:46.697] D [  img   ] &lt;BlobClustering:0&gt; flush 1 clusters + EOS on EOS
+[09:54:55.695] D [  img   ] &lt;BlobGrouping:0&gt; have 33517 graph nodes
+[09:54:56.018] D [  img   ] &lt;BlobGrouping:0&gt; EOS
+[09:55:05.860] D [  img   ] &lt;BlobSolving:0&gt; send graph with 33517
+[09:55:06.244] D [  img   ] &lt;BlobSolving:0&gt; EOS
+...
+</pre>
+
+<p>
+Nice and tidy and effectively impossible to do before unless one made
+an exhaustively long <code>grep</code> command line.
+</p>
+
+<p>
+This example is from a single "event" job.  Note the lack of
+out-of-order EOS's for any given component!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org333e2f1" class="outline-3">
+<h3 id="org333e2f1">The <code>python/</code> subdir</h3>
+<div class="outline-text-3" id="text-org333e2f1">
+<p>
+For a while now we have deprecated the use of the <code>python/</code> sub
+directory in the <code>wire-cell-toolkit</code> repository and instead want all
+updates committed to <code>wire-cell-python</code>.  Well, <b>some people</b> (me) kept
+forgetting and would commit to <code>python/</code> and that lead to divergence
+which was somewhat irritating to fix.  To remove this pitfall, the two
+underwent a final sync (via <code>git-subrepo</code>) and the deprecated location
+has been removed.  If you still used <code>python/</code> and see it disappeared,
+hopefully this paragraph gives you closure.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9d8242d" class="outline-3">
+<h3 id="org9d8242d">Batched depos</h3>
+<div class="outline-text-3" id="text-org9d8242d">
+<p>
+The <code>Pgrapher</code> data flow execution engine is very simple (it must be for
+I came up with it).  It works by first performing a <a href="https://en.wikipedia.org/wiki/Topological_sorting">topological sort</a>
+on the flow graph.  Each execution cycle, <code>Pgrapher</code> will then iterate
+the sorted graph in reverse order.  The engine starts with
+the last output node and if the node has input waiting the node will
+be executed.  If no input is waiting, the engine goes "upstream" one
+more node and repeats until it finds a ready node.  Once a node is
+executed the iteration restarts again at the last output node.
+</p>
+
+<p>
+This simple algorithm is designed to move data through the graph in a
+compact "wave", thus minimizing the amount of data "in flight" in the
+hopes of keeping memory usage low.  For this goal, it is successful as
+WCT tends to contribute less than or around 1GB to 6-APA jobs.
+</p>
+
+<p>
+And, this algorithm works fast for small graphs and even large graphs
+if the number of data objects is small.  However, it meets a pathology
+when individual depos are passed through the graph.  Made worse, the
+depos tend to be at the input end of the graph causing each depo
+transfer to require an almost entire graph iteration.  <code>Pgrapher</code> will
+then uselessly iterate almost the entire graph O(1M) times per
+"event"!
+</p>
+
+<p>
+As a consequence, a job can take many <b>minutes per event</b> just to
+shuttle around these individual depos.  Given that the rest of the
+simulation stage requires less than one minute for an APA, all this
+time to do very little is intolerable.
+</p>
+
+<p>
+This pathology requires a combination of <code>Pgrapher</code> and many individual
+data objects, especially ones at the start of the graph.  Fix either
+and the pathology is broken.  We can switch to <code>TbbFlow</code> and keep our
+individual depos, or we can stick with <code>Pgrapher</code> but transfer depos all
+together.
+</p>
+
+<p>
+To keep <code>Pgrapher</code> viable, a <code>DepoSetDrifter</code> is created.  It takes in an
+entire set of depos, drifts them, and outputs the result as another
+depo set.  This new component still uses the exact same <code>Drifter</code> as a
+local (out-of-graph) helper component to do the actual drifting
+one-by-one.  <code>Drifter</code> itself is plenty fast (though certainly could
+become faster with SIMD) and all this new depo set drifter does is
+avoid the <code>Pgrapher</code> pathology.
+</p>
+
+<p>
+Of course you ask, why not both?  While <code>TbbFlow</code> is very fast with
+singular <code>Drifter</code> it can be made even faster using the new
+<code>DepoSetDrifter</code>.
+</p>
+
+<p>
+Here are some timing numbers from the four combinations made by the
+outer product of:
+</p>
+
+<pre class="example" id="orgabf4a6c">
+(Pgrapher, TbbFlow) x (singular depos, depo set)
+</pre>
+
+<pre class="example" id="org52787d6">
+TbbFlow, 1 thread, depo set: 0.746s
+[11:05:22.321] D [   io   ] &lt;NumpyDepoSetLoader:depos&gt; call=0 sent ndepos=627983
+[11:05:23.067] D [  glue  ] &lt;DepoSetFanout:fanout&gt; call=0 fanout depo set 0 with 537049
+
+TbbFlow, 1 thread, singular depo: 1.423s
+[11:07:11.140] D [   io   ] &lt;NumpyDepoLoader:depos&gt; load 0 complete with 627983 new, 627983 total
+[11:07:12.563] D [  glue  ] &lt;DepoSetFanout:fanout&gt; call=0 fanout depo set 0 with 164164
+
+Pgrapher, 1 thread, depo set: 0.756s
+[11:08:29.559] D [   io   ] &lt;NumpyDepoSetLoader:depos&gt; call=0 sent ndepos=627983
+[11:08:30.315] D [  glue  ] &lt;DepoSetFanout:fanout&gt; call=0 fanout depo set 0 with 537049
+
+Pgrapher, 1 thread, singular depo: 221s
+[11:09:03.242] D [   io   ] &lt;NumpyDepoLoader:depos&gt; load 0 complete with 627983 new, 627983 total
+[11:12:33.302] D [  gen   ] &lt;Drifter:&gt; see EOS, ( dropped:90934 + drifted:537049 ) / total:627983 depos from stream, outside of all 4 drift xregions
+[11:12:43.911] D [  glue  ] &lt;DepoSetFanout:fanout&gt; call=0 fanout depo set 0 with 164164
+</pre>
+
+<p>
+So, we are now able to choose <code>TbbFlow</code> or <code>Pgrapher</code> based on other
+requirements while in both cases the new <code>DepoSetDrifter</code> is preferable.
+The singular <code>Drifter</code> may still be used (with <code>TbbFlow</code>, even if with
+only one thread) in cases where there is not yet a source that
+provides depos batched into sets.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c904f5" class="outline-3">
+<h3 id="org9c904f5">Graph tracing in TbbFlow</h3>
+<div class="outline-text-3" id="text-org9c904f5">
+<p>
+<code>Pgraher</code> has a very useful feature of measuring the time spent by each
+component and dumping out a summary at the end of the job showing
+which nodes are the CPU pigs.  <code>TbbFlow</code> has lacked any such measure
+and that is now (partly) corrected.
+</p>
+
+<p>
+<code>TbbFlow</code> can now log each node's entry, exit and possibly error action.
+This measures what is seen at the <code>TbbFlow</code> node level and
+implementations of <code>INode</code> need not change anything to participate.  The
+resulting log can then be parsed to answer various questions.
+</p>
+
+<p>
+One "cute" question is "what does the graph execution history look
+like?".  One answer is in the form of an animation produced with some
+help from <a href="https://github.com/mapio/GraphvizAnim">GraphvizAnim</a> and some code in <code>wire-cell-python</code>.
+</p>
+
+<pre class="example" id="org11a92e0">
+$ wirecell-img anidfg mylog.txt
+$ animate anidfg.gif
+</pre>
+
+<p>
+The current styling leaves some things to be desired, but an example
+animation follows.  Look for nodes to change from black to red which
+indicates they are active during a sampled time slice.
+</p>
+
+<p>
+<img src="../../images/anidfg.gif" alt="nil"></p>
+
+<p>
+Expect <code>wirecell-img</code> to learn to produce a timing summary in the near
+future.
+</p>
+</div>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/devel/" rel="tag">devel</a></li>
+            <li><a class="tag p-category" href="../../categories/release/" rel="tag">release</a></li>
+            <li><a class="tag p-category" href="../../categories/user/" rel="tag">user</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../app-components/" rel="prev" title="App components">Previous post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                    <div class="sidebar-module sidebar-module-inset">
+      <h4>About</h4>
+      <p>Wire-Cell encompasses a collection of techniques and software implementation for the simulation, noise filtering, signal processing, 3D imaging, pattern recognition and reconstruction of liquid argon time projection chamber detectors.</p>
+    </div>
+    <div class="sidebar-module">
+      <h4>Links</h4>
+      <ol class="list-unstyled">
+<li><a href="https://lar.bnl.gov/wire-cell/">home page</a></li>
+        <li><a href="http://wirecell.github.io/">documentation</a></li>
+        <li><a href="http://github.io/WireCell">repositories</a></li>
+      </ol>
+</div>
+    
+            </div>
+        <!--End of body content-->
+        </div>
+    </div>
+</div>
+
+<footer class="blog-footer" id="footer">
+    Contents © 2021         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    
+</footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
