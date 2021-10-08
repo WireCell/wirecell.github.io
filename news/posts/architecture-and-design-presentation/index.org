@@ -1,0 +1,33 @@
+#+BEGIN_COMMENT
+.. title: Architecture and design presentation
+.. slug: architecture-and-design-presentation
+.. date: 2021-10-08 16:19:37 UTC-04:00
+.. tags: devel
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+.. author: Brett Viren
+
+#+END_COMMENT
+
+
+Recently the BNL Wire-Cell group had a discussion on WCT's
+architecture and design.  The slides may be interesting to others.
+
+{{{TEASER_END}}}
+
+
+The [[https://indico.bnl.gov/event/13058/contributions/54051/attachments/37028/60984/wct-basics.pdf][PDF presentation]] is in BNL's Indico and the topics covered are:
+
+- Getting started
+- Interface classes
+- Components
+- Data flow graph
+- Applications
+- Packaging 
+- Plugins
+- Logging
+- Util
+- Configuration
+- Documentation and community
