@@ -89,9 +89,9 @@ To track progress toward that release a <a href="https://github.com/orgs/WireCel
 </p>
 
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Continuous vs Discontinuous</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org7cc12af" class="outline-2">
+<h2 id="org7cc12af">Continuous vs Discontinuous</h2>
+<div class="outline-text-2" id="text-org7cc12af">
 <p>
 The <code>Ductor</code> and (<code>MultiDuctor</code>, see below) simulation components
 operate in either a "continuous" or "discontinuous" mode.  Each mode
@@ -100,20 +100,18 @@ depositions.
 </p>
 
 <dl class="org-dl">
-<dt> continuous </dt>
+<dt>continuous</dt>
 <dd>the <code>Ductor</code> produces frames starting at the
 configured "start time" and a regular intervals
 according to the "readout time" so that all time is
-spanned and until the input depo stream is exhausted.
-</dd>
+spanned and until the input depo stream is exhausted.</dd>
 
-<dt> discontinuous </dt>
+<dt>discontinuous</dt>
 <dd>the <code>Ductor</code> operates as above but uses the time of
 the first deposition to determine the "start time".
 A corollary of this is that the user may provide
 subsequent sets of depos, each starting at a
-different time.
-</dd>
+different time.</dd>
 </dl>
 <p>
 The following figure illustrates the differences as a timeline going
@@ -144,22 +142,18 @@ The trade offs between the two modes:
 
 <ul class="org-ul">
 <li>continuous mode sometimes reads out "nothing" (although "nothing" may
-mean "just noise" if that's how the sim is configured)
-</li>
+mean "just noise" if that's how the sim is configured)</li>
 
-<li>continuous mode captures all activity.
-</li>
+<li>continuous mode captures all activity.</li>
 
 <li>continuous mode will split activity which may be from one depo (or
 from the depos from one track) when it spans the boundary between
-two frames.  This can be seen in the second blue set.
-</li>
+two frames.  This can be seen in the second blue set.</li>
 
 <li>discontinuous mode will "oversample" time if ever the user provides
 depo sets which are closer in time than one readout.  This can be
 seen in that the second red set is "too close" to the first blue
-set.
-</li>
+set.</li>
 </ul>
 <p>
 Which mode is best?  The <b>continuous</b> mode is more correct and the
@@ -170,16 +164,14 @@ Which mode is best?  The <b>continuous</b> mode is more correct and the
 <li>use continuous mode for simulating full stream running such as for
 DUNE FD.  Framing must still be done but their readout time may be
 somewhat arbitrary.  In any case, consumer of the stream of frames
-must concatenate them.
-</li>
+must concatenate them.</li>
 
 <li>use discontinuous mode with care as a way to focus CPU usage on
 a'priori known regions of interest of time.  Consider to configure
 the job for a slightly longer readout window than actually desired
 and then trim the result to avoid edge effects.  Take care to avoid
 the "oversampling" of time as described above.  Take care of what
-depo provides the start time.
-</li>
+depo provides the start time.</li>
 </ul>
 </div>
 </div>
@@ -187,9 +179,9 @@ depo provides the start time.
 
 
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Objectified access to data files</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org9553891" class="outline-2">
+<h2 id="org9553891">Objectified access to data files</h2>
+<div class="outline-text-2" id="text-org9553891">
 <p>
 Previously, the "wire geometry" and "field response" files were loaded
 as needed.  This does not scale as each <code>AnodePlane</code> and other parts
@@ -202,24 +194,24 @@ to use these components.
 The following <a href="https://jsonnet.org">Jsonnet</a> configuration snippet shows an example (from <a href="https://github.com/WireCell/wire-cell-pgraph/tree/master/test">this test</a>):
 </p>
 
-<div class="highlight"><pre><span class="nx">local</span> <span class="nx">wc</span> <span class="o">=</span> <span class="kr">import</span> <span class="s2">"wirecell.jsonnet"</span><span class="p">;</span>
-<span class="nx">local</span> <span class="nx">params</span> <span class="o">=</span> <span class="kr">import</span> <span class="s2">"_params.jsonnet"</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="nx">local</span> <span class="nx">wc</span> <span class="o">=</span> <span class="k">import</span> <span class="s2">"wirecell.jsonnet"</span><span class="p">;</span>
+<span class="nx">local</span> <span class="nx">params</span> <span class="o">=</span> <span class="k">import</span> <span class="s2">"_params.jsonnet"</span><span class="p">;</span>
 
 
 <span class="nx">local</span> <span class="nx">fields_nominal</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">type</span><span class="o">:</span> <span class="s2">"FieldResponse"</span><span class="p">,</span>
     <span class="nx">name</span><span class="o">:</span> <span class="s2">"nominal"</span><span class="p">,</span>
-    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">filename</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">}</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">filename</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span> <span class="p">}</span>
 <span class="p">};</span>
 <span class="nx">local</span> <span class="nx">fields_uvground</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">type</span><span class="o">:</span> <span class="s2">"FieldResponse"</span><span class="p">,</span>
     <span class="nx">name</span><span class="o">:</span> <span class="s2">"uvground"</span><span class="p">,</span>
-    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">filename</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">}</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">filename</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span> <span class="p">}</span>
 <span class="p">};</span>
 <span class="nx">local</span> <span class="nx">fields_vyground</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">type</span><span class="o">:</span> <span class="s2">"FieldResponse"</span><span class="p">,</span>
     <span class="nx">name</span><span class="o">:</span> <span class="s2">"vyground"</span><span class="p">,</span>
-    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">filename</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">}</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">filename</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="mf">2</span><span class="p">]</span> <span class="p">}</span>
 <span class="p">};</span>
 
 <span class="nx">local</span> <span class="nx">wires</span> <span class="o">=</span> <span class="p">{</span>
@@ -231,20 +223,20 @@ The following <a href="https://jsonnet.org">Jsonnet</a> configuration snippet sh
     <span class="nx">type</span> <span class="o">:</span> <span class="s2">"AnodePlane"</span><span class="p">,</span>
     <span class="nx">name</span> <span class="o">:</span> <span class="s2">"nominal"</span><span class="p">,</span>
     <span class="nx">data</span> <span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">elec</span> <span class="o">+</span> <span class="nx">params</span><span class="p">.</span><span class="nx">daq</span> <span class="p">{</span>
-	<span class="nx">ident</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span>              <span class="c1">// must match what's in wires</span>
+	<span class="nx">ident</span> <span class="o">:</span> <span class="mf">0</span><span class="p">,</span>              <span class="c1">// must match what's in wires</span>
 	<span class="nx">field_response</span><span class="o">:</span> <span class="nx">wc</span><span class="p">.</span><span class="nx">tn</span><span class="p">(</span><span class="nx">fields_nominal</span><span class="p">),</span>
 	<span class="nx">wire_schema</span><span class="o">:</span> <span class="nx">wc</span><span class="p">.</span><span class="nx">tn</span><span class="p">(</span><span class="nx">wires</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">};</span>
 <span class="nx">local</span> <span class="nx">anode_uvground</span> <span class="o">=</span> <span class="nx">anode_nominal</span> <span class="p">{</span>
     <span class="nx">name</span><span class="o">:</span> <span class="s2">"uvground"</span><span class="p">,</span>
-    <span class="nx">data</span> <span class="o">:</span> <span class="kr">super</span><span class="p">.</span><span class="nx">data</span> <span class="p">{</span>
+    <span class="nx">data</span> <span class="o">:</span> <span class="k">super</span><span class="p">.</span><span class="nx">data</span> <span class="p">{</span>
 	<span class="nx">field_response</span><span class="o">:</span> <span class="nx">wc</span><span class="p">.</span><span class="nx">tn</span><span class="p">(</span><span class="nx">fields_uvground</span><span class="p">),</span>
     <span class="p">}</span>
 <span class="p">};</span>
 <span class="nx">local</span> <span class="nx">anode_vyground</span> <span class="o">=</span> <span class="nx">anode_nominal</span> <span class="p">{</span>
     <span class="nx">name</span><span class="o">:</span> <span class="s2">"vyground"</span><span class="p">,</span>
-    <span class="nx">data</span> <span class="o">:</span> <span class="kr">super</span><span class="p">.</span><span class="nx">data</span> <span class="p">{</span>
+    <span class="nx">data</span> <span class="o">:</span> <span class="k">super</span><span class="p">.</span><span class="nx">data</span> <span class="p">{</span>
 	<span class="nx">field_response</span><span class="o">:</span> <span class="nx">wc</span><span class="p">.</span><span class="nx">tn</span><span class="p">(</span><span class="nx">fields_vyground</span><span class="p">),</span>
     <span class="p">}</span>
 <span class="p">};</span>
@@ -252,9 +244,9 @@ The following <a href="https://jsonnet.org">Jsonnet</a> configuration snippet sh
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Interleave different types of field response function sets</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org5f9ddd7" class="outline-2">
+<h2 id="org5f9ddd7">Interleave different types of field response function sets</h2>
+<div class="outline-text-2" id="text-org5f9ddd7">
 <p>
 The example configuration above shows multiple <code>AnodePlane</code> instances
 being configured.  This is then used to provide support for signal
@@ -280,7 +272,7 @@ different field responses to different wires.  Extending the example
 above:
 </p>
 
-<div class="highlight"><pre><span class="c1">// The guts of this chain can be generated with:</span>
+<div class="highlight"><pre><span></span><span class="c1">// The guts of this chain can be generated with:</span>
 <span class="c1">// $ wirecell-util convert-uboone-wire-regions \</span>
 <span class="c1">//                 microboone-celltree-wires-v2.1.json.bz2 \</span>
 <span class="c1">//                 MicroBooNE_ShortedWireList_v2.csv \</span>
@@ -292,26 +284,26 @@ above:
 	<span class="nx">ductor</span><span class="o">:</span> <span class="nx">wc</span><span class="p">.</span><span class="nx">tn</span><span class="p">(</span><span class="nx">ductor_uvground</span><span class="p">),</span>
 	<span class="nx">rule</span><span class="o">:</span> <span class="s2">"wirebounds"</span><span class="p">,</span>
 	<span class="nx">args</span><span class="o">:</span> <span class="p">[</span> 
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">296</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">296</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">298</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">315</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">317</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">317</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">319</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">327</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">336</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">337</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">343</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">345</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">348</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">351</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">376</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">400</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">410</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">445</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">447</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">484</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">501</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">503</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">505</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">520</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">522</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">524</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">536</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">559</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">561</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">592</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">595</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">598</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">600</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">632</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">634</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">652</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">654</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">654</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">656</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">671</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">296</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">296</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">298</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">315</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">317</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">317</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">319</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">327</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">336</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">337</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">343</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">345</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">348</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">351</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">376</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">400</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">410</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">445</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">447</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">484</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">501</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">503</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">505</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">520</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">522</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">524</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">536</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">559</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">561</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">592</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">595</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">598</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">600</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">632</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">634</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">652</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">654</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">654</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">656</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">671</span> <span class="p">}</span> <span class="p">],</span>
 	<span class="p">],</span>
     <span class="p">},</span>
 
@@ -319,9 +311,9 @@ above:
 	<span class="nx">ductor</span><span class="o">:</span> <span class="nx">wc</span><span class="p">.</span><span class="nx">tn</span><span class="p">(</span><span class="nx">ductor_vyground</span><span class="p">),</span>
 	<span class="nx">rule</span><span class="o">:</span> <span class="s2">"wirebounds"</span><span class="p">,</span>
 	<span class="nx">args</span><span class="o">:</span> <span class="p">[</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">2336</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">2399</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">2401</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">2414</span> <span class="p">}</span> <span class="p">],</span>
-	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mi">2416</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mi">2463</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">2</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">2336</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">2399</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">2</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">2401</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">2414</span> <span class="p">}</span> <span class="p">],</span>
+	    <span class="p">[</span> <span class="p">{</span> <span class="nx">plane</span><span class="o">:</span><span class="mf">2</span><span class="p">,</span> <span class="nx">min</span><span class="o">:</span><span class="mf">2416</span><span class="p">,</span> <span class="nx">max</span><span class="o">:</span><span class="mf">2463</span> <span class="p">}</span> <span class="p">],</span>
 	<span class="p">],</span>
     <span class="p">},</span>
     <span class="p">{</span>               <span class="c1">// catch all if the above do not match.</span>
@@ -347,7 +339,7 @@ above:
 <p>
 The <code>MultiDuctor</code> "chain" works under a "first match gets the depo"
 policy.  That is, each element of the chain is interpreted based on
-the named rule (~"wirebounds"~ here) and if the depo falls in any of
+the named rule (<code>"wirebounds"</code> here) and if the depo falls in any of
 the listed wire bounds then the associated <code>IDuctor</code> named with the
 <code>ductor</code> attribute is used to form waveforms for that depo.  That is,
 <code>MultiDuctor</code> doesn't do any "real" work, but acts as a switchyard to
@@ -369,9 +361,9 @@ demonstrated that this error is unacceptable.
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">Multiple Anodes</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org9b5e991" class="outline-2">
+<h2 id="org9b5e991">Multiple Anodes</h2>
+<div class="outline-text-2" id="text-org9b5e991">
 <p>
 The <code>MultiDuctor</code> above is meant to interweave multiple different
 "universes" each containing an instance of the "same" anode plane.
@@ -384,9 +376,9 @@ this the <code>AnodePlane</code> and base <code>Ductor</code> required additiona
 The <code>IAnodeFace</code> now has the method:
 </p>
 
-<div class="highlight"><pre><span class="c1">/// Return a bounding box containing the volume to which this</span>
+<div class="highlight"><pre><span></span><span class="c1">/// Return a bounding box containing the volume to which this</span>
 <span class="c1">/// face is sensitive.</span>
-<span class="k">virtual</span> <span class="n">BoundingBox</span> <span class="nf">sensitive</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">virtual</span><span class="w"> </span><span class="n">BoundingBox</span><span class="w"> </span><span class="nf">sensitive</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 
 <p>
@@ -460,7 +452,8 @@ dropped via the sensitive volume mechanism described above.
       <ol class="list-unstyled">
 <li><a href="https://lar.bnl.gov/wire-cell/">home page</a></li>
         <li><a href="http://wirecell.github.io/">documentation</a></li>
-        <li><a href="http://github.io/WireCell">repositories</a></li>
+        <li><a href="http://github.com/WireCell">repositories (WCT)</a></li>
+        <li><a href="http://github.com/BNLIF">repositories (WCP)</a></li>
       </ol>
 </div>
     
@@ -471,7 +464,7 @@ dropped via the sensitive volume mechanism described above.
 </div>
 
 <footer class="blog-footer" id="footer">
-    Contents © 2020         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    Contents © 2021         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
     
 </footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");

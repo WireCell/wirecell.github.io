@@ -80,12 +80,9 @@ What are <a href="https://wirecell.github.io/manual#component-internals">WCT Com
 </p>
 
 <ul class="org-ul">
-<li>inherit from a WCT <a href="https://wirecell.github.io/manual#interface-internals">Interface</a> base class
-</li>
-<li>give registration code in a WCT <b>plugin</b> library
-</li>
-<li>optionally, make use of WCT <a href="https://wirecell.github.io/manual#configuration">Configuration</a>.
-</li>
+<li>inherit from a WCT <a href="https://wirecell.github.io/manual#interface-internals">Interface</a> base class</li>
+<li>give registration code in a WCT <b>plugin</b> library</li>
+<li>optionally, make use of WCT <a href="https://wirecell.github.io/manual#configuration">Configuration</a>.</li>
 </ul>
 <p>
 By developing code in the form of components we can strongly define its boundary in terms of data and configuration.  This lets us test bits of code in well constrained ways and be confident that when these components are aggregated into larger applications, and possibly embedded into even larger ones, that they will function as expected.
@@ -96,7 +93,7 @@ The simplest way to run WCT components is with the <code>wire-cell</code> comman
 line.  This example will exercise the components related to the signal processing:
 </p>
 
-<pre class="example">
+<pre class="example" id="org8fe2541">
 $ export WIRECELL_PATH=/path/to/cfg:/path/to/data
 $ wire-cell \
      -V detector=uboone \
@@ -110,16 +107,11 @@ $ root -l magnify-output.root
 Notes: 
 </p>
 <ul class="org-ul">
-<li>The configuration in this example is subject to change
-</li>
-<li>You can browse the <a href="https://github.com/wirecell/wire-cell-cfg">example configuration files</a> and learn about <a href="http://jsonnet.org/">Jsonnet</a>.
-</li>
-<li>The job is configured with a "Magnify" file source and file sink component bookend the signal processing and the <code>input</code> and <code>ouput</code> configuration variables giving these files are "injected" from the command line. 
-</li>
-<li>You may find examples of "Magnify" ROOT files for input <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/data/data-reduction/v2/">here</a>.   
-</li>
-<li>As usual, see the <a href="https://wirecell.github.io/manual">manual</a> for installation and setup.
-</li>
+<li>The configuration in this example is subject to change</li>
+<li>You can browse the <a href="https://github.com/wirecell/wire-cell-cfg">example configuration files</a> and learn about <a href="http://jsonnet.org/">Jsonnet</a>.</li>
+<li>The job is configured with a "Magnify" file source and file sink component bookend the signal processing and the <code>input</code> and <code>ouput</code> configuration variables giving these files are "injected" from the command line.</li>
+<li>You may find examples of "Magnify" ROOT files for input <a href="http://www.phy.bnl.gov/~bviren/tmp/wctsim/wct-dev/data/data-reduction/v2/">here</a>.</li>
+<li>As usual, see the <a href="https://wirecell.github.io/manual">manual</a> for installation and setup.</li>
 </ul>
 </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
@@ -147,7 +139,8 @@ Notes:
       <ol class="list-unstyled">
 <li><a href="https://lar.bnl.gov/wire-cell/">home page</a></li>
         <li><a href="http://wirecell.github.io/">documentation</a></li>
-        <li><a href="http://github.io/WireCell">repositories</a></li>
+        <li><a href="http://github.com/WireCell">repositories (WCT)</a></li>
+        <li><a href="http://github.com/BNLIF">repositories (WCP)</a></li>
       </ol>
 </div>
     
@@ -158,7 +151,7 @@ Notes:
 </div>
 
 <footer class="blog-footer" id="footer">
-    Contents © 2020         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    Contents © 2021         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
     
 </footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");

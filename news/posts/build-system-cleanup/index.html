@@ -9,6 +9,7 @@
 <link rel="canonical" href="http://wirecell.github.io/news/posts/build-system-cleanup/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Brett Viren">
 <link rel="prev" href="../wire-cell-logos/" title="Wire-Cell Logos" type="text/html">
+<link rel="next" href="../wire-cell-fans/" title="Wire-Cell fans" type="text/html">
 <meta property="og:site_name" content="Wire-Cell News">
 <meta property="og:title" content="Build system cleanup">
 <meta property="og:url" content="http://wirecell.github.io/news/posts/build-system-cleanup/">
@@ -79,9 +80,9 @@ for to build your own WCT-related packages.
 
 <!-- TEASER_END -->
 
-<div id="outline-container-org19f0de8" class="outline-2">
-<h2 id="org19f0de8">Consolidation and cleanup</h2>
-<div class="outline-text-2" id="text-org19f0de8">
+<div id="outline-container-orgaa12bd4" class="outline-2">
+<h2 id="orgaa12bd4">Consolidation and cleanup</h2>
+<div class="outline-text-2" id="text-orgaa12bd4">
 <p>
 Previously, the <a href="https://github.com/wirecell/waf-tools">waf-tools</a> repository was available under a similarly
 named subpackage in the toolkit source.  This repository holds add-on
@@ -95,10 +96,10 @@ waf-tools and baked into <code>wcb</code>.
 </div>
 </div>
 
-<div id="outline-container-org31c6d9a" class="outline-2">
-<h2 id="org31c6d9a">Updating <code>wcb</code>
+<div id="outline-container-org77b7752" class="outline-2">
+<h2 id="org77b7752">Updating <code>wcb</code>
 </h2>
-<div class="outline-text-2" id="text-org31c6d9a">
+<div class="outline-text-2" id="text-org77b7752">
 <p>
 As a consequence of this consolidation, there is very little "guts" of
 the build system obviously exposed to the casual users or even
@@ -112,7 +113,7 @@ rebuilt.
 Rebuilding <code>wcb</code> is easy (but very few people need to do it):
 </p>
 
-<pre class="example">
+<pre class="example" id="org7689d5d">
 $ cd /path/to/your/waf-tools
 $ ./refresh-wcb -o /path/to/your/wire-cell-toolkit/wcb
 
@@ -129,9 +130,9 @@ $ git push --tags
 
 
 
-<div id="outline-container-org9342b03" class="outline-2">
-<h2 id="org9342b03">Using <code>wcb</code> to build your own package</h2>
-<div class="outline-text-2" id="text-org9342b03">
+<div id="outline-container-org1917db2" class="outline-2">
+<h2 id="org1917db2">Using <code>wcb</code> to build your own package</h2>
+<div class="outline-text-2" id="text-org1917db2">
 <p>
 Using <code>wcb</code> to build WCT itself is unchanged.  It is also possible to
 use <code>wcb</code> and start with the <code>wscript</code> file from WCT itself to easily
@@ -158,9 +159,9 @@ function.
 </div>
 </div>
 
-<div id="outline-container-org4ce782f" class="outline-2">
-<h2 id="org4ce782f">More info</h2>
-<div class="outline-text-2" id="text-org4ce782f">
+<div id="outline-container-orgaa1ffee" class="outline-2">
+<h2 id="orgaa1ffee">More info</h2>
+<div class="outline-text-2" id="text-orgaa1ffee">
 <ul class="org-ul">
 <li><a href="https://github.com/WireCell/waf-tools">WCT waf-tools</a></li>
 <li><a href="https://wirecell.bnl.gov/manual.html#toolkit-packages">WCT package conventions</a></li>
@@ -178,6 +179,9 @@ function.
 <li class="previous">
                 <a href="../wire-cell-logos/" rel="prev" title="Wire-Cell Logos">Previous post</a>
             </li>
+            <li class="next">
+                <a href="../wire-cell-fans/" rel="next" title="Wire-Cell fans">Next post</a>
+            </li>
         </ul></nav></aside></article>
 </div>
             <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
@@ -190,7 +194,8 @@ function.
       <ol class="list-unstyled">
 <li><a href="https://lar.bnl.gov/wire-cell/">home page</a></li>
         <li><a href="http://wirecell.github.io/">documentation</a></li>
-        <li><a href="http://github.io/WireCell">repositories</a></li>
+        <li><a href="http://github.com/WireCell">repositories (WCT)</a></li>
+        <li><a href="http://github.com/BNLIF">repositories (WCP)</a></li>
       </ol>
 </div>
     
@@ -201,7 +206,7 @@ function.
 </div>
 
 <footer class="blog-footer" id="footer">
-    Contents © 2020         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    Contents © 2021         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
     
 </footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");

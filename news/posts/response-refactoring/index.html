@@ -83,40 +83,36 @@ detectors.  This post describes some recent steps to fix this problem.
 
 <!-- TEASER_END -->
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Survey of Responses</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org4d8282c" class="outline-2">
+<h2 id="org4d8282c">Survey of Responses</h2>
+<div class="outline-text-2" id="text-org4d8282c">
 <p>
 There are various responses that matter in LArTPC.  In WCT they include:
 </p>
 
 <dl class="org-dl">
-<dt> field response </dt>
+<dt>field response</dt>
 <dd>a waveform giving induced current for a point
 charge drifting along a path determined by some
-starting point ("impact position")
-</dd>
-<dt> electronics response </dt>
+starting point ("impact position")</dd>
+<dt>electronics response</dt>
 <dd>strictly referring to the functional form,
 parameterized by a gain (in units of Voltage/Charge) and a
 shaping (peaking) time which gives a voltage waveform when
 convolved with a charge waveform.  This is models the effect of
-the BNL cold electronics.
-</dd>
-<dt> rcrc response </dt>
+the BNL cold electronics.</dd>
+<dt>rcrc response</dt>
 <dd>the RC filters in the MicroBooNE electronics after
-the cold amplifier.
-</dd>
-<dt> plane impact response </dt>
+the cold amplifier.</dd>
+<dt>plane impact response</dt>
 <dd>a roll-up of the above and used for
-simulation components (<code>Ductor</code> via <code>ImpactZipper</code>)
-</dd>
+simulation components (<code>Ductor</code> via <code>ImpactZipper</code>)</dd>
 </dl>
 </div>
 
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">Field Response Functions</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org86e2261" class="outline-3">
+<h3 id="org86e2261">Field Response Functions</h3>
+<div class="outline-text-3" id="text-org86e2261">
 <p>
 The field response functions (FR) are a large family of waveforms
 defined along many impact positions that span (so far) up to +/- 10
@@ -143,9 +139,9 @@ When you need the FR set you should lookup a <code>IFieldResponse</code>
 component based on a configuration parameter given to your component:
 </p>
 
-<div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">fr_type_name</span> <span class="o">=</span> <span class="p">...;</span>  <span class="c1">// eg, maybe "FieldResponse:InstanceName"</span>
-<span class="k">auto</span> <span class="n">ifr</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">::</span><span class="n">find_tn</span><span class="p">(</span><span class="n">fr_type_name</span><span class="p">);</span>
-<span class="k">auto</span> <span class="n">fr</span> <span class="o">=</span> <span class="n">ifr</span><span class="o">-&gt;</span><span class="n">field_response</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fr_type_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span><span class="w">  </span><span class="c1">// eg, maybe "FieldResponse:InstanceName"</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">ifr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">find_tn</span><span class="p">(</span><span class="n">fr_type_name</span><span class="p">);</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">fr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifr</span><span class="o">-&gt;</span><span class="n">field_response</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 
 <p>
@@ -155,9 +151,9 @@ response functions.
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">Electronics Response</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgf658b70" class="outline-3">
+<h3 id="orgf658b70">Electronics Response</h3>
+<div class="outline-text-3" id="text-orgf658b70">
 <p>
 The Electronics Response is a single function giving a waveform
 parameterized by gain and shaping time.  It has a functional form
@@ -175,17 +171,17 @@ Again, your component should take the instance name to use as a
 configuration parameter.
 </p>
 
-<div class="highlight"><pre><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">er_type_name</span> <span class="o">=</span> <span class="p">...;</span>
-<span class="k">auto</span> <span class="n">er</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">::</span><span class="n">find_tn</span><span class="p">(</span><span class="n">er_type_name</span><span class="p">);</span>
-<span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Tick is "</span> <span class="o">&lt;&lt;</span> <span class="n">er</span><span class="o">-&gt;</span><span class="n">waveform_period</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-<span class="k">auto</span> <span class="n">spec</span> <span class="o">=</span> <span class="n">dft</span><span class="p">(</span><span class="n">er</span><span class="o">-&gt;</span><span class="n">waveform_samples</span><span class="p">());</span> <span class="c1">// do FFT</span>
+<div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">er_type_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">er</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">find_tn</span><span class="p">(</span><span class="n">er_type_name</span><span class="p">);</span><span class="w"></span>
+<span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Tick is "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">er</span><span class="o">-&gt;</span><span class="n">waveform_period</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dft</span><span class="p">(</span><span class="n">er</span><span class="o">-&gt;</span><span class="n">waveform_samples</span><span class="p">());</span><span class="w"> </span><span class="c1">// do FFT</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">RC Response</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org3c92402" class="outline-3">
+<h3 id="org3c92402">RC Response</h3>
+<div class="outline-text-3" id="text-org3c92402">
 <p>
 The RC response is simply that of an RC circuit.  It's parameterized
 by a "width" in units of time.  It also delegates to a hard-wired
@@ -195,9 +191,9 @@ it up just like ER.
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">Plane Impact Response</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-org5b32725" class="outline-3">
+<h3 id="org5b32725">Plane Impact Response</h3>
+<div class="outline-text-3" id="text-org5b32725">
 <p>
 The <a href="https://github.com/WireCell/wire-cell-iface/blob/master/inc/WireCellIface/IPlaneImpactResponse.h">plane impact response (PIR)</a> is a special purpose component which
 rolls up the FRs and optionally some number of other responses.  It
@@ -213,9 +209,9 @@ the same name so that an RC<sup>2</sup> response is effected).
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Why Refactoring?</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org8c85a88" class="outline-2">
+<h2 id="org8c85a88">Why Refactoring?</h2>
+<div class="outline-text-2" id="text-org8c85a88">
 <p>
 So, what's with the refactoring?  Well, we used to violate "everything
 is a component" guideline with all these responses.  This started
@@ -228,15 +224,12 @@ with using PIR:
 <li>to get some simple configuration parameters that a
 component should best be configured directly.  (Eg, why get a giant
 PIR with its dependencies just to know how many ticks to make in a
-readout?)
-</li>
+readout?)</li>
 
 <li>for things that the <code>Pimpos</code> class can provide (this class
-deserves its own post, and probably should become a component).
-</li>
+deserves its own post, and probably should become a component).</li>
 
-<li>to get at the FRs instead of getting them directly.
-</li>
+<li>to get at the FRs instead of getting them directly.</li>
 </ul>
 <p>
 Also, given the hard-wiring, we were unable to support different
@@ -247,9 +240,9 @@ hard-wiring.
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">What now</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org52c5997" class="outline-2">
+<h2 id="org52c5997">What now</h2>
+<div class="outline-text-2" id="text-org52c5997">
 <p>
 Mostly this refactoring is not a change that users will care about.
 However, some things may have broken in the near term.  There are also
@@ -286,7 +279,8 @@ this will be all sorted.
       <ol class="list-unstyled">
 <li><a href="https://lar.bnl.gov/wire-cell/">home page</a></li>
         <li><a href="http://wirecell.github.io/">documentation</a></li>
-        <li><a href="http://github.io/WireCell">repositories</a></li>
+        <li><a href="http://github.com/WireCell">repositories (WCT)</a></li>
+        <li><a href="http://github.com/BNLIF">repositories (WCP)</a></li>
       </ol>
 </div>
     
@@ -297,7 +291,7 @@ this will be all sorted.
 </div>
 
 <footer class="blog-footer" id="footer">
-    Contents © 2020         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    Contents © 2021         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
     
 </footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");

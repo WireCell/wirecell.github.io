@@ -97,19 +97,19 @@ things looking simple.  When you program WCT code with exceptions do
 like:
 </p>
 
-<div class="highlight"><pre><span class="cp">#include</span> <span class="cpf">"WireCellUtil/Exceptions.h"  </span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"WireCellUtil/Exceptions.h"</span><span class="c1">  </span><span class="cp"></span>
 
-<span class="kt">void</span> <span class="n">MyComponent</span><span class="o">::</span><span class="n">configure</span><span class="p">(</span><span class="n">Configuration</span> <span class="n">cfg</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">mytool_tn</span> <span class="o">=</span> <span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="s">"mytool"</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">mytool_tn</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
-	<span class="n">THROW</span><span class="p">(</span><span class="n">ValueError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">errmsg</span><span class="p">{</span><span class="s">"You must set </span><span class="se">\"</span><span class="s">mytool</span><span class="se">\"</span><span class="s"> to something"</span><span class="p">});</span>
-    <span class="p">}</span>
-     <span class="n">m_mytool</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">::</span><span class="n">find_tn</span><span class="o">&lt;</span><span class="n">IMyTool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mytool_tn</span><span class="p">);</span>
-     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">m_mytool</span><span class="p">)</span> <span class="p">{</span>
-	 <span class="n">THROW</span><span class="p">(</span><span class="n">ValueError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">errmsg</span><span class="p">{</span><span class="s">"Failed to find IMyTool: "</span> <span class="o">+</span> <span class="n">mytool_tn</span><span class="p">});</span>
-     <span class="p">}</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">MyComponent::configure</span><span class="p">(</span><span class="n">Configuration</span><span class="w"> </span><span class="n">cfg</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">mytool_tn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span><span class="w"> </span><span class="s">"mytool"</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mytool_tn</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="n">THROW</span><span class="p">(</span><span class="n">ValueError</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">errmsg</span><span class="p">{</span><span class="s">"You must set </span><span class="se">\"</span><span class="s">mytool</span><span class="se">\"</span><span class="s"> to something"</span><span class="p">});</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">     </span><span class="n">m_mytool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Factory</span><span class="o">::</span><span class="n">find_tn</span><span class="o">&lt;</span><span class="n">IMyTool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mytool_tn</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_mytool</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	 </span><span class="n">THROW</span><span class="p">(</span><span class="n">ValueError</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">errmsg</span><span class="p">{</span><span class="s">"Failed to find IMyTool: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mytool_tn</span><span class="p">});</span><span class="w"></span>
+<span class="w">     </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 
 <p>
@@ -117,14 +117,10 @@ Notes:
 </p>
 
 <ol class="org-ol">
-<li>All exceptions that WCT code may throw are defined in the header file included in the example.  
-</li>
-<li>Instead of the low-level C++ <code>throw()</code> use the provided CPP macro <code>THROW()</code> which will give the user extra info in the case that an exception is not caught.
-</li>
-<li>The value returned may have an <code>errmsg</code> streamed to it which will add some dynamic description of the error in the form of a string.  If a complex string needs to be build see <code>WireCell::String::format()</code>.
-</li>
-<li>No special C++ is needed to catch exceptions.
-</li>
+<li>All exceptions that WCT code may throw are defined in the header file included in the example.</li>
+<li>Instead of the low-level C++ <code>throw()</code> use the provided CPP macro <code>THROW()</code> which will give the user extra info in the case that an exception is not caught.</li>
+<li>The value returned may have an <code>errmsg</code> streamed to it which will add some dynamic description of the error in the form of a string.  If a complex string needs to be build see <code>WireCell::String::format()</code>.</li>
+<li>No special C++ is needed to catch exceptions.</li>
 </ol>
 </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
@@ -149,7 +145,8 @@ Notes:
       <ol class="list-unstyled">
 <li><a href="https://lar.bnl.gov/wire-cell/">home page</a></li>
         <li><a href="http://wirecell.github.io/">documentation</a></li>
-        <li><a href="http://github.io/WireCell">repositories</a></li>
+        <li><a href="http://github.com/WireCell">repositories (WCT)</a></li>
+        <li><a href="http://github.com/BNLIF">repositories (WCP)</a></li>
       </ol>
 </div>
     
@@ -160,7 +157,7 @@ Notes:
 </div>
 
 <footer class="blog-footer" id="footer">
-    Contents © 2020         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    Contents © 2021         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
     
 </footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");

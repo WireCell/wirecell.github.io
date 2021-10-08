@@ -117,9 +117,9 @@ If those icons are "green" then the most recent build has succeeded.  Otherwise,
 The rest of this post gives some details on this system.
 </p>
 
-<div id="outline-container-orga291197" class="outline-2">
-<h2 id="orga291197">Using the Docker Images</h2>
-<div class="outline-text-2" id="text-orga291197">
+<div id="outline-container-orgc0ec372" class="outline-2">
+<h2 id="orgc0ec372">Using the Docker Images</h2>
+<div class="outline-text-2" id="text-orgc0ec372">
 <p>
 Besides providing the basis for the CI, these Docker images can be
 used by developers or end users that want to avoid building up a
@@ -133,7 +133,7 @@ of them.
 To run inside the same environment as used by the CI to test the WCT code:
 </p>
 
-<pre class="example">
+<pre class="example" id="orgfe65369">
 native$ docker run brettviren/wct-testing 
 docker$ ./run.sh
 </pre>
@@ -147,7 +147,7 @@ will <b>be lost</b> once the container is exited.
 To run inside the environment used to test the WCT docs:
 </p>
 
-<pre class="example">
+<pre class="example" id="orgae91310">
 native$ docker run -it brettviren/wct-documentation
 docker$ ./anonbuild.sh
 </pre>
@@ -156,7 +156,7 @@ docker$ ./anonbuild.sh
 Currently, there is no facility to extra build artifacts from the Travis-CI environment.  However the container has support for uploading the results of building the documentation to the GitHub repository that is reflected at <a href="https://wirecell.github.io/">https://wirecell.github.io/</a>:
 </p>
 
-<pre class="example">
+<pre class="example" id="orga47cc89">
 $ docker run \
    -e COMMIT_USER="$(git config user.name)" \
    -e COMMIT_EMAIL="$(git config user.email)" \
@@ -174,15 +174,15 @@ succeed.
 </div>
 
 
-<div id="outline-container-orgcf68b89" class="outline-2">
-<h2 id="orgcf68b89">Building The Docker Images</h2>
-<div class="outline-text-2" id="text-orgcf68b89">
+<div id="outline-container-orgfd86831" class="outline-2">
+<h2 id="orgfd86831">Building The Docker Images</h2>
+<div class="outline-text-2" id="text-orgfd86831">
 <p>
 You can rebuild the Docker images for local use or uploading to Docker
 Hub.
 </p>
 
-<pre class="example">
+<pre class="example" id="orgaac6e91">
 $ git clone git@github.com:WireCell/wire-cell-containers.git
 $ cd wire-cell-containers/docker/
 $ docker build -t brettviren/wct-deb debian/
@@ -201,9 +201,9 @@ Of course, replace <code>brettviren</code> with your own label, as desired.
 </div>
 </div>
 
-<div id="outline-container-orge2dad11" class="outline-2">
-<h2 id="orge2dad11">To do</h2>
-<div class="outline-text-2" id="text-orge2dad11">
+<div id="outline-container-org4b2106c" class="outline-2">
+<h2 id="org4b2106c">To do</h2>
+<div class="outline-text-2" id="text-org4b2106c">
 <p>
 Some possible items of future development may include:
 </p>
@@ -248,7 +248,8 @@ Some possible items of future development may include:
       <ol class="list-unstyled">
 <li><a href="https://lar.bnl.gov/wire-cell/">home page</a></li>
         <li><a href="http://wirecell.github.io/">documentation</a></li>
-        <li><a href="http://github.io/WireCell">repositories</a></li>
+        <li><a href="http://github.com/WireCell">repositories (WCT)</a></li>
+        <li><a href="http://github.com/BNLIF">repositories (WCP)</a></li>
       </ol>
 </div>
     
@@ -259,7 +260,7 @@ Some possible items of future development may include:
 </div>
 
 <footer class="blog-footer" id="footer">
-    Contents © 2020         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+    Contents © 2021         <a href="mailto:bv@bnl.gov">Wire-Cell Team</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
     
 </footer><script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
     moment.locale("en");
