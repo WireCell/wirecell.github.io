@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wire Cell Toolkit Apps</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Wire Cell Toolkit Apps
+<br />
+<span class="subtitle"><a href="../README.html">(top)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgbaef231">1. Overview</a></li>
+<li><a href="#org55b3b84">2. Programs</a>
+<ul>
+<li><a href="#org8524ac1">2.1. <code>wire-cell</code></a></li>
+<li><a href="#orgd6e703e">2.2. <code>wcsonnet</code></a></li>
+<li><a href="#orgb910cb2">2.3. <code>wcwires</code></a></li>
+</ul>
+</li>
+<li><a href="#orga18d702">3. WCT <code>Main</code></a></li>
+<li><a href="#org0bc0978">4. WCT &ldquo;apps&rdquo;</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgbaef231" class="outline-2">
+<h2 id="orgbaef231"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This package provides toolkit layers at the top of an application
+stack.  This includes
+</p>
+
+<ul class="org-ul">
+<li>main command line programs, in particular <code>wire-cell</code>.</li>
+
+<li>a <code>Main</code> class used in CLI and other application interfaces (such as <i>art</i>).</li>
+
+<li>a few so called &ldquo;apps&rdquo; which are WCT components that provide a
+high-level execution policy.  See also <code>TbbFlow</code> in sub package <code>tbb</code>
+and <code>Pgrapher</code> in</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org55b3b84" class="outline-2">
+<h2 id="org55b3b84"><span class="section-number-2">2.</span> Programs</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org8524ac1" class="outline-3">
+<h3 id="org8524ac1"><span class="section-number-3">2.1.</span> <code>wire-cell</code></h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The <code>wire-cell</code> command line program provides a &ldquo;reference&rdquo; application
+of the toolkit.  It is a generic, &ldquo;policy free&rdquo; program that is fully
+driven by configuration.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">wire-cell --help
+wire-cell --version
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd6e703e" class="outline-3">
+<h3 id="orgd6e703e"><span class="section-number-3">2.2.</span> <code>wcsonnet</code></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The <code>wcsonnet</code> program is a thin wrapper around the Jsonnet library used to build WCT.  It can be preferable to the standard <code>jsonnet</code> program for the following reasons:
+</p>
+
+<ul class="org-ul">
+<li>It uses the Go Jsonnet library which is substantially faster than the C/C++ library used by <code>jsonnet</code>.</li>
+<li>It honors the <code>WIRECELL_PATH</code> to locate files.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-shell">wcsonnet --help
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb910cb2" class="outline-3">
+<h3 id="orgb910cb2"><span class="section-number-3">2.3.</span> <code>wcwires</code></h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+One of the main input configurations to many WCT algorithms is the
+&ldquo;wire geometry&rdquo;.  This is typically an exhaustive list of wire (or
+strip) endpoints and their channel and other identifiers.  In many
+cases, the &ldquo;wires files&rdquo; are provided with errors.  They may not
+follow correct ordering conventions or they may have poor precision in
+wire endpoints.  WCT provides a way to validate and correct the wire
+geometry when a &ldquo;wires file&rdquo; is read in and <code>wcwires</code> provides this
+functionality in a convenient command line interface.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">wcwires --help
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orga18d702" class="outline-2">
+<h2 id="orga18d702"><span class="section-number-2">3.</span> WCT <code>Main</code></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+WCT provides a C++ class called <code>Main</code> which may be used to easily integrate WCT functionality into other applications.  The <code>wire-cell</code> program provides a command line interface to <code>Main</code>.  Likewise, the <code>WCLS_tool</code> in the <code>larwirecell</code> packages of LArSoft providse an <i>art</i> / FHiCL interface to <code>Main</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0bc0978" class="outline-2">
+<h2 id="org0bc0978"><span class="section-number-2">4.</span> WCT &ldquo;apps&rdquo;</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Finally, this package provides a number of simple WCT &ldquo;apps&rdquo; classes.
+Typically, one or more &ldquo;app&rdquo; instance is used via <code>Main</code> to provide some
+top-level execution.  Provided here are <code>ConfigDumper</code> and <code>NodeDumper</code>
+which are more examples than useful.  See <code>TbbFlow</code> from the <code>tbb</code> sub
+package and <code>Pgrapher</code> from the <code>pgraph</code> package for the two most used
+apps.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

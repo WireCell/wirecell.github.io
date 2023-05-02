@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Frames and their representations</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Frames and their representations
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orge397cdd">1. Intro</a></li>
+<li><a href="#org795044e">2. Initial I/O with FrameFileSink/FrameFileSource</a></li>
+<li><a href="#orgee5055f">3. Tag solutions</a></li>
+<li><a href="#orgbabec89">4. Frame decomposition</a>
+<ul>
+<li><a href="#org2b35b08">4.1. Set metadata</a></li>
+<li><a href="#org42d976d">4.2. Tensors</a></li>
+<li><a href="#org4a9dd87">4.3. Trace</a></li>
+<li><a href="#org17b1cce">4.4. Index</a></li>
+<li><a href="#orgc8125c4">4.5. Summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge397cdd" class="outline-2">
+<h2 id="orge397cdd"><span class="section-number-2">1.</span> Intro</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A WCT &ldquo;frame&rdquo; provides a simple representation of data from different
+types of &ldquo;readout&rdquo; of a LArTPC detector with some additional concepts
+bolted on.  This describes the <code>IFrame</code> representation and a more
+generic representation based on <code>ITensorSet</code> which is a useful
+intermediate for sharing frame information with non-WCT things like
+files.
+</p>
+
+<p>
+A WCT <code>IFrame</code> holds an <code>ident</code> number, a reference <code>time</code> and a sample
+period duration <code>tick</code>.  It also holds one or more &ldquo;frame tags&rdquo; which
+are simple strings providing application-defined identifiers.  A frame
+also holds three collections.  The most important is <code>traces</code> which is a
+vector of <code>ITrace</code>.  It also holds a &ldquo;trace tag map&rdquo; which maps from a
+string (the &ldquo;trace tag&rdquo;) to a vector of indices into the <code>traces</code>
+vector.  This provides application-defined identification of a subset
+of traces.  Finally, it provides a &ldquo;channel mask map&rdquo; which again maps
+a string &ldquo;mask tag&rdquo; to a mapping from channel ident to a list of tick
+ranges.
+</p>
+
+<p>
+The <code>ITrace</code> holds an offset from the frame reference <code>time</code> measured in
+number of <code>ticks</code>, a channel ident and a floating point array, typically
+identified as holding an ADC or a signal waveform (or fragment
+thereof).  The <code>traces</code> array can be thought of as a 2D sparse or dense
+array spanning the channels and ticks of the readout.
+</p>
+
+<p>
+At least two persistent representations of <code>IFrame</code> are supported by WCT.  The rest of this d
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org795044e" class="outline-2">
+<h2 id="org795044e"><span class="section-number-2">2.</span> Initial I/O with FrameFileSink/FrameFileSource</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+WCT <code>sio</code> subpackage provides support for sending <code>IFrame</code> through file
+I/O based on <code>boost::iostreams</code> and <code>custard</code> to support streams through
+<code>.tar</code> with optional <code>.gz</code>, <code>.xz</code> or <code>.bz2</code> compression or <code>.zip</code> files.  The
+<code>FrameFile{Sink,Source}</code> uses <code>pigenc</code> to stream <code>IFrame</code> in the form of
+Python Numpy <code>.npy</code> files.  The <code>IFrame</code> is decomposed into a number of
+arrays and a file naming scheme is used to encode array type and frame
+<code>ident</code> as well as tag information.
+</p>
+
+<p>
+This initial sink/source pair introduced problems.  The sink produced
+a stream of arrays with file names like:
+</p>
+
+<pre class="example" id="org433a722">
+frame_&lt;tag1&gt;_&lt;ident&gt;.npy
+channels_&lt;tag1&gt;_&lt;ident&gt;.npy
+tickinfo_&lt;tag1&gt;_&lt;ident&gt;.npy
+summary_&lt;tag1&gt;_&lt;ident&gt;.npy  (optional)
+</pre>
+
+<p>
+In deciding what to write, the <code>FrameFileSink</code> matches each tag in the
+union of the <code>IFrame</code> trace and frame tags against a configured list.
+Upon first match, the scope that is tagged is written in a trio of
+files as shown above.  Thus the frame vs trace nature of the tag was
+lost.
+</p>
+
+<p>
+As only Numpy <code>.npy</code> files are supported in <code>FrameFile{Sink/Source}</code>
+files, the nested structure of the <code>IFrame</code> channel mask map has to be
+flattened into a number of arrays named like:
+</p>
+
+<pre class="example" id="org499a1f7">
+chanmask_&lt;tag1&gt;_&lt;ident&gt;.npy
+chanmask_&lt;tag2&gt;_&lt;ident&gt;.npy
+</pre>
+
+<p>
+The tags in this case are the channel mask map keys (eg, <code>"bad"</code>).   
+</p>
+
+<p>
+Despite these problems, this format is convenient for producing
+per-tag dense arrays for quick debugging using Python/Numpy.  However,
+this breakage of data fidelity makes this format unsuitable for
+lossless I/O.  And the array ordering requirements of <code>FrameFileSource</code>
+make producing compatible files by software other than <code>FrameFileSink</code>
+awkward.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgee5055f" class="outline-2">
+<h2 id="orgee5055f"><span class="section-number-2">3.</span> Tag solutions</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+To fix the above, it was attempted to modify the <code>FF{Sink,Source}</code> to
+work in a new mode, which retaining backward compatibility and to add
+support for sending channel mask maps.  This quickly became a mess,
+especially when one must fit any schema into the confines of flat
+arrays an file naming conventions.
+</p>
+
+<p>
+At the same time, development was ongoing to add point-cloud support
+and in particular a generic <code>TensorFileSink</code> was developed.  Given that,
+it became clear that the problems in a new <code>IFrame</code> I/O can be decoupled
+into two parts: 1) define an <code>ITensorSet</code> based schema to represent
+<code>IFrame</code> data with high fidelity and 2) use <code>TensorFileSink</code> as-is and
+develop the anyway required <code>TensorFileSource</code>.
+</p>
+
+<p>
+This approach is attractive for two other reasons.  <code>ITensor</code> and
+<code>ITensorSet</code> both support structured, JSON-like metadata objects.  This
+relieves the burden on using naming schemes to hold metadata.  Second,
+<code>ITensor</code> representation is (intentionally) natural to use for HDF5
+files and ZeroMQ transport and thus by converting between <code>IFrame</code> and
+<code>ITensor</code> representations, frames get new I/O methods &ldquo;for free&rdquo;.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbabec89" class="outline-2">
+<h2 id="orgbabec89"><span class="section-number-2">4.</span> Frame decomposition</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The <code>IFrame</code> info is decomposed into an <code>ITensorSet/ITensor</code>
+representation.
+</p>
+</div>
+
+<div id="outline-container-org2b35b08" class="outline-3">
+<h3 id="org2b35b08"><span class="section-number-3">4.1.</span> Set metadata</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+The <code>IFrame::ident()</code> is mapped directly to <code>ITensorSet::ident()</code>.
+</p>
+
+<p>
+The correspondence between <code>ITensorSet</code>-level metadata attribute names
+and the <code>IFrame</code> methods providing the metadata value are listed along
+with their value type.
+</p>
+
+<dl class="org-dl">
+<dt><code>time</code></dt><dd><code>IFrame::time()</code> float</dd>
+<dt><code>tick</code></dt><dd><code>IFrame::tick()</code> float</dd>
+<dt><code>masks</code></dt><dd><code>IFrame::masks()</code> structure</dd>
+<dt><code>tags</code></dt><dd><code>IFrame::frame_tags()</code> array of string</dd>
+</dl>
+
+<p>
+When the set-level metadata is represented as a JSON file its name is
+assumed to take the form <code>frame_&lt;ident&gt;.json</code>.  When <code>IFrame</code> data in file
+representation are provided as a stream, this file is expected to be
+prior to any other files representing the frame.  The remaining files
+are expected to hold tensors and must be contiguous in the stream but
+otherwise their order is not defined.  These tensors are described in
+the remaining sections.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org42d976d" class="outline-3">
+<h3 id="org42d976d"><span class="section-number-3">4.2.</span> Tensors</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+An <code>ITensor</code> represents some aspect of an <code>IFrame</code> not already represented
+in the set-level metadata.  Each tensor provides at least these two
+metadata attributes:
+</p>
+
+<dl class="org-dl">
+<dt><code>type</code></dt><dd>a label in the set <code>{trace, index, summary}</code>
+identifying the aspect of the frame it represents.</dd>
+<dt><code>name</code></dt><dd>an instance identifier that is unique in the context of all
+<code>ITensor</code> in the set of the same <code>type</code>.</dd>
+</dl>
+
+<p>
+The values for both attributes must be suitable for use as components
+of a file name.  File names holding tensor level array or metadata
+information are assumed to take the forms, respectively
+<code>frame_&lt;ident&gt;_&lt;type&gt;_&lt;name&gt;.{json,npy}</code>.
+</p>
+
+<p>
+The remaining sections describe each accepted type of tensor.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4a9dd87" class="outline-3">
+<h3 id="org4a9dd87"><span class="section-number-3">4.3.</span> Trace</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+A trace tensor provides waveform samples from a number of channels.
+Its array spans a single or an ordered collection of channels.  A
+single-channel trace array is 1D of shape <code>(nticks)</code> while a
+multi-channel trace array is 2D of shape <code>(nchans,nticks)</code>.  Samples may
+be zero-padded and may be of type <code>float</code> or <code>short</code>.  The ident numbers
+of the channels is provided by the <code>chid</code> metadata which is scalar for a
+single channel trace tensor and 1D of shape <code>(nchans)</code> for a
+multi-channel trace tensor.
+</p>
+
+<ul class="org-ul">
+<li><code>tbin=N</code> the number of ticks prior to the first tensor column</li>
+<li><code>chid=&lt;int-or-array-of-int&gt;</code> the channel ident numbers</li>
+<li><code>tag="tag"</code> an optional trace tag defining an implicit index tensor</li>
+</ul>
+
+<p>
+If <code>tag</code> is given it implies the existence of an index of tagged traces
+spans the trace tensor.  See below for other ways to indicate tagged
+traces.
+</p>
+
+<p>
+<code>IFrame</code> represents traces as a flat, ordered collection of traces.
+When more than one trace tensor is encountered, its traces are
+appended to this collection.  This allows sparse or dense or a hybrid
+mix of trace information.  It also allows a collection of tagged
+traces to have their associated waveforms represented together.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org17b1cce" class="outline-3">
+<h3 id="org17b1cce"><span class="section-number-3">4.4.</span> Index</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+A subset of traces held by the frame is identified by a string (&ldquo;trace
+tag&rdquo;) and its associated collection of indices into the collection of
+traces.  Such an index may be represented implicitly with a <code>tag</code>
+attribute of a trace tensor metadata or explicitly with an index
+tensor.  An optional <code>traces</code> metadata attribute may be given which
+names a trace tensor (its <code>name</code> not its <code>tag</code>).  In such case, the array
+is interpreted as indexing relative to the rows from that trace
+tensor.  If <code>traces</code> is omitted or its value is the empty string, its
+indices are considered relative to the frame&rsquo;s entire collection of
+traces
+</p>
+
+<dl class="org-dl">
+<dt><code>tag="tag"</code></dt><dd>a unique string (&ldquo;trace tag&rdquo;) identifying this subset</dd>
+<dt><code>traces=&lt;name-or-empty-""&gt;</code></dt><dd>a trace tensor name or the empty string.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgc8125c4" class="outline-3">
+<h3 id="orgc8125c4"><span class="section-number-3">4.5.</span> Summary</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+A trace summary tensor provides values associated to indexed (tagged)
+traces.  The tensor array elements are assumed to map one-to-one with
+indices provided by an index tensor with the matching tag.  The
+additional metadata:
+</p>
+
+<dl class="org-dl">
+<dt><code>tag="tag"</code></dt><dd>the associated index trace tag.</dd>
+</dl>
+
+<p>
+Note, it is undefined behavior if no matching index tensor exists.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

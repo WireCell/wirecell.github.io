@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Frame files</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Frame files
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd357eed">1. Intro</a></li>
+<li><a href="#org1f2e311">2. Frame files</a></li>
+<li><a href="#org5e60cd6">3. Frame tensor files</a>
+<ul>
+<li><a href="#orgf255cdd">3.1. Set-level</a></li>
+<li><a href="#org3b13d20">3.2. Tensors</a></li>
+<li><a href="#org52699f1">3.3. Trace</a></li>
+<li><a href="#orgcdbda82">3.4. Index</a></li>
+<li><a href="#org7e73f9c">3.5. Summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd357eed" class="outline-2">
+<h2 id="orgd357eed"><span class="section-number-2">1.</span> Intro</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A WCT &ldquo;frame&rdquo; provides a simple representation of data from different
+types of &ldquo;readout&rdquo; of a LArTPC detector with some additional concepts
+bolted on.  This document describes briefly the explicit <code>IFrame</code>
+representation and then describes a number of other useful, related
+representations of frame data.
+</p>
+
+<p>
+An <code>IFrame</code> holds an <code>ident</code> which is an integer often used to represent
+an &ldquo;event number&rdquo;.  The contents of an <code>IFrame</code> are located by its
+reference <code>time</code> and its sample period duration or <code>tick</code>.  <code>IFrame</code> also
+holds one or more &ldquo;frame tags&rdquo; which are simple strings providing
+application-defined classifiers.  The rest of the frame consists of
+three collections.  The most important of which is <code>traces</code> which is a
+vector of <code>ITrace</code>.  The second is a &ldquo;trace tag map&rdquo; with string keys
+interpreted as &ldquo;trace tags&rdquo; and values providing an array of indices
+into the <code>traces</code> collection.  This provides application-defined
+classification of a subset of traces.  Finally, a &ldquo;channel mask map&rdquo;
+with string keys interpreted as &ldquo;mask tags&rdquo; and values providing a
+mapping from a channel ident number to a list of tick ranges.  A
+channel mask map is usually used to categorize regions in the channel
+vs tick domain as, for example, &ldquo;bad&rdquo;.
+</p>
+
+<p>
+The <code>ITrace</code> holds an offset from the frame reference <code>time</code> measured in
+number of <code>ticks</code>, a channel ident and a floating point array, typically
+identified as holding an ADC or a signal waveform (or fragment
+thereof).  The <code>traces</code> array can be thought of as a 2D sparse or dense
+array spanning the channels and ticks of the readout.
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-org1f2e311" class="outline-2">
+<h2 id="org1f2e311"><span class="section-number-2">2.</span> Frame files</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+WCT <code>sio</code> subpackage provides support for reading and writing <i>frame
+files</i>.  The format is actually a stream or archive of Numpy <code>.npy</code>
+files.  The container format may be Zip (<code>.zip</code> or <code>.npz</code> file extension)
+or Tar with optional compression (<code>.tar</code>, <code>.tar.gz</code>, <code>.tar.xz</code>, <code>.tar.bz2</code>).
+</p>
+
+<p>
+This file represents a decomposition of <code>IFrame</code> data into a number of
+arrays in <code>.npy</code> files and with a file naming scheme used to encode
+array type, frame <code>ident</code> and tag information.  An expected stream of
+file names might look like:
+</p>
+
+
+<pre class="example" id="orgcf2d59d">
+frame_&lt;tagA&gt;_&lt;ident1&gt;.npy
+channels_&lt;tagA&gt;_&lt;ident1&gt;.npy
+tickinfo_&lt;tagA&gt;_&lt;ident1&gt;.npy
+summary_&lt;tagA&gt;_&lt;ident1&gt;.npy
+frame_&lt;tagB&gt;_&lt;ident1&gt;.npy
+channels_&lt;tagB&gt;_&lt;ident1&gt;.npy
+tickinfo_&lt;tagB&gt;_&lt;ident1&gt;.npy
+chanmask_&lt;cmtagC&gt;_&lt;ident1&gt;.npy
+chanmask_&lt;cmtagD&gt;_&lt;ident1&gt;.npy
+...
+</pre>
+
+<p>
+We will call &ldquo;framelet&rdquo; the trio of arrays of type <code>frame</code>, <code>channels</code> and
+<code>tickinfo</code> and an optional fourth <code>summary</code> array that carry the same
+<code>&lt;tag&gt;</code> and frame <code>&lt;ident&gt;</code>.  To be valid, the size of the 1D <code>channels</code>
+array, and the summary array if present, must be the same as the
+number of (channel) rows in the <code>frame</code> array.  The first two entries
+(<code>time</code> and <code>tick</code>) of all <code>tickinfo</code> are expected to be identical but their
+third (<code>tbin0</code>) may differ for each framelet.
+</p>
+
+<p>
+The rows of the <code>frame</code> and <code>channel</code> arrays are added to the <code>IFrame</code>
+traces collection in the order they are encountered in the file.
+Otherwise, order does not matter except that all arrays for a given
+frame <code>&lt;ident&gt;</code> must be contiguous.  The <code>&lt;tag&gt;</code> portion of the framelet
+array file names is used to add to the <code>IFrame</code> trace map map.  In the
+current version of the file, there is no support for representing
+tagged trace indices.
+</p>
+
+<p>
+The <code>chanmask</code> arrays are optional and each provides one entry in the
+<code>IFrame</code> channel mask map.  The key is take as the <code>&lt;cmtag&gt;</code> part of the
+file name.
+</p>
+
+<p>
+Despite the limitations of being both info-lossy and potentially
+data-inflating, this format is convenient for producing per-tag dense
+arrays for quick debugging using Python/Numpy.  
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5e60cd6" class="outline-2">
+<h2 id="org5e60cd6"><span class="section-number-2">3.</span> Frame tensor files</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A second format called <i>frame tensor files</i> improves on the above by
+mapping the frame data model to the one supported by
+<code>ITensorSet/ITensor</code>.  This data model is also adopted by <code>Dataset/Array</code>
+classes in WCT point-cloud support and it closely mimics the model
+implemented by HDF5.  It further provides flexibility to
+the user by mapping the frame to the data model in one of three modes:
+</p>
+
+<dl class="org-dl">
+<dt>sparse</dt><dd>traces are saved to individual array files, potentially of
+heterogeneous sizes.</dd>
+
+<dt>unified</dt><dd>all traces are saved in a single, zero-padded array
+file.</dd>
+
+<dt>tagged</dt><dd>multiple zero-padded arrays associated with a tag are saved.</dd>
+</dl>
+
+<p>
+The <b>sparse</b> mode is info-lossless and allows files to be small as
+possible, even without (or especially without) file compression.  
+However, it stores each trace as an individual array and so processing
+is required to assemble the traces into a dense, padded 2D array.
+</p>
+
+<p>
+The <b>unified</b> mode provides a single, dense, padded 2D array spanning
+the channels and ticks of all traces and with trace samples added onto
+the array.  The padding and summing is info-lossless for details such
+as the original time span of a trace and the distinction of
+overlapping traces.  On the channel axis the array may represent a
+conglomeration of multiple tagged sets of traces.  If file compression
+is employed, the size is competitive with compressed files from sparse
+mode.
+</p>
+
+<p>
+Finally, the <b>tagged</b> mode provides a similar representation to that of
+the original <i>frame file</i> format but it avoids the frame/trace tag
+ambiguity.  Like <i>frame files</i>, traces in more than one tagged set are
+duplicated and like &ldquo;unified&rdquo; mode, padding and summing occur.
+Unlike both &ldquo;sparse&rdquo; and &ldquo;unified&rdquo; mode, any traces which are not
+in a tagged set are not persisted.
+</p>
+
+<p>
+The remainder of this section describes how a frame is decomposed into
+the tensor data model.  When applied to frames, this model provides
+for info-lossless persistence and potentially with no redundancy
+(strictly, only in &ldquo;sparse&rdquo; mode).
+</p>
+
+<p>
+The WCT <i>frame tensor files</i> share some similarity with WCT <i>frame files</i>.
+They are also provided as streams or archive files in format of Zip or
+Tar with optional compression.  Also like <i>frame files</i> the <i>frame tensor
+files</i> contain <code>.npy</code> files to hold array information.  However, they
+also contain <code>.json</code> files to hold structured metadata.  Furthermore the
+names of the individual file members of the <i>frame tensor files</i>
+archive/stream carry more general semantics.
+</p>
+
+<p>
+Another difference is that serialization between <code>IFrame</code> and frame
+tensor file requires additional component in the WCT data flow graph
+compared frame file.  A writing path in the graph might look like:
+</p>
+
+<pre class="example" id="org054c168">
+(IFrame) -&gt; [FrameTensor] -&gt; (ITensorSet) -&gt; [TensorFileSink] -&gt; file
+</pre>
+
+<p>
+A reading is simlar but reversed
+</p>
+
+<pre class="example" id="org10cd83e">
+file -&gt; [TensorFileSource] -&gt; (ITensorSet) -&gt; [TensorFrame] -&gt; (IFrame)
+</pre>
+</div>
+
+<div id="outline-container-orgf255cdd" class="outline-3">
+<h3 id="orgf255cdd"><span class="section-number-3">3.1.</span> Set-level</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The <code>ITensorSet</code> class and its metadata accepts frame information which
+is not dependent on trace-level information.  To start with, the
+<code>IFrame::ident()</code> is mapped directly to <code>ITensorSet::ident()</code>.
+</p>
+
+<p>
+Then the following shows the correspondence between <code>ITensorSet</code>-level
+metadata attribute names and the <code>IFrame</code> methods providing the metadata
+value:
+</p>
+
+<dl class="org-dl">
+<dt><code>time</code></dt><dd><code>IFrame::time()</code> float</dd>
+<dt><code>tick</code></dt><dd><code>IFrame::tick()</code> float</dd>
+<dt><code>masks</code></dt><dd><code>IFrame::masks()</code> structure</dd>
+<dt><code>tags</code></dt><dd><code>IFrame::frame_tags()</code> array of string</dd>
+</dl>
+
+<p>
+When the set-level metadata is represented as a JSON file its name is
+assumed to take the form <code>frame_&lt;ident&gt;.json</code>.  When <code>IFrame</code> data in file
+representation are provided as a stream, this file is expected to be
+prior to any other files representing the frame.  The remaining files
+are expected to hold tensors and must be contiguous in the stream but
+otherwise their order is not defined.  These tensors are described in
+the remaining sections.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3b13d20" class="outline-3">
+<h3 id="org3b13d20"><span class="section-number-3">3.2.</span> Tensors</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+An <code>ITensor</code> represents some aspect of an <code>IFrame</code> not already represented
+in the set-level metadata.  Each tensor provides at least these two
+metadata attributes:
+</p>
+
+<dl class="org-dl">
+<dt><code>type</code></dt><dd>a label in the set <code>{trace, index, summary}</code>
+identifying the aspect of the frame it represents.</dd>
+<dt><code>name</code></dt><dd>an instance identifier that is unique in the context of all
+<code>ITensor</code> in the set of the same <code>type</code>.</dd>
+</dl>
+
+<p>
+The values for both attributes must be suitable for use as components
+of a file name.  File names holding tensor level array or metadata
+information are assumed to take the forms, respectively
+<code>frame_&lt;ident&gt;_&lt;type&gt;_&lt;name&gt;.{json,npy}</code>.
+</p>
+
+<p>
+The remaining sections describe each accepted type of tensor.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org52699f1" class="outline-3">
+<h3 id="org52699f1"><span class="section-number-3">3.3.</span> Trace</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+A trace tensor provides waveform samples from a number of channels.
+Its array spans a single or an ordered collection of channels.  A
+single-channel trace array is 1D of shape <code>(nticks)</code> while a
+multi-channel trace array is 2D of shape <code>(nchans,nticks)</code>.  Samples may
+be zero-padded and may be of type <code>float</code> or <code>short</code>.  The ident numbers
+of the channels is provided by the <code>chid</code> metadata which is scalar for a
+single channel trace tensor and 1D of shape <code>(nchans)</code> for a
+multi-channel trace tensor.
+</p>
+
+<ul class="org-ul">
+<li><code>tbin=N</code> the number of ticks prior to the first tensor column</li>
+<li><code>chid=&lt;int-or-array-of-int&gt;</code> the channel ident number(s)</li>
+<li><code>tag="tag"</code> an optional trace tag defining an implicit index tensor</li>
+</ul>
+
+<p>
+If <code>tag</code> is given it implies the existence of a collection of tagged
+trace indices span the traces from this trace tensor.  See below for
+how to explicitly indicate tagged traces.
+</p>
+
+<p>
+<code>IFrame</code> represents traces as a flat, ordered collection of traces.
+When more than one trace tensor is encountered, its traces are
+appended to this collection.  This allows sparse or dense or a hybrid
+mix of trace information.  It also allows a collection of tagged
+traces to have their associated waveforms represented together.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcdbda82" class="outline-3">
+<h3 id="orgcdbda82"><span class="section-number-3">3.4.</span> Index</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+A subset of traces held by the frame is identified by a string (&ldquo;trace
+tag&rdquo;) and its associated collection of indices into the full and final
+collection of traces.  
+</p>
+
+<dl class="org-dl">
+<dt><code>tag="tag"</code></dt><dd>a unique string (&ldquo;trace tag&rdquo;) identifying this subset</dd>
+</dl>
+</div>
+</div>
+
+
+<div id="outline-container-org7e73f9c" class="outline-3">
+<h3 id="org7e73f9c"><span class="section-number-3">3.5.</span> Summary</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+A trace summary tensor provides values associated to indexed (tagged)
+traces.  The tensor array elements are assumed to map one-to-one with
+indices provided by an index tensor with the matching tag.  The
+additional metadata:
+</p>
+
+<dl class="org-dl">
+<dt><code>tag="tag"</code></dt><dd>the associated index trace tag.</dd>
+</dl>
+<p>
+Note, it is undefined behavior if no matching index tensor exists.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

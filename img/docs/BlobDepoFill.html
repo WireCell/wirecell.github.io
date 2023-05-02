@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blob Depo Fill</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Blob Depo Fill
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgcef0f5a">1. Overview</a></li>
+<li><a href="#orga86b65b">2. Algorithm</a></li>
+<li><a href="#org57e2177">3. Selection</a></li>
+<li><a href="#org9fb7291">4. Alignment</a></li>
+</ul>
+</div>
+</div>
+<p>
+This replaces charge in blobs with that from overlapping depos.
+</p>
+
+<div id="outline-container-orgcef0f5a" class="outline-2">
+<h2 id="orgcef0f5a"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The <code>BlobDepoFill</code> WCT flow graph node is in the &ldquo;join&rdquo; DFP category.
+It accepts an <code>ICluster</code> on input port 0 and an <code>IDepoSet</code> on input port 1
+and produces an <code>ICluster</code> on output port 0.
+</p>
+
+<p>
+The output retains all information from the input <code>ICluster</code> except that
+the charge of each blob is replaced with the charge from the portions
+of the input depo distribution which falls in the blob volume.  The
+section <a href="#orga86b65b">2</a> below describes how the depo charge is assigned to
+blobs.  See section <a href="#org57e2177">3</a> for details on which depos are
+considered and section <a href="#org9fb7291">4</a> for details on how blobs and depos
+are correlated.
+</p>
+
+<p>
+See also presentation blob-depo-fill.pdf
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orga86b65b" class="outline-2">
+<h2 id="orga86b65b"><span class="section-number-2">2.</span> Algorithm</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The goal is to integrate the depo charge distribution over the volume
+of each blob.  This ends up being rather complex for a few reasons.
+</p>
+
+<ul class="org-ul">
+<li>depo-to-blob overlap represents an N-to-M mapping with no direct way
+to form.</li>
+
+<li>both depos and blobs are numerous and the mapping is sparse.</li>
+
+<li>depos have truncated 3D Gaussian extent both longitudinally and
+transverse and this extent varies substantially across the set of
+depos due to their differing drift times.</li>
+
+<li>blobs have irregular and varied shape defined in terms boundaries
+which themselves are defined by wire rays on each of the three
+planes.</li>
+</ul>
+
+<p>
+The algorithm joins the volumes of depos with the volumes of blobs in
+a series of reductions of the full possible space.
+</p>
+
+<ol class="org-ol">
+<li>Narrow to a single <code>IAnodeFace</code></li>
+<li>Narrow to a single <code>ISlice</code></li>
+<li>Produce an &ldquo;<code>s-d-w</code> graph&rdquo; (described below)</li>
+<li>Narrow to a single <code>IDepo</code></li>
+<li>Narrow to a single <code>IWire</code></li>
+<li>Iterate over (the narrowed) blob set finding those with this wire</li>
+<li>Find bounds on this wire from other two blob layers.</li>
+</ol>
+
+<p>
+The <code>s-d-w</code> directed (acyclic) graph associates slices to depos (<code>s-d</code>
+edges) and depos to wires (<code>d-w</code> edges).  Both edge types represent the
+orthogonal integration of the depo Gaussian over a section in one
+dimension.
+</p>
+
+<p>
+The <code>s-d</code> edge property holds the integral of the the Gaussian along
+the longitudinal dimension bounded by the slice&rsquo;s time span.
+</p>
+
+<p>
+Likewise, the <code>d-w</code> edge property holds the integral of a section of the
+Gaussian in the transverse (pitch) direction of the wires of the so
+called &ldquo;primary wire plane&rdquo;.  Which wire plane to use as &ldquo;primary&rdquo; is
+configurable and the collection plane (index <code>2</code>) is the default.  The
+<code>d-w</code> edge holds the result of this integral.
+</p>
+
+<p>
+As the algorithm descends the narrowing listed above from slice to
+depo to wire it also descends the <code>s-d-w</code> graph.  Reaching the wires,
+the full <code>s-d-w</code> path is known and each blob in the current face and
+slice context is checked to determine if it contains the current wire.
+When it does the final integral of the Gaussian is performed.  This
+requires calculating the bounds on the current wire provided by blob
+boundary rays from the other planes.  The three integrals from each
+dimension then scale the depo charge and the result is added to a sum
+associated with the current blob.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org57e2177" class="outline-2">
+<h2 id="org57e2177"><span class="section-number-2">3.</span> Selection</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The <code>Drifter</code> produces depos at a fixed location along the drift
+direction which is near to anode plane faces.  However, the set of
+depos may extend transversely beyond the sensitive bounds of any one
+anode plane.  A <code>DepoBlobFill</code> will accept only those depos within the
+sensitive area of the <code>IAnodeFace</code> instances associated with the input
+blbos.  This input selection is identical to that used by
+<code>DepoTransform</code>.
+</p>
+
+<p>
+As a consequence, a <code>BlobDepoFill</code> may be used either in a flow graph
+context where it receives an <code>ICluster</code> with blobs from a single
+<code>IAnodePlane</code> yet depos which may span many or it may be used in a
+context where the <code>ICluster</code> spans multiple anode planes (eg, after some
+form of cross-anode &ldquo;stitching&rdquo;).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9fb7291" class="outline-2">
+<h2 id="org9fb7291"><span class="section-number-2">4.</span> Alignment</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+In order to correlate portions of the 3D Gaussian extent of a depo
+with a blob, it is likely necessary to apply a time offset to match
+any time shifts applied between <code>Drifter</code> output and the production of
+the blobs which are input to <code>BlobDepoFill</code>.  At the least,
+<code>DepoTransform</code> may apply a time shift via its <code>start_time</code> configuration
+parameter.  The <code>BlobDepoFill</code> accepts a <code>time_offset</code> parameter which
+will be added to depo times just prior to matching them with blob time
+slices.
+</p>
+
+<p>
+To check for a time offset one may create paraview/vtk files for both
+the drifted depos and the reconstructed blobs:
+</p>
+
+<pre class="example" id="orgee0dd49">
+$ wirecell-img paraview-depos \
+  --speed '1.56*mm/us' --t0 '314*us' \
+  depos-drifted.npz depos-drifted.vtp
+
+$ wirecell-img paraview-blobs \
+  --speed '1.56*mm/us' \
+  clusters-img-5.zip clusters-img-5.vtu
+
+$ paraview
+</pre>
+
+<p>
+Open the <code>.vtp</code> and <code>.vtu</code> and check alignment along the X-axis.
+</p>
+
+<p>
+Note the <code>--t0</code> <b>adds</b> the offset to the depo time.  Likewise, the a
+<code>time_offset</code> value given to <code>BlobDepoFill</code> will be <b>added</b> to the depo
+times prior to locating them within blobs.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

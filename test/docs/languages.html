@@ -1,0 +1,1183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WCT Testing with C++ WCT BATS Tests Testing Jsonnet</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">WCT Testing with C++ WCT BATS Tests Testing Jsonnet
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a> <a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a> <a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgff846e6">1. Test implementation languages</a></li>
+<li><a href="#org7b091a9">2. Write a doctest test</a></li>
+<li><a href="#org96eae34">3. Logging with doctest</a></li>
+<li><a href="#org9d1a2b8">4. Atomic C++ tests</a></li>
+<li><a href="#org0bfb0f7">5. A simple atomic C++ test</a></li>
+<li><a href="#org4a347c2">6. Logging with atomic tests</a></li>
+<li><a href="#org9e7d89f">7. Mixing atomic and doctest</a></li>
+<li><a href="#orgc33d0c5">8. Using atomic as a variant test</a></li>
+<li><a href="#org9a55193">9. Growing a test</a></li>
+<li><a href="#org31797ef">10. Failing tests</a></li>
+<li><a href="#org370bf8f">11. WCT C++ testing support</a></li>
+<li><a href="#orgb8c0bf3">12. Output diagnostic files</a></li>
+<li><a href="#org70dd5e7">13. Found input files</a></li>
+<li><a href="#org018c49b">14. BATS in WCT</a></li>
+<li><a href="#org3322f70">15. My first BATS test</a></li>
+<li><a href="#org4b8ec38">16. Running BATS tests</a></li>
+<li><a href="#orge8dc19d">17. Naming the BATS test file</a></li>
+<li><a href="#org5f7b702">18. First steps</a></li>
+<li><a href="#org9970b1d">19. Basic elements of a test</a></li>
+<li><a href="#orgb413186">20. Start up and tear down</a></li>
+<li><a href="#org8d5e3e4">21. Temporary files</a></li>
+<li><a href="#org17fa9ea">22. Persistent files</a></li>
+<li><a href="#org50a7b7b">23. Idempotent running</a></li>
+<li><a href="#orgcdbda3e">24. Using <code>setup_file</code></a></li>
+<li><a href="#orgb14fcbc">25. Test tags</a></li>
+<li><a href="#orgde18952">26. Test logging</a>
+<ul>
+<li><a href="#orgb5d0a84">26.1. Logging on failure</a></li>
+<li><a href="#org8e10807">26.2. Logging on success</a></li>
+<li><a href="#org8d8882f">26.3. File descriptor 3.</a></li>
+</ul>
+</li>
+<li><a href="#org8f17e6e">27. Running Jsonnet tests</a></li>
+<li><a href="#orga2016fc">28. Basic Jsonnet tests</a></li>
+<li><a href="#org5a50d1b">29. Assertions</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgff846e6" class="outline-2">
+<h2 id="orgff846e6"><span class="section-number-2">1.</span> Test implementation languages</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The framework supports writing tests in a few languages as each is
+most comfortable for tests of a certain type.  There are no hard and
+fast rules but the following guidelines may be considered:
+</p>
+
+<ul class="org-ul">
+<li>C++ is essentially required for small scope &ldquo;unit&rdquo; tests.</li>
+<li>BATS for &ldquo;integration&rdquo; type tests that involves composition of command line programs.</li>
+<li>Jsonnet is convenient for testing Jsonnet functions and structures without the need to develop specific command programs (though doing so is an option).</li>
+</ul>
+
+<div class="note" id="org131ed21">
+<p>
+It is also possible to write WCT tests in Python and plain shell.  However, these are not well supported nor currently recommended.  However,  developers are encouraged to consider adding functionality that is useful for tests into the various command Python modules and Click line interfaces in <code>wire-cell-python</code>.  These may then be easily used from a BATS test.
+</p>
+
+</div>
+
+<p>
+The remainder of this document gives details of WCT testing framework support specific to the recommended languages.
+</p>
+
+<p>
+Wire-Cell testing allows writing tests in C++ tests at different levels of granularity.  C++ test source files match the usual WCT testing pattern:
+</p>
+
+<pre class="example" id="orgb9bfa73">
+&lt;pkg&gt;/&lt;prefix&gt;[&lt;sep&gt;]&lt;name&gt;.cxx
+</pre>
+<p>
+The <code>&lt;prefix&gt;</code> may match any of the groups named in the <a href="framework.html#groups">framework document</a>.  The developer is free to write tests of these types following the guidelines give by the WCT testing.
+</p>
+
+<p>
+In addition, C++ tests may be written in the form of <a href="https://github.com/doctest/doctest">doctest</a> unit test framework.  These tests are meant to test the smallest code &ldquo;units&rdquo;.  All <code>&lt;pkg&gt;/test/doctest*.cxx</code> source files will be compiled to a single, per-package <code>build/&lt;pkg&gt;/wcdoctest-&lt;pkg&gt;</code> executable.   Tests implemented with doctest should be very fast running and should make copious use of <a href="https://github.com/doctest/doctest/blob/master/doc/markdown/tutorial.md">doctest</a> CPP macros and run atomically (no dependencies on other tests).   
+</p>
+
+<p>
+If you have not yet done so, read the <a href="framework.html">testing
+framework</a> document for an overview and the 
+<a href="writing.html">writing tests</a> document for general introduction to
+writing tests.  The remaining sections describe how to write WCT tests
+in C++.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7b091a9" class="outline-2">
+<h2 id="org7b091a9"><span class="section-number-2">2.</span> Write a doctest test</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Edit a file named to match the <code>&lt;pkg&gt;/test/doctest*.cxx</code> pattern:
+</p>
+
+<pre class="example" id="orgd4e5e75">
+emacs util/test/doctest-my-first-test.cxx
+</pre>
+
+<p>
+Include the single <code>doctest.h</code> header, and any others your test code may require and provide at least one <code>TEST_CASE("...")</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/doctest.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/Logging.h"</span>
+TEST_CASE(<span style="color: #e9b96e;">"my first test"</span>) {
+    <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">ok</span>=<span style="color: #e9b2e3;">true</span>;
+    CHECK(1 + 1 == 2);          <span style="color: #73d216;">// </span><span style="color: #73d216;">does not halt testing</span>
+    REQUIRE(ok == <span style="color: #e9b2e3;">true</span>);        <span style="color: #73d216;">// </span><span style="color: #73d216;">halts testing</span>
+    SUBCASE(<span style="color: #e9b96e;">"a test using above as existing context"</span>) {
+        ok = <span style="color: #e9b2e3;">false</span>;
+        CHECK(!ok);
+    }
+    SUBCASE(<span style="color: #e9b96e;">"another test using copy of the context"</span>) {
+        <span style="color: #73d216;">// </span><span style="color: #73d216;">subcase above does not change our 'ok' variable</span>
+        CHECK(ok);
+    }
+}
+
+TEST_CASE(<span style="color: #e9b96e;">"my second test"</span>) {
+    <span style="color: #e9b2e3;">spdlog</span>::debug(<span style="color: #e9b96e;">"this test is very trivial"</span>);
+    CHECK(<span style="color: #e9b2e3;">true</span>);
+}
+</pre>
+</div>
+
+<p>
+Compile and run just one test:
+</p>
+<pre class="example" id="orgf533cc1">
+waf --target=wcdoctest-test
+./build/test/wcdoctest-test --test-case='my first test'
+./build/test/wcdoctest-test   # runs all test cases
+</pre>
+
+<p>
+The <b>doctest</b> runner has many options
+</p>
+
+<pre class="example" id="org1f7bb81">
+./build/util/wcdoctest-util --help
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org96eae34" class="outline-2">
+<h2 id="org96eae34"><span class="section-number-2">3.</span> Logging with doctest</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Developers are encouraged <b>not</b> to use <code>std::cout</code> or <code>std::cerr</code> in doctest tests.  Instead, as shown in the above example, we should use logging at <code>debug</code> level (or <code>trace</code>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/Logging.h"</span>
+TEST_CASE(<span style="color: #e9b96e;">"..."</span>) {
+    <span style="color: #e9b2e3;">spdlog</span>::debug(<span style="color: #e9b96e;">"some message"</span>);
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+}
+</pre>
+</div>
+
+<p>
+By default, these messages will not be seen.  But they can be turned on:
+</p>
+
+<pre class="example" id="org6ecf451">
+$ SPDLOG_LEVEL=DEBUG ./build/test/wcdoctest-test
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9d1a2b8" class="outline-2">
+<h2 id="org9d1a2b8"><span class="section-number-2">4.</span> Atomic C++ tests</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+An &ldquo;atomic&rdquo; C++ test source file matches:
+</p>
+
+<pre class="example" id="org14a9f94">
+&lt;pkg&gt;/test/test*.cxx
+&lt;pkg&gt;/test/atomic*.cxx
+</pre>
+
+<p>
+Each atomic source file must provide a <code>main()</code> function and results in a similarly named executable found at:
+</p>
+<pre class="example" id="org5dcedb3">
+build/&lt;pkg&gt;/test*
+build/&lt;pkg&gt;/atomic*
+</pre>
+
+<p>
+Some reasons to write atomic tests (compared to doctest tests) include:
+</p>
+<ul class="org-ul">
+<li>The developer wishes the test to accept optional command line arguments to perform variant tests.</li>
+<li>The test is long-running (more than about 1 second) and so benefits from task-level parallelism provided by waf.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0bfb0f7" class="outline-2">
+<h2 id="org0bfb0f7"><span class="section-number-2">5.</span> A simple atomic C++ test</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+A trivial atomic test is shown:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">ok</span> = <span style="color: #e9b2e3;">true</span>;
+    <span style="color: #b4fa70;">if</span> (!ok) {
+        <span style="color: #b4fa70;">return</span> 1;
+    }
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+Compile and run with:
+</p>
+
+<pre class="example" id="org0c51fd0">
+$ waf --tests --target=atomic-simple
+$ ./build/test/atomic-simple
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4a347c2" class="outline-2">
+<h2 id="org4a347c2"><span class="section-number-2">6.</span> Logging with atomic tests</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Like in section <a href="#org96eae34">3</a>, developers should use <code>debug</code> level logging instead of <code>std::cout</code> or <code>std::cerr</code>.  For this to work, the code requires some boilerplate:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"spdlog/spdlog.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"spdlog/cfg/env.h"</span>
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">required for SPDLOG_LEVEL env var</span>
+    <span style="color: #e9b2e3;">spdlog</span>::<span style="color: #e9b2e3;">cfg</span>::load_env_levels(); 
+
+    <span style="color: #e9b2e3;">spdlog</span>::debug(<span style="color: #e9b96e;">"all messages should be at debug or trace"</span>);
+    <span style="color: #e9b2e3;">spdlog</span>::info(<span style="color: #e9b96e;">"avoid use of info() despite this example"</span>);
+
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">Now some "tests"</span>
+    <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">ok</span> = <span style="color: #e9b2e3;">true</span>;
+    <span style="color: #b4fa70;">if</span> (!ok) <span style="color: #b4fa70;">return</span> 1;
+
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example" id="org654e4e2">
+$ ./build/test/atomic-simple-logging
+[2023-04-25 11:56:26.348] [info] avoid use of info() despite this example
+
+$ SPDLOG_LEVEL=debug ./build/test/atomic-simple-logging
+[2023-04-25 11:59:47.884] [debug] all messages should be at debug or trace
+[2023-04-25 11:59:47.884] [info] avoid use of info() despite this example
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9e7d89f" class="outline-2">
+<h2 id="org9e7d89f"><span class="section-number-2">7.</span> Mixing atomic and doctest</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+It is possible make an atomic test use doctest.  It will still be processed as an atomic test by WCT build system but it will gain the facilities of doctest.  Along with logging, it requires a bit more boilerplate:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#define</span> <span style="color: #fcaf3e;">DOCTEST_CONFIG_IMPLEMENT</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/doctest.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"spdlog/spdlog.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"spdlog/cfg/env.h"</span>
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>** <span style="color: #fcaf3e;">argv</span>) {
+    <span style="color: #e9b2e3;">spdlog</span>::<span style="color: #e9b2e3;">cfg</span>::load_env_levels();
+    <span style="color: #e9b2e3;">doctest</span>::<span style="color: #8cc4ff;">Context</span> <span style="color: #fcaf3e;">context</span>;
+    context.applyCommandLine(argc, argv);
+    <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">rc</span> = context.run();
+    <span style="color: #b4fa70;">if</span> (rc) { <span style="color: #b4fa70;">return</span> rc; }
+
+    <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">ok</span> = <span style="color: #e9b2e3;">true</span>;             <span style="color: #73d216;">// </span><span style="color: #73d216;">start my tests</span>
+    <span style="color: #b4fa70;">if</span> (!ok) <span style="color: #b4fa70;">return</span> 1;
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example" id="org68188e0">
+$ waf --tests --target=atomic-doctest
+$ ./build/test/atomic-doctest
+$ ./build/test/atomic-doctest --help
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc33d0c5" class="outline-2">
+<h2 id="orgc33d0c5"><span class="section-number-2">8.</span> Using atomic as a variant test</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+An atomic test must run with no command line arguments.  However, we may allow optional arguments.  One example:
+</p>
+
+<pre class="example" id="orgfd8d14e">
+aux/test/test_idft.cxx
+</pre>
+<p>
+This tests various aspects of the <code>IDFT</code> interface implementations.  It can be run as an atomic test with the default <code>IDFT</code> implementation:
+</p>
+
+<pre class="example" id="org8c26e81">
+$ ./build/aux/test_idft
+</pre>
+<p>
+It can also be run in a variant form by giving optional command line argumetns:
+</p>
+
+<pre class="example" id="orgc945e5f">
+$ ./build/aux/test_idft FftwDFT WireCellAux
+$ ./build/aux/test_idft TorchDFT WireCellPytorch
+$ ./build/aux/test_idft cuFftDFT WireCellCuda
+</pre>
+<p>
+The first variant is actually identical to the atomic call.  The latter two require that WCT is build with support for PyTorch and CUDA, respectively.  An atomic test for each of the latter two variants can be found in their respective packages.
+</p>
+
+<div class="note" id="orgdc6b70e">
+<p>
+C++ tests require particular attention to dependencies.  The <code>test_idft</code> is a little special in that it only has build-time dependency on the <code>iface</code> sub package yet it is placed in the <code>aux</code> package and can have run-time dependency on other higher-level packages via WCT&rsquo;s plugin and component factory mechanisms.  In its default calling, it relies on the <code>FftwDFT</code> component being available.  This component is provided the <code>WireCellAux</code> plugin library (from the <code>aux</code> sub package) and so this minimal run-time dependency is satisfied by placing the test in the <code>aux</code> sub package.  Depending on the variant form, it must be run in a context with either the <code>WireCellPytorch</code> or <code>WireCellCuda</code> plugins available.  We will show how to register these variants so they are run when these optional sub packages are built.
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9a55193" class="outline-2">
+<h2 id="org9a55193"><span class="section-number-2">9.</span> Growing a test</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Tests tend to grow.  Developers are strongly urged to grow tests in a way that defines separate test cases separately.  When a developer writes a <b>doctest</b> test this is easily done by add more <code>TEST_CASE()</code> and/or <code>SUBCASE()</code> instances to the source file.  When writing an <b>atomic</b> test, the developer must invent their own &ldquo;mini unit test framework&rdquo;.  One common pattern is &ldquo;bag of <code>test_*</code> functions.  Functions are distinquished by name and/or templates:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #b4fa70;">static</span>
+<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">test_2d_threads</span>(<span style="color: #e9b2e3;">IDFT</span>::<span style="color: #8cc4ff;">pointer</span> <span style="color: #fcaf3e;">dft</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">nthreads</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">nloops</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">size</span> = 1024)
+{
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+}
+<span style="color: #b4fa70;">template</span>&lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">ValueType</span>&gt;
+<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">test_2d_transpose</span>(<span style="color: #e9b2e3;">IDFT</span>::<span style="color: #8cc4ff;">pointer</span> <span style="color: #fcaf3e;">dft</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">nrows</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">ncols</span>)
+{
+   <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+}
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+    test_2d_transpose&lt;<span style="color: #e9b2e3;">IDFT</span>::scalar_t&gt;(idft, 2, 8);
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org31797ef" class="outline-2">
+<h2 id="org31797ef"><span class="section-number-2">10.</span> Failing tests</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+A test is successful if it completes with a return status code of zero.  A failed test can be indicated in a number of ways:
+</p>
+
+<ul class="org-ul">
+<li>return non-zero status code from <code>main()</code>.</li>
+<li><code>throw</code> an exception.</li>
+<li>call <code>assert()</code> or <code>abort().</code></li>
+<li>call WCT&rsquo;s <code>Assert()</code> or <code>AssertMsg()</code>.</li>
+<li>apply <b>doctest</b> <a href="https://github.com/doctest/doctest/blob/master/doc/markdown/assertions.md">assertion macros</a>.</li>
+</ul>
+
+<p>
+The test developer is free to use any or a mix of these methods and is strongly urged to use them pervasively throughout the test code.
+</p>
+
+<div class="note" id="org91ce7de">
+<p>
+Do not write tests that lack any forms of actual error exit.  Otherwise they are not actually testing anything!
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org370bf8f" class="outline-2">
+<h2 id="org370bf8f"><span class="section-number-2">11.</span> WCT C++ testing support</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+As introduced above, WCT provides some support for testing.  The first are simple wrappers around <code>assert()</code> and one that will print a message if the assertion fails:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/Testing.h"</span>
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>()
+{
+    <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">x</span> = 42;
+    Assert(x == 42);
+    AssertMsg(x == 0, <span style="color: #e9b96e;">"Not the right answer"</span>);
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+In addition, WCT provides facilities for reporting simple performance
+statistics, specifically CPU time and memory usage.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/TimeKeeper.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/MemUsage.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/ExecMon.h"</span>
+</pre>
+</div>
+
+<dl class="org-dl">
+<dt><code>TimeKeeper</code></dt><dd>a &ldquo;stopwatch&rdquo; to record time along with a message for various steps in a test</dd>
+<dt><code>MemUsage</code></dt><dd>similar but to record memory usage</dd>
+<dt><code>ExecMon</code></dt><dd>combine the two.</dd>
+</dl>
+
+<p>
+See <code>test_timekeeper.cxx</code>, <code>test_memusage.cxx</code> and <code>test_execmon.cxx</code>, respectively, in <code>util/test/</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb8c0bf3" class="outline-2">
+<h2 id="orgb8c0bf3"><span class="section-number-2">12.</span> Output diagnostic files</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+Tests may produce files, even atomic tests that may have no files governing <code>waf</code> task dependencies.  These files can be useful to persist beyond the test job.  The ideal location for these files is the <code>build/</code> directory and as sibling to the C++ test executable.  C++ has a simple pattern to achieve this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">string</span> <span style="color: #fcaf3e;">name</span> = argv[0];
+    <span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">string</span> <span style="color: #fcaf3e;">outname</span> = name + <span style="color: #e9b96e;">".ext"</span>;
+    <span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">string</span> <span style="color: #fcaf3e;">outname2</span> = name + <span style="color: #e9b96e;">"_other.ext"</span>;
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">open and write to outname and outname 2....</span>
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+As the C++ test executable is found <code>build/&lt;pkg&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;</code>, these output files will be found there as siblings.  
+</p>
+
+<div class="tip" id="org4ca60b8">
+<p>
+See also the use of the data repository in <a href="datarepo.html">data repository document</a> for special files to per persisted beyond the local <code>build/</code> area.
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org70dd5e7" class="outline-2">
+<h2 id="org70dd5e7"><span class="section-number-2">13.</span> Found input files</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+Likewise, an atomic test must not expect any input files specified by the caller.  However, it may load files that can be found from the environment.  A common example is to find a WCT &ldquo;wires&rdquo; file or others provided by <code>wire-cell-data</code>.  Here is a C++ pattern do that in a way that naturally allows an atomic test to also be called in a variant manner.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">filename</span> = <span style="color: #e9b96e;">"microboone-celltree-wires-v2.1.json.bz2"</span>;
+    <span style="color: #b4fa70;">if</span> (argc &gt; 1) {
+        filename = argv[1];
+    }
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">use filename...</span>
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+See <code>util/test/test_wireschema.cxx</code> for an example.  
+</p>
+
+<p>
+For this kind of file to be found the user <b>must</b> define <code>WIRECELL_PATH</code> to include a directory holding the contents of <code>wire-cell-data</code>.
+</p>
+
+<p>
+In principle the path in <code>argv[0]</code> may also be used to locate the top of the <code>wire-cell-toolkit</code> source in order to locate files provided by the source and use them as input.
+</p>
+
+<div class="tip" id="org67eb5c5">
+<p>
+The data repository also provides a set of known files for input.
+</p>
+
+</div>
+<p>
+A BATS file is essentially a Bash shell script with a number of &ldquo;special&rdquo; functions that look like the following:
+</p>
+
+<pre class="example" id="org4247e01">
+@test "description of test" {
+  # ... body of test
+}  
+</pre>
+
+<p>
+With very little additional effort compared to plain shell scripts, a BATS test then provides added benefits such as:
+</p>
+
+<ul class="org-ul">
+<li>standard forms to run a suite of tests and select individual tests.</li>
+<li>standard test protocol.</li>
+<li>stdout/stderr management.</li>
+<li>simple ways to run commands and check for success.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org018c49b" class="outline-2">
+<h2 id="org018c49b"><span class="section-number-2">14.</span> BATS in WCT</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+WCT provides a copy of BATS as the version coming with many operating systems is not up to date.    It will be used by the build system.  When running BATS tests directly the user should assure:
+</p>
+
+<pre class="example" id="org9107836">
+$ PATH=/path/to/my/wire-cell-toolkit/test/bats/bin:$PATH
+$ export BATS_LIB_PATH=/path/to/my/wire-cell-toolkit/test
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3322f70" class="outline-2">
+<h2 id="org3322f70"><span class="section-number-2">15.</span> My first BATS test</h2>
+<div class="outline-text-2" id="text-15">
+<pre class="example" id="orgcd99e18">
+bats_load_library wct-bats.sh
+
+@test "check wire-cell version" {
+    wct --version
+
+    # Will fail one day when WCT v1 is released!
+    [[ -n $(echo $output | grep '^0' ) ]] 
+}
+
+@test "check wcsonnet help" {
+    local wcs=$(wcb_env_value WCSONNET)
+    run $wcs --help
+    echo $output    # shown only on error
+    [[ $status -eq 0 ]]
+}
+</pre>
+
+<p>
+The command <code>wct</code> is actually a function from <code>wct-bats.sh</code> that runs <code>wire-cell</code> and instruments some default checking.
+The <code>wcsonnet</code> is not so wrapped but is available as a <code>wcb</code> variable.  The <code>run</code> command is a BATS helper to fill <code>$output</code> and <code>$status</code>, which we check.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4b8ec38" class="outline-2">
+<h2 id="org4b8ec38"><span class="section-number-2">16.</span> Running BATS tests</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+A BATS test should run from anywhere:
+</p>
+
+<pre class="example" id="org2a8e05c">
+bats test/test/test_my_first_bats.bats
+</pre>
+<p>
+As in this example, all <code>@test</code> functions in a BATS file will be executed sequentially.  A subset of tests with names that match a filter can be selected for running.  Using above example:
+</p>
+
+<pre class="example" id="org8f551fa">
+bats -f "wire-cell" test/test/test_my_first_bats.bats
+</pre>
+
+<p>
+The* Creating a BATS test
+</p>
+
+<p>
+Here we give some detailed guidance on making a BATS test. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge8dc19d" class="outline-2">
+<h2 id="orge8dc19d"><span class="section-number-2">17.</span> Naming the BATS test file</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+See section on <a href="framework.html">Framework</a> and <a href="writing.html">Writing tests</a> for general guidance on writing WCT tests.  
+Start by creating a BATS file.  Here, we pick the &ldquo;test&rdquo; aka &ldquo;atomic&rdquo; category:
+</p>
+<pre class="example" id="org3a60c94">
+&lt;pkg&gt;/test/&lt;category&gt;&lt;sep&gt;&lt;name&gt;.bats
+</pre>
+<p>
+As with all tests, the category and name should be unique.  If more than one test shares the same file name, though perhaps different packages or file name extensions, it is the duty of the developers to assure these tests are mutually compatible in their execution and any file production.
+</p>
+
+<p>
+If the test relates to an issue on GitHub (and ideally there is a test for every issue) then this is an excellent pattern:
+</p>
+
+<pre class="example" id="orga14aae3">
+&lt;pkg&gt;/test/test_issueNNNN.bats
+</pre>
+
+<p>
+BATS tests should be placed in a <code>&lt;pkg&gt;</code> which best provides the run-time dependencies.  For example, if PyTorch is required they should be placed in the <code>&lt;pytorch&gt;</code> sub package. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5f7b702" class="outline-2">
+<h2 id="org5f7b702"><span class="section-number-2">18.</span> First steps</h2>
+<div class="outline-text-2" id="text-18">
+<p>
+Edit the <code>.bats</code> file, add the <code>@test</code> function:
+</p>
+
+<pre class="example" id="orgc9718a4">
+#!/usr/bin/env bats
+
+load ../../test/wct-bats.sh
+
+# bats test_tags=tag1,tag2
+@test "assure the frob correctly kerplunks" {
+    echo "nothing yet"
+}
+</pre>
+<p>
+Pick a test description that describes a positive test outcome.
+Check that the test works:
+</p>
+
+<pre class="example" id="orgd6f6e04">
+$ bats &lt;pkg&gt;/test/test_issueNNNN.bats
+</pre>
+
+<p>
+So far, it can&rsquo;t fail.  Below we progressively add more tests constraints.  It is recomended to build up tests in this way as you hunt a bug or develop a new feature.  That is, don&rsquo;t fix the bug or make the feature first.  Rather, write the tests and fix the bug / make the feature so that the initially failing tests then succeed.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9970b1d" class="outline-2">
+<h2 id="org9970b1d"><span class="section-number-2">19.</span> Basic elements of a test</h2>
+<div class="outline-text-2" id="text-19">
+<p>
+Typically an <code>@test</code> will consist of one or more stanzas with the following four lines:
+</p>
+
+<pre class="example" id="org8fd0a28">
+run some_command             # (1)
+echo "$output"               # (2)
+[[ "$status" -eq 0 ]]        # (3)
+                             # (4)
+[[ -n "$(echo "$output" | grep 'required thing') ]]
+[[ -z "$(echo "$output" | grep 'verboten thing') ]]
+</pre>
+<p>
+We explain each:
+</p>
+<ol class="org-ol">
+<li>Use Bats <code>run</code> to run some command under test.</li>
+<li>The <code>run</code> will stuff command output to <code>$output</code> which we echo.  We will only see this output on the terminal if the overall test fails.  (see logging below).</li>
+<li>Assert that the command exited with a success status code (<code>0</code>).</li>
+<li>Perform some checks on the stdout in <code>$output</code> and/or on any files produced by <code>some_command</code>.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgb413186" class="outline-2">
+<h2 id="orgb413186"><span class="section-number-2">20.</span> Start up and tear down</h2>
+<div class="outline-text-2" id="text-20">
+<p>
+In addition to the special <code>@test "" {}</code> function forms, BATS supports two functions that are called once per file.  The first is called prior to any <code>@test</code> and the second called after all <code>@test</code>.
+</p>
+
+<pre class="example" id="orgc5fac4a">
+function setup_file () {
+  # startup code
+}
+function teardown_file () {
+  # shutdown code
+}
+</pre>
+<p>
+One example for using <code>setup_file</code> is to run any long-running programs that produce output required by more than one <code>@test</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8d5e3e4" class="outline-2">
+<h2 id="org8d5e3e4"><span class="section-number-2">21.</span> Temporary files</h2>
+<div class="outline-text-2" id="text-21">
+<p>
+BATS has a concept of a context-dependent temporary working directory.  The contexts are:
+</p>
+
+<dl class="org-dl">
+<dt><code>test</code></dt><dd>a single <code>@test</code> function.</dd>
+
+<dt><code>file</code></dt><dd>a <code>.bats</code> test file, such as in <code>setup_file()</code> or <code>teardown()</code> functions.</dd>
+
+<dt><code>run</code></dt><dd>an invocation of the <code>bats</code> command.</dd>
+</dl>
+
+<p>
+Typically, <code>run</code> is not used.  The <code>wct-bats.sh</code> library provides some helpers to work with temporary areas:
+</p>
+
+<pre class="example" id="org347cf1f">
+cd_tmp      (1)
+cd_tmp file (2)
+</pre>
+<p>
+Where:
+</p>
+<ol class="org-ol">
+<li>The shell will change to the temporary directory for the current context.   In <code>setup_file()</code> this is the <code>file</code> context.</li>
+<li>Explicitly change to the <code>file</code> context.  This is typical to use in a <code>@test</code> function to utilize files produced in this scope.</li>
+</ol>
+
+<p>
+By default <code>bats</code> will delete all temporary directories after completion of the test run.  When tests fail it can be useful to examine what was placed in the temporary directories.  To allow this run the test like:
+</p>
+
+<pre class="example" id="orge11c2cd">
+$ bats --no-tempdir-cleanup path/to/test_foo.bats
+</pre>
+<p>
+The temporary directory will be printed to the terminal. 
+</p>
+
+<p>
+Alternatively, <code>wct-bats.sh</code>  overrules default temporary directories, combines them and does not delete them when <code>WCTEST_TMPDIR</code> is defined.  This can be useful while developing and debugging tests, particularly in combination with writing long running tests in an idempotent fashion.  Do <b>not</b> define this variable in any test but instead in your interactive shell session:
+</p>
+<pre class="example" id="orgf193741">
+$ WCTEST_TMPDIR=$HOME/my-wct-tmp-dir bats [...]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org17fa9ea" class="outline-2">
+<h2 id="org17fa9ea"><span class="section-number-2">22.</span> Persistent files</h2>
+<div class="outline-text-2" id="text-22">
+<p>
+Some BATS tests may use or create files that persist beyond the temporary context via the WCT test data repository (see <a href="datarepo.html">Data repository</a>).  The <code>wct-bats.org</code> library provides some functions to help work with such files.
+</p>
+
+<p>
+For a test that produces <b>historical files</b>, they may be saved to the &ldquo;history&rdquo; category of the repo with:
+</p>
+<pre class="example" id="org430be90">
+# bats test_tags=history
+@test "make history" {
+  # ...
+  saveout -c history my-file-for-history.npz
+}
+</pre>
+<div class="note" id="org1c72230">
+<p>
+Only place the <code>history</code> tag on tests that save history files.  History can then be quickly refreshed by running <code>bats --filter-tags history */test/test*.bats</code> and this command can be run in a number of software build environments to refresh past history after some new historical tests are added.
+</p>
+
+</div>
+
+
+<p>
+A known input file may be resolved as:
+</p>
+
+<pre class="example" id="orgeb16299">
+local myinput=$(input_file relative/path/data.ext)
+</pre>
+
+<p>
+A file from a version of a category is resolved:
+</p>
+
+<pre class="example" id="org0874137">
+# from current version of history category
+local myfile=$(category_path relative/path/data.ext)
+# from specific version of plots category
+local plot20=$(category_path -c plots -v 0.20.0 relative/path/data.png)
+</pre>
+
+<p>
+All released versions of a the <code>history</code> category directory and all versions of the <code>plots</code> category:
+</p>
+
+<pre class="example" id="orgeea100a">
+local myhistpaths_released=( category_version_paths )
+local myhistpaths_plus_dirty=( category_version_paths -c plots --dirty )
+</pre>
+
+<p>
+Likewise, but just the version strings
+</p>
+
+<pre class="example" id="org814952a">
+local myhistvers_released=( category_versions )
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org50a7b7b" class="outline-2">
+<h2 id="org50a7b7b"><span class="section-number-2">23.</span> Idempotent running</h2>
+<div class="outline-text-2" id="text-23">
+<p>
+The <code>wct-bats.sh</code> BATS library provides a helper function to run a particular test command in an <b>idempotent</b> manner.  The function is called like:
+</p>
+
+<pre class="example" id="orge86984d">
+run_idempotently [sources] [targets] -- &lt;command line&gt;
+</pre>
+
+<p>
+Where one or more sources are specified with <code>-s|--source &lt;filename&gt;</code> and one or more targets with <code>-t|--target &lt;filename&gt;</code> options.  The <code>&lt;command line&gt;</code> will only be executed if:
+</p>
+<ul class="org-ul">
+<li>No source or no target given.</li>
+<li>Any target files are missing.</li>
+<li>Any target file is older than any source file.</li>
+</ul>
+
+<p>
+When any of these conditions are not met, the <code>run_idempotently</code> will simply announce (<code>yell</code>) that it is not running the command line and immediately return.
+</p>
+
+<p>
+Otherwise, the command line is run and the <code>$status</code> code is checked before returning.
+</p>
+
+<p>
+Thus, when the developer runs and re-runs the BATS test with <code>WCTEST_TMPDIR</code> set to a fixed directory the <code>&lt;command line&gt;</code> will only be re-run when needed.
+</p>
+
+<p>
+While this will not speed up normal testing, it can dramatically speed up re-running the test by a developer.  This can help during development of the test itself, developing code that is being tested and investigating test failures.  This development pattern is also helped with <code>bats -f &lt;filter&gt;</code> and use of <code>setup_file</code> as described next.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcdbda3e" class="outline-2">
+<h2 id="orgcdbda3e"><span class="section-number-2">24.</span> Using <code>setup_file</code></h2>
+<div class="outline-text-2" id="text-24">
+<p>
+Another method to run tests in an idempotent manner is to place common, perhaps long running, tasks in the <code>setup_file</code> function,  run the entire test with <code>WCTEST_TMPDIR</code> set and then re-run specific tests with <code>bats -f &lt;filter&gt;</code>.  When a specific test is exercising some issue, this lets the developer focus on just that issue and reuse prior results.  Consider the example:
+</p>
+
+<pre class="example" id="org25817c8">
+function setup_file () {
+  cd_tmp file
+  run my_slow_command -o output1.txt 
+  [[ "$status" -eq 0 ]]
+}
+
+@test "Some test for number one" {
+  cd_tmp file
+  run test_some_test1 output1.txt
+}
+
+@test "Some test for number two" {
+  cd_tmp file
+  run test_some_test2 output1.txt
+}
+</pre>
+
+<p>
+Then the developer may do something like:
+</p>
+<pre class="example" id="orgebdfed5">
+$ WCTEST_TEMPDIR=/tmp/my-test bats my-test.bats
+$ WCTEST_TEMPDIR=/tmp/my-test bats -f one my-test.bats  
+</pre>
+
+<p>
+To force a full re-run simply remove the <code>/tmp/my-test</code> and perhaps run after unseting <code>WCTEST_TMPDIR</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb14fcbc" class="outline-2">
+<h2 id="orgb14fcbc"><span class="section-number-2">25.</span> Test tags</h2>
+<div class="outline-text-2" id="text-25">
+<p>
+As shown in the <a href="#org5f7b702">18</a> one can assert <a href="https://bats-core.readthedocs.io/en/stable/writing-tests.html#tagging-tests">test tags</a> above a <code>@test</code>.  One can also have file-level tags.
+</p>
+
+<pre class="example" id="org00581a5">
+# bats file_tags=issue:202
+
+# bats test_tags=topic:noise
+@test "test noise spectra for issue 202" {
+  ...
+}
+# bats test_tags=history
+@test "make history" {
+  ...
+  saveout -c history somefile.npz
+}
+
+</pre>
+
+<p>
+Tag name conventions are defined here:
+</p>
+
+<dl class="org-dl">
+<dt><code>implicit</code></dt><dd>The test only performs implicit tests (&ldquo;it ran and didn&rsquo;t crash&rdquo;) and side effects (report, history).</dd>
+<dt><code>report</code></dt><dd>The test produces a &ldquo;report&rdquo; of files saved to output.</dd>
+<dt><code>history</code></dt><dd>The test produces results relevant to multiple released versions (see <a href="history.html">Historical tests</a>).  <b>Only place this tag on tests that produce history files</b></dd>
+<dt><code>issue:&lt;number&gt;</code></dt><dd>The test is relevant to GitHub issue of the given number.</dd>
+<dt><code>pkg:&lt;name&gt;</code></dt><dd>The test is part of package named <code>&lt;name&gt;</code> (<code>gen</code>, <code>util</code>, etc)</dd>
+<dt><code>topic:&lt;name&gt;</code></dt><dd>The test relates to topic named <code>&lt;name&gt;</code> (<code>wires</code>, <code>response</code>, etc)</dd>
+<dt><code>time:N</code></dt><dd>The test requires on order \(10^N\) seconds to run, limited to \(N \in [1, 2, 3]\).</dd>
+</dl>
+<p>
+By default, all tests are run.  The user may explicitly include or exclude tests.  For example, to run tests tagged as being related to <code>wires</code> and that take a few minutes or less to run and explicitly those in the <code>util/</code> sub package: 
+</p>
+
+<pre class="example" id="orgb0a10e4">
+bats --filter-tags 'topic:wires,!time:3' util/test/test*.bats
+</pre>
+<p>
+See also the <code>wcb --test-duration=&lt;seconds&gt;</code> options described in section <a href="framework.html">Framework</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgde18952" class="outline-2">
+<h2 id="orgde18952"><span class="section-number-2">26.</span> Test logging</h2>
+<div class="outline-text-2" id="text-26">
+<p>
+BATS uses the <a href="https://testanything.org/">&ldquo;test anything protocol&rdquo;</a> to combine multiple tests in a coherent way.  We need not be overly concerned with the details but it does mean that BATS captures <code>stdout</code> and <code>stderr</code> from the individual tests.  When the user wishes to see diagnostic messages directly this causes annoyance.  But, no worry as there are three mechanisms to emit and view such user diagonstics.
+</p>
+</div>
+
+<div id="outline-container-orgb5d0a84" class="outline-3">
+<h3 id="orgb5d0a84"><span class="section-number-3">26.1.</span> Logging on failure</h3>
+<div class="outline-text-3" id="text-26-1">
+<p>
+By default, <code>bats</code> will show <code>stdout</code> for a test that fails so simply <code>echo</code> or otherwise send to <code>stdout</code> as usual
+</p>
+
+<pre class="example" id="orgebbf48d">
+@test "chirp and fail" {
+    echo "hello world"
+    exit 1
+}
+</pre>
+<p>
+Running <code>bats</code> on this test will fail and print <code>hello world</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8e10807" class="outline-3">
+<h3 id="org8e10807"><span class="section-number-3">26.2.</span> Logging on success</h3>
+<div class="outline-text-3" id="text-26-2">
+<p>
+The output of successful tests can also be shown.
+</p>
+
+<pre class="example" id="org2978d58">
+@test "chirp and succeed" {
+    echo "goodbye world"
+}
+</pre>
+<p>
+Running <code>bats</code> as:
+</p>
+
+<pre class="example" id="org661ba0b">
+$ bats --show-output-of-passing-tests chirp.bats
+</pre>
+<p>
+will show <code>goodbye world</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8d8882f" class="outline-3">
+<h3 id="org8d8882f"><span class="section-number-3">26.3.</span> File descriptor 3.</h3>
+<div class="outline-text-3" id="text-26-3">
+<p>
+Output to the special file descriptor <code>3</code> will always lead to that output to the terminal.  
+</p>
+
+<pre class="example" id="org70d218a">
+@test "chirp no matter what" {
+    echo "Ahhhhhhhh" 1&gt;&amp;3
+}
+</pre>
+<p>
+Please avoid using this except in special, temporary cases, as it leads to very &ldquo;noisy&rdquo; tests.
+</p>
+<p>
+Jsonnet is the primary means to construct configuration files for WCT.
+It&rsquo;s job is to build a data structure which can necessarily be very
+complex.  WCT provides various low level Jsonnet functions as well as
+higher level structure builders.  It can be useful to &ldquo;lock&rdquo; in
+expectation to guard against regression in those layers.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8f17e6e" class="outline-2">
+<h2 id="org8f17e6e"><span class="section-number-2">27.</span> Running Jsonnet tests</h2>
+<div class="outline-text-2" id="text-27">
+<p>
+A Jsonnet test may be compiled with the plain <code>jsonnet</code> command or with
+the WCT version <code>wcsonnet</code>.  By default <code>jsonnet</code> is used.  The two differ
+mostly in their defaults.  The <code>jsonnet</code> command does not have the
+<code>wire-cell-toolkit/cfg/</code> directory added to its search path - though it
+does when run as part of the WCT test framework.  The <code>wcsonnet</code> will
+include any paths given in <code>WIRECELL_PATH</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga2016fc" class="outline-2">
+<h2 id="orga2016fc"><span class="section-number-2">28.</span> Basic Jsonnet tests</h2>
+<div class="outline-text-2" id="text-28">
+<p>
+The most simple test is one that tests basic expected compilation
+without a need to locate additional files.  For example:
+</p>
+
+<pre class="example" id="orgbd583a9">
+jsonnet cfg/test/test_wirecell.jsonnet
+</pre>
+
+<p>
+others require resolving files that are <code>import</code>:
+</p>
+
+<pre class="example" id="orgb1426bf">
+jsonnet -J cfg cfg/test/test_pgraph.jsonnet
+wcsonnet cfg/test/test_pgraph.jsonnet
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5a50d1b" class="outline-2">
+<h2 id="org5a50d1b"><span class="section-number-2">29.</span> Assertions</h2>
+<div class="outline-text-2" id="text-29">
+<p>
+Jsonnet provides an <code>assert</code> function.  These should be sprinkled liberally throughout Jsonnet test code whenever it is possible to know what some intermediate data structure should be.  See <code>test_graph.jsonnet</code> for an example.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

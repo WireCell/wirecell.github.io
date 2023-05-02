@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wire-Cell Toolkit Auxiliary</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Wire-Cell Toolkit Auxiliary
+<br />
+<span class="subtitle"><a href="../README.html">(top)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org5b660ac">1. Overview</a></li>
+<li><a href="#org8712cf9">2. Topics</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5b660ac" class="outline-2">
+<h2 id="org5b660ac"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This core WCT package enjoys a special position in the dependency
+tree.  It depends on <code>WireCellIface</code> as do other &ldquo;implementation&rdquo;
+packages.  But, unlike the others that do not have any compile time
+inter-dependencies, the other &ldquo;implementation&rdquo; packages may have
+compile time dependency on <code>WireCellAux</code>.
+</p>
+
+<p>
+Some categories of code appropriate for <code>aux</code>:
+</p>
+
+<ul class="org-ul">
+<li>general purpose implementation of <code>IData</code> interfaces (eg the <code>Simple*</code> classes)</li>
+<li><code>INode</code> implementations that provide general purpose data converters (eg, <code>ITensorSet &lt;--&gt; IFrame</code>)</li>
+<li>general utility code that operate on interfaces (eg, <code>FrameTools</code>)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8712cf9" class="outline-2">
+<h2 id="org8712cf9"><span class="section-number-2">2.</span> Topics</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><a href="docs/noise.html">Support for noise modeling</a></li>
+<li><a href="docs/tensor-data-model.html">Tensor data model</a></li>
+<li><a href="docs/frame-tensor.html">WCT frames as tensors</a></li>
+<li><a href="docs/frame-files.html">frame files</a></li>
+<li><a href="docs/ClusterArrays.html">array representation of cluster graphs</a></li>
+<li><a href="docs/cluster-shadow.html">the &ldquo;cluster shadow&rdquo; concept</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

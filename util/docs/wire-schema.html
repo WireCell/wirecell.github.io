@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wire Schema and Conventions</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Wire Schema and Conventions
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7289a2b">1. Introduction</a></li>
+<li><a href="#org0741995">2. Compliance</a></li>
+<li><a href="#org488ae3d">3. Schema</a></li>
+<li><a href="#org3a5f6ba">4. Conventions</a>
+<ul>
+<li><a href="#orgd2d5a7b">4.1. Identity</a></li>
+<li><a href="#orga9218e2">4.2. Coordinate systems</a></li>
+<li><a href="#org1d168a0">4.3. Ordering</a>
+<ul>
+<li><a href="#org9606cf9">4.3.1. Wire in plane index</a></li>
+<li><a href="#orgbf3600b">4.3.2. Wire endpoints</a></li>
+<li><a href="#org61b1d34">4.3.3. Segment</a></li>
+</ul>
+</li>
+<li><a href="#org0e375ce">4.4. Uniformity</a></li>
+</ul>
+</li>
+<li><a href="#org71d5ca5">5. Correctness</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7289a2b" class="outline-2">
+<h2 id="org7289a2b"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Wire-Cell Toolkit requires a description of the sensitive electrodes be they of wire or strip shape.  Parallel planes of wires are stacked to fill one &ldquo;face&rdquo;.  One or more &ldquo;faces&rdquo; are collected into an &ldquo;anode&rdquo;.  A &ldquo;detector&rdquo; is comprised of one or more anode.
+</p>
+
+<p>
+This information is represented as a nested object hierarchy in WCT C++, Python and JSON.  These objects follow a common data structure schema.  In addition, for the objects to be considered valid they must adhere to certain required conventions that are not expressed in the data structure schema.  Persisted JSON objects are said to be stored in &ldquo;wires files&rdquo;.
+</p>
+
+<p>
+This document makes use of <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a> language.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0741995" class="outline-2">
+<h2 id="org0741995"><span class="section-number-2">2.</span> Compliance</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Prior to being formalized in this document, all existing wires files are not in compliance in some way.  Where possible, WCT will attempt to correct invalid wires.  Novel wires files must be compliant as determined by the validation mechanism now provided by WCT.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org488ae3d" class="outline-2">
+<h2 id="org488ae3d"><span class="section-number-2">3.</span> Schema</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The wire data structure schema is represented formally:
+</p>
+
+<dl class="org-dl">
+<dt>C++</dt><dd><a href="https://github.com/WireCell/wire-cell-toolkit/blob/master/util/inc/WireCellUtil/WireSchema.h"><code>WireSchema::StoreDB</code></a> and referenced structs</dd>
+<dt>Python</dt><dd><a href="https://github.com/WireCell/wire-cell-python/blob/master/wirecell/util/wires/schema.py"><code>wirecell.util.wires.schema</code></a> classes</dd>
+<dt>JSON</dt><dd>a JSON Schema is still to-be-developed</dd>
+</dl>
+
+<p>
+The schema defines these types of data structure types: <code>Store</code>, <code>Detector</code>, <code>Anode</code>, <code>Face</code>, <code>Plane</code>, <code>Wire</code>, and <code>Point</code> Instances of these types form a layered hierarchy.  Each layer represents instances of one type and the layers are ordered according to the type list above.
+</p>
+
+<p>
+The hierarchy is represented by a parent of one type referring to a number of children of the next lower type.  A <code>Store</code> holds reference to all <code>Detector</code> instances by aggregating them directly into an array.  A <code>Store</code> likewise holds arrays of all other types listed with the possible exception of <code>Ponit</code> (explained below).  Instances of all other non-leaf types refer to their children with an integer array holding indices into the corresponding <code>Store</code> array.  The C++ schema has <code>Wire</code> as a leaf type while JSON and Python schema have <code>Point</code> leaves.  A C++ <code>Wire</code> directly holds its two endpoints as <code>Point</code> instances while the others refer to a <code>Point</code> through its index in the <code>Store</code> point array.
+</p>
+
+<p>
+All structures except for <code>Store</code> and <code>Point</code> have an integer attribute <code>ident</code> which is generally intended to be an opaque, unique identifier of the instance.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3a5f6ba" class="outline-2">
+<h2 id="org3a5f6ba"><span class="section-number-2">4.</span> Conventions</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+A number of features of the wire data can not be expressed in a formal schema and are subject to a number of required conventions.  They are given in this section and written as to be directed to a provider of wire data.
+</p>
+</div>
+
+<div id="outline-container-orgd2d5a7b" class="outline-3">
+<h3 id="orgd2d5a7b"><span class="section-number-3">4.1.</span> Identity</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Instances of all schema types except <code>Store</code> must provide an <code>ident</code> attribute. 
+</p>
+
+<dl class="org-dl">
+<dt>Value</dt><dd>An <code>ident</code> value shall be represented by a non-negative but signed 32 bit integer type.  A zero value may be used.</dd>
+
+<dt>Uniqueness</dt><dd>The <code>ident</code> of children shall be unique in the context of their parent.  An <code>ident</code> value may be unique over a broader scope.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orga9218e2" class="outline-3">
+<h3 id="orga9218e2"><span class="section-number-3">4.2.</span> Coordinate systems</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+The coordinate systems relevant to the wires are described in this section.  External coordinate systems may exist and they are out of scope.  The user must convert data from external coordinate systems to transform it into WCT coordinates..
+</p>
+
+<dl class="org-dl">
+<dt>Global</dt><dd>A singular, global Cartesian coordinate spans the detector.</dd>
+
+<dt>Wire endpoint coordinates</dt><dd>The endpoints of wires shall be provided in the global coordinate system.</dd>
+
+<dt>Global X</dt><dd>The global X axis direction \(\hat{x}\) shall be parallel or anti-parallel to the nominal drift directions in the detector.   The user must define the which of the two possible directions \(\hat{x}\) points.</dd>
+
+<dt>Global Y</dt><dd>The global Y axis direction \(\hat{y}\) must be parallel to one pair of sides of the active area of the wire planes.  It must be chosen in relation to a well defined, fixed direction defined externally to this coordinate system.  For &ldquo;horizontal drift&rdquo; detectors, it must be chosen anti-parallel to the force of gravity.  For &ldquo;vertical drift&rdquo; detectors, it should point near the direction of a applied neutrino or particle test beam if one exists.</dd>
+
+<dt>Global Z</dt><dd>The Z axis direction shall follow from \(\hat{z} = \hat{x} \times \hat{y}\).</dd>
+
+<dt>Global origin</dt><dd>The origin of the global coordinates should be chosen to lay within the detector volume.</dd>
+
+<dt>Plane P</dt><dd>The wire plane pitch axis P shall be defined for each wire plane.  It shall point in the direction \(\hat{p}\) that is perpendicular to \(\hat{w}\) (see below) and in the direction of ascending order.  Wire order is determined by one coordinate of the wire center points.  For planes with \(|\hat{w} \cdot \hat{z}|\) near unity, the ordering coordinate shall be the global Y value of the center point. Otherwise, the global Z value of the center point shall be used.</dd>
+
+<dt>Plane W</dt><dd>The wire plane direction axis W shall be defined for each wire plane.  It shall point in the direction \(\hat{w}\) according to \(\hat{w} = \hat{p} \times \hat{x}\).  As a consequence, when \(|\hat{w}\cdot\hat{z}|\) is near unity, \(\hat{w}\) points in the \(-\hat{z}\) direction and otherwise points generally in the \(+\hat{y}\) direction.</dd>
+
+<dt>Plane origin</dt><dd>The origin of P and X shall be the wire center point with the minimum pitch position.</dd>
+</dl>
+
+<p>
+Note, &ldquo;near unity&rdquo; is taken to be within \(1.0 \pm 10^{-4}\) or about less than \(1^{\circ}\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1d168a0" class="outline-3">
+<h3 id="org1d168a0"><span class="section-number-3">4.3.</span> Ordering</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+The requirements on the order of children arrays held by parents are given in this section.
+</p>
+</div>
+
+<div id="outline-container-org9606cf9" class="outline-4">
+<h4 id="org9606cf9"><span class="section-number-4">4.3.1.</span> Wire in plane index</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+The wire-in-plane (WIP) index (or number) orders wires in their plane.
+</p>
+
+<dl class="org-dl">
+<dt>Values</dt><dd>The WIP index must be a non-negative integer counting monotonically and without gaps from zero.</dd>
+
+<dt>Order</dt><dd>The WIP index increases in the direction of positive pitch.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgbf3600b" class="outline-4">
+<h4 id="orgbf3600b"><span class="section-number-4">4.3.2.</span> Wire endpoints</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+An instance of <code>Wire</code> has attributes <code>tail</code> and <code>head</code> representing the wire endpoints.
+</p>
+
+<dl class="org-dl">
+<dt>Direction</dt><dd>The wire direction \(\hat{w}\) is considered run from <code>tail</code> to <code>head</code> and thus their assignment must reflect the definition of the W axis describe above.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org61b1d34" class="outline-4">
+<h4 id="org61b1d34"><span class="section-number-4">4.3.3.</span> Segment</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<p>
+A &ldquo;wire&rdquo; is actually a &ldquo;wire segment&rdquo; and given a segment number.
+</p>
+
+<dl class="org-dl">
+<dt>Segment</dt><dd>The segment number shall count the number of other
+segments between it and the input to the electronics channel.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0e375ce" class="outline-3">
+<h3 id="org0e375ce"><span class="section-number-3">4.4.</span> Uniformity</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+All wires in a wire plane should be mutually parallel, coplanar and
+uniformly spaced in the pitch direction.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org71d5ca5" class="outline-2">
+<h2 id="org71d5ca5"><span class="section-number-2">5.</span> Correctness</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Real world &ldquo;wires files&rdquo; may (and do) violate the this specification.  For example,
+</p>
+
+<ul class="org-ul">
+<li>Finite precision of wire endpoint leads to violation of orthogonality and uniformity.</li>
+<li>Simple disregard of ordering and equivalently wire and pitch direction.</li>
+</ul>
+
+<p>
+The <code>WireSchema::Store::validate()</code> method may be used to validate a constructed <code>store</code>.  If a violation is found then <code>ValueError</code> exception is thrown.
+</p>
+
+<p>
+The <code>WireSchema::load(filename, correction)</code> method attempts to correct some common problems.  The level of correction is configured by the <code>correction</code> level:
+</p>
+
+<dl class="org-dl">
+<dt>none</dt><dd>The store represents data as-is from the file.</dd>
+
+<dt>order</dt><dd>Reorder wires and their endpoints.</dd>
+
+<dt>direction</dt><dd>Rotate wires about their centers so that all in a plane are parallel.  The common wire direction is taken as the average over the original wires, rotated into the Y-Z plane.  Wire length and centers are held fixed.</dd>
+
+<dt>pitch</dt><dd>Translate wires along a common pitch direction so that they become uniformly distributed.  The common pitch is taken as the average over all wires rotated into the Y-Z plane.  The center Y/Z of the central wire at WIP = nwires/2 is kept fixed and X is set to the average of all center X.</dd>
+</dl>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

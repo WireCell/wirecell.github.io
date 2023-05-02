@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wire Cell Interfaces</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Wire Cell Interfaces
+<br />
+<span class="subtitle"><a href="../README.html">(top)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd47ed6a">1. Interfaces</a>
+<ul>
+<li><a href="#org558f1dd">1.1. IDFT</a>
+<ul>
+<li><a href="#org6eb4808">1.1.1. Limitations</a></li>
+</ul>
+</li>
+<li><a href="#org351bce8">1.2. &#x2026;</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This package provides a set of abstract base classes aka interface
+classes.  In general, there should be no implementation code in this
+package although we currently violate that slightly.
+</p>
+
+<p>
+Ideally, all implementation classes, besides what is in <code>util/</code>, are
+based on one or more interface classes in <code>iface/</code>.  
+</p>
+
+<p>
+Guidelines for adding new interfaces to this subpackage:
+</p>
+
+<ul class="org-ul">
+<li>general in terms of concept (abstract the concept and type)</li>
+<li>specific in terms of API (fewer methods are better)</li>
+<li>minimal in terms of dependencies (nothing outside <code>util/</code> and core dependence)</li>
+</ul>
+
+<p>
+When adding a new interface which is very specific to an
+implementation try to remove any special purpose data types.  Use
+Eigen3 arrays instead of libtorch tensors.  Use <code>IFrame</code> instead of
+Eigen3 arrays.
+</p>
+
+<p>
+If a new interface must bring in a new dependency then it may be
+rejected for living in iface/.  Developers are free to add interfaces
+to implementation packages however this will lead to complication in
+the overall WCT dependency tree.  Discussion is warranted in these cases. 
+</p>
+
+<p>
+See the user manual for more info.  <a href="https://wirecell.bnl.gov/">https://wirecell.bnl.gov/</a>
+</p>
+
+<div id="outline-container-orgd47ed6a" class="outline-2">
+<h2 id="orgd47ed6a"><span class="section-number-2">1.</span> Interfaces</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org558f1dd" class="outline-3">
+<h3 id="org558f1dd"><span class="section-number-3">1.1.</span> IDFT</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The <code>IDFT</code> class provides interface to methods to perform discrete
+Fourier transforms on arrays of complex single precision floating
+point values.
+</p>
+
+<p>
+The interface defines a number of methods which take a general naming
+convention like:
+</p>
+<pre class="example" id="org51be0a4">
+void &lt;direction&gt;&lt;domain&gt;(...);
+</pre>
+
+<p>
+The &ldquo;direction&rdquo; of the transform is one of
+</p>
+
+<dl class="org-dl">
+<dt>fwd</dt><dd>the DFT is from interval to frequency, no normalization.</dd>
+<dt>inv</dt><dd>the DFT is from frequency to interval, 1/n normalization.</dd>
+</dl>
+
+<p>
+The &ldquo;domain&rdquo; determines the dimension of array and how it is transformed
+</p>
+
+<dl class="org-dl">
+<dt>1d</dt><dd>a 1D array is transformed</dd>
+<dt>1b</dt><dd>a batch of equal-length 1D arrays are transformed</dd>
+<dt>2d</dt><dd>a 2D array is transformed (along both dimensions)</dd>
+</dl>
+
+<p>
+The shape of 2D arrays (<code>1b</code> or <code>2d</code> methods) are given in terms of two
+numbers: <code>stride</code> and <code>nstrides</code>.  The number <code>stride</code> counts the number of
+contiguous array elements along one dimension and <code>nstrides</code> counts the
+number non-contiguous elements logically along the opposite dimension.
+In the case of &ldquo;row-major&rdquo; aka &ldquo;C&rdquo; memory ordering of 2D arrays, the
+number <code>stride</code> counts the number of elements in one &ldquo;row&rdquo; and <code>nstrides</code>
+counts the number of rows, aka, the number of elements in one column.
+</p>
+
+<p>
+The <code>1b</code> transforms operate along a contiguous array of length <code>stride</code>.
+By default, these transforms are implemented in terms of <code>nstrides</code>
+calls to the <code>1d</code> DFT interface method.  The implementation may override
+the <code>1b</code> default methods for example to exploit some kind of &ldquo;batch
+optimization&rdquo;. 
+</p>
+</div>
+
+<div id="outline-container-org6eb4808" class="outline-4">
+<h4 id="org6eb4808"><span class="section-number-4">1.1.1.</span> Limitations</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>The potential speed up when the input to a forward or output from
+reverse is real valued is not possible to implement with <code>IDFT</code>.  It
+requires the caller to take particular care in array sizes and would
+double the number of methods.</li>
+
+<li>To satisfy the low-level pointer to memory interface from higher
+level objects see the <code>Waveform.h</code> and <code>Array.h</code> headers in
+<code>WireCellUtil</code>.  In particular, see functions there to lift real to
+complex or perform memory transforms.</li>
+
+<li>Interface to higher order transforms, such as convolutions, are not
+provided.  See <code>Aux::DFT</code> for implementations in terms of an <code>IDFT</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org351bce8" class="outline-3">
+<h3 id="org351bce8"><span class="section-number-3">1.2.</span> &#x2026;</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Any interfaces not listed above, please see their header file in
+<a href="inc/WireCellIface/">inc/WireCellIface/</a> for more information.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

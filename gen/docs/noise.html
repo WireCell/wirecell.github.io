@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wire-Cell Noise Model</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Wire-Cell Noise Model
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9fd6bbc">1. Overview</a></li>
+<li><a href="#org2e0dc68">2. Noise generation</a></li>
+<li><a href="#orgfd1f117">3. Noise adders</a></li>
+<li><a href="#org4797928">4. Noise spectrum models</a>
+<ul>
+<li><a href="#org852612a">4.1. <code>EmpiricalNoiseModel</code></a></li>
+<li><a href="#org7160b36">4.2. <code>GroupNoiseModel</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9fd6bbc" class="outline-2">
+<h2 id="org9fd6bbc"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+WCT provides a &ldquo;sampled spectrum noise model&rdquo; which is parametererized by two types of information:
+</p>
+
+<ul class="org-ul">
+<li>A set of &ldquo;median noise spectra&rdquo;.</li>
+
+<li>An associative mapping between channel and spectrum.</li>
+</ul>
+
+<p>
+The WCT implementation is structured into two layers.
+</p>
+
+<ol class="org-ol">
+<li>A &ldquo;model&rdquo; component provides a median noise spectrum given a key (channel or group).</li>
+
+<li>An &ldquo;adder&rdquo; component generates a noise waveform and associates it to one or more channels.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org2e0dc68" class="outline-2">
+<h2 id="org2e0dc68"><span class="section-number-2">2.</span> Noise generation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The kernel of the noise generation returns a fluctuated noise waveform given a real-valued median amplitude spectrum.  Median and not mean is the proper statistic to supply.
+The sampling of the distribution characterized by the median spectrum has two steps. 
+</p>
+
+<ol class="org-ol">
+<li>Each frequency bin of the median spectrum is fluctuated to produce a complex amplitude sample.</li>
+
+<li>An inverse discrete Fourier transform is applied to the spectrum of samples to produce the noise waveform.</li>
+</ol>
+
+<p>
+The fluctuation at each frequency is produced by twice sampling a Gaussian distribution of mean zero and sigma equal to the median.  These samples form the real and imaginary part of a complex valued spectral sample.  Equivalently, such samples have Rayleigh-distributed complex amplitude and uniform-distributed complex phase.  This sampling motivates supplying a median and not a mean spectrum.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfd1f117" class="outline-2">
+<h2 id="orgfd1f117"><span class="section-number-2">3.</span> Noise adders</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+There are two types of noise adders:
+</p>
+
+<dl class="org-dl">
+<dt><code>IncoherentAddNoise</code></dt><dd>adds an independent noise waveform to each channel.  The <code>AddNoise</code> type is an alias for this type.</dd>
+<dt><code>CoherentAddNoise</code></dt><dd>adds an independent noise waveform to each in a group of channels.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org4797928" class="outline-2">
+<h2 id="org4797928"><span class="section-number-2">4.</span> Noise spectrum models</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+There are two types of noise spectrum models:
+</p>
+</div>
+
+<div id="outline-container-org852612a" class="outline-3">
+<h3 id="org852612a"><span class="section-number-3">4.1.</span> <code>EmpiricalNoiseModel</code></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+This spectral model associates an initial median spectrum and a set of post-hoc transformations of that spectrum to a channel.  It expects as input a set of initial median spectra each of which are identified by a plane number and a wire length and summary information.  The post-hoc transformations are the following:
+</p>
+
+<ul class="org-ul">
+<li>The initial spectrum for a given channel is formed as the interpolation between provided spectra based on their total wire lengths and that of the channel.</li>
+<li>An additional white-noise component may be specified for each input spectrum, this too is subject to wire-length interpolation.</li>
+<li>A pair of gain and shaping time values may be associated with an input spectrum and a different pair with each channel and the spectrum will be transformed accordingly.</li>
+</ul>
+
+<p>
+The <code>EmpiricalNoiseModel</code> spectrum model may only be used with the <code>IncoherentAddNoise</code> noise adder.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7160b36" class="outline-3">
+<h3 id="org7160b36"><span class="section-number-3">4.2.</span> <code>GroupNoiseModel</code></h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+This spectral model associates a channel to a group and a group to a spectrum.  No post-hoc wire-length interpolations nor any transformations are performed on the input spectra.
+</p>
+
+<p>
+This spectrum model may be used with <code>IncoherentAddNoise</code> and <code>CoherentAddNoise</code>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

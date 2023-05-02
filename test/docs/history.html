@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Historical tests</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Historical tests
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org706c5b3">1. Versions</a></li>
+<li><a href="#org0122a01">2. Support</a></li>
+</ul>
+</div>
+</div>
+<p>
+The WCT testing framework supports &ldquo;historical tests&rdquo; and &ldquo;historical
+files&rdquo;.  A &ldquo;historical file&rdquo; is simply one produced by a test and
+saved to the &ldquo;history&rdquo; category of the test data repository (see the <a href=":datarepo.html">data repository topic</a>).
+A &ldquo;historical test&rdquo; is then a test that consumes
+these files.
+</p>
+
+<div id="outline-container-org706c5b3" class="outline-2">
+<h2 id="org706c5b3"><span class="section-number-2">1.</span> Versions</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A historical test may itself only run software from the current software version under test.  A historical test can not execute any code from other versions, though it may access historical files produced by other code versions.
+</p>
+
+<p>
+The versions that are available for a historical file is given at build time by:
+</p>
+
+<pre class="example" id="org9184411">
+wcb configure [--test-data-versions=&lt;versions&gt;] [--tests] [...]
+</pre>
+
+<p>
+This is an optional argument.  The WCT developers have hard-coded a list of suitable versions in the built.  However, the user is free to to override that list.  As always, tests are not on by default and the <code>--tests</code> option may be given at configure time so the build &ldquo;remembers&rdquo; tests.
+</p>
+
+<p>
+During the build phase:
+</p>
+
+<pre class="example" id="org9fa839c">
+wcb [--tests]
+</pre>
+
+<p>
+The data repository will be populated with files for the configured tests data versions.
+</p>
+
+<p>
+Historical tests should only assume versions in this list but may also include the current version.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0122a01" class="outline-2">
+<h2 id="org0122a01"><span class="section-number-2">2.</span> Support</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+See the <a href=":bats.html">BATS topic</a> for description of support for historical tests written as BATS files.  
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

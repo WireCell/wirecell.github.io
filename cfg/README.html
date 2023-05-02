@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wire Cell Toolkit Configuration</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Wire Cell Toolkit Configuration
+<br />
+<span class="subtitle"><a href="../README.html">(top)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd0e4002">1. What is here</a></li>
+<li><a href="#org6031d52">2. Contents overview</a>
+<ul>
+<li><a href="#org4012978">2.1. General support files</a></li>
+<li><a href="#orgd97bcbc">2.2. Structure layers</a></li>
+<li><a href="#org614d9dc">2.3. Legacy forms</a></li>
+<li><a href="#org2b49764">2.4. Obsolete</a></li>
+</ul>
+</li>
+<li><a href="#org91634d7">3. Tests</a></li>
+<li><a href="#org8773166">4. JQ tricks</a>
+<ul>
+<li><a href="#org22c8943">4.1. WCT JSON Config Files</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd0e4002" class="outline-2">
+<h2 id="orgd0e4002"><span class="section-number-2">1.</span> What is here</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This repository holds a reference set of Wire Cell Toolkit (WCT)
+configuration files.  These are largely in the form of Jsonnet but
+some in FHiCL format are as examples to integrate with applications
+based on the <i>art</i> event processing framework.
+</p>
+
+<p>
+The goal of any <i>main</i> Jsonnet file is to produce an <b>ordered array of
+component configuration objects</b>.  Each object names a WCT C++
+component type and an optional instance name and may also include
+additional attributes which are passed to the C++ object instance to
+configure it.  A special configuration object, typically the last in
+the sequence, names the WCT &ldquo;app&rdquo; which is usually a <code>Pgrapher</code> or
+<code>TbbFlow</code> component that provide <b>data flow processing</b> (DFP) graph
+execution.  The main configuration element of this component is a list
+of &ldquo;edges&rdquo; connecting two data flow graph nodes by stating their
+<code>type:instance</code> name pairs.
+</p>
+
+<p>
+Configuration is complex and more so as it spans multiple detectors
+and for each detector variations in term of detector model, job
+intention and other factors.  To manage this complexity a number of
+structural conventions are observed at the directory, file and content
+level.  The Jsonnet files at top <code>cfg/</code> directory provide general
+utilities.  Sub-directories <code>cfg/*</code> define some scope for conventions,
+some of which are described in the next section.
+</p>
+
+<p>
+For more information on configuration see the <a href="https://github.com/WireCell/wire-cell-docs/tree/master/manuals/configuration.org">WCT configuration manual</a>
+as well as <a href="https://wirecell.github.io/news/categories/config/">news posts tagged with config</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6031d52" class="outline-2">
+<h2 id="org6031d52"><span class="section-number-2">2.</span> Contents overview</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+This describes what is available.  Be wary is may not always be up to
+date with the reality on the ground.
+</p>
+</div>
+
+<div id="outline-container-org4012978" class="outline-3">
+<h3 id="org4012978"><span class="section-number-3">2.1.</span> General support files</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Files at top level provide general support and utilities.  Primarily
+there is the file:
+</p>
+
+<ul class="org-ul">
+<li><a href="wirecell.jsonnet">wirecell.jsonnet</a></li>
+</ul>
+
+<p>
+This holds a Jsonnet version of the WCT <i>system of units</i> (which is
+essentially identical to CLHEP&rsquo;s).  It also includes a number of
+Jsonnet functions to form some common configuration data structures.
+</p>
+
+<ul class="org-ul">
+<li><a href="vector.jsonnet">vector.jsonnet</a></li>
+</ul>
+
+<p>
+This holds some functions to assist in doing vector arithmetic in Jsonnet.
+</p>
+
+<ul class="org-ul">
+<li><a href="pgraph.jsonnet">pgraph.jsonnet</a></li>
+</ul>
+
+<p>
+This holds functions to support building a processing graph for use by
+the <code>Pgrapher</code> WCT app component.  Some details are <a href="https://wirecell.github.io/news/posts/pgrapher-configuration-improvements/">here</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd97bcbc" class="outline-3">
+<h3 id="orgd97bcbc"><span class="section-number-3">2.2.</span> Structure layers</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Across all types of <b>detectors</b> and <b>jobs</b> which are supported by WCT we
+define a layered configuration structure.  The top layer is most
+generic and the bottom most specific.  An Jsonnet API is defined for
+each layer.  Users defining new &ldquo;main&rdquo; Jsonnet files, or improving
+legacy forms, should read the document <a href="layers/README.html">layers/README.html</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org614d9dc" class="outline-3">
+<h3 id="org614d9dc"><span class="section-number-3">2.3.</span> Legacy forms</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+The original configuration structure which does not allow for
+detector-independent job configuration definition is held under
+<a href="pgrapher/">pgrapher/</a>.  See <a href="pgrapher/README.html">it&rsquo;s README</a> for more info on the conventions it
+follows.  New detector configuration should follow the <b>structured
+layers</b> form introduced above.  In some cases, legacy detector
+configuration may used in an adapter that provides <b>structured layers</b>
+forms.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2b49764" class="outline-3">
+<h3 id="org2b49764"><span class="section-number-3">2.4.</span> Obsolete</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Configuration can become obsolete when the C++ changes or when new
+paradigms of configuration organization are adopted.  That
+configuration may be moved to <a href="obsolete/">obsolete/</a> for some time before being
+dropped from the tip of the master branch.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91634d7" class="outline-2">
+<h2 id="org91634d7"><span class="section-number-2">3.</span> Tests</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+As with other WCT subpackages, this provides a <code>/test/</code> sub-directory with various tests that used through the <a href="../test/README.html">WCT testing framework</a>.  In particular the <code>cfg</code> sub-package has many tests written in Jsonnet and the <a href="../test/docs/jsonnet.html">Jsonnet test support</a> is particularly relevant.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org8773166" class="outline-2">
+<h2 id="org8773166"><span class="section-number-2">4.</span> JQ tricks</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The <code>jq</code> tool is like <code>grep</code> for JSON.  Here are some useful tricks to operate on a mongo big JSON file.
+</p>
+</div>
+
+<div id="outline-container-org22c8943" class="outline-3">
+<h3 id="org22c8943"><span class="section-number-3">4.1.</span> WCT JSON Config Files</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Find an element in the <i>configuration sequence</i> by type
+</p>
+
+<pre class="example" id="org599e355">
+$ jq '.[]| select(.type|contains("Drifter"))' wct.json 
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>wire-cell-root</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">wire-cell-root
+<br />
+<span class="subtitle"><a href="../README.html">(top)</a></span>
+</h1>
+<p>
+This packages houses dependencies on ROOT.
+</p>
+
+<p>
+The policy on ROOT for the Wire-Cell Toolkit is as follows:
+</p>
+
+<ul class="org-ul">
+<li>dependency on ROOT <b>shall</b> be a compile time option for building WCT.</li>
+
+<li>the core Wire-Cell Toolkit libraries <b>shall</b> have no dependencies on ROOT.</li>
+
+<li>the core packages <b>shall</b> have no dependencies on ROOT.</li>
+
+<li>tests of core libraries <b>may</b> depend on root (but <b>shall</b> exist outside core packages).</li>
+
+<li>non-core WCT components <b>may</b> depend on root (but <b>shall</b> exist outside core libraries).</li>
+
+<li>the <code>wire-cell-root</code> <b>should</b> not be used as a compile time package by other (non core) WCT packages.</li>
+</ul>
+
+<p>
+Core packages are currently defined as: apps, cfg, dfp, gen, iface,
+img, pgraph, ress, sigproc, sio, tbb, util.
+</p>
+
+
+<p>
+Initially, WCT had a more relaxed policy.  Specifically this held true:
+</p>
+
+<ul class="org-ul">
+<li>ROOT dependencies were allowed for tests in any package (a separate
+lib, app and test dependency tree is supported by WCT&rsquo;s build
+system).</li>
+
+<li>The <code>sio</code> package was not considered core and had a mix of ROOT and non-ROOT.</li>
+</ul>
+
+<p>
+A refactoring campaign has started with the creation of this package
+to reach the desired policy.  It consists of the following actions:
+</p>
+
+<ul class="org-ul">
+<li>Creation of <code>wire-cell-root.</code></li>
+<li>Move of any test depending on root to this package.</li>
+<li>Move of any library component to this package or another.</li>
+<li>Move of components include a change of C++ namespace and header locations.</li>
+</ul>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

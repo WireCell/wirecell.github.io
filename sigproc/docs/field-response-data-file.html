@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Generating Field Response Data File.</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Generating Field Response Data File.
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc1db6a1">1. Garfield 2D input</a></li>
+<li><a href="#org1286ba8">2. WCT JSON</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc1db6a1" class="outline-2">
+<h2 id="orgc1db6a1"><span class="section-number-2">1.</span> Garfield 2D input</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Get the output of Garfield 2D which should be a collection of files like:
+</p>
+
+<pre class="example" id="org7c4935f">
+&lt;impact&gt;_&lt;letter&gt;.dat
+</pre>
+
+<p>
+Where 
+</p>
+<dl class="org-dl">
+<dt><code>&lt;impact&gt;</code></dt><dd>gives the impact position in mm (eg <code>0.9</code>)</dd>
+<dt><code>&lt;letter&gt;</code></dt><dd>indicates the plane (eg, <code>U</code>, <code>V</code> or <code>Y</code>)</dd>
+</dl>
+
+<p>
+Contents of the file should be like:
+</p>
+
+<pre class="example" id="org887cfce">
+*----.----1----.----2----.----3----.----4----.----5----.----6----.----7----.----8----.----9----.---10----.---11----.---12----.---13--
+% Created 31/07/16 At 19.52.20 &lt; none &gt; SIGNAL   "Direct signal, group   1     "
+
+  Group 1 consists of:
+     Wire 243 with label X at (x,y)=(-3,0.6) and at -110 V
+ Number of signal records:  1000
+ Units used: time in micro second, current in micro Ampere.
+ .STIMULUS signal PWL
+ + TIME_SCALE_FACTOR =  0.100E-05
+ + VALUE_SCALE_FACTOR =  0.100E-05
+ + (  0.00000000E+00   0.00000000E+00
+ +     0.10000000E+00   0.00000000E+00
+ +     0.20000000E+00   0.00000000E+00
+...
+ +     0.99599998E+02   0.00000000E+00
+ +     0.99700005E+02   0.00000000E+00
+ +     0.99800003E+02   0.00000000E+00
+ +     0.99900002E+02   0.00000000E+00 )
+% Created 31/07/16 At 19.52.20 &lt; none &gt; SIGNAL   "Cross-talk, group   1        "
+
+  Group 1 consists of:
+     Wire 243 with label X at (x,y)=(-3,0.6) and at -110 V
+ Number of signal records:  1000
+ Units used: time in micro second, current in micro Ampere.
+ .STIMULUS signal PWL
+ + TIME_SCALE_FACTOR =  0.100E-05
+ + VALUE_SCALE_FACTOR =  0.100E-05
+ + (  0.00000000E+00  -0.15888787E-10
+ +     0.10000000E+00  -0.31810016E-10
+ +     0.20000000E+00  -0.31853374E-10
+ +     0.99800003E+02  -0.58125088E-16
+ +     0.99900002E+02  -0.58125088E-16 )
+...
+  Group 21 consists of:
+     Wire 263 with label X at (x,y)=(3,0.6) and at -110 V
+ Number of signal records:  1000
+ Units used: time in micro second, current in micro Ampere.
+ .STIMULUS signal PWL
+ + TIME_SCALE_FACTOR =  0.100E-05
+ + VALUE_SCALE_FACTOR =  0.100E-05
+ + (  0.00000000E+00  -0.15898597E-10
+ +     0.10000000E+00  -0.31829737E-10
+ +     0.20000000E+00  -0.31873192E-10
+...
+ +     0.99700005E+02  -0.58160981E-16
+ +     0.99800003E+02  -0.58160981E-16
+ +     0.99900002E+02  -0.58160981E-16 )
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1286ba8" class="outline-2">
+<h2 id="org1286ba8"><span class="section-number-2">2.</span> WCT JSON</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Wire Cell Toolkit works with JSON data.  Python code in <code>wire-cell-python</code> package is provided to convert Garfield 2D files into properly structure JSON.
+</p>
+
+
+<pre class="example" id="org93ab260">
+$ cd wire-cell-python/
+$ virtualenv --system-site-packages venv
+$ source venv/bin/activate
+$ python setup.py develop
+$ wirecell-sigproc convert-garfield --help
+Usage: wirecell-sigproc convert-garfield [OPTIONS] GARFIELD_FILESET
+                                         WIRECELL_FIELD_RESPONSE_FILE
+
+  Convert an archive of a Garfield fileset (zip, tar, tgz) into a Wire Cell
+  field response file (.json with optional .gz or .bz2 compression).
+
+Options:
+  -o, --origin TEXT          Set drift origin (give units, eg '10*cm').
+  -s, --speed TEXT           Set nominal drift speed (give untis, eg
+                             '1.114*mm/us').
+  -n, --normalization FLOAT  Set normalization: 0:none, &lt;0:electrons,
+                             &gt;0:multiplicative scale.  def=0
+  --help                     Show this message and exit.
+$ wirecell-sigproc convert-garfield ub_10.tar.gz ub-10.json.bz2 
+$ wirecell-sigproc plot-garfield-track-response ub_10.tar.gz tr.pdf
+</pre>
+
+<p>
+Notes:
+</p>
+
+<ul class="org-ul">
+<li>Using <code>--system-site-packages</code> may be useful as Numpy is required and if it&rsquo;s installed as a system package it will save you some time.  O.w., it can be installed into the virtualenv.</li>
+<li>Once you generate the <code>.json.bz2</code> file, you no longer require this code so deactivate and clean up</li>
+<li>The plotting command is optional.  It remakes a plot for the MB noise paper and is reproduced below</li>
+<li><b>Warning</b> the plot below is not final nor official.</li>
+</ul>
+
+<p>
+<img src="./tr.png" alt="tr.png" />
+<a href="./tr.pdf">./tr.pdf</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

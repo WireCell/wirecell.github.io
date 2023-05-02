@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WCT Noise Modeling</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">WCT Noise Modeling
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org30d8fe6">1. Overview</a></li>
+<li><a href="#org172bdaf">2. WCT Noise Spectra</a>
+<ul>
+<li><a href="#org3865e4f">2.1. Required attributes</a></li>
+<li><a href="#org412e01b">2.2. Optional attributes required by <code>EmpiricalNoiseModel</code></a></li>
+<li><a href="#org080568e">2.3. Optional attributes required by <code>GroupNoiseModel</code></a></li>
+</ul>
+</li>
+<li><a href="#org010d296">3. WCT channel groups</a></li>
+<li><a href="#orgd06388e">4. Providing the above data</a></li>
+<li><a href="#orgea62737">5. Round-trip Validation</a>
+<ul>
+<li><a href="#orgc57afcf">5.1. Input spectra</a></li>
+<li><a href="#orgc385b2c">5.2. Model details</a></li>
+<li><a href="#org98c8100">5.3. Visualize the model</a></li>
+<li><a href="#org7f7ff48">5.4. Performing the round-trip</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org30d8fe6" class="outline-2">
+<h2 id="org30d8fe6"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+WCT provides support for &ldquo;noise&rdquo; in various sub-packages:
+</p>
+
+<ul class="org-ul">
+<li><code>WireCellUtil/Spectrum.h</code> provides low level functions: <code>rayleigh()</code>, <code>hermitian_mirror()</code>, <code>interp()</code>, <code>extrap()</code>, <code>alias()</code>, <code>resamples()</code>.</li>
+
+<li><code>WireCellAux/NoiseTools.h</code> provides a <code>Collector</code> class to form mean spectra of various flavors from noise-rich waveforms and <code>Generator</code> to produce waveforms given a \(\sigma_k\) spectrum.</li>
+
+<li><code>WireCellSigProc/NoiseModeler.h</code> provides a flow graph node using a <code>Collector</code> intended to run on data rich in noise, collect mean spectra and convert the result to WCT <b>noise spectra</b> and output them to file.  It makes use of a <code>NoiseRanker</code> to determine if any given waveform appears to be rich in noise.  Also provided is the <code>Undigitizer</code> component which is effectively applies the inverse transform of <code>Digitizer</code> from <code>gen</code> and prepares voltage-level waves for input to the <code>NoiseModeler</code>.</li>
+
+<li><code>WireCellGen/AddNoise.h</code> provide flow graph nodes to add noise coherently by groups of channels and incoherently on a per-channel basis.  I relies on one or more &ldquo;noise models&rdquo; to provide spectra.  The <code>GroupNoiseModel</code> provides two interfaces, one for coherent and another for incoherent and both work on a channel-group basis by consuming WCT <b>noise spectra</b> and a WCT <b>channel-groups</b> data from file or configuration.  The <code>EmpiricalNoiseModel</code> consumes WCT <b>noise spectra</b> and also supports runtime change in electronics shaping and gain as well as wire length binning.</li>
+
+<li>Various Jsonnet job config and <code>wire-cell-python</code> canned plots.</li>
+</ul>
+
+<p>
+See also this presentation: <a href="noise-presentation.html">org</a>, <a href="noise-presentation.pdf">pdf</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org172bdaf" class="outline-2">
+<h2 id="org172bdaf"><span class="section-number-2">2.</span> WCT Noise Spectra</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+WCT <b>noise spectra</b> defines a dataset describing mean spectral amplitudes and related metadata.  They are provided to WCT C++ code as objects following a schema defined here.  The datasets are provided via WCT configuration mechanism either directly as Jsonnet configuration data or by naming stand-alone data files (usually as compressed JSON but Jsonnet may also be provided).
+</p>
+
+<p>
+WCT <b>noise spectra</b> are in the form of an array of <b>spectrum objects</b>.  Each <b>spectrum object</b> follows a schema describing what attributes it must or may have.  The attributes are categorized as <b>required</b>, <b>optional</b> or <b>undefined</b>.  A spectrum object <b>must</b> contain all <b>required attributes</b>.  A consumer of a WCT noise file <b>must</b> ignore <b>undefined attributes</b>.  An <b>optional attribute</b> is one that is <b>required</b> for some consumers and <b>undefined</b> for others.  Consumers of optional attributes <b>may</b> provide default values for use if the attribute is unspecified.
+</p>
+</div>
+
+<div id="outline-container-org3865e4f" class="outline-3">
+<h3 id="org3865e4f"><span class="section-number-3">2.1.</span> Required attributes</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+A WCT <b>spectral object</b> <b>must</b> provide these attributes:
+</p>
+
+<dl class="org-dl">
+<dt><code>nsamples</code></dt><dd>an integer number providing the size of (number of contiguous time series samples taken from) the waveforms used to form the mean spectral amplitude.  The <code>nsamples</code> <b>must not</b> count any zero padding that may have been applied to a waveform prior to forming the waveform contribution to the mean spectrum (ie, prior to applying the DFT).  The <code>nsamples</code> value is distinct from the size of the <code>freqs</code> and <code>amps</code> arrays.  If using <code>NoiseTools::Collector</code> the value for <code>nsamples</code> is provided by the <code>.nticks()</code> method.</dd>
+
+<dt><code>period</code></dt><dd>a floating-point number providing the original sample period (inverse of sampling frequency) of the waveform expressed in the WCT system of units for [time].  (eg, <code>0.5*us</code> for MicroBooNE).  Note, <code>period</code> is not necessarily related to the values provided by the <code>freqs</code> array.</dd>
+
+<dt><code>freqs</code></dt><dd>an array of floating-point numbers providing frequency values expressed in the WCT system of units for [frequency].  Note, WCT&rsquo;s base unit for [frequency] is <b>not</b> 1.0 Hz.  The size of this array <b>must</b> be equal to the size of the <code>amps</code> array and an element of <code>freqs</code> <b>must</b> provide the frequency at which the corresponding element of the <code>amps</code> array was sampled.  The <code>freqs</code> array <b>may</b> represent an irregular sampling and <b>may</b> be unordered.  It <b>should</b> include samples at or near the zero and Nyquist frequencies.  In particular it need not be a regular frequency sampling of <code>1/period</code> nor extend beyond the Nyquist frequency.</dd>
+
+<dt><code>amps</code></dt><dd>an array of floating-point numbers providing an estimate of a mean spectral amplitude in units of [voltage] in the WCT system of units.  Note that here &ldquo;amps&rdquo; an abbreviation of &ldquo;amplitude&rdquo; and not &ldquo;amperage&rdquo;.  The value of an element of <code>amps</code> may be derived from some sub-sampling or interpolation of an original distribution of DFT coefficients.  That is, an element of <code>amps</code> is the an average \(\langle|X_k|\rangle,\ k\in [0,N^{(fft)}-1]\) with \(N^{(fft)} \ge\) <code>nsamples</code>, over some number of waveforms of size <code>nsamples</code>.  The inequality is typically due to zero-padding of the waveform prior to taking the DFT.  Note: in preparing <code>amps</code> the user is recommended to provide a number of waveforms approximately equal to <code>nsamples</code> in order to co-optimize spectral resolution and statistical stability.  User is also recommended to utilize <code>NoiseTools::Collector</code> for low-level noise modeling code or execute a job using <code>NoiseModeler</code> for a high-level development.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org412e01b" class="outline-3">
+<h3 id="org412e01b"><span class="section-number-3">2.2.</span> Optional attributes required by <code>EmpiricalNoiseModel</code></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The <code>EmpiricalNoiseModel</code> component requires these optional attributes:
+</p>
+
+<dl class="org-dl">
+<dt><code>const</code></dt><dd>a floating point number expressed in the same units as <code>amps</code> and which provides an estimate of the mean white noise, and thus constant, spectral amplitude \(\langle|X_w|\rangle\).</dd>
+
+<dt><code>gain</code></dt><dd>a floating-point number giving the electronics gain from which the voltage waveforms originated.  The value must be in WCT system of units for [voltage]/[charge] (eg <code>14.0*wc.mV/wc.fC</code> as expressed in WCT Jsonnet configuration).  Note, this is <b>not</b> a unit-less, relative gain.</dd>
+
+<dt><code>shaping</code></dt><dd>a floating-point number giving the electronics shaping time from which the waveforms originated.  The value must be expressed in WCT units for [time].</dd>
+
+<dt><code>plane</code></dt><dd>an integer number giving the plane index counting from zero and in the direction of nominal drift.  Ie, U=0, V=1, W=2.  This value must indicate the plane in which a channel resides in order for the spectra to be applicable.</dd>
+
+<dt><code>wirelen</code></dt><dd>a floating-point number giving a wire length expressed in the WCT system of units for [length].  This value should be representative of (eg, binned over) wires for which the associated spectrum applies.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org080568e" class="outline-3">
+<h3 id="org080568e"><span class="section-number-3">2.3.</span> Optional attributes required by <code>GroupNoiseModel</code></h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+The <code>GroupNoiseModel</code> provides a model interface for both coherent and incoherent noise where spectra are grouped in some manner.  It requires this optional attribute:
+</p>
+
+<dl class="org-dl">
+<dt><code>group</code></dt><dd>an integer identifying an abstract group to which channels may be associated.  The association to channels may be provided by a WCT <b>channel groups</b> array.  The use of <code>groupID</code> as this attribute name is deprecated.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org010d296" class="outline-2">
+<h2 id="org010d296"><span class="section-number-2">3.</span> WCT channel groups</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The <code>GroupNoiseModel</code> and potentially other components require information on how to collect channels into distinct groups.  The user provides this information in the form of WCT <b>channel-groups</b> data structures.  These are in the form of an array of WCT <b>channel-group</b> objects, each of which has these <b>required</b> attributes:
+</p>
+
+<dl class="org-dl">
+<dt><code>group</code></dt><dd>an integer identifying a group.  Over one <b>channel-groups</b> set, the <code>group</code> values <b>may</b> be discontinuous and may be unordered.  Each <code>group</code> value <b>must</b> be unique in the set.</dd>
+
+<dt><code>channels</code></dt><dd>an array of integer values providing the channel ID numbers to associate as a group.  The channel IDs are as used in the WCT <b>wire object</b> configuration provided and described elsewhere.</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgd06388e" class="outline-2">
+<h2 id="orgd06388e"><span class="section-number-2">4.</span> Providing the above data</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+WCT <b>noise spectra</b> and <b>channel group</b> datasets are sometimes highly structured, even algorithmically generated, and sometimes unstructured and voluminous such as when they are derived from some external analysis.
+</p>
+
+<p>
+To accomodate the user, developers of WCT C++ <code>IConfigurable</code> components should define a configuration parameter which may accept these datasets in two forms: (1) a string giving the name of some file holding the dataset or (2) an object or array that is directly provided as configuration data.  
+</p>
+
+<p>
+When the user provides a file, it may be either in JSON or Jsonnet form and either may be compressed.  A user wanting to provide datasets as Jsonnet is suggested to look at <code>test-noise-roundtrip.jsonnet</code> and the other <code>test-noise-*.jsonnet</code> which it imports for examples.
+</p>
+
+<p>
+Developers of WCT components can provide the user this flexibility with just a few additional lines in the <code>configure()</code> method of their C++ component.  For example, to retrieve a <b>channel group</b> dataset:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/Persist.h"</span>
+<span style="color: #8cc4ff;">void</span> <span style="color: #e9b2e3;">MyClass</span>::<span style="color: #fce94f;">configure</span>(<span style="color: #b4fa70;">const</span> <span style="color: #e9b2e3;">WireCell</span>::<span style="color: #8cc4ff;">Configuration</span>&amp; <span style="color: #fcaf3e;">cfg</span>)
+{
+    <span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">jgroups</span> = cfg[<span style="color: #e9b96e;">"groups"</span>];
+    <span style="color: #b4fa70;">if</span> (jgroups.isString()) {
+        jgroups = <span style="color: #e9b2e3;">Persist</span>::load(map_file);
+    }
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">... code using jgroups ...</span>
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgea62737" class="outline-2">
+<h2 id="orgea62737"><span class="section-number-2">5.</span> Round-trip Validation</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The WCT noise code supports both modeling and simulating noise.  Each is effectively the inverses of the other and so we may check that we get out what we put in.  The &ldquo;round-trip&rdquo; check consists of these steps:
+</p>
+
+<ul class="org-ul">
+<li>A set of fictional <b>noise spectra</b> and <b>channel groups</b> are defined.</li>
+<li>We interpret the spectra as both coherent and incoherent.</li>
+<li>Each interpretation has a <code>GroupedNoiseModel</code> and for each a noise frame is generated.</li>
+<li>Each of these are digitized to ADC and result saved to file.</li>
+<li>Each ADC-frame continues and an <code>Undigitizer</code> restores voltage level.</li>
+<li>Each V-frame is analyzed by a <code>NoiseModeler</code>
+<ul class="org-ul">
+<li>Traces are judged by a <code>NoiseRanker</code></li>
+<li>Survivors added to a <code>NoiseCollector</code></li>
+<li>Finally, the grouped spectra are saved to a WCT <b>noise spectra</b> file.</li>
+</ul></li>
+<li>Plots are made    .</li>
+</ul>
+</div>
+
+<div id="outline-container-orgc57afcf" class="outline-3">
+<h3 id="orgc57afcf"><span class="section-number-3">5.1.</span> Input spectra</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+The input spectra can be viewed with:
+</p>
+
+<pre class="example" id="orge753cb1">
+wirecell-sigproc plot-noise-spectra \
+  gen/test/test-noise-spectra.jsonnet orig.pdf
+</pre>
+<p>
+This will consume spectra which are generated by the Jsonnet file which produces a function with the following signature:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jsonnet"><span style="color: #e090d7;">function</span>(ngrps=<span style="color: #e9b2e3;">10</span>, nsamples=<span style="color: #e9b2e3;">4096</span>, nsave=<span style="color: #e9b2e3;">64</span>, period=<span style="color: #e9b2e3;">0.5</span>*wc.us,
+         fpeak=<span style="color: #e9b2e3;">0.1</span>, rms=<span style="color: #e9b2e3;">1</span>*wc.mV)
+</pre>
+</div>
+<p>
+It&rsquo;s arguments are as listed:
+</p>
+
+<dl class="org-dl">
+<dt><code>ngrps</code></dt><dd>number of spectral groups to generate.  The spectrum from a group will have a fraction <code>grpnum/ngrps</code> of the given <code>rms</code>.</dd>
+<dt><code>nsamples</code></dt><dd>number of waveform time samples (number of &ldquo;ticks&rdquo;) from which the spectrum is assumed to have originated.</dd>
+<dt><code>nsave</code></dt><dd>number of sub-smampled points to produce.  This may be chosen equal to <code>nsamples</code> however typical analyses result in far higher frequency resolution than statistical stability (ie, <code>nsamples</code> \(\gg\) <code>nwaves</code>) and thus chosing a small <code>nsave</code> emulates the common case of sub-sampling the result.</dd>
+<dt><code>period</code></dt><dd>the waveform sampling period (&ldquo;tick&rdquo;) from which the spectrum is assumed to have originated.  This must be expressed as a [time] value in the WCT system-of-units.</dd>
+<dt><code>peak</code></dt><dd>the location of the spectral peak expressed as a fraction of the Nyquist frequency (<code>0.5/period</code>).</dd>
+<dt><code>rms</code></dt><dd>the expected RMS from waveforms generated from the returned mean spectral amplitude.  This must be expressed as a [voltage] value in the WCT system-of-units.</dd>
+</dl>
+
+<p>
+See below for guidance on how to provide meaningful values for <code>peak</code> and <code>rms</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc385b2c" class="outline-3">
+<h3 id="orgc385b2c"><span class="section-number-3">5.2.</span> Model details</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+The user requires some understanding of the noise spectral model that is used in this test in order to provide proper values.  The spectral shape in the frequency domain is chosen to follow the Rayleigh distribution,
+\[R(x;\sigma) = \frac{x}{\sigma^2}e^{-x^2/(2\sigma^2)},\ x \ge 0\]
+We will include a constant scaling term so that the full spectral model function is:
+\[\langle|X_k|\rangle \triangleq S\cdot R_k,\]
+where we discretize \(R_k \triangleq R(f_k,\sigma_s)\) and define the parameter \(\sigma_s = \mathtt{peak} * F_{Nyquist}\).  The \(\sigma_s\) may be chosen to place the peak near that of some real world noise spectrum and the constant scaling term \(S\) may be chosen so that waveforms generated from this mean spectrum will have some (mean) RMS near that of some set of real world noise waveforms.
+</p>
+
+<p>
+The choice of the Rayleigh distribution for the spectral shape is motivated by the fact it roughly reproduces the shapes of real-world noise spectra.  It is otherwise an ad-hoc choice and not motivated by any physics.  In particular, the choice does not relate to the coincidental but important fact that each spectral bin \(k\) is also distributed by a Rayleigh distribution.  Its distribution is governed by Rayleigh parameter \(\sigma_k,\ k\in[0,N-1]\) where \(N\) is given by <code>nsamples</code>.  
+</p>
+
+<p>
+The fact that the spectral bin values are Rayleigh-distributed provides a very practical tool which allows relating the model parameters to the (mean) RMS in time.  This is possible because the first two &ldquo;raw&rdquo; moments of the Rayleigh distribution are related through the \(\sigma_k\) parameter as:
+</p>
+
+<p>
+\[\langle|X_k|\rangle = \sqrt{\frac{\pi}{2}}\sigma_k\]
+and 
+\[\langle|X_k|^2\rangle = 2\sigma_k^2.\]
+Solving gives:
+\[\langle|X_k|\rangle^2 = \frac{\pi}{4} \langle|X_k|^2\rangle,\ k\in[0,N-1].\]
+We may define RMS on a per-waveform basis in the time domain and relate that to a frequency-domain representation using Perseval/Rayleigh energy theorem:
+\[\sigma_{rms}^2 = \sum_k|x_k|^2/N = E/N = \sum_k|X_k|^2/N^2.\]
+And we may form an average \(\langle\cdot\rangle\) over many waveforms,
+\[\langle \sigma_{rms}^2 \rangle = \sum_k \langle |X_k|^2 \rangle / N^2 = \sum_k \frac{4}{\pi} \langle |X_k| \rangle^2/N^2\]
+Putting the above all together, we are left to choose \(\sigma_s\) and \(S\) so that the above sum gives desired \(\langle\sigma_{rms}^2\rangle\).  We expect to select \(\sigma_s\) so that the model peak will be approximately the same as the peak of some real-world noise spectrum.  Taking \(\sigma_s\) as given, we are left to solve for \(S\):
+\[S^2 = \frac{\pi N^2 \langle\sigma_{rms}^2\rangle}{4 \sum_k R_k^2} \]
+Thus the <code>rms</code> parameter is identified as providing the desired value of the \(\sqrt{\langle\sigma_{rms}^2\rangle}\). An example with \(N=6000,\ \sigma_{rms}=1\ \mathrm{mV},\ \mathtt{peak}=0.1,\ T=0.5\ \mu\mathrm{s}\) and saving only 100 subsampled points is shown:
+</p>
+
+
+<div id="org3b51fa9" class="figure">
+<p><img src="test-noise-spectra-in-0.png" alt="test-noise-spectra-in-0.png" />
+</p>
+</div>
+
+<p>
+See <code>test-noise-roundtrip.sh</code> for exact command.  The commands to reproduce such plots are described next.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org98c8100" class="outline-3">
+<h3 id="org98c8100"><span class="section-number-3">5.3.</span> Visualize the model</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+The above plot was made with a command like the following:
+</p>
+<pre class="example" id="orgbdecad2">
+wirecell-sigproc plot-noise-spectra \
+  -A ngrps=1 \
+  -A nsamples=6000 \
+  -A nsave=100 \
+  gen/test/test-noise-spectra.jsonnet \
+  specta.pdf
+</pre>
+<p>
+As illustrated, novel values for parameters of the model may be set from the command line.  
+This same Jsonnet file may be used from WCT job configuration.  This provides an easy way to define noise where the Rayliegh shape is sufficient to model a desired noise spectrum.
+</p>
+
+<p>
+For comparison, an example of a spectrum modeling real-world noise from the ProtoDUNE-SP (PDSP) detector is given:
+</p>
+
+<div id="orgbac27ab" class="figure">
+<p><img src="protodune-noise-spectra-v10000.png" alt="protodune-noise-spectra-v10000.png" />
+</p>
+</div>
+
+<p>
+The noise in PDSP is about 4 ADC RMS and its 12 bit ADC sees voltage in the range of 200 to 1600 mV and so expects about 1.3 mV RMS of noise measured in voltage input to the ADC.  As a reminder, the simple model above has <code>rms =</code> 1 mV and achieves a smilar peak of 200 mV in amplitude for similar <code>peak</code> and same <code>nsamples</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7f7ff48" class="outline-3">
+<h3 id="org7f7ff48"><span class="section-number-3">5.4.</span> Performing the round-trip</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+A main configuration file for <code>wire-cell</code> is provided that uses the same <code>test-noise-spectra.jsonnet</code> described above to provide the input to the round-trip.  The round-trip job can be exercised with default parameters like:
+</p>
+
+<pre class="example" id="org7a990b8">
+$ wire-cell -c  gen/test/test-noise-roundtrip.jsonnet
+$ ls -l test-noise-roundtrip-*{npz,json.bz2}
+</pre>
+<p>
+The job flow graph is:
+</p>
+
+<div id="orgc733d17" class="figure">
+<p><img src="test-noise-roundtrip-flow-graph.png" alt="test-noise-roundtrip-flow-graph.png" />
+</p>
+</div>
+
+<p>
+It produces output that represents a cross product of \((inco,cohe) \otimes (adc,dac)\) where
+</p>
+
+<dl class="org-dl">
+<dt>inco</dt><dd>incoherent grouped noise (3 groups)</dd>
+<dt>cohe</dt><dd>coherent grouped noise (10 groups)</dd>
+<dt>adc</dt><dd>the simulated ADC</dd>
+<dt>dac</dt><dd>the ADC rescaled back to voltage level</dd>
+</dl>
+<p>
+Each cross produces a <code>.npz</code> file and each noise type results in a
+<code>.json.bz2</code> file of output spectra.  These too can be visualized
+</p>
+
+<pre class="example" id="org1fbd6a7">
+wirecell-sigproc plot-noise-spectra \
+  test-noise-roundtrip-inco-spectra.json.bz2 \
+  inco-spectra.pdf
+
+wirecell-sigproc plot-noise-spectra \
+  test-noise-roundtrip-cohe-spectra.json.bz2 \
+  cohe-spectra.pdf
+</pre>
+<p>
+Or, run it all together as:
+</p>
+<pre class="example" id="org7a3c19c">
+aux/test/test-noise-roundtrip.sh 
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

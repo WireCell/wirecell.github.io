@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Writing WCT tests</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Writing WCT tests
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc232564">1. Scope of a test</a></li>
+<li><a href="#orgd5fcb68">2. Location of test source</a></li>
+<li><a href="#org2da6d61">3. Name the test</a></li>
+</ul>
+</div>
+</div>
+<p>
+This section provides general information on how to write WCT tests.
+See the list of
+<a href="file:///home/bv/wrk/wct/imaging/toolkit/test/README.html#languages">supported
+programming languages</a> for tests.  for starting points to details on
+writing tests in different support programming languages.
+</p>
+
+<div id="outline-container-orgc232564" class="outline-2">
+<h2 id="orgc232564"><span class="section-number-2">1.</span> Scope of a test</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+When considering to develop a test, consider what should be tested and then ask yourself:
+</p>
+
+<ul class="org-ul">
+<li>Can the initial scope be partitioned into smaller scopes, each with their own tests.</li>
+<li>What <b>code</b> must a test depend on?  Can it be reduced?</li>
+<li>What <b>data</b> must a test depend on?  Can it be reduced, removed or hard-coded?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd5fcb68" class="outline-2">
+<h2 id="orgd5fcb68"><span class="section-number-2">2.</span> Location of test source</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The source file for a test should be placed under one of the
+directories:
+</p>
+
+<pre class="example" id="org4acf187">
+&lt;pkg&gt;/test/
+</pre>
+
+<p>
+In deciding the <code>&lt;pkg&gt;</code> to house the test, particular care is needed to respect the WCT library dependency graph.  This graph should be produced by the build.  That graph at the time this document was rendered is shown below.
+</p>
+
+
+<div id="orgc6d4228" class="figure">
+<p><img src="https://github.com/WireCell/wire-cell-toolkit/raw/master/wct-deps.png" alt="wct-deps.png" />
+</p>
+</div>
+
+<p>
+It is allowed for the dependency tree for test programs to be different than the library dependency graph.  However, tests should avoid adding a dependency on an external package that is not shared by that package&rsquo;s library.  On the other hand, tests may add dependencies on other WCT sub packages that the sub package library does not require.
+</p>
+
+<p>
+For example, if a test of code in <code>WireCellGen</code> requires ROOT, that test should go into <code>WireCellRoot</code> (under <code>root/test/*</code> and not <code>gen/test/*</code>).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2da6d61" class="outline-2">
+<h2 id="org2da6d61"><span class="section-number-2">3.</span> Name the test</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+As described in <a href="framework.html">the testing framework topic</a> a test must have a source file name that matches the pattern:
+</p>
+
+<pre class="example" id="org1f1f80b">
+&lt;pkg&gt;/test/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;.&lt;ext&gt;
+</pre>
+
+<p>
+Most tests are &ldquo;atomic&rdquo; so may start with that string or simply <code>test</code>.
+The separators between <code>&lt;prefix&gt;</code> and <code>&lt;name&gt;</code> are optional.
+The test source file name:
+</p>
+
+<ul class="org-ul">
+<li>should be unique among all tests</li>
+<li>should briefly summarizes the scope of the test</li>
+<li>should be in lower case with optional underscore or dash separators</li>
+</ul>
+<p>
+Uniqueness is not an absolute requirement but these caveats apply:
+</p>
+<ul class="org-ul">
+<li>Multiple tests with same file name and extension are not allowed (only one will end up being run).</li>
+<li>Developers of tests with the same file names but differing extensions take responsibility that the different versions are compatible.</li>
+</ul>
+
+<p>
+If a test specifically addresses a GitHub issue one option is to name
+the file to include the issue number.  For example:
+</p>
+
+<pre class="example" id="org9b82d02">
+test_issue200.bats
+</pre>
+<p>
+Likewise, if a test addresses things in a PR, it should contain the PR
+number.  For example:
+</p>
+<pre class="example" id="orgf9aeef9">
+test-pr195.bats
+</pre>
+
+<p>
+If a test is a BATS or shell script and uses auxiliary files such as
+providing configuration, they should be included as a sibling to the
+test file.  Take caution not to name them starting with a <code>&lt;preifx&gt;</code>
+label unless they themselves are meant to be run directly.  
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

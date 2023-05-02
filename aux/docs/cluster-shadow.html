@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cluster Shadow</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Cluster Shadow
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org646fc84">1. Introduction</a></li>
+<li><a href="#orgb364083">2. Implementation</a>
+<ul>
+<li><a href="#org1d44289">2.1. Constructing</a></li>
+<li><a href="#org94dd740">2.2. Using</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org646fc84" class="outline-2">
+<h2 id="org646fc84"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In the context of the <code>ClusterShadow</code> API, the unqualifed term <i>cluster</i>
+is short for <i>geometric cluster</i> (GC).  A set of GCs is represented by a
+<i>blob connectivity graph</i> with vertices representing <i>blobs</i> and edges
+representing some type of <i>connection</i>.  A connection is usually based
+on spatial nearness between the blob pair as determined by some metric
+which is defined over the longitudinal and transverse drift
+dimensions.  The subgraph consisting of just b-b edges from an
+<code>ICluster</code> graph produced by the <code>BlobClustering</code> component in the <code>img</code>
+sub-package is one example of a GC.
+</p>
+
+<p>
+A <i>blob shadow</i> (BS) is an overlap between two blobs in a given
+tomographic view (wire plane).  The set of blob shadows for a set of
+blobs and over all views is represented as a <i>blob shadow graph</i>.  See the presentation 
+on Blob Shadows for more info on blob shadows.
+</p>
+
+<p>
+A <i>cluster shadow</i> (CS) then represents the combination of these two
+relationships.  A CS is formed from a b-b GC graph and a b-b BS graph
+and represented by a g-g graph (&ldquo;g&rdquo; for &ldquo;geometric&rdquo;).  A vertex in the
+CS graph represents one connected component of the b-nodes from the
+original GC graph.  The vertex object holds summary information about
+the cluster in the form of per-view &ldquo;coverage&rdquo; of the 2D time vs
+channel/wire index space.  The g-g edges of a CS graph represent that
+the two clusters have some non-zero shadow (via their blobs).  Each
+edge carries the <code>WirePlaneId</code> from which a view index may be derived.
+Note, a cluster may posses a <i>self-shadow</i> and this is represented by a
+loop/buckle edge connecting its vertex to itself.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb364083" class="outline-2">
+<h2 id="orgb364083"><span class="section-number-2">2.</span> Implementation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The main method of the <code>ClusterShadow</code> API produces a CS graph and a
+connected component property map.  The vertex descriptor of the CS
+graph is merely the component index.  Edges provide measures of the
+shadow.
+</p>
+</div>
+
+<div id="outline-container-org1d44289" class="outline-3">
+<h3 id="org1d44289"><span class="section-number-3">2.1.</span> Constructing</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellAux/ClusterShadow.h"</span>
+
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">WireCell</span>;
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">WireCell</span>::<span style="color: #e9b2e3;">Aux</span>;
+
+<span style="color: #8cc4ff;">cluster_graph_t</span>&amp; <span style="color: #fcaf3e;">cgraph</span> = ...;
+<span style="color: #e9b2e3;">BlobShadow</span>::<span style="color: #8cc4ff;">graph_t</span> <span style="color: #fcaf3e;">bsgraph</span> = <span style="color: #e9b2e3;">BlobShadow</span>::shadow(cgraph, <span style="color: #e9b96e;">'w'</span>); <span style="color: #73d216;">// </span><span style="color: #73d216;">or 'c'</span>
+
+<span style="color: #e9b2e3;">ClusterShadow</span>::<span style="color: #8cc4ff;">blob_cluster_map_t</span> <span style="color: #fcaf3e;">clusters</span>;
+<span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">cs_graph</span> = <span style="color: #e9b2e3;">ClusterShadow</span>::shadow(cgraph, bsgraph, clusters);
+</pre>
+</div>
+
+<p>
+If you don&rsquo;t care about the blob content of clusters you may call
+<code>ClusterShadow::shadow(csgraph,bsgraph)</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org94dd740" class="outline-3">
+<h3 id="org94dd740"><span class="section-number-3">2.2.</span> Using</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Each CS graph vertex has one <code>Rectangles</code> object for each view.  You may
+iterate on the edges of the CS graph, retrieve the vertex object for
+each edge endpoint and then perform pair-wise set-theoretic operations
+on the <code>Rectangles</code> object from each.
+</p>
+
+<p>
+Examples and/or pointers to tests t.b.d.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

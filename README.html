@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wire-Cell Toolkit</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Wire-Cell Toolkit</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org31bf587">1. Overview</a></li>
+<li><a href="#org87fb50e">2. Installation</a>
+<ul>
+<li><a href="#orgbea6138">2.1. External software dependencies</a></li>
+<li><a href="#org3422fbc">2.2. Developer Source</a></li>
+<li><a href="#org2956471">2.3. User Source</a></li>
+<li><a href="#orgdd01834">2.4. Configuring the source</a></li>
+<li><a href="#org7ad9da1">2.5. Building</a></li>
+<li><a href="#org3aca72b">2.6. Installing</a></li>
+<li><a href="#org4d68b38">2.7. Testing</a></li>
+</ul>
+</li>
+<li><a href="#orgfe318eb">3. Release management</a></li>
+<li><a href="#org97d6e49">4. Meta</a></li>
+</ul>
+</div>
+</div>
+<p>
+Welcome to the Wire-Cell Toolkit (WCT) source repository at <a href="https://github.com/wirecell/wire-cell-toolkit">https://github.com/wirecell/wire-cell-toolkit</a>.
+</p>
+
+<div id="outline-container-org31bf587" class="outline-2">
+<h2 id="org31bf587"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The WCT is a multi-faceted, high performance software project developed for liquid argon time projection chamber (LArTPC) simulation and data processing.  Some features of WCT include:
+</p>
+
+<ul class="org-ul">
+<li>Layered tool design culminating in a reference command-line interface program.</li>
+<li>A multi-threaded execution model constructed following the data flow programming paradigm.</li>
+<li>Plugin, factory and configuration subsystems.</li>
+<li>Components providing simulation, signal processing and physics reconstruction algorithms.</li>
+<li>Suite of abstract interface classes.</li>
+<li>Low level utility algorithms, data structures and streaming data I/O formats.</li>
+</ul>
+
+<p>
+Additional <code>README</code> information is available in the WCT sub packages:
+</p>
+
+<ul class="org-ul">
+<li><a href="apps/README.html">apps</a></li>
+<li><a href="aux/README.html">aux</a></li>
+<li><a href="cfg/README.html">cfg</a></li>
+<li><a href="cuda/README.html">cuda</a></li>
+<li><a href="docs/README.html">docs</a></li>
+<li><a href="gen/README.html">gen</a></li>
+<li><a href="iface/README.html">iface</a></li>
+<li><a href="img/README.html">img</a></li>
+<li><a href="pgraph/README.html">pgraph</a></li>
+<li><a href="pytorch/README.html">pytorch</a></li>
+<li><a href="root/README.html">root</a></li>
+<li><a href="sigproc/README.html">sigproc</a></li>
+<li><a href="sio/README.html">sio</a></li>
+<li><a href="tbb/README.html">tbb</a></li>
+<li><a href="test/README.html">test</a></li>
+<li><a href="util/README.html">util</a></li>
+<li><a href="waft/README.html">waft</a></li>
+<li><a href="zio/README.html">zio</a></li>
+</ul>
+
+<p>
+See <a href="http://wirecell.bnl.gov/">http://wirecell.bnl.gov/</a> for the home of Wire-Cell Toolkit documentation and news &ldquo;blog&rdquo;.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org87fb50e" class="outline-2">
+<h2 id="org87fb50e"><span class="section-number-2">2.</span> Installation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Wire-Cell Toolkit provides simple and automated installation while allowing you to adapt it so you may provide the required dependencies in a variety of ways.
+</p>
+</div>
+
+<div id="outline-container-orgbea6138" class="outline-3">
+<h3 id="orgbea6138"><span class="section-number-3">2.1.</span> External software dependencies</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The WCT dependencies are curated and minimized with some required and some optional.  Below shows the intra- and inter-package dependency tree:
+</p>
+
+
+<div id="org01e6f4e" class="figure">
+<p><img src="wct-deps.png" alt="wct-deps.png" />
+</p>
+</div>
+
+<p>
+Black arrows are library dependencies, blue are for applications and gray are for testing programs.    They represent compile/link time dependencies.
+</p>
+
+<p>
+The dependencies for the <code>WireCellUtil</code> package are required.  The rest are optional.  Missing optional dependencies, or ones specifically turned off, will cause the dependent WCT package to not be built.
+</p>
+
+<p>
+Some external dependencies have explicit minimum required versions:
+</p>
+
+<ul class="org-ul">
+<li>TBB (oneAPI) 2021.1.1</li>
+<li>Boost 1.75.0</li>
+</ul>
+
+<p>
+You may provide the necessary external software dependencies in a manner of your own choosing and some options include:
+</p>
+
+<ul class="org-ul">
+<li>Packages provided by your OS or built &ldquo;by hand&rdquo;.</li>
+<li><a href="https://github.com/WireCell/wire-cell-spack">Spack-based install</a> automatically builds all (non-OS) externals and WCT itself</li>
+<li>Some WCT releases are built at FNAL as a UPS product named <code>wirecell</code>.</li>
+<li>Exploit the above with a <a href="https://github.com/WireCell/wire-cell-singularity">Singularity container and CVMFS</a>.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3422fbc" class="outline-3">
+<h3 id="org3422fbc"><span class="section-number-3">2.2.</span> Developer Source</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Developers check out <code>master</code> branch via SSH.
+</p>
+
+<pre class="example" id="org8fafcf4">
+$ git clone git@github.com:WireCell/wire-cell-toolkit.git wct
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2956471" class="outline-3">
+<h3 id="org2956471"><span class="section-number-3">2.3.</span> User Source</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Users typically should build a release branch, either the tip or a tagged release on that branch.  Tagged releases are shown on the <a href="https://github.com/WireCell/wire-cell-toolkit/releases">this GitHub release page</a>.
+</p>
+
+<p>
+Users may also anonymously clone in the usual way:
+</p>
+
+<pre class="example" id="orgd40c535">
+$ git clone https://github.com/WireCell/wire-cell-toolkit.git wct
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgdd01834" class="outline-3">
+<h3 id="orgdd01834"><span class="section-number-3">2.4.</span> Configuring the source</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+On well-behaved systems, configuring the source may be as simple as:
+</p>
+
+<pre class="example" id="org888a077">
+$ ./wcb configure --prefix=/path/to/install
+</pre>
+
+<p>
+Software dependencies which can not automatically be located in system areas or via <code>pkg-config</code> can be manually specified.  For a list of options run:
+</p>
+
+<pre class="example" id="org715deaa">
+$ ./wcb --help
+</pre>
+
+<p>
+Here is an example where some packages are found automatically and some need help and others are explicitly turned off:
+</p>
+
+<pre class="example" id="org07e7145">
+$ ./wcb configure \
+        --prefix=$HOME/dev/wct/install \
+        --with-jsonnet=$HOME/opt/jsonnet \
+        --with-root=no
+...
+Removing submodule "dfp" due to lack of external
+Removing package "tbb" due to lack of external dependency
+Removing package "root" due to lack of external dependency
+Removing package "cuda" due to lack of external dependency
+Configured for submodules: apps, cfg, gen, iface, img, pgraph, ress, sigproc, sio, util
+'configure' finished successfully (5.683s)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7ad9da1" class="outline-3">
+<h3 id="org7ad9da1"><span class="section-number-3">2.5.</span> Building</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+The libraries and programs may be built with:
+</p>
+
+<pre class="example" id="org8cc749c">
+$ ./wcb
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3aca72b" class="outline-3">
+<h3 id="org3aca72b"><span class="section-number-3">2.6.</span> Installing</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+To install:
+</p>
+
+<pre class="example" id="org062a0e9">
+$ ./wcb install
+</pre>
+
+<p>
+Optionally, the <b>reference</b> configuration and data files for one or more supported experiments may be installed by giving naming them with the <code>--install-config</code> option.  A name matches a sub-directory under <a href="cfg/pgrapher/experiment/">cfg/pgrapher/experiment/</a> or the special <code>all</code> name will install all.
+</p>
+
+<pre class="example" id="org05225aa">
+$ ./wcb --install-config=&lt;name&gt; install
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4d68b38" class="outline-3">
+<h3 id="org4d68b38"><span class="section-number-3">2.7.</span> Testing</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+Running the tests can take a while but are off by default.  They may be run with:
+</p>
+<pre class="example" id="orga4fed48">
+$ ./wcb --tests
+</pre>
+
+<p>
+See <a href="tests/README.html">tests/README.html</a> for more details on testing.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfe318eb" class="outline-2">
+<h2 id="orgfe318eb"><span class="section-number-2">3.</span> Release management</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+WCT uses an <code>X.Y.Z</code> version string.  While <code>X=0</code>, a <code>0.Y.0</code> version indicates a new release that may extend or break API or ABI compared to <code>Y-1</code>.  A <code>Z&gt;0</code> indicates a bug fix to <code>Z-1</code> which should otherwise retain the API and ABI.  Bug fixes will be made on a branch rooted on <code>0.X.0</code> called <code>0.X.x</code>.
+</p>
+
+<p>
+To make releases, the above details are baked into two test scripts <a href="https://github.com/WireCell/waf-tools/blob/master/make-release.sh">make-release.sh</a> and <a href="https://github.com/WireCell/waf-tools/blob/master/test-release.sh">test-release.sh</a>.  See comments at the top of each for how to run them.  These scripts can be used by others but are meant for developers to make official releases.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org97d6e49" class="outline-2">
+<h2 id="org97d6e49"><span class="section-number-2">4.</span> Meta</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Prior to 0.25.0, <code>wcb</code> was a custom version of <a href="https://waf.io">Waf</a> and is now simply a copy of <code>waf</code>.  The customized tools are held in the <a href="waft/">waft/</a> directory.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

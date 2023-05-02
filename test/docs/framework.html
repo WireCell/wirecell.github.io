@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WCT Testing Framework</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">WCT Testing Framework
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org944ddcd">1. Overview</a></li>
+<li><a href="#exec-tests">2. Executing tests</a>
+<ul>
+<li><a href="#org43cb554">2.1. Automated campaign</a></li>
+<li><a href="#org017ce3d">2.2. Targeted execution</a></li>
+<li><a href="#org98a020e">2.3. Direct execution</a></li>
+</ul>
+</li>
+<li><a href="#requirements">3. Test requirements</a></li>
+<li><a href="#source">4. Test source</a></li>
+<li><a href="#groups">5. Test groups</a></li>
+</ul>
+</div>
+</div>
+<p>
+This describes the WCT test framework.
+</p>
+
+<div id="outline-container-org944ddcd" class="outline-2">
+<h2 id="org944ddcd"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+WCT provides a large and growing suite of self-tests.  When they pass, they assure a variety of correct or at least expected behavior.  Examples of the behavior tested:
+</p>
+
+<ul class="org-ul">
+<li>compilation against the WCT API.</li>
+
+<li>run-time against the WCT libraries.</li>
+
+<li>code functionality at different scales.</li>
+
+<li>validity of results from known input.</li>
+
+<li>stability of results across releases.</li>
+</ul>
+
+<p>
+Tests are developed in the WCT testing framework as described in this document.
+</p>
+</div>
+</div>
+
+<div id="outline-container-exec-tests" class="outline-2">
+<h2 id="exec-tests"><span class="section-number-2">2.</span> Executing tests</h2>
+<div class="outline-text-2" id="text-exec-tests">
+<p>
+A user may execute tests in three different ways.
+</p>
+</div>
+
+<div id="outline-container-org43cb554" class="outline-3">
+<h3 id="org43cb554"><span class="section-number-3">2.1.</span> Automated campaign</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+By default, <b>no tests are executed</b> by the WCT builder (<code>waf</code> or the provided <code>wcb</code>).  To execute tests the <code>--tests</code> option may be given at configure time:
+</p>
+<pre class="example" id="org2a90182">
+waf configure --tests [...]
+</pre>
+<p>
+By default, when tests are enabled, the entire test group sequence is executed in the order listed above.  This sequence can be shortened by naming a different terminating group:
+</p>
+<pre class="example" id="orgb9a28d5">
+waf configure --tests --test-group=atomic [...]
+</pre>
+<p>
+A user may change their mind about the testing.  They may either rerun the <code>configure</code> step or they may pass the options again at the <code>waf build</code> phase.  For example, <code>waf configure --tests</code> was ran but subsequently the user wants to disable tests or to set a terminating group:
+</p>
+<pre class="example" id="org54309ad">
+waf --test-group=atomic
+waf --notests
+</pre>
+<p>
+Likewise, if testing was not configured (the default), one can turn it back on during building
+</p>
+<pre class="example" id="orgfb2c2ef">
+waf --tests
+</pre>
+<p>
+The values remembered by <code>waf configure</code> may be viewed with:
+</p>
+<pre class="example" id="org7e9cfd0">
+waf dumpenv|grep 'waf: TEST'
+</pre>
+<p>
+Some tests take many minutes to complete.  Each time they are run, their run time is recorded.  Subsequent testing campaigns may exclude all test that are expected to require more time than a given test duration:
+</p>
+<pre class="example" id="org3c5029e">
+waf --test-duration=&lt;seconds&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org017ce3d" class="outline-3">
+<h3 id="org017ce3d"><span class="section-number-3">2.2.</span> Targeted execution</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Assuming the build was configured with <code>--test</code>, an individual test may be run explicitly via <code>waf</code> by giving its &ldquo;target name&rdquo;:
+</p>
+<pre class="example" id="org7b377c4">
+waf --target=test_testing
+</pre>
+<p>
+Test target names are derived from source file names with file name extension removed.  Interpreted tests will have the interpreter name appended.
+A listing of all targets including those for tests can be found with:
+</p>
+<pre class="example" id="org385e485">
+waf list
+</pre>
+<p>
+To force a particular test to be rerun after it has been run once:
+</p>
+<pre class="example" id="orgfeec4e3">
+waf --target=test_testing --alltests
+</pre>
+<p>
+If the build was not configured with the <code>--test</code> option, this option must be added to the above examples to enable them to actually operate on tests.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org98a020e" class="outline-3">
+<h3 id="org98a020e"><span class="section-number-3">2.3.</span> Direct execution</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+A test program may be executed directly from the shell command line.  Compiled tests are found under <code>build/&lt;pkg&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;</code>.  Interpreted test files are left in-place in the source trees and must be run with an appropriate interpreter.  Here are some examples of directly running tests:
+</p>
+
+<pre class="example" id="orgc8820d1">
+./build/util/test_testing
+wcsonnet cfg/test/test_wirecell.jsonnet
+bats test/test/test_bats.bats
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-requirements" class="outline-2">
+<h2 id="requirements"><span class="section-number-2">3.</span> Test requirements</h2>
+<div class="outline-text-2" id="text-requirements">
+<p>
+A test program:
+</p>
+<ul class="org-ul">
+<li>should include at least one check for proper behavior that may fail,</li>
+<li>must exit with a non-zero status code when failure is encountered.</li>
+<li>must exit with a zero status code when no failure is encountered.</li>
+<li>should be fast to compile/interpret and execute.</li>
+<li>should cover a minimum of code scope needed to perform its checks.</li>
+<li>must not depend on the execution of other tests (in its group).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-source" class="outline-2">
+<h2 id="source"><span class="section-number-2">4.</span> Test source</h2>
+<div class="outline-text-2" id="text-source">
+<p>
+The source file for a test program must found as:
+</p>
+
+<pre class="example" id="orgfa0f06e">
+&lt;pkg&gt;/test/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;.&lt;ext&gt;
+</pre>
+<p>
+With the following elements:
+</p>
+<ul class="org-ul">
+<li><code>&lt;pkg&gt;</code> names the sub package directory name, eg <code>util</code>.</li>
+<li><code>&lt;prefix&gt;</code> names a test <i>group</i> or an alias for a group.  See below.</li>
+<li><code>&lt;sep&gt;</code> is optional and may be an underscore (&ldquo;<code>_</code>&rdquo;) or hyphen (&ldquo;<code>~</code>&rdquo;).</li>
+<li><code>&lt;name&gt;</code> should briefly describe the scope of a test and should follow the uniqueness guidelines given below.</li>
+<li><code>&lt;ext&gt;</code> defines how the test should be dispatched (compiled or interpreted).</li>
+</ul>
+
+<p>
+Some examples:
+</p>
+<pre class="example" id="orgabf1454">
+util/test/test_testing.cxx
+gen/test/test-addnoise.bats
+util/test/check_act2viz.cxx
+</pre>
+</div>
+</div>
+
+<div id="outline-container-groups" class="outline-2">
+<h2 id="groups"><span class="section-number-2">5.</span> Test groups</h2>
+<div class="outline-text-2" id="text-groups">
+<p>
+All tests in a test <i>group</i> are executed independently and each group is executed in sequence.  A test in one group may depend on programs or their results from a prior group.
+</p>
+
+<p>
+The test groups names are listed.  Their <code>&lt;prefix&gt;</code> matches the group name or in some cases aliases are checked.
+</p>
+
+<dl class="org-dl">
+<dt>check</dt><dd>simply compile a program but do not run.  The <code>&lt;prefix&gt;</code> is <code>check</code>.</dd>
+<dt>atomic</dt><dd>is a basic test, depending on no other tests (but see <a href="datarepo.html">Data repository</a>).  Besides a <code>&lt;prefix&gt;</code> of <code>atomic</code> the prefix <code>test</code> may be (and usually is) given.</dd>
+<dt>history</dt><dd>intended to run after all atomic tests and potentially consume data from prior campaigns and/or produce data for future campaigns.  See <a href="datarepo.html">Data repository</a>.  The <code>&lt;prefix&gt;</code> is <code>history</code>.</dd>
+<dt>report</dt><dd>intended as a final stage to produce material for human inspection.  The <code>&lt;prefix&gt;</code> is <code>report</code>.</dd>
+</dl>
+
+<p>
+Finally, the <code>&lt;ext&gt;</code> determines if compilation or interpolation is required.  See <a href="cpp.html">C++ testing</a> for information about compiled tests.
+</p>
+
+<p>
+Most simply, the <code>&lt;name&gt;</code> should made be unique across the entire toolkit.  It is however acceptable to have more than one test with a given <code>&lt;name&gt;</code> as long as it differs in <code>&lt;prefix&gt;</code>, <code>&lt;sep&gt;</code> or <code>&lt;ext&gt;</code>.  Developers of such tests must assure the tests are mutually compatible.  No test may have <code>&lt;prefix&gt;</code>, <code>&lt;sep&gt;, &lt;name&gt;</code> and <code>&lt;ext&gt;</code> in common as only one will be run.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

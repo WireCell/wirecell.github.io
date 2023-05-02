@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tensor Data Model</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Tensor Data Model
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0e2c161">1. Introduction</a></li>
+<li><a href="#org97a3818">2. Generic tensor data model</a></li>
+<li><a href="#org6fe6a83">3. Specific tensor data model</a>
+<ul>
+<li><a href="#orga0f4334">3.1. Common metadata conventions</a></li>
+<li><a href="#org62eafa8">3.2. Overview of specific types</a></li>
+<li><a href="#orgbc9c054">3.3. pcarray</a></li>
+<li><a href="#org7a2ce6a">3.4. pcdataset</a></li>
+<li><a href="#orgf45a932">3.5. pcgraph</a></li>
+<li><a href="#org72de827">3.6. trace</a></li>
+<li><a href="#orgf63d15d">3.7. tracedata</a></li>
+<li><a href="#org5bf31c6">3.8. frame</a></li>
+<li><a href="#org4e6c4c3">3.9. cluster</a></li>
+</ul>
+</li>
+<li><a href="#org58e3df7">4. Similarity to HDF5</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0e2c161" class="outline-2">
+<h2 id="org0e2c161"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+On data model that the Wire-Cell Toolkit (WCT) supports is the <i>tensor
+data model</i>.  This model is factored into two layers:
+</p>
+
+<ul class="org-ul">
+<li>The <b>generic tensor data model</b> consists of a ordered collection (set)
+of <b>tensor objects</b>.  A tensor object consists of a multi-dimensional,
+<b>numeric array</b> and a structured <b>metadata object</b>.  The WCT data
+interface classes <code>ITensor</code> and <code>ITensorSet</code> express these aspects.</li>
+
+<li>The <b>specific tensor data model</b> defines conventions on the generic
+tensor data model in order to map certain other data types to the
+generic tensor data model.</li>
+</ul>
+
+<div class="note" id="orgdb3b7b5">
+<p>
+The next two sections define the generic and specific tensor data
+models and are written in rfc2119 language.  
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org97a3818" class="outline-2">
+<h2 id="org97a3818"><span class="section-number-2">2.</span> Generic tensor data model</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A <b>tensor</b> shall be composed of two conceptual parts: an <b>array</b> part and
+a <b>metadata</b> part.
+</p>
+
+<p>
+The <b>array</b> part consists of a sequence of elements that shall be stored
+contiguously and associated with a <b>shape</b>, layout <b>order</b> and array
+element <b>type</b> and <b>size</b>.
+</p>
+
+<p>
+The array <b>shape</b> shall be represented as a vector of integer type with
+each element corresponding to the number of elements spanned by the
+corresponding dimension.  The array layout <b>order</b> shall be represented
+as a vector which stores the majority of the dimensions or it shall be
+empty indicating &ldquo;C&rdquo; layout (conventional array layout for the C
+programming language).  A &ldquo;C&rdquo; layout should be used.  The array
+element <b>type</b> shall be represented as a string with values following
+Numpy <a href="https://numpy.org/doc/stable/reference/arrays.interface.html#arrays-interface">array interface</a> <code>typestr</code> specification.  This typically means a
+letter followed by a number giving the size in bytes of the type.  The
+array element <b>size</b> shall be represented as an integer providing the
+size of one element measured in bytes.
+</p>
+
+<p>
+A tensor <b>metadata</b> (MD) part shall follow the JSON data model and be of
+JSON type <i>object</i>.  The MD model reserves the following attributes
+names.
+</p>
+
+<dl class="org-dl">
+<dt>array</dt><dd>optional and when existing it is an object providing array
+specifications using keyword names given in bold above (<b>shape</b>, etc).</dd>
+</dl>
+<p>
+Additional MD attributes are required by the specific tensor data
+model.  User application may define attributes not otherwise reserved
+here.  The MD must be faithfully passed through any tensor converter
+round trip.
+</p>
+
+<p>
+A <b>tensor set</b> shall be composed of two conceptual parts: an ordered
+sequence of tensors and a metadata part.  A tensor set shall not
+contain other tensor sets.
+The ordering of a tensor set sequence shall be stable and may be
+empty.  A tensor may be contained in multiple tensor sets.
+The tensor set MD object shall follow the JSON data model and be of
+JSON type object but otherwise this tensor data model places no
+requirements on its contents.  The tensor set MD must be faithfully
+passed through any tensor set converter round trip.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6fe6a83" class="outline-2">
+<h2 id="org6fe6a83"><span class="section-number-2">3.</span> Specific tensor data model</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The specific tensor data model defines representations of a number of
+data types in terms of the generic tensor data model.
+</p>
+</div>
+
+<div id="outline-container-orga0f4334" class="outline-3">
+<h3 id="orga0f4334"><span class="section-number-3">3.1.</span> Common metadata conventions</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+A tensor MD shall have an attribute named <b>datapath</b> of type string that
+identifies the tensor in a logical hierarchical structure of multiple
+tensors.  The <b>datapath</b> value shall be unique among all tensors held in
+a tensor set.  The value shall be interpreted as a sequence of atomic
+identifiers separated by a <code>/</code> (slash) character.  An atomic
+identifier must be valid for use as a name of C++ or Python variables
+or functions.  A <b>datapath</b> value may be stored in a tensor MD attribute
+and refer to another tensor when both tensors are held in the same
+tensor set.
+</p>
+
+<p>
+A tensor MD shall have an attribute <b>datatype</b> which is identifies a
+data type in the specific tensor data model that it represents.  The
+<b>datatype</b> value shall be one from the set of specific types described
+below.  Additional requirements on MD attributes may be defined that
+are specific to a <b>datatype</b> as described in the corresponding section
+below.
+</p>
+
+<p>
+Complex data types may be represented as an <b>aggregation</b> of multiple
+tensors.  These shall be defined on a per data type basis below as a
+set of MD attributes providing <b>datapath</b> values.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org62eafa8" class="outline-3">
+<h3 id="org62eafa8"><span class="section-number-3">3.2.</span> Overview of specific types</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+The following specific types are mapped to the basic tensor data
+model.  Each item in the list gives the <b>datatype</b> MD attribute value
+and describes the WCT data type to which it associates.
+</p>
+
+<dl class="org-dl">
+<dt>pcarray</dt><dd>a <code>PointCloud::Array</code></dd>
+<dt>pcdataset</dt><dd>a <code>PointCloud::Dataset</code></dd>
+<dt>pcgraph</dt><dd>a <code>PointGraph</code></dd>
+
+<dt>trace</dt><dd>one <code>ITrace</code> as 1D array or multiple <code>ITrace</code> as 2D array.</dd>
+<dt>tracedata</dt><dd>tagged trace indices and summary data</dd>
+<dt>frame</dt><dd>an <code>IFrame</code> as aggregate of traces and/or traceblocks</dd>
+
+<dt>cluster</dt><dd>an <code>ICluster</code></dd>
+</dl>
+<p>
+The specific requirements for each data type are given in the
+following sections in terms of their tensor array and metadata and in
+some cases in terms of other types defined previously.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbc9c054" class="outline-3">
+<h3 id="orgbc9c054"><span class="section-number-3">3.3.</span> pcarray</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+The <b>datatype</b> of <b>pcarray</b> indicates a tensor representing one
+<code>PointCloud::Array</code>.
+The tensor array information shall map directly to that of <code>Array</code>.
+A <b>pcarray</b> places no additional requirements on its tensor MD.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7a2ce6a" class="outline-3">
+<h3 id="org7a2ce6a"><span class="section-number-3">3.4.</span> pcdataset</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+The <b>datatype</b> of <b>pcdataset</b> indicates a tensor representing on
+<code>PointCloud::Dataset</code>.
+The tensor array shall be empty.
+The tensor MD shall have the following attributes:
+</p>
+
+<dl class="org-dl">
+<dt>arrays</dt><dd>an object representing the named arrays.  Each attribute
+name provides the array name and each attribute value provides a
+<b>datapath</b> to a tensor of type <b>pcarray</b> holding the named array.</dd>
+</dl>
+<p>
+Additional user application <code>Dataset</code> metadata may reside in the tensor
+MD.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf45a932" class="outline-3">
+<h3 id="orgf45a932"><span class="section-number-3">3.5.</span> pcgraph</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+The <b>datatype</b> of <b>pcgraph</b> indicates a tensor representing a &ldquo;point cloud
+graph&rdquo;.  This extends a point cloud to include relationships between
+pairs of points.  The array part of a <b>pcgraph</b> tensor shall be empty.
+The MD part of a <b>pcgraph</b> tensor shall provide reference to two
+<b>pcdataset</b> instances with the following MD attributes:
+</p>
+
+<dl class="org-dl">
+<dt>nodes</dt><dd>a <b>datapath</b> refering to a <b>pcdataset</b> representing graph vertex features.</dd>
+
+<dt>edges</dt><dd>a <b>datapath</b> refering to a <b>pcdataset</b> representing graph edges and their features.</dd>
+</dl>
+
+<p>
+In addition, the <b>pcdataset</b> referred to by the <b>edges</b> attribute shall
+provide two arrays of integer type with names <b>tails</b> and <b>heads</b>.  Each
+shall provide indices into the <b>nodes</b> point cloud representing the tail
+and head endpoint of graph edges.  A node or edge dataset may be
+shared between different <b>pcgraph</b> instances.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org72de827" class="outline-3">
+<h3 id="org72de827"><span class="section-number-3">3.6.</span> trace</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+The <b>datatype</b> of <b>trace</b> indicates a tensor representing a single <code>ITrace</code>
+or a collection of <code>ITrace</code> which have been combined.
+</p>
+
+<p>
+The tensor array shall represent the samples over a contiguous period
+of time from traces.
+</p>
+
+<p>
+The tensor array shall have dimensionality of one when representing a
+single <code>ITrace</code>.  A collection of <code>ITrace</code> shall be represented with a
+two-dimensional array with each row representing one or more traces
+from a common channel.  In such a case, the full trace content
+associated with a given channel may be represented by one or more
+rows.
+</p>
+
+<p>
+The array element type shall be either <code>"i2"</code> (<code>int16_t</code>) or <code>"f4"</code> (<code>float</code>)
+depending on if ADC or signals are represented, respectively.
+</p>
+
+<p>
+The tensor MD may include the attribute <b>tbin</b> with integer value and
+providing the number of sample periods (ticks) between the frame
+reference time and the first sample (column) in the array.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf63d15d" class="outline-3">
+<h3 id="orgf63d15d"><span class="section-number-3">3.7.</span> tracedata</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+The <b>datatype</b> of <b>tracedata</b> provides per-trace information for a subset
+of.  It is similar to a <b>pcdataset</b> and in fact may carry that value as
+the <b>datatype</b> but it requires the following differences.
+</p>
+
+<p>
+It defines additional MD attributes:
+</p>
+
+<dl class="org-dl">
+<dt>tag</dt><dd>optional, a trace tag.  If omitted or empty string, dataset must span total trace ordering.</dd>
+</dl>
+
+<p>
+The following array names are recognized:
+</p>
+
+<dl class="org-dl">
+<dt>chid</dt><dd>channel ident numbers for the traces.</dd>
+
+<dt>index</dt><dd>provides indices into the total trace ordering.</dd>
+
+<dt>summary</dt><dd>trace summary values.</dd>
+</dl>
+
+<p>
+A chid value is require for every trace.  If the <b>tracedata</b> has no <b>tag</b>
+then a <b>chid</b> array spanning the total trace ordering must be provided
+and neither <b>index</b> nor <b>summary</b> is recognized.  If the <b>tracedata</b> has a
+<b>tag</b> it must provide an <b>index</b> array and may provide a <b>summary</b> array and
+may provide a <b>chid</b> array each corresponding to the traces identified
+by <b>index</b>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5bf31c6" class="outline-3">
+<h3 id="org5bf31c6"><span class="section-number-3">3.8.</span> frame</h3>
+<div class="outline-text-3" id="text-3-8">
+<div class="note" id="org7f9518f">
+<p>
+See the topic <a href="frame-tensor.html">frames as tensors</a> for details about representing frames with tensors.
+</p>
+
+</div>
+
+<p>
+The <b>datatype</b> of <b>frame</b> represents an <code>IFrame</code>.
+</p>
+
+<p>
+The tensor array shall be empty.
+</p>
+
+<p>
+The tensor MD aggregates tensors of datatype <b>trace</b> and <b>tracedata</b> and
+provides other values as listed;
+</p>
+
+<dl class="org-dl">
+<dt>ident</dt><dd>the frame ident number (required)</dd>
+
+<dt>tags</dt><dd>an array of string giving frame tags</dd>
+
+<dt>time</dt><dd>the reference time of the frame (required)</dd>
+
+<dt>tick</dt><dd>the sample period of the traces (required)</dd>
+
+<dt>masks</dt><dd>channel mask map (optional)</dd>
+
+<dt>traces</dt><dd>a sequence of datapath references to tensors of datatype <b>trace</b>.  The order of this sequence, along with the order of rows in any 2D <b>trace</b> tensors determines the <i>total order of traces</i>.</dd>
+
+<dt>tracedata</dt><dd>a sequence of datapath references to tensors of datatype <b>tracedata</b></dd>
+</dl>
+
+<p>
+In converting an <code>IFrame</code> to a <b>frame</b> tensor the sample values may be
+truncated to <b>type</b> <code>"i2"</code>.
+</p>
+
+<p>
+A frame tensor of type <code>"i2"</code> shall have its sample values inflated to
+type <code>float</code> when converted to an <code>IFrame</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4e6c4c3" class="outline-3">
+<h3 id="org4e6c4c3"><span class="section-number-3">3.9.</span> cluster</h3>
+<div class="outline-text-3" id="text-3-9">
+<p>
+A <code>cluster</code> is a <code>pcgraph</code> with convention for how to serialize each of
+the node types of an <code>ICluster</code> graph (<i>wire</i>, <i>channel</i>, <i>measure</i>, <i>blob</i> and
+<i>slice</i>) and edges between them.  It generally follows an array schema
+outlined in the document <a href=":ClusterArrays.html">on Cluster Arrays</a>.  Their representation
+is similar to <a href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.data.HeteroData.html#torch_geometric.data.HeteroData"><code>HeteroData</code></a> type from pytorch-geometric.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org58e3df7" class="outline-2">
+<h2 id="org58e3df7"><span class="section-number-2">4.</span> Similarity to HDF5</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The data model is intentionally similar to HDF5 abstract data model
+and there is a conceptual mapping between the two:
+</p>
+
+<ul class="org-ul">
+<li>HDF5 group hierarchy \(\leftrightarrow\) <code>ITensor</code> metadata attribute providing a hierarchy path as array of string.</li>
+<li>HDF5 group \(\leftrightarrow\) No direct equivalent but an <code>ITensor</code> with no array is effectively the same.</li>
+<li>HDF5 dataset \(\leftrightarrow\) <code>ITensor</code> array.</li>
+<li>HDF5 dataspace and datatype \(\leftrightarrow\) <code>ITensor</code> methods <code>shape()</code>, <code>dtype()</code>, etc.</li>
+<li>HDF5 group or dataset attribute \(\leftrightarrow\) <code>ITensor</code> metadata attribute</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

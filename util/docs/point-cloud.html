@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:13 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Point Cloud</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Point Cloud
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb38d83f">1. Definition of terms:</a></li>
+<li><a href="#org0cdc980">2. Comments</a></li>
+<li><a href="#orgf5fbde3">3. WCT Implementation</a></li>
+<li><a href="#org8624692">4. <code>PointCloud</code> API</a>
+<ul>
+<li><a href="#org7c8b331">4.1. <code>Array</code></a></li>
+<li><a href="#orgbab0b20">4.2. <code>Dataset</code></a></li>
+</ul>
+</li>
+<li><a href="#org208ede9">5. <code>TensorTools</code> API</a>
+<ul>
+<li><a href="#orgc29c4bb">5.1. <code>ITensor</code> representation</a></li>
+<li><a href="#org99892da">5.2. Conversion functions</a></li>
+</ul>
+</li>
+<li><a href="#orgd1c3f75">6. <code>KDTree</code> API</a></li>
+<li><a href="#org9fec8d6">7. Appending</a></li>
+<li><a href="#org2470d4c">8. nanoflann</a>
+<ul>
+<li><a href="#org790c684">8.1. Dataset</a></li>
+<li><a href="#orgc5f7413">8.2. Distance</a></li>
+<li><a href="#orgac0f804">8.3. Index</a></li>
+<li><a href="#org194a9f2">8.4. Query methods</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+See also <a href="talks/point-cloud-presentation.pdf">these presentation materials (pdf)</a>.
+</p>
+
+<div id="outline-container-orgb38d83f" class="outline-2">
+<h2 id="orgb38d83f"><span class="section-number-2">1.</span> Definition of terms:</h2>
+<div class="outline-text-2" id="text-1">
+<dl class="org-dl">
+<dt>point</dt><dd>an abstract entity to which we may associate information</dd>
+<dt>point data</dt><dd>a unit of information associated to a point</dd>
+<dt>coordinate</dt><dd>point data associated with a location along some dimension</dd>
+<dt>position</dt><dd>a set of \(n\) coordinates in an \(n\) dimensional space associated with a point</dd>
+<dt>point cloud</dt><dd>(PC) an abstract, ordered collection of <i>points</i></dd>
+<dt>point index</dt><dd>(or just <i>index</i>) a number identifying a point in a PC</dd>
+<dt>point array</dt><dd>the units of a common type of point data across the points in a PC ordered in step with the PC</dd>
+<dt>coordinate array</dt><dd>a point array eith each element interpreted a coordinate</dd>
+<dt>position array</dt><dd>an ordered set of \(n\) coordinate arrays</dd>
+<dt>dataset</dt><dd>a collection of identified point arrays of common <i>major axis</i> size.</dd>
+<dt>k-d tree</dt><dd>a data structure relating a number \(N\) of \(k\) dimensional positions of points in a PC to their <i>index</i>.</dd>
+<dt>distance metric</dt><dd>a function returning a scalar value given two positions and which represents some notion of distance.  A common metric is L2 which is the square of the Cartesian distance.</dd>
+<dt><i>kNN search</i></dt><dd>locating <i>k</i> (different \(k\) than in &ldquo;k-d tree&rdquo;) indices of points in a PC which have positions that are the nearest neighbors to a given position.</dd>
+<dt><i>radius search</i></dt><dd>locate all indices of points in a PC which have positions within a fixed distance metric from a given position.  Note the radius is measured against a distance metric (thus using L2 the radius has units <code>[(length)^2]</code>).</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org0cdc980" class="outline-2">
+<h2 id="org0cdc980"><span class="section-number-2">2.</span> Comments</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>A point is not a position.  Rather, one or more positions, possibly of different dimension, may be associated with a point.</li>
+<li>Point arrays in a dataset may have different shape as long as they all have identical sizes of <i>major axis</i>.  The major axis is the first index when written in the usual C++/Python manner.</li>
+<li>A dataset identifies its arrays by name.</li>
+<li>Each coordinate array is independent.  Thus, one may have a 3D position array composed of the coordinate arrays with names (&ldquo;x&rdquo;,&ldquo;y&rdquo;,&ldquo;z&rdquo;) and a 2D position array representing some projection into &ldquo;w&rdquo;, a linear combination of &ldquo;y&rdquo; and &ldquo;z&rdquo; with the set of coordinate arrays (&ldquo;x&rdquo;,&ldquo;w&rdquo;).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf5fbde3" class="outline-2">
+<h2 id="orgf5fbde3"><span class="section-number-2">3.</span> WCT Implementation</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The wire-cell toolkit provides support for <i>point clouds</i> via three inter-operating APIs.
+</p>
+
+<ul class="org-ul">
+<li><code>PointCloud</code> provides <code>Array</code> and <code>Dataset</code> classes for the abstractions described above.</li>
+<li><code>KDTree</code> provides <i>knn</i> and <i>radius search</i> operations that operate on <code>PointCloud</code> objects.</li>
+<li><code>TensorTools</code> provides conversion between <code>Array</code> and <code>ITensor</code> and between <code>Dataset</code> and <code>ITensorSet</code>.</li>
+</ul>
+
+<p>
+The remainder of this note provides some detail of these API. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8624692" class="outline-2">
+<h2 id="org8624692"><span class="section-number-2">4.</span> <code>PointCloud</code> API</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Quick taste of some code:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/PointCloud.h"</span>
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">WireCell</span>::<span style="color: #e9b2e3;">PointCloud</span>;
+
+<span style="color: #8cc4ff;">Dataset</span> <span style="color: #fcaf3e;">d</span>;
+<span style="color: #73d216;">// </span><span style="color: #73d216;">Add an integer array named "one" of shape (5,)</span>
+d.add(<span style="color: #e9b96e;">"one"</span>, Array({1,2,3,4,5}));
+<span style="color: #73d216;">// </span><span style="color: #73d216;">Add a double array named "two" of shape (5,)</span>
+d.add(<span style="color: #e9b96e;">"two"</span>, Array({1.1,2.2,3.3,4.4,5.5}));
+
+<span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">sel</span> = d.selection({<span style="color: #e9b96e;">"two"</span>,<span style="color: #e9b96e;">"one"</span>});
+<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">Array</span>&amp; <span style="color: #fcaf3e;">one</span> = sel[1];
+assert(sel[0].get().num_elements() == 5);
+</pre>
+</div>
+<p>
+See <code>util/test/test_pointcloud.cxx</code> for more examples.  The rest of this section describes <code>Array</code> and <code>Dataset</code>.
+</p>
+</div>
+
+<div id="outline-container-org7c8b331" class="outline-3">
+<h3 id="org7c8b331"><span class="section-number-3">4.1.</span> <code>Array</code></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+The <code>PointCloud::Array</code> is a simple container of array like data.  It&rsquo;s primary purpose:
+</p>
+
+<ul class="org-ul">
+<li>Be held by <code>Dataset.</code></li>
+
+<li>Erase the C++ numeric type and shape information of the underlying array to enable <code>Dataset</code> to be heterogeneous.</li>
+
+<li>Allow option to share user array data or to maintain an internal copy.</li>
+
+<li>Support appending along the major axis.</li>
+
+<li>Supply array views in useful types (flat vector as <code>boost::span&lt;T&gt;</code> or shaed <code>boost::multi_array&lt;T,NDIM&gt;</code>).</li>
+</ul>
+<p>
+Here are more creation examples:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #73d216;">// </span><span style="color: #73d216;">some user data</span>
+<span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">vector</span>&lt;<span style="color: #8cc4ff;">int</span>&gt; <span style="color: #fcaf3e;">user</span>(10, 0);
+
+<span style="color: #73d216;">// </span><span style="color: #73d216;">shape: (2 rows, 5 columns), user data is shared</span>
+<span style="color: #8cc4ff;">Array</span> <span style="color: #fcaf3e;">arr1</span>(user, {2,5}, <span style="color: #e9b2e3;">true</span>);
+
+<span style="color: #73d216;">// </span><span style="color: #73d216;">special, shape: (10,) not shared</span>
+<span style="color: #8cc4ff;">Array</span> <span style="color: #fce94f;">arr2</span>(user);
+
+<span style="color: #73d216;">// </span><span style="color: #73d216;">copy/move constructor/assignment all supported</span>
+arr1 = arr2;
+
+</pre>
+</div>
+<p>
+The underlying data can be retrieved in a number of constant, read-only forms that are more useful for custom code operations.  These forms include:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">
+<span style="color: #73d216;">// </span><span style="color: #73d216;">Return a boost::span (same as C++20 std::span and that is</span>
+<span style="color: #73d216;">// </span><span style="color: #73d216;">std::vector like), of the flattened array.</span>
+<span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">flat</span> = arr1.elements&lt;<span style="color: #8cc4ff;">int</span>&gt;();
+
+<span style="color: #73d216;">// </span><span style="color: #73d216;">as properly shapped boost::multi_array</span>
+<span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">ma</span> = arr1.indexed&lt;<span style="color: #8cc4ff;">int</span>, 2&gt;();
+
+<span style="color: #73d216;">// </span><span style="color: #73d216;">fixme: is an Eigen3 array interface useful?</span>
+
+</pre>
+</div>
+<p>
+These formats do not impose a copy and they will throw a <code>ValueError</code> if the requested type or shape is not compatible with the underlying array content.
+</p>
+
+<p>
+The contents of an <code>Array</code> may be fully replaced which drops and does not modify previous contents:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #73d216;">// </span><span style="color: #73d216;">Just as when we initially constructed arr1 above.</span>
+arr1.assign(user.data(), {2,5}, <span style="color: #e9b2e3;">true</span>);
+
+<span style="color: #73d216;">// </span><span style="color: #73d216;">array of shape (10,) not shared</span>
+arr1.assign(user);
+</pre>
+</div>
+<p>
+One of the few array-like operations supported is to <i>append</i> to an <code>Array</code>.  If the underlying data is shared, the <code>append()</code> methods will first copy that data to an internal buffer and drop the original shared array (copy-on-write semantics).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">
+<span style="color: #73d216;">// </span><span style="color: #73d216;">Reuse user data </span>
+<span style="color: #8cc4ff;">Array</span> <span style="color: #fcaf3e;">tail</span>(user, {2,5}, <span style="color: #e9b2e3;">true</span>);
+
+<span style="color: #73d216;">// </span><span style="color: #73d216;">append, causes internal copy so "user" not modified.</span>
+arr1.append(user);
+
+</pre>
+</div>
+<p>
+The array begin appended (<code>tail</code>) must be of the same numeric type as the current array and the sizes of all non-major axes of <code>tail</code> must match those same axes of the current array.   The following represents shapes which are legal to use in an append and their resulting shape:
+</p>
+
+<pre class="example" id="org6b01809">
+(N,n2,n3,...) + (M,n2,n3,...) = (N+M,n2,n3,...)
+</pre>
+
+<p>
+And <code>Array</code> also carries but does not in any way use a <i>metadata object</i> implemented as <code>WireCell::Configuration</code> (a JsonCPP object).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #8cc4ff;">Array</span> <span style="color: #fcaf3e;">a</span>;
+<span style="color: #b4fa70;">auto</span>&amp; <span style="color: #fcaf3e;">md</span> = a.metadata();
+md[<span style="color: #e9b96e;">"foo"</span>] = <span style="color: #e9b96e;">"bar"</span>;  
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbab0b20" class="outline-3">
+<h3 id="orgbab0b20"><span class="section-number-3">4.2.</span> <code>Dataset</code></h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+A <code>PointCloud::Dataset</code> provides a collection of <code>Array</code> with minimal operations.  It&rsquo;s primary purposes:
+</p>
+
+<ul class="org-ul">
+<li>Hold instances of <code>Array</code>, each identified by a &ldquo;name&rdquo; of type <code>std::string</code>.</li>
+<li>Assure all accepted <code>Array</code> have common sized major axes.</li>
+<li>Implement the appending of another <code>Dataset</code> while keeping assurances.</li>
+<li>Accept user-provided callback hooks to be called on successful append.</li>
+<li>Provide various means of access to the collection of the arrays.</li>
+</ul>
+<p>
+Here shows the successful adding of two arrays followed by a rejection of a misshapen third.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #8cc4ff;">Dataset</span> <span style="color: #fcaf3e;">d</span>;
+d.add(<span style="color: #e9b96e;">"one"</span>, Array({1,2,3,4,5}));
+d.add(<span style="color: #e9b96e;">"two"</span>, Array({1.1,2.2,3.3,4.4,5.5}));
+d.add(<span style="color: #e9b96e;">"broken"</span>, Array({1}));    <span style="color: #73d216;">// </span><span style="color: #73d216;">throws ValueError</span>
+</pre>
+</div>
+
+<p>
+One may <code>add()</code> higher dimension arrays as long as the number of their &ldquo;elements&rdquo; match.  In general, for a point data of shape <code>(v1, ...)</code> the point data array must be of shape <code>(nele, v1, ...)</code> to be added to a dataset with <code>num_elements()</code> returning <code>nele</code>.
+</p>
+
+<p>
+The names of the held arrays can be retrieved:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #b4fa70;">for</span> (<span style="color: #b4fa70;">const</span> <span style="color: #b4fa70;">auto</span>&amp; <span style="color: #fcaf3e;">name</span> : d.keys()) {
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+}
+</pre>
+</div>
+
+<p>
+One <code>Dataset</code> (&ldquo;tail&rdquo;) may be appended to another <code>Dataset</code> (&ldquo;head&rdquo;).  This operation merely appends each <code>Array</code> in &ldquo;tail&rdquo; to the array of the same name in &ldquo;head&rdquo;.  A <code>ValueError</code> is thrown if any names in &ldquo;head&rdquo; are not in &ldquo;tail&rdquo; or if any in the set of matching arrays from &ldquo;tail&rdquo; have differing number of elements.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #8cc4ff;">Dataset</span> <span style="color: #fcaf3e;">d2</span> = ...;
+d.append(d2);
+</pre>
+</div>
+<p>
+A <code>Dataset</code> may be copy/move assigned/constructed.  
+</p>
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #8cc4ff;">Dataset</span> <span style="color: #fcaf3e;">d2</span> = d;
+<span style="color: #8cc4ff;">Dataset</span> <span style="color: #fce94f;">d3</span>(d);
+</pre>
+</div>
+
+<p>
+Like <code>Array</code>, <code>Dataset</code> carries but does not use a metadata object.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #8cc4ff;">Dataset</span> <span style="color: #fcaf3e;">d</span>;
+<span style="color: #b4fa70;">auto</span>&amp; <span style="color: #fcaf3e;">md</span> = d.metadata();
+md[<span style="color: #e9b96e;">"foo"</span>] = <span style="color: #e9b96e;">"baz"</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org208ede9" class="outline-2">
+<h2 id="org208ede9"><span class="section-number-2">5.</span> <code>TensorTools</code> API</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The <code>TensorTools</code> API provides conversion functions between <code>Array</code> and <code>ITensor</code> and between <code>Dataset</code> and <code>ITensorSet</code>.  This allows point cloud information to be sent between nodes of the WCT data flow graph and to be sent through I/O with files.  The <code>ITensor</code> representation is first described and the conversion functions.
+</p>
+</div>
+
+<div id="outline-container-orgc29c4bb" class="outline-3">
+<h3 id="orgc29c4bb"><span class="section-number-3">5.1.</span> <code>ITensor</code> representation</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+A <code>Dataset</code> is mapped to an <code>ITensorSet</code> and each of its named <code>Array</code> items to an <code>ITensor</code> in the set.  The two representations are close, but not exact.
+</p>
+
+<ul class="org-ul">
+<li>On creation, the <code>ItensorSet</code> metadata will be given a special attribute <code>"_dataset_arrays"</code> holding an array of strings representing the names of the <code>Array</code> items and in the same order as the <code>ITensor</code> vector which the set holds.</li>
+<li>When read, if this special attribute is missing then a <code>"name"</code> attribute from the metadata of each <code>ITensor</code> is used to provide the <code>Array</code> name in the <code>Dataset</code>.  If this attribute is missing a name is generated as <code>"array%d"</code> which will be interpolated with the index of the corresponding <code>ITensor</code>.</li>
+<li>The <code>ident</code> value of the <code>ITensorSet</code> may be provided by an <code>"ident"</code> attribute of the <code>Dataset</code> metadata, else zero is stored.  In the reverse direction, the <code>Dataset</code> will be given an <code>"ident"</code> metadata attribute holding the value from the <code>ITensorSet</code>.</li>
+<li>Otherwise, all <code>Array</code> and <code>Dataet</code> metadata objects are pass unchanged to/from those of <code>ITensor</code> and <code>ITensorSet</code>.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org99892da" class="outline-3">
+<h3 id="org99892da"><span class="section-number-3">5.2.</span> Conversion functions</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Each of the four possible conversions has a corresponding function.  Their interface is very simple and the <code>WireCellAux/TensorTools.h</code> header file gives the essentials:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">
+</pre>
+</div>
+
+<p>
+Note that <code>share</code> may be passed as <code>true</code> to enable the optimization of zero-copy with optional copy-on-write.  It is <code>false</code> by default as the user must assure that the <code>ITensorSet</code> or <code>ITensor</code> remains alive.
+</p>
+
+<p>
+The <code>aux/test/test_tensor_tools.cxx</code> unit test contains more examples.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd1c3f75" class="outline-2">
+<h2 id="orgd1c3f75"><span class="section-number-2">6.</span> <code>KDTree</code> API</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+The <code>KDTree</code> API provides a binding between a <code>Dataset</code> and the <code>nanoflan</code> library whic provides k-d tree data structure and <i>knn</i> and <i>radius search</i> operations.  The goals of <code>KDTree</code> is to simplify, regularize and hide the <code>nanoflan</code> API.  See the appendix below for notes that attempt to document <code>nanoflann</code>.
+</p>
+
+<p>
+Here is a simple example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/KDTree.h"</span>
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">WireCell</span>::<span style="color: #e9b2e3;">KDTree</span>;
+<span style="color: #b4fa70;">using</span> <span style="color: #b4fa70;">namespace</span> <span style="color: #e9b2e3;">WireCell</span>::<span style="color: #e9b2e3;">PointCloud</span>;
+
+<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">func</span>() {
+    <span style="color: #8cc4ff;">Dataset</span> <span style="color: #fcaf3e;">d</span> = ...;            <span style="color: #73d216;">// </span><span style="color: #73d216;">some Dataset</span>
+
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">Unique pointer to a KDTree::Query</span>
+    <span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">qptr</span> = query_double(d, {<span style="color: #e9b96e;">"x"</span>,<span style="color: #e9b96e;">"y"</span>,<span style="color: #e9b96e;">"z"</span>});
+
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">Some point in (x,y,z) space</span>
+    <span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">vector</span>&lt;<span style="color: #8cc4ff;">double</span>&gt; <span style="color: #fcaf3e;">query_pos</span> = {1,2,3};
+
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">do a knn search</span>
+    <span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">k</span> = 3;
+    <span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">knn</span> = qptr-&gt;knn(k, query_pos);
+    <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">nfound</span> = knn.index.size();
+    <span style="color: #b4fa70;">for</span> (<span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">ifound</span>=0; ifound&lt;nfound; ++ifound) {
+        cerr &lt;&lt; ifound &lt;&lt; <span style="color: #e9b96e;">":"</span>
+             &lt;&lt; <span style="color: #e9b96e;">" index="</span> &lt;&lt; knn.index[ifound]
+             &lt;&lt; <span style="color: #e9b96e;">" distance="</span> &lt;&lt; knn.distance[ifound]
+             &lt;&lt; <span style="color: #e9b96e;">"\n"</span>;
+    }        
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">do a radius search</span>
+    <span style="color: #8cc4ff;">double</span> <span style="color: #fcaf3e;">rad</span> = 5*<span style="color: #e9b2e3;">units</span>::cm;
+    <span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">radn</span> = qptr-&gt;radius(rad*rad, query_pos);
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">... etc similar type of iteration as above</span>
+}
+</pre>
+</div>
+
+<p>
+Notes,
+</p>
+
+<ul class="org-ul">
+<li>A family of functions, <code>KDTree::query_TYPE()</code> are provided with <code>TYPE</code> being <code>int</code>, <code>float</code> or <code>double</code>.</li>
+<li>These labels must match the types of the point coordinate arrays.  The coordinate arrays are named with a vector <code>{"x","y","z"}</code>.</li>
+<li>The <code>qptr</code> is a <code>unique_ptr</code> and so will take care of destruction of its <code>KDTree::Query</code> when it falls out of scope.</li>
+<li>The <code>radius()</code> search function expects a radius in the same units as the distance metric, which default to L2 and so a value with units that of squared length is passed.</li>
+</ul>
+
+<p>
+Two optional argument may be provided to the <code>query_TYPE()</code> functions:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">qptr</span> = query_double(d, names, dynamic, metric);  
+</pre>
+</div>
+<p>
+The <code>dynamic</code> argument is a <code>bool</code> defaulting to <code>false</code>.  If <code>true</code> the <code>KDTree::Query</code> will register a callback with the passed <code>Dataset</code> so that if the user performs a successful <code>Dataset::append()</code> the underlying k-d tree will be updated.
+</p>
+
+<p>
+The <code>metric</code> is an enum in the <code>KDTree::Metric::</code> namespace and may be any in: <code>{ l2simple, l1, l2, so2, so3 }</code> which directly map to the metrics implemented by <code>nanoflann</code>.  The default is <code>l2simple</code> which is an L2 (squared Cartesian distance) appropriate for low dimension space.
+</p>
+
+<p>
+The example above prints the indices of the points in the point cloud for which the associated positions matched the search criteria.  It also prints the metric distance from the point positions to the query point position.  The user likely wishes to access other point data arrays held in the <code>Dataset</code> which are associated with the found points.
+</p>
+
+<p>
+Assuming <code>knn</code> and the context from the above example, here are some ways to do just that.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #73d216;">// </span><span style="color: #73d216;">Get a 1D float array by name as a std::vector-like "span"</span>
+<span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">my_1d</span> = d.get(<span style="color: #e9b96e;">"my_1d"</span>).elements&lt;<span style="color: #8cc4ff;">float</span>&gt;();
+
+<span style="color: #73d216;">// </span><span style="color: #73d216;">Get a 2D int array as a boost::multi_array</span>
+<span style="color: #b4fa70;">auto</span> <span style="color: #fcaf3e;">my_2d</span> = d.get(<span style="color: #e9b96e;">"my_2d"</span>).indexed&lt;<span style="color: #8cc4ff;">int</span>, 2&gt;();
+
+<span style="color: #b4fa70;">for</span> (<span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">ifound</span>=0; ifound&lt;nfound; ++ifound) {
+    <span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">index</span> = knn.index[ifound];
+    cerr &lt;&lt; <span style="color: #e9b96e;">"1d value: "</span> &lt;&lt; my_1d[index]
+         &lt;&lt; <span style="color: #e9b96e;">" 2d values: "</span> &lt;&lt; my_2d[index][0] &lt;&lt; <span style="color: #e9b96e;">","</span> &lt;&lt; my_2d[index][1]
+         &lt;&lt; <span style="color: #e9b96e;">"\n"</span>;
+}  
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org9fec8d6" class="outline-2">
+<h2 id="org9fec8d6"><span class="section-number-2">7.</span> Appending</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+As described above, two common additive operations are supported in
+<code>Dataset</code>:
+</p>
+
+<ul class="org-ul">
+<li><code>add()</code> adds a new point array data to existing points</li>
+<li><code>append()</code> add new points to existing point arrays</li>
+</ul>
+
+<p>
+These are mutually orthogonal in that they each extend one of the two
+conceptual axes of a <code>Dataset</code>: &ldquo;columns&rdquo; that span the arrays and
+&ldquo;rows&rdquo; that span the points.  Each method enforces a completeness
+constraint.
+</p>
+
+<p>
+In adding a new array, data for all existing points must be provided.
+The major axis size of the new array must match that of existing
+arrays.  In appending data for new points, the user must provide a
+&ldquo;tail&rdquo; <code>Dataset</code> which contains arrays matching all existing arrays, and
+these &ldquo;tail&rdquo; arrays must all be the same size.
+</p>
+
+<p>
+This assures the updated <code>Dataset</code> shape is held consistent.  However,
+it does not address how to assure all new values are meaningful.  This
+poses a problem in providing a measn to &ldquo;back fill&rdquo; array elements
+with meaningful values.
+</p>
+
+<p>
+In particular, <code>append()</code> requires new values for all arrays.  However,
+well-factored code may be concerned with appending to only a subset of
+the arrays in a <code>Dataset</code> and lack the global understanding of how to
+provide meaningful values for an arbitrarily large remainder.
+</p>
+
+<p>
+In order to allow for a well factored system of independent code units
+to append to a <code>Dataset</code>, the &ldquo;append callback&rdquo; feature may be used.
+The developer may register any number of functions to be called on the
+<code>Dataset</code> and with knowledge of which indices have just been appended.
+The user can then be assured that proper &ldquo;back filing&rdquo; has occurred.
+This callback feature also allows unrelated data structures to reflect
+the append.  Indeed, <code>KDTree</code> utilizes it. 
+</p>
+
+<p>
+In the case of an <code>add()</code>, the caller must of course calcualte
+meaningful values of the new array.  This calculation can be developed
+into a form that may also be registered to be called from the update
+hook.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org2470d4c" class="outline-2">
+<h2 id="org2470d4c"><span class="section-number-2">8.</span> nanoflann</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+This section provides developer documentation for <code>nanoflann</code> as what that package provides is rather slim.  What info that is available is at the <a href="https://github.com/jlblancoc/nanoflann">repo readme</a> and in the <a href="https://jlblancoc.github.io/nanoflann/">doxygen docs</a>.  The additional information given here is not required to use WCT PCs.
+</p>
+</div>
+
+<div id="outline-container-org790c684" class="outline-3">
+<h3 id="org790c684"><span class="section-number-3">8.1.</span> Dataset</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+A <code>nanoflann</code> <i>dataset adaptor</i> must be provided for each unique type of PC data.  One that makes use of Eigen3 arrays is provided by <code>nanoflann</code>.  WCT provides one for <code>boost::multi_array</code> that comes from an <code>ITensor</code> as described above.  A dataset adaptor must provide two methods and may provide a third, optional method.  As copied from comments in the source and embelished these are:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #b4fa70;">template</span>&lt;...&gt;
+<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">MyDatasetAdaptor</span> {
+<span style="color: #b4fa70;">public</span>:
+    <span style="color: #b4fa70;">using</span> <span style="color: #8cc4ff;">point_type</span> = ...;
+
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">Must return the number of data poins</span>
+    <span style="color: #b4fa70;">inline</span> <span style="color: #8cc4ff;">size_t</span> <span style="color: #fce94f;">kdtree_get_point_count</span>() <span style="color: #b4fa70;">const</span>
+    {
+        <span style="color: #73d216;">// </span><span style="color: #73d216;">return npoints</span>
+    }
+
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">Must return the dim'th component of the idx'th point in the</span>
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">class:</span>
+    <span style="color: #b4fa70;">inline</span> <span style="color: #8cc4ff;">point_type</span> <span style="color: #fce94f;">kdtree_get_pt</span>(<span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">idx</span>, <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">size_t</span> <span style="color: #fcaf3e;">dim</span>) <span style="color: #b4fa70;">const</span>
+    {
+        <span style="color: #73d216;">// </span><span style="color: #73d216;">return a point</span>
+    }
+
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">Optional bounding-box computation: return false to default to a</span>
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">standard bbox computation loop.  Return true if the BBOX was</span>
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">already computed by the class and returned in "bb" so it can be</span>
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">avoided to redo it again.  Look at bb.size() to find out the</span>
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">expected dimensionality (e.g. 2 or 3</span>
+    <span style="color: #b4fa70;">template</span> &lt;<span style="color: #b4fa70;">class</span> <span style="color: #8cc4ff;">BBOX</span>&gt;
+    <span style="color: #8cc4ff;">bool</span> <span style="color: #fce94f;">kdtree_get_bbox</span>(<span style="color: #8cc4ff;">BBOX</span>&amp; <span style="color: #fcaf3e;">bb</span>) <span style="color: #b4fa70;">const</span>
+    {
+        bb[0].low = ...; bb[0].high = ...;  <span style="color: #73d216;">// </span><span style="color: #73d216;">0th dimension limits</span>
+        bb[1].low = ...; bb[1].high = ...;  <span style="color: #73d216;">// </span><span style="color: #73d216;">1st dimension limits</span>
+        <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+        <span style="color: #b4fa70;">return</span> <span style="color: #e9b2e3;">true</span>;
+    }
+};
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgc5f7413" class="outline-3">
+<h3 id="orgc5f7413"><span class="section-number-3">8.2.</span> Distance</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+A distance metric must be provided to measure separation of points in the space.  L1, L2 and some other metrics are provided.  Note, the units of &ldquo;distance&rdquo; depend on the metric.  For example, when the L2 metric is used the distance is in units of length-squared.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgac0f804" class="outline-3">
+<h3 id="orgac0f804"><span class="section-number-3">8.3.</span> Index</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+A <code>nanoflann</code> <i>index adaptor</i> provides the k-d tree query interface.  <code>KDTreeSingleIndexAdaptor</code> provides one implementation.  It is templated in terms of a <i>distance</i> type, a <i>dataset adaptor</i>, the dimensionality and the index type.  It operates assuming the adapted dataset remains unchanged.
+</p>
+
+<p>
+The <code>KDTreeSingleIndexDynamicAdaptor</code> is another which allows for points to be added or removed from the k-d tree.  Points may be removed from the k-d tree without removing them from the dataset.  When adding points, they are first added to the dataset and the adaptor is notified about the range of indices which are added.
+</p>
+
+<p>
+The <code>nanoflann</code> library also defines an <code>KDTreeEigenMatrixAdaptor</code>.  This class shears across both dataset adaptor and index adaptor design layers.  It provides a dataset adaptor for <code>Eigen::Matrix</code> and then internally creates an maintains a <code>KDTreeSingleIndexAdaptor</code> using itself as the dataset adaptor.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org194a9f2" class="outline-3">
+<h3 id="org194a9f2"><span class="section-number-3">8.4.</span> Query methods</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+There are two primary query methods provided by <code>KDTree*Index*Adaptor</code> classes (and via the exposed <code>KDTreeEigenMatrixAdaptor::index</code> pointer to a <code>KDTreeSingleIndexAdaptor</code>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #8cc4ff;">Size</span> <span style="color: #fce94f;">knnSearch</span>(
+    <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">ElementType</span>* <span style="color: #fcaf3e;">query_point</span>, <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">Size</span> <span style="color: #fcaf3e;">num_closest</span>,
+    <span style="color: #8cc4ff;">AccessorType</span>* <span style="color: #fcaf3e;">out_indices</span>, <span style="color: #8cc4ff;">DistanceType</span>* <span style="color: #fcaf3e;">out_distances_sq</span>) <span style="color: #b4fa70;">const</span>;
+
+<span style="color: #8cc4ff;">Size</span> <span style="color: #fce94f;">radiusSearch</span>(
+    <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">ElementType</span>* <span style="color: #fcaf3e;">query_point</span>, <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">DistanceType</span>&amp; <span style="color: #fcaf3e;">radius</span>,
+    <span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">vector</span>&lt;<span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">pair</span>&lt;<span style="color: #8cc4ff;">AccessorType</span>, <span style="color: #8cc4ff;">DistanceType</span>&gt;&gt;&amp; <span style="color: #fcaf3e;">IndicesDists</span>,
+    <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">SearchParams</span>&amp;                                 <span style="color: #fcaf3e;">searchParams</span>) <span style="color: #b4fa70;">const</span>;
+</pre>
+</div>
+
+<p>
+The <code>knnSearch()</code> finds the k-nearest neighbors (<code>num_closest</code>) of the query point and <code>radiusSearch()</code> finds neighbors withing the given distance.  
+</p>
+
+<p>
+The <code>ElementType* query_point</code> provides a point in the space as a C array.  The type <code>ElementType</code> is the type of the point coordinates.  The <code>DistanceType</code> is the type in which distances between points is expressed.  These are set through the distance metric type and by default they are the same type.
+</p>
+
+<p>
+The <code>AccessorType</code> is that of the index of a point in the point cloud.
+The <code>SearchParams</code> are a small bundle, presumably to tune the k-d tree.
+</p>
+
+<p>
+Both of these rely on <code>findNeighbors()</code> method.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #b4fa70;">template</span> &lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">RESULTSET</span>&gt;
+<span style="color: #8cc4ff;">bool</span> <span style="color: #fce94f;">findNeighbors</span>(
+    <span style="color: #8cc4ff;">RESULTSET</span>&amp; <span style="color: #fcaf3e;">result</span>, <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">ElementType</span>* <span style="color: #fcaf3e;">query_point</span>,
+    <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">SearchParams</span>&amp; <span style="color: #fcaf3e;">searchParams</span>) <span style="color: #b4fa70;">const</span>;
+
+
+</pre>
+</div>
+
+<p>
+The <code>RESULTSET</code> passed to <code>findNeighbors()</code> may be a <code>KNNResultSet&lt;DistanceType&gt;</code> for <code>knnSearch()</code> or a <code>RadiusResultSet&lt;DistanceType&gt;</code> for <code>radiusSearch()</code>.  The only reason to call this directly instead of through the high level methods is if the result set provides additional required information that they do not.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

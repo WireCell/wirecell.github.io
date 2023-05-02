@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-02 Tue 14:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WCT Testing with C++</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Brett Viren" />
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
+<style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
+<style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">WCT Testing with C++
+<br />
+<span class="subtitle"><a href="../../README.html">(top)</a> <a href="../README.html">(pkg)</a></span>
+</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org78f63ed">1. Write a doctest test</a></li>
+<li><a href="#org8551d5f">2. Logging with doctest</a></li>
+<li><a href="#orgebf9267">3. Atomic C++ tests</a></li>
+<li><a href="#org5bd2212">4. A simple atomic C++ test</a></li>
+<li><a href="#org7cf2d4c">5. Logging with atomic tests</a></li>
+<li><a href="#orge5f6175">6. Mixing atomic and doctest</a></li>
+<li><a href="#org3aa0be5">7. Using atomic as a variant test</a></li>
+<li><a href="#org62c3893">8. Growing a test</a></li>
+<li><a href="#org09f674d">9. Failing tests</a></li>
+<li><a href="#org335f877">10. WCT C++ testing support</a></li>
+<li><a href="#org8e0e5b4">11. Output diagnostic files</a></li>
+<li><a href="#org83cb0f2">12. Found input files</a></li>
+</ul>
+</div>
+</div>
+<p>
+Wire-Cell testing allows writing tests in C++ tests at different levels of granularity.  C++ test source files match the usual WCT testing pattern:
+</p>
+
+<pre class="example" id="org97d223b">
+&lt;pkg&gt;/&lt;prefix&gt;[&lt;sep&gt;]&lt;name&gt;.cxx
+</pre>
+<p>
+The <code>&lt;prefix&gt;</code> may match any of the groups named in the <a href="framework.html#groups">framework document</a>.  The developer is free to write tests of these types following the guidelines give by the WCT testing.
+</p>
+
+<p>
+In addition, C++ tests may be written in the form of <a href="https://github.com/doctest/doctest">doctest</a> unit test framework.  These tests are meant to test the smallest code &ldquo;units&rdquo;.  All <code>&lt;pkg&gt;/test/doctest*.cxx</code> source files will be compiled to a single, per-package <code>build/&lt;pkg&gt;/wcdoctest-&lt;pkg&gt;</code> executable.   Tests implemented with doctest should be very fast running and should make copious use of <a href="https://github.com/doctest/doctest/blob/master/doc/markdown/tutorial.md">doctest</a> CPP macros and run atomically (no dependencies on other tests).   
+</p>
+
+<p>
+If you have not yet done so, read the <a href="framework.html">testing
+framework</a> document for an overview and the 
+<a href="writing.html">writing tests</a> document for general introduction to
+writing tests.  The remaining sections describe how to write WCT tests
+in C++.
+</p>
+
+<div id="outline-container-org78f63ed" class="outline-2">
+<h2 id="org78f63ed"><span class="section-number-2">1.</span> Write a doctest test</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Edit a file named to match the <code>&lt;pkg&gt;/test/doctest*.cxx</code> pattern:
+</p>
+
+<pre class="example" id="orgc86163b">
+emacs util/test/doctest-my-first-test.cxx
+</pre>
+
+<p>
+Include the single <code>doctest.h</code> header, and any others your test code may require and provide at least one <code>TEST_CASE("...")</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/doctest.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/Logging.h"</span>
+TEST_CASE(<span style="color: #e9b96e;">"my first test"</span>) {
+    <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">ok</span>=<span style="color: #e9b2e3;">true</span>;
+    CHECK(1 + 1 == 2);          <span style="color: #73d216;">// </span><span style="color: #73d216;">does not halt testing</span>
+    REQUIRE(ok == <span style="color: #e9b2e3;">true</span>);        <span style="color: #73d216;">// </span><span style="color: #73d216;">halts testing</span>
+    SUBCASE(<span style="color: #e9b96e;">"a test using above as existing context"</span>) {
+        ok = <span style="color: #e9b2e3;">false</span>;
+        CHECK(!ok);
+    }
+    SUBCASE(<span style="color: #e9b96e;">"another test using copy of the context"</span>) {
+        <span style="color: #73d216;">// </span><span style="color: #73d216;">subcase above does not change our 'ok' variable</span>
+        CHECK(ok);
+    }
+}
+
+TEST_CASE(<span style="color: #e9b96e;">"my second test"</span>) {
+    <span style="color: #e9b2e3;">spdlog</span>::debug(<span style="color: #e9b96e;">"this test is very trivial"</span>);
+    CHECK(<span style="color: #e9b2e3;">true</span>);
+}
+</pre>
+</div>
+
+<p>
+Compile and run just one test:
+</p>
+<pre class="example" id="org67788fa">
+waf --target=wcdoctest-test
+./build/test/wcdoctest-test --test-case='my first test'
+./build/test/wcdoctest-test   # runs all test cases
+</pre>
+
+<p>
+The <b>doctest</b> runner has many options
+</p>
+
+<pre class="example" id="org5b07b1a">
+./build/util/wcdoctest-util --help
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8551d5f" class="outline-2">
+<h2 id="org8551d5f"><span class="section-number-2">2.</span> Logging with doctest</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Developers are encouraged <b>not</b> to use <code>std::cout</code> or <code>std::cerr</code> in doctest tests.  Instead, as shown in the above example, we should use logging at <code>debug</code> level (or <code>trace</code>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/Logging.h"</span>
+TEST_CASE(<span style="color: #e9b96e;">"..."</span>) {
+    <span style="color: #e9b2e3;">spdlog</span>::debug(<span style="color: #e9b96e;">"some message"</span>);
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+}
+</pre>
+</div>
+
+<p>
+By default, these messages will not be seen.  But they can be turned on:
+</p>
+
+<pre class="example" id="org189187c">
+$ SPDLOG_LEVEL=DEBUG ./build/test/wcdoctest-test
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgebf9267" class="outline-2">
+<h2 id="orgebf9267"><span class="section-number-2">3.</span> Atomic C++ tests</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+An &ldquo;atomic&rdquo; C++ test source file matches:
+</p>
+
+<pre class="example" id="orgb69c95b">
+&lt;pkg&gt;/test/test*.cxx
+&lt;pkg&gt;/test/atomic*.cxx
+</pre>
+
+<p>
+Each atomic source file must provide a <code>main()</code> function and results in a similarly named executable found at:
+</p>
+<pre class="example" id="org0629e3a">
+build/&lt;pkg&gt;/test*
+build/&lt;pkg&gt;/atomic*
+</pre>
+
+<p>
+Some reasons to write atomic tests (compared to doctest tests) include:
+</p>
+<ul class="org-ul">
+<li>The developer wishes the test to accept optional command line arguments to perform variant tests.</li>
+<li>The test is long-running (more than about 1 second) and so benefits from task-level parallelism provided by waf.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5bd2212" class="outline-2">
+<h2 id="org5bd2212"><span class="section-number-2">4.</span> A simple atomic C++ test</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+A trivial atomic test is shown:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">ok</span> = <span style="color: #e9b2e3;">true</span>;
+    <span style="color: #b4fa70;">if</span> (!ok) {
+        <span style="color: #b4fa70;">return</span> 1;
+    }
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+Compile and run with:
+</p>
+
+<pre class="example" id="orgb29b9ac">
+$ waf --tests --target=atomic-simple
+$ ./build/test/atomic-simple
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7cf2d4c" class="outline-2">
+<h2 id="org7cf2d4c"><span class="section-number-2">5.</span> Logging with atomic tests</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Like in section <a href="#org8551d5f">2</a>, developers should use <code>debug</code> level logging instead of <code>std::cout</code> or <code>std::cerr</code>.  For this to work, the code requires some boilerplate:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"spdlog/spdlog.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"spdlog/cfg/env.h"</span>
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">required for SPDLOG_LEVEL env var</span>
+    <span style="color: #e9b2e3;">spdlog</span>::<span style="color: #e9b2e3;">cfg</span>::load_env_levels(); 
+
+    <span style="color: #e9b2e3;">spdlog</span>::debug(<span style="color: #e9b96e;">"all messages should be at debug or trace"</span>);
+    <span style="color: #e9b2e3;">spdlog</span>::info(<span style="color: #e9b96e;">"avoid use of info() despite this example"</span>);
+
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">Now some "tests"</span>
+    <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">ok</span> = <span style="color: #e9b2e3;">true</span>;
+    <span style="color: #b4fa70;">if</span> (!ok) <span style="color: #b4fa70;">return</span> 1;
+
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example" id="orgb7a82cc">
+$ ./build/test/atomic-simple-logging
+[2023-04-25 11:56:26.348] [info] avoid use of info() despite this example
+
+$ SPDLOG_LEVEL=debug ./build/test/atomic-simple-logging
+[2023-04-25 11:59:47.884] [debug] all messages should be at debug or trace
+[2023-04-25 11:59:47.884] [info] avoid use of info() despite this example
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge5f6175" class="outline-2">
+<h2 id="orge5f6175"><span class="section-number-2">6.</span> Mixing atomic and doctest</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+It is possible make an atomic test use doctest.  It will still be processed as an atomic test by WCT build system but it will gain the facilities of doctest.  Along with logging, it requires a bit more boilerplate:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#define</span> <span style="color: #fcaf3e;">DOCTEST_CONFIG_IMPLEMENT</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/doctest.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"spdlog/spdlog.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"spdlog/cfg/env.h"</span>
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>** <span style="color: #fcaf3e;">argv</span>) {
+    <span style="color: #e9b2e3;">spdlog</span>::<span style="color: #e9b2e3;">cfg</span>::load_env_levels();
+    <span style="color: #e9b2e3;">doctest</span>::<span style="color: #8cc4ff;">Context</span> <span style="color: #fcaf3e;">context</span>;
+    context.applyCommandLine(argc, argv);
+    <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">rc</span> = context.run();
+    <span style="color: #b4fa70;">if</span> (rc) { <span style="color: #b4fa70;">return</span> rc; }
+
+    <span style="color: #8cc4ff;">bool</span> <span style="color: #fcaf3e;">ok</span> = <span style="color: #e9b2e3;">true</span>;             <span style="color: #73d216;">// </span><span style="color: #73d216;">start my tests</span>
+    <span style="color: #b4fa70;">if</span> (!ok) <span style="color: #b4fa70;">return</span> 1;
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example" id="org5e5e304">
+$ waf --tests --target=atomic-doctest
+$ ./build/test/atomic-doctest
+$ ./build/test/atomic-doctest --help
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3aa0be5" class="outline-2">
+<h2 id="org3aa0be5"><span class="section-number-2">7.</span> Using atomic as a variant test</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+An atomic test must run with no command line arguments.  However, we may allow optional arguments.  One example:
+</p>
+
+<pre class="example" id="org8bc1033">
+aux/test/test_idft.cxx
+</pre>
+<p>
+This tests various aspects of the <code>IDFT</code> interface implementations.  It can be run as an atomic test with the default <code>IDFT</code> implementation:
+</p>
+
+<pre class="example" id="org8f3e357">
+$ ./build/aux/test_idft
+</pre>
+<p>
+It can also be run in a variant form by giving optional command line argumetns:
+</p>
+
+<pre class="example" id="org10436fd">
+$ ./build/aux/test_idft FftwDFT WireCellAux
+$ ./build/aux/test_idft TorchDFT WireCellPytorch
+$ ./build/aux/test_idft cuFftDFT WireCellCuda
+</pre>
+<p>
+The first variant is actually identical to the atomic call.  The latter two require that WCT is build with support for PyTorch and CUDA, respectively.  An atomic test for each of the latter two variants can be found in their respective packages.
+</p>
+
+<div class="note" id="org177de7c">
+<p>
+C++ tests require particular attention to dependencies.  The <code>test_idft</code> is a little special in that it only has build-time dependency on the <code>iface</code> sub package yet it is placed in the <code>aux</code> package and can have run-time dependency on other higher-level packages via WCT&rsquo;s plugin and component factory mechanisms.  In its default calling, it relies on the <code>FftwDFT</code> component being available.  This component is provided the <code>WireCellAux</code> plugin library (from the <code>aux</code> sub package) and so this minimal run-time dependency is satisfied by placing the test in the <code>aux</code> sub package.  Depending on the variant form, it must be run in a context with either the <code>WireCellPytorch</code> or <code>WireCellCuda</code> plugins available.  We will show how to register these variants so they are run when these optional sub packages are built.
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org62c3893" class="outline-2">
+<h2 id="org62c3893"><span class="section-number-2">8.</span> Growing a test</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Tests tend to grow.  Developers are strongly urged to grow tests in a way that defines separate test cases separately.  When a developer writes a <b>doctest</b> test this is easily done by add more <code>TEST_CASE()</code> and/or <code>SUBCASE()</code> instances to the source file.  When writing an <b>atomic</b> test, the developer must invent their own &ldquo;mini unit test framework&rdquo;.  One common pattern is &ldquo;bag of <code>test_*</code> functions.  Functions are distinquished by name and/or templates:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #b4fa70;">static</span>
+<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">test_2d_threads</span>(<span style="color: #e9b2e3;">IDFT</span>::<span style="color: #8cc4ff;">pointer</span> <span style="color: #fcaf3e;">dft</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">nthreads</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">nloops</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">size</span> = 1024)
+{
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+}
+<span style="color: #b4fa70;">template</span>&lt;<span style="color: #b4fa70;">typename</span> <span style="color: #8cc4ff;">ValueType</span>&gt;
+<span style="color: #8cc4ff;">void</span> <span style="color: #fce94f;">test_2d_transpose</span>(<span style="color: #e9b2e3;">IDFT</span>::<span style="color: #8cc4ff;">pointer</span> <span style="color: #fcaf3e;">dft</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">nrows</span>, <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">ncols</span>)
+{
+   <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+}
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+    test_2d_transpose&lt;<span style="color: #e9b2e3;">IDFT</span>::scalar_t&gt;(idft, 2, 8);
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">...</span>
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org09f674d" class="outline-2">
+<h2 id="org09f674d"><span class="section-number-2">9.</span> Failing tests</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+A test is successful if it completes with a return status code of zero.  A failed test can be indicated in a number of ways:
+</p>
+
+<ul class="org-ul">
+<li>return non-zero status code from <code>main()</code>.</li>
+<li><code>throw</code> an exception.</li>
+<li>call <code>assert()</code> or <code>abort().</code></li>
+<li>call WCT&rsquo;s <code>Assert()</code> or <code>AssertMsg()</code>.</li>
+<li>apply <b>doctest</b> <a href="https://github.com/doctest/doctest/blob/master/doc/markdown/assertions.md">assertion macros</a>.</li>
+</ul>
+
+<p>
+The test developer is free to use any or a mix of these methods and is strongly urged to use them pervasively throughout the test code.
+</p>
+
+<div class="note" id="orgdc381e7">
+<p>
+Do not write tests that lack any forms of actual error exit.  Otherwise they are not actually testing anything!
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org335f877" class="outline-2">
+<h2 id="org335f877"><span class="section-number-2">10.</span> WCT C++ testing support</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+As introduced above, WCT provides some support for testing.  The first are simple wrappers around <code>assert()</code> and one that will print a message if the assertion fails:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/Testing.h"</span>
+
+<span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>()
+{
+    <span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">x</span> = 42;
+    Assert(x == 42);
+    AssertMsg(x == 0, <span style="color: #e9b96e;">"Not the right answer"</span>);
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+In addition, WCT provides facilities for reporting simple performance
+statistics, specifically CPU time and memory usage.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/TimeKeeper.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/MemUsage.h"</span>
+<span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellUtil/ExecMon.h"</span>
+</pre>
+</div>
+
+<dl class="org-dl">
+<dt><code>TimeKeeper</code></dt><dd>a &ldquo;stopwatch&rdquo; to record time along with a message for various steps in a test</dd>
+<dt><code>MemUsage</code></dt><dd>similar but to record memory usage</dd>
+<dt><code>ExecMon</code></dt><dd>combine the two.</dd>
+</dl>
+
+<p>
+See <code>test_timekeeper.cxx</code>, <code>test_memusage.cxx</code> and <code>test_execmon.cxx</code>, respectively, in <code>util/test/</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8e0e5b4" class="outline-2">
+<h2 id="org8e0e5b4"><span class="section-number-2">11.</span> Output diagnostic files</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+Tests may produce files, even atomic tests that may have no files governing <code>waf</code> task dependencies.  These files can be useful to persist beyond the test job.  The ideal location for these files is the <code>build/</code> directory and as sibling to the C++ test executable.  C++ has a simple pattern to achieve this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">string</span> <span style="color: #fcaf3e;">name</span> = argv[0];
+    <span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">string</span> <span style="color: #fcaf3e;">outname</span> = name + <span style="color: #e9b96e;">".ext"</span>;
+    <span style="color: #e9b2e3;">std</span>::<span style="color: #8cc4ff;">string</span> <span style="color: #fcaf3e;">outname2</span> = name + <span style="color: #e9b96e;">"_other.ext"</span>;
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">open and write to outname and outname 2....</span>
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+As the C++ test executable is found <code>build/&lt;pkg&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;</code>, these output files will be found there as siblings.  
+</p>
+
+<div class="tip" id="org2048bab">
+<p>
+See also the use of the data repository in <a href="datarepo.html">data repository document</a> for special files to per persisted beyond the local <code>build/</code> area.
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-org83cb0f2" class="outline-2">
+<h2 id="org83cb0f2"><span class="section-number-2">12.</span> Found input files</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+Likewise, an atomic test must not expect any input files specified by the caller.  However, it may load files that can be found from the environment.  A common example is to find a WCT &ldquo;wires&rdquo; file or others provided by <code>wire-cell-data</code>.  Here is a C++ pattern do that in a way that naturally allows an atomic test to also be called in a variant manner.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #8cc4ff;">int</span> <span style="color: #fce94f;">main</span>(<span style="color: #8cc4ff;">int</span> <span style="color: #fcaf3e;">argc</span>, <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">argv</span>[])
+{
+    <span style="color: #b4fa70;">const</span> <span style="color: #8cc4ff;">char</span>* <span style="color: #fcaf3e;">filename</span> = <span style="color: #e9b96e;">"microboone-celltree-wires-v2.1.json.bz2"</span>;
+    <span style="color: #b4fa70;">if</span> (argc &gt; 1) {
+        filename = argv[1];
+    }
+    <span style="color: #73d216;">// </span><span style="color: #73d216;">use filename...</span>
+    <span style="color: #b4fa70;">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+See <code>util/test/test_wireschema.cxx</code> for an example.  
+</p>
+
+<p>
+For this kind of file to be found the user <b>must</b> define <code>WIRECELL_PATH</code> to include a directory holding the contents of <code>wire-cell-data</code>.
+</p>
+
+<p>
+In principle the path in <code>argv[0]</code> may also be used to locate the top of the <code>wire-cell-toolkit</code> source in order to locate files provided by the source and use them as input.
+</p>
+
+<div class="tip" id="orge75ee71">
+<p>
+The data repository also provides a set of known files for input.
+</p>
+
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Brett Viren</p>
+<p class="date">Created: 2023-05-02 Tue 14:07</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
