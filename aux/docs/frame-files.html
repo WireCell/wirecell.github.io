@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Frame files</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,23 +51,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd357eed">1. Intro</a></li>
-<li><a href="#org1f2e311">2. Frame files</a></li>
-<li><a href="#org5e60cd6">3. Frame tensor files</a>
+<li><a href="#org57f9eff">1. Intro</a></li>
+<li><a href="#orgc1fe8a6">2. Frame files</a></li>
+<li><a href="#orge6676af">3. Frame tensor files</a>
 <ul>
-<li><a href="#orgf255cdd">3.1. Set-level</a></li>
-<li><a href="#org3b13d20">3.2. Tensors</a></li>
-<li><a href="#org52699f1">3.3. Trace</a></li>
-<li><a href="#orgcdbda82">3.4. Index</a></li>
-<li><a href="#org7e73f9c">3.5. Summary</a></li>
+<li><a href="#org68d67d4">3.1. Set-level</a></li>
+<li><a href="#orgefc6262">3.2. Tensors</a></li>
+<li><a href="#org6451405">3.3. Trace</a></li>
+<li><a href="#org15dee4a">3.4. Index</a></li>
+<li><a href="#org8e8463b">3.5. Summary</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd357eed" class="outline-2">
-<h2 id="orgd357eed"><span class="section-number-2">1.</span> Intro</h2>
+<div id="outline-container-org57f9eff" class="outline-2">
+<h2 id="org57f9eff"><span class="section-number-2">1.</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A WCT &ldquo;frame&rdquo; provides a simple representation of data from different
@@ -106,8 +106,8 @@ array spanning the channels and ticks of the readout.
 
 
 
-<div id="outline-container-org1f2e311" class="outline-2">
-<h2 id="org1f2e311"><span class="section-number-2">2.</span> Frame files</h2>
+<div id="outline-container-orgc1fe8a6" class="outline-2">
+<h2 id="orgc1fe8a6"><span class="section-number-2">2.</span> Frame files</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 WCT <code>sio</code> subpackage provides support for reading and writing <i>frame
@@ -124,7 +124,7 @@ file names might look like:
 </p>
 
 
-<pre class="example" id="orgcf2d59d">
+<pre class="example" id="orgc868f23">
 frame_&lt;tagA&gt;_&lt;ident1&gt;.npy
 channels_&lt;tagA&gt;_&lt;ident1&gt;.npy
 tickinfo_&lt;tagA&gt;_&lt;ident1&gt;.npy
@@ -171,8 +171,8 @@ arrays for quick debugging using Python/Numpy.
 </div>
 </div>
 
-<div id="outline-container-org5e60cd6" class="outline-2">
-<h2 id="org5e60cd6"><span class="section-number-2">3.</span> Frame tensor files</h2>
+<div id="outline-container-orge6676af" class="outline-2">
+<h2 id="orge6676af"><span class="section-number-2">3.</span> Frame tensor files</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A second format called <i>frame tensor files</i> improves on the above by
@@ -243,7 +243,7 @@ tensor file requires additional component in the WCT data flow graph
 compared frame file.  A writing path in the graph might look like:
 </p>
 
-<pre class="example" id="org054c168">
+<pre class="example" id="org7d75250">
 (IFrame) -&gt; [FrameTensor] -&gt; (ITensorSet) -&gt; [TensorFileSink] -&gt; file
 </pre>
 
@@ -251,13 +251,13 @@ compared frame file.  A writing path in the graph might look like:
 A reading is simlar but reversed
 </p>
 
-<pre class="example" id="org10cd83e">
+<pre class="example" id="org6a15298">
 file -&gt; [TensorFileSource] -&gt; (ITensorSet) -&gt; [TensorFrame] -&gt; (IFrame)
 </pre>
 </div>
 
-<div id="outline-container-orgf255cdd" class="outline-3">
-<h3 id="orgf255cdd"><span class="section-number-3">3.1.</span> Set-level</h3>
+<div id="outline-container-org68d67d4" class="outline-3">
+<h3 id="org68d67d4"><span class="section-number-3">3.1.</span> Set-level</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 The <code>ITensorSet</code> class and its metadata accepts frame information which
@@ -290,8 +290,8 @@ the remaining sections.
 </div>
 </div>
 
-<div id="outline-container-org3b13d20" class="outline-3">
-<h3 id="org3b13d20"><span class="section-number-3">3.2.</span> Tensors</h3>
+<div id="outline-container-orgefc6262" class="outline-3">
+<h3 id="orgefc6262"><span class="section-number-3">3.2.</span> Tensors</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 An <code>ITensor</code> represents some aspect of an <code>IFrame</code> not already represented
@@ -319,8 +319,8 @@ The remaining sections describe each accepted type of tensor.
 </div>
 </div>
 
-<div id="outline-container-org52699f1" class="outline-3">
-<h3 id="org52699f1"><span class="section-number-3">3.3.</span> Trace</h3>
+<div id="outline-container-org6451405" class="outline-3">
+<h3 id="org6451405"><span class="section-number-3">3.3.</span> Trace</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 A trace tensor provides waveform samples from a number of channels.
@@ -355,8 +355,8 @@ traces to have their associated waveforms represented together.
 </div>
 </div>
 
-<div id="outline-container-orgcdbda82" class="outline-3">
-<h3 id="orgcdbda82"><span class="section-number-3">3.4.</span> Index</h3>
+<div id="outline-container-org15dee4a" class="outline-3">
+<h3 id="org15dee4a"><span class="section-number-3">3.4.</span> Index</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 A subset of traces held by the frame is identified by a string (&ldquo;trace
@@ -371,8 +371,8 @@ collection of traces.
 </div>
 
 
-<div id="outline-container-org7e73f9c" class="outline-3">
-<h3 id="org7e73f9c"><span class="section-number-3">3.5.</span> Summary</h3>
+<div id="outline-container-org8e8463b" class="outline-3">
+<h3 id="org8e8463b"><span class="section-number-3">3.5.</span> Summary</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 A trace summary tensor provides values associated to indexed (tagged)
@@ -393,7 +393,7 @@ Note, it is undefined behavior if no matching index tensor exists.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

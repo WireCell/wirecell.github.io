@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Frames and their representations</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,24 +51,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge397cdd">1. Intro</a></li>
-<li><a href="#org795044e">2. Initial I/O with FrameFileSink/FrameFileSource</a></li>
-<li><a href="#orgee5055f">3. Tag solutions</a></li>
-<li><a href="#orgbabec89">4. Frame decomposition</a>
+<li><a href="#org63d5b4b">1. Intro</a></li>
+<li><a href="#orgb0f1735">2. Initial I/O with FrameFileSink/FrameFileSource</a></li>
+<li><a href="#org0340c51">3. Tag solutions</a></li>
+<li><a href="#org69f6d48">4. Frame decomposition</a>
 <ul>
-<li><a href="#org2b35b08">4.1. Set metadata</a></li>
-<li><a href="#org42d976d">4.2. Tensors</a></li>
-<li><a href="#org4a9dd87">4.3. Trace</a></li>
-<li><a href="#org17b1cce">4.4. Index</a></li>
-<li><a href="#orgc8125c4">4.5. Summary</a></li>
+<li><a href="#org705ed2c">4.1. Set metadata</a></li>
+<li><a href="#org3e7be55">4.2. Tensors</a></li>
+<li><a href="#org29c034f">4.3. Trace</a></li>
+<li><a href="#org00f7aad">4.4. Index</a></li>
+<li><a href="#org6acea28">4.5. Summary</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge397cdd" class="outline-2">
-<h2 id="orge397cdd"><span class="section-number-2">1.</span> Intro</h2>
+<div id="outline-container-org63d5b4b" class="outline-2">
+<h2 id="org63d5b4b"><span class="section-number-2">1.</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A WCT &ldquo;frame&rdquo; provides a simple representation of data from different
@@ -107,8 +107,8 @@ At least two persistent representations of <code>IFrame</code> are supported by 
 </div>
 
 
-<div id="outline-container-org795044e" class="outline-2">
-<h2 id="org795044e"><span class="section-number-2">2.</span> Initial I/O with FrameFileSink/FrameFileSource</h2>
+<div id="outline-container-orgb0f1735" class="outline-2">
+<h2 id="orgb0f1735"><span class="section-number-2">2.</span> Initial I/O with FrameFileSink/FrameFileSource</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 WCT <code>sio</code> subpackage provides support for sending <code>IFrame</code> through file
@@ -125,7 +125,7 @@ This initial sink/source pair introduced problems.  The sink produced
 a stream of arrays with file names like:
 </p>
 
-<pre class="example" id="org433a722">
+<pre class="example" id="org79f8a7a">
 frame_&lt;tag1&gt;_&lt;ident&gt;.npy
 channels_&lt;tag1&gt;_&lt;ident&gt;.npy
 tickinfo_&lt;tag1&gt;_&lt;ident&gt;.npy
@@ -146,7 +146,7 @@ files, the nested structure of the <code>IFrame</code> channel mask map has to b
 flattened into a number of arrays named like:
 </p>
 
-<pre class="example" id="org499a1f7">
+<pre class="example" id="orgd68c197">
 chanmask_&lt;tag1&gt;_&lt;ident&gt;.npy
 chanmask_&lt;tag2&gt;_&lt;ident&gt;.npy
 </pre>
@@ -166,8 +166,8 @@ awkward.
 </div>
 </div>
 
-<div id="outline-container-orgee5055f" class="outline-2">
-<h2 id="orgee5055f"><span class="section-number-2">3.</span> Tag solutions</h2>
+<div id="outline-container-org0340c51" class="outline-2">
+<h2 id="org0340c51"><span class="section-number-2">3.</span> Tag solutions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 To fix the above, it was attempted to modify the <code>FF{Sink,Source}</code> to
@@ -197,8 +197,8 @@ files and ZeroMQ transport and thus by converting between <code>IFrame</code> an
 </div>
 </div>
 
-<div id="outline-container-orgbabec89" class="outline-2">
-<h2 id="orgbabec89"><span class="section-number-2">4.</span> Frame decomposition</h2>
+<div id="outline-container-org69f6d48" class="outline-2">
+<h2 id="org69f6d48"><span class="section-number-2">4.</span> Frame decomposition</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The <code>IFrame</code> info is decomposed into an <code>ITensorSet/ITensor</code>
@@ -206,8 +206,8 @@ representation.
 </p>
 </div>
 
-<div id="outline-container-org2b35b08" class="outline-3">
-<h3 id="org2b35b08"><span class="section-number-3">4.1.</span> Set metadata</h3>
+<div id="outline-container-org705ed2c" class="outline-3">
+<h3 id="org705ed2c"><span class="section-number-3">4.1.</span> Set metadata</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The <code>IFrame::ident()</code> is mapped directly to <code>ITensorSet::ident()</code>.
@@ -238,8 +238,8 @@ the remaining sections.
 </div>
 </div>
 
-<div id="outline-container-org42d976d" class="outline-3">
-<h3 id="org42d976d"><span class="section-number-3">4.2.</span> Tensors</h3>
+<div id="outline-container-org3e7be55" class="outline-3">
+<h3 id="org3e7be55"><span class="section-number-3">4.2.</span> Tensors</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 An <code>ITensor</code> represents some aspect of an <code>IFrame</code> not already represented
@@ -267,8 +267,8 @@ The remaining sections describe each accepted type of tensor.
 </div>
 </div>
 
-<div id="outline-container-org4a9dd87" class="outline-3">
-<h3 id="org4a9dd87"><span class="section-number-3">4.3.</span> Trace</h3>
+<div id="outline-container-org29c034f" class="outline-3">
+<h3 id="org29c034f"><span class="section-number-3">4.3.</span> Trace</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 A trace tensor provides waveform samples from a number of channels.
@@ -303,8 +303,8 @@ traces to have their associated waveforms represented together.
 </div>
 </div>
 
-<div id="outline-container-org17b1cce" class="outline-3">
-<h3 id="org17b1cce"><span class="section-number-3">4.4.</span> Index</h3>
+<div id="outline-container-org00f7aad" class="outline-3">
+<h3 id="org00f7aad"><span class="section-number-3">4.4.</span> Index</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 A subset of traces held by the frame is identified by a string (&ldquo;trace
@@ -326,8 +326,8 @@ traces
 </div>
 </div>
 
-<div id="outline-container-orgc8125c4" class="outline-3">
-<h3 id="orgc8125c4"><span class="section-number-3">4.5.</span> Summary</h3>
+<div id="outline-container-org6acea28" class="outline-3">
+<h3 id="org6acea28"><span class="section-number-3">4.5.</span> Summary</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 A trace summary tensor provides values associated to indexed (tagged)
@@ -349,7 +349,7 @@ Note, it is undefined behavior if no matching index tensor exists.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

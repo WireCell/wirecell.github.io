@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WCT Noise Modeling</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -73,30 +73,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org30d8fe6">1. Overview</a></li>
-<li><a href="#org172bdaf">2. WCT Noise Spectra</a>
+<li><a href="#org9c4030d">1. Overview</a></li>
+<li><a href="#orgb31aa61">2. WCT Noise Spectra</a>
 <ul>
-<li><a href="#org3865e4f">2.1. Required attributes</a></li>
-<li><a href="#org412e01b">2.2. Optional attributes required by <code>EmpiricalNoiseModel</code></a></li>
-<li><a href="#org080568e">2.3. Optional attributes required by <code>GroupNoiseModel</code></a></li>
+<li><a href="#orgaa6ea9a">2.1. Required attributes</a></li>
+<li><a href="#org21a66e2">2.2. Optional attributes required by <code>EmpiricalNoiseModel</code></a></li>
+<li><a href="#orgec00c0f">2.3. Optional attributes required by <code>GroupNoiseModel</code></a></li>
 </ul>
 </li>
-<li><a href="#org010d296">3. WCT channel groups</a></li>
-<li><a href="#orgd06388e">4. Providing the above data</a></li>
-<li><a href="#orgea62737">5. Round-trip Validation</a>
+<li><a href="#org2cc89fb">3. WCT channel groups</a></li>
+<li><a href="#org903209d">4. Providing the above data</a></li>
+<li><a href="#orgddc3e50">5. Round-trip Validation</a>
 <ul>
-<li><a href="#orgc57afcf">5.1. Input spectra</a></li>
-<li><a href="#orgc385b2c">5.2. Model details</a></li>
-<li><a href="#org98c8100">5.3. Visualize the model</a></li>
-<li><a href="#org7f7ff48">5.4. Performing the round-trip</a></li>
+<li><a href="#org876aece">5.1. Input spectra</a></li>
+<li><a href="#org28c0d1b">5.2. Model details</a></li>
+<li><a href="#orgbb1f17f">5.3. Visualize the model</a></li>
+<li><a href="#orgd1e7827">5.4. Performing the round-trip</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org30d8fe6" class="outline-2">
-<h2 id="org30d8fe6"><span class="section-number-2">1.</span> Overview</h2>
+<div id="outline-container-org9c4030d" class="outline-2">
+<h2 id="org9c4030d"><span class="section-number-2">1.</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 WCT provides support for &ldquo;noise&rdquo; in various sub-packages:
@@ -120,8 +120,8 @@ See also this presentation: <a href="noise-presentation.html">org</a>, <a href="
 </div>
 </div>
 
-<div id="outline-container-org172bdaf" class="outline-2">
-<h2 id="org172bdaf"><span class="section-number-2">2.</span> WCT Noise Spectra</h2>
+<div id="outline-container-orgb31aa61" class="outline-2">
+<h2 id="orgb31aa61"><span class="section-number-2">2.</span> WCT Noise Spectra</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 WCT <b>noise spectra</b> defines a dataset describing mean spectral amplitudes and related metadata.  They are provided to WCT C++ code as objects following a schema defined here.  The datasets are provided via WCT configuration mechanism either directly as Jsonnet configuration data or by naming stand-alone data files (usually as compressed JSON but Jsonnet may also be provided).
@@ -132,8 +132,8 @@ WCT <b>noise spectra</b> are in the form of an array of <b>spectrum objects</b>.
 </p>
 </div>
 
-<div id="outline-container-org3865e4f" class="outline-3">
-<h3 id="org3865e4f"><span class="section-number-3">2.1.</span> Required attributes</h3>
+<div id="outline-container-orgaa6ea9a" class="outline-3">
+<h3 id="orgaa6ea9a"><span class="section-number-3">2.1.</span> Required attributes</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 A WCT <b>spectral object</b> <b>must</b> provide these attributes:
@@ -151,8 +151,8 @@ A WCT <b>spectral object</b> <b>must</b> provide these attributes:
 </div>
 </div>
 
-<div id="outline-container-org412e01b" class="outline-3">
-<h3 id="org412e01b"><span class="section-number-3">2.2.</span> Optional attributes required by <code>EmpiricalNoiseModel</code></h3>
+<div id="outline-container-org21a66e2" class="outline-3">
+<h3 id="org21a66e2"><span class="section-number-3">2.2.</span> Optional attributes required by <code>EmpiricalNoiseModel</code></h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The <code>EmpiricalNoiseModel</code> component requires these optional attributes:
@@ -172,8 +172,8 @@ The <code>EmpiricalNoiseModel</code> component requires these optional attribute
 </div>
 </div>
 
-<div id="outline-container-org080568e" class="outline-3">
-<h3 id="org080568e"><span class="section-number-3">2.3.</span> Optional attributes required by <code>GroupNoiseModel</code></h3>
+<div id="outline-container-orgec00c0f" class="outline-3">
+<h3 id="orgec00c0f"><span class="section-number-3">2.3.</span> Optional attributes required by <code>GroupNoiseModel</code></h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The <code>GroupNoiseModel</code> provides a model interface for both coherent and incoherent noise where spectra are grouped in some manner.  It requires this optional attribute:
@@ -186,8 +186,8 @@ The <code>GroupNoiseModel</code> provides a model interface for both coherent an
 </div>
 </div>
 
-<div id="outline-container-org010d296" class="outline-2">
-<h2 id="org010d296"><span class="section-number-2">3.</span> WCT channel groups</h2>
+<div id="outline-container-org2cc89fb" class="outline-2">
+<h2 id="org2cc89fb"><span class="section-number-2">3.</span> WCT channel groups</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The <code>GroupNoiseModel</code> and potentially other components require information on how to collect channels into distinct groups.  The user provides this information in the form of WCT <b>channel-groups</b> data structures.  These are in the form of an array of WCT <b>channel-group</b> objects, each of which has these <b>required</b> attributes:
@@ -201,8 +201,8 @@ The <code>GroupNoiseModel</code> and potentially other components require inform
 </div>
 </div>
 
-<div id="outline-container-orgd06388e" class="outline-2">
-<h2 id="orgd06388e"><span class="section-number-2">4.</span> Providing the above data</h2>
+<div id="outline-container-org903209d" class="outline-2">
+<h2 id="org903209d"><span class="section-number-2">4.</span> Providing the above data</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 WCT <b>noise spectra</b> and <b>channel group</b> datasets are sometimes highly structured, even algorithmically generated, and sometimes unstructured and voluminous such as when they are derived from some external analysis.
@@ -235,8 +235,8 @@ Developers of WCT components can provide the user this flexibility with just a f
 </div>
 </div>
 
-<div id="outline-container-orgea62737" class="outline-2">
-<h2 id="orgea62737"><span class="section-number-2">5.</span> Round-trip Validation</h2>
+<div id="outline-container-orgddc3e50" class="outline-2">
+<h2 id="orgddc3e50"><span class="section-number-2">5.</span> Round-trip Validation</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 The WCT noise code supports both modeling and simulating noise.  Each is effectively the inverses of the other and so we may check that we get out what we put in.  The &ldquo;round-trip&rdquo; check consists of these steps:
@@ -258,14 +258,14 @@ The WCT noise code supports both modeling and simulating noise.  Each is effecti
 </ul>
 </div>
 
-<div id="outline-container-orgc57afcf" class="outline-3">
-<h3 id="orgc57afcf"><span class="section-number-3">5.1.</span> Input spectra</h3>
+<div id="outline-container-org876aece" class="outline-3">
+<h3 id="org876aece"><span class="section-number-3">5.1.</span> Input spectra</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 The input spectra can be viewed with:
 </p>
 
-<pre class="example" id="orge753cb1">
+<pre class="example" id="org1b5cfe4">
 wirecell-sigproc plot-noise-spectra \
   gen/test/test-noise-spectra.jsonnet orig.pdf
 </pre>
@@ -297,8 +297,8 @@ See below for guidance on how to provide meaningful values for <code>peak</code>
 </div>
 </div>
 
-<div id="outline-container-orgc385b2c" class="outline-3">
-<h3 id="orgc385b2c"><span class="section-number-3">5.2.</span> Model details</h3>
+<div id="outline-container-org28c0d1b" class="outline-3">
+<h3 id="org28c0d1b"><span class="section-number-3">5.2.</span> Model details</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 The user requires some understanding of the noise spectral model that is used in this test in order to provide proper values.  The spectral shape in the frequency domain is chosen to follow the Rayleigh distribution,
@@ -332,7 +332,7 @@ Thus the <code>rms</code> parameter is identified as providing the desired value
 </p>
 
 
-<div id="org3b51fa9" class="figure">
+<div id="org7c042b3" class="figure">
 <p><img src="test-noise-spectra-in-0.png" alt="test-noise-spectra-in-0.png" />
 </p>
 </div>
@@ -343,13 +343,13 @@ See <code>test-noise-roundtrip.sh</code> for exact command.  The commands to rep
 </div>
 </div>
 
-<div id="outline-container-org98c8100" class="outline-3">
-<h3 id="org98c8100"><span class="section-number-3">5.3.</span> Visualize the model</h3>
+<div id="outline-container-orgbb1f17f" class="outline-3">
+<h3 id="orgbb1f17f"><span class="section-number-3">5.3.</span> Visualize the model</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 The above plot was made with a command like the following:
 </p>
-<pre class="example" id="orgbdecad2">
+<pre class="example" id="org353fd31">
 wirecell-sigproc plot-noise-spectra \
   -A ngrps=1 \
   -A nsamples=6000 \
@@ -366,7 +366,7 @@ This same Jsonnet file may be used from WCT job configuration.  This provides an
 For comparison, an example of a spectrum modeling real-world noise from the ProtoDUNE-SP (PDSP) detector is given:
 </p>
 
-<div id="orgbac27ab" class="figure">
+<div id="orgb3e9b31" class="figure">
 <p><img src="protodune-noise-spectra-v10000.png" alt="protodune-noise-spectra-v10000.png" />
 </p>
 </div>
@@ -377,14 +377,14 @@ The noise in PDSP is about 4 ADC RMS and its 12 bit ADC sees voltage in the rang
 </div>
 </div>
 
-<div id="outline-container-org7f7ff48" class="outline-3">
-<h3 id="org7f7ff48"><span class="section-number-3">5.4.</span> Performing the round-trip</h3>
+<div id="outline-container-orgd1e7827" class="outline-3">
+<h3 id="orgd1e7827"><span class="section-number-3">5.4.</span> Performing the round-trip</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 A main configuration file for <code>wire-cell</code> is provided that uses the same <code>test-noise-spectra.jsonnet</code> described above to provide the input to the round-trip.  The round-trip job can be exercised with default parameters like:
 </p>
 
-<pre class="example" id="org7a990b8">
+<pre class="example" id="org0507e36">
 $ wire-cell -c  gen/test/test-noise-roundtrip.jsonnet
 $ ls -l test-noise-roundtrip-*{npz,json.bz2}
 </pre>
@@ -392,7 +392,7 @@ $ ls -l test-noise-roundtrip-*{npz,json.bz2}
 The job flow graph is:
 </p>
 
-<div id="orgc733d17" class="figure">
+<div id="org969c99b" class="figure">
 <p><img src="test-noise-roundtrip-flow-graph.png" alt="test-noise-roundtrip-flow-graph.png" />
 </p>
 </div>
@@ -412,7 +412,7 @@ Each cross produces a <code>.npz</code> file and each noise type results in a
 <code>.json.bz2</code> file of output spectra.  These too can be visualized
 </p>
 
-<pre class="example" id="org1fbd6a7">
+<pre class="example" id="org8b6c2f6">
 wirecell-sigproc plot-noise-spectra \
   test-noise-roundtrip-inco-spectra.json.bz2 \
   inco-spectra.pdf
@@ -424,7 +424,7 @@ wirecell-sigproc plot-noise-spectra \
 <p>
 Or, run it all together as:
 </p>
-<pre class="example" id="org7a3c19c">
+<pre class="example" id="org67fcef8">
 aux/test/test-noise-roundtrip.sh 
 </pre>
 </div>
@@ -433,7 +433,7 @@ aux/test/test-noise-roundtrip.sh
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

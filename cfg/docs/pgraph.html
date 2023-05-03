@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WCT <code>pgraph</code> configuration support</title>
@@ -220,8 +220,8 @@
 <div id="content">
 <h1 class="title">WCT <code>pgraph</code> configuration support</h1>
 
-<div id="outline-container-org2875466" class="outline-2">
-<h2 id="org2875466"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org7932e66" class="outline-2">
+<h2 id="org7932e66"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The most popular paradigm in which to use WCT that of data flow
@@ -256,12 +256,12 @@ this, WCT provides the <code>pgraph.jsonnet</code> library of functions.
 </div>
 </div>
 
-<div id="outline-container-org4b6d864" class="outline-2">
-<h2 id="org4b6d864"><span class="section-number-2">2.</span> <code>pgraph</code> concepts</h2>
+<div id="outline-container-org24e213a" class="outline-2">
+<h2 id="org24e213a"><span class="section-number-2">2.</span> <code>pgraph</code> concepts</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb5175eb" class="outline-3">
-<h3 id="orgb5175eb"><span class="section-number-3">2.1.</span> inode</h3>
+<div id="outline-container-org0c1608c" class="outline-3">
+<h3 id="org0c1608c"><span class="section-number-3">2.1.</span> inode</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 In <code>pgraph.jsonnet</code>, a configuration object for an particular instance
@@ -275,8 +275,8 @@ type given by <code>type</code>.
 </div>
 </div>
 
-<div id="outline-container-org85946ef" class="outline-3">
-<h3 id="org85946ef"><span class="section-number-3">2.2.</span> pnode</h3>
+<div id="outline-container-org9140340" class="outline-3">
+<h3 id="org9140340"><span class="section-number-3">2.2.</span> pnode</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 One very useful intermediate construction which is supported by port
@@ -306,8 +306,8 @@ the <b>pnode</b> itself.
 </div>
 </div>
 
-<div id="outline-container-orgb9e17ce" class="outline-2">
-<h2 id="orgb9e17ce"><span class="section-number-2">3.</span> <code>pgraph</code> functions</h2>
+<div id="outline-container-orgaaf2238" class="outline-2">
+<h2 id="orgaaf2238"><span class="section-number-2">3.</span> <code>pgraph</code> functions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Here describes the most important functions.  Read the code and
@@ -321,16 +321,16 @@ assume
 </div>
 </div>
 
-<div id="outline-container-orgf196bf4" class="outline-3">
-<h3 id="orgf196bf4"><span class="section-number-3">3.1.</span> Port</h3>
+<div id="outline-container-orgcf42caa" class="outline-3">
+<h3 id="orgcf42caa"><span class="section-number-3">3.1.</span> Port</h3>
 </div>
 
-<div id="outline-container-org72c0897" class="outline-3">
-<h3 id="org72c0897"><span class="section-number-3">3.2.</span> Edge</h3>
+<div id="outline-container-orgbea38df" class="outline-3">
+<h3 id="orgbea38df"><span class="section-number-3">3.2.</span> Edge</h3>
 </div>
 
-<div id="outline-container-org073e87e" class="outline-3">
-<h3 id="org073e87e"><span class="section-number-3">3.3.</span> Atomic pnode</h3>
+<div id="outline-container-org4522a8a" class="outline-3">
+<h3 id="org4522a8a"><span class="section-number-3">3.3.</span> Atomic pnode</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 The simplest <b>pnode</b> is one that represents a single <b>inode</b>.
@@ -350,8 +350,8 @@ cardinality, <code>nin</code> or <code>nout</code> will set the number to be use
 </div>
 </div>
 
-<div id="outline-container-orgfc06744" class="outline-3">
-<h3 id="orgfc06744"><span class="section-number-3">3.4.</span> Pipeline of pnodes</h3>
+<div id="outline-container-org4ad2931" class="outline-3">
+<h3 id="org4ad2931"><span class="section-number-3">3.4.</span> Pipeline of pnodes</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 A very common subgraph pattern is a linear pipeline of nodes.  These
@@ -372,8 +372,8 @@ output ports of <code>mf2</code>.
 </div>
 </div>
 
-<div id="outline-container-orga6d11e5" class="outline-3">
-<h3 id="orga6d11e5"><span class="section-number-3">3.5.</span> Arbitrary subgraph aggregation</h3>
+<div id="outline-container-orgc3afd16" class="outline-3">
+<h3 id="orgc3afd16"><span class="section-number-3">3.5.</span> Arbitrary subgraph aggregation</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 An arbitrary aggregation can be formed with the <code>intern()</code> function.  It
@@ -464,8 +464,8 @@ given by <code>oports</code>.
 </div>
 </div>
 
-<div id="outline-container-org13c74e1" class="outline-3">
-<h3 id="org13c74e1"><span class="section-number-3">3.6.</span> Fans and taps</h3>
+<div id="outline-container-orgc8dd8b9" class="outline-3">
+<h3 id="orgc8dd8b9"><span class="section-number-3">3.6.</span> Fans and taps</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 Note, <code>pgraph</code> provides a subobject called <code>fan</code> with various functions to
@@ -476,18 +476,18 @@ described above simple.
 </div>
 </div>
 
-<div id="outline-container-org6d31171" class="outline-3">
-<h3 id="org6d31171"><span class="section-number-3">3.7.</span> Edge insertion</h3>
+<div id="outline-container-org637c864" class="outline-3">
+<h3 id="org637c864"><span class="section-number-3">3.7.</span> Edge insertion</h3>
 </div>
 
-<div id="outline-container-org53d3107" class="outline-3">
-<h3 id="org53d3107"><span class="section-number-3">3.8.</span> Aggregate closed component graphs</h3>
+<div id="outline-container-org8dd5622" class="outline-3">
+<h3 id="org8dd5622"><span class="section-number-3">3.8.</span> Aggregate closed component graphs</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

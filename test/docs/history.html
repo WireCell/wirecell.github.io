@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Historical tests</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,8 +51,8 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org706c5b3">1. Versions</a></li>
-<li><a href="#org0122a01">2. Support</a></li>
+<li><a href="#org0caff92">1. Versions</a></li>
+<li><a href="#orgcbc7022">2. Support</a></li>
 </ul>
 </div>
 </div>
@@ -64,8 +64,8 @@ A &ldquo;historical test&rdquo; is then a test that consumes
 these files.
 </p>
 
-<div id="outline-container-org706c5b3" class="outline-2">
-<h2 id="org706c5b3"><span class="section-number-2">1.</span> Versions</h2>
+<div id="outline-container-org0caff92" class="outline-2">
+<h2 id="org0caff92"><span class="section-number-2">1.</span> Versions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A historical test may itself only run software from the current software version under test.  A historical test can not execute any code from other versions, though it may access historical files produced by other code versions.
@@ -75,7 +75,7 @@ A historical test may itself only run software from the current software version
 The versions that are available for a historical file is given at build time by:
 </p>
 
-<pre class="example" id="org9184411">
+<pre class="example" id="org1cad266">
 wcb configure [--test-data-versions=&lt;versions&gt;] [--tests] [...]
 </pre>
 
@@ -87,7 +87,7 @@ This is an optional argument.  The WCT developers have hard-coded a list of suit
 During the build phase:
 </p>
 
-<pre class="example" id="org9fa839c">
+<pre class="example" id="org8962a7f">
 wcb [--tests]
 </pre>
 
@@ -101,8 +101,8 @@ Historical tests should only assume versions in this list but may also include t
 </div>
 </div>
 
-<div id="outline-container-org0122a01" class="outline-2">
-<h2 id="org0122a01"><span class="section-number-2">2.</span> Support</h2>
+<div id="outline-container-orgcbc7022" class="outline-2">
+<h2 id="orgcbc7022"><span class="section-number-2">2.</span> Support</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 See the <a href=":bats.html">BATS topic</a> for description of support for historical tests written as BATS files.  
@@ -112,7 +112,7 @@ See the <a href=":bats.html">BATS topic</a> for description of support for histo
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WCT Imaging Notes</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -73,34 +73,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4ae4aac">1. Concepts, data and processes</a>
+<li><a href="#orgda86860">1. Concepts, data and processes</a>
 <ul>
-<li><a href="#org6889a79">1.1. Prototype</a></li>
-<li><a href="#org69c765b">1.2. Toolkit Interfaces</a></li>
-<li><a href="#org17e57c4">1.3. Toolkit Data Interfaces</a></li>
-<li><a href="#orgfd072c0">1.4. Toolkit Component Interfaces</a></li>
-<li><a href="#orga4272e3">1.5. Implementation notes</a>
+<li><a href="#orge9b34fb">1.1. Prototype</a></li>
+<li><a href="#org166c19a">1.2. Toolkit Interfaces</a></li>
+<li><a href="#org7d08926">1.3. Toolkit Data Interfaces</a></li>
+<li><a href="#org343b6ca">1.4. Toolkit Component Interfaces</a></li>
+<li><a href="#org3db12d2">1.5. Implementation notes</a>
 <ul>
-<li><a href="#org01dd0ae">1.5.1. Slicing</a></li>
-<li><a href="#orgf3085a0">1.5.2. Stripping</a></li>
-<li><a href="#orgd14b9da">1.5.3. Tiling (ray clustering, layer overlaps)</a></li>
-<li><a href="#orgac6face">1.5.4. Slice Overlaps</a></li>
-<li><a href="#org5ff56fb">1.5.5. Solving</a></li>
+<li><a href="#org5cdff1c">1.5.1. Slicing</a></li>
+<li><a href="#org4b266e2">1.5.2. Stripping</a></li>
+<li><a href="#orgafeca39">1.5.3. Tiling (ray clustering, layer overlaps)</a></li>
+<li><a href="#org63c9fbc">1.5.4. Slice Overlaps</a></li>
+<li><a href="#org9c6cfee">1.5.5. Solving</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org09c57af">2. Tiling</a></li>
+<li><a href="#orgf618f82">2. Tiling</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4ae4aac" class="outline-2">
-<h2 id="org4ae4aac"><span class="section-number-2">1.</span> Concepts, data and processes</h2>
+<div id="outline-container-orgda86860" class="outline-2">
+<h2 id="orgda86860"><span class="section-number-2">1.</span> Concepts, data and processes</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org6889a79" class="outline-3">
-<h3 id="org6889a79"><span class="section-number-3">1.1.</span> Prototype</h3>
+<div id="outline-container-orge9b34fb" class="outline-3">
+<h3 id="orge9b34fb"><span class="section-number-3">1.1.</span> Prototype</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The figure below holds an initial, high-level prototype conceptual flow graph showing the top-level algorithms as implemented in the <a href="https://github.com/BNLIF/wire-cell/">Wire-Cell Prototype code base</a>.  
@@ -132,8 +132,8 @@ Some notes and interpretations on this are collected here.  Please not, <b>these
 </div>
 </div>
 
-<div id="outline-container-org69c765b" class="outline-3">
-<h3 id="org69c765b"><span class="section-number-3">1.2.</span> Toolkit Interfaces</h3>
+<div id="outline-container-org166c19a" class="outline-3">
+<h3 id="org166c19a"><span class="section-number-3">1.2.</span> Toolkit Interfaces</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The <code>wire-cell-img</code> package provides components supplying the conceptual elements of the prototype described above.  They are developed following this general strategy:
@@ -163,8 +163,8 @@ Details on each member of this zoo follow.
 </div>
 
 
-<div id="outline-container-org17e57c4" class="outline-3">
-<h3 id="org17e57c4"><span class="section-number-3">1.3.</span> Toolkit Data Interfaces</h3>
+<div id="outline-container-org7d08926" class="outline-3">
+<h3 id="org7d08926"><span class="section-number-3">1.3.</span> Toolkit Data Interfaces</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 The WCP implementation was developed in the context of the MicroBooNE detector which has one wire (segment) per channel (wire and channels are degenerate) while a general detector (an in particular, ProtoDUNE/DUNE APAs) has multiple wires per channel due to wrapping a continuous wire conductor around a supporting frame.  
@@ -207,8 +207,8 @@ The first two interfaces above are &ldquo;activity-independent&rdquo; in the sen
 </div>
 
 
-<div id="outline-container-orgfd072c0" class="outline-3">
-<h3 id="orgfd072c0"><span class="section-number-3">1.4.</span> Toolkit Component Interfaces</h3>
+<div id="outline-container-org343b6ca" class="outline-3">
+<h3 id="org343b6ca"><span class="section-number-3">1.4.</span> Toolkit Component Interfaces</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 The WCP component (conceptual) interfaces shown in <a href="./imaging_flow.pdf">./imaging_flow.pdf</a>.
@@ -241,16 +241,16 @@ The new interfaces:
 </div>
 </div>
 
-<div id="outline-container-orga4272e3" class="outline-3">
-<h3 id="orga4272e3"><span class="section-number-3">1.5.</span> Implementation notes</h3>
+<div id="outline-container-org3db12d2" class="outline-3">
+<h3 id="org3db12d2"><span class="section-number-3">1.5.</span> Implementation notes</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 This section holds notes on implementations.
 </p>
 </div>
 
-<div id="outline-container-org01dd0ae" class="outline-4">
-<h4 id="org01dd0ae"><span class="section-number-4">1.5.1.</span> Slicing</h4>
+<div id="outline-container-org5cdff1c" class="outline-4">
+<h4 id="org5cdff1c"><span class="section-number-4">1.5.1.</span> Slicing</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <p>
 The <code>SumSlices</code> component produces a queued output of slices from an input frame.  The frame is assumed to have any thresholds applied by setting any existing samples to exactly <code>0.0</code> or by providing a sparse frame.
@@ -262,8 +262,8 @@ Note that there is also a <code>SumSlicer</code> which produces an <code>ISliceF
 </div>
 </div>
 
-<div id="outline-container-orgf3085a0" class="outline-4">
-<h4 id="orgf3085a0"><span class="section-number-4">1.5.2.</span> Stripping</h4>
+<div id="outline-container-org4b266e2" class="outline-4">
+<h4 id="org4b266e2"><span class="section-number-4">1.5.2.</span> Stripping</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <p>
 The stripper is a function node.  It takes in a single slice and produces a collection of strips.  This 1-to-N mapping is done because it&rsquo;s a relatively fast operation, does not produce much data and all strips corresponding to a slice most likely always need to be used together and the overhead of passing individual strips through the execution graph just to recollect them is silly.  If a reason to have individual strip flow is found, one may break this up in the future.
@@ -275,8 +275,8 @@ The <code>NaiveStripper</code> will produce strips in the simplest way possible.
 </div>
 </div>
 
-<div id="outline-container-orgd14b9da" class="outline-4">
-<h4 id="orgd14b9da"><span class="section-number-4">1.5.3.</span> Tiling (ray clustering, layer overlaps)</h4>
+<div id="outline-container-orgafeca39" class="outline-4">
+<h4 id="orgafeca39"><span class="section-number-4">1.5.3.</span> Tiling (ray clustering, layer overlaps)</h4>
 <div class="outline-text-4" id="text-1-5-3">
 <p>
 Tiling is the process of determine regions (&ldquo;blobs&rdquo;) which likely surround charge given wires which likely measured that charge as determined by their channels reading activity in the given time slice.  Given a detector with wrapped wires it is not trivial to know on which wire current was induced and thus one must initially assume all wires attached to a &ldquo;hit&rdquo; channel may have had nearby charge.  This then leads to &ldquo;ghosts&rdquo; which must be later removed.  However a strong negative remains true: if a working channel measures no activity (above threshold) then all attached wires should not contribute to any &ldquo;blobs&rdquo;.
@@ -331,8 +331,8 @@ Finally, one may divide this tensor by the magnitude of the pitch of the third R
 </div>
 
 
-<div id="outline-container-orgac6face" class="outline-4">
-<h4 id="orgac6face"><span class="section-number-4">1.5.4.</span> Slice Overlaps</h4>
+<div id="outline-container-org63c9fbc" class="outline-4">
+<h4 id="org63c9fbc"><span class="section-number-4">1.5.4.</span> Slice Overlaps</h4>
 <div class="outline-text-4" id="text-1-5-4">
 <p>
 Tiling leaves ghosts.  One way to remove them is to check each cluster against those produced from a neighboring time slice and remove any that lack an &ldquo;overlaps&rdquo;.  To leverage the optimization techniques developed for tiling above, the definition of overlap should be expressed in the same terms of two-layer corners and their pitch distance in a third layer which can then be compared against pitch intervals in the layers of clusters in the &ldquo;other&rdquo; time slice. 
@@ -354,8 +354,8 @@ In a sense, this checking for overlap with neighboring time slice is <b>almost</
 </div>
 </div>
 
-<div id="outline-container-org5ff56fb" class="outline-4">
-<h4 id="org5ff56fb"><span class="section-number-4">1.5.5.</span> Solving</h4>
+<div id="outline-container-org9c6cfee" class="outline-4">
+<h4 id="org9c6cfee"><span class="section-number-4">1.5.5.</span> Solving</h4>
 <div class="outline-text-4" id="text-1-5-5">
 <p>
 The tiling step typically leaves &ldquo;ghosts&rdquo; which are blobs (aka ray clusters) which surround some region that does not actually contain any ionization activity.  The ambiguities which are inherent in having a limited number of layers makes it impossible to remove these ghosts with just the tiling algorithm.  Tiling only uses the existence of non-zero signal activity but does not use its magnitude.  Using this information it is possible to construct a linear equation in terms of measured signal activity and constrained by the geometry.  In the form of a matrix equation: \(m = C G b\) where:
@@ -400,14 +400,14 @@ Next, it all zero blobs can be removed which removes wires and ultimately
 
 
 
-<div id="outline-container-org09c57af" class="outline-2">
-<h2 id="org09c57af"><span class="section-number-2">2.</span> Tiling</h2>
+<div id="outline-container-orgf618f82" class="outline-2">
+<h2 id="orgf618f82"><span class="section-number-2">2.</span> Tiling</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The <code>img/test/test-pdsp.jsonnet</code> file can configure to run either full or fast sim+sigproc (fast is the new <code>DepoSplat</code> component).  
 </p>
 
-<pre class="example" id="orgc3b539f">
+<pre class="example" id="orgbc5127a">
 rm -f test-pdsp.npz test-pdsp-*.json &amp;&amp; wire-cell -c img/test/test-pdsp.jsonnet  
 </pre>
 
@@ -416,7 +416,7 @@ This makes a bunch of JSON files, one per slice.  Any number of these
 can be can converted to a VTK unstructured grid file (<code>.vtu</code>) of blobs:
 </p>
 
-<pre class="example" id="orge5ccda0">
+<pre class="example" id="org90a8d9b">
 python util/test/blob2tvtk.py test-pdsp test-pdsp-???.json
 </pre>
 
@@ -424,7 +424,7 @@ python util/test/blob2tvtk.py test-pdsp test-pdsp-???.json
 It also makes a Numpy file which can be converted to a VTK point (<code>.vtp</code>) file of depos:
 </p>
 
-<pre class="example" id="org3927818">
+<pre class="example" id="org5061d42">
 ./util/test/depo2tvtk.py test-pdsp.npz - 3695*units.mm/speed
 # --&gt; makes test-pdsp-depos.vtp
 </pre>
@@ -466,14 +466,17 @@ then be matched to WC debugging logs.
 A per-slice blobs can be viewed:
 </p>
 
-<pre class="example" id="orgf1fe9d2">
+<pre class="example" id="org3be137d">
 python util/test/blob2tvtk.py test-pdsp-748 test-pdsp-748.json
 paraview test-pdsp-748-blobs.vtu
 </pre>
 
-<p>
-<a href="x.pdf">x.pdf</a>
+
+<div id="org8d740e6" class="figure">
+<p><object type="image/svg+xml" data="x.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
 </p>
+</div>
 
 <p>
 On Mate desktop, paraview renders tool tips with white text on yellow
@@ -484,7 +487,7 @@ background which is unreadable.  <a href="https://community.slickedit.com/index.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

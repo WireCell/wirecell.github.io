@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Wire Cell Interfaces</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,14 +51,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd47ed6a">1. Interfaces</a>
+<li><a href="#orgeabda94">1. Interfaces</a>
 <ul>
-<li><a href="#org558f1dd">1.1. IDFT</a>
+<li><a href="#org762d525">1.1. IDFT</a>
 <ul>
-<li><a href="#org6eb4808">1.1.1. Limitations</a></li>
+<li><a href="#org197b5b6">1.1.1. Limitations</a></li>
 </ul>
 </li>
-<li><a href="#org351bce8">1.2. &#x2026;</a></li>
+<li><a href="#org9f190d4">1.2. &#x2026;</a></li>
 </ul>
 </li>
 </ul>
@@ -103,12 +103,12 @@ the overall WCT dependency tree.  Discussion is warranted in these cases.
 See the user manual for more info.  <a href="https://wirecell.bnl.gov/">https://wirecell.bnl.gov/</a>
 </p>
 
-<div id="outline-container-orgd47ed6a" class="outline-2">
-<h2 id="orgd47ed6a"><span class="section-number-2">1.</span> Interfaces</h2>
+<div id="outline-container-orgeabda94" class="outline-2">
+<h2 id="orgeabda94"><span class="section-number-2">1.</span> Interfaces</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org558f1dd" class="outline-3">
-<h3 id="org558f1dd"><span class="section-number-3">1.1.</span> IDFT</h3>
+<div id="outline-container-org762d525" class="outline-3">
+<h3 id="org762d525"><span class="section-number-3">1.1.</span> IDFT</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The <code>IDFT</code> class provides interface to methods to perform discrete
@@ -120,7 +120,7 @@ point values.
 The interface defines a number of methods which take a general naming
 convention like:
 </p>
-<pre class="example" id="org51be0a4">
+<pre class="example" id="org9a84c6f">
 void &lt;direction&gt;&lt;domain&gt;(...);
 </pre>
 
@@ -162,8 +162,8 @@ optimization&rdquo;.
 </p>
 </div>
 
-<div id="outline-container-org6eb4808" class="outline-4">
-<h4 id="org6eb4808"><span class="section-number-4">1.1.1.</span> Limitations</h4>
+<div id="outline-container-org197b5b6" class="outline-4">
+<h4 id="org197b5b6"><span class="section-number-4">1.1.1.</span> Limitations</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>The potential speed up when the input to a forward or output from
@@ -183,12 +183,12 @@ provided.  See <code>Aux::DFT</code> for implementations in terms of an <code>ID
 </div>
 </div>
 
-<div id="outline-container-org351bce8" class="outline-3">
-<h3 id="org351bce8"><span class="section-number-3">1.2.</span> &#x2026;</h3>
+<div id="outline-container-org9f190d4" class="outline-3">
+<h3 id="org9f190d4"><span class="section-number-3">1.2.</span> &#x2026;</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Any interfaces not listed above, please see their header file in
-<a href="inc/WireCellIface/">inc/WireCellIface/</a> for more information.
+<code>inc/WireCellIface/</code> for more information.
 </p>
 </div>
 </div>
@@ -196,7 +196,7 @@ Any interfaces not listed above, please see their header file in
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

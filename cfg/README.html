@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Wire Cell Toolkit Configuration</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,27 +51,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd0e4002">1. What is here</a></li>
-<li><a href="#org6031d52">2. Contents overview</a>
+<li><a href="#orgf7bea5d">1. What is here</a></li>
+<li><a href="#org378a395">2. Contents overview</a>
 <ul>
-<li><a href="#org4012978">2.1. General support files</a></li>
-<li><a href="#orgd97bcbc">2.2. Structure layers</a></li>
-<li><a href="#org614d9dc">2.3. Legacy forms</a></li>
-<li><a href="#org2b49764">2.4. Obsolete</a></li>
+<li><a href="#org5c86068">2.1. General support files</a></li>
+<li><a href="#orgbd659b3">2.2. Structure layers</a></li>
+<li><a href="#org3f56344">2.3. Legacy forms</a></li>
 </ul>
 </li>
-<li><a href="#org91634d7">3. Tests</a></li>
-<li><a href="#org8773166">4. JQ tricks</a>
+<li><a href="#org8f78c30">3. Tests</a></li>
+<li><a href="#orgf69f2fc">4. JQ tricks</a>
 <ul>
-<li><a href="#org22c8943">4.1. WCT JSON Config Files</a></li>
+<li><a href="#orgcb7209b">4.1. WCT JSON Config Files</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd0e4002" class="outline-2">
-<h2 id="orgd0e4002"><span class="section-number-2">1.</span> What is here</h2>
+<div id="outline-container-orgf7bea5d" class="outline-2">
+<h2 id="orgf7bea5d"><span class="section-number-2">1.</span> What is here</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This repository holds a reference set of Wire Cell Toolkit (WCT)
@@ -110,8 +109,8 @@ as well as <a href="https://wirecell.github.io/news/categories/config/">news pos
 </div>
 </div>
 
-<div id="outline-container-org6031d52" class="outline-2">
-<h2 id="org6031d52"><span class="section-number-2">2.</span> Contents overview</h2>
+<div id="outline-container-org378a395" class="outline-2">
+<h2 id="org378a395"><span class="section-number-2">2.</span> Contents overview</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 This describes what is available.  Be wary is may not always be up to
@@ -119,8 +118,8 @@ date with the reality on the ground.
 </p>
 </div>
 
-<div id="outline-container-org4012978" class="outline-3">
-<h3 id="org4012978"><span class="section-number-3">2.1.</span> General support files</h3>
+<div id="outline-container-org5c86068" class="outline-3">
+<h3 id="org5c86068"><span class="section-number-3">2.1.</span> General support files</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Files at top level provide general support and utilities.  Primarily
@@ -156,8 +155,8 @@ the <code>Pgrapher</code> WCT app component.  Some details are <a href="https://
 </div>
 </div>
 
-<div id="outline-container-orgd97bcbc" class="outline-3">
-<h3 id="orgd97bcbc"><span class="section-number-3">2.2.</span> Structure layers</h3>
+<div id="outline-container-orgbd659b3" class="outline-3">
+<h3 id="orgbd659b3"><span class="section-number-3">2.2.</span> Structure layers</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Across all types of <b>detectors</b> and <b>jobs</b> which are supported by WCT we
@@ -169,8 +168,8 @@ legacy forms, should read the document <a href="layers/README.html">layers/READM
 </div>
 </div>
 
-<div id="outline-container-org614d9dc" class="outline-3">
-<h3 id="org614d9dc"><span class="section-number-3">2.3.</span> Legacy forms</h3>
+<div id="outline-container-org3f56344" class="outline-3">
+<h3 id="org3f56344"><span class="section-number-3">2.3.</span> Legacy forms</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The original configuration structure which does not allow for
@@ -183,22 +182,10 @@ forms.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org2b49764" class="outline-3">
-<h3 id="org2b49764"><span class="section-number-3">2.4.</span> Obsolete</h3>
-<div class="outline-text-3" id="text-2-4">
-<p>
-Configuration can become obsolete when the C++ changes or when new
-paradigms of configuration organization are adopted.  That
-configuration may be moved to <a href="obsolete/">obsolete/</a> for some time before being
-dropped from the tip of the master branch.
-</p>
-</div>
-</div>
 </div>
 
-<div id="outline-container-org91634d7" class="outline-2">
-<h2 id="org91634d7"><span class="section-number-2">3.</span> Tests</h2>
+<div id="outline-container-org8f78c30" class="outline-2">
+<h2 id="org8f78c30"><span class="section-number-2">3.</span> Tests</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 As with other WCT subpackages, this provides a <code>/test/</code> sub-directory with various tests that used through the <a href="../test/README.html">WCT testing framework</a>.  In particular the <code>cfg</code> sub-package has many tests written in Jsonnet and the <a href="../test/docs/jsonnet.html">Jsonnet test support</a> is particularly relevant.
@@ -207,22 +194,22 @@ As with other WCT subpackages, this provides a <code>/test/</code> sub-directory
 </div>
 
 
-<div id="outline-container-org8773166" class="outline-2">
-<h2 id="org8773166"><span class="section-number-2">4.</span> JQ tricks</h2>
+<div id="outline-container-orgf69f2fc" class="outline-2">
+<h2 id="orgf69f2fc"><span class="section-number-2">4.</span> JQ tricks</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The <code>jq</code> tool is like <code>grep</code> for JSON.  Here are some useful tricks to operate on a mongo big JSON file.
 </p>
 </div>
 
-<div id="outline-container-org22c8943" class="outline-3">
-<h3 id="org22c8943"><span class="section-number-3">4.1.</span> WCT JSON Config Files</h3>
+<div id="outline-container-orgcb7209b" class="outline-3">
+<h3 id="orgcb7209b"><span class="section-number-3">4.1.</span> WCT JSON Config Files</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Find an element in the <i>configuration sequence</i> by type
 </p>
 
-<pre class="example" id="org599e355">
+<pre class="example" id="org286286d">
 $ jq '.[]| select(.type|contains("Drifter"))' wct.json 
 </pre>
 </div>
@@ -231,7 +218,7 @@ $ jq '.[]| select(.type|contains("Drifter"))' wct.json
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

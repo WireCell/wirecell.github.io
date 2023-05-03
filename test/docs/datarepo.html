@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WCT Data Repository</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,21 +51,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org61bf452">1. Overview</a></li>
-<li><a href="#org287c04d">2. Naming convention</a>
+<li><a href="#orgb9168b3">1. Overview</a></li>
+<li><a href="#org3691323">2. Naming convention</a>
 <ul>
-<li><a href="#orge929458">2.1. Categories</a></li>
-<li><a href="#orgdc9b41e">2.2. Versions</a></li>
-<li><a href="#orge5c0581">2.3. Prefix and names</a></li>
-<li><a href="#org976623f">2.4. Files</a></li>
-<li><a href="#org566d8d3">2.5. Input</a></li>
+<li><a href="#orgce1b8d2">2.1. Categories</a></li>
+<li><a href="#org0e73b23">2.2. Versions</a></li>
+<li><a href="#org086ff9d">2.3. Prefix and names</a></li>
+<li><a href="#org7d47b4d">2.4. Files</a></li>
+<li><a href="#org8c7e0f3">2.5. Input</a></li>
 </ul>
 </li>
-<li><a href="#org5c6459b">3. Guidelines for files</a></li>
-<li><a href="#orgf4c6281">4. Working directory</a></li>
-<li><a href="#orgb110f2c">5. Preparing a repo</a></li>
-<li><a href="#org2be07d1">6. Distributing repository contents</a></li>
-<li><a href="#org6339f58">7. Reinventing history</a></li>
+<li><a href="#orgc69d4fb">3. Guidelines for files</a></li>
+<li><a href="#orgd7c43da">4. Working directory</a></li>
+<li><a href="#org0aab53a">5. Preparing a repo</a></li>
+<li><a href="#org30623c4">6. Distributing repository contents</a></li>
+<li><a href="#orgfefb7af">7. Reinventing history</a></li>
 </ul>
 </div>
 </div>
@@ -73,8 +73,8 @@
 The WCT test framework includes a tests data file <i>repository</i>.
 </p>
 
-<div id="outline-container-org61bf452" class="outline-2">
-<h2 id="org61bf452"><span class="section-number-2">1.</span> Overview</h2>
+<div id="outline-container-orgb9168b3" class="outline-2">
+<h2 id="orgb9168b3"><span class="section-number-2">1.</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The repository (repo) provides files for the purpose of:
@@ -96,14 +96,14 @@ Developers of tests that will add to the repository must assure:
 </div>
 </div>
 
-<div id="outline-container-org287c04d" class="outline-2">
-<h2 id="org287c04d"><span class="section-number-2">2.</span> Naming convention</h2>
+<div id="outline-container-org3691323" class="outline-2">
+<h2 id="org3691323"><span class="section-number-2">2.</span> Naming convention</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The repository is composed of a files housed in directories named according to the following pattern:
 </p>
 
-<pre class="example" id="org7ec3c66">
+<pre class="example" id="org8fe283c">
 &lt;category&gt;/&lt;version&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;/&lt;files&gt;
 </pre>
 <p>
@@ -115,8 +115,8 @@ One exception to this pattern is the &ldquo;input&rdquo; category.  This and oth
 </p>
 </div>
 
-<div id="outline-container-orge929458" class="outline-3">
-<h3 id="orge929458"><span class="section-number-3">2.1.</span> Categories</h3>
+<div id="outline-container-orgce1b8d2" class="outline-3">
+<h3 id="orgce1b8d2"><span class="section-number-3">2.1.</span> Categories</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 A <code>&lt;category&gt;</code> sub directory takes its name from an enumerated set of labels.  The label indicates a particular intention for the subsequent use of the file.  The categories include:
@@ -124,7 +124,7 @@ A <code>&lt;category&gt;</code> sub directory takes its name from an enumerated 
 
 <ul class="org-ul">
 <li><code>input</code> are for files explicitly added and for use by tests as input.  It has a special layout convention as described below.</li>
-<li><code>output</code> are for files that test developers think are important enough to be retained beyond the temporary working directory context of the test but are otherwise uncategorized including data files.  This is not meant as a general dumping ground.  Adhere to the guidelines (see section <a href="#org5c6459b">3</a>).</li>
+<li><code>output</code> are for files that test developers think are important enough to be retained beyond the temporary working directory context of the test but are otherwise uncategorized including data files.  This is not meant as a general dumping ground.  Adhere to the guidelines (see section <a href="#orgc69d4fb">3</a>).</li>
 <li><code>plots</code> similar to <code>output</code> but sepecifically files that are figures (PDF, PNG, SVG, etc) and which have specific need to be persisted beyond the test.</li>
 <li><code>history</code> are for files, usually data, specifically intended for further processing by a historical test.  No <i>historical file</i> should be created unless a <i>historical test</i> will consume it.</li>
 <li><code>reports</code> are for files, usually figures, specifically intended for further processing and final output to HTML or PDF reports.</li>
@@ -132,13 +132,13 @@ A <code>&lt;category&gt;</code> sub directory takes its name from an enumerated 
 </div>
 </div>
 
-<div id="outline-container-orgdc9b41e" class="outline-3">
-<h3 id="orgdc9b41e"><span class="section-number-3">2.2.</span> Versions</h3>
+<div id="outline-container-org0e73b23" class="outline-3">
+<h3 id="org0e73b23"><span class="section-number-3">2.2.</span> Versions</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The <code>&lt;version&gt;</code> sub directory must match the &ldquo;spelling&rdquo; output by
 </p>
-<pre class="example" id="org8f63378">
+<pre class="example" id="org47d931f">
 wire-cell --version
 </pre>
 <p>
@@ -149,8 +149,8 @@ Generally only a small number of past <code>&lt;version&gt;</code> will be suppo
 </div>
 </div>
 
-<div id="outline-container-orge5c0581" class="outline-3">
-<h3 id="orge5c0581"><span class="section-number-3">2.3.</span> Prefix and names</h3>
+<div id="outline-container-org086ff9d" class="outline-3">
+<h3 id="org086ff9d"><span class="section-number-3">2.3.</span> Prefix and names</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The <code>&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;</code> is should match the test program source file name with extension omitted.
@@ -159,8 +159,8 @@ Developers of tests with the same source file names must assure that any output 
 </div>
 </div>
 
-<div id="outline-container-org976623f" class="outline-3">
-<h3 id="org976623f"><span class="section-number-3">2.4.</span> Files</h3>
+<div id="outline-container-org7d47b4d" class="outline-3">
+<h3 id="org7d47b4d"><span class="section-number-3">2.4.</span> Files</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 File names must NOT:
@@ -175,8 +175,8 @@ They may otherwise be chosen freely.  As they will reside in a unique category, 
 </div>
 </div>
 
-<div id="outline-container-org566d8d3" class="outline-3">
-<h3 id="org566d8d3"><span class="section-number-3">2.5.</span> Input</h3>
+<div id="outline-container-org8c7e0f3" class="outline-3">
+<h3 id="org8c7e0f3"><span class="section-number-3">2.5.</span> Input</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 The <code>input</code> category does not include <code>&lt;version&gt;</code> but instead has sub-categories describing the general file content.
@@ -199,8 +199,8 @@ Once introduced, an input file may neither be removed nor renamed until all test
 </div>
 
 
-<div id="outline-container-org5c6459b" class="outline-2">
-<h2 id="org5c6459b"><span class="section-number-2">3.</span> Guidelines for files</h2>
+<div id="outline-container-orgc69d4fb" class="outline-2">
+<h2 id="orgc69d4fb"><span class="section-number-2">3.</span> Guidelines for files</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Tests may add files to the test data repo following these guidelines:
@@ -223,28 +223,28 @@ The repo is <b>not</b> meant as a replacement for saving out otherwise ephemeral
 </div>
 </div>
 
-<div id="outline-container-orgf4c6281" class="outline-2">
-<h2 id="orgf4c6281"><span class="section-number-2">4.</span> Working directory</h2>
+<div id="outline-container-orgd7c43da" class="outline-2">
+<h2 id="orgd7c43da"><span class="section-number-2">4.</span> Working directory</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 When a repo is in used in the context of a WCT software build it is simply a directory under the <code>build/</code> directory.  The <code>input</code> and other categories are fund matching these paths:
 </p>
 
-<pre class="example" id="orgdc57d60">
+<pre class="example" id="org9cfd8b0">
 build/tests/input/
 build/tests/&lt;category&gt;/&lt;version&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;/
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgb110f2c" class="outline-2">
-<h2 id="orgb110f2c"><span class="section-number-2">5.</span> Preparing a repo</h2>
+<div id="outline-container-org0aab53a" class="outline-2">
+<h2 id="org0aab53a"><span class="section-number-2">5.</span> Preparing a repo</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 The working directory is prepared as part of the normal build when tests are enabled.  This requires HTTP access to the repo server.
 </p>
 
-<pre class="example" id="orgc87575b">
+<pre class="example" id="orgceff7e6">
 waf --tests
 </pre>
 
@@ -252,21 +252,21 @@ waf --tests
 Each release of WCT has a hard-wired list of past releases for which the current release can use historical files.  Normally, users need not set this but if required this list may be overridden:
 </p>
 
-<pre class="example" id="orgd327b9e">
+<pre class="example" id="orgf260d98">
 waf configure --tests --test-data-releases 0.23.0,0.24.1 [...]
 waf
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org2be07d1" class="outline-2">
-<h2 id="org2be07d1"><span class="section-number-2">6.</span> Distributing repository contents</h2>
+<div id="outline-container-org30623c4" class="outline-2">
+<h2 id="org30623c4"><span class="section-number-2">6.</span> Distributing repository contents</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Archive files for all history versions present in the working directory may be produced.
 </p>
 
-<pre class="example" id="org284267e">
+<pre class="example" id="org286a6d9">
 waf packrepo
 </pre>
 
@@ -274,7 +274,7 @@ waf packrepo
 Or, archives for specific releases may be produced with:
 </p>
 
-<pre class="example" id="org90beba2">
+<pre class="example" id="org319953e">
 waf packrepo --test-data-releases 0.20.0,0.21.0,0.22.0,0.23.0,0.24.1
 </pre>
 
@@ -284,8 +284,8 @@ Normal users need not perform this and experts may perform this as part of the r
 </div>
 </div>
 
-<div id="outline-container-org6339f58" class="outline-2">
-<h2 id="org6339f58"><span class="section-number-2">7.</span> Reinventing history</h2>
+<div id="outline-container-orgfefb7af" class="outline-2">
+<h2 id="orgfefb7af"><span class="section-number-2">7.</span> Reinventing history</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 It is expected that new historical tests will be developed to consume historical files that were not produced for past software releases.  Perhaps the test producing the history file did not even exist in past versions.  To support these new historical tests we must:
@@ -310,7 +310,7 @@ An example of automating this procedure can be found in <code>test/scripts/bv-ge
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

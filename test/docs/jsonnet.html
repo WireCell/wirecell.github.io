@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Testing Jsonnet</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,9 +51,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6f80b66">1. Running Jsonnet tests</a></li>
-<li><a href="#org041901c">2. Basic Jsonnet tests</a></li>
-<li><a href="#org1083501">3. Assertions</a></li>
+<li><a href="#org9b0b2a8">1. Running Jsonnet tests</a></li>
+<li><a href="#org48ce62c">2. Basic Jsonnet tests</a></li>
+<li><a href="#org8eb992d">3. Assertions</a></li>
 </ul>
 </div>
 </div>
@@ -65,8 +65,8 @@ higher level structure builders.  It can be useful to &ldquo;lock&rdquo; in
 expectation to guard against regression in those layers.
 </p>
 
-<div id="outline-container-org6f80b66" class="outline-2">
-<h2 id="org6f80b66"><span class="section-number-2">1.</span> Running Jsonnet tests</h2>
+<div id="outline-container-org9b0b2a8" class="outline-2">
+<h2 id="org9b0b2a8"><span class="section-number-2">1.</span> Running Jsonnet tests</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A Jsonnet test may be compiled with the plain <code>jsonnet</code> command or with
@@ -79,15 +79,15 @@ include any paths given in <code>WIRECELL_PATH</code>.
 </div>
 </div>
 
-<div id="outline-container-org041901c" class="outline-2">
-<h2 id="org041901c"><span class="section-number-2">2.</span> Basic Jsonnet tests</h2>
+<div id="outline-container-org48ce62c" class="outline-2">
+<h2 id="org48ce62c"><span class="section-number-2">2.</span> Basic Jsonnet tests</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The most simple test is one that tests basic expected compilation
 without a need to locate additional files.  For example:
 </p>
 
-<pre class="example" id="org4af734f">
+<pre class="example" id="org5c506b7">
 jsonnet cfg/test/test_wirecell.jsonnet
 </pre>
 
@@ -95,15 +95,15 @@ jsonnet cfg/test/test_wirecell.jsonnet
 others require resolving files that are <code>import</code>:
 </p>
 
-<pre class="example" id="org6f49d66">
+<pre class="example" id="org16069d0">
 jsonnet -J cfg cfg/test/test_pgraph.jsonnet
 wcsonnet cfg/test/test_pgraph.jsonnet
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org1083501" class="outline-2">
-<h2 id="org1083501"><span class="section-number-2">3.</span> Assertions</h2>
+<div id="outline-container-org8eb992d" class="outline-2">
+<h2 id="org8eb992d"><span class="section-number-2">3.</span> Assertions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Jsonnet provides an <code>assert</code> function.  These should be sprinkled liberally throughout Jsonnet test code whenever it is possible to know what some intermediate data structure should be.  See <code>test_graph.jsonnet</code> for an example.
@@ -113,7 +113,7 @@ Jsonnet provides an <code>assert</code> function.  These should be sprinkled lib
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

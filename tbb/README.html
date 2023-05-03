@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Wire Cell Interface to TBB flow graph</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,13 +51,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1bc6d8e">1. Nodes</a></li>
-<li><a href="#orgacecd4d">2. Policy</a></li>
-<li><a href="#org8b67755">3. Understanding the policy</a></li>
-<li><a href="#org5da84d7">4. Out-of-order</a>
+<li><a href="#org6894997">1. Nodes</a></li>
+<li><a href="#org95752b1">2. Policy</a></li>
+<li><a href="#orgdb2ea9a">3. Understanding the policy</a></li>
+<li><a href="#org24b1326">4. Out-of-order</a>
 <ul>
-<li><a href="#org3415bd4">4.1. Concurrency</a></li>
-<li><a href="#org4716f4b">4.2. Buffering</a></li>
+<li><a href="#orgfc55d1d">4.1. Concurrency</a></li>
+<li><a href="#org6306257">4.2. Buffering</a></li>
 </ul>
 </li>
 </ul>
@@ -67,8 +67,8 @@
 Note, TBB docs seem to be under constant churn so expect links here to become dead.
 </p>
 
-<div id="outline-container-org1bc6d8e" class="outline-2">
-<h2 id="org1bc6d8e"><span class="section-number-2">1.</span> Nodes</h2>
+<div id="outline-container-org6894997" class="outline-2">
+<h2 id="org6894997"><span class="section-number-2">1.</span> Nodes</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="https://spec.oneapi.io/versions/latest/elements/oneTBB/source/flow_graph.html#nodes">TBB nodes used</a>:
@@ -85,8 +85,8 @@ Note, TBB docs seem to be under constant churn so expect links here to become de
 </div>
 </div>
 
-<div id="outline-container-orgacecd4d" class="outline-2">
-<h2 id="orgacecd4d"><span class="section-number-2">2.</span> Policy</h2>
+<div id="outline-container-org95752b1" class="outline-2">
+<h2 id="org95752b1"><span class="section-number-2">2.</span> Policy</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 TBB <code>flow_graph</code> nodes follow policies as to their <a href="https://software.intel.com/content/www/us/en/develop/documentation/tbb-documentation/top/intel-threading-building-blocks-developer-reference/flow-graph/overview/fowarding-buffering-and-reception-policy.html">fowarding, buffering and reception</a>.
@@ -141,8 +141,8 @@ There is then a table that summarizes the policies for each node.
 </div>
 </div>
 
-<div id="outline-container-org8b67755" class="outline-2">
-<h2 id="org8b67755"><span class="section-number-2">3.</span> Understanding the policy</h2>
+<div id="outline-container-orgdb2ea9a" class="outline-2">
+<h2 id="orgdb2ea9a"><span class="section-number-2">3.</span> Understanding the policy</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 How to make sense of the policies, in part, requires to understand the
@@ -199,12 +199,12 @@ RAM usage may grow without bound.
 </div>
 </div>
 
-<div id="outline-container-org5da84d7" class="outline-2">
-<h2 id="org5da84d7"><span class="section-number-2">4.</span> Out-of-order</h2>
+<div id="outline-container-org24b1326" class="outline-2">
+<h2 id="org24b1326"><span class="section-number-2">4.</span> Out-of-order</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org3415bd4" class="outline-3">
-<h3 id="org3415bd4"><span class="section-number-3">4.1.</span> Concurrency</h3>
+<div id="outline-container-orgfc55d1d" class="outline-3">
+<h3 id="orgfc55d1d"><span class="section-number-3">4.1.</span> Concurrency</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The <a href="https://spec.oneapi.io/versions/latest/elements/oneTBB/source/flow_graph/split_node_cls.html">TBB <code>split_node</code> </a> is used in part to execute WCT&rsquo;s <code>IFanout</code> nodes.
@@ -223,8 +223,8 @@ seqno.  So, each N-way fanout is really a 2*(N+1) subgraph.
 </div>
 </div>
 
-<div id="outline-container-org4716f4b" class="outline-3">
-<h3 id="org4716f4b"><span class="section-number-3">4.2.</span> Buffering</h3>
+<div id="outline-container-org6306257" class="outline-3">
+<h3 id="org6306257"><span class="section-number-3">4.2.</span> Buffering</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Despite the TBB documentation saying <code>function_node</code> has a FIFO queue at
@@ -250,7 +250,7 @@ with WCT node output for TBB level output.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

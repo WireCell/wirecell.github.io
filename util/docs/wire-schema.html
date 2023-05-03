@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Wire Schema and Conventions</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -73,30 +73,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7289a2b">1. Introduction</a></li>
-<li><a href="#org0741995">2. Compliance</a></li>
-<li><a href="#org488ae3d">3. Schema</a></li>
-<li><a href="#org3a5f6ba">4. Conventions</a>
+<li><a href="#org246d47a">1. Introduction</a></li>
+<li><a href="#org35166be">2. Compliance</a></li>
+<li><a href="#orgd28cd0d">3. Schema</a></li>
+<li><a href="#orgc9877b6">4. Conventions</a>
 <ul>
-<li><a href="#orgd2d5a7b">4.1. Identity</a></li>
-<li><a href="#orga9218e2">4.2. Coordinate systems</a></li>
-<li><a href="#org1d168a0">4.3. Ordering</a>
+<li><a href="#org97e4956">4.1. Identity</a></li>
+<li><a href="#org5bd510b">4.2. Coordinate systems</a></li>
+<li><a href="#orgf2280dc">4.3. Ordering</a>
 <ul>
-<li><a href="#org9606cf9">4.3.1. Wire in plane index</a></li>
-<li><a href="#orgbf3600b">4.3.2. Wire endpoints</a></li>
-<li><a href="#org61b1d34">4.3.3. Segment</a></li>
+<li><a href="#org10bdb93">4.3.1. Wire in plane index</a></li>
+<li><a href="#orgde6bd34">4.3.2. Wire endpoints</a></li>
+<li><a href="#orga50fda8">4.3.3. Segment</a></li>
 </ul>
 </li>
-<li><a href="#org0e375ce">4.4. Uniformity</a></li>
+<li><a href="#org5560947">4.4. Uniformity</a></li>
 </ul>
 </li>
-<li><a href="#org71d5ca5">5. Correctness</a></li>
+<li><a href="#org64449b7">5. Correctness</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7289a2b" class="outline-2">
-<h2 id="org7289a2b"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org246d47a" class="outline-2">
+<h2 id="org246d47a"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Wire-Cell Toolkit requires a description of the sensitive electrodes be they of wire or strip shape.  Parallel planes of wires are stacked to fill one &ldquo;face&rdquo;.  One or more &ldquo;faces&rdquo; are collected into an &ldquo;anode&rdquo;.  A &ldquo;detector&rdquo; is comprised of one or more anode.
@@ -112,8 +112,8 @@ This document makes use of <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC 21
 </div>
 </div>
 
-<div id="outline-container-org0741995" class="outline-2">
-<h2 id="org0741995"><span class="section-number-2">2.</span> Compliance</h2>
+<div id="outline-container-org35166be" class="outline-2">
+<h2 id="org35166be"><span class="section-number-2">2.</span> Compliance</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Prior to being formalized in this document, all existing wires files are not in compliance in some way.  Where possible, WCT will attempt to correct invalid wires.  Novel wires files must be compliant as determined by the validation mechanism now provided by WCT.
@@ -121,8 +121,8 @@ Prior to being formalized in this document, all existing wires files are not in 
 </div>
 </div>
 
-<div id="outline-container-org488ae3d" class="outline-2">
-<h2 id="org488ae3d"><span class="section-number-2">3.</span> Schema</h2>
+<div id="outline-container-orgd28cd0d" class="outline-2">
+<h2 id="orgd28cd0d"><span class="section-number-2">3.</span> Schema</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The wire data structure schema is represented formally:
@@ -148,16 +148,16 @@ All structures except for <code>Store</code> and <code>Point</code> have an inte
 </div>
 </div>
 
-<div id="outline-container-org3a5f6ba" class="outline-2">
-<h2 id="org3a5f6ba"><span class="section-number-2">4.</span> Conventions</h2>
+<div id="outline-container-orgc9877b6" class="outline-2">
+<h2 id="orgc9877b6"><span class="section-number-2">4.</span> Conventions</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 A number of features of the wire data can not be expressed in a formal schema and are subject to a number of required conventions.  They are given in this section and written as to be directed to a provider of wire data.
 </p>
 </div>
 
-<div id="outline-container-orgd2d5a7b" class="outline-3">
-<h3 id="orgd2d5a7b"><span class="section-number-3">4.1.</span> Identity</h3>
+<div id="outline-container-org97e4956" class="outline-3">
+<h3 id="org97e4956"><span class="section-number-3">4.1.</span> Identity</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Instances of all schema types except <code>Store</code> must provide an <code>ident</code> attribute. 
@@ -171,8 +171,8 @@ Instances of all schema types except <code>Store</code> must provide an <code>id
 </div>
 </div>
 
-<div id="outline-container-orga9218e2" class="outline-3">
-<h3 id="orga9218e2"><span class="section-number-3">4.2.</span> Coordinate systems</h3>
+<div id="outline-container-org5bd510b" class="outline-3">
+<h3 id="org5bd510b"><span class="section-number-3">4.2.</span> Coordinate systems</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 The coordinate systems relevant to the wires are described in this section.  External coordinate systems may exist and they are out of scope.  The user must convert data from external coordinate systems to transform it into WCT coordinates..
@@ -204,16 +204,16 @@ Note, &ldquo;near unity&rdquo; is taken to be within \(1.0 \pm 10^{-4}\) or abou
 </div>
 </div>
 
-<div id="outline-container-org1d168a0" class="outline-3">
-<h3 id="org1d168a0"><span class="section-number-3">4.3.</span> Ordering</h3>
+<div id="outline-container-orgf2280dc" class="outline-3">
+<h3 id="orgf2280dc"><span class="section-number-3">4.3.</span> Ordering</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 The requirements on the order of children arrays held by parents are given in this section.
 </p>
 </div>
 
-<div id="outline-container-org9606cf9" class="outline-4">
-<h4 id="org9606cf9"><span class="section-number-4">4.3.1.</span> Wire in plane index</h4>
+<div id="outline-container-org10bdb93" class="outline-4">
+<h4 id="org10bdb93"><span class="section-number-4">4.3.1.</span> Wire in plane index</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 The wire-in-plane (WIP) index (or number) orders wires in their plane.
@@ -227,8 +227,8 @@ The wire-in-plane (WIP) index (or number) orders wires in their plane.
 </div>
 </div>
 
-<div id="outline-container-orgbf3600b" class="outline-4">
-<h4 id="orgbf3600b"><span class="section-number-4">4.3.2.</span> Wire endpoints</h4>
+<div id="outline-container-orgde6bd34" class="outline-4">
+<h4 id="orgde6bd34"><span class="section-number-4">4.3.2.</span> Wire endpoints</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 An instance of <code>Wire</code> has attributes <code>tail</code> and <code>head</code> representing the wire endpoints.
@@ -240,8 +240,8 @@ An instance of <code>Wire</code> has attributes <code>tail</code> and <code>head
 </div>
 </div>
 
-<div id="outline-container-org61b1d34" class="outline-4">
-<h4 id="org61b1d34"><span class="section-number-4">4.3.3.</span> Segment</h4>
+<div id="outline-container-orga50fda8" class="outline-4">
+<h4 id="orga50fda8"><span class="section-number-4">4.3.3.</span> Segment</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <p>
 A &ldquo;wire&rdquo; is actually a &ldquo;wire segment&rdquo; and given a segment number.
@@ -255,8 +255,8 @@ segments between it and the input to the electronics channel.</dd>
 </div>
 </div>
 
-<div id="outline-container-org0e375ce" class="outline-3">
-<h3 id="org0e375ce"><span class="section-number-3">4.4.</span> Uniformity</h3>
+<div id="outline-container-org5560947" class="outline-3">
+<h3 id="org5560947"><span class="section-number-3">4.4.</span> Uniformity</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 All wires in a wire plane should be mutually parallel, coplanar and
@@ -266,8 +266,8 @@ uniformly spaced in the pitch direction.
 </div>
 </div>
 
-<div id="outline-container-org71d5ca5" class="outline-2">
-<h2 id="org71d5ca5"><span class="section-number-2">5.</span> Correctness</h2>
+<div id="outline-container-org64449b7" class="outline-2">
+<h2 id="org64449b7"><span class="section-number-2">5.</span> Correctness</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Real world &ldquo;wires files&rdquo; may (and do) violate the this specification.  For example,
@@ -300,7 +300,7 @@ The <code>WireSchema::load(filename, correction)</code> method attempts to corre
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

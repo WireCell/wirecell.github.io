@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cluster Shadow</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,19 +51,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org646fc84">1. Introduction</a></li>
-<li><a href="#orgb364083">2. Implementation</a>
+<li><a href="#org0b252c7">1. Introduction</a></li>
+<li><a href="#orgef1d353">2. Implementation</a>
 <ul>
-<li><a href="#org1d44289">2.1. Constructing</a></li>
-<li><a href="#org94dd740">2.2. Using</a></li>
+<li><a href="#orga1c18e1">2.1. Constructing</a></li>
+<li><a href="#org334fb54">2.2. Using</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org646fc84" class="outline-2">
-<h2 id="org646fc84"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org0b252c7" class="outline-2">
+<h2 id="org0b252c7"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In the context of the <code>ClusterShadow</code> API, the unqualifed term <i>cluster</i>
@@ -100,8 +100,8 @@ loop/buckle edge connecting its vertex to itself.
 </div>
 </div>
 
-<div id="outline-container-orgb364083" class="outline-2">
-<h2 id="orgb364083"><span class="section-number-2">2.</span> Implementation</h2>
+<div id="outline-container-orgef1d353" class="outline-2">
+<h2 id="orgef1d353"><span class="section-number-2">2.</span> Implementation</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The main method of the <code>ClusterShadow</code> API produces a CS graph and a
@@ -111,8 +111,8 @@ shadow.
 </p>
 </div>
 
-<div id="outline-container-org1d44289" class="outline-3">
-<h3 id="org1d44289"><span class="section-number-3">2.1.</span> Constructing</h3>
+<div id="outline-container-orga1c18e1" class="outline-3">
+<h3 id="orga1c18e1"><span class="section-number-3">2.1.</span> Constructing</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-c++"><span style="color: #e090d7;">#include</span> <span style="color: #e9b96e;">"WireCellAux/ClusterShadow.h"</span>
@@ -135,8 +135,8 @@ If you don&rsquo;t care about the blob content of clusters you may call
 </div>
 </div>
 
-<div id="outline-container-org94dd740" class="outline-3">
-<h3 id="org94dd740"><span class="section-number-3">2.2.</span> Using</h3>
+<div id="outline-container-org334fb54" class="outline-3">
+<h3 id="org334fb54"><span class="section-number-3">2.2.</span> Using</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Each CS graph vertex has one <code>Rectangles</code> object for each view.  You may
@@ -154,7 +154,7 @@ Examples and/or pointers to tests t.b.d.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

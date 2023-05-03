@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WCT BATS Tests</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -73,23 +73,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6087751">1. BATS in WCT</a></li>
-<li><a href="#org5120a4f">2. My first BATS test</a></li>
-<li><a href="#orgbe2cb39">3. Running BATS tests</a></li>
-<li><a href="#orga32bcc3">4. Naming the BATS test file</a></li>
-<li><a href="#org841465c">5. First steps</a></li>
-<li><a href="#org90593b0">6. Basic elements of a test</a></li>
-<li><a href="#orgac5e519">7. Start up and tear down</a></li>
-<li><a href="#orgfb8e656">8. Temporary files</a></li>
-<li><a href="#orgd14ed30">9. Persistent files</a></li>
-<li><a href="#org39508f9">10. Idempotent running</a></li>
-<li><a href="#orga68e85b">11. Using <code>setup_file</code></a></li>
-<li><a href="#org88a997d">12. Test tags</a></li>
-<li><a href="#orgeabb0fb">13. Test logging</a>
+<li><a href="#org2b85634">1. BATS in WCT</a></li>
+<li><a href="#orge5b44e2">2. My first BATS test</a></li>
+<li><a href="#orgd8dfa84">3. Running BATS tests</a></li>
+<li><a href="#orgb37e6ff">4. Naming the BATS test file</a></li>
+<li><a href="#org1e67f7c">5. First steps</a></li>
+<li><a href="#org95d96a1">6. Basic elements of a test</a></li>
+<li><a href="#org2bf2fc0">7. Start up and tear down</a></li>
+<li><a href="#org5d83abb">8. Temporary files</a></li>
+<li><a href="#org8cf6bea">9. Persistent files</a></li>
+<li><a href="#orgfdc6de6">10. Idempotent running</a></li>
+<li><a href="#org07bfaea">11. Using <code>setup_file</code></a></li>
+<li><a href="#org29b14b3">12. Test tags</a></li>
+<li><a href="#org925c474">13. Test logging</a>
 <ul>
-<li><a href="#org244e84a">13.1. Logging on failure</a></li>
-<li><a href="#org281074d">13.2. Logging on success</a></li>
-<li><a href="#orge8ca5cf">13.3. File descriptor 3.</a></li>
+<li><a href="#orgf30e8f1">13.1. Logging on failure</a></li>
+<li><a href="#org39af27e">13.2. Logging on success</a></li>
+<li><a href="#orgd530257">13.3. File descriptor 3.</a></li>
 </ul>
 </li>
 </ul>
@@ -99,7 +99,7 @@
 A BATS file is essentially a Bash shell script with a number of &ldquo;special&rdquo; functions that look like the following:
 </p>
 
-<pre class="example" id="org2c46482">
+<pre class="example" id="orga35405e">
 @test "description of test" {
   # ... body of test
 }  
@@ -116,24 +116,24 @@ With very little additional effort compared to plain shell scripts, a BATS test 
 <li>simple ways to run commands and check for success.</li>
 </ul>
 
-<div id="outline-container-org6087751" class="outline-2">
-<h2 id="org6087751"><span class="section-number-2">1.</span> BATS in WCT</h2>
+<div id="outline-container-org2b85634" class="outline-2">
+<h2 id="org2b85634"><span class="section-number-2">1.</span> BATS in WCT</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 WCT provides a copy of BATS as the version coming with many operating systems is not up to date.    It will be used by the build system.  When running BATS tests directly the user should assure:
 </p>
 
-<pre class="example" id="org977854c">
+<pre class="example" id="org0336107">
 $ PATH=/path/to/my/wire-cell-toolkit/test/bats/bin:$PATH
 $ export BATS_LIB_PATH=/path/to/my/wire-cell-toolkit/test
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org5120a4f" class="outline-2">
-<h2 id="org5120a4f"><span class="section-number-2">2.</span> My first BATS test</h2>
+<div id="outline-container-orge5b44e2" class="outline-2">
+<h2 id="orge5b44e2"><span class="section-number-2">2.</span> My first BATS test</h2>
 <div class="outline-text-2" id="text-2">
-<pre class="example" id="orgcfa765e">
+<pre class="example" id="orgca8e9ca">
 bats_load_library wct-bats.sh
 
 @test "check wire-cell version" {
@@ -158,21 +158,21 @@ The <code>wcsonnet</code> is not so wrapped but is available as a <code>wcb</cod
 </div>
 </div>
 
-<div id="outline-container-orgbe2cb39" class="outline-2">
-<h2 id="orgbe2cb39"><span class="section-number-2">3.</span> Running BATS tests</h2>
+<div id="outline-container-orgd8dfa84" class="outline-2">
+<h2 id="orgd8dfa84"><span class="section-number-2">3.</span> Running BATS tests</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A BATS test should run from anywhere:
 </p>
 
-<pre class="example" id="org9fa1351">
+<pre class="example" id="org4d29b83">
 bats test/test/test_my_first_bats.bats
 </pre>
 <p>
 As in this example, all <code>@test</code> functions in a BATS file will be executed sequentially.  A subset of tests with names that match a filter can be selected for running.  Using above example:
 </p>
 
-<pre class="example" id="org662429b">
+<pre class="example" id="orgbf671cd">
 bats -f "wire-cell" test/test/test_my_first_bats.bats
 </pre>
 
@@ -186,14 +186,14 @@ Here we give some detailed guidance on making a BATS test.
 </div>
 </div>
 
-<div id="outline-container-orga32bcc3" class="outline-2">
-<h2 id="orga32bcc3"><span class="section-number-2">4.</span> Naming the BATS test file</h2>
+<div id="outline-container-orgb37e6ff" class="outline-2">
+<h2 id="orgb37e6ff"><span class="section-number-2">4.</span> Naming the BATS test file</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 See section on <a href="framework.html">Framework</a> and <a href="writing.html">Writing tests</a> for general guidance on writing WCT tests.  
 Start by creating a BATS file.  Here, we pick the &ldquo;test&rdquo; aka &ldquo;atomic&rdquo; category:
 </p>
-<pre class="example" id="org0300481">
+<pre class="example" id="orgc21d0f3">
 &lt;pkg&gt;/test/&lt;category&gt;&lt;sep&gt;&lt;name&gt;.bats
 </pre>
 <p>
@@ -204,7 +204,7 @@ As with all tests, the category and name should be unique.  If more than one tes
 If the test relates to an issue on GitHub (and ideally there is a test for every issue) then this is an excellent pattern:
 </p>
 
-<pre class="example" id="org601718c">
+<pre class="example" id="orgad34d68">
 &lt;pkg&gt;/test/test_issueNNNN.bats
 </pre>
 
@@ -214,14 +214,14 @@ BATS tests should be placed in a <code>&lt;pkg&gt;</code> which best provides th
 </div>
 </div>
 
-<div id="outline-container-org841465c" class="outline-2">
-<h2 id="org841465c"><span class="section-number-2">5.</span> First steps</h2>
+<div id="outline-container-org1e67f7c" class="outline-2">
+<h2 id="org1e67f7c"><span class="section-number-2">5.</span> First steps</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Edit the <code>.bats</code> file, add the <code>@test</code> function:
 </p>
 
-<pre class="example" id="org0c87c77">
+<pre class="example" id="org7ed6891">
 #!/usr/bin/env bats
 
 load ../../test/wct-bats.sh
@@ -236,7 +236,7 @@ Pick a test description that describes a positive test outcome.
 Check that the test works:
 </p>
 
-<pre class="example" id="org8db35f7">
+<pre class="example" id="orge471bf4">
 $ bats &lt;pkg&gt;/test/test_issueNNNN.bats
 </pre>
 
@@ -246,14 +246,14 @@ So far, it can&rsquo;t fail.  Below we progressively add more tests constraints.
 </div>
 </div>
 
-<div id="outline-container-org90593b0" class="outline-2">
-<h2 id="org90593b0"><span class="section-number-2">6.</span> Basic elements of a test</h2>
+<div id="outline-container-org95d96a1" class="outline-2">
+<h2 id="org95d96a1"><span class="section-number-2">6.</span> Basic elements of a test</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Typically an <code>@test</code> will consist of one or more stanzas with the following four lines:
 </p>
 
-<pre class="example" id="orgf1bf08c">
+<pre class="example" id="org69cfca6">
 run some_command             # (1)
 echo "$output"               # (2)
 [[ "$status" -eq 0 ]]        # (3)
@@ -273,14 +273,14 @@ We explain each:
 </div>
 </div>
 
-<div id="outline-container-orgac5e519" class="outline-2">
-<h2 id="orgac5e519"><span class="section-number-2">7.</span> Start up and tear down</h2>
+<div id="outline-container-org2bf2fc0" class="outline-2">
+<h2 id="org2bf2fc0"><span class="section-number-2">7.</span> Start up and tear down</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 In addition to the special <code>@test "" {}</code> function forms, BATS supports two functions that are called once per file.  The first is called prior to any <code>@test</code> and the second called after all <code>@test</code>.
 </p>
 
-<pre class="example" id="orgcd346f9">
+<pre class="example" id="org32fdb4d">
 function setup_file () {
   # startup code
 }
@@ -294,8 +294,8 @@ One example for using <code>setup_file</code> is to run any long-running program
 </div>
 </div>
 
-<div id="outline-container-orgfb8e656" class="outline-2">
-<h2 id="orgfb8e656"><span class="section-number-2">8.</span> Temporary files</h2>
+<div id="outline-container-org5d83abb" class="outline-2">
+<h2 id="org5d83abb"><span class="section-number-2">8.</span> Temporary files</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 BATS has a concept of a context-dependent temporary working directory.  The contexts are:
@@ -313,7 +313,7 @@ BATS has a concept of a context-dependent temporary working directory.  The cont
 Typically, <code>run</code> is not used.  The <code>wct-bats.sh</code> library provides some helpers to work with temporary areas:
 </p>
 
-<pre class="example" id="org2c859f0">
+<pre class="example" id="org8dcd432">
 cd_tmp      (1)
 cd_tmp file (2)
 </pre>
@@ -329,7 +329,7 @@ Where:
 By default <code>bats</code> will delete all temporary directories after completion of the test run.  When tests fail it can be useful to examine what was placed in the temporary directories.  To allow this run the test like:
 </p>
 
-<pre class="example" id="org57bb117">
+<pre class="example" id="orgd2a21fe">
 $ bats --no-tempdir-cleanup path/to/test_foo.bats
 </pre>
 <p>
@@ -339,14 +339,14 @@ The temporary directory will be printed to the terminal.
 <p>
 Alternatively, <code>wct-bats.sh</code>  overrules default temporary directories, combines them and does not delete them when <code>WCTEST_TMPDIR</code> is defined.  This can be useful while developing and debugging tests, particularly in combination with writing long running tests in an idempotent fashion.  Do <b>not</b> define this variable in any test but instead in your interactive shell session:
 </p>
-<pre class="example" id="org3804ffd">
+<pre class="example" id="org3c6663c">
 $ WCTEST_TMPDIR=$HOME/my-wct-tmp-dir bats [...]
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgd14ed30" class="outline-2">
-<h2 id="orgd14ed30"><span class="section-number-2">9.</span> Persistent files</h2>
+<div id="outline-container-org8cf6bea" class="outline-2">
+<h2 id="org8cf6bea"><span class="section-number-2">9.</span> Persistent files</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Some BATS tests may use or create files that persist beyond the temporary context via the WCT test data repository (see <a href="datarepo.html">Data repository</a>).  The <code>wct-bats.org</code> library provides some functions to help work with such files.
@@ -355,14 +355,14 @@ Some BATS tests may use or create files that persist beyond the temporary contex
 <p>
 For a test that produces <b>historical files</b>, they may be saved to the &ldquo;history&rdquo; category of the repo with:
 </p>
-<pre class="example" id="org5acc28e">
+<pre class="example" id="org200b785">
 # bats test_tags=history
 @test "make history" {
   # ...
   saveout -c history my-file-for-history.npz
 }
 </pre>
-<div class="note" id="org8e1c8a6">
+<div class="note" id="org3c9c905">
 <p>
 Only place the <code>history</code> tag on tests that save history files.  History can then be quickly refreshed by running <code>bats --filter-tags history */test/test*.bats</code> and this command can be run in a number of software build environments to refresh past history after some new historical tests are added.
 </p>
@@ -374,7 +374,7 @@ Only place the <code>history</code> tag on tests that save history files.  Histo
 A known input file may be resolved as:
 </p>
 
-<pre class="example" id="org1c943e1">
+<pre class="example" id="orgf66fbc2">
 local myinput=$(input_file relative/path/data.ext)
 </pre>
 
@@ -382,7 +382,7 @@ local myinput=$(input_file relative/path/data.ext)
 A file from a version of a category is resolved:
 </p>
 
-<pre class="example" id="orgf4925b2">
+<pre class="example" id="org4df40b2">
 # from current version of history category
 local myfile=$(category_path relative/path/data.ext)
 # from specific version of plots category
@@ -393,7 +393,7 @@ local plot20=$(category_path -c plots -v 0.20.0 relative/path/data.png)
 All released versions of a the <code>history</code> category directory and all versions of the <code>plots</code> category:
 </p>
 
-<pre class="example" id="org8b82bc7">
+<pre class="example" id="org0087d4b">
 local myhistpaths_released=( category_version_paths )
 local myhistpaths_plus_dirty=( category_version_paths -c plots --dirty )
 </pre>
@@ -402,20 +402,20 @@ local myhistpaths_plus_dirty=( category_version_paths -c plots --dirty )
 Likewise, but just the version strings
 </p>
 
-<pre class="example" id="org4b594f0">
+<pre class="example" id="orgc4a5247">
 local myhistvers_released=( category_versions )
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org39508f9" class="outline-2">
-<h2 id="org39508f9"><span class="section-number-2">10.</span> Idempotent running</h2>
+<div id="outline-container-orgfdc6de6" class="outline-2">
+<h2 id="orgfdc6de6"><span class="section-number-2">10.</span> Idempotent running</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 The <code>wct-bats.sh</code> BATS library provides a helper function to run a particular test command in an <b>idempotent</b> manner.  The function is called like:
 </p>
 
-<pre class="example" id="org43fed18">
+<pre class="example" id="orgea497d7">
 run_idempotently [sources] [targets] -- &lt;command line&gt;
 </pre>
 
@@ -446,14 +446,14 @@ While this will not speed up normal testing, it can dramatically speed up re-run
 </div>
 </div>
 
-<div id="outline-container-orga68e85b" class="outline-2">
-<h2 id="orga68e85b"><span class="section-number-2">11.</span> Using <code>setup_file</code></h2>
+<div id="outline-container-org07bfaea" class="outline-2">
+<h2 id="org07bfaea"><span class="section-number-2">11.</span> Using <code>setup_file</code></h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Another method to run tests in an idempotent manner is to place common, perhaps long running, tasks in the <code>setup_file</code> function,  run the entire test with <code>WCTEST_TMPDIR</code> set and then re-run specific tests with <code>bats -f &lt;filter&gt;</code>.  When a specific test is exercising some issue, this lets the developer focus on just that issue and reuse prior results.  Consider the example:
 </p>
 
-<pre class="example" id="orgee798ab">
+<pre class="example" id="orgbff231a">
 function setup_file () {
   cd_tmp file
   run my_slow_command -o output1.txt 
@@ -474,7 +474,7 @@ function setup_file () {
 <p>
 Then the developer may do something like:
 </p>
-<pre class="example" id="org9f0da84">
+<pre class="example" id="orgdc6131b">
 $ WCTEST_TEMPDIR=/tmp/my-test bats my-test.bats
 $ WCTEST_TEMPDIR=/tmp/my-test bats -f one my-test.bats  
 </pre>
@@ -485,14 +485,14 @@ To force a full re-run simply remove the <code>/tmp/my-test</code> and perhaps r
 </div>
 </div>
 
-<div id="outline-container-org88a997d" class="outline-2">
-<h2 id="org88a997d"><span class="section-number-2">12.</span> Test tags</h2>
+<div id="outline-container-org29b14b3" class="outline-2">
+<h2 id="org29b14b3"><span class="section-number-2">12.</span> Test tags</h2>
 <div class="outline-text-2" id="text-12">
 <p>
-As shown in the <a href="#org841465c">5</a> one can assert <a href="https://bats-core.readthedocs.io/en/stable/writing-tests.html#tagging-tests">test tags</a> above a <code>@test</code>.  One can also have file-level tags.
+As shown in the <a href="#org1e67f7c">5</a> one can assert <a href="https://bats-core.readthedocs.io/en/stable/writing-tests.html#tagging-tests">test tags</a> above a <code>@test</code>.  One can also have file-level tags.
 </p>
 
-<pre class="example" id="org7c16546">
+<pre class="example" id="orga2b14e3">
 # bats file_tags=issue:202
 
 # bats test_tags=topic:noise
@@ -524,7 +524,7 @@ Tag name conventions are defined here:
 By default, all tests are run.  The user may explicitly include or exclude tests.  For example, to run tests tagged as being related to <code>wires</code> and that take a few minutes or less to run and explicitly those in the <code>util/</code> sub package: 
 </p>
 
-<pre class="example" id="org733aeab">
+<pre class="example" id="org85b7b04">
 bats --filter-tags 'topic:wires,!time:3' util/test/test*.bats
 </pre>
 <p>
@@ -533,22 +533,22 @@ See also the <code>wcb --test-duration=&lt;seconds&gt;</code> options described 
 </div>
 </div>
 
-<div id="outline-container-orgeabb0fb" class="outline-2">
-<h2 id="orgeabb0fb"><span class="section-number-2">13.</span> Test logging</h2>
+<div id="outline-container-org925c474" class="outline-2">
+<h2 id="org925c474"><span class="section-number-2">13.</span> Test logging</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 BATS uses the <a href="https://testanything.org/">&ldquo;test anything protocol&rdquo;</a> to combine multiple tests in a coherent way.  We need not be overly concerned with the details but it does mean that BATS captures <code>stdout</code> and <code>stderr</code> from the individual tests.  When the user wishes to see diagnostic messages directly this causes annoyance.  But, no worry as there are three mechanisms to emit and view such user diagonstics.
 </p>
 </div>
 
-<div id="outline-container-org244e84a" class="outline-3">
-<h3 id="org244e84a"><span class="section-number-3">13.1.</span> Logging on failure</h3>
+<div id="outline-container-orgf30e8f1" class="outline-3">
+<h3 id="orgf30e8f1"><span class="section-number-3">13.1.</span> Logging on failure</h3>
 <div class="outline-text-3" id="text-13-1">
 <p>
 By default, <code>bats</code> will show <code>stdout</code> for a test that fails so simply <code>echo</code> or otherwise send to <code>stdout</code> as usual
 </p>
 
-<pre class="example" id="org8a2e7a5">
+<pre class="example" id="org744e903">
 @test "chirp and fail" {
     echo "hello world"
     exit 1
@@ -560,14 +560,14 @@ Running <code>bats</code> on this test will fail and print <code>hello world</co
 </div>
 </div>
 
-<div id="outline-container-org281074d" class="outline-3">
-<h3 id="org281074d"><span class="section-number-3">13.2.</span> Logging on success</h3>
+<div id="outline-container-org39af27e" class="outline-3">
+<h3 id="org39af27e"><span class="section-number-3">13.2.</span> Logging on success</h3>
 <div class="outline-text-3" id="text-13-2">
 <p>
 The output of successful tests can also be shown.
 </p>
 
-<pre class="example" id="org2b53e27">
+<pre class="example" id="orgfbb837d">
 @test "chirp and succeed" {
     echo "goodbye world"
 }
@@ -576,7 +576,7 @@ The output of successful tests can also be shown.
 Running <code>bats</code> as:
 </p>
 
-<pre class="example" id="orgf27c7e7">
+<pre class="example" id="orgb01d6f7">
 $ bats --show-output-of-passing-tests chirp.bats
 </pre>
 <p>
@@ -585,14 +585,14 @@ will show <code>goodbye world</code>.
 </div>
 </div>
 
-<div id="outline-container-orge8ca5cf" class="outline-3">
-<h3 id="orge8ca5cf"><span class="section-number-3">13.3.</span> File descriptor 3.</h3>
+<div id="outline-container-orgd530257" class="outline-3">
+<h3 id="orgd530257"><span class="section-number-3">13.3.</span> File descriptor 3.</h3>
 <div class="outline-text-3" id="text-13-3">
 <p>
 Output to the special file descriptor <code>3</code> will always lead to that output to the terminal.  
 </p>
 
-<pre class="example" id="orgf1ca3e6">
+<pre class="example" id="org240b968">
 @test "chirp no matter what" {
     echo "Ahhhhhhhh" 1&gt;&amp;3
 }
@@ -606,7 +606,7 @@ Please avoid using this except in special, temporary cases, as it leads to very 
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

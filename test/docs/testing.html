@@ -3,72 +3,72 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WCT Testing Framework Writing WCT tests WCT Data Repository Historical tests WCT Testing with C++ WCT BATS Tests Testing Jsonnet</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -127,72 +127,72 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc61b31a">1. Overview</a></li>
+<li><a href="#orgdee7505">1. Overview</a></li>
 <li><a href="#exec-tests">2. Executing tests</a>
 <ul>
-<li><a href="#org6a0faf2">2.1. Automated campaign</a></li>
-<li><a href="#orgfbd3bb9">2.2. Targeted execution</a></li>
-<li><a href="#org36b75a9">2.3. Direct execution</a></li>
+<li><a href="#org09a5371">2.1. Automated campaign</a></li>
+<li><a href="#org12979e8">2.2. Targeted execution</a></li>
+<li><a href="#org6d7f456">2.3. Direct execution</a></li>
 </ul>
 </li>
 <li><a href="#requirements">3. Test requirements</a></li>
 <li><a href="#source">4. Test source</a></li>
 <li><a href="#groups">5. Test groups</a></li>
-<li><a href="#org9b2bca6">6. Scope of a test</a></li>
-<li><a href="#orgbc14232">7. Location of test source</a></li>
-<li><a href="#org971a2fe">8. Name the test</a></li>
-<li><a href="#org6c25c69">9. Overview</a></li>
-<li><a href="#orgb167b2f">10. Naming convention</a>
+<li><a href="#orge33a444">6. Scope of a test</a></li>
+<li><a href="#org0038785">7. Location of test source</a></li>
+<li><a href="#org74fe4b2">8. Name the test</a></li>
+<li><a href="#org5c083c3">9. Overview</a></li>
+<li><a href="#org94a9154">10. Naming convention</a>
 <ul>
-<li><a href="#org805a26a">10.1. Categories</a></li>
-<li><a href="#orgf79ed7e">10.2. Versions</a></li>
-<li><a href="#orgf0c72e0">10.3. Prefix and names</a></li>
-<li><a href="#org0bf1775">10.4. Files</a></li>
-<li><a href="#org9f99ed1">10.5. Input</a></li>
+<li><a href="#org012f147">10.1. Categories</a></li>
+<li><a href="#org4401b5a">10.2. Versions</a></li>
+<li><a href="#org38d2c1b">10.3. Prefix and names</a></li>
+<li><a href="#orgbafe9e7">10.4. Files</a></li>
+<li><a href="#org0709d7a">10.5. Input</a></li>
 </ul>
 </li>
-<li><a href="#orgb033395">11. Guidelines for files</a></li>
-<li><a href="#org781d212">12. Working directory</a></li>
-<li><a href="#org30590d0">13. Preparing a repo</a></li>
-<li><a href="#org1c8e48b">14. Distributing repository contents</a></li>
-<li><a href="#orgbc4889e">15. Reinventing history</a></li>
-<li><a href="#org8f6ffd9">16. Versions</a></li>
-<li><a href="#org27f3fa0">17. Support</a></li>
-<li><a href="#org97fb137">18. Test implementation languages</a></li>
-<li><a href="#org0893413">19. Write a doctest test</a></li>
-<li><a href="#orga2a1754">20. Logging with doctest</a></li>
-<li><a href="#org6fdaed2">21. Atomic C++ tests</a></li>
-<li><a href="#orgc982cdd">22. A simple atomic C++ test</a></li>
-<li><a href="#org9cb0624">23. Logging with atomic tests</a></li>
-<li><a href="#org85f9510">24. Mixing atomic and doctest</a></li>
-<li><a href="#org6b64462">25. Using atomic as a variant test</a></li>
-<li><a href="#org280ffef">26. Growing a test</a></li>
-<li><a href="#org96994c6">27. Failing tests</a></li>
-<li><a href="#org3771de1">28. WCT C++ testing support</a></li>
-<li><a href="#org3f3ce38">29. Output diagnostic files</a></li>
-<li><a href="#org0dce35c">30. Found input files</a></li>
-<li><a href="#org1852889">31. BATS in WCT</a></li>
-<li><a href="#orgf9b7eef">32. My first BATS test</a></li>
-<li><a href="#org3c53437">33. Running BATS tests</a></li>
-<li><a href="#org75d12fe">34. Naming the BATS test file</a></li>
-<li><a href="#orgb6f3f9d">35. First steps</a></li>
-<li><a href="#org0449787">36. Basic elements of a test</a></li>
-<li><a href="#org50dc4fb">37. Start up and tear down</a></li>
-<li><a href="#org315a36a">38. Temporary files</a></li>
-<li><a href="#org44cd9ea">39. Persistent files</a></li>
-<li><a href="#orga9d647a">40. Idempotent running</a></li>
-<li><a href="#orgbedf7c4">41. Using <code>setup_file</code></a></li>
-<li><a href="#orgffd1ce1">42. Test tags</a></li>
-<li><a href="#org07e865e">43. Test logging</a>
+<li><a href="#orga98ea48">11. Guidelines for files</a></li>
+<li><a href="#org0ce56e1">12. Working directory</a></li>
+<li><a href="#org016ae0d">13. Preparing a repo</a></li>
+<li><a href="#orgfb1b0d8">14. Distributing repository contents</a></li>
+<li><a href="#org2daf4fe">15. Reinventing history</a></li>
+<li><a href="#org14f72de">16. Versions</a></li>
+<li><a href="#orge135c6f">17. Support</a></li>
+<li><a href="#org318e901">18. Test implementation languages</a></li>
+<li><a href="#org3ce7f34">19. Write a doctest test</a></li>
+<li><a href="#org97a02ae">20. Logging with doctest</a></li>
+<li><a href="#org0ebd640">21. Atomic C++ tests</a></li>
+<li><a href="#orgc3b90b3">22. A simple atomic C++ test</a></li>
+<li><a href="#org761e664">23. Logging with atomic tests</a></li>
+<li><a href="#org3a74bb8">24. Mixing atomic and doctest</a></li>
+<li><a href="#org0cc33e4">25. Using atomic as a variant test</a></li>
+<li><a href="#org35f3a6e">26. Growing a test</a></li>
+<li><a href="#orgfb9254f">27. Failing tests</a></li>
+<li><a href="#org91cd336">28. WCT C++ testing support</a></li>
+<li><a href="#org16efe96">29. Output diagnostic files</a></li>
+<li><a href="#orgf2a843a">30. Found input files</a></li>
+<li><a href="#orgdafde16">31. BATS in WCT</a></li>
+<li><a href="#org58ac060">32. My first BATS test</a></li>
+<li><a href="#orgbfd3e1c">33. Running BATS tests</a></li>
+<li><a href="#orge6256e2">34. Naming the BATS test file</a></li>
+<li><a href="#org98a0d5a">35. First steps</a></li>
+<li><a href="#org769682d">36. Basic elements of a test</a></li>
+<li><a href="#org822d01d">37. Start up and tear down</a></li>
+<li><a href="#org335c711">38. Temporary files</a></li>
+<li><a href="#org6a6cd41">39. Persistent files</a></li>
+<li><a href="#org8433e6d">40. Idempotent running</a></li>
+<li><a href="#org594ee5f">41. Using <code>setup_file</code></a></li>
+<li><a href="#org0ce3cc4">42. Test tags</a></li>
+<li><a href="#org3aa1a98">43. Test logging</a>
 <ul>
-<li><a href="#org0dd786f">43.1. Logging on failure</a></li>
-<li><a href="#org2ea01e1">43.2. Logging on success</a></li>
-<li><a href="#orgcc256bd">43.3. File descriptor 3.</a></li>
+<li><a href="#org474e159">43.1. Logging on failure</a></li>
+<li><a href="#orgc09755a">43.2. Logging on success</a></li>
+<li><a href="#org2120267">43.3. File descriptor 3.</a></li>
 </ul>
 </li>
-<li><a href="#org565ef46">44. Running Jsonnet tests</a></li>
-<li><a href="#org7283258">45. Basic Jsonnet tests</a></li>
-<li><a href="#org80496eb">46. Assertions</a></li>
+<li><a href="#org7ac3bea">44. Running Jsonnet tests</a></li>
+<li><a href="#orgd3f6f0e">45. Basic Jsonnet tests</a></li>
+<li><a href="#org5c5dfba">46. Assertions</a></li>
 </ul>
 </div>
 </div>
@@ -200,8 +200,8 @@
 This describes the WCT test framework.
 </p>
 
-<div id="outline-container-orgc61b31a" class="outline-2">
-<h2 id="orgc61b31a"><span class="section-number-2">1.</span> Overview</h2>
+<div id="outline-container-orgdee7505" class="outline-2">
+<h2 id="orgdee7505"><span class="section-number-2">1.</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 WCT provides a large and growing suite of self-tests.  When they pass, they assure a variety of correct or at least expected behavior.  Examples of the behavior tested:
@@ -233,69 +233,69 @@ A user may execute tests in three different ways.
 </p>
 </div>
 
-<div id="outline-container-org6a0faf2" class="outline-3">
-<h3 id="org6a0faf2"><span class="section-number-3">2.1.</span> Automated campaign</h3>
+<div id="outline-container-org09a5371" class="outline-3">
+<h3 id="org09a5371"><span class="section-number-3">2.1.</span> Automated campaign</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 By default, <b>no tests are executed</b> by the WCT builder (<code>waf</code> or the provided <code>wcb</code>).  To execute tests the <code>--tests</code> option may be given at configure time:
 </p>
-<pre class="example" id="org81b5529">
+<pre class="example" id="org5deb9fe">
 waf configure --tests [...]
 </pre>
 <p>
 By default, when tests are enabled, the entire test group sequence is executed in the order listed above.  This sequence can be shortened by naming a different terminating group:
 </p>
-<pre class="example" id="org72f77c0">
+<pre class="example" id="orgbf4c744">
 waf configure --tests --test-group=atomic [...]
 </pre>
 <p>
 A user may change their mind about the testing.  They may either rerun the <code>configure</code> step or they may pass the options again at the <code>waf build</code> phase.  For example, <code>waf configure --tests</code> was ran but subsequently the user wants to disable tests or to set a terminating group:
 </p>
-<pre class="example" id="orge82798c">
+<pre class="example" id="orgbab850f">
 waf --test-group=atomic
 waf --notests
 </pre>
 <p>
 Likewise, if testing was not configured (the default), one can turn it back on during building
 </p>
-<pre class="example" id="org88172c2">
+<pre class="example" id="org5cf0e00">
 waf --tests
 </pre>
 <p>
 The values remembered by <code>waf configure</code> may be viewed with:
 </p>
-<pre class="example" id="org264eacf">
+<pre class="example" id="orgf38d9d2">
 waf dumpenv|grep 'waf: TEST'
 </pre>
 <p>
 Some tests take many minutes to complete.  Each time they are run, their run time is recorded.  Subsequent testing campaigns may exclude all test that are expected to require more time than a given test duration:
 </p>
-<pre class="example" id="org2e9a98c">
+<pre class="example" id="org95628f2">
 waf --test-duration=&lt;seconds&gt;
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgfbd3bb9" class="outline-3">
-<h3 id="orgfbd3bb9"><span class="section-number-3">2.2.</span> Targeted execution</h3>
+<div id="outline-container-org12979e8" class="outline-3">
+<h3 id="org12979e8"><span class="section-number-3">2.2.</span> Targeted execution</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Assuming the build was configured with <code>--test</code>, an individual test may be run explicitly via <code>waf</code> by giving its &ldquo;target name&rdquo;:
 </p>
-<pre class="example" id="org35bec8f">
+<pre class="example" id="org019bb23">
 waf --target=test_testing
 </pre>
 <p>
 Test target names are derived from source file names with file name extension removed.  Interpreted tests will have the interpreter name appended.
 A listing of all targets including those for tests can be found with:
 </p>
-<pre class="example" id="org84511a3">
+<pre class="example" id="orgefeb4c4">
 waf list
 </pre>
 <p>
 To force a particular test to be rerun after it has been run once:
 </p>
-<pre class="example" id="orgffe0c9d">
+<pre class="example" id="org223315e">
 waf --target=test_testing --alltests
 </pre>
 <p>
@@ -304,14 +304,14 @@ If the build was not configured with the <code>--test</code> option, this option
 </div>
 </div>
 
-<div id="outline-container-org36b75a9" class="outline-3">
-<h3 id="org36b75a9"><span class="section-number-3">2.3.</span> Direct execution</h3>
+<div id="outline-container-org6d7f456" class="outline-3">
+<h3 id="org6d7f456"><span class="section-number-3">2.3.</span> Direct execution</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 A test program may be executed directly from the shell command line.  Compiled tests are found under <code>build/&lt;pkg&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;</code>.  Interpreted test files are left in-place in the source trees and must be run with an appropriate interpreter.  Here are some examples of directly running tests:
 </p>
 
-<pre class="example" id="org0fbe1d0">
+<pre class="example" id="org81654ac">
 ./build/util/test_testing
 wcsonnet cfg/test/test_wirecell.jsonnet
 bats test/test/test_bats.bats
@@ -345,7 +345,7 @@ A test program:
 The source file for a test program must found as:
 </p>
 
-<pre class="example" id="orgf033156">
+<pre class="example" id="org91cdcde">
 &lt;pkg&gt;/test/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;.&lt;ext&gt;
 </pre>
 <p>
@@ -362,7 +362,7 @@ With the following elements:
 <p>
 Some examples:
 </p>
-<pre class="example" id="orga7431bf">
+<pre class="example" id="org867320a">
 util/test/test_testing.cxx
 gen/test/test-addnoise.bats
 util/test/check_act2viz.cxx
@@ -405,8 +405,8 @@ writing tests in different support programming languages.
 </div>
 </div>
 
-<div id="outline-container-org9b2bca6" class="outline-2">
-<h2 id="org9b2bca6"><span class="section-number-2">6.</span> Scope of a test</h2>
+<div id="outline-container-orge33a444" class="outline-2">
+<h2 id="orge33a444"><span class="section-number-2">6.</span> Scope of a test</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 When considering to develop a test, consider what should be tested and then ask yourself:
@@ -420,15 +420,15 @@ When considering to develop a test, consider what should be tested and then ask 
 </div>
 </div>
 
-<div id="outline-container-orgbc14232" class="outline-2">
-<h2 id="orgbc14232"><span class="section-number-2">7.</span> Location of test source</h2>
+<div id="outline-container-org0038785" class="outline-2">
+<h2 id="org0038785"><span class="section-number-2">7.</span> Location of test source</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 The source file for a test should be placed under one of the
 directories:
 </p>
 
-<pre class="example" id="org232c4d2">
+<pre class="example" id="orga791e29">
 &lt;pkg&gt;/test/
 </pre>
 
@@ -437,7 +437,7 @@ In deciding the <code>&lt;pkg&gt;</code> to house the test, particular care is n
 </p>
 
 
-<div id="orgefd2330" class="figure">
+<div id="org2b8f47b" class="figure">
 <p><img src="https://github.com/WireCell/wire-cell-toolkit/raw/master/wct-deps.png" alt="wct-deps.png" />
 </p>
 </div>
@@ -452,14 +452,14 @@ For example, if a test of code in <code>WireCellGen</code> requires ROOT, that t
 </div>
 </div>
 
-<div id="outline-container-org971a2fe" class="outline-2">
-<h2 id="org971a2fe"><span class="section-number-2">8.</span> Name the test</h2>
+<div id="outline-container-org74fe4b2" class="outline-2">
+<h2 id="org74fe4b2"><span class="section-number-2">8.</span> Name the test</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 As described in <a href="framework.html">the testing framework topic</a> a test must have a source file name that matches the pattern:
 </p>
 
-<pre class="example" id="org7bc7e19">
+<pre class="example" id="org842a21f">
 &lt;pkg&gt;/test/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;.&lt;ext&gt;
 </pre>
 
@@ -487,14 +487,14 @@ If a test specifically addresses a GitHub issue one option is to name
 the file to include the issue number.  For example:
 </p>
 
-<pre class="example" id="org090c5cb">
+<pre class="example" id="org8ff50c2">
 test_issue200.bats
 </pre>
 <p>
 Likewise, if a test addresses things in a PR, it should contain the PR
 number.  For example:
 </p>
-<pre class="example" id="orgfaa9ab4">
+<pre class="example" id="orga0c9b36">
 test-pr195.bats
 </pre>
 
@@ -510,8 +510,8 @@ The WCT test framework includes a tests data file <i>repository</i>.
 </div>
 </div>
 
-<div id="outline-container-org6c25c69" class="outline-2">
-<h2 id="org6c25c69"><span class="section-number-2">9.</span> Overview</h2>
+<div id="outline-container-org5c083c3" class="outline-2">
+<h2 id="org5c083c3"><span class="section-number-2">9.</span> Overview</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 The repository (repo) provides files for the purpose of:
@@ -533,14 +533,14 @@ Developers of tests that will add to the repository must assure:
 </div>
 </div>
 
-<div id="outline-container-orgb167b2f" class="outline-2">
-<h2 id="orgb167b2f"><span class="section-number-2">10.</span> Naming convention</h2>
+<div id="outline-container-org94a9154" class="outline-2">
+<h2 id="org94a9154"><span class="section-number-2">10.</span> Naming convention</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 The repository is composed of a files housed in directories named according to the following pattern:
 </p>
 
-<pre class="example" id="orgf5db944">
+<pre class="example" id="org9eb0dff">
 &lt;category&gt;/&lt;version&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;/&lt;files&gt;
 </pre>
 <p>
@@ -552,8 +552,8 @@ One exception to this pattern is the &ldquo;input&rdquo; category.  This and oth
 </p>
 </div>
 
-<div id="outline-container-org805a26a" class="outline-3">
-<h3 id="org805a26a"><span class="section-number-3">10.1.</span> Categories</h3>
+<div id="outline-container-org012f147" class="outline-3">
+<h3 id="org012f147"><span class="section-number-3">10.1.</span> Categories</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 A <code>&lt;category&gt;</code> sub directory takes its name from an enumerated set of labels.  The label indicates a particular intention for the subsequent use of the file.  The categories include:
@@ -561,7 +561,7 @@ A <code>&lt;category&gt;</code> sub directory takes its name from an enumerated 
 
 <ul class="org-ul">
 <li><code>input</code> are for files explicitly added and for use by tests as input.  It has a special layout convention as described below.</li>
-<li><code>output</code> are for files that test developers think are important enough to be retained beyond the temporary working directory context of the test but are otherwise uncategorized including data files.  This is not meant as a general dumping ground.  Adhere to the guidelines (see section <a href="#orgb033395">11</a>).</li>
+<li><code>output</code> are for files that test developers think are important enough to be retained beyond the temporary working directory context of the test but are otherwise uncategorized including data files.  This is not meant as a general dumping ground.  Adhere to the guidelines (see section <a href="#orga98ea48">11</a>).</li>
 <li><code>plots</code> similar to <code>output</code> but sepecifically files that are figures (PDF, PNG, SVG, etc) and which have specific need to be persisted beyond the test.</li>
 <li><code>history</code> are for files, usually data, specifically intended for further processing by a historical test.  No <i>historical file</i> should be created unless a <i>historical test</i> will consume it.</li>
 <li><code>reports</code> are for files, usually figures, specifically intended for further processing and final output to HTML or PDF reports.</li>
@@ -569,13 +569,13 @@ A <code>&lt;category&gt;</code> sub directory takes its name from an enumerated 
 </div>
 </div>
 
-<div id="outline-container-orgf79ed7e" class="outline-3">
-<h3 id="orgf79ed7e"><span class="section-number-3">10.2.</span> Versions</h3>
+<div id="outline-container-org4401b5a" class="outline-3">
+<h3 id="org4401b5a"><span class="section-number-3">10.2.</span> Versions</h3>
 <div class="outline-text-3" id="text-10-2">
 <p>
 The <code>&lt;version&gt;</code> sub directory must match the &ldquo;spelling&rdquo; output by
 </p>
-<pre class="example" id="org6caa632">
+<pre class="example" id="orge78855c">
 wire-cell --version
 </pre>
 <p>
@@ -586,8 +586,8 @@ Generally only a small number of past <code>&lt;version&gt;</code> will be suppo
 </div>
 </div>
 
-<div id="outline-container-orgf0c72e0" class="outline-3">
-<h3 id="orgf0c72e0"><span class="section-number-3">10.3.</span> Prefix and names</h3>
+<div id="outline-container-org38d2c1b" class="outline-3">
+<h3 id="org38d2c1b"><span class="section-number-3">10.3.</span> Prefix and names</h3>
 <div class="outline-text-3" id="text-10-3">
 <p>
 The <code>&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;</code> is should match the test program source file name with extension omitted.
@@ -596,8 +596,8 @@ Developers of tests with the same source file names must assure that any output 
 </div>
 </div>
 
-<div id="outline-container-org0bf1775" class="outline-3">
-<h3 id="org0bf1775"><span class="section-number-3">10.4.</span> Files</h3>
+<div id="outline-container-orgbafe9e7" class="outline-3">
+<h3 id="orgbafe9e7"><span class="section-number-3">10.4.</span> Files</h3>
 <div class="outline-text-3" id="text-10-4">
 <p>
 File names must NOT:
@@ -612,8 +612,8 @@ They may otherwise be chosen freely.  As they will reside in a unique category, 
 </div>
 </div>
 
-<div id="outline-container-org9f99ed1" class="outline-3">
-<h3 id="org9f99ed1"><span class="section-number-3">10.5.</span> Input</h3>
+<div id="outline-container-org0709d7a" class="outline-3">
+<h3 id="org0709d7a"><span class="section-number-3">10.5.</span> Input</h3>
 <div class="outline-text-3" id="text-10-5">
 <p>
 The <code>input</code> category does not include <code>&lt;version&gt;</code> but instead has sub-categories describing the general file content.
@@ -636,8 +636,8 @@ Once introduced, an input file may neither be removed nor renamed until all test
 </div>
 
 
-<div id="outline-container-orgb033395" class="outline-2">
-<h2 id="orgb033395"><span class="section-number-2">11.</span> Guidelines for files</h2>
+<div id="outline-container-orga98ea48" class="outline-2">
+<h2 id="orga98ea48"><span class="section-number-2">11.</span> Guidelines for files</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Tests may add files to the test data repo following these guidelines:
@@ -660,28 +660,28 @@ The repo is <b>not</b> meant as a replacement for saving out otherwise ephemeral
 </div>
 </div>
 
-<div id="outline-container-org781d212" class="outline-2">
-<h2 id="org781d212"><span class="section-number-2">12.</span> Working directory</h2>
+<div id="outline-container-org0ce56e1" class="outline-2">
+<h2 id="org0ce56e1"><span class="section-number-2">12.</span> Working directory</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 When a repo is in used in the context of a WCT software build it is simply a directory under the <code>build/</code> directory.  The <code>input</code> and other categories are fund matching these paths:
 </p>
 
-<pre class="example" id="org9558ffc">
+<pre class="example" id="org24f7953">
 build/tests/input/
 build/tests/&lt;category&gt;/&lt;version&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;/
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org30590d0" class="outline-2">
-<h2 id="org30590d0"><span class="section-number-2">13.</span> Preparing a repo</h2>
+<div id="outline-container-org016ae0d" class="outline-2">
+<h2 id="org016ae0d"><span class="section-number-2">13.</span> Preparing a repo</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 The working directory is prepared as part of the normal build when tests are enabled.  This requires HTTP access to the repo server.
 </p>
 
-<pre class="example" id="orgf66f344">
+<pre class="example" id="orgc52f18d">
 waf --tests
 </pre>
 
@@ -689,21 +689,21 @@ waf --tests
 Each release of WCT has a hard-wired list of past releases for which the current release can use historical files.  Normally, users need not set this but if required this list may be overridden:
 </p>
 
-<pre class="example" id="orgae372e2">
+<pre class="example" id="org91c3d9e">
 waf configure --tests --test-data-releases 0.23.0,0.24.1 [...]
 waf
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org1c8e48b" class="outline-2">
-<h2 id="org1c8e48b"><span class="section-number-2">14.</span> Distributing repository contents</h2>
+<div id="outline-container-orgfb1b0d8" class="outline-2">
+<h2 id="orgfb1b0d8"><span class="section-number-2">14.</span> Distributing repository contents</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 Archive files for all history versions present in the working directory may be produced.
 </p>
 
-<pre class="example" id="org9a73193">
+<pre class="example" id="org1d1ecc5">
 waf packrepo
 </pre>
 
@@ -711,7 +711,7 @@ waf packrepo
 Or, archives for specific releases may be produced with:
 </p>
 
-<pre class="example" id="org41b835a">
+<pre class="example" id="org23fb89e">
 waf packrepo --test-data-releases 0.20.0,0.21.0,0.22.0,0.23.0,0.24.1
 </pre>
 
@@ -721,8 +721,8 @@ Normal users need not perform this and experts may perform this as part of the r
 </div>
 </div>
 
-<div id="outline-container-orgbc4889e" class="outline-2">
-<h2 id="orgbc4889e"><span class="section-number-2">15.</span> Reinventing history</h2>
+<div id="outline-container-org2daf4fe" class="outline-2">
+<h2 id="org2daf4fe"><span class="section-number-2">15.</span> Reinventing history</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 It is expected that new historical tests will be developed to consume historical files that were not produced for past software releases.  Perhaps the test producing the history file did not even exist in past versions.  To support these new historical tests we must:
@@ -752,8 +752,8 @@ these files.
 </div>
 </div>
 
-<div id="outline-container-org8f6ffd9" class="outline-2">
-<h2 id="org8f6ffd9"><span class="section-number-2">16.</span> Versions</h2>
+<div id="outline-container-org14f72de" class="outline-2">
+<h2 id="org14f72de"><span class="section-number-2">16.</span> Versions</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 A historical test may itself only run software from the current software version under test.  A historical test can not execute any code from other versions, though it may access historical files produced by other code versions.
@@ -763,7 +763,7 @@ A historical test may itself only run software from the current software version
 The versions that are available for a historical file is given at build time by:
 </p>
 
-<pre class="example" id="org2ccc761">
+<pre class="example" id="orgf7468b1">
 wcb configure [--test-data-versions=&lt;versions&gt;] [--tests] [...]
 </pre>
 
@@ -775,7 +775,7 @@ This is an optional argument.  The WCT developers have hard-coded a list of suit
 During the build phase:
 </p>
 
-<pre class="example" id="orgf7abdae">
+<pre class="example" id="org7a70604">
 wcb [--tests]
 </pre>
 
@@ -789,16 +789,16 @@ Historical tests should only assume versions in this list but may also include t
 </div>
 </div>
 
-<div id="outline-container-org27f3fa0" class="outline-2">
-<h2 id="org27f3fa0"><span class="section-number-2">17.</span> Support</h2>
+<div id="outline-container-orge135c6f" class="outline-2">
+<h2 id="orge135c6f"><span class="section-number-2">17.</span> Support</h2>
 <div class="outline-text-2" id="text-17">
 <p>
 See the <a href=":bats.html">BATS topic</a> for description of support for historical tests written as BATS files.  
 </p>
 </div>
 </div>
-<div id="outline-container-org97fb137" class="outline-2">
-<h2 id="org97fb137"><span class="section-number-2">18.</span> Test implementation languages</h2>
+<div id="outline-container-org318e901" class="outline-2">
+<h2 id="org318e901"><span class="section-number-2">18.</span> Test implementation languages</h2>
 <div class="outline-text-2" id="text-18">
 <p>
 The framework supports writing tests in a few languages as each is
@@ -812,7 +812,7 @@ fast rules but the following guidelines may be considered:
 <li>Jsonnet is convenient for testing Jsonnet functions and structures without the need to develop specific command programs (though doing so is an option).</li>
 </ul>
 
-<div class="note" id="org280e354">
+<div class="note" id="orgca1b6f5">
 <p>
 It is also possible to write WCT tests in Python and plain shell.  However, these are not well supported nor currently recommended.  However,  developers are encouraged to consider adding functionality that is useful for tests into the various command Python modules and Click line interfaces in <code>wire-cell-python</code>.  These may then be easily used from a BATS test.
 </p>
@@ -827,7 +827,7 @@ The remainder of this document gives details of WCT testing framework support sp
 Wire-Cell testing allows writing tests in C++ tests at different levels of granularity.  C++ test source files match the usual WCT testing pattern:
 </p>
 
-<pre class="example" id="orgb3233a4">
+<pre class="example" id="orgb46a9fd">
 &lt;pkg&gt;/&lt;prefix&gt;[&lt;sep&gt;]&lt;name&gt;.cxx
 </pre>
 <p>
@@ -848,14 +848,14 @@ in C++.
 </div>
 </div>
 
-<div id="outline-container-org0893413" class="outline-2">
-<h2 id="org0893413"><span class="section-number-2">19.</span> Write a doctest test</h2>
+<div id="outline-container-org3ce7f34" class="outline-2">
+<h2 id="org3ce7f34"><span class="section-number-2">19.</span> Write a doctest test</h2>
 <div class="outline-text-2" id="text-19">
 <p>
 Edit a file named to match the <code>&lt;pkg&gt;/test/doctest*.cxx</code> pattern:
 </p>
 
-<pre class="example" id="org9b41ae0">
+<pre class="example" id="org75f5c37">
 emacs util/test/doctest-my-first-test.cxx
 </pre>
 
@@ -890,7 +890,7 @@ TEST_CASE(<span style="color: #e9b96e;">"my second test"</span>) {
 <p>
 Compile and run just one test:
 </p>
-<pre class="example" id="org359c884">
+<pre class="example" id="orgb460ee5">
 waf --target=wcdoctest-test
 ./build/test/wcdoctest-test --test-case='my first test'
 ./build/test/wcdoctest-test   # runs all test cases
@@ -900,14 +900,14 @@ waf --target=wcdoctest-test
 The <b>doctest</b> runner has many options
 </p>
 
-<pre class="example" id="org8d831e6">
+<pre class="example" id="orgb87d055">
 ./build/util/wcdoctest-util --help
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orga2a1754" class="outline-2">
-<h2 id="orga2a1754"><span class="section-number-2">20.</span> Logging with doctest</h2>
+<div id="outline-container-org97a02ae" class="outline-2">
+<h2 id="org97a02ae"><span class="section-number-2">20.</span> Logging with doctest</h2>
 <div class="outline-text-2" id="text-20">
 <p>
 Developers are encouraged <b>not</b> to use <code>std::cout</code> or <code>std::cerr</code> in doctest tests.  Instead, as shown in the above example, we should use logging at <code>debug</code> level (or <code>trace</code>).
@@ -926,20 +926,20 @@ TEST_CASE(<span style="color: #e9b96e;">"..."</span>) {
 By default, these messages will not be seen.  But they can be turned on:
 </p>
 
-<pre class="example" id="orgf0a3563">
+<pre class="example" id="org3859681">
 $ SPDLOG_LEVEL=DEBUG ./build/test/wcdoctest-test
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org6fdaed2" class="outline-2">
-<h2 id="org6fdaed2"><span class="section-number-2">21.</span> Atomic C++ tests</h2>
+<div id="outline-container-org0ebd640" class="outline-2">
+<h2 id="org0ebd640"><span class="section-number-2">21.</span> Atomic C++ tests</h2>
 <div class="outline-text-2" id="text-21">
 <p>
 An &ldquo;atomic&rdquo; C++ test source file matches:
 </p>
 
-<pre class="example" id="org6195c57">
+<pre class="example" id="orgce70160">
 &lt;pkg&gt;/test/test*.cxx
 &lt;pkg&gt;/test/atomic*.cxx
 </pre>
@@ -947,7 +947,7 @@ An &ldquo;atomic&rdquo; C++ test source file matches:
 <p>
 Each atomic source file must provide a <code>main()</code> function and results in a similarly named executable found at:
 </p>
-<pre class="example" id="org225b6d9">
+<pre class="example" id="org7fd6386">
 build/&lt;pkg&gt;/test*
 build/&lt;pkg&gt;/atomic*
 </pre>
@@ -962,8 +962,8 @@ Some reasons to write atomic tests (compared to doctest tests) include:
 </div>
 </div>
 
-<div id="outline-container-orgc982cdd" class="outline-2">
-<h2 id="orgc982cdd"><span class="section-number-2">22.</span> A simple atomic C++ test</h2>
+<div id="outline-container-orgc3b90b3" class="outline-2">
+<h2 id="orgc3b90b3"><span class="section-number-2">22.</span> A simple atomic C++ test</h2>
 <div class="outline-text-2" id="text-22">
 <p>
 A trivial atomic test is shown:
@@ -985,18 +985,18 @@ A trivial atomic test is shown:
 Compile and run with:
 </p>
 
-<pre class="example" id="org01b9727">
+<pre class="example" id="org7f5f6c9">
 $ waf --tests --target=atomic-simple
 $ ./build/test/atomic-simple
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org9cb0624" class="outline-2">
-<h2 id="org9cb0624"><span class="section-number-2">23.</span> Logging with atomic tests</h2>
+<div id="outline-container-org761e664" class="outline-2">
+<h2 id="org761e664"><span class="section-number-2">23.</span> Logging with atomic tests</h2>
 <div class="outline-text-2" id="text-23">
 <p>
-Like in section <a href="#orga2a1754">20</a>, developers should use <code>debug</code> level logging instead of <code>std::cout</code> or <code>std::cerr</code>.  For this to work, the code requires some boilerplate:
+Like in section <a href="#org97a02ae">20</a>, developers should use <code>debug</code> level logging instead of <code>std::cout</code> or <code>std::cerr</code>.  For this to work, the code requires some boilerplate:
 </p>
 
 <div class="org-src-container">
@@ -1020,7 +1020,7 @@ Like in section <a href="#orga2a1754">20</a>, developers should use <code>debug<
 </pre>
 </div>
 
-<pre class="example" id="org716d553">
+<pre class="example" id="org0a4c9be">
 $ ./build/test/atomic-simple-logging
 [2023-04-25 11:56:26.348] [info] avoid use of info() despite this example
 
@@ -1031,8 +1031,8 @@ $ SPDLOG_LEVEL=debug ./build/test/atomic-simple-logging
 </div>
 </div>
 
-<div id="outline-container-org85f9510" class="outline-2">
-<h2 id="org85f9510"><span class="section-number-2">24.</span> Mixing atomic and doctest</h2>
+<div id="outline-container-org3a74bb8" class="outline-2">
+<h2 id="org3a74bb8"><span class="section-number-2">24.</span> Mixing atomic and doctest</h2>
 <div class="outline-text-2" id="text-24">
 <p>
 It is possible make an atomic test use doctest.  It will still be processed as an atomic test by WCT build system but it will gain the facilities of doctest.  Along with logging, it requires a bit more boilerplate:
@@ -1057,7 +1057,7 @@ It is possible make an atomic test use doctest.  It will still be processed as a
 </pre>
 </div>
 
-<pre class="example" id="orgd9f65c8">
+<pre class="example" id="orgf1a26fb">
 $ waf --tests --target=atomic-doctest
 $ ./build/test/atomic-doctest
 $ ./build/test/atomic-doctest --help
@@ -1065,28 +1065,28 @@ $ ./build/test/atomic-doctest --help
 </div>
 </div>
 
-<div id="outline-container-org6b64462" class="outline-2">
-<h2 id="org6b64462"><span class="section-number-2">25.</span> Using atomic as a variant test</h2>
+<div id="outline-container-org0cc33e4" class="outline-2">
+<h2 id="org0cc33e4"><span class="section-number-2">25.</span> Using atomic as a variant test</h2>
 <div class="outline-text-2" id="text-25">
 <p>
 An atomic test must run with no command line arguments.  However, we may allow optional arguments.  One example:
 </p>
 
-<pre class="example" id="org36b5727">
+<pre class="example" id="org42a847b">
 aux/test/test_idft.cxx
 </pre>
 <p>
 This tests various aspects of the <code>IDFT</code> interface implementations.  It can be run as an atomic test with the default <code>IDFT</code> implementation:
 </p>
 
-<pre class="example" id="org2ff34b8">
+<pre class="example" id="orga5d3c39">
 $ ./build/aux/test_idft
 </pre>
 <p>
 It can also be run in a variant form by giving optional command line argumetns:
 </p>
 
-<pre class="example" id="org6e2e279">
+<pre class="example" id="orgc11f0b4">
 $ ./build/aux/test_idft FftwDFT WireCellAux
 $ ./build/aux/test_idft TorchDFT WireCellPytorch
 $ ./build/aux/test_idft cuFftDFT WireCellCuda
@@ -1095,7 +1095,7 @@ $ ./build/aux/test_idft cuFftDFT WireCellCuda
 The first variant is actually identical to the atomic call.  The latter two require that WCT is build with support for PyTorch and CUDA, respectively.  An atomic test for each of the latter two variants can be found in their respective packages.
 </p>
 
-<div class="note" id="orgaa00e63">
+<div class="note" id="org66fb5bf">
 <p>
 C++ tests require particular attention to dependencies.  The <code>test_idft</code> is a little special in that it only has build-time dependency on the <code>iface</code> sub package yet it is placed in the <code>aux</code> package and can have run-time dependency on other higher-level packages via WCT&rsquo;s plugin and component factory mechanisms.  In its default calling, it relies on the <code>FftwDFT</code> component being available.  This component is provided the <code>WireCellAux</code> plugin library (from the <code>aux</code> sub package) and so this minimal run-time dependency is satisfied by placing the test in the <code>aux</code> sub package.  Depending on the variant form, it must be run in a context with either the <code>WireCellPytorch</code> or <code>WireCellCuda</code> plugins available.  We will show how to register these variants so they are run when these optional sub packages are built.
 </p>
@@ -1104,8 +1104,8 @@ C++ tests require particular attention to dependencies.  The <code>test_idft</co
 </div>
 </div>
 
-<div id="outline-container-org280ffef" class="outline-2">
-<h2 id="org280ffef"><span class="section-number-2">26.</span> Growing a test</h2>
+<div id="outline-container-org35f3a6e" class="outline-2">
+<h2 id="org35f3a6e"><span class="section-number-2">26.</span> Growing a test</h2>
 <div class="outline-text-2" id="text-26">
 <p>
 Tests tend to grow.  Developers are strongly urged to grow tests in a way that defines separate test cases separately.  When a developer writes a <b>doctest</b> test this is easily done by add more <code>TEST_CASE()</code> and/or <code>SUBCASE()</code> instances to the source file.  When writing an <b>atomic</b> test, the developer must invent their own &ldquo;mini unit test framework&rdquo;.  One common pattern is &ldquo;bag of <code>test_*</code> functions.  Functions are distinquished by name and/or templates:
@@ -1136,8 +1136,8 @@ Tests tend to grow.  Developers are strongly urged to grow tests in a way that d
 </div>
 
 
-<div id="outline-container-org96994c6" class="outline-2">
-<h2 id="org96994c6"><span class="section-number-2">27.</span> Failing tests</h2>
+<div id="outline-container-orgfb9254f" class="outline-2">
+<h2 id="orgfb9254f"><span class="section-number-2">27.</span> Failing tests</h2>
 <div class="outline-text-2" id="text-27">
 <p>
 A test is successful if it completes with a return status code of zero.  A failed test can be indicated in a number of ways:
@@ -1155,7 +1155,7 @@ A test is successful if it completes with a return status code of zero.  A faile
 The test developer is free to use any or a mix of these methods and is strongly urged to use them pervasively throughout the test code.
 </p>
 
-<div class="note" id="org77f9102">
+<div class="note" id="org0ed6cb2">
 <p>
 Do not write tests that lack any forms of actual error exit.  Otherwise they are not actually testing anything!
 </p>
@@ -1164,8 +1164,8 @@ Do not write tests that lack any forms of actual error exit.  Otherwise they are
 </div>
 </div>
 
-<div id="outline-container-org3771de1" class="outline-2">
-<h2 id="org3771de1"><span class="section-number-2">28.</span> WCT C++ testing support</h2>
+<div id="outline-container-org91cd336" class="outline-2">
+<h2 id="org91cd336"><span class="section-number-2">28.</span> WCT C++ testing support</h2>
 <div class="outline-text-2" id="text-28">
 <p>
 As introduced above, WCT provides some support for testing.  The first are simple wrappers around <code>assert()</code> and one that will print a message if the assertion fails:
@@ -1208,8 +1208,8 @@ See <code>test_timekeeper.cxx</code>, <code>test_memusage.cxx</code> and <code>t
 </div>
 </div>
 
-<div id="outline-container-org3f3ce38" class="outline-2">
-<h2 id="org3f3ce38"><span class="section-number-2">29.</span> Output diagnostic files</h2>
+<div id="outline-container-org16efe96" class="outline-2">
+<h2 id="org16efe96"><span class="section-number-2">29.</span> Output diagnostic files</h2>
 <div class="outline-text-2" id="text-29">
 <p>
 Tests may produce files, even atomic tests that may have no files governing <code>waf</code> task dependencies.  These files can be useful to persist beyond the test job.  The ideal location for these files is the <code>build/</code> directory and as sibling to the C++ test executable.  C++ has a simple pattern to achieve this:
@@ -1231,7 +1231,7 @@ Tests may produce files, even atomic tests that may have no files governing <cod
 As the C++ test executable is found <code>build/&lt;pkg&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;</code>, these output files will be found there as siblings.  
 </p>
 
-<div class="tip" id="orgb59b6c0">
+<div class="tip" id="orgbf5cee4">
 <p>
 See also the use of the data repository in <a href="datarepo.html">data repository document</a> for special files to per persisted beyond the local <code>build/</code> area.
 </p>
@@ -1240,8 +1240,8 @@ See also the use of the data repository in <a href="datarepo.html">data reposito
 </div>
 </div>
 
-<div id="outline-container-org0dce35c" class="outline-2">
-<h2 id="org0dce35c"><span class="section-number-2">30.</span> Found input files</h2>
+<div id="outline-container-orgf2a843a" class="outline-2">
+<h2 id="orgf2a843a"><span class="section-number-2">30.</span> Found input files</h2>
 <div class="outline-text-2" id="text-30">
 <p>
 Likewise, an atomic test must not expect any input files specified by the caller.  However, it may load files that can be found from the environment.  A common example is to find a WCT &ldquo;wires&rdquo; file or others provided by <code>wire-cell-data</code>.  Here is a C++ pattern do that in a way that naturally allows an atomic test to also be called in a variant manner.
@@ -1272,7 +1272,7 @@ For this kind of file to be found the user <b>must</b> define <code>WIRECELL_PAT
 In principle the path in <code>argv[0]</code> may also be used to locate the top of the <code>wire-cell-toolkit</code> source in order to locate files provided by the source and use them as input.
 </p>
 
-<div class="tip" id="org95349d8">
+<div class="tip" id="org47381ab">
 <p>
 The data repository also provides a set of known files for input.
 </p>
@@ -1282,7 +1282,7 @@ The data repository also provides a set of known files for input.
 A BATS file is essentially a Bash shell script with a number of &ldquo;special&rdquo; functions that look like the following:
 </p>
 
-<pre class="example" id="org6c32feb">
+<pre class="example" id="orgcd1fdcc">
 @test "description of test" {
   # ... body of test
 }  
@@ -1301,24 +1301,24 @@ With very little additional effort compared to plain shell scripts, a BATS test 
 </div>
 </div>
 
-<div id="outline-container-org1852889" class="outline-2">
-<h2 id="org1852889"><span class="section-number-2">31.</span> BATS in WCT</h2>
+<div id="outline-container-orgdafde16" class="outline-2">
+<h2 id="orgdafde16"><span class="section-number-2">31.</span> BATS in WCT</h2>
 <div class="outline-text-2" id="text-31">
 <p>
 WCT provides a copy of BATS as the version coming with many operating systems is not up to date.    It will be used by the build system.  When running BATS tests directly the user should assure:
 </p>
 
-<pre class="example" id="orga23e2c5">
+<pre class="example" id="orga18631c">
 $ PATH=/path/to/my/wire-cell-toolkit/test/bats/bin:$PATH
 $ export BATS_LIB_PATH=/path/to/my/wire-cell-toolkit/test
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgf9b7eef" class="outline-2">
-<h2 id="orgf9b7eef"><span class="section-number-2">32.</span> My first BATS test</h2>
+<div id="outline-container-org58ac060" class="outline-2">
+<h2 id="org58ac060"><span class="section-number-2">32.</span> My first BATS test</h2>
 <div class="outline-text-2" id="text-32">
-<pre class="example" id="orgfd1baf5">
+<pre class="example" id="org44aed33">
 bats_load_library wct-bats.sh
 
 @test "check wire-cell version" {
@@ -1343,21 +1343,21 @@ The <code>wcsonnet</code> is not so wrapped but is available as a <code>wcb</cod
 </div>
 </div>
 
-<div id="outline-container-org3c53437" class="outline-2">
-<h2 id="org3c53437"><span class="section-number-2">33.</span> Running BATS tests</h2>
+<div id="outline-container-orgbfd3e1c" class="outline-2">
+<h2 id="orgbfd3e1c"><span class="section-number-2">33.</span> Running BATS tests</h2>
 <div class="outline-text-2" id="text-33">
 <p>
 A BATS test should run from anywhere:
 </p>
 
-<pre class="example" id="org349bef6">
+<pre class="example" id="orgc56a161">
 bats test/test/test_my_first_bats.bats
 </pre>
 <p>
 As in this example, all <code>@test</code> functions in a BATS file will be executed sequentially.  A subset of tests with names that match a filter can be selected for running.  Using above example:
 </p>
 
-<pre class="example" id="orgef04435">
+<pre class="example" id="org7e97cd0">
 bats -f "wire-cell" test/test/test_my_first_bats.bats
 </pre>
 
@@ -1371,14 +1371,14 @@ Here we give some detailed guidance on making a BATS test.
 </div>
 </div>
 
-<div id="outline-container-org75d12fe" class="outline-2">
-<h2 id="org75d12fe"><span class="section-number-2">34.</span> Naming the BATS test file</h2>
+<div id="outline-container-orge6256e2" class="outline-2">
+<h2 id="orge6256e2"><span class="section-number-2">34.</span> Naming the BATS test file</h2>
 <div class="outline-text-2" id="text-34">
 <p>
 See section on <a href="framework.html">Framework</a> and <a href="writing.html">Writing tests</a> for general guidance on writing WCT tests.  
 Start by creating a BATS file.  Here, we pick the &ldquo;test&rdquo; aka &ldquo;atomic&rdquo; category:
 </p>
-<pre class="example" id="orgcfad23b">
+<pre class="example" id="orgab74a55">
 &lt;pkg&gt;/test/&lt;category&gt;&lt;sep&gt;&lt;name&gt;.bats
 </pre>
 <p>
@@ -1389,7 +1389,7 @@ As with all tests, the category and name should be unique.  If more than one tes
 If the test relates to an issue on GitHub (and ideally there is a test for every issue) then this is an excellent pattern:
 </p>
 
-<pre class="example" id="orgdcd79b4">
+<pre class="example" id="org607114f">
 &lt;pkg&gt;/test/test_issueNNNN.bats
 </pre>
 
@@ -1399,14 +1399,14 @@ BATS tests should be placed in a <code>&lt;pkg&gt;</code> which best provides th
 </div>
 </div>
 
-<div id="outline-container-orgb6f3f9d" class="outline-2">
-<h2 id="orgb6f3f9d"><span class="section-number-2">35.</span> First steps</h2>
+<div id="outline-container-org98a0d5a" class="outline-2">
+<h2 id="org98a0d5a"><span class="section-number-2">35.</span> First steps</h2>
 <div class="outline-text-2" id="text-35">
 <p>
 Edit the <code>.bats</code> file, add the <code>@test</code> function:
 </p>
 
-<pre class="example" id="org8e90e5e">
+<pre class="example" id="orgad36288">
 #!/usr/bin/env bats
 
 load ../../test/wct-bats.sh
@@ -1421,7 +1421,7 @@ Pick a test description that describes a positive test outcome.
 Check that the test works:
 </p>
 
-<pre class="example" id="orgf7e7b07">
+<pre class="example" id="org997ab03">
 $ bats &lt;pkg&gt;/test/test_issueNNNN.bats
 </pre>
 
@@ -1431,14 +1431,14 @@ So far, it can&rsquo;t fail.  Below we progressively add more tests constraints.
 </div>
 </div>
 
-<div id="outline-container-org0449787" class="outline-2">
-<h2 id="org0449787"><span class="section-number-2">36.</span> Basic elements of a test</h2>
+<div id="outline-container-org769682d" class="outline-2">
+<h2 id="org769682d"><span class="section-number-2">36.</span> Basic elements of a test</h2>
 <div class="outline-text-2" id="text-36">
 <p>
 Typically an <code>@test</code> will consist of one or more stanzas with the following four lines:
 </p>
 
-<pre class="example" id="orga681f0a">
+<pre class="example" id="org9096d70">
 run some_command             # (1)
 echo "$output"               # (2)
 [[ "$status" -eq 0 ]]        # (3)
@@ -1458,14 +1458,14 @@ We explain each:
 </div>
 </div>
 
-<div id="outline-container-org50dc4fb" class="outline-2">
-<h2 id="org50dc4fb"><span class="section-number-2">37.</span> Start up and tear down</h2>
+<div id="outline-container-org822d01d" class="outline-2">
+<h2 id="org822d01d"><span class="section-number-2">37.</span> Start up and tear down</h2>
 <div class="outline-text-2" id="text-37">
 <p>
 In addition to the special <code>@test "" {}</code> function forms, BATS supports two functions that are called once per file.  The first is called prior to any <code>@test</code> and the second called after all <code>@test</code>.
 </p>
 
-<pre class="example" id="org137adc9">
+<pre class="example" id="org0932971">
 function setup_file () {
   # startup code
 }
@@ -1479,8 +1479,8 @@ One example for using <code>setup_file</code> is to run any long-running program
 </div>
 </div>
 
-<div id="outline-container-org315a36a" class="outline-2">
-<h2 id="org315a36a"><span class="section-number-2">38.</span> Temporary files</h2>
+<div id="outline-container-org335c711" class="outline-2">
+<h2 id="org335c711"><span class="section-number-2">38.</span> Temporary files</h2>
 <div class="outline-text-2" id="text-38">
 <p>
 BATS has a concept of a context-dependent temporary working directory.  The contexts are:
@@ -1498,7 +1498,7 @@ BATS has a concept of a context-dependent temporary working directory.  The cont
 Typically, <code>run</code> is not used.  The <code>wct-bats.sh</code> library provides some helpers to work with temporary areas:
 </p>
 
-<pre class="example" id="orgb3d5521">
+<pre class="example" id="orgd3d6d4a">
 cd_tmp      (1)
 cd_tmp file (2)
 </pre>
@@ -1514,7 +1514,7 @@ Where:
 By default <code>bats</code> will delete all temporary directories after completion of the test run.  When tests fail it can be useful to examine what was placed in the temporary directories.  To allow this run the test like:
 </p>
 
-<pre class="example" id="org3a24bce">
+<pre class="example" id="org97c3330">
 $ bats --no-tempdir-cleanup path/to/test_foo.bats
 </pre>
 <p>
@@ -1524,14 +1524,14 @@ The temporary directory will be printed to the terminal.
 <p>
 Alternatively, <code>wct-bats.sh</code>  overrules default temporary directories, combines them and does not delete them when <code>WCTEST_TMPDIR</code> is defined.  This can be useful while developing and debugging tests, particularly in combination with writing long running tests in an idempotent fashion.  Do <b>not</b> define this variable in any test but instead in your interactive shell session:
 </p>
-<pre class="example" id="orgd020c6a">
+<pre class="example" id="org234489c">
 $ WCTEST_TMPDIR=$HOME/my-wct-tmp-dir bats [...]
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org44cd9ea" class="outline-2">
-<h2 id="org44cd9ea"><span class="section-number-2">39.</span> Persistent files</h2>
+<div id="outline-container-org6a6cd41" class="outline-2">
+<h2 id="org6a6cd41"><span class="section-number-2">39.</span> Persistent files</h2>
 <div class="outline-text-2" id="text-39">
 <p>
 Some BATS tests may use or create files that persist beyond the temporary context via the WCT test data repository (see <a href="datarepo.html">Data repository</a>).  The <code>wct-bats.org</code> library provides some functions to help work with such files.
@@ -1540,14 +1540,14 @@ Some BATS tests may use or create files that persist beyond the temporary contex
 <p>
 For a test that produces <b>historical files</b>, they may be saved to the &ldquo;history&rdquo; category of the repo with:
 </p>
-<pre class="example" id="orgfae1795">
+<pre class="example" id="orgacd8527">
 # bats test_tags=history
 @test "make history" {
   # ...
   saveout -c history my-file-for-history.npz
 }
 </pre>
-<div class="note" id="orgbc9838b">
+<div class="note" id="org3fae534">
 <p>
 Only place the <code>history</code> tag on tests that save history files.  History can then be quickly refreshed by running <code>bats --filter-tags history */test/test*.bats</code> and this command can be run in a number of software build environments to refresh past history after some new historical tests are added.
 </p>
@@ -1559,7 +1559,7 @@ Only place the <code>history</code> tag on tests that save history files.  Histo
 A known input file may be resolved as:
 </p>
 
-<pre class="example" id="orga20edd5">
+<pre class="example" id="orgf65e182">
 local myinput=$(input_file relative/path/data.ext)
 </pre>
 
@@ -1567,7 +1567,7 @@ local myinput=$(input_file relative/path/data.ext)
 A file from a version of a category is resolved:
 </p>
 
-<pre class="example" id="orgd080049">
+<pre class="example" id="orge5446fd">
 # from current version of history category
 local myfile=$(category_path relative/path/data.ext)
 # from specific version of plots category
@@ -1578,7 +1578,7 @@ local plot20=$(category_path -c plots -v 0.20.0 relative/path/data.png)
 All released versions of a the <code>history</code> category directory and all versions of the <code>plots</code> category:
 </p>
 
-<pre class="example" id="org09104da">
+<pre class="example" id="org11a9b3a">
 local myhistpaths_released=( category_version_paths )
 local myhistpaths_plus_dirty=( category_version_paths -c plots --dirty )
 </pre>
@@ -1587,20 +1587,20 @@ local myhistpaths_plus_dirty=( category_version_paths -c plots --dirty )
 Likewise, but just the version strings
 </p>
 
-<pre class="example" id="org492b32d">
+<pre class="example" id="org506a40c">
 local myhistvers_released=( category_versions )
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orga9d647a" class="outline-2">
-<h2 id="orga9d647a"><span class="section-number-2">40.</span> Idempotent running</h2>
+<div id="outline-container-org8433e6d" class="outline-2">
+<h2 id="org8433e6d"><span class="section-number-2">40.</span> Idempotent running</h2>
 <div class="outline-text-2" id="text-40">
 <p>
 The <code>wct-bats.sh</code> BATS library provides a helper function to run a particular test command in an <b>idempotent</b> manner.  The function is called like:
 </p>
 
-<pre class="example" id="org5ba0ba1">
+<pre class="example" id="org6b1c06f">
 run_idempotently [sources] [targets] -- &lt;command line&gt;
 </pre>
 
@@ -1631,14 +1631,14 @@ While this will not speed up normal testing, it can dramatically speed up re-run
 </div>
 </div>
 
-<div id="outline-container-orgbedf7c4" class="outline-2">
-<h2 id="orgbedf7c4"><span class="section-number-2">41.</span> Using <code>setup_file</code></h2>
+<div id="outline-container-org594ee5f" class="outline-2">
+<h2 id="org594ee5f"><span class="section-number-2">41.</span> Using <code>setup_file</code></h2>
 <div class="outline-text-2" id="text-41">
 <p>
 Another method to run tests in an idempotent manner is to place common, perhaps long running, tasks in the <code>setup_file</code> function,  run the entire test with <code>WCTEST_TMPDIR</code> set and then re-run specific tests with <code>bats -f &lt;filter&gt;</code>.  When a specific test is exercising some issue, this lets the developer focus on just that issue and reuse prior results.  Consider the example:
 </p>
 
-<pre class="example" id="orgba00a1f">
+<pre class="example" id="org94e38db">
 function setup_file () {
   cd_tmp file
   run my_slow_command -o output1.txt 
@@ -1659,7 +1659,7 @@ function setup_file () {
 <p>
 Then the developer may do something like:
 </p>
-<pre class="example" id="org2501da9">
+<pre class="example" id="orgffa35c3">
 $ WCTEST_TEMPDIR=/tmp/my-test bats my-test.bats
 $ WCTEST_TEMPDIR=/tmp/my-test bats -f one my-test.bats  
 </pre>
@@ -1670,14 +1670,14 @@ To force a full re-run simply remove the <code>/tmp/my-test</code> and perhaps r
 </div>
 </div>
 
-<div id="outline-container-orgffd1ce1" class="outline-2">
-<h2 id="orgffd1ce1"><span class="section-number-2">42.</span> Test tags</h2>
+<div id="outline-container-org0ce3cc4" class="outline-2">
+<h2 id="org0ce3cc4"><span class="section-number-2">42.</span> Test tags</h2>
 <div class="outline-text-2" id="text-42">
 <p>
-As shown in the <a href="#orgb6f3f9d">35</a> one can assert <a href="https://bats-core.readthedocs.io/en/stable/writing-tests.html#tagging-tests">test tags</a> above a <code>@test</code>.  One can also have file-level tags.
+As shown in the <a href="#org98a0d5a">35</a> one can assert <a href="https://bats-core.readthedocs.io/en/stable/writing-tests.html#tagging-tests">test tags</a> above a <code>@test</code>.  One can also have file-level tags.
 </p>
 
-<pre class="example" id="org96a391c">
+<pre class="example" id="orgcb57e95">
 # bats file_tags=issue:202
 
 # bats test_tags=topic:noise
@@ -1709,7 +1709,7 @@ Tag name conventions are defined here:
 By default, all tests are run.  The user may explicitly include or exclude tests.  For example, to run tests tagged as being related to <code>wires</code> and that take a few minutes or less to run and explicitly those in the <code>util/</code> sub package: 
 </p>
 
-<pre class="example" id="org47367cc">
+<pre class="example" id="orgdca04de">
 bats --filter-tags 'topic:wires,!time:3' util/test/test*.bats
 </pre>
 <p>
@@ -1718,22 +1718,22 @@ See also the <code>wcb --test-duration=&lt;seconds&gt;</code> options described 
 </div>
 </div>
 
-<div id="outline-container-org07e865e" class="outline-2">
-<h2 id="org07e865e"><span class="section-number-2">43.</span> Test logging</h2>
+<div id="outline-container-org3aa1a98" class="outline-2">
+<h2 id="org3aa1a98"><span class="section-number-2">43.</span> Test logging</h2>
 <div class="outline-text-2" id="text-43">
 <p>
 BATS uses the <a href="https://testanything.org/">&ldquo;test anything protocol&rdquo;</a> to combine multiple tests in a coherent way.  We need not be overly concerned with the details but it does mean that BATS captures <code>stdout</code> and <code>stderr</code> from the individual tests.  When the user wishes to see diagnostic messages directly this causes annoyance.  But, no worry as there are three mechanisms to emit and view such user diagonstics.
 </p>
 </div>
 
-<div id="outline-container-org0dd786f" class="outline-3">
-<h3 id="org0dd786f"><span class="section-number-3">43.1.</span> Logging on failure</h3>
+<div id="outline-container-org474e159" class="outline-3">
+<h3 id="org474e159"><span class="section-number-3">43.1.</span> Logging on failure</h3>
 <div class="outline-text-3" id="text-43-1">
 <p>
 By default, <code>bats</code> will show <code>stdout</code> for a test that fails so simply <code>echo</code> or otherwise send to <code>stdout</code> as usual
 </p>
 
-<pre class="example" id="orgdaacd8f">
+<pre class="example" id="org2a6182c">
 @test "chirp and fail" {
     echo "hello world"
     exit 1
@@ -1745,14 +1745,14 @@ Running <code>bats</code> on this test will fail and print <code>hello world</co
 </div>
 </div>
 
-<div id="outline-container-org2ea01e1" class="outline-3">
-<h3 id="org2ea01e1"><span class="section-number-3">43.2.</span> Logging on success</h3>
+<div id="outline-container-orgc09755a" class="outline-3">
+<h3 id="orgc09755a"><span class="section-number-3">43.2.</span> Logging on success</h3>
 <div class="outline-text-3" id="text-43-2">
 <p>
 The output of successful tests can also be shown.
 </p>
 
-<pre class="example" id="org05d81f0">
+<pre class="example" id="org40611ff">
 @test "chirp and succeed" {
     echo "goodbye world"
 }
@@ -1761,7 +1761,7 @@ The output of successful tests can also be shown.
 Running <code>bats</code> as:
 </p>
 
-<pre class="example" id="org7c3db2e">
+<pre class="example" id="org4b1d292">
 $ bats --show-output-of-passing-tests chirp.bats
 </pre>
 <p>
@@ -1770,14 +1770,14 @@ will show <code>goodbye world</code>.
 </div>
 </div>
 
-<div id="outline-container-orgcc256bd" class="outline-3">
-<h3 id="orgcc256bd"><span class="section-number-3">43.3.</span> File descriptor 3.</h3>
+<div id="outline-container-org2120267" class="outline-3">
+<h3 id="org2120267"><span class="section-number-3">43.3.</span> File descriptor 3.</h3>
 <div class="outline-text-3" id="text-43-3">
 <p>
 Output to the special file descriptor <code>3</code> will always lead to that output to the terminal.  
 </p>
 
-<pre class="example" id="org662bdb0">
+<pre class="example" id="org92866ba">
 @test "chirp no matter what" {
     echo "Ahhhhhhhh" 1&gt;&amp;3
 }
@@ -1796,8 +1796,8 @@ expectation to guard against regression in those layers.
 </div>
 </div>
 
-<div id="outline-container-org565ef46" class="outline-2">
-<h2 id="org565ef46"><span class="section-number-2">44.</span> Running Jsonnet tests</h2>
+<div id="outline-container-org7ac3bea" class="outline-2">
+<h2 id="org7ac3bea"><span class="section-number-2">44.</span> Running Jsonnet tests</h2>
 <div class="outline-text-2" id="text-44">
 <p>
 A Jsonnet test may be compiled with the plain <code>jsonnet</code> command or with
@@ -1810,15 +1810,15 @@ include any paths given in <code>WIRECELL_PATH</code>.
 </div>
 </div>
 
-<div id="outline-container-org7283258" class="outline-2">
-<h2 id="org7283258"><span class="section-number-2">45.</span> Basic Jsonnet tests</h2>
+<div id="outline-container-orgd3f6f0e" class="outline-2">
+<h2 id="orgd3f6f0e"><span class="section-number-2">45.</span> Basic Jsonnet tests</h2>
 <div class="outline-text-2" id="text-45">
 <p>
 The most simple test is one that tests basic expected compilation
 without a need to locate additional files.  For example:
 </p>
 
-<pre class="example" id="org4ff54c8">
+<pre class="example" id="org84d3f16">
 jsonnet cfg/test/test_wirecell.jsonnet
 </pre>
 
@@ -1826,15 +1826,15 @@ jsonnet cfg/test/test_wirecell.jsonnet
 others require resolving files that are <code>import</code>:
 </p>
 
-<pre class="example" id="org6fe7c1d">
+<pre class="example" id="org5b57acf">
 jsonnet -J cfg cfg/test/test_pgraph.jsonnet
 wcsonnet cfg/test/test_pgraph.jsonnet
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org80496eb" class="outline-2">
-<h2 id="org80496eb"><span class="section-number-2">46.</span> Assertions</h2>
+<div id="outline-container-org5c5dfba" class="outline-2">
+<h2 id="org5c5dfba"><span class="section-number-2">46.</span> Assertions</h2>
 <div class="outline-text-2" id="text-46">
 <p>
 Jsonnet provides an <code>assert</code> function.  These should be sprinkled liberally throughout Jsonnet test code whenever it is possible to know what some intermediate data structure should be.  See <code>test_graph.jsonnet</code> for an example.
@@ -1844,7 +1844,7 @@ Jsonnet provides an <code>assert</code> function.  These should be sprinkled lib
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

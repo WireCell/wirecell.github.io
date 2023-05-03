@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cluster Arrays</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,20 +51,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org56cefd8">1. Low-level array representation</a></li>
-<li><a href="#org1b07fd1">2. Graph connection schema</a></li>
-<li><a href="#org8f2c487">3. Array schema</a>
+<li><a href="#orga5250ac">1. Low-level array representation</a></li>
+<li><a href="#org8a736b8">2. Graph connection schema</a></li>
+<li><a href="#org3e6a35b">3. Array schema</a>
 <ul>
-<li><a href="#org2598d4d">3.1. Activity</a></li>
-<li><a href="#org4f1bb52">3.2. Wire</a></li>
-<li><a href="#orga6204c9">3.3. Blob</a></li>
-<li><a href="#org06e792b">3.4. Slice</a></li>
-<li><a href="#org4e31864">3.5. Measure</a></li>
-<li><a href="#org2be2752">3.6. Edge</a></li>
+<li><a href="#orgb5232c7">3.1. Activity</a></li>
+<li><a href="#org670b05b">3.2. Wire</a></li>
+<li><a href="#org8e9e3c3">3.3. Blob</a></li>
+<li><a href="#org2d28395">3.4. Slice</a></li>
+<li><a href="#org22befa4">3.5. Measure</a></li>
+<li><a href="#org623f188">3.6. Edge</a></li>
 </ul>
 </li>
-<li><a href="#org6a9d5a3">4. Cluster archive files</a></li>
-<li><a href="#org6ba3dda">5. Implementation</a></li>
+<li><a href="#org8594575">4. Cluster archive files</a></li>
+<li><a href="#org936d4e6">5. Implementation</a></li>
 </ul>
 </div>
 </div>
@@ -83,8 +83,8 @@ describes the <code>ClusterArrays</code> interface and provides guidance on how 
 use the arrays it produces.
 </p>
 
-<div id="outline-container-org56cefd8" class="outline-2">
-<h2 id="org56cefd8"><span class="section-number-2">1.</span> Low-level array representation</h2>
+<div id="outline-container-orga5250ac" class="outline-2">
+<h2 id="orga5250ac"><span class="section-number-2">1.</span> Low-level array representation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The API provides arrays in the form of <a href="https://www.boost.org/doc/libs/1_79_0/libs/multi_array/doc/user.html">Boost.MultiArray</a> types.
@@ -92,8 +92,8 @@ The API provides arrays in the form of <a href="https://www.boost.org/doc/libs/1
 </div>
 </div>
 
-<div id="outline-container-org1b07fd1" class="outline-2">
-<h2 id="org1b07fd1"><span class="section-number-2">2.</span> Graph connection schema</h2>
+<div id="outline-container-org8a736b8" class="outline-2">
+<h2 id="org8a736b8"><span class="section-number-2">2.</span> Graph connection schema</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Production of an <code>ICluster</code> graph is described in detail in the Ray Grid
@@ -103,15 +103,15 @@ allowed types of edges between node types.
 </p>
 
 
-<div id="orge0c179c" class="figure">
+<div id="orgd4e3b69" class="figure">
 <p><img src="./cluster-graph-types.png" alt="cluster-graph-types.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8f2c487" class="outline-2">
-<h2 id="org8f2c487"><span class="section-number-2">3.</span> Array schema</h2>
+<div id="outline-container-org3e6a35b" class="outline-2">
+<h2 id="org3e6a35b"><span class="section-number-2">3.</span> Array schema</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The array schema closely matches that provided by the python-geometric
@@ -143,57 +143,76 @@ mapped to these two node arrays by an array naming convention based on
 
 <p>
 Before listing these codes, one structural change must be understood.
-The <code>ICluster</code> graph construction schema described above holds implicit
-that <i>channel</i> nodes (and <i>wire</i> nodes) represent physical entities.  In
-particular, a given channel node may be reached by following an
-<code>s-b-m-c</code> path from more than one slice.  On the other hand, the
-<code>ISlice::activity()</code> method provides an direct mapping (external to the
-graph structure) betwen slice and channel and the amount of signal
-collected in the channel over the time slice.  It is this information
-that was used to initially from <code>b-m-c</code> paths.  Furthermore, the
-<i>activity map</i> information is a superset of <code>s-c</code> relationship found by
-following <code>s-b-m-c</code> paths as some activity may not end up contributing
-to forming blobs.  As the activity map can not be coerced into a slice
-array column and because it is a redundant superset of channel node
-information, the <code>ClusterArrays</code> will rewrite the <code>ICluster</code> graph as
-illustrated with the <i>cluster array graph schema</i>:
+The <code>ICluster</code> graph connection schema described above treats <i>channel</i>
+(and <i>wire</i> ) nodes as representing physical entities.  A given channel
+node may be reached through multiple <code>s-b-m-c</code> paths beginning from
+multiple slices.  The <code>ICluster</code> also holds internal to <i>slice</i> nodes an
+<code>ISlice::activity()</code>.  This provides a the amount of signal in a channel
+that contributes to the slice.  Furthermore, this <i>activity map</i>
+information is a superset of <code>s-c</code> relationships that may be found by
+following <code>s-b-m-c</code> paths.  This is because some slice activity may not
+have contributed to forming blobs in the slice.  This activity map can
+not be coerced into an slice array column (it would be a &ldquo;ragged
+array&rdquo;).
+</p>
+
+<p>
+In order to faithfully preserve the <i>activity map</i> in the array format,
+the <code>ClusterArrays</code> schema <b>does not follow the cluster graph</b> schema
+shown above.  Instead, the cluster array type graph is:
 </p>
 
 
-<div id="orge89ad7d" class="figure">
+<div id="org7c74e90" class="figure">
 <p><img src="cluster-array-types.png" alt="cluster-array-types.png" />
 </p>
 </div>
 
+<p>
+Comparing these two type graph representations:
+</p>
+
+<ul class="org-ul">
+<li><i>channel</i> nodes are replaced by <i>activity</i> nodes</li>
+<li><i>activity</i> represents a channel in a slice (not just a physical channel)</li>
+<li><i>activity</i> holds a signal value and uncertainty</li>
+<li>a <i>channel-slice</i> edge is added</li>
+</ul>
 
 <p>
-Between these two type schema graph representations, all <i>cluster graph
-node types</i> are mapped directly to <i>cluster array types</i> except that
-<i>channel nodes</i> are mapped to <i>activity arrays</i> with an new edge from
-<i>activity</i> to <i>slice</i>.  The array representation also includes two changes
-from the node representation which are implicit.  An activity is
-unique to a given slice and not all activities may share an edge with
-a measure.  In this way the <code>ISlice::activity()</code> map can be represented
-and from the set of cluster arrays the original cluster graph can be
-constructed.
+The remaining vertex types and allowed edges are the same other as in
+the original cluster graph schema.  In particular, the <i>wire</i> vertex
+type still represents a physical wire which is not specific to any
+particular slice.  All other vertices are per-slice.
 </p>
 
 <p>
-With that understood we define <i>node array codes</i> as the ASCII value of
-the lower case initial letter of the node array names: <i>activity, blob,
-measure, slice</i> and <i>wire</i>.  For example, an activity array will have a
-label <code>anodes</code>.  The <i>edge array codes</i> are the combination of two node
-array codes in alphabetical order.  For example, the edges between
-slice and activity are represented in an array with a name including
-the label <code>asedges</code>.  Each array is held in a Numpy file named with a
-prefix <code>cluster</code> indicating array is in the format described in this
-document followed by the cluster identity number <code>&lt;ident&gt;</code> and the
-node/edge label just described.  For example a cluster 6501 is
-represented by the arrays
+With this change stated, we define <i>node array codes</i> as the ASCII value
+of the lower case initial letter of the node array names: <i>activity,
+blob, measure, slice</i> and <i>wire</i>.  For example, an activity array will
+have a label <code>anodes</code>.  The <i>edge array codes</i> are the combination of two
+node array codes in alphabetical order.  For example, the edges
+between <i>slice</i> and <i>activity</i> vertices are represented in an array with a
+name that includes the label <code>asedges</code>.  Each array is held in a Numpy file
+named with a prefix <code>cluster</code> (indicating array is in the format
+described in this document) followed by the cluster identity number
+<code>&lt;ident&gt;</code> and the node/edge label just described.  For example a cluster
+6501 is represented by the arrays
 </p>
 
-<pre class="example" id="org6f440c3">
-......
+<pre class="example" id="org620512a">
+cluster_6501_wnodes.npy
+cluster_6501_snodes.npy
+cluster_6501_bnodes.npy
+cluster_6501_mnodes.npy
+cluster_6501_anodes.npy
+cluster_6501_bsedges.npy
+cluster_6501_bwedges.npy
+cluster_6501_asedges.npy
+cluster_6501_bbedges.npy
+cluster_6501_bmedges.npy
+cluster_6501_awedges.npy
+cluster_6501_amedges.npy
 </pre>
 
 <p>
@@ -202,8 +221,8 @@ type of array.
 </p>
 </div>
 
-<div id="outline-container-org2598d4d" class="outline-3">
-<h3 id="org2598d4d"><span class="section-number-3">3.1.</span> Activity</h3>
+<div id="outline-container-orgb5232c7" class="outline-3">
+<h3 id="orgb5232c7"><span class="section-number-3">3.1.</span> Activity</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 An <i>activity</i> represents an amount of signal and its uncertainty
@@ -220,8 +239,8 @@ collected from a channel over the duration of a time slice.
 </div>
 </div>
 
-<div id="outline-container-org4f1bb52" class="outline-3">
-<h3 id="org4f1bb52"><span class="section-number-3">3.2.</span> Wire</h3>
+<div id="outline-container-org670b05b" class="outline-3">
+<h3 id="org670b05b"><span class="section-number-3">3.2.</span> Wire</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 The wire array represents the &ldquo;geometric&rdquo; information about physical
@@ -244,8 +263,8 @@ wire segments.
 </div>
 </div>
 
-<div id="outline-container-orga6204c9" class="outline-3">
-<h3 id="orga6204c9"><span class="section-number-3">3.3.</span> Blob</h3>
+<div id="outline-container-org8e9e3c3" class="outline-3">
+<h3 id="org8e9e3c3"><span class="section-number-3">3.3.</span> Blob</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 A blob describes a volume in space bounded in the longitudinal
@@ -274,8 +293,8 @@ associated amount of signal contained by the volume.
 </div>
 </div>
 
-<div id="outline-container-org06e792b" class="outline-3">
-<h3 id="org06e792b"><span class="section-number-3">3.4.</span> Slice</h3>
+<div id="outline-container-org2d28395" class="outline-3">
+<h3 id="org2d28395"><span class="section-number-3">3.4.</span> Slice</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 A slice represents a duration in drift/readout time.
@@ -292,8 +311,8 @@ A slice represents a duration in drift/readout time.
 </div>
 </div>
 
-<div id="outline-container-org4e31864" class="outline-3">
-<h3 id="org4e31864"><span class="section-number-3">3.5.</span> Measure</h3>
+<div id="outline-container-org22befa4" class="outline-3">
+<h3 id="org22befa4"><span class="section-number-3">3.5.</span> Measure</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 A measure represents the collection of channels in a given plane
@@ -311,8 +330,8 @@ sum of signals from the participating channels.
 </div>
 </div>
 
-<div id="outline-container-org2be2752" class="outline-3">
-<h3 id="org2be2752"><span class="section-number-3">3.6.</span> Edge</h3>
+<div id="outline-container-org623f188" class="outline-3">
+<h3 id="org623f188"><span class="section-number-3">3.6.</span> Edge</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 An edge represents an association between a row in a tail array and a
@@ -329,8 +348,8 @@ integer value.
 </div>
 
 
-<div id="outline-container-org6a9d5a3" class="outline-2">
-<h2 id="org6a9d5a3"><span class="section-number-2">4.</span> Cluster archive files</h2>
+<div id="outline-container-org8594575" class="outline-2">
+<h2 id="org8594575"><span class="section-number-2">4.</span> Cluster archive files</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 As described above, WCT <code>ICluster</code> graph may be represented by a number
@@ -354,8 +373,8 @@ number.
 </div>
 
 
-<div id="outline-container-org6ba3dda" class="outline-2">
-<h2 id="org6ba3dda"><span class="section-number-2">5.</span> Implementation</h2>
+<div id="outline-container-org936d4e6" class="outline-2">
+<h2 id="org936d4e6"><span class="section-number-2">5.</span> Implementation</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 The <code>ClusterArrays</code> class will convert <code>ICluster</code> to cluster arrays
@@ -382,7 +401,7 @@ The Python module <code>wirecell.img.tap</code> can read cluster files.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Writing WCT tests</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,9 +51,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc232564">1. Scope of a test</a></li>
-<li><a href="#orgd5fcb68">2. Location of test source</a></li>
-<li><a href="#org2da6d61">3. Name the test</a></li>
+<li><a href="#org95d120e">1. Scope of a test</a></li>
+<li><a href="#org3fe8b45">2. Location of test source</a></li>
+<li><a href="#orgf06b22a">3. Name the test</a></li>
 </ul>
 </div>
 </div>
@@ -65,8 +65,8 @@ programming languages</a> for tests.  for starting points to details on
 writing tests in different support programming languages.
 </p>
 
-<div id="outline-container-orgc232564" class="outline-2">
-<h2 id="orgc232564"><span class="section-number-2">1.</span> Scope of a test</h2>
+<div id="outline-container-org95d120e" class="outline-2">
+<h2 id="org95d120e"><span class="section-number-2">1.</span> Scope of a test</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 When considering to develop a test, consider what should be tested and then ask yourself:
@@ -80,15 +80,15 @@ When considering to develop a test, consider what should be tested and then ask 
 </div>
 </div>
 
-<div id="outline-container-orgd5fcb68" class="outline-2">
-<h2 id="orgd5fcb68"><span class="section-number-2">2.</span> Location of test source</h2>
+<div id="outline-container-org3fe8b45" class="outline-2">
+<h2 id="org3fe8b45"><span class="section-number-2">2.</span> Location of test source</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The source file for a test should be placed under one of the
 directories:
 </p>
 
-<pre class="example" id="org4acf187">
+<pre class="example" id="org9b36e13">
 &lt;pkg&gt;/test/
 </pre>
 
@@ -97,7 +97,7 @@ In deciding the <code>&lt;pkg&gt;</code> to house the test, particular care is n
 </p>
 
 
-<div id="orgc6d4228" class="figure">
+<div id="org53942b4" class="figure">
 <p><img src="https://github.com/WireCell/wire-cell-toolkit/raw/master/wct-deps.png" alt="wct-deps.png" />
 </p>
 </div>
@@ -112,14 +112,14 @@ For example, if a test of code in <code>WireCellGen</code> requires ROOT, that t
 </div>
 </div>
 
-<div id="outline-container-org2da6d61" class="outline-2">
-<h2 id="org2da6d61"><span class="section-number-2">3.</span> Name the test</h2>
+<div id="outline-container-orgf06b22a" class="outline-2">
+<h2 id="orgf06b22a"><span class="section-number-2">3.</span> Name the test</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 As described in <a href="framework.html">the testing framework topic</a> a test must have a source file name that matches the pattern:
 </p>
 
-<pre class="example" id="org1f1f80b">
+<pre class="example" id="org9e66bd5">
 &lt;pkg&gt;/test/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;.&lt;ext&gt;
 </pre>
 
@@ -147,14 +147,14 @@ If a test specifically addresses a GitHub issue one option is to name
 the file to include the issue number.  For example:
 </p>
 
-<pre class="example" id="org9b82d02">
+<pre class="example" id="orgf24e914">
 test_issue200.bats
 </pre>
 <p>
 Likewise, if a test addresses things in a PR, it should contain the PR
 number.  For example:
 </p>
-<pre class="example" id="orgf9aeef9">
+<pre class="example" id="org3764e10">
 test-pr195.bats
 </pre>
 
@@ -169,7 +169,7 @@ label unless they themselves are meant to be run directly.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

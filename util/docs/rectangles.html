@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rectangles - a 2D interval tree</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,16 +51,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org117f4e6">1. Intervals, trees, sets and maps.</a></li>
-<li><a href="#org77a4318">2. Rectangle map and regions</a></li>
-<li><a href="#orgea0596c">3. WCT implementation</a>
+<li><a href="#org97f4058">1. Intervals, trees, sets and maps.</a></li>
+<li><a href="#orgad77cad">2. Rectangle map and regions</a></li>
+<li><a href="#org585ede5">3. WCT implementation</a>
 <ul>
-<li><a href="#org9eed149">3.1. Construction, inserting and iterating</a></li>
-<li><a href="#org3058fd2">3.2. Queries</a></li>
-<li><a href="#org2d7e910">3.3. Tests</a></li>
+<li><a href="#org6273c29">3.1. Construction, inserting and iterating</a></li>
+<li><a href="#orgfc73819">3.2. Queries</a></li>
+<li><a href="#org2ed9d06">3.3. Tests</a></li>
 </ul>
 </li>
-<li><a href="#orgee72c04">4. See more</a></li>
+<li><a href="#org7d04af2">4. See more</a></li>
 </ul>
 </div>
 </div>
@@ -68,8 +68,8 @@
 See also <a href="talks/rectangles-presentation.pdf">these presentation materials (pdf)</a>.
 </p>
 
-<div id="outline-container-org117f4e6" class="outline-2">
-<h2 id="org117f4e6"><span class="section-number-2">1.</span> Intervals, trees, sets and maps.</h2>
+<div id="outline-container-org97f4058" class="outline-2">
+<h2 id="org97f4058"><span class="section-number-2">1.</span> Intervals, trees, sets and maps.</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 An interval is a finite segment on some number line, 1D space.  It is
@@ -107,8 +107,8 @@ must be held in a container that does (eg a set).
 </div>
 </div>
 
-<div id="outline-container-org77a4318" class="outline-2">
-<h2 id="org77a4318"><span class="section-number-2">2.</span> Rectangle map and regions</h2>
+<div id="outline-container-orgad77cad" class="outline-2">
+<h2 id="orgad77cad"><span class="section-number-2">2.</span> Rectangle map and regions</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 An interval is one dimensional.  The concepts described above can be
@@ -129,8 +129,8 @@ overlap to produce a region with the combination <code>{b,c}</code>.
 </p>
 
 
-<div id="org094e7f7" class="figure">
-<p><object type="image/svg+xml" data="test_rectangles_find.svg" class="org-svg">
+<div id="org916b07c" class="figure">
+<p><object type="image/svg+xml" data="talks/test_rectangles_find.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
@@ -168,7 +168,7 @@ colors these intersections which are summarized with this log output
 from the test program.
 </p>
 
-<pre class="example" id="org1198670">
+<pre class="example" id="org97b6ccf">
 X&lt;- [400,600) Y&lt;- [400,600)
 X-&gt; [400,501.495) Y-&gt; [400,408.36) {e}
 X-&gt; [400,501.495) Y-&gt; [572.966,600) {b}
@@ -186,12 +186,12 @@ to overlap any regions formed from multiple elemental rectangles.
 </div>
 
 
-<div id="outline-container-orgea0596c" class="outline-2">
-<h2 id="orgea0596c"><span class="section-number-2">3.</span> WCT implementation</h2>
+<div id="outline-container-org585ede5" class="outline-2">
+<h2 id="org585ede5"><span class="section-number-2">3.</span> WCT implementation</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org9eed149" class="outline-3">
-<h3 id="org9eed149"><span class="section-number-3">3.1.</span> Construction, inserting and iterating</h3>
+<div id="outline-container-org6273c29" class="outline-3">
+<h3 id="org6273c29"><span class="section-number-3">3.1.</span> Construction, inserting and iterating</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 In brief pseudocode:
@@ -262,8 +262,8 @@ operation is done.</li>
 </div>
 </div>
 
-<div id="outline-container-org3058fd2" class="outline-3">
-<h3 id="org3058fd2"><span class="section-number-3">3.2.</span> Queries</h3>
+<div id="outline-container-orgfc73819" class="outline-3">
+<h3 id="orgfc73819"><span class="section-number-3">3.2.</span> Queries</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Following the dimensional hierarchy the user is free to use the
@@ -296,8 +296,8 @@ Continuing the pseudocode example from above,
 </div>
 </div>
 
-<div id="outline-container-org2d7e910" class="outline-3">
-<h3 id="org2d7e910"><span class="section-number-3">3.3.</span> Tests</h3>
+<div id="outline-container-org2ed9d06" class="outline-3">
+<h3 id="org2ed9d06"><span class="section-number-3">3.3.</span> Tests</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 There are several tests found at <code>util/test/</code>:
@@ -315,7 +315,7 @@ second produces an SVG similar to, but randomly different, from the
 one shown in the figure above.
 </p>
 
-<pre class="example" id="org2b3bbb1">
+<pre class="example" id="org9d692d9">
 ./build/util/test_rectangles
 eukleides --output=./build/util/test_rectangles.pdf ./build/util/test_rectangles.euk
 evince ./build/util/test_rectangles.pdf
@@ -332,8 +332,8 @@ display ./build/util/test_rectangles_find.svg
 </div>
 
 
-<div id="outline-container-orgee72c04" class="outline-2">
-<h2 id="orgee72c04"><span class="section-number-2">4.</span> See more</h2>
+<div id="outline-container-org7d04af2" class="outline-2">
+<h2 id="org7d04af2"><span class="section-number-2">4.</span> See more</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="https://www.boost.org/doc/libs/1_80_0/libs/icl/doc/html/index.html">https://www.boost.org/doc/libs/1_80_0/libs/icl/doc/html/index.html</a></li>
@@ -345,7 +345,7 @@ display ./build/util/test_rectangles_find.svg
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

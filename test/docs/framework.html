@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WCT Testing Framework</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,12 +51,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org944ddcd">1. Overview</a></li>
+<li><a href="#org4db0705">1. Overview</a></li>
 <li><a href="#exec-tests">2. Executing tests</a>
 <ul>
-<li><a href="#org43cb554">2.1. Automated campaign</a></li>
-<li><a href="#org017ce3d">2.2. Targeted execution</a></li>
-<li><a href="#org98a020e">2.3. Direct execution</a></li>
+<li><a href="#org54ffc2a">2.1. Automated campaign</a></li>
+<li><a href="#orga09b87d">2.2. Targeted execution</a></li>
+<li><a href="#org31df5c8">2.3. Direct execution</a></li>
 </ul>
 </li>
 <li><a href="#requirements">3. Test requirements</a></li>
@@ -69,8 +69,8 @@
 This describes the WCT test framework.
 </p>
 
-<div id="outline-container-org944ddcd" class="outline-2">
-<h2 id="org944ddcd"><span class="section-number-2">1.</span> Overview</h2>
+<div id="outline-container-org4db0705" class="outline-2">
+<h2 id="org4db0705"><span class="section-number-2">1.</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 WCT provides a large and growing suite of self-tests.  When they pass, they assure a variety of correct or at least expected behavior.  Examples of the behavior tested:
@@ -102,69 +102,69 @@ A user may execute tests in three different ways.
 </p>
 </div>
 
-<div id="outline-container-org43cb554" class="outline-3">
-<h3 id="org43cb554"><span class="section-number-3">2.1.</span> Automated campaign</h3>
+<div id="outline-container-org54ffc2a" class="outline-3">
+<h3 id="org54ffc2a"><span class="section-number-3">2.1.</span> Automated campaign</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 By default, <b>no tests are executed</b> by the WCT builder (<code>waf</code> or the provided <code>wcb</code>).  To execute tests the <code>--tests</code> option may be given at configure time:
 </p>
-<pre class="example" id="org2a90182">
+<pre class="example" id="org4bc2e63">
 waf configure --tests [...]
 </pre>
 <p>
 By default, when tests are enabled, the entire test group sequence is executed in the order listed above.  This sequence can be shortened by naming a different terminating group:
 </p>
-<pre class="example" id="orgb9a28d5">
+<pre class="example" id="org64182df">
 waf configure --tests --test-group=atomic [...]
 </pre>
 <p>
 A user may change their mind about the testing.  They may either rerun the <code>configure</code> step or they may pass the options again at the <code>waf build</code> phase.  For example, <code>waf configure --tests</code> was ran but subsequently the user wants to disable tests or to set a terminating group:
 </p>
-<pre class="example" id="org54309ad">
+<pre class="example" id="orgb862499">
 waf --test-group=atomic
 waf --notests
 </pre>
 <p>
 Likewise, if testing was not configured (the default), one can turn it back on during building
 </p>
-<pre class="example" id="orgfb2c2ef">
+<pre class="example" id="org23be78e">
 waf --tests
 </pre>
 <p>
 The values remembered by <code>waf configure</code> may be viewed with:
 </p>
-<pre class="example" id="org7e9cfd0">
+<pre class="example" id="orgd24fe06">
 waf dumpenv|grep 'waf: TEST'
 </pre>
 <p>
 Some tests take many minutes to complete.  Each time they are run, their run time is recorded.  Subsequent testing campaigns may exclude all test that are expected to require more time than a given test duration:
 </p>
-<pre class="example" id="org3c5029e">
+<pre class="example" id="org8249d5c">
 waf --test-duration=&lt;seconds&gt;
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org017ce3d" class="outline-3">
-<h3 id="org017ce3d"><span class="section-number-3">2.2.</span> Targeted execution</h3>
+<div id="outline-container-orga09b87d" class="outline-3">
+<h3 id="orga09b87d"><span class="section-number-3">2.2.</span> Targeted execution</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Assuming the build was configured with <code>--test</code>, an individual test may be run explicitly via <code>waf</code> by giving its &ldquo;target name&rdquo;:
 </p>
-<pre class="example" id="org7b377c4">
+<pre class="example" id="orgb0477fc">
 waf --target=test_testing
 </pre>
 <p>
 Test target names are derived from source file names with file name extension removed.  Interpreted tests will have the interpreter name appended.
 A listing of all targets including those for tests can be found with:
 </p>
-<pre class="example" id="org385e485">
+<pre class="example" id="org6a46c5e">
 waf list
 </pre>
 <p>
 To force a particular test to be rerun after it has been run once:
 </p>
-<pre class="example" id="orgfeec4e3">
+<pre class="example" id="org1d8b1e2">
 waf --target=test_testing --alltests
 </pre>
 <p>
@@ -173,14 +173,14 @@ If the build was not configured with the <code>--test</code> option, this option
 </div>
 </div>
 
-<div id="outline-container-org98a020e" class="outline-3">
-<h3 id="org98a020e"><span class="section-number-3">2.3.</span> Direct execution</h3>
+<div id="outline-container-org31df5c8" class="outline-3">
+<h3 id="org31df5c8"><span class="section-number-3">2.3.</span> Direct execution</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 A test program may be executed directly from the shell command line.  Compiled tests are found under <code>build/&lt;pkg&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;</code>.  Interpreted test files are left in-place in the source trees and must be run with an appropriate interpreter.  Here are some examples of directly running tests:
 </p>
 
-<pre class="example" id="orgc8820d1">
+<pre class="example" id="org1584f71">
 ./build/util/test_testing
 wcsonnet cfg/test/test_wirecell.jsonnet
 bats test/test/test_bats.bats
@@ -214,7 +214,7 @@ A test program:
 The source file for a test program must found as:
 </p>
 
-<pre class="example" id="orgfa0f06e">
+<pre class="example" id="org7bd9fec">
 &lt;pkg&gt;/test/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;.&lt;ext&gt;
 </pre>
 <p>
@@ -231,7 +231,7 @@ With the following elements:
 <p>
 Some examples:
 </p>
-<pre class="example" id="orgabf1454">
+<pre class="example" id="org82180a8">
 util/test/test_testing.cxx
 gen/test/test-addnoise.bats
 util/test/check_act2viz.cxx
@@ -269,7 +269,7 @@ Most simply, the <code>&lt;name&gt;</code> should made be unique across the enti
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Blob Depo Fill</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,10 +51,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcef0f5a">1. Overview</a></li>
-<li><a href="#orga86b65b">2. Algorithm</a></li>
-<li><a href="#org57e2177">3. Selection</a></li>
-<li><a href="#org9fb7291">4. Alignment</a></li>
+<li><a href="#org50acea6">1. Overview</a></li>
+<li><a href="#org3f12a95">2. Algorithm</a></li>
+<li><a href="#org4bb5698">3. Selection</a></li>
+<li><a href="#org71840b7">4. Alignment</a></li>
 </ul>
 </div>
 </div>
@@ -62,8 +62,8 @@
 This replaces charge in blobs with that from overlapping depos.
 </p>
 
-<div id="outline-container-orgcef0f5a" class="outline-2">
-<h2 id="orgcef0f5a"><span class="section-number-2">1.</span> Overview</h2>
+<div id="outline-container-org50acea6" class="outline-2">
+<h2 id="org50acea6"><span class="section-number-2">1.</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The <code>BlobDepoFill</code> WCT flow graph node is in the &ldquo;join&rdquo; DFP category.
@@ -75,9 +75,9 @@ and produces an <code>ICluster</code> on output port 0.
 The output retains all information from the input <code>ICluster</code> except that
 the charge of each blob is replaced with the charge from the portions
 of the input depo distribution which falls in the blob volume.  The
-section <a href="#orga86b65b">2</a> below describes how the depo charge is assigned to
-blobs.  See section <a href="#org57e2177">3</a> for details on which depos are
-considered and section <a href="#org9fb7291">4</a> for details on how blobs and depos
+section <a href="#org3f12a95">2</a> below describes how the depo charge is assigned to
+blobs.  See section <a href="#org4bb5698">3</a> for details on which depos are
+considered and section <a href="#org71840b7">4</a> for details on how blobs and depos
 are correlated.
 </p>
 
@@ -88,8 +88,8 @@ See also presentation blob-depo-fill.pdf
 </div>
 
 
-<div id="outline-container-orga86b65b" class="outline-2">
-<h2 id="orga86b65b"><span class="section-number-2">2.</span> Algorithm</h2>
+<div id="outline-container-org3f12a95" class="outline-2">
+<h2 id="org3f12a95"><span class="section-number-2">2.</span> Algorithm</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The goal is to integrate the depo charge distribution over the volume
@@ -160,8 +160,8 @@ associated with the current blob.
 </div>
 </div>
 
-<div id="outline-container-org57e2177" class="outline-2">
-<h2 id="org57e2177"><span class="section-number-2">3.</span> Selection</h2>
+<div id="outline-container-org4bb5698" class="outline-2">
+<h2 id="org4bb5698"><span class="section-number-2">3.</span> Selection</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The <code>Drifter</code> produces depos at a fixed location along the drift
@@ -183,8 +183,8 @@ form of cross-anode &ldquo;stitching&rdquo;).
 </div>
 </div>
 
-<div id="outline-container-org9fb7291" class="outline-2">
-<h2 id="org9fb7291"><span class="section-number-2">4.</span> Alignment</h2>
+<div id="outline-container-org71840b7" class="outline-2">
+<h2 id="org71840b7"><span class="section-number-2">4.</span> Alignment</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 In order to correlate portions of the 3D Gaussian extent of a depo
@@ -202,7 +202,7 @@ To check for a time offset one may create paraview/vtk files for both
 the drifted depos and the reconstructed blobs:
 </p>
 
-<pre class="example" id="orgee0dd49">
+<pre class="example" id="org2ae90a3">
 $ wirecell-img paraview-depos \
   --speed '1.56*mm/us' --t0 '314*us' \
   depos-drifted.npz depos-drifted.vtp
@@ -228,7 +228,7 @@ times prior to locating them within blobs.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

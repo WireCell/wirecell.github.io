@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Point Cloud</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -73,29 +73,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb38d83f">1. Definition of terms:</a></li>
-<li><a href="#org0cdc980">2. Comments</a></li>
-<li><a href="#orgf5fbde3">3. WCT Implementation</a></li>
-<li><a href="#org8624692">4. <code>PointCloud</code> API</a>
+<li><a href="#org497c5c0">1. Definition of terms:</a></li>
+<li><a href="#orgc5d04b8">2. Comments</a></li>
+<li><a href="#org0c380e4">3. WCT Implementation</a></li>
+<li><a href="#orgd303d16">4. <code>PointCloud</code> API</a>
 <ul>
-<li><a href="#org7c8b331">4.1. <code>Array</code></a></li>
-<li><a href="#orgbab0b20">4.2. <code>Dataset</code></a></li>
+<li><a href="#org38b9d10">4.1. <code>Array</code></a></li>
+<li><a href="#org7c7fd62">4.2. <code>Dataset</code></a></li>
 </ul>
 </li>
-<li><a href="#org208ede9">5. <code>TensorTools</code> API</a>
+<li><a href="#org0e04487">5. <code>TensorTools</code> API</a>
 <ul>
-<li><a href="#orgc29c4bb">5.1. <code>ITensor</code> representation</a></li>
-<li><a href="#org99892da">5.2. Conversion functions</a></li>
+<li><a href="#orga9a7774">5.1. <code>ITensor</code> representation</a></li>
+<li><a href="#org0b00f66">5.2. Conversion functions</a></li>
 </ul>
 </li>
-<li><a href="#orgd1c3f75">6. <code>KDTree</code> API</a></li>
-<li><a href="#org9fec8d6">7. Appending</a></li>
-<li><a href="#org2470d4c">8. nanoflann</a>
+<li><a href="#orgc450b1e">6. <code>KDTree</code> API</a></li>
+<li><a href="#org099f28e">7. Appending</a></li>
+<li><a href="#org204ab50">8. nanoflann</a>
 <ul>
-<li><a href="#org790c684">8.1. Dataset</a></li>
-<li><a href="#orgc5f7413">8.2. Distance</a></li>
-<li><a href="#orgac0f804">8.3. Index</a></li>
-<li><a href="#org194a9f2">8.4. Query methods</a></li>
+<li><a href="#org06890a0">8.1. Dataset</a></li>
+<li><a href="#org8b7f122">8.2. Distance</a></li>
+<li><a href="#org3eebc46">8.3. Index</a></li>
+<li><a href="#org1d1423f">8.4. Query methods</a></li>
 </ul>
 </li>
 </ul>
@@ -105,8 +105,8 @@
 See also <a href="talks/point-cloud-presentation.pdf">these presentation materials (pdf)</a>.
 </p>
 
-<div id="outline-container-orgb38d83f" class="outline-2">
-<h2 id="orgb38d83f"><span class="section-number-2">1.</span> Definition of terms:</h2>
+<div id="outline-container-org497c5c0" class="outline-2">
+<h2 id="org497c5c0"><span class="section-number-2">1.</span> Definition of terms:</h2>
 <div class="outline-text-2" id="text-1">
 <dl class="org-dl">
 <dt>point</dt><dd>an abstract entity to which we may associate information</dd>
@@ -127,8 +127,8 @@ See also <a href="talks/point-cloud-presentation.pdf">these presentation materia
 </div>
 </div>
 
-<div id="outline-container-org0cdc980" class="outline-2">
-<h2 id="org0cdc980"><span class="section-number-2">2.</span> Comments</h2>
+<div id="outline-container-orgc5d04b8" class="outline-2">
+<h2 id="orgc5d04b8"><span class="section-number-2">2.</span> Comments</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>A point is not a position.  Rather, one or more positions, possibly of different dimension, may be associated with a point.</li>
@@ -139,8 +139,8 @@ See also <a href="talks/point-cloud-presentation.pdf">these presentation materia
 </div>
 </div>
 
-<div id="outline-container-orgf5fbde3" class="outline-2">
-<h2 id="orgf5fbde3"><span class="section-number-2">3.</span> WCT Implementation</h2>
+<div id="outline-container-org0c380e4" class="outline-2">
+<h2 id="org0c380e4"><span class="section-number-2">3.</span> WCT Implementation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The wire-cell toolkit provides support for <i>point clouds</i> via three inter-operating APIs.
@@ -158,8 +158,8 @@ The remainder of this note provides some detail of these API.
 </div>
 </div>
 
-<div id="outline-container-org8624692" class="outline-2">
-<h2 id="org8624692"><span class="section-number-2">4.</span> <code>PointCloud</code> API</h2>
+<div id="outline-container-orgd303d16" class="outline-2">
+<h2 id="orgd303d16"><span class="section-number-2">4.</span> <code>PointCloud</code> API</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Quick taste of some code:
@@ -185,8 +185,8 @@ See <code>util/test/test_pointcloud.cxx</code> for more examples.  The rest of t
 </p>
 </div>
 
-<div id="outline-container-org7c8b331" class="outline-3">
-<h3 id="org7c8b331"><span class="section-number-3">4.1.</span> <code>Array</code></h3>
+<div id="outline-container-org38b9d10" class="outline-3">
+<h3 id="org38b9d10"><span class="section-number-3">4.1.</span> <code>Array</code></h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The <code>PointCloud::Array</code> is a simple container of array like data.  It&rsquo;s primary purpose:
@@ -273,7 +273,7 @@ arr1.append(user);
 The array begin appended (<code>tail</code>) must be of the same numeric type as the current array and the sizes of all non-major axes of <code>tail</code> must match those same axes of the current array.   The following represents shapes which are legal to use in an append and their resulting shape:
 </p>
 
-<pre class="example" id="org6b01809">
+<pre class="example" id="orgaf4186b">
 (N,n2,n3,...) + (M,n2,n3,...) = (N+M,n2,n3,...)
 </pre>
 
@@ -290,8 +290,8 @@ md[<span style="color: #e9b96e;">"foo"</span>] = <span style="color: #e9b96e;">"
 </div>
 </div>
 
-<div id="outline-container-orgbab0b20" class="outline-3">
-<h3 id="orgbab0b20"><span class="section-number-3">4.2.</span> <code>Dataset</code></h3>
+<div id="outline-container-org7c7fd62" class="outline-3">
+<h3 id="org7c7fd62"><span class="section-number-3">4.2.</span> <code>Dataset</code></h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 A <code>PointCloud::Dataset</code> provides a collection of <code>Array</code> with minimal operations.  It&rsquo;s primary purposes:
@@ -363,16 +363,16 @@ md[<span style="color: #e9b96e;">"foo"</span>] = <span style="color: #e9b96e;">"
 </div>
 </div>
 
-<div id="outline-container-org208ede9" class="outline-2">
-<h2 id="org208ede9"><span class="section-number-2">5.</span> <code>TensorTools</code> API</h2>
+<div id="outline-container-org0e04487" class="outline-2">
+<h2 id="org0e04487"><span class="section-number-2">5.</span> <code>TensorTools</code> API</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 The <code>TensorTools</code> API provides conversion functions between <code>Array</code> and <code>ITensor</code> and between <code>Dataset</code> and <code>ITensorSet</code>.  This allows point cloud information to be sent between nodes of the WCT data flow graph and to be sent through I/O with files.  The <code>ITensor</code> representation is first described and the conversion functions.
 </p>
 </div>
 
-<div id="outline-container-orgc29c4bb" class="outline-3">
-<h3 id="orgc29c4bb"><span class="section-number-3">5.1.</span> <code>ITensor</code> representation</h3>
+<div id="outline-container-orga9a7774" class="outline-3">
+<h3 id="orga9a7774"><span class="section-number-3">5.1.</span> <code>ITensor</code> representation</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 A <code>Dataset</code> is mapped to an <code>ITensorSet</code> and each of its named <code>Array</code> items to an <code>ITensor</code> in the set.  The two representations are close, but not exact.
@@ -387,8 +387,8 @@ A <code>Dataset</code> is mapped to an <code>ITensorSet</code> and each of its n
 </div>
 </div>
 
-<div id="outline-container-org99892da" class="outline-3">
-<h3 id="org99892da"><span class="section-number-3">5.2.</span> Conversion functions</h3>
+<div id="outline-container-org0b00f66" class="outline-3">
+<h3 id="org0b00f66"><span class="section-number-3">5.2.</span> Conversion functions</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Each of the four possible conversions has a corresponding function.  Their interface is very simple and the <code>WireCellAux/TensorTools.h</code> header file gives the essentials:
@@ -410,8 +410,8 @@ The <code>aux/test/test_tensor_tools.cxx</code> unit test contains more examples
 </div>
 </div>
 
-<div id="outline-container-orgd1c3f75" class="outline-2">
-<h2 id="orgd1c3f75"><span class="section-number-2">6.</span> <code>KDTree</code> API</h2>
+<div id="outline-container-orgc450b1e" class="outline-2">
+<h2 id="orgc450b1e"><span class="section-number-2">6.</span> <code>KDTree</code> API</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 The <code>KDTree</code> API provides a binding between a <code>Dataset</code> and the <code>nanoflan</code> library whic provides k-d tree data structure and <i>knn</i> and <i>radius search</i> operations.  The goals of <code>KDTree</code> is to simplify, regularize and hide the <code>nanoflan</code> API.  See the appendix below for notes that attempt to document <code>nanoflann</code>.
@@ -508,8 +508,8 @@ Assuming <code>knn</code> and the context from the above example, here are some 
 
 
 
-<div id="outline-container-org9fec8d6" class="outline-2">
-<h2 id="org9fec8d6"><span class="section-number-2">7.</span> Appending</h2>
+<div id="outline-container-org099f28e" class="outline-2">
+<h2 id="org099f28e"><span class="section-number-2">7.</span> Appending</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 As described above, two common additive operations are supported in
@@ -570,16 +570,16 @@ hook.
 </div>
 
 
-<div id="outline-container-org2470d4c" class="outline-2">
-<h2 id="org2470d4c"><span class="section-number-2">8.</span> nanoflann</h2>
+<div id="outline-container-org204ab50" class="outline-2">
+<h2 id="org204ab50"><span class="section-number-2">8.</span> nanoflann</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 This section provides developer documentation for <code>nanoflann</code> as what that package provides is rather slim.  What info that is available is at the <a href="https://github.com/jlblancoc/nanoflann">repo readme</a> and in the <a href="https://jlblancoc.github.io/nanoflann/">doxygen docs</a>.  The additional information given here is not required to use WCT PCs.
 </p>
 </div>
 
-<div id="outline-container-org790c684" class="outline-3">
-<h3 id="org790c684"><span class="section-number-3">8.1.</span> Dataset</h3>
+<div id="outline-container-org06890a0" class="outline-3">
+<h3 id="org06890a0"><span class="section-number-3">8.1.</span> Dataset</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 A <code>nanoflann</code> <i>dataset adaptor</i> must be provided for each unique type of PC data.  One that makes use of Eigen3 arrays is provided by <code>nanoflann</code>.  WCT provides one for <code>boost::multi_array</code> that comes from an <code>ITensor</code> as described above.  A dataset adaptor must provide two methods and may provide a third, optional method.  As copied from comments in the source and embelished these are:
@@ -624,8 +624,8 @@ A <code>nanoflann</code> <i>dataset adaptor</i> must be provided for each unique
 </div>
 
 
-<div id="outline-container-orgc5f7413" class="outline-3">
-<h3 id="orgc5f7413"><span class="section-number-3">8.2.</span> Distance</h3>
+<div id="outline-container-org8b7f122" class="outline-3">
+<h3 id="org8b7f122"><span class="section-number-3">8.2.</span> Distance</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 A distance metric must be provided to measure separation of points in the space.  L1, L2 and some other metrics are provided.  Note, the units of &ldquo;distance&rdquo; depend on the metric.  For example, when the L2 metric is used the distance is in units of length-squared.
@@ -633,8 +633,8 @@ A distance metric must be provided to measure separation of points in the space.
 </div>
 </div>
 
-<div id="outline-container-orgac0f804" class="outline-3">
-<h3 id="orgac0f804"><span class="section-number-3">8.3.</span> Index</h3>
+<div id="outline-container-org3eebc46" class="outline-3">
+<h3 id="org3eebc46"><span class="section-number-3">8.3.</span> Index</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 A <code>nanoflann</code> <i>index adaptor</i> provides the k-d tree query interface.  <code>KDTreeSingleIndexAdaptor</code> provides one implementation.  It is templated in terms of a <i>distance</i> type, a <i>dataset adaptor</i>, the dimensionality and the index type.  It operates assuming the adapted dataset remains unchanged.
@@ -650,8 +650,8 @@ The <code>nanoflann</code> library also defines an <code>KDTreeEigenMatrixAdapto
 </div>
 </div>
 
-<div id="outline-container-org194a9f2" class="outline-3">
-<h3 id="org194a9f2"><span class="section-number-3">8.4.</span> Query methods</h3>
+<div id="outline-container-org1d1423f" class="outline-3">
+<h3 id="org1d1423f"><span class="section-number-3">8.4.</span> Query methods</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 There are two primary query methods provided by <code>KDTree*Index*Adaptor</code> classes (and via the exposed <code>KDTreeEigenMatrixAdaptor::index</code> pointer to a <code>KDTreeSingleIndexAdaptor</code>).
@@ -705,7 +705,7 @@ The <code>RESULTSET</code> passed to <code>findNeighbors()</code> may be a <code
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

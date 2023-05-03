@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tensor Data Model</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -73,28 +73,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0e2c161">1. Introduction</a></li>
-<li><a href="#org97a3818">2. Generic tensor data model</a></li>
-<li><a href="#org6fe6a83">3. Specific tensor data model</a>
+<li><a href="#orgc36aa99">1. Introduction</a></li>
+<li><a href="#org0306111">2. Generic tensor data model</a></li>
+<li><a href="#org85639cc">3. Specific tensor data model</a>
 <ul>
-<li><a href="#orga0f4334">3.1. Common metadata conventions</a></li>
-<li><a href="#org62eafa8">3.2. Overview of specific types</a></li>
-<li><a href="#orgbc9c054">3.3. pcarray</a></li>
-<li><a href="#org7a2ce6a">3.4. pcdataset</a></li>
-<li><a href="#orgf45a932">3.5. pcgraph</a></li>
-<li><a href="#org72de827">3.6. trace</a></li>
-<li><a href="#orgf63d15d">3.7. tracedata</a></li>
-<li><a href="#org5bf31c6">3.8. frame</a></li>
-<li><a href="#org4e6c4c3">3.9. cluster</a></li>
+<li><a href="#org2806f1c">3.1. Common metadata conventions</a></li>
+<li><a href="#orgeba527a">3.2. Overview of specific types</a></li>
+<li><a href="#org2004e77">3.3. pcarray</a></li>
+<li><a href="#org72d55e2">3.4. pcdataset</a></li>
+<li><a href="#org857f932">3.5. pcgraph</a></li>
+<li><a href="#org62e3fb8">3.6. trace</a></li>
+<li><a href="#orgaa191b7">3.7. tracedata</a></li>
+<li><a href="#orga839262">3.8. frame</a></li>
+<li><a href="#org0cace1e">3.9. cluster</a></li>
 </ul>
 </li>
-<li><a href="#org58e3df7">4. Similarity to HDF5</a></li>
+<li><a href="#orge18348a">4. Similarity to HDF5</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0e2c161" class="outline-2">
-<h2 id="org0e2c161"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-orgc36aa99" class="outline-2">
+<h2 id="orgc36aa99"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 On data model that the Wire-Cell Toolkit (WCT) supports is the <i>tensor
@@ -112,7 +112,7 @@ tensor data model in order to map certain other data types to the
 generic tensor data model.</li>
 </ul>
 
-<div class="note" id="orgdb3b7b5">
+<div class="note" id="org8a6af74">
 <p>
 The next two sections define the generic and specific tensor data
 models and are written in rfc2119 language.  
@@ -122,8 +122,8 @@ models and are written in rfc2119 language.
 </div>
 </div>
 
-<div id="outline-container-org97a3818" class="outline-2">
-<h2 id="org97a3818"><span class="section-number-2">2.</span> Generic tensor data model</h2>
+<div id="outline-container-org0306111" class="outline-2">
+<h2 id="org0306111"><span class="section-number-2">2.</span> Generic tensor data model</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A <b>tensor</b> shall be composed of two conceptual parts: an <b>array</b> part and
@@ -181,8 +181,8 @@ passed through any tensor set converter round trip.
 </div>
 </div>
 
-<div id="outline-container-org6fe6a83" class="outline-2">
-<h2 id="org6fe6a83"><span class="section-number-2">3.</span> Specific tensor data model</h2>
+<div id="outline-container-org85639cc" class="outline-2">
+<h2 id="org85639cc"><span class="section-number-2">3.</span> Specific tensor data model</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The specific tensor data model defines representations of a number of
@@ -190,8 +190,8 @@ data types in terms of the generic tensor data model.
 </p>
 </div>
 
-<div id="outline-container-orga0f4334" class="outline-3">
-<h3 id="orga0f4334"><span class="section-number-3">3.1.</span> Common metadata conventions</h3>
+<div id="outline-container-org2806f1c" class="outline-3">
+<h3 id="org2806f1c"><span class="section-number-3">3.1.</span> Common metadata conventions</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 A tensor MD shall have an attribute named <b>datapath</b> of type string that
@@ -222,8 +222,8 @@ set of MD attributes providing <b>datapath</b> values.
 </div>
 </div>
 
-<div id="outline-container-org62eafa8" class="outline-3">
-<h3 id="org62eafa8"><span class="section-number-3">3.2.</span> Overview of specific types</h3>
+<div id="outline-container-orgeba527a" class="outline-3">
+<h3 id="orgeba527a"><span class="section-number-3">3.2.</span> Overview of specific types</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 The following specific types are mapped to the basic tensor data
@@ -250,8 +250,8 @@ some cases in terms of other types defined previously.
 </div>
 </div>
 
-<div id="outline-container-orgbc9c054" class="outline-3">
-<h3 id="orgbc9c054"><span class="section-number-3">3.3.</span> pcarray</h3>
+<div id="outline-container-org2004e77" class="outline-3">
+<h3 id="org2004e77"><span class="section-number-3">3.3.</span> pcarray</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 The <b>datatype</b> of <b>pcarray</b> indicates a tensor representing one
@@ -262,8 +262,8 @@ A <b>pcarray</b> places no additional requirements on its tensor MD.
 </div>
 </div>
 
-<div id="outline-container-org7a2ce6a" class="outline-3">
-<h3 id="org7a2ce6a"><span class="section-number-3">3.4.</span> pcdataset</h3>
+<div id="outline-container-org72d55e2" class="outline-3">
+<h3 id="org72d55e2"><span class="section-number-3">3.4.</span> pcdataset</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 The <b>datatype</b> of <b>pcdataset</b> indicates a tensor representing on
@@ -284,8 +284,8 @@ MD.
 </div>
 </div>
 
-<div id="outline-container-orgf45a932" class="outline-3">
-<h3 id="orgf45a932"><span class="section-number-3">3.5.</span> pcgraph</h3>
+<div id="outline-container-org857f932" class="outline-3">
+<h3 id="org857f932"><span class="section-number-3">3.5.</span> pcgraph</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 The <b>datatype</b> of <b>pcgraph</b> indicates a tensor representing a &ldquo;point cloud
@@ -311,8 +311,8 @@ shared between different <b>pcgraph</b> instances.
 </div>
 </div>
 
-<div id="outline-container-org72de827" class="outline-3">
-<h3 id="org72de827"><span class="section-number-3">3.6.</span> trace</h3>
+<div id="outline-container-org62e3fb8" class="outline-3">
+<h3 id="org62e3fb8"><span class="section-number-3">3.6.</span> trace</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 The <b>datatype</b> of <b>trace</b> indicates a tensor representing a single <code>ITrace</code>
@@ -346,8 +346,8 @@ reference time and the first sample (column) in the array.
 </div>
 </div>
 
-<div id="outline-container-orgf63d15d" class="outline-3">
-<h3 id="orgf63d15d"><span class="section-number-3">3.7.</span> tracedata</h3>
+<div id="outline-container-orgaa191b7" class="outline-3">
+<h3 id="orgaa191b7"><span class="section-number-3">3.7.</span> tracedata</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 The <b>datatype</b> of <b>tracedata</b> provides per-trace information for a subset
@@ -386,10 +386,10 @@ by <b>index</b>.
 </div>
 </div>
 
-<div id="outline-container-org5bf31c6" class="outline-3">
-<h3 id="org5bf31c6"><span class="section-number-3">3.8.</span> frame</h3>
+<div id="outline-container-orga839262" class="outline-3">
+<h3 id="orga839262"><span class="section-number-3">3.8.</span> frame</h3>
 <div class="outline-text-3" id="text-3-8">
-<div class="note" id="org7f9518f">
+<div class="note" id="orgc979409">
 <p>
 See the topic <a href="frame-tensor.html">frames as tensors</a> for details about representing frames with tensors.
 </p>
@@ -437,8 +437,8 @@ type <code>float</code> when converted to an <code>IFrame</code>.
 </div>
 </div>
 
-<div id="outline-container-org4e6c4c3" class="outline-3">
-<h3 id="org4e6c4c3"><span class="section-number-3">3.9.</span> cluster</h3>
+<div id="outline-container-org0cace1e" class="outline-3">
+<h3 id="org0cace1e"><span class="section-number-3">3.9.</span> cluster</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 A <code>cluster</code> is a <code>pcgraph</code> with convention for how to serialize each of
@@ -452,8 +452,8 @@ is similar to <a href="https://pytorch-geometric.readthedocs.io/en/latest/genera
 </div>
 
 
-<div id="outline-container-org58e3df7" class="outline-2">
-<h2 id="org58e3df7"><span class="section-number-2">4.</span> Similarity to HDF5</h2>
+<div id="outline-container-orge18348a" class="outline-2">
+<h2 id="orge18348a"><span class="section-number-2">4.</span> Similarity to HDF5</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The data model is intentionally similar to HDF5 abstract data model
@@ -472,7 +472,7 @@ and there is a conceptual mapping between the two:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

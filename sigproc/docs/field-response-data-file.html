@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:13 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Generating Field Response Data File.</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,20 +51,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc1db6a1">1. Garfield 2D input</a></li>
-<li><a href="#org1286ba8">2. WCT JSON</a></li>
+<li><a href="#orgd49ec54">1. Garfield 2D input</a></li>
+<li><a href="#org03557e4">2. WCT JSON</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc1db6a1" class="outline-2">
-<h2 id="orgc1db6a1"><span class="section-number-2">1.</span> Garfield 2D input</h2>
+<div id="outline-container-orgd49ec54" class="outline-2">
+<h2 id="orgd49ec54"><span class="section-number-2">1.</span> Garfield 2D input</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Get the output of Garfield 2D which should be a collection of files like:
 </p>
 
-<pre class="example" id="org7c4935f">
+<pre class="example" id="org56505c2">
 &lt;impact&gt;_&lt;letter&gt;.dat
 </pre>
 
@@ -80,7 +80,7 @@ Where
 Contents of the file should be like:
 </p>
 
-<pre class="example" id="org887cfce">
+<pre class="example" id="orgcb00680">
 *----.----1----.----2----.----3----.----4----.----5----.----6----.----7----.----8----.----9----.---10----.---11----.---12----.---13--
 % Created 31/07/16 At 19.52.20 &lt; none &gt; SIGNAL   "Direct signal, group   1     "
 
@@ -132,15 +132,15 @@ Contents of the file should be like:
 </div>
 </div>
 
-<div id="outline-container-org1286ba8" class="outline-2">
-<h2 id="org1286ba8"><span class="section-number-2">2.</span> WCT JSON</h2>
+<div id="outline-container-org03557e4" class="outline-2">
+<h2 id="org03557e4"><span class="section-number-2">2.</span> WCT JSON</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Wire Cell Toolkit works with JSON data.  Python code in <code>wire-cell-python</code> package is provided to convert Garfield 2D files into properly structure JSON.
 </p>
 
 
-<pre class="example" id="org93ab260">
+<pre class="example" id="org485d974">
 $ cd wire-cell-python/
 $ virtualenv --system-site-packages venv
 $ source venv/bin/activate
@@ -183,7 +183,7 @@ Notes:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:13</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

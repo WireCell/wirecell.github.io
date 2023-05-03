@@ -3,18 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-02 Tue 14:07 -->
+<!-- 2023-05-03 Wed 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>WCT Testing with C++</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="Brett Viren" />
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="/docs/styles/readtheorg/css/readtheorg.css"/>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/docs/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="/docs/styles/readtheorg/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="/styles/readtheorg/css/readtheorg.css"/>
+<script type="text/javascript" src="/styles/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="/styles/readtheorg/js/readtheorg.js"></script>
 <style>pre.src{border-radius:5px;background:#343131;color:white;} </style>
 <style>pre.example{border-radius:5px;background:#454242;color:white;} </style>
 <style>code{border-radius:5px;background:#454242;color:#0f0;} </style>
@@ -51,18 +51,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org78f63ed">1. Write a doctest test</a></li>
-<li><a href="#org8551d5f">2. Logging with doctest</a></li>
-<li><a href="#orgebf9267">3. Atomic C++ tests</a></li>
-<li><a href="#org5bd2212">4. A simple atomic C++ test</a></li>
-<li><a href="#org7cf2d4c">5. Logging with atomic tests</a></li>
-<li><a href="#orge5f6175">6. Mixing atomic and doctest</a></li>
-<li><a href="#org3aa0be5">7. Using atomic as a variant test</a></li>
-<li><a href="#org62c3893">8. Growing a test</a></li>
-<li><a href="#org09f674d">9. Failing tests</a></li>
-<li><a href="#org335f877">10. WCT C++ testing support</a></li>
-<li><a href="#org8e0e5b4">11. Output diagnostic files</a></li>
-<li><a href="#org83cb0f2">12. Found input files</a></li>
+<li><a href="#orgc9f34fe">1. Write a doctest test</a></li>
+<li><a href="#org05dee8d">2. Logging with doctest</a></li>
+<li><a href="#orgaf2660e">3. Atomic C++ tests</a></li>
+<li><a href="#orgdae9b49">4. A simple atomic C++ test</a></li>
+<li><a href="#org84c1924">5. Logging with atomic tests</a></li>
+<li><a href="#orge19e2b2">6. Mixing atomic and doctest</a></li>
+<li><a href="#org02e1fc7">7. Using atomic as a variant test</a></li>
+<li><a href="#orge764841">8. Growing a test</a></li>
+<li><a href="#org9bad5fa">9. Failing tests</a></li>
+<li><a href="#org7002da3">10. WCT C++ testing support</a></li>
+<li><a href="#org139c157">11. Output diagnostic files</a></li>
+<li><a href="#org05f6b3f">12. Found input files</a></li>
 </ul>
 </div>
 </div>
@@ -70,7 +70,7 @@
 Wire-Cell testing allows writing tests in C++ tests at different levels of granularity.  C++ test source files match the usual WCT testing pattern:
 </p>
 
-<pre class="example" id="org97d223b">
+<pre class="example" id="org06d8951">
 &lt;pkg&gt;/&lt;prefix&gt;[&lt;sep&gt;]&lt;name&gt;.cxx
 </pre>
 <p>
@@ -89,14 +89,14 @@ writing tests.  The remaining sections describe how to write WCT tests
 in C++.
 </p>
 
-<div id="outline-container-org78f63ed" class="outline-2">
-<h2 id="org78f63ed"><span class="section-number-2">1.</span> Write a doctest test</h2>
+<div id="outline-container-orgc9f34fe" class="outline-2">
+<h2 id="orgc9f34fe"><span class="section-number-2">1.</span> Write a doctest test</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Edit a file named to match the <code>&lt;pkg&gt;/test/doctest*.cxx</code> pattern:
 </p>
 
-<pre class="example" id="orgc86163b">
+<pre class="example" id="orgb69a305">
 emacs util/test/doctest-my-first-test.cxx
 </pre>
 
@@ -131,7 +131,7 @@ TEST_CASE(<span style="color: #e9b96e;">"my second test"</span>) {
 <p>
 Compile and run just one test:
 </p>
-<pre class="example" id="org67788fa">
+<pre class="example" id="orge013e79">
 waf --target=wcdoctest-test
 ./build/test/wcdoctest-test --test-case='my first test'
 ./build/test/wcdoctest-test   # runs all test cases
@@ -141,14 +141,14 @@ waf --target=wcdoctest-test
 The <b>doctest</b> runner has many options
 </p>
 
-<pre class="example" id="org5b07b1a">
+<pre class="example" id="org7df2e7a">
 ./build/util/wcdoctest-util --help
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org8551d5f" class="outline-2">
-<h2 id="org8551d5f"><span class="section-number-2">2.</span> Logging with doctest</h2>
+<div id="outline-container-org05dee8d" class="outline-2">
+<h2 id="org05dee8d"><span class="section-number-2">2.</span> Logging with doctest</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Developers are encouraged <b>not</b> to use <code>std::cout</code> or <code>std::cerr</code> in doctest tests.  Instead, as shown in the above example, we should use logging at <code>debug</code> level (or <code>trace</code>).
@@ -167,20 +167,20 @@ TEST_CASE(<span style="color: #e9b96e;">"..."</span>) {
 By default, these messages will not be seen.  But they can be turned on:
 </p>
 
-<pre class="example" id="org189187c">
+<pre class="example" id="org4eb7f2b">
 $ SPDLOG_LEVEL=DEBUG ./build/test/wcdoctest-test
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgebf9267" class="outline-2">
-<h2 id="orgebf9267"><span class="section-number-2">3.</span> Atomic C++ tests</h2>
+<div id="outline-container-orgaf2660e" class="outline-2">
+<h2 id="orgaf2660e"><span class="section-number-2">3.</span> Atomic C++ tests</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 An &ldquo;atomic&rdquo; C++ test source file matches:
 </p>
 
-<pre class="example" id="orgb69c95b">
+<pre class="example" id="org3fee9c0">
 &lt;pkg&gt;/test/test*.cxx
 &lt;pkg&gt;/test/atomic*.cxx
 </pre>
@@ -188,7 +188,7 @@ An &ldquo;atomic&rdquo; C++ test source file matches:
 <p>
 Each atomic source file must provide a <code>main()</code> function and results in a similarly named executable found at:
 </p>
-<pre class="example" id="org0629e3a">
+<pre class="example" id="org829cb9b">
 build/&lt;pkg&gt;/test*
 build/&lt;pkg&gt;/atomic*
 </pre>
@@ -203,8 +203,8 @@ Some reasons to write atomic tests (compared to doctest tests) include:
 </div>
 </div>
 
-<div id="outline-container-org5bd2212" class="outline-2">
-<h2 id="org5bd2212"><span class="section-number-2">4.</span> A simple atomic C++ test</h2>
+<div id="outline-container-orgdae9b49" class="outline-2">
+<h2 id="orgdae9b49"><span class="section-number-2">4.</span> A simple atomic C++ test</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 A trivial atomic test is shown:
@@ -226,18 +226,18 @@ A trivial atomic test is shown:
 Compile and run with:
 </p>
 
-<pre class="example" id="orgb29b9ac">
+<pre class="example" id="orgfdb57b4">
 $ waf --tests --target=atomic-simple
 $ ./build/test/atomic-simple
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org7cf2d4c" class="outline-2">
-<h2 id="org7cf2d4c"><span class="section-number-2">5.</span> Logging with atomic tests</h2>
+<div id="outline-container-org84c1924" class="outline-2">
+<h2 id="org84c1924"><span class="section-number-2">5.</span> Logging with atomic tests</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-Like in section <a href="#org8551d5f">2</a>, developers should use <code>debug</code> level logging instead of <code>std::cout</code> or <code>std::cerr</code>.  For this to work, the code requires some boilerplate:
+Like in section <a href="#org05dee8d">2</a>, developers should use <code>debug</code> level logging instead of <code>std::cout</code> or <code>std::cerr</code>.  For this to work, the code requires some boilerplate:
 </p>
 
 <div class="org-src-container">
@@ -261,7 +261,7 @@ Like in section <a href="#org8551d5f">2</a>, developers should use <code>debug</
 </pre>
 </div>
 
-<pre class="example" id="orgb7a82cc">
+<pre class="example" id="org0dbaa88">
 $ ./build/test/atomic-simple-logging
 [2023-04-25 11:56:26.348] [info] avoid use of info() despite this example
 
@@ -272,8 +272,8 @@ $ SPDLOG_LEVEL=debug ./build/test/atomic-simple-logging
 </div>
 </div>
 
-<div id="outline-container-orge5f6175" class="outline-2">
-<h2 id="orge5f6175"><span class="section-number-2">6.</span> Mixing atomic and doctest</h2>
+<div id="outline-container-orge19e2b2" class="outline-2">
+<h2 id="orge19e2b2"><span class="section-number-2">6.</span> Mixing atomic and doctest</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 It is possible make an atomic test use doctest.  It will still be processed as an atomic test by WCT build system but it will gain the facilities of doctest.  Along with logging, it requires a bit more boilerplate:
@@ -298,7 +298,7 @@ It is possible make an atomic test use doctest.  It will still be processed as a
 </pre>
 </div>
 
-<pre class="example" id="org5e5e304">
+<pre class="example" id="org50f659b">
 $ waf --tests --target=atomic-doctest
 $ ./build/test/atomic-doctest
 $ ./build/test/atomic-doctest --help
@@ -306,28 +306,28 @@ $ ./build/test/atomic-doctest --help
 </div>
 </div>
 
-<div id="outline-container-org3aa0be5" class="outline-2">
-<h2 id="org3aa0be5"><span class="section-number-2">7.</span> Using atomic as a variant test</h2>
+<div id="outline-container-org02e1fc7" class="outline-2">
+<h2 id="org02e1fc7"><span class="section-number-2">7.</span> Using atomic as a variant test</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 An atomic test must run with no command line arguments.  However, we may allow optional arguments.  One example:
 </p>
 
-<pre class="example" id="org8bc1033">
+<pre class="example" id="org11fa6f6">
 aux/test/test_idft.cxx
 </pre>
 <p>
 This tests various aspects of the <code>IDFT</code> interface implementations.  It can be run as an atomic test with the default <code>IDFT</code> implementation:
 </p>
 
-<pre class="example" id="org8f3e357">
+<pre class="example" id="org9438da0">
 $ ./build/aux/test_idft
 </pre>
 <p>
 It can also be run in a variant form by giving optional command line argumetns:
 </p>
 
-<pre class="example" id="org10436fd">
+<pre class="example" id="orgc58db67">
 $ ./build/aux/test_idft FftwDFT WireCellAux
 $ ./build/aux/test_idft TorchDFT WireCellPytorch
 $ ./build/aux/test_idft cuFftDFT WireCellCuda
@@ -336,7 +336,7 @@ $ ./build/aux/test_idft cuFftDFT WireCellCuda
 The first variant is actually identical to the atomic call.  The latter two require that WCT is build with support for PyTorch and CUDA, respectively.  An atomic test for each of the latter two variants can be found in their respective packages.
 </p>
 
-<div class="note" id="org177de7c">
+<div class="note" id="org33dd82b">
 <p>
 C++ tests require particular attention to dependencies.  The <code>test_idft</code> is a little special in that it only has build-time dependency on the <code>iface</code> sub package yet it is placed in the <code>aux</code> package and can have run-time dependency on other higher-level packages via WCT&rsquo;s plugin and component factory mechanisms.  In its default calling, it relies on the <code>FftwDFT</code> component being available.  This component is provided the <code>WireCellAux</code> plugin library (from the <code>aux</code> sub package) and so this minimal run-time dependency is satisfied by placing the test in the <code>aux</code> sub package.  Depending on the variant form, it must be run in a context with either the <code>WireCellPytorch</code> or <code>WireCellCuda</code> plugins available.  We will show how to register these variants so they are run when these optional sub packages are built.
 </p>
@@ -345,8 +345,8 @@ C++ tests require particular attention to dependencies.  The <code>test_idft</co
 </div>
 </div>
 
-<div id="outline-container-org62c3893" class="outline-2">
-<h2 id="org62c3893"><span class="section-number-2">8.</span> Growing a test</h2>
+<div id="outline-container-orge764841" class="outline-2">
+<h2 id="orge764841"><span class="section-number-2">8.</span> Growing a test</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Tests tend to grow.  Developers are strongly urged to grow tests in a way that defines separate test cases separately.  When a developer writes a <b>doctest</b> test this is easily done by add more <code>TEST_CASE()</code> and/or <code>SUBCASE()</code> instances to the source file.  When writing an <b>atomic</b> test, the developer must invent their own &ldquo;mini unit test framework&rdquo;.  One common pattern is &ldquo;bag of <code>test_*</code> functions.  Functions are distinquished by name and/or templates:
@@ -377,8 +377,8 @@ Tests tend to grow.  Developers are strongly urged to grow tests in a way that d
 </div>
 
 
-<div id="outline-container-org09f674d" class="outline-2">
-<h2 id="org09f674d"><span class="section-number-2">9.</span> Failing tests</h2>
+<div id="outline-container-org9bad5fa" class="outline-2">
+<h2 id="org9bad5fa"><span class="section-number-2">9.</span> Failing tests</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 A test is successful if it completes with a return status code of zero.  A failed test can be indicated in a number of ways:
@@ -396,7 +396,7 @@ A test is successful if it completes with a return status code of zero.  A faile
 The test developer is free to use any or a mix of these methods and is strongly urged to use them pervasively throughout the test code.
 </p>
 
-<div class="note" id="orgdc381e7">
+<div class="note" id="orgb0b07cc">
 <p>
 Do not write tests that lack any forms of actual error exit.  Otherwise they are not actually testing anything!
 </p>
@@ -405,8 +405,8 @@ Do not write tests that lack any forms of actual error exit.  Otherwise they are
 </div>
 </div>
 
-<div id="outline-container-org335f877" class="outline-2">
-<h2 id="org335f877"><span class="section-number-2">10.</span> WCT C++ testing support</h2>
+<div id="outline-container-org7002da3" class="outline-2">
+<h2 id="org7002da3"><span class="section-number-2">10.</span> WCT C++ testing support</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 As introduced above, WCT provides some support for testing.  The first are simple wrappers around <code>assert()</code> and one that will print a message if the assertion fails:
@@ -449,8 +449,8 @@ See <code>test_timekeeper.cxx</code>, <code>test_memusage.cxx</code> and <code>t
 </div>
 </div>
 
-<div id="outline-container-org8e0e5b4" class="outline-2">
-<h2 id="org8e0e5b4"><span class="section-number-2">11.</span> Output diagnostic files</h2>
+<div id="outline-container-org139c157" class="outline-2">
+<h2 id="org139c157"><span class="section-number-2">11.</span> Output diagnostic files</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Tests may produce files, even atomic tests that may have no files governing <code>waf</code> task dependencies.  These files can be useful to persist beyond the test job.  The ideal location for these files is the <code>build/</code> directory and as sibling to the C++ test executable.  C++ has a simple pattern to achieve this:
@@ -472,7 +472,7 @@ Tests may produce files, even atomic tests that may have no files governing <cod
 As the C++ test executable is found <code>build/&lt;pkg&gt;/&lt;prefix&gt;&lt;sep&gt;&lt;name&gt;</code>, these output files will be found there as siblings.  
 </p>
 
-<div class="tip" id="org2048bab">
+<div class="tip" id="orgb142e7a">
 <p>
 See also the use of the data repository in <a href="datarepo.html">data repository document</a> for special files to per persisted beyond the local <code>build/</code> area.
 </p>
@@ -481,8 +481,8 @@ See also the use of the data repository in <a href="datarepo.html">data reposito
 </div>
 </div>
 
-<div id="outline-container-org83cb0f2" class="outline-2">
-<h2 id="org83cb0f2"><span class="section-number-2">12.</span> Found input files</h2>
+<div id="outline-container-org05f6b3f" class="outline-2">
+<h2 id="org05f6b3f"><span class="section-number-2">12.</span> Found input files</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 Likewise, an atomic test must not expect any input files specified by the caller.  However, it may load files that can be found from the environment.  A common example is to find a WCT &ldquo;wires&rdquo; file or others provided by <code>wire-cell-data</code>.  Here is a C++ pattern do that in a way that naturally allows an atomic test to also be called in a variant manner.
@@ -513,7 +513,7 @@ For this kind of file to be found the user <b>must</b> define <code>WIRECELL_PAT
 In principle the path in <code>argv[0]</code> may also be used to locate the top of the <code>wire-cell-toolkit</code> source in order to locate files provided by the source and use them as input.
 </p>
 
-<div class="tip" id="orge75ee71">
+<div class="tip" id="org6fb1962">
 <p>
 The data repository also provides a set of known files for input.
 </p>
@@ -524,7 +524,7 @@ The data repository also provides a set of known files for input.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Brett Viren</p>
-<p class="date">Created: 2023-05-02 Tue 14:07</p>
+<p class="date">Created: 2023-05-03 Wed 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
